@@ -45,7 +45,7 @@ app.post('/api/delivery', function(req, res) {
 
 // ── FDU Dashboard APIs (before static) ───────────────────
 app.get('/api/fdu/submissions', function(req, res) {
-  try { res.json({ success:true, data:readJSON('fdu_submissions.json', []) }); }
+  try { res.json({ success:true, data:readJSON('fdu_donut_submissions.json', []) }); }
   catch(err) { res.status(500).json({ success:false }); }
 });
 
@@ -449,7 +449,7 @@ app.post('/api/fdu/submit', multer({dest:'uploads/fdu/'}).fields([{name:'photo'}
   } catch(err) { res.status(500).json({ success:false, error:err.message }); }
 });
 
-app.post('/api/fdu/donut-submit', multer({dest:'uploads/fdu/'}).fields([{name:'photo1'},{name:'photo2'}]), async function(req, res) {
+app.post('/api/fdu/donut-submit', multer({dest:'uploads/fdu/', limits:{fileSize:20*1024*1024}}).fields([{name:'photo1'},{name:'photo2'}]), async function(req, res) {
   try {
     var sop = readJSON('donut_sop.json', {});
     var pick = sop.todaysPick || {};
@@ -520,6 +520,31 @@ app.post('/api/fdu/donut-submit', multer({dest:'uploads/fdu/'}).fields([{name:'p
     writeJSON('fdu_donut_submissions.json', data);
     res.json({ success: true, entry: entry });
   } catch(err) { res.status(500).json({ success: false, error: err.message }); }
+});
+
+app.get('/api/fdu/am-summary', function(req, res) {
+  try {
+    var subs = readJSON('fdu_donut_submissions.json', []);
+    var stats = {};
+    subs.forEach(function(s) {
+      var am = s.am || 'Unknown';
+      stats[am].total++;
+      if (s.grade === 'A' || s.grade === 'B') stats[am].passed++;
+      else stats[am].failed++;
+      if (s.store) stats[am].stores[s.store] = true;
+    });
+    var result = Object.values(stats).map(function(a) {
+      return {
+        am: a.am,
+        total: a.total,
+        passed: a.passed,
+        failed: a.failed,
+        passRate: a.total > 0 ? Math.round(a.passed/a.total*100) : 0,
+        storeCount: Object.keys(a.stores).length
+      };
+    });
+    res.json({ success:true, data:result });
+  } catch(err) { res.status(500).json({ success:false, error:err.message }); }
 });
 
 app.get('/api/fdu/links', function(req, res) {

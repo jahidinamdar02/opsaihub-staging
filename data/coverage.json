@@ -190,6 +190,13 @@
         "fri": false,
         "sat": false,
         "sun": true
+      },
+      {
+        "store": "Sunview",
+        "wed": true,
+        "fri": false,
+        "sat": false,
+        "sun": false
       }
     ]
   },

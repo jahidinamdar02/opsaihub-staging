@@ -1487,5 +1487,143 @@
     "submittedAt": "2026-04-06T18:05:00.009Z",
     "date": "2026-04-06",
     "id": "1775498700009"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sunview",
+    "region": "Punjab",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "Working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "1 in working condition 1 blender jar not working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "Working, UPS battery have backup issue ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": "Clean "
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": "clean "
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "clean "
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": "clean "
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": "clean"
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "clear "
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": "clean "
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "yes "
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "4th April "
+      }
+    ],
+    "visitDate": "2026-04-08T08:42:32.463Z",
+    "submittedAt": "2026-04-08T08:42:29.088Z",
+    "date": "2026-04-08",
+    "id": "1775637749088"
   }
 ]
