@@ -1,0 +1,174 @@
+{
+  "t3d-dial": {
+    "store": "TH T3D DIAL",
+    "am": "Raman"
+  },
+  "t3d-food-court": {
+    "store": "TH T3D Food Court",
+    "am": "Raman"
+  },
+  "t1d-dial": {
+    "store": "TH T1D Dial",
+    "am": "Raman"
+  },
+  "dlf-cyberhub": {
+    "store": "TH DLF Cyberhub",
+    "am": "Harish"
+  },
+  "golf-course-aipl": {
+    "store": "TH Golf Course AIPL",
+    "am": "Harish"
+  },
+  "select-city-saket": {
+    "store": "TH Select City Saket",
+    "am": "Harish"
+  },
+  "green-park": {
+    "store": "TH Green Park",
+    "am": "Harish"
+  },
+  "basant-lok": {
+    "store": "TH Basant Lok",
+    "am": "Harish"
+  },
+  "epicuria-nehru-place": {
+    "store": "TH Epicuria Nehru Place",
+    "am": "Harish"
+  },
+  "skymark-one": {
+    "store": "TH Skymark one",
+    "am": "Rohit"
+  },
+  "vegas-mall": {
+    "store": "TH Vegas Mall",
+    "am": "Rohit"
+  },
+  "nsp-pritampura": {
+    "store": "TH NSP Pritampura",
+    "am": "Rohit"
+  },
+  "punjabi-bagh": {
+    "store": "TH Punjabi bagh",
+    "am": "Rohit"
+  },
+  "malhar-road": {
+    "store": "TH Malhar Road",
+    "am": "Deepak"
+  },
+  "sunview-enclave": {
+    "store": "TH Sunview Enclave",
+    "am": "Deepak"
+  },
+  "bucho-bathinda": {
+    "store": "TH Bucho Bathinda",
+    "am": "Deepak"
+  },
+  "patiala": {
+    "store": "TH Patiala",
+    "am": "Deepak"
+  },
+  "mohali": {
+    "store": "TH Mohali",
+    "am": "Deepak"
+  },
+  "sangrur": {
+    "store": "TH Sangrur",
+    "am": "Deepak"
+  },
+  "elante-mall": {
+    "store": "TH Elante Mall",
+    "am": "Deepak"
+  },
+  "sec-35-chandigarh": {
+    "store": "TH Sec 35 Chandigarh",
+    "am": "Deepak"
+  },
+  "balewadi-pune": {
+    "store": "TH Balewadi Pune",
+    "am": "Akash Chavan"
+  },
+  "lokhandwala": {
+    "store": "TH Lokhandwala",
+    "am": "Akash Chavan"
+  },
+  "mc-kurla": {
+    "store": "TH MC Kurla",
+    "am": "Akash Chavan"
+  },
+  "viman-nagar": {
+    "store": "TH Viman Nagar",
+    "am": "Akash Chavan"
+  },
+  "phonix-mall-wakad": {
+    "store": "TH Phonix Mall Wakad",
+    "am": "Akash Chavan"
+  },
+  "fc-road": {
+    "store": "TH FC Road",
+    "am": "Akash Chavan"
+  },
+  "fifc-mumbai": {
+    "store": "TH FIFC Mumbai",
+    "am": "Akash Chavan"
+  },
+  "hpcl-mumbai-pune-expressway": {
+    "store": "TH HPCL Mumbai Pune Expressway",
+    "am": "Akash Rathod"
+  },
+  "nmia-arrival": {
+    "store": "TH NMIA Arrival",
+    "am": "Akash Rathod"
+  },
+  "nmia-departure": {
+    "store": "TH NMiA Departure",
+    "am": "Akash Rathod"
+  },
+  "nexus-seawood": {
+    "store": "TH Nexus Seawood",
+    "am": "Akash Rathod"
+  },
+  "koramangala": {
+    "store": "TH Koramangala",
+    "am": "Jagadeesha"
+  },
+  "bial": {
+    "store": "TH BIAL",
+    "am": "Jagadeesha"
+  },
+  "mall-of-asia": {
+    "store": "TH Mall of Asia",
+    "am": "Jagadeesha"
+  },
+  "hsr": {
+    "store": "TH HSR",
+    "am": "Jagadeesha"
+  },
+  "inorbit-mall-hyderabad": {
+    "store": "TH Inorbit Mall-Hyderabad",
+    "am": "Shivam"
+  },
+  "hial": {
+    "store": "TH HIAL",
+    "am": "Shivam"
+  },
+  "hial-arrival": {
+    "store": "TH HIAL Arrival",
+    "am": "Shivam"
+  },
+  "lakeshore": {
+    "store": "TH Lakeshore",
+    "am": "Shivam"
+  },
+  "ahmedabad-airport": {
+    "store": "TH Ahmedabad Airport",
+    "am": "Gujarat"
+  },
+  "sindhu-bhavan": {
+    "store": "TH Sindhu Bhavan",
+    "am": "Gujarat"
+  },
+  "navrangpura": {
+    "store": "TH Navrangpura",
+    "am": "Gujarat"
+  }
+}

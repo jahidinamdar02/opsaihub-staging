@@ -1,0 +1,442 @@
+[
+  {
+    "id": "R1-RAM-01",
+    "name": "T3DD",
+    "am": "Raman",
+    "region": "Delhi NCR",
+    "regionCode": "R1",
+    "type": "airport",
+    "dailySalesBand": "high",
+    "placeId": ""
+  },
+  {
+    "id": "R1-RAM-02",
+    "name": "T3DD FC",
+    "am": "Raman",
+    "region": "Delhi NCR",
+    "regionCode": "R1",
+    "type": "airport",
+    "dailySalesBand": "high",
+    "placeId": ""
+  },
+  {
+    "id": "R1-RAM-03",
+    "name": "T1DD",
+    "am": "Raman",
+    "region": "Delhi NCR",
+    "regionCode": "R1",
+    "type": "airport",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R1-HAR-01",
+    "name": "Cyber Hub",
+    "am": "Harish",
+    "region": "Delhi NCR",
+    "regionCode": "R1",
+    "type": "mall",
+    "dailySalesBand": "high",
+    "placeId": ""
+  },
+  {
+    "id": "R1-HAR-02",
+    "name": "Select City",
+    "am": "Harish",
+    "region": "Delhi NCR",
+    "regionCode": "R1",
+    "type": "mall",
+    "dailySalesBand": "high",
+    "placeId": ""
+  },
+  {
+    "id": "R1-HAR-03",
+    "name": "Green Park",
+    "am": "Harish",
+    "region": "Delhi NCR",
+    "regionCode": "R1",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R1-HAR-04",
+    "name": "Basant Lok",
+    "am": "Harish",
+    "region": "Delhi NCR",
+    "regionCode": "R1",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R1-HAR-05",
+    "name": "Epicuria",
+    "am": "Harish",
+    "region": "Delhi NCR",
+    "regionCode": "R1",
+    "type": "mall",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R1-HAR-06",
+    "name": "APL Golf Course",
+    "am": "Harish",
+    "region": "Delhi NCR",
+    "regionCode": "R1",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R1-ROH-01",
+    "name": "Skymark",
+    "am": "Rohit",
+    "region": "Delhi NCR",
+    "regionCode": "R1",
+    "type": "mall",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R1-ROH-02",
+    "name": "Vegas Mall",
+    "am": "Rohit",
+    "region": "Delhi NCR",
+    "regionCode": "R1",
+    "type": "mall",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R1-ROH-03",
+    "name": "NSP",
+    "am": "Rohit",
+    "region": "Delhi NCR",
+    "regionCode": "R1",
+    "type": "standalone",
+    "dailySalesBand": "low",
+    "placeId": ""
+  },
+  {
+    "id": "R1-ROH-04",
+    "name": "Punjabi Bagh",
+    "am": "Rohit",
+    "region": "Delhi NCR",
+    "regionCode": "R1",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R2-DEE-01",
+    "name": "CP67 Mohali",
+    "am": "Deepak",
+    "region": "Punjab",
+    "regionCode": "R2",
+    "type": "mall",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R2-DEE-02",
+    "name": "Elante Mall",
+    "am": "Deepak",
+    "region": "Punjab",
+    "regionCode": "R2",
+    "type": "mall",
+    "dailySalesBand": "high",
+    "placeId": ""
+  },
+  {
+    "id": "R2-DEE-03",
+    "name": "Sunview",
+    "am": "Deepak",
+    "region": "Punjab",
+    "regionCode": "R2",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R2-DEE-04",
+    "name": "Sector 35",
+    "am": "Deepak",
+    "region": "Punjab",
+    "regionCode": "R2",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R2-DEE-05",
+    "name": "Bhupindra Road",
+    "am": "Deepak",
+    "region": "Punjab",
+    "regionCode": "R2",
+    "type": "standalone",
+    "dailySalesBand": "low",
+    "placeId": ""
+  },
+  {
+    "id": "R2-DEE-06",
+    "name": "Malhar Rd",
+    "am": "Deepak",
+    "region": "Punjab",
+    "regionCode": "R2",
+    "type": "standalone",
+    "dailySalesBand": "low",
+    "placeId": ""
+  },
+  {
+    "id": "R2-DEE-07",
+    "name": "Sangrur",
+    "am": "Deepak",
+    "region": "Punjab",
+    "regionCode": "R2",
+    "type": "standalone",
+    "dailySalesBand": "low",
+    "placeId": ""
+  },
+  {
+    "id": "R2-DEE-08",
+    "name": "Bucho",
+    "am": "Deepak",
+    "region": "Punjab",
+    "regionCode": "R2",
+    "type": "standalone",
+    "dailySalesBand": "low",
+    "placeId": ""
+  },
+  {
+    "id": "R3-ACH-01",
+    "name": "Balewadi",
+    "am": "Akash Chavan",
+    "region": "Maharashtra",
+    "regionCode": "R3",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R3-ACH-02",
+    "name": "Lokhandwala",
+    "am": "Akash Chavan",
+    "region": "Maharashtra",
+    "regionCode": "R3",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R3-ACH-03",
+    "name": "Supreme",
+    "am": "Akash Chavan",
+    "region": "Maharashtra",
+    "regionCode": "R3",
+    "type": "mall",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R3-ACH-04",
+    "name": "PMC Kurla",
+    "am": "Akash Chavan",
+    "region": "Maharashtra",
+    "regionCode": "R3",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R3-ACH-05",
+    "name": "Viman Nagar",
+    "am": "Akash Chavan",
+    "region": "Maharashtra",
+    "regionCode": "R3",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R3-ACH-06",
+    "name": "PMC Wakad",
+    "am": "Akash Chavan",
+    "region": "Maharashtra",
+    "regionCode": "R3",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R3-ACH-07",
+    "name": "FC Road",
+    "am": "Akash Chavan",
+    "region": "Maharashtra",
+    "regionCode": "R3",
+    "type": "standalone",
+    "dailySalesBand": "high",
+    "placeId": ""
+  },
+  {
+    "id": "R3-ACH-08",
+    "name": "FIFC",
+    "am": "Akash Chavan",
+    "region": "Maharashtra",
+    "regionCode": "R3",
+    "type": "mall",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R3-ACR-01",
+    "name": "HPCL-MPE",
+    "am": "Akash Rathod",
+    "region": "Maharashtra",
+    "regionCode": "R3",
+    "type": "highway",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R3-ACR-02",
+    "name": "NMIAL",
+    "am": "Akash Rathod",
+    "region": "Maharashtra",
+    "regionCode": "R3",
+    "type": "airport",
+    "dailySalesBand": "high",
+    "placeId": ""
+  },
+  {
+    "id": "R3-ACR-03",
+    "name": "NMIAL Arrival",
+    "am": "Akash Rathod",
+    "region": "Maharashtra",
+    "regionCode": "R3",
+    "type": "airport",
+    "dailySalesBand": "high",
+    "placeId": ""
+  },
+  {
+    "id": "R3-ACR-04",
+    "name": "Seawoods",
+    "am": "Akash Rathod",
+    "region": "Maharashtra",
+    "regionCode": "R3",
+    "type": "mall",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R4-JAG-01",
+    "name": "Koramangala",
+    "am": "Jagadeesha",
+    "region": "Bangalore",
+    "regionCode": "R4",
+    "type": "standalone",
+    "dailySalesBand": "high",
+    "placeId": ""
+  },
+  {
+    "id": "R4-JAG-02",
+    "name": "BIAL",
+    "am": "Jagadeesha",
+    "region": "Bangalore",
+    "regionCode": "R4",
+    "type": "airport",
+    "dailySalesBand": "high",
+    "placeId": ""
+  },
+  {
+    "id": "R4-JAG-03",
+    "name": "Mall of Asia",
+    "am": "Jagadeesha",
+    "region": "Bangalore",
+    "regionCode": "R4",
+    "type": "mall",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R4-JAG-04",
+    "name": "HSR Layout",
+    "am": "Jagadeesha",
+    "region": "Bangalore",
+    "regionCode": "R4",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R5-SHI-01",
+    "name": "Inorbit Mall Hyd",
+    "am": "Shivam",
+    "region": "Hyderabad",
+    "regionCode": "R5",
+    "type": "mall",
+    "dailySalesBand": "high",
+    "placeId": ""
+  },
+  {
+    "id": "R5-SHI-02",
+    "name": "Hyderabad Arrivals",
+    "am": "Shivam",
+    "region": "Hyderabad",
+    "regionCode": "R5",
+    "type": "airport",
+    "dailySalesBand": "high",
+    "placeId": ""
+  },
+  {
+    "id": "R5-SHI-03",
+    "name": "Lakeshore",
+    "am": "Shivam",
+    "region": "Hyderabad",
+    "regionCode": "R5",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R5-SHI-04",
+    "name": "Hyderabad Airport",
+    "am": "Shivam",
+    "region": "Hyderabad",
+    "regionCode": "R5",
+    "type": "airport",
+    "dailySalesBand": "high",
+    "placeId": ""
+  },
+  {
+    "id": "R6-NOA-01",
+    "name": "Ahmedabad Airport",
+    "am": "Unassigned",
+    "region": "Gujarat",
+    "regionCode": "R6",
+    "type": "airport",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R6-NOA-02",
+    "name": "Sindhu Bhavan",
+    "am": "Unassigned",
+    "region": "Gujarat",
+    "regionCode": "R6",
+    "type": "standalone",
+    "dailySalesBand": "medium",
+    "placeId": ""
+  },
+  {
+    "id": "R6-NOA-03",
+    "name": "Navrangpura",
+    "am": "Unassigned",
+    "region": "Gujarat",
+    "regionCode": "R6",
+    "type": "standalone",
+    "dailySalesBand": "low",
+    "placeId": ""
+  }
+]

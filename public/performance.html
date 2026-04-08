@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Performance - Tim's Ops Connect</title>
+<style>
+:root {
+  --red:#C8102E; --red-dark:#9B0D22;
+  --surface:#F5F5F7; --card:#FFFFFF;
+  --text:#1D1D1F; --text2:#6E6E73;
+  --nav-h:72px;
+  --success:#34C759; --warning:#FF9500; --critical:#FF3B30;
+  --gold:#FFD700; --border:#E5E5EA;
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif; background:var(--surface); color:var(--text); min-height:100vh; padding-bottom:calc(var(--nav-h) + 20px); overflow-x:hidden; }
+
+/* HEADER */
+.page-header { background:linear-gradient(150deg,var(--red) 0%,var(--red-dark) 60%,#1A1A1A 100%); padding:52px 20px 20px; position:relative; overflow:hidden; }
+.page-header::before { content:''; position:absolute; top:-40px; right:-40px; width:180px; height:180px; background:rgba(255,255,255,0.05); border-radius:50%; }
+.page-title { font-size:26px; font-weight:700; color:#fff; letter-spacing:-0.5px; }
+.page-sub { font-size:13px; color:rgba(255,255,255,0.65); margin-top:3px; }
+
+/* TOGGLE */
+.toggle-bar { display:flex; gap:0; margin:16px 16px 0; background:#E5E5EA; border-radius:12px; padding:3px; }
+.toggle-btn { flex:1; padding:9px; border-radius:10px; border:none; font-size:13px; font-weight:600; background:transparent; color:var(--text2); cursor:pointer; transition:all 0.2s; }
+.toggle-btn.active { background:#fff; color:var(--text); box-shadow:0 1px 4px rgba(0,0,0,0.1); }
+
+.content { padding:12px 16px; }
+.hidden { display:none !important; }
+
+/* AM PICKER */
+.am-picker-wrap { padding:12px 16px 0; }
+.am-label { font-size:12px; font-weight:600; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
+
+/* SECTION CARDS */
+.section-card { background:var(--card); border-radius:16px; padding:16px; margin-bottom:12px; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.section-card-title { font-size:12px; font-weight:700; color:var(--text2); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+
+/* HERO REVENUE */
+.revenue-hero { background:linear-gradient(135deg,#1A1A1A 0%,#2A2A2A 100%); border-radius:20px; padding:20px; margin-bottom:12px; position:relative; overflow:hidden; border:1px solid rgba(255,255,255,0.1); }
+.revenue-hero::before { content:'&#x2615;'; position:absolute; right:16px; top:16px; font-size:48px; opacity:0.1; }
+.revenue-label { font-size:12px; color:rgba(255,255,255,0.6); font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
+.revenue-amount { font-size:40px; font-weight:700; color:#fff; letter-spacing:-1px; line-height:1; margin-bottom:4px; }
+.revenue-sub { font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:16px; }
+.revenue-progress-bg { background:rgba(255,255,255,0.15); border-radius:6px; height:8px; margin-bottom:6px; overflow:hidden; }
+.revenue-progress-fill { height:100%; border-radius:6px; transition:width 1.2s cubic-bezier(0.34,1.56,0.64,1); }
+.revenue-progress-label { display:flex; justify-content:space-between; font-size:12px; }
+.revenue-pct { font-weight:700; }
+.revenue-target { color:rgba(255,255,255,0.5); }
+.revenue-metrics { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; }
+.rev-metric { background:rgba(255,255,255,0.08); border-radius:12px; padding:12px; text-align:center; }
+.rev-metric-num { font-size:22px; font-weight:700; color:#fff; line-height:1; }
+.rev-metric-label { font-size:11px; color:rgba(255,255,255,0.6); margin-top:3px; }
+
+/* STREAK */
+.streak-card { background:linear-gradient(135deg,#FF9500,#FF6B00); border-radius:16px; padding:16px; margin-bottom:12px; display:flex; align-items:center; gap:14px; }
+.streak-fire { font-size:40px; }
+.streak-num { font-size:36px; font-weight:700; color:#fff; line-height:1; }
+.streak-label { font-size:13px; color:rgba(255,255,255,0.85); margin-top:2px; }
+.streak-best { font-size:11px; color:rgba(255,255,255,0.7); margin-top:2px; }
+
+/* BADGES */
+.badges-wrap { display:flex; gap:10px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; }
+.badges-wrap::-webkit-scrollbar { display:none; }
+.badge-item { flex-shrink:0; text-align:center; width:72px; }
+.badge-icon { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; margin:0 auto 6px; border:3px solid transparent; }
+.badge-icon.earned { background:linear-gradient(135deg,#FFD700,#FFA500); border-color:#FFD700; box-shadow:0 4px 12px rgba(255,215,0,0.4); }
+.badge-icon.locked { background:#F5F5F7; border-color:#E5E5EA; filter:grayscale(1); opacity:0.5; }
+.badge-name { font-size:10px; font-weight:600; color:var(--text2); text-align:center; line-height:1.3; }
+
+/* RANK CARD */
+.rank-card { display:flex; align-items:center; gap:14px; background:linear-gradient(135deg,var(--red),var(--red-dark)); border-radius:16px; padding:16px; margin-bottom:12px; }
+.rank-num { font-size:48px; font-weight:700; color:#fff; line-height:1; }
+.rank-label { font-size:13px; color:rgba(255,255,255,0.8); }
+.rank-movement { font-size:14px; font-weight:700; color:#fff; margin-top:4px; }
+.rank-out-of { font-size:12px; color:rgba(255,255,255,0.6); margin-top:2px; }
+
+/* PERSONAL BEST */
+.personal-best { background:linear-gradient(135deg,#FFD700,#FFA500); border-radius:16px; padding:14px 16px; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between; }
+.pb-label { font-size:12px; font-weight:700; color:rgba(0,0,0,0.6); text-transform:uppercase; letter-spacing:0.5px; }
+.pb-score { font-size:32px; font-weight:700; color:#1A1A1A; }
+.pb-date { font-size:11px; color:rgba(0,0,0,0.5); margin-top:2px; }
+
+/* WINS */
+.win-card { background:linear-gradient(135deg,#E8F8ED,#F0FFF4); border-radius:14px; padding:14px; margin-bottom:10px; border-left:4px solid var(--success); }
+.win-title { font-size:13px; font-weight:700; color:#1B7A3A; margin-bottom:4px; }
+.win-text { font-size:13px; color:var(--text); line-height:1.4; }
+.win-date { font-size:11px; color:var(--text2); margin-top:6px; }
+
+/* RED FLAGS */
+.flag-card { background:#FFF5F5; border-radius:14px; padding:14px; margin-bottom:10px; border-left:4px solid var(--critical); }
+.flag-title { font-size:12px; font-weight:700; color:var(--critical); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; display:flex; align-items:center; gap:6px; }
+.flag-text { font-size:13px; color:var(--text); line-height:1.4; }
+.flag-pulse { display:inline-block; width:8px; height:8px; background:var(--critical); border-radius:50%; animation:pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+
+/* HEATMAP */
+.heatmap-wrap { overflow-x:auto; }
+.heatmap-table { width:100%; border-collapse:collapse; font-size:11px; }
+.heatmap-table th { padding:4px 6px; color:var(--text2); font-weight:600; text-align:center; font-size:10px; }
+.heatmap-table td { padding:4px; text-align:center; }
+.heat-cell { width:28px; height:28px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; margin:1px; }
+.heat-0 { background:#F5F5F7; color:#AEAEB2; }
+.heat-1 { background:#E8F8ED; color:#1B7A3A; }
+.heat-2 { background:#B8EFC8; color:#1B7A3A; }
+.heat-3 { background:#34C759; color:#fff; }
+.heat-leave { background:#E5E5EA; color:#AEAEB2; }
+.store-name-cell { font-size:11px; font-weight:600; color:var(--text); text-align:left; padding:4px 6px; max-width:80px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+/* RECOGNITION */
+.recognition-card { background:linear-gradient(135deg,#1A1A1A,#2A2A2A); border-radius:16px; padding:16px; margin-bottom:10px; }
+.rec-badge { display:inline-block; background:var(--gold); color:#1A1A1A; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:8px; }
+.rec-title { font-size:16px; font-weight:700; color:#fff; margin-bottom:4px; }
+.rec-store { font-size:13px; color:rgba(255,255,255,0.7); }
+.rec-reason { font-size:12px; color:rgba(255,255,255,0.5); margin-top:6px; font-style:italic; }
+
+/* LEAVE TOGGLE */
+.leave-toggle-wrap { display:flex; align-items:center; justify-content:space-between; background:var(--card); border-radius:12px; padding:12px 16px; margin-bottom:12px; box-shadow:0 1px 6px rgba(0,0,0,0.06); }
+.leave-toggle-label { font-size:14px; font-weight:600; color:var(--text); }
+.leave-toggle-sub { font-size:12px; color:var(--text2); margin-top:2px; }
+.toggle-switch { width:44px; height:26px; background:#E5E5EA; border-radius:13px; position:relative; cursor:pointer; transition:background 0.2s; border:none; }
+.toggle-switch.on { background:var(--success); }
+.toggle-switch::after { content:''; position:absolute; top:3px; left:3px; width:20px; height:20px; background:#fff; border-radius:50%; transition:transform 0.2s; box-shadow:0 1px 4px rgba(0,0,0,0.2); }
+.toggle-switch.on::after { transform:translateX(18px); }
+
+/* ACTION TRACKER */
+.action-item { background:var(--card); border-radius:14px; padding:14px; margin-bottom:10px; box-shadow:0 2px 8px rgba(0,0,0,0.06); border-left:3px solid var(--border); }
+.action-item.pending { border-left-color:var(--warning); }
+.action-item.completed { border-left-color:var(--success); opacity:0.75; }
+.action-item.na { border-left-color:var(--text2); opacity:0.6; }
+.action-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.action-store { font-size:12px; font-weight:700; color:var(--red); }
+.action-date { font-size:11px; color:var(--text2); }
+.action-category { display:inline-block; font-size:10px; font-weight:700; padding:2px 8px; border-radius:6px; background:var(--surface); color:var(--text2); margin-bottom:6px; text-transform:uppercase; }
+.action-text { font-size:13px; font-weight:500; color:var(--text); margin-bottom:8px; line-height:1.4; }
+.action-comment { font-size:12px; color:var(--text2); background:var(--surface); border-radius:8px; padding:8px 10px; margin-bottom:10px; font-style:italic; }
+.action-status-btns { display:flex; gap:6px; }
+.status-btn { flex:1; padding:7px; border-radius:8px; border:1.5px solid var(--border); font-size:11px; font-weight:700; background:#fff; color:var(--text2); cursor:pointer; text-align:center; transition:all 0.2s; }
+.status-btn.sel-pending { background:#FF9500; border-color:#FF9500; color:#fff; }
+.status-btn.sel-completed { background:var(--success); border-color:var(--success); color:#fff; }
+.status-btn.sel-na { background:#8E8E93; border-color:#8E8E93; color:#fff; }
+
+/* LEADERBOARD */
+.leader-row { display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--border); }
+.leader-rank { width:28px; text-align:center; font-size:16px; }
+.leader-info { flex:1; margin-left:10px; }
+.leader-name { font-size:14px; font-weight:600; }
+.leader-region { font-size:11px; color:var(--text2); }
+.leader-score { font-size:22px; font-weight:700; }
+.leader-move { font-size:11px; font-weight:600; margin-top:2px; text-align:right; }
+
+/* BAR CHART */
+.bar-chart { display:flex; align-items:flex-end; gap:6px; height:80px; }
+.bar-wrap { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; height:100%; justify-content:flex-end; }
+.bar { width:100%; border-radius:4px 4px 0 0; min-height:3px; transition:height 0.8s cubic-bezier(0.34,1.56,0.64,1); }
+.bar-day { font-size:10px; color:var(--text2); font-weight:600; }
+.bar-val { font-size:10px; font-weight:700; }
+
+/* CONFETTI */
+.confetti-piece { position:fixed; width:10px; height:10px; top:-10px; z-index:9999; animation:confettiFall linear forwards; border-radius:2px; }
+@keyframes confettiFall { to { transform:translateY(100vh) rotate(720deg); opacity:0; } }
+
+/* FILTER PILLS */
+.filter-pills { display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; margin-bottom:12px; }
+.filter-pills::-webkit-scrollbar { display:none; }
+.filter-pill { flex-shrink:0; padding:6px 14px; border-radius:20px; font-size:12px; font-weight:600; background:var(--card); color:var(--text2); border:none; cursor:pointer; box-shadow:0 1px 4px rgba(0,0,0,0.08); }
+.filter-pill.active { background:var(--red); color:#fff; }
+
+/* BOTTOM NAV */
+.bottom-nav { position:fixed; bottom:0; left:0; right:0; height:var(--nav-h); background:rgba(255,255,255,0.88); backdrop-filter:blur(20px) saturate(180%); border-top:1px solid rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:space-around; padding-bottom:env(safe-area-inset-bottom); z-index:1000; }
+.nav-item { display:flex; flex-direction:column; align-items:center; gap:3px; text-decoration:none; padding:8px 12px; min-width:56px; }
+.nav-icon { font-size:22px; }
+.nav-label { font-size:10px; font-weight:500; color:var(--text2); }
+.nav-item.active .nav-label { color:var(--red); font-weight:600; }
+.nav-dot { width:4px; height:4px; background:var(--red); border-radius:50%; margin-top:-2px; }
+
+.spinner { width:24px; height:24px; border:3px solid #E5E5EA; border-top-color:var(--red); border-radius:50%; animation:spin 0.8s linear infinite; margin:30px auto; display:block; }
+@keyframes spin { to { transform:rotate(360deg); } }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.fade-up { animation:fadeUp 0.5s ease both; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-title">Performance &#x1F4CA;</div>
+  <div class="page-sub">Your journey. Your numbers. Your wins.</div>
+</div>
+
+<a href="performance-fy27.html" style="display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#1A1A2E,#0F3460);border-radius:16px;padding:16px;margin:14px 16px 0;text-decoration:none;">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div style="font-size:28px;">&#x1F3AF;</div>
+    <div>
+      <div style="font-size:15px;font-weight:700;color:#fff;">FY27 Sales Targets</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:2px;">Monthly · Quarterly · H1/H2 · Annual · AOP</div>
+    </div>
+  </div>
+  <div style="background:rgba(255,255,255,0.15);color:#fff;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:700;">View &#x276F;</div>
+</a>
+<div class="toggle-bar" style="display:flex;gap:0;margin:16px 16px 0;background:#E5E5EA;border-radius:12px;padding:3px;">
+  <button class="toggle-btn active" id="toggleMy" style="flex:1;padding:9px;border-radius:10px;border:none;font-size:12px;font-weight:600;background:transparent;color:var(--text2);cursor:pointer;transition:all 0.2s;">My Dashboard</button>
+  <button class="toggle-btn" id="toggleTeam" style="flex:1;padding:9px;border-radius:10px;border:none;font-size:12px;font-weight:600;background:transparent;color:var(--text2);cursor:pointer;transition:all 0.2s;">Team View</button>
+  <button class="toggle-btn" id="toggleQTD" style="flex:1;padding:9px;border-radius:10px;border:none;font-size:12px;font-weight:600;background:transparent;color:var(--text2);cursor:pointer;transition:all 0.2s;">QTD &amp; YTD</button>
+</div>
+
+<!-- AM PICKER -->
+<div class="am-picker-wrap" id="amPickerWrap">
+  <div class="am-label">Who are you?</div>
+  <div id="perfAMCards" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"></div>
+</div>
+
+<!-- MY DASHBOARD -->
+<div id="myView" class="hidden">
+
+  <!-- AM Bar -->
+  <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:12px;padding:12px 16px;margin:12px 16px 0;box-shadow:0 1px 6px rgba(0,0,0,0.08);">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:40px;height:40px;background:linear-gradient(135deg,#C8102E,#9B0D22);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">&#x1F464;</div>
+      <div>
+        <div style="font-size:13px;color:#6E6E73;">Good to see you,</div>
+        <div style="font-size:17px;font-weight:700;color:#1D1D1F;" id="perfAMName">-</div>
+      </div>
+    </div>
+    <button onclick="changePerfAM()" style="background:#F5F5F7;border:none;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;color:#C8102E;cursor:pointer;">Change</button>
+  </div>
+
+  
+<a href="kpi.html" style="display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#0D0D1A,#1A0508);border-radius:16px;padding:16px;margin:12px 16px;text-decoration:none;border:1px solid rgba(200,16,46,0.3)"><div style="font-size:28px">&#128230;</div><div style="flex:1"><div style="font-size:15px;font-weight:700;color:#fff">Store KPIs</div><div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">Donuts &middot; Timbits &middot; Protein &middot; Water &middot; Puff &amp; Roll &middot; Coffee &middot; Merch &middot; QR</div></div><div style="font-size:20px;color:rgba(255,255,255,0.4)">&#8250;</div></a>
+<div class="content" id="dashContent">
+<!-- MTD REVENUE TILE -->
+<a href="kpi.html" style="display:block;text-decoration:none;margin:12px 16px 0;">
+<div style="background:linear-gradient(135deg,#0D0D1A,#1A0508);border-radius:20px;padding:18px;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-20px;right:-10px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,0.25),transparent 70%);pointer-events:none;"></div>
+  <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;">&#128202; MTD Performance &mdash; March 2026</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
+    <div style="background:rgba(255,255,255,0.06);border-radius:10px;padding:10px;text-align:center;">
+      <div style="font-size:9px;font-weight:700;color:#C8102E;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;">MTD Revenue</div>
+      <div style="font-size:18px;font-weight:700;color:#fff;">&#8377;8.45Cr</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:2px;">24 days</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.06);border-radius:10px;padding:10px;text-align:center;">
+      <div style="font-size:9px;font-weight:700;color:#C8102E;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;">ADT</div>
+      <div style="font-size:18px;font-weight:700;color:#fff;">148</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:2px;">Avg daily txns</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.06);border-radius:10px;padding:10px;text-align:center;">
+      <div style="font-size:9px;font-weight:700;color:#C8102E;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;">APC</div>
+      <div style="font-size:18px;font-weight:700;color:#fff;">&#8377;558</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:2px;">Avg per check</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+    <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:8px;text-align:center;">
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-bottom:2px;">vs LY</div>
+      <div style="font-size:15px;font-weight:700;color:#34C759;">&#8593; 107%</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:8px;text-align:center;">
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-bottom:2px;">vs LM</div>
+      <div style="font-size:15px;font-weight:700;color:#34C759;">&#8593; 105%</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:8px;text-align:center;">
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-bottom:2px;">Delivery</div>
+      <div style="font-size:15px;font-weight:700;color:#30B0C7;">&#8377;1.52Cr</div>
+    </div>
+  </div>
+  <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;">
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);">Delivery ADT 19 &middot; APC &#8377;324 &middot; 18% of total</div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.5);">Full KPI &#8594;</div>
+  </div>
+</div>
+</a>
+
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<!-- TEAM VIEW -->
+<div id="teamView" class="hidden">
+  <div class="content">
+    <div id="teamHero"></div>
+    <div class="section-card">
+      <div class="section-card-title">&#x1F389; Team Wins &amp; Celebrations</div>
+      <div id="celebrationFeed"><div class="spinner"></div></div>
+    </div>
+    <div class="section-card">
+      <div class="section-card-title">&#x1F3C6; Live Leaderboard &mdash; This Week</div>
+      <div id="liveLeaderboard"><div class="spinner"></div></div>
+    </div>
+    <div class="section-card">
+      <div class="section-card-title">&#x1F5FA; Regional Battle &mdash; MTD</div>
+      <div id="regionalBattle"></div>
+    </div>
+    <div class="section-card">
+      <div class="section-card-title">&#x1F525; Streak Board &mdash; Consecutive Weeks</div>
+      <div id="streakBoard"><div class="spinner"></div></div>
+    </div>
+    <div class="section-card">
+      <div class="section-card-title">&#x1F4CB; Consistency Board &mdash; This Month</div>
+      <div id="consistencyBoard"></div>
+    </div>
+  </div>
+</div>
+
+<!-- QTD YTD VIEW -->
+<div id="qtdView" class="hidden">
+  <div id="qtdAMPickerWrap" class="am-picker-wrap">
+    <div class="am-label">Who are you?</div>
+    <div id="qtdAMCards" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"></div>
+  </div>
+  <div id="qtdContent" class="hidden">
+    <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:12px;padding:12px 16px;margin:12px 16px 0;box-shadow:0 1px 6px rgba(0,0,0,0.08);">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:40px;height:40px;background:linear-gradient(135deg,#C8102E,#9B0D22);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">&#x1F464;</div>
+        <div>
+          <div style="font-size:13px;color:#6E6E73;">Viewing</div>
+          <div style="font-size:17px;font-weight:700;color:#1D1D1F;" id="qtdAMName">-</div>
+        </div>
+      </div>
+      <button id="qtdChangeBtn" style="background:#F5F5F7;border:none;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;color:#C8102E;cursor:pointer;">Change</button>
+    </div>
+    <div class="content" id="qtdDashContent"></div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+
+
+
+
+<!-- KPI TILE — bottom of scores page -->
+<div style="padding:0 16px 16px">
+  <a href="kpi.html" style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#0D0D1A,#1A0508);border-radius:18px;padding:18px;text-decoration:none;border:1px solid rgba(200,16,46,0.3);box-shadow:0 4px 16px rgba(0,0,0,0.15)">
+    <div style="width:48px;height:48px;background:rgba(200,16,46,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">&#128230;</div>
+    <div style="flex:1">
+      <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:3px">Store KPI Dashboard</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.45);line-height:1.4">Donuts &middot; Timbits &middot; Protein &middot; Water &middot; Puff &amp; Roll &middot; Coffee &middot; Merch &middot; QR Feedback</div>
+      <div style="font-size:10px;color:#C8102E;font-weight:700;margin-top:4px;text-transform:uppercase;letter-spacing:0.5px">March 2026 Actuals &#8594;</div>
+    </div>
+    <div style="font-size:22px;color:rgba(255,255,255,0.3)">&#8250;</div>
+  </a>
+</div>
+<div style="padding:0 16px 12px;">
+  <a href="targets.html" style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:14px;padding:13px 16px;margin-bottom:8px;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,0.06);border-left:4px solid #FF9500;">
+    <div style="display:flex;align-items:center;gap:10px;"><div style="font-size:20px;">&#x1F3AF;</div>
+    <div><div style="font-size:13px;font-weight:700;color:#1D1D1F;">Store Targets</div>
+    <div style="font-size:11px;color:#6E6E73;">Set monthly targets per store</div></div></div>
+    <div style="font-size:12px;color:#FF9500;font-weight:700;">Manage &#x276F;</div>
+  </a>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+    <a href="delivery.html" style="display:flex;flex-direction:column;background:#fff;border-radius:14px;padding:14px;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,0.06);">
+      <div style="font-size:22px;margin-bottom:6px;">&#x1F6F5;</div>
+      <div style="font-size:13px;font-weight:700;color:#1D1D1F;">Delivery</div>
+      <div style="font-size:11px;color:#6E6E73;">Swiggy + Zomato</div>
+    </a>
+    <a href="ceo.html" style="display:flex;flex-direction:column;background:#1A1A2E;border-radius:14px;padding:14px;text-decoration:none;">
+      <div style="font-size:22px;margin-bottom:6px;">&#x1F451;</div>
+      <div style="font-size:13px;font-weight:700;color:#fff;">CEO View</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.5);">Command Centre</div>
+    </a>
+  </div>
+</div>
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Home</span></a>
+  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#x2705;</span><span class="nav-label">Tasks</span></a>
+  <a href="events.html" class="nav-item"><span class="nav-icon">&#128197;</span><span class="nav-label">Events</span></a>
+  <a href="performance.html" class="nav-item active"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Scores</span><div class="nav-dot"></div></a>
+  <a href="team.html" class="nav-item"><span class="nav-icon">&#x1F465;</span><span class="nav-label">Team</span></a>
+  <a href="audit.html" class="nav-item"><span class="nav-icon">&#128269;</span><span class="nav-label">Audits</span></a>
+</nav>
+
+<script>
+var currentAM = '';
+var allSubs = [];
+var amStores = [];
+var coverageData = [];
+var actionStatuses = {};
+var onLeave = false;
+var leaveDays = [];
+
+var amList = [
+  {name:'Raman', region:'Delhi NCR', icon:'&#x1F3D9;'},
+  {name:'Harish', region:'Delhi NCR', icon:'&#x1F3D9;'},
+  {name:'Rohit', region:'Delhi NCR', icon:'&#x1F3D9;'},
+  {name:'Deepak', region:'Punjab', icon:'&#x1F33E;'},
+  {name:'Akash Chavan', region:'Maharashtra', icon:'&#x1F30A;'},
+  {name:'Akash Rathod', region:'Maharashtra', icon:'&#x1F30A;'},
+  {name:'Jagadeesha', region:'Bangalore', icon:'&#x1F333;'},
+  {name:'Shivam', region:'Hyderabad', icon:'&#x1F48E;'},
+  {name:'Unassigned', region:'Gujarat', icon:'&#x1F981;'}
+];
+
+// India FY quarters
+function getIndiaFYQuarter(date) {
+  var m = new Date(date).getMonth();
+  if (m >= 3 && m <= 5) return 1;
+  if (m >= 6 && m <= 8) return 2;
+  if (m >= 9 && m <= 11) return 3;
+  return 4;
+}
+
+function getCurrentIndiaFYQuarter() {
+  return getIndiaFYQuarter(new Date());
+}
+
+function getBandColor(s) {
+  if (s >= 90) return '#34C759';
+  if (s >= 75) return '#FF9500';
+  if (s >= 60) return '#FF6B00';
+  return '#FF3B30';
+}
+function getBandEmoji(s) {
+  if (s >= 90) return '🟢';
+  if (s >= 75) return '🟡';
+  if (s >= 60) return '🟠';
+  return '🔴';
+}
+
+function fmt(n) {
+  if (n >= 10000000) return '&#x20B9;' + (n/10000000).toFixed(2) + ' Cr';
+  if (n >= 100000) return '&#x20B9;' + (n/100000).toFixed(2) + ' L';
+  return '&#x20B9;' + parseInt(n).toLocaleString('en-IN');
+}
+
+function getWeekKey(d) {
+  var dt = new Date(d);
+  var day = dt.getDay();
+  var diff = dt.getDate() - day + (day===0?-6:1);
+  var mon = new Date(dt.setDate(diff));
+  return mon.getFullYear() + '-' + String(mon.getMonth()+1).padStart(2,'0') + '-' + String(mon.getDate()).padStart(2,'0');
+}
+
+function renderAMCards() {
+  var c = document.getElementById('perfAMCards');
+  c.innerHTML = '';
+  amList.forEach(function(am) {
+    var d = document.createElement('div');
+    d.style.cssText = 'background:#fff;border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.07);cursor:pointer;';
+    d.innerHTML = '<div style="font-size:24px;margin-bottom:4px;">' + am.icon + '</div>' +
+      '<div style="font-size:13px;font-weight:700;color:#1D1D1F;">' + am.name + '</div>' +
+      '<div style="font-size:11px;color:#6E6E73;">' + am.region + '</div>';
+    d.addEventListener('click', function() { selectAM(am.name); });
+    c.appendChild(d);
+  });
+}
+
+function selectAM(name) {
+  currentAM = name;
+  document.getElementById('amPickerWrap').classList.add('hidden');
+  document.getElementById('myView').classList.remove('hidden');
+  document.getElementById('perfAMName').textContent = name;
+  loadDashboard();
+}
+
+function changePerfAM() {
+  currentAM = '';
+  document.getElementById('amPickerWrap').classList.remove('hidden');
+  document.getElementById('myView').classList.add('hidden');
+}
+
+function showView(v) {
+  document.getElementById('toggleMy').classList.toggle('active', v==='my');
+  document.getElementById('toggleTeam').classList.toggle('active', v==='team');
+  document.getElementById('toggleQTD').classList.toggle('active', v==='qtd');
+
+  var allViews = ['myView','teamView','qtdView','amPickerWrap'];
+  allViews.forEach(function(id){ var el=document.getElementById(id); if(el) el.classList.add('hidden'); });
+
+  if (v === 'my') {
+    if (currentAM) {
+      document.getElementById('myView').classList.remove('hidden');
+    } else {
+      document.getElementById('amPickerWrap').classList.remove('hidden');
+    }
+  } else if (v === 'team') {
+    document.getElementById('teamView').classList.remove('hidden');
+    loadTeamData();
+  } else if (v === 'qtd') {
+    document.getElementById('qtdView').classList.remove('hidden');
+  }
+}
+
+function loadDashboard() {
+  document.getElementById('dashContent').innerHTML = '<div class="spinner"></div>';
+  Promise.all([
+    fetch('/api/submissions?am=' + encodeURIComponent(currentAM)).then(function(r){return r.json();}),
+    fetch('/api/stores/am/' + encodeURIComponent(currentAM)).then(function(r){return r.json();})
+  ]).then(function(results) {
+    allSubs = results[0].data || [];
+    amStores = results[1].data || [];
+    var now = new Date();
+    var month = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
+    fetch('/api/coverage?am=' + encodeURIComponent(currentAM) + '&month=' + month)
+      .then(function(r){return r.json();})
+      .then(function(cd) {
+        coverageData = cd.data || [];
+        renderDashboard();
+      });
+  });
+}
+
+function calcRevenueMTD() {
+  var now = new Date();
+  var monthKey = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
+  var mtdSubs = allSubs.filter(function(s){ return s.day==='tuesday' && s.submittedAt && s.submittedAt.startsWith(monthKey); });
+  var totalActual = 0, totalTarget = 0;
+  mtdSubs.forEach(function(s){ totalActual += (s.mtdActual||0); totalTarget += (s.mtdTarget||0); });
+  var lyTotal = 0;
+  allSubs.filter(function(s){ return s.day==='tuesday' && s.submittedAt && s.submittedAt.startsWith(monthKey); })
+    .forEach(function(s){ lyTotal += (s.lyADS||0)*30; });
+  return { actual:totalActual, target:totalTarget, ly:lyTotal };
+}
+
+function calcSubmissionStreak() {
+  var weeks = {};
+  allSubs.forEach(function(s){
+    if (!s.submittedAt) return;
+    var wk = getWeekKey(s.submittedAt);
+    if (!weeks[wk]) weeks[wk] = new Set();
+    weeks[wk].add(s.day);
+  });
+  var sortedWeeks = Object.keys(weeks).sort().reverse();
+  var streak = 0;
+  for (var i=0; i<sortedWeeks.length; i++) {
+    var days = weeks[sortedWeeks[i]];
+    if (days.size >= 4) { streak++; } else { break; }
+  }
+  return { streak:streak, bestStreak:Math.max(streak, sortedWeeks.length > 0 ? streak : 0) };
+}
+
+function calcScores() {
+  var scored = allSubs.filter(function(s){return s.score !== undefined && s.score !== null;});
+  if (scored.length === 0) return { thisWeek:0, lastWeek:0, mtd:0, best:0, bestDate:'', avg:0 };
+  var now = new Date();
+  var thisWk = getWeekKey(now);
+  var lastWkD = new Date(now); lastWkD.setDate(lastWkD.getDate()-7);
+  var lastWk = getWeekKey(lastWkD);
+  var monthKey = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
+
+  function avg(arr) { return arr.length>0 ? Math.round(arr.reduce(function(a,b){return a+b;},0)/arr.length) : 0; }
+
+  var thisWkScores = scored.filter(function(s){return getWeekKey(s.submittedAt)===thisWk;}).map(function(s){return s.score;});
+  var lastWkScores = scored.filter(function(s){return getWeekKey(s.submittedAt)===lastWk;}).map(function(s){return s.score;});
+  var mtdScores = scored.filter(function(s){return s.submittedAt&&s.submittedAt.startsWith(monthKey);}).map(function(s){return s.score;});
+  var best = Math.max.apply(null, scored.map(function(s){return s.score;}));
+  var bestSub = scored.find(function(s){return s.score===best;});
+
+  return {
+    thisWeek: avg(thisWkScores),
+    lastWeek: avg(lastWkScores),
+    mtd: avg(mtdScores),
+    best: best,
+    bestDate: bestSub ? (bestSub.submittedAt||'').substring(0,10) : '',
+    count: scored.length
+  };
+}
+
+function calcBadges(scores, streak, coverage) {
+  var covRecord = coverageData.length > 0 ? coverageData[0] : null;
+  var covStores = covRecord ? covRecord.stores : [];
+  var allStoresVisited = amStores.every(function(st) {
+    var rec = covStores.find(function(c){return c.store===st.name;});
+    return rec && (rec.wed||rec.fri||rec.sat||rec.sun);
+  });
+
+  return [
+    { id:'first100', icon:'&#x1F451;', name:'Perfect 100%', earned: scores.best === 100 },
+    { id:'streak5', icon:'&#x1F525;', name:'5-Week Streak', earned: streak.streak >= 5 },
+    { id:'allstores', icon:'&#x1F30F;', name:'All Stores', earned: allStoresVisited },
+    { id:'consistent', icon:'&#x2B50;', name:'Star Performer', earned: scores.mtd >= 90 },
+    { id:'improver', icon:'&#x1F4C8;', name:'Rising Star', earned: scores.thisWeek > scores.lastWeek && scores.thisWeek >= 80 },
+    { id:'champion', icon:'&#x1F3C6;', name:'Champion', earned: scores.best >= 95 && streak.streak >= 3 }
+  ];
+}
+
+function renderDashboard() {
+  var rev = calcRevenueMTD();
+  var scores = calcScores();
+  var streak = calcSubmissionStreak();
+  var badges = calcBadges(scores, streak, coverageData);
+  var pctToTarget = rev.target > 0 ? Math.round(rev.actual/rev.target*100) : 0;
+  var lflPct = rev.ly > 0 ? ((rev.actual - rev.ly)/rev.ly*100).toFixed(1) : null;
+
+  // Check if score is 90+ for confetti
+  if (scores.thisWeek >= 90) {
+    setTimeout(launchConfetti, 500);
+  }
+
+  var diff = scores.thisWeek - scores.lastWeek;
+  var trendColor = diff >= 0 ? '#34C759' : '#FF3B30';
+  var trendArrow = diff >= 0 ? '▲' : '▼';
+
+  // Build actions list
+  var actions = buildActions();
+  var openCount = actions.filter(function(a){ return (actionStatuses[a.id]||'pending')==='pending'; }).length;
+
+  var html = '';
+
+  // ── REVENUE HERO ──
+  var progColor = pctToTarget >= 100 ? '#34C759' : pctToTarget >= 90 ? '#FF9500' : '#FF3B30';
+  html += '<div class="revenue-hero fade-up">' +
+    '<div class="revenue-label">MTD Revenue — ' + new Date().toLocaleString('en-IN',{month:'long'}) + '</div>' +
+    '<div class="revenue-amount">' + (rev.actual > 0 ? fmt(rev.actual) : '<span style="font-size:18px;color:#8E8E93">Pending</span>') + '</div>' +
+    '<div class="revenue-sub">Target: ' + (rev.target > 0 ? fmt(rev.target) : 'Not set yet') + '</div>' +
+    '<div class="revenue-progress-bg"><div class="revenue-progress-fill" style="width:' + Math.min(pctToTarget,100) + '%;background:' + progColor + ';"></div></div>' +
+    '<div class="revenue-progress-label"><span class="revenue-pct" style="color:' + progColor + ';">' + (pctToTarget > 0 ? pctToTarget + '% to target' : 'Submit Tuesday checklist to populate') + '</span><span class="revenue-target">' + (rev.target>0?fmt(rev.target):'') + '</span></div>' +
+    '<div class="revenue-metrics">' +
+      '<div class="rev-metric"><div class="rev-metric-num">' + (lflPct !== null ? (parseFloat(lflPct)>=0?'+':'')+lflPct+'%' : '--') + '</div><div class="rev-metric-label">LFL vs Last Year</div></div>' +
+      '<div class="rev-metric"><div class="rev-metric-num">' + amStores.length + '</div><div class="rev-metric-label">Stores in Scope</div></div>' +
+    '</div>' +
+  '</div>';
+
+  // ── STREAK ──
+  var streakColor = streak.streak >= 5 ? '#FF6B00' : streak.streak >= 3 ? '#FF9500' : '#AEAEB2';
+  html += '<div class="streak-card fade-up" style="background:linear-gradient(135deg,' + streakColor + ',' + streakColor + 'CC);">' +
+    '<div class="streak-fire">&#x1F525;</div>' +
+    '<div>' +
+      '<div style="font-size:12px;color:rgba(255,255,255,0.8);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Submission Streak</div>' +
+      '<div style="font-size:36px;font-weight:700;color:#fff;line-height:1;">' + streak.streak + ' weeks</div>' +
+      '<div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:2px;">' + (streak.streak===0?'Submit this week to start your streak!':streak.streak>=5?'Incredible! Keep it going!':streak.streak>=3?'Great consistency! Keep going!':'Building momentum!') + '</div>' +
+    '</div>' +
+  '</div>';
+
+  // ── SCORE CARD ──
+  html += '<div class="section-card fade-up">' +
+    '<div class="section-card-title">&#x1F3AF; This Week vs Last Week' +
+      '<span style="font-size:13px;color:' + trendColor + ';font-weight:700;">' + (diff!==0 ? trendArrow+' '+Math.abs(diff)+'%' : '—') + '</span>' +
+    '</div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">' +
+      '<div style="text-align:center;background:' + (scores.thisWeek>=90?'#E8F8ED':scores.thisWeek>=75?'#FFF3E0':'#FFF5F5') + ';border-radius:12px;padding:14px;">' +
+        '<div style="font-size:11px;color:var(--text2);font-weight:600;text-transform:uppercase;margin-bottom:4px;">This Week</div>' +
+        '<div style="font-size:40px;font-weight:700;color:' + getBandColor(scores.thisWeek) + ';line-height:1;">' + (scores.thisWeek>0?scores.thisWeek+'%':'--') + '</div>' +
+        '<div style="font-size:12px;color:var(--text2);margin-top:4px;">' + getBandEmoji(scores.thisWeek) + ' ' + (scores.thisWeek>=90?'Excellent':scores.thisWeek>=75?'Good':scores.thisWeek>=60?'Needs attention':scores.thisWeek>0?'Critical':'No data') + '</div>' +
+      '</div>' +
+      '<div style="text-align:center;background:var(--surface);border-radius:12px;padding:14px;">' +
+        '<div style="font-size:11px;color:var(--text2);font-weight:600;text-transform:uppercase;margin-bottom:4px;">Last Week</div>' +
+        '<div style="font-size:40px;font-weight:700;color:' + getBandColor(scores.lastWeek) + ';line-height:1;opacity:0.8;">' + (scores.lastWeek>0?scores.lastWeek+'%':'--') + '</div>' +
+        '<div style="font-size:12px;color:var(--text2);margin-top:4px;">MTD: <strong>' + (scores.mtd>0?scores.mtd+'%':'--') + '</strong></div>' +
+      '</div>' +
+    '</div>' +
+    '<div id="miniBarChart" style="margin-top:8px;"></div>' +
+  '</div>';
+
+  // Render mini bar chart
+  renderMiniBar();
+
+  // ── PERSONAL BEST ──
+  if (scores.best > 0) {
+    html += '<div class="personal-best fade-up">' +
+      '<div><div class="pb-label">&#x1F451; Personal Best</div><div class="pb-score">' + scores.best + '%</div><div class="pb-date">' + scores.bestDate + '</div></div>' +
+      '<div style="font-size:48px;">&#x1F451;</div>' +
+    '</div>';
+  }
+
+  // ── QUARTERLY TILES ──
+  var currentQ = getCurrentIndiaFYQuarter();
+  var qDefs = [
+    {q:1, label:'Q1 FY', months:['04','05','06'], dates:'Apr-Jun'},
+    {q:2, label:'Q2 FY', months:['07','08','09'], dates:'Jul-Sep'},
+    {q:3, label:'Q3 FY', months:['10','11','12'], dates:'Oct-Dec'},
+    {q:4, label:'Q4 FY', months:['01','02','03'], dates:'Jan-Mar'}
+  ];
+  html += '<div class="section-card fade-up"><div class="section-card-title">&#x1F4C5; India FY Performance</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">';
+  qDefs.forEach(function(qt) {
+    var qScored = allSubs.filter(function(s){
+      if (!s.submittedAt || s.score===undefined) return false;
+      var m = s.submittedAt.substring(5,7);
+      return qt.months.indexOf(m) >= 0;
+    });
+    var qAvg = qScored.length > 0 ? Math.round(qScored.reduce(function(a,s){return a+s.score;},0)/qScored.length) : 0;
+    var isCurrent = qt.q === currentQ;
+    var color = qAvg > 0 ? getBandColor(qAvg) : '#E5E5EA';
+    html += '<div style="background:' + (isCurrent?'linear-gradient(135deg,#FFF5F6,#FFE8EC)':'var(--surface)') + ';border-radius:14px;padding:14px;text-align:center;border:2px solid ' + (isCurrent?'var(--red)':'transparent') + ';">' +
+      '<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:6px;">' + qt.label + (isCurrent?' ●':'') + '</div>' +
+      '<div style="font-size:30px;font-weight:700;color:' + color + ';">' + (qAvg>0?qAvg+'%':'--') + '</div>' +
+      '<div style="font-size:10px;color:var(--text2);margin-top:4px;">' + qt.dates + ' · ' + qScored.length + ' subs</div>' +
+      '</div>';
+  });
+  html += '</div></div>';
+
+  // ── BADGES ──
+  html += '<div class="section-card fade-up"><div class="section-card-title">&#x1F3C5; Achievements</div><div class="badges-wrap">';
+  badges.forEach(function(b) {
+    html += '<div class="badge-item"><div class="badge-icon ' + (b.earned?'earned':'locked') + '">' + b.icon + '</div><div class="badge-name">' + b.name + '</div></div>';
+  });
+  html += '</div></div>';
+
+  // ── WINS ──
+  var wins = buildWins(scores, streak);
+  if (wins.length > 0) {
+    html += '<div class="section-card fade-up"><div class="section-card-title">&#x1F3C6; Your Wins This Month</div>';
+    wins.forEach(function(w) { html += '<div class="win-card"><div class="win-title">' + w.title + '</div><div class="win-text">' + w.text + '</div></div>'; });
+    html += '</div>';
+  }
+
+  // ── RECOGNITION ──
+  html += '<div class="section-card fade-up"><div class="section-card-title">&#x2B50; Recognition</div>' +
+    '<div class="recognition-card">' +
+      '<div class="rec-badge">&#x1F3C6; Store of the Month</div>' +
+      '<div class="rec-title">Keep building momentum!</div>' +
+      '<div class="rec-store">Recognition data coming as submissions grow</div>' +
+      '<div class="rec-reason">Your consistency is what drives the team forward. Every submission counts. &#x2615;</div>' +
+    '</div></div>';
+
+  // ── COVERAGE HEATMAP ──
+  html += '<div class="section-card fade-up"><div class="section-card-title">&#x1F5FA; Store Coverage Heatmap' +
+    '<button onclick="toggleLeaveMode()" id="leaveModeBtn" style="background:var(--surface);border:none;padding:4px 10px;border-radius:8px;font-size:11px;font-weight:600;color:var(--text2);cursor:pointer;">&#x1F3D6; On Leave</button>' +
+    '</div>' +
+    buildHeatmap() +
+  '</div>';
+
+  // ── RED FLAGS ──
+  var flags = buildRedFlags();
+  if (flags.length > 0) {
+    html += '<div class="section-card fade-up"><div class="section-card-title"><span class="flag-pulse"></span>&nbsp; Red Flags</div>';
+    flags.forEach(function(f) {
+      html += '<div class="flag-card"><div class="flag-title">&#x1F6A8; ' + f.store + ' — ' + f.category + '</div><div class="flag-text">' + f.text + '</div></div>';
+    });
+    html += '</div>';
+  }
+
+  // ── ACTION TRACKER ──
+  html += '<div class="section-card fade-up">' +
+    '<div class="section-card-title">&#x1F4CB; 90-Day Action Tracker <span style="background:var(--critical);color:#fff;border-radius:10px;padding:1px 8px;font-size:11px;">' + openCount + ' open</span></div>' +
+    '<div class="filter-pills">' +
+      '<button class="filter-pill active" data-f="all">All</button>' +
+      '<button class="filter-pill" data-f="pending">&#x23F3; Pending</button>' +
+      '<button class="filter-pill" data-f="completed">&#x2705; Done</button>' +
+      '<button class="filter-pill" data-f="machine">&#x1F527; Machines</button>' +
+      '<button class="filter-pill" data-f="pest">&#x1F41E; Pest</button>' +
+      '<button class="filter-pill" data-f="cleanliness">&#x1F9F9; Clean</button>' +
+    '</div>' +
+    '<div id="actionList"></div>' +
+  '</div>';
+
+  document.getElementById('dashContent').innerHTML = html;
+
+  // Bind filter pills
+  document.querySelectorAll('.filter-pill').forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      document.querySelectorAll('.filter-pill').forEach(function(p){p.classList.remove('active');});
+      pill.classList.add('active');
+      renderActionList(pill.getAttribute('data-f'));
+    });
+  });
+
+  renderMiniBar();
+  renderActionList('all');
+}
+
+function renderMiniBar() {
+  var el = document.getElementById('miniBarChart');
+  if (!el) return;
+  var scored = allSubs.filter(function(s){return s.score!==undefined;})
+    .sort(function(a,b){return new Date(b.submittedAt)-new Date(a.submittedAt);})
+    .slice(0,7).reverse();
+  if (scored.length === 0) { el.innerHTML = '<div style="font-size:12px;color:var(--text2);text-align:center;padding:8px;">No scored submissions yet</div>'; return; }
+  var html = '<div class="bar-chart">';
+  scored.forEach(function(s) {
+    var c = getBandColor(s.score);
+    var d = new Date(s.submittedAt);
+    var days = ['Su','Mo','Tu','We','Fr','Sa','Su'];
+    html += '<div class="bar-wrap">' +
+      '<div class="bar-val" style="color:' + c + ';">' + s.score + '</div>' +
+      '<div class="bar" style="height:' + Math.max(s.score,5) + '%;background:' + c + ';"></div>' +
+      '<div class="bar-day">' + days[d.getDay()] + '</div></div>';
+  });
+  html += '</div>';
+  el.innerHTML = html;
+
+  // ── SUBMISSION HISTORY ────────────────────────────────
+  var histHtml = '<div class="section-card fade-up" style="margin-top:12px;">';
+  histHtml += '<div class="section-card-title">&#128221; Submission History <span style="font-size:11px;font-weight:400;color:var(--text2);">' + allSubs.length + ' total</span></div>';
+  
+  if (allSubs.length === 0) {
+    histHtml += '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">No submissions yet. Start by filling your daily checklist.</div>';
+  } else {
+    // Sort by date newest first
+    var sortedSubs = allSubs.slice().sort(function(a,b){
+      return new Date(b.submittedAt||0) - new Date(a.submittedAt||0);
+    });
+    sortedSubs.forEach(function(s) {
+      var score = s.score;
+      var hasScore = score !== undefined && score !== null;
+      var color = hasScore ? getBandColor(score) : '#8E8E93';
+      var scoreStr = hasScore ? score + '%' : 'Data';
+      var date = s.submittedAt ? s.submittedAt.substring(0,10) : '';
+      var dayLabel = (s.day||'').charAt(0).toUpperCase() + (s.day||'').slice(1);
+      var late = s.late ? ' <span style="background:#FF3B30;color:#fff;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700;">LATE</span>' : '';
+      histHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">' +
+        '<div>' +
+          '<div style="font-size:13px;font-weight:600;color:var(--text);">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
+          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + date + '</div>' +
+        '</div>' +
+        '<div style="font-size:18px;font-weight:700;color:' + color + ';">' + scoreStr + '</div>' +
+      '</div>';
+    });
+  }
+  histHtml += '</div>';
+  el.innerHTML += histHtml;
+
+}
+
+function buildHeatmap() {
+  var covRecord = coverageData.length > 0 ? coverageData[0] : null;
+  var covStores = covRecord ? covRecord.stores : [];
+  var now = new Date();
+  var monthKey = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
+
+  var html = '<div class="heatmap-wrap"><table class="heatmap-table">' +
+    '<thead><tr><th style="text-align:left;min-width:70px;">Store</th><th>Mo</th><th>Tu</th><th>We</th><th>Fr</th><th>Sa</th><th>Su</th><th>Total</th></tr></thead><tbody>';
+
+  amStores.forEach(function(store) {
+    var storeRec = covStores.find(function(c){return c.store===store.name;});
+    var monSubs = allSubs.filter(function(s){return s.store===store.name&&s.day==='monday'&&s.submittedAt&&s.submittedAt.startsWith(monthKey);}).length;
+    var tueSubs = allSubs.filter(function(s){return s.store===store.name&&s.day==='tuesday'&&s.submittedAt&&s.submittedAt.startsWith(monthKey);}).length;
+    var wed = storeRec && storeRec.wed ? 1 : 0;
+    var fri = storeRec && storeRec.fri ? 1 : 0;
+    var sat = storeRec && storeRec.sat ? 1 : 0;
+    var sun = storeRec && storeRec.sun ? 1 : 0;
+    var total = (monSubs>0?1:0) + (tueSubs>0?1:0) + wed + fri + sat + sun;
+    var heatClass = total === 0 ? 'heat-0' : total <= 2 ? 'heat-1' : total <= 4 ? 'heat-2' : 'heat-3';
+
+    function cell(val) {
+      var cls = val > 0 ? 'heat-3' : 'heat-0';
+      return '<td><div class="heat-cell ' + cls + '">' + (val>0?'&#x2713;':'') + '</div></td>';
+    }
+
+    html += '<tr>' +
+      '<td class="store-name-cell">' + store.name + '</td>' +
+      cell(monSubs) + cell(tueSubs) + cell(wed) + cell(fri) + cell(sat) + cell(sun) +
+      '<td><div class="heat-cell ' + heatClass + '" style="font-size:11px;font-weight:700;">' + total + '/6</div></td>' +
+      '</tr>';
+  });
+
+  html += '</tbody></table></div>';
+  html += '<div style="display:flex;gap:8px;margin-top:10px;align-items:center;font-size:11px;color:var(--text2);">' +
+    '<div class="heat-cell heat-0" style="width:20px;height:20px;"></div><span>Not done</span>' +
+    '<div class="heat-cell heat-1" style="width:20px;height:20px;"></div><span>1-2 days</span>' +
+    '<div class="heat-cell heat-2" style="width:20px;height:20px;"></div><span>3-4 days</span>' +
+    '<div class="heat-cell heat-3" style="width:20px;height:20px;"></div><span>5-6 days</span>' +
+    '</div>';
+  return html;
+}
+
+function toggleLeaveMode() {
+  onLeave = !onLeave;
+  var btn = document.getElementById('leaveModeBtn');
+  if (btn) {
+    btn.style.background = onLeave ? '#FF9500' : 'var(--surface)';
+    btn.style.color = onLeave ? '#fff' : 'var(--text2)';
+    btn.textContent = onLeave ? '&#x1F3D6; Leave Active' : '&#x1F3D6; On Leave';
+  }
+}
+
+function buildWins(scores, streak) {
+  var wins = [];
+  if (scores.thisWeek >= 90) wins.push({title:'&#x1F31F; Excellent Week!', text:'You scored ' + scores.thisWeek + '% this week. That is outstanding work — your stores are running like clockwork.'});
+  if (streak.streak >= 3) wins.push({title:'&#x1F525; ' + streak.streak + '-Week Streak!', text:'You have submitted consistently for ' + streak.streak + ' weeks in a row. Consistency is what separates great operators from good ones.'});
+  if (scores.thisWeek > scores.lastWeek && scores.lastWeek > 0) wins.push({title:'&#x1F4C8; Improving Week on Week', text:'Up ' + (scores.thisWeek - scores.lastWeek) + '% from last week. Keep building on this momentum.'});
+  if (scores.best === 100) wins.push({title:'&#x1F451; Perfect Score Achieved!', text:'You have achieved a perfect 100% submission. That is the standard every week.'});
+  if (wins.length === 0 && allSubs.length > 0) wins.push({title:'&#x2615; Keep Going!', text:'Every submission you make builds your record. Your consistency over time is what Jahid sees and recognizes.'});
+  return wins;
+}
+
+function buildRedFlags() {
+  var flags = [];
+  var now = new Date();
+  var monthKey = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
+  allSubs.forEach(function(s) {
+    if (s.machines) {
+      s.machines.forEach(function(m) {
+        if (m.status === 'down') flags.push({store:s.store, category:'Machine Down', text:m.machine + ' is not working. ' + (m.vendor?'Vendor: '+m.vendor:'No vendor assigned yet.')});
+      });
+    }
+    if (s.pest) {
+      s.pest.forEach(function(p) {
+        if (p.status === 'found') flags.push({store:s.store, category:'Pest Alert', text:p.check + '. ' + (p.comment||'Immediate action required.')});
+      });
+    }
+    if (s.day === 'tuesday' && s.mtdActual && s.mtdTarget && (s.mtdActual/s.mtdTarget) < 0.9) {
+      flags.push({store:s.store, category:'Sales Below 90%', text:'MTD sales at ' + Math.round(s.mtdActual/s.mtdTarget*100) + '% of target. Action needed.'});
+    }
+  });
+  return flags.slice(0,5);
+}
+
+function buildActions() {
+  var actions = [];
+  var now = new Date();
+  var cutoff = new Date(now.getTime() - 90*24*60*60*1000);
+  allSubs.forEach(function(sub) {
+    if (!sub.submittedAt || new Date(sub.submittedAt) < cutoff) return;
+    var dateStr = sub.submittedAt.substring(0,10);
+    if (sub.machines) {
+      sub.machines.forEach(function(m) {
+        if (m.status==='down'||m.status==='repair') {
+          actions.push({id:sub.id+'-m-'+m.machine, store:sub.store, date:dateStr, category:'machine', text:m.machine+' — '+(m.status==='down'?'Not Working':'Under Repair'), comment:m.issue||''});
+        }
+      });
+    }
+    if (sub.pest) {
+      sub.pest.forEach(function(p) {
+        if (p.status==='found') actions.push({id:sub.id+'-p-'+p.check, store:sub.store, date:dateStr, category:'pest', text:p.check+' — Activity Found', comment:p.comment||''});
+      });
+    }
+    if (sub.cleanliness) {
+      sub.cleanliness.forEach(function(c) {
+        if (c.status==='critical'||c.status==='attention') actions.push({id:sub.id+'-c-'+c.area, store:sub.store, date:dateStr, category:'cleanliness', text:c.area+' — '+(c.status==='critical'?'Critical':'Needs Attention'), comment:c.comment||''});
+      });
+    }
+  });
+  return actions;
+}
+
+function renderActionList(filter) {
+  var list = document.getElementById('actionList');
+  if (!list) return;
+  var actions = buildActions();
+  var catIcons = {machine:'&#x1F527;',pest:'&#x1F41E;',cleanliness:'&#x1F9F9;',kpi:'&#x1F4CA;'};
+
+  var filtered = actions.filter(function(a) {
+    var status = actionStatuses[a.id] || 'pending';
+    if (filter==='all') return true;
+    if (filter==='pending') return status==='pending';
+    if (filter==='completed') return status==='completed';
+    return a.category===filter;
+  });
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">' + (filter==='pending'?'&#x2705; No open actions — great work!':'No items here') + '</div>';
+    return;
+  }
+
+  list.innerHTML = '';
+  filtered.forEach(function(action) {
+    var status = actionStatuses[action.id] || 'pending';
+    var div = document.createElement('div');
+    div.className = 'action-item ' + status;
+    div.innerHTML =
+      '<div class="action-header"><span class="action-store">&#x1F3EA; ' + action.store + '</span><span class="action-date">' + action.date + '</span></div>' +
+      '<div class="action-category">' + (catIcons[action.category]||'&#x1F4CB;') + ' ' + action.category.toUpperCase() + '</div>' +
+      '<div class="action-text">' + action.text + '</div>' +
+      (action.comment?'<div class="action-comment">&#x1F4AC; ' + action.comment + '</div>':'') +
+      '<div class="action-status-btns">' +
+        '<button class="status-btn' + (status==='pending'?' sel-pending':'') + '" data-id="' + action.id + '" data-v="pending">&#x23F3; Pending</button>' +
+        '<button class="status-btn' + (status==='completed'?' sel-completed':'') + '" data-id="' + action.id + '" data-v="completed">&#x2705; Done</button>' +
+        '<button class="status-btn' + (status==='na'?' sel-na':'') + '" data-id="' + action.id + '" data-v="na">&#x2014; N/A</button>' +
+      '</div>';
+    div.addEventListener('click', function(e) {
+      var btn = e.target.closest('.status-btn');
+      if (!btn) return;
+      var id = btn.getAttribute('data-id');
+      var val = btn.getAttribute('data-v');
+      actionStatuses[id] = val;
+      div.className = 'action-item ' + val;
+      div.querySelectorAll('.status-btn').forEach(function(b){b.className='status-btn';});
+      btn.className = 'status-btn sel-' + val;
+      var openCount = buildActions().filter(function(a){return (actionStatuses[a.id]||'pending')==='pending';}).length;
+      var badge = document.querySelector('.section-card-title span[style*="critical"]');
+      if (badge) badge.textContent = openCount + ' open';
+    });
+    list.appendChild(div);
+  });
+}
+
+function launchConfetti() {
+  var colors = ['#C8102E','#FFD700','#34C759','#FF9500','#1D1D1F','#FFFFFF'];
+  for (var i = 0; i < 80; i++) {
+    var piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random()*100 + 'vw';
+    piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+    piece.style.width = (Math.random()*8+6) + 'px';
+    piece.style.height = (Math.random()*8+6) + 'px';
+    piece.style.animationDuration = (Math.random()*2+2) + 's';
+    piece.style.animationDelay = (Math.random()*1.5) + 's';
+    piece.style.borderRadius = Math.random()>0.5 ? '50%' : '2px';
+    document.body.appendChild(piece);
+    setTimeout(function(p){ document.body.removeChild(p); }, 5000, piece);
+  }
+}
+
+
+function loadTeamData() {
+  document.getElementById('teamView').querySelectorAll('.spinner-wrap').forEach(function(el){
+    el.innerHTML = '<div class="spinner"></div>';
+  });
+  fetch('/api/submissions').then(function(r){return r.json();}).then(function(d){
+    var subs = d.data || [];
+    renderTeamHero(subs);
+    renderLiveLeaderboard(subs);
+    renderRegionalBattle(subs);
+    renderStreakBoard(subs);
+    renderCelebrations(subs);
+    renderConsistencyBoard(subs);
+  });
+}
+
+function getAMStats(subs) {
+  var now = new Date();
+  var thisWk = getWeekKey(now);
+  var lastWkD = new Date(now); lastWkD.setDate(lastWkD.getDate()-7);
+  var lastWk = getWeekKey(lastWkD);
+  var monthKey = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
+
+  function avg(arr) { return arr.length>0?Math.round(arr.reduce(function(a,b){return a+b;},0)/arr.length):0; }
+
+  var stats = {};
+  amList.forEach(function(am) {
+    var amSubs = subs.filter(function(s){return s.am===am.name;});
+    var scored = amSubs.filter(function(s){return s.score!==undefined;});
+    var thisWkScores = scored.filter(function(s){return getWeekKey(s.submittedAt)===thisWk;}).map(function(s){return s.score;});
+    var lastWkScores = scored.filter(function(s){return getWeekKey(s.submittedAt)===lastWk;}).map(function(s){return s.score;});
+    var mtdScores = scored.filter(function(s){return s.submittedAt&&s.submittedAt.startsWith(monthKey);}).map(function(s){return s.score;});
+    var mtdDays = new Set(amSubs.filter(function(s){return s.submittedAt&&s.submittedAt.startsWith(monthKey);}).map(function(s){return s.submittedAt.substring(0,10)+'-'+s.day;})).size;
+
+    // Streak
+    var weeks = {};
+    amSubs.forEach(function(s){
+      if (!s.submittedAt) return;
+      var wk = getWeekKey(s.submittedAt);
+      if (!weeks[wk]) weeks[wk] = new Set();
+      weeks[wk].add(s.day);
+    });
+    var sortedWks = Object.keys(weeks).sort().reverse();
+    var streak = 0;
+    for (var i=0; i<sortedWks.length; i++) {
+      if (weeks[sortedWks[i]].size >= 4) { streak++; } else { break; }
+    }
+
+    stats[am.name] = {
+      name: am.name,
+      region: am.region,
+      icon: am.icon,
+      thisWeek: avg(thisWkScores),
+      lastWeek: avg(lastWkScores),
+      mtd: avg(mtdScores),
+      mtdDays: mtdDays,
+      streak: streak,
+      totalSubs: scored.length,
+      improvement: avg(thisWkScores) - avg(lastWkScores)
+    };
+  });
+  return stats;
+}
+
+function renderTeamHero(subs) {
+  var stats = getAMStats(subs);
+  var allScores = Object.values(stats).map(function(s){return s.thisWeek;}).filter(function(s){return s>0;});
+  var teamAvg = allScores.length>0 ? Math.round(allScores.reduce(function(a,b){return a+b;},0)/allScores.length) : 0;
+  var activeAMs = Object.values(stats).filter(function(s){return s.thisWeek>0;}).length;
+  var top = Object.values(stats).sort(function(a,b){return b.thisWeek-a.thisWeek;})[0];
+
+  var el = document.getElementById('teamHero');
+  if (!el) return;
+  var color = teamAvg>0?getBandColor(teamAvg):'#E5E5EA';
+  el.innerHTML =
+    '<div style="background:linear-gradient(135deg,#1A1A1A,#2A2A2A);border-radius:20px;padding:20px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.1);">' +
+      '<div style="font-size:12px;color:rgba(255,255,255,0.6);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Team Average — This Week</div>' +
+      '<div style="font-size:52px;font-weight:700;color:' + color + ';line-height:1;letter-spacing:-2px;">' + (teamAvg>0?teamAvg+'%':'--') + '</div>' +
+      '<div style="font-size:13px;color:rgba(255,255,255,0.6);margin-top:4px;">' + activeAMs + ' of 9 AMs submitted this week</div>' +
+      (top && top.thisWeek > 0 ?
+        '<div style="margin-top:14px;background:rgba(255,215,0,0.15);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;">' +
+          '<div style="font-size:24px;">&#x1F947;</div>' +
+          '<div><div style="font-size:12px;color:rgba(255,255,255,0.6);">This Week Leader</div>' +
+          '<div style="font-size:16px;font-weight:700;color:#FFD700;">' + top.name + ' — ' + top.thisWeek + '%</div></div>' +
+        '</div>' : '') +
+    '</div>';
+}
+
+function renderLiveLeaderboard(subs) {
+  var stats = getAMStats(subs);
+  var ranked = Object.values(stats).sort(function(a,b){return b.thisWeek-a.thisWeek;});
+  var lastWkRanked = Object.values(stats).sort(function(a,b){return b.lastWeek-a.lastWeek;});
+
+  var el = document.getElementById('liveLeaderboard');
+  if (!el) return;
+
+  var html = '';
+  ranked.forEach(function(am, i) {
+    var lastRank = lastWkRanked.findIndex(function(a){return a.name===am.name;});
+    var rankMove = lastRank - i;
+    var medal = i===0?'&#x1F947;':i===1?'&#x1F948;':i===2?'&#x1F949;':'';
+    var color = am.thisWeek>0?getBandColor(am.thisWeek):'#E5E5EA';
+    var moveHtml = '';
+    if (am.thisWeek > 0 && am.lastWeek > 0) {
+      if (rankMove > 0) moveHtml = '<span style="color:#34C759;font-size:11px;font-weight:700;">&#x25B2; +'+rankMove+'</span>';
+      else if (rankMove < 0) moveHtml = '<span style="color:#FF3B30;font-size:11px;font-weight:700;">&#x25BC; '+rankMove+'</span>';
+      else moveHtml = '<span style="color:#6E6E73;font-size:11px;">&#x2014;</span>';
+    }
+
+    var isTop = i === 0 && am.thisWeek > 0;
+    html +=
+      '<div style="display:flex;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);background:' + (isTop?'linear-gradient(135deg,rgba(255,215,0,0.05),transparent)':'transparent') + ';border-radius:' + (isTop?'8px':'0') + ';padding-left:' + (isTop?'8px':'0') + ';">' +
+        '<div style="width:32px;text-align:center;font-size:18px;flex-shrink:0;">' + (medal||'<span style="font-size:14px;font-weight:700;color:var(--text2);">'+(i+1)+'</span>') + '</div>' +
+        '<div style="width:36px;height:36px;background:linear-gradient(135deg,#C8102E,#9B0D22);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 10px;flex-shrink:0;">' + am.icon + '</div>' +
+        '<div style="flex:1;">' +
+          '<div style="font-size:14px;font-weight:700;color:var(--text);">' + am.name + '</div>' +
+          '<div style="font-size:11px;color:var(--text2);margin-top:1px;">' + am.region + ' &nbsp;·&nbsp; Streak: ' + am.streak + (am.streak>0?' &#x1F525;':'') + '</div>' +
+        '</div>' +
+        '<div style="text-align:right;">' +
+          '<div style="font-size:22px;font-weight:700;color:' + color + ';">' + (am.thisWeek>0?am.thisWeek+'%':'--') + '</div>' +
+          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + moveHtml + ' &nbsp; MTD: <strong>' + (am.mtd>0?am.mtd+'%':'--') + '</strong></div>' +
+        '</div>' +
+      '</div>';
+  });
+  el.innerHTML = html;
+
+  // ── SUBMISSION HISTORY ────────────────────────────────
+  var histHtml = '<div class="section-card fade-up" style="margin-top:12px;">';
+  histHtml += '<div class="section-card-title">&#128221; Submission History <span style="font-size:11px;font-weight:400;color:var(--text2);">' + allSubs.length + ' total</span></div>';
+  
+  if (allSubs.length === 0) {
+    histHtml += '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">No submissions yet. Start by filling your daily checklist.</div>';
+  } else {
+    // Sort by date newest first
+    var sortedSubs = allSubs.slice().sort(function(a,b){
+      return new Date(b.submittedAt||0) - new Date(a.submittedAt||0);
+    });
+    sortedSubs.forEach(function(s) {
+      var score = s.score;
+      var hasScore = score !== undefined && score !== null;
+      var color = hasScore ? getBandColor(score) : '#8E8E93';
+      var scoreStr = hasScore ? score + '%' : 'Data';
+      var date = s.submittedAt ? s.submittedAt.substring(0,10) : '';
+      var dayLabel = (s.day||'').charAt(0).toUpperCase() + (s.day||'').slice(1);
+      var late = s.late ? ' <span style="background:#FF3B30;color:#fff;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700;">LATE</span>' : '';
+      histHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">' +
+        '<div>' +
+          '<div style="font-size:13px;font-weight:600;color:var(--text);">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
+          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + date + '</div>' +
+        '</div>' +
+        '<div style="font-size:18px;font-weight:700;color:' + color + ';">' + scoreStr + '</div>' +
+      '</div>';
+    });
+  }
+  histHtml += '</div>';
+  el.innerHTML += histHtml;
+
+}
+
+function renderRegionalBattle(subs) {
+  var stats = getAMStats(subs);
+  var regions = {};
+  amList.forEach(function(am) {
+    if (!regions[am.region]) regions[am.region] = {scores:[], ams:[], name:am.region};
+    regions[am.region].ams.push(am.name);
+    if (stats[am.name].thisWeek > 0) regions[am.region].scores.push(stats[am.name].thisWeek);
+  });
+
+  var regionList = Object.values(regions).map(function(r) {
+    var avg = r.scores.length>0 ? Math.round(r.scores.reduce(function(a,b){return a+b;},0)/r.scores.length) : 0;
+    return {name:r.name, avg:avg, count:r.scores.length, total:r.ams.length};
+  }).sort(function(a,b){return b.avg-a.avg;});
+
+  var el = document.getElementById('regionalBattle');
+  if (!el) return;
+
+  var html = '';
+  regionList.forEach(function(r, i) {
+    var color = r.avg>0?getBandColor(r.avg):'#E5E5EA';
+    var isLeading = i===0 && r.avg>0;
+    html +=
+      '<div style="margin-bottom:12px;">' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">' +
+          '<div style="display:flex;align-items:center;gap:8px;">' +
+            (isLeading?'<span style="font-size:16px;">&#x1F3C6;</span>':'<span style="font-size:14px;font-weight:700;color:var(--text2);">'+(i+1)+'</span>') +
+            '<div>' +
+              '<div style="font-size:14px;font-weight:700;">' + r.name + '</div>' +
+              '<div style="font-size:11px;color:var(--text2);">' + r.count + ' of ' + r.total + ' AMs submitted</div>' +
+            '</div>' +
+          '</div>' +
+          '<div style="font-size:22px;font-weight:700;color:' + color + ';">' + (r.avg>0?r.avg+'%':'--') + '</div>' +
+        '</div>' +
+        '<div style="background:#E5E5EA;border-radius:6px;height:10px;overflow:hidden;">' +
+          '<div style="height:100%;background:' + color + ';border-radius:6px;width:' + r.avg + '%;transition:width 1s ease;"></div>' +
+        '</div>' +
+      '</div>';
+  });
+  el.innerHTML = html;
+
+  // ── SUBMISSION HISTORY ────────────────────────────────
+  var histHtml = '<div class="section-card fade-up" style="margin-top:12px;">';
+  histHtml += '<div class="section-card-title">&#128221; Submission History <span style="font-size:11px;font-weight:400;color:var(--text2);">' + allSubs.length + ' total</span></div>';
+  
+  if (allSubs.length === 0) {
+    histHtml += '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">No submissions yet. Start by filling your daily checklist.</div>';
+  } else {
+    // Sort by date newest first
+    var sortedSubs = allSubs.slice().sort(function(a,b){
+      return new Date(b.submittedAt||0) - new Date(a.submittedAt||0);
+    });
+    sortedSubs.forEach(function(s) {
+      var score = s.score;
+      var hasScore = score !== undefined && score !== null;
+      var color = hasScore ? getBandColor(score) : '#8E8E93';
+      var scoreStr = hasScore ? score + '%' : 'Data';
+      var date = s.submittedAt ? s.submittedAt.substring(0,10) : '';
+      var dayLabel = (s.day||'').charAt(0).toUpperCase() + (s.day||'').slice(1);
+      var late = s.late ? ' <span style="background:#FF3B30;color:#fff;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700;">LATE</span>' : '';
+      histHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">' +
+        '<div>' +
+          '<div style="font-size:13px;font-weight:600;color:var(--text);">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
+          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + date + '</div>' +
+        '</div>' +
+        '<div style="font-size:18px;font-weight:700;color:' + color + ';">' + scoreStr + '</div>' +
+      '</div>';
+    });
+  }
+  histHtml += '</div>';
+  el.innerHTML += histHtml;
+
+}
+
+function renderStreakBoard(subs) {
+  var stats = getAMStats(subs);
+  var streakers = Object.values(stats).sort(function(a,b){return b.streak-a.streak;}).filter(function(s){return s.streak>0;});
+
+  var el = document.getElementById('streakBoard');
+  if (!el) return;
+
+  if (streakers.length === 0) {
+    el.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">Submit consistently to build streaks &#x1F525;</div>';
+    return;
+  }
+
+  var html = '';
+  streakers.forEach(function(am, i) {
+    var fireCount = am.streak >= 5 ? 3 : am.streak >= 3 ? 2 : 1;
+    var fires = '&#x1F525;'.repeat(fireCount);
+    var bgColor = am.streak >= 5 ? 'linear-gradient(135deg,#FF6B00,#FF9500)' : am.streak >= 3 ? 'linear-gradient(135deg,#FF9500,#FFB340)' : 'var(--surface)';
+    var textColor = am.streak >= 3 ? '#fff' : 'var(--text)';
+    var subTextColor = am.streak >= 3 ? 'rgba(255,255,255,0.8)' : 'var(--text2)';
+    html +=
+      '<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:12px;background:' + bgColor + ';margin-bottom:8px;">' +
+        '<div style="display:flex;align-items:center;gap:10px;">' +
+          '<div style="font-size:20px;">' + fires + '</div>' +
+          '<div>' +
+            '<div style="font-size:14px;font-weight:700;color:' + textColor + ';">' + am.name + '</div>' +
+            '<div style="font-size:11px;color:' + subTextColor + ';">' + am.region + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="text-align:right;">' +
+          '<div style="font-size:24px;font-weight:700;color:' + textColor + ';">' + am.streak + '</div>' +
+          '<div style="font-size:10px;color:' + subTextColor + ';">weeks</div>' +
+        '</div>' +
+      '</div>';
+  });
+  el.innerHTML = html;
+
+  // ── SUBMISSION HISTORY ────────────────────────────────
+  var histHtml = '<div class="section-card fade-up" style="margin-top:12px;">';
+  histHtml += '<div class="section-card-title">&#128221; Submission History <span style="font-size:11px;font-weight:400;color:var(--text2);">' + allSubs.length + ' total</span></div>';
+  
+  if (allSubs.length === 0) {
+    histHtml += '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">No submissions yet. Start by filling your daily checklist.</div>';
+  } else {
+    // Sort by date newest first
+    var sortedSubs = allSubs.slice().sort(function(a,b){
+      return new Date(b.submittedAt||0) - new Date(a.submittedAt||0);
+    });
+    sortedSubs.forEach(function(s) {
+      var score = s.score;
+      var hasScore = score !== undefined && score !== null;
+      var color = hasScore ? getBandColor(score) : '#8E8E93';
+      var scoreStr = hasScore ? score + '%' : 'Data';
+      var date = s.submittedAt ? s.submittedAt.substring(0,10) : '';
+      var dayLabel = (s.day||'').charAt(0).toUpperCase() + (s.day||'').slice(1);
+      var late = s.late ? ' <span style="background:#FF3B30;color:#fff;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700;">LATE</span>' : '';
+      histHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">' +
+        '<div>' +
+          '<div style="font-size:13px;font-weight:600;color:var(--text);">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
+          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + date + '</div>' +
+        '</div>' +
+        '<div style="font-size:18px;font-weight:700;color:' + color + ';">' + scoreStr + '</div>' +
+      '</div>';
+    });
+  }
+  histHtml += '</div>';
+  el.innerHTML += histHtml;
+
+}
+
+function renderCelebrations(subs) {
+  var stats = getAMStats(subs);
+  var el = document.getElementById('celebrationFeed');
+  if (!el) return;
+
+  var celebrations = [];
+  var now = new Date();
+  var thisWk = getWeekKey(now);
+  var monthKey = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
+
+  // Most improved
+  var improved = Object.values(stats).filter(function(s){return s.improvement > 0 && s.thisWeek > 0 && s.lastWeek > 0;})
+    .sort(function(a,b){return b.improvement-a.improvement;});
+  if (improved.length > 0) {
+    var top = improved[0];
+    celebrations.push({
+      icon:'&#x1F4C8;',
+      color:'#E8F8ED',
+      border:'#34C759',
+      title:'Most Improved This Week',
+      name:top.name,
+      text:top.name + ' jumped ' + top.improvement + '% — from ' + top.lastWeek + '% to ' + top.thisWeek + '%. That is the mindset of a champion.'
+    });
+  }
+
+  // 90%+ shoutouts (lowered to 60% to build habit)
+  Object.values(stats).forEach(function(am) {
+    if (am.thisWeek >= 90) {
+      celebrations.push({icon:'&#x1F31F;', color:'#FFF9E6', border:'#FFD700', title:'Outstanding Performance', name:am.name, text:am.name + ' scored ' + am.thisWeek + '% this week. This is what excellence looks like.'});
+    } else if (am.thisWeek >= 75) {
+      celebrations.push({icon:'&#x1F44F;', color:'#F0F4FF', border:'#007AFF', title:'Strong Week', name:am.name, text:am.name + ' delivered ' + am.thisWeek + '% this week. Solid and consistent.'});
+    } else if (am.thisWeek >= 60) {
+      celebrations.push({icon:'&#x1F3C3;', color:'#F5F5F7', border:'#C8102E', title:'Getting Into Rhythm', name:am.name, text:am.name + ' scored ' + am.thisWeek + '% — building the habit. Keep going, the momentum is here.'});
+    }
+  });
+
+  // Consistency award — most days submitted
+  var consistent = Object.values(stats).sort(function(a,b){return b.mtdDays-a.mtdDays;})[0];
+  if (consistent && consistent.mtdDays > 0) {
+    celebrations.push({
+      icon:'&#x1F4CB;',
+      color:'#F0E6FF',
+      border:'#9B59B6',
+      title:'Consistency Award',
+      name:consistent.name,
+      text:consistent.name + ' has the most submissions this month — ' + consistent.mtdDays + ' checklist days completed. Consistency builds champions.'
+    });
+  }
+
+  if (celebrations.length === 0) {
+    el.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text2);font-size:13px;">&#x1F389; Submit checklists this week to see team celebrations here!</div>';
+    return;
+  }
+
+  var html = '';
+  celebrations.slice(0,6).forEach(function(c) {
+    html +=
+      '<div style="background:' + c.color + ';border-radius:14px;padding:14px;margin-bottom:10px;border-left:4px solid ' + c.border + ';">' +
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">' +
+          '<span style="font-size:20px;">' + c.icon + '</span>' +
+          '<div>' +
+            '<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;">' + c.title + '</div>' +
+            '<div style="font-size:14px;font-weight:700;color:var(--text);">' + c.name + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="font-size:13px;color:var(--text);line-height:1.5;">' + c.text + '</div>' +
+      '</div>';
+  });
+  el.innerHTML = html;
+
+  // ── SUBMISSION HISTORY ────────────────────────────────
+  var histHtml = '<div class="section-card fade-up" style="margin-top:12px;">';
+  histHtml += '<div class="section-card-title">&#128221; Submission History <span style="font-size:11px;font-weight:400;color:var(--text2);">' + allSubs.length + ' total</span></div>';
+  
+  if (allSubs.length === 0) {
+    histHtml += '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">No submissions yet. Start by filling your daily checklist.</div>';
+  } else {
+    // Sort by date newest first
+    var sortedSubs = allSubs.slice().sort(function(a,b){
+      return new Date(b.submittedAt||0) - new Date(a.submittedAt||0);
+    });
+    sortedSubs.forEach(function(s) {
+      var score = s.score;
+      var hasScore = score !== undefined && score !== null;
+      var color = hasScore ? getBandColor(score) : '#8E8E93';
+      var scoreStr = hasScore ? score + '%' : 'Data';
+      var date = s.submittedAt ? s.submittedAt.substring(0,10) : '';
+      var dayLabel = (s.day||'').charAt(0).toUpperCase() + (s.day||'').slice(1);
+      var late = s.late ? ' <span style="background:#FF3B30;color:#fff;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700;">LATE</span>' : '';
+      histHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">' +
+        '<div>' +
+          '<div style="font-size:13px;font-weight:600;color:var(--text);">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
+          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + date + '</div>' +
+        '</div>' +
+        '<div style="font-size:18px;font-weight:700;color:' + color + ';">' + scoreStr + '</div>' +
+      '</div>';
+    });
+  }
+  histHtml += '</div>';
+  el.innerHTML += histHtml;
+
+}
+
+function renderConsistencyBoard(subs) {
+  var stats = getAMStats(subs);
+  var sorted = Object.values(stats).sort(function(a,b){return b.mtdDays-a.mtdDays;});
+  var el = document.getElementById('consistencyBoard');
+  if (!el) return;
+
+  var html = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">';
+  sorted.forEach(function(am) {
+    var maxDays = 24;
+    var pct = Math.round(am.mtdDays/maxDays*100);
+    var color = pct>=80?'#34C759':pct>=50?'#FF9500':'#FF3B30';
+    html +=
+      '<div style="background:var(--surface);border-radius:12px;padding:12px;">' +
+        '<div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px;">' + am.name + '</div>' +
+        '<div style="font-size:11px;color:var(--text2);margin-bottom:6px;">' + am.region + '</div>' +
+        '<div style="font-size:22px;font-weight:700;color:' + color + ';line-height:1;">' + am.mtdDays + '</div>' +
+        '<div style="font-size:10px;color:var(--text2);margin-bottom:6px;">days submitted</div>' +
+        '<div style="background:#E5E5EA;border-radius:4px;height:5px;overflow:hidden;">' +
+          '<div style="height:100%;background:' + color + ';border-radius:4px;width:' + Math.min(pct,100) + '%;"></div>' +
+        '</div>' +
+      '</div>';
+  });
+  html += '</div>';
+  el.innerHTML = html;
+
+  // ── SUBMISSION HISTORY ────────────────────────────────
+  var histHtml = '<div class="section-card fade-up" style="margin-top:12px;">';
+  histHtml += '<div class="section-card-title">&#128221; Submission History <span style="font-size:11px;font-weight:400;color:var(--text2);">' + allSubs.length + ' total</span></div>';
+  
+  if (allSubs.length === 0) {
+    histHtml += '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">No submissions yet. Start by filling your daily checklist.</div>';
+  } else {
+    // Sort by date newest first
+    var sortedSubs = allSubs.slice().sort(function(a,b){
+      return new Date(b.submittedAt||0) - new Date(a.submittedAt||0);
+    });
+    sortedSubs.forEach(function(s) {
+      var score = s.score;
+      var hasScore = score !== undefined && score !== null;
+      var color = hasScore ? getBandColor(score) : '#8E8E93';
+      var scoreStr = hasScore ? score + '%' : 'Data';
+      var date = s.submittedAt ? s.submittedAt.substring(0,10) : '';
+      var dayLabel = (s.day||'').charAt(0).toUpperCase() + (s.day||'').slice(1);
+      var late = s.late ? ' <span style="background:#FF3B30;color:#fff;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700;">LATE</span>' : '';
+      histHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">' +
+        '<div>' +
+          '<div style="font-size:13px;font-weight:600;color:var(--text);">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
+          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + date + '</div>' +
+        '</div>' +
+        '<div style="font-size:18px;font-weight:700;color:' + color + ';">' + scoreStr + '</div>' +
+      '</div>';
+    });
+  }
+  histHtml += '</div>';
+  el.innerHTML += histHtml;
+
+}
+
+document.getElementById('toggleMy').addEventListener('click', function(){ showView('my'); });
+document.getElementById('toggleTeam').addEventListener('click', function(){ showView('team'); });
+document.getElementById('toggleQTD').addEventListener('click', function(){ showView('qtd'); });
+document.getElementById('qtdChangeBtn').addEventListener('click', function(){
+  document.getElementById('qtdAMPickerWrap').classList.remove('hidden');
+  document.getElementById('qtdContent').classList.add('hidden');
+});
+
+// QTD AM Cards
+(function(){
+  var c = document.getElementById('qtdAMCards');
+  amList.forEach(function(am) {
+    var d = document.createElement('div');
+    d.style.cssText = 'background:#fff;border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.07);cursor:pointer;';
+    d.innerHTML = '<div style="font-size:24px;margin-bottom:4px;">' + am.icon + '</div>' +
+      '<div style="font-size:13px;font-weight:700;color:#1D1D1F;">' + am.name + '</div>' +
+      '<div style="font-size:11px;color:#6E6E73;">' + am.region + '</div>';
+    d.addEventListener('click', function() {
+      document.getElementById('qtdAMPickerWrap').classList.add('hidden');
+      document.getElementById('qtdContent').classList.remove('hidden');
+      document.getElementById('qtdAMName').textContent = am.name;
+      loadQTDData(am.name);
+    });
+    c.appendChild(d);
+  });
+})();
+
+function loadQTDData(amName) {
+  document.getElementById('qtdDashContent').innerHTML = '<div class="spinner"></div>';
+  fetch('/api/submissions?am=' + encodeURIComponent(amName))
+    .then(function(r){return r.json();})
+    .then(function(d){
+      renderQTDDash(amName, d.data || []);
+    });
+}
+
+function getIndiaFYYear(date) {
+  var d = new Date(date);
+  var m = d.getMonth();
+  return m >= 3 ? d.getFullYear() : d.getFullYear() - 1;
+}
+
+function getIndiaFYMonths(quarter) {
+  var monthSets = {1:['04','05','06'], 2:['07','08','09'], 3:['10','11','12'], 4:['01','02','03']};
+  return monthSets[quarter] || [];
+}
+
+function getAllFYMonths() {
+  return ['04','05','06','07','08','09','10','11','12','01','02','03'];
+}
+
+function isInQuarter(dateStr, quarter) {
+  if (!dateStr) return false;
+  var m = dateStr.substring(5,7);
+  return getIndiaFYMonths(quarter).indexOf(m) >= 0;
+}
+
+function isInFY(dateStr) {
+  if (!dateStr) return false;
+  return getAllFYMonths().indexOf(dateStr.substring(5,7)) >= 0;
+}
+
+function renderQTDDash(amName, subs) {
+  var now = new Date();
+  var currentQ = getCurrentIndiaFYQuarter();
+  var qLabels = {1:'Q1 (Apr-Jun)', 2:'Q2 (Jul-Sep)', 3:'Q3 (Oct-Dec)', 4:'Q4 (Jan-Mar)'};
+  var fyYear = getIndiaFYYear(now);
+  var fyLabel = 'FY ' + fyYear + '-' + String(fyYear+1).slice(2);
+
+  // Separate tuesday subs (sales data) and scored subs
+  var tueSubs = subs.filter(function(s){ return s.day === 'tuesday' && s.submittedAt; });
+  var scoredSubs = subs.filter(function(s){ return s.score !== undefined && s.submittedAt; });
+
+  // QTD calcs
+  var qtdTueSubs = tueSubs.filter(function(s){ return isInQuarter(s.submittedAt, currentQ); });
+  var qtdScored = scoredSubs.filter(function(s){ return isInQuarter(s.submittedAt, currentQ); });
+
+  // YTD calcs
+  var ytdTueSubs = tueSubs.filter(function(s){ return isInFY(s.submittedAt); });
+  var ytdScored = scoredSubs.filter(function(s){ return isInFY(s.submittedAt); });
+
+  function sumField(arr, field) {
+    return arr.reduce(function(a,s){ return a + (parseFloat(s[field])||0); }, 0);
+  }
+  function avgScore(arr) {
+    return arr.length>0 ? Math.round(arr.reduce(function(a,s){return a+s.score;},0)/arr.length) : 0;
+  }
+
+  var qtdActual = sumField(qtdTueSubs, 'mtdActual');
+  var qtdTarget = sumField(qtdTueSubs, 'mtdTarget');
+  var qtdLYSales = qtdTueSubs.reduce(function(a,s){ return a + ((s.lyADS||0)*30); }, 0);
+  var qtdScore = avgScore(qtdScored);
+
+  var ytdActual = sumField(ytdTueSubs, 'mtdActual');
+  var ytdTarget = sumField(ytdTueSubs, 'mtdTarget');
+  var ytdLYSales = ytdTueSubs.reduce(function(a,s){ return a + ((s.lyADS||0)*30); }, 0);
+  var ytdScore = avgScore(ytdScored);
+
+  var qtdPct = qtdTarget > 0 ? Math.round(qtdActual/qtdTarget*100) : 0;
+  var ytdPct = ytdTarget > 0 ? Math.round(ytdActual/ytdTarget*100) : 0;
+  var qtdLFL = qtdLYSales > 0 ? ((qtdActual-qtdLYSales)/qtdLYSales*100).toFixed(1) : null;
+  var ytdLFL = ytdLYSales > 0 ? ((ytdActual-ytdLYSales)/ytdLYSales*100).toFixed(1) : null;
+
+  function progressBar(pct, color) {
+    return '<div style="background:#E5E5EA;border-radius:6px;height:10px;overflow:hidden;margin:8px 0;">' +
+      '<div style="height:100%;background:' + color + ';border-radius:6px;width:' + Math.min(pct,100) + '%;transition:width 1.2s ease;"></div></div>';
+  }
+
+  function metricBlock(label, value, sub, color) {
+    return '<div style="background:var(--surface);border-radius:12px;padding:14px;text-align:center;">' +
+      '<div style="font-size:11px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">' + label + '</div>' +
+      '<div style="font-size:28px;font-weight:700;color:' + color + ';line-height:1;">' + value + '</div>' +
+      '<div style="font-size:11px;color:var(--text2);margin-top:4px;">' + sub + '</div>' +
+    '</div>';
+  }
+
+  function bigCard(title, icon, actual, target, pct, lfl, score, subs_count, color) {
+    var lflHtml = lfl !== null
+      ? '<div style="font-size:14px;font-weight:700;color:' + (parseFloat(lfl)>=0?'#34C759':'#FF3B30') + ';">' +
+          (parseFloat(lfl)>=0?'▲ +':'▼ ') + Math.abs(lfl) + '% LFL</div>'
+      : '<div style="font-size:13px;color:var(--text2);">LFL: add LY data in Tuesday</div>';
+    return '<div style="background:linear-gradient(135deg,#1A1A1A,#2A2A2A);border-radius:20px;padding:20px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.08);">' +
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">' +
+        '<div style="font-size:22px;">' + icon + '</div>' +
+        '<div style="font-size:16px;font-weight:700;color:#fff;">' + title + '</div>' +
+      '</div>' +
+      '<div style="font-size:42px;font-weight:700;color:#fff;letter-spacing:-1px;line-height:1;margin-bottom:4px;">' +
+        (actual > 0 ? fmt(actual) : '--') + '</div>' +
+      '<div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:12px;">Target: ' + (target>0?fmt(target):'Not set') + '</div>' +
+      progressBar(pct, color) +
+      '<div style="display:flex;justify-content:space-between;margin-bottom:14px;">' +
+        '<span style="font-size:13px;font-weight:700;color:' + color + ';">' + (pct>0?pct+'% to target':'Submit Tuesday checklist to populate') + '</span>' +
+        lflHtml +
+      '</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">' +
+        '<div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px;text-align:center;">' +
+          '<div style="font-size:22px;font-weight:700;color:' + getBandColor(score) + ';">' + (score>0?score+'%':'--') + '</div>' +
+          '<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;">Avg Ops Score</div>' +
+        '</div>' +
+        '<div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px;text-align:center;">' +
+          '<div style="font-size:22px;font-weight:700;color:#fff;">' + subs_count + '</div>' +
+          '<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;">Submissions</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }
+
+  var qtdColor = qtdPct>=100?'#34C759':qtdPct>=90?'#FF9500':'#FF3B30';
+  var ytdColor = ytdPct>=100?'#34C759':ytdPct>=90?'#FF9500':'#FF3B30';
+
+  var html = '';
+
+  // FY Header
+  html += '<div style="background:linear-gradient(135deg,var(--red),var(--red-dark));border-radius:16px;padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;">' +
+    '<div><div style="font-size:12px;color:rgba(255,255,255,0.7);font-weight:600;text-transform:uppercase;">India Financial Year</div>' +
+    '<div style="font-size:20px;font-weight:700;color:#fff;">' + fyLabel + '</div></div>' +
+    '<div style="text-align:right;"><div style="font-size:12px;color:rgba(255,255,255,0.7);">Current Quarter</div>' +
+    '<div style="font-size:20px;font-weight:700;color:#fff;">' + qLabels[currentQ] + '</div></div>' +
+  '</div>';
+
+  // QTD Card
+  html += bigCard(
+    qLabels[currentQ] + ' — Quarter to Date',
+    '&#x1F4C5;',
+    qtdActual, qtdTarget, qtdPct, qtdLFL, qtdScore, qtdScored.length, qtdColor
+  );
+
+  // QTD Metrics Grid
+  html += '<div class="section-card"><div class="section-card-title">&#x1F4CA; QTD Breakdown</div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">' +
+    metricBlock('QTD Revenue', qtdActual>0?fmt(qtdActual):'--', qtdTueSubs.length+' store-weeks', qtdColor) +
+    metricBlock('QTD vs Target', qtdPct>0?qtdPct+'%':'--', qtdTarget>0?'Target: '+fmt(qtdTarget):'No target set', qtdColor) +
+    metricBlock('QTD LFL', qtdLFL!==null?(parseFloat(qtdLFL)>=0?'+':'')+qtdLFL+'%':'--', 'vs Same Qtr LY', qtdLFL&&parseFloat(qtdLFL)>=0?'#34C759':'#FF3B30') +
+    metricBlock('QTD Ops Score', qtdScore>0?qtdScore+'%':'--', qtdScored.length+' submissions', getBandColor(qtdScore)) +
+    '</div></div>';
+
+  // YTD Card
+  html += bigCard(
+    fyLabel + ' — Year to Date',
+    '&#x1F4C6;',
+    ytdActual, ytdTarget, ytdPct, ytdLFL, ytdScore, ytdScored.length, ytdColor
+  );
+
+  // YTD Metrics Grid
+  html += '<div class="section-card"><div class="section-card-title">&#x1F4CA; YTD Breakdown</div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">' +
+    metricBlock('YTD Revenue', ytdActual>0?fmt(ytdActual):'--', ytdTueSubs.length+' store-weeks', ytdColor) +
+    metricBlock('YTD vs Target', ytdPct>0?ytdPct+'%':'--', ytdTarget>0?'Target: '+fmt(ytdTarget):'No target set', ytdColor) +
+    metricBlock('YTD LFL', ytdLFL!==null?(parseFloat(ytdLFL)>=0?'+':'')+ytdLFL+'%':'--', 'vs Full FY LY', ytdLFL&&parseFloat(ytdLFL)>=0?'#34C759':'#FF3B30') +
+    metricBlock('YTD Ops Score', ytdScore>0?ytdScore+'%':'--', ytdScored.length+' submissions', getBandColor(ytdScore)) +
+    '</div></div>';
+
+  // Quarter by Quarter breakdown
+  var qDefs = [
+    {q:1, label:'Q1', months:['04','05','06'], dates:'Apr-Jun'},
+    {q:2, label:'Q2', months:['07','08','09'], dates:'Jul-Sep'},
+    {q:3, label:'Q3', months:['10','11','12'], dates:'Oct-Dec'},
+    {q:4, label:'Q4', months:['01','02','03'], dates:'Jan-Mar'}
+  ];
+
+  html += '<div class="section-card"><div class="section-card-title">&#x1F4C5; Quarter by Quarter — ' + fyLabel + '</div>' +
+    '<div style="display:flex;flex-direction:column;gap:10px;">';
+
+  qDefs.forEach(function(qt) {
+    var qSubs = tueSubs.filter(function(s){ return qt.months.indexOf(s.submittedAt.substring(5,7)) >= 0; });
+    var qScored = scoredSubs.filter(function(s){ return qt.months.indexOf(s.submittedAt.substring(5,7)) >= 0; });
+    var qActual = sumField(qSubs, 'mtdActual');
+    var qTarget = sumField(qSubs, 'mtdTarget');
+    var qPct = qTarget>0 ? Math.round(qActual/qTarget*100) : 0;
+    var qScore = avgScore(qScored);
+    var isCurrent = qt.q === currentQ;
+    var qColor = qPct>=100?'#34C759':qPct>=90?'#FF9500':qPct>0?'#FF3B30':'#E5E5EA';
+
+    html += '<div style="background:' + (isCurrent?'linear-gradient(135deg,#FFF5F6,#FFE8EC)':'var(--surface)') + ';border-radius:14px;padding:14px;border:2px solid ' + (isCurrent?'var(--red)':'transparent') + ';">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">' +
+        '<div style="display:flex;align-items:center;gap:8px;">' +
+          (isCurrent?'<span style="font-size:14px;">&#x1F4CD;</span>':'') +
+          '<div>' +
+            '<div style="font-size:14px;font-weight:700;color:var(--text);">' + qt.label + ' — ' + qt.dates + (isCurrent?' (Current)':'') + '</div>' +
+            '<div style="font-size:11px;color:var(--text2);">' + qSubs.length + ' store-weeks · ' + qScored.length + ' scored</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="text-align:right;">' +
+          '<div style="font-size:20px;font-weight:700;color:' + qColor + ';">' + (qPct>0?qPct+'%':'--') + '</div>' +
+          '<div style="font-size:11px;color:var(--text2);">Ops: ' + (qScore>0?qScore+'%':'--') + '</div>' +
+        '</div>' +
+      '</div>' +
+      (qPct>0?'<div style="background:#E5E5EA;border-radius:4px;height:6px;overflow:hidden;"><div style="height:100%;background:'+qColor+';border-radius:4px;width:'+Math.min(qPct,100)+'%;transition:width 1s ease;"></div></div>':'') +
+    '</div>';
+  });
+  html += '</div></div>';
+
+  document.getElementById('qtdDashContent').innerHTML = html;
+}
+
+renderAMCards();
+</script>
+</body>
+</html>

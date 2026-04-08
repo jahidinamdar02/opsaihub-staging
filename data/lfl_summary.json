@@ -1,0 +1,26 @@
+{
+  "lfl_stores": 37,
+  "lfl_vs_ly": 119,
+  "lfl_vs_lm": 107,
+  "india_vs_ly": 107,
+  "india_vs_lm": 105,
+  "india_mtd": 84460101,
+  "india_ads": 81841,
+  "india_adt": 148,
+  "india_apc": 558,
+  "delivery_mtd": 15197465,
+  "delivery_adt": 34,
+  "delivery_apc": 324,
+  "feb_mtd": 80601731,
+  "ly_mtd": 72923456,
+  "days": 24,
+  "non_lfl_stores": [
+    "TH T3D DIAL",
+    "TH T1D Dial",
+    "TH T3D Food Court",
+    "TH NMIA Arrival",
+    "TH NMiA Departure",
+    "TH HIAL Arrival",
+    "TH Lakeshore"
+  ]
+}

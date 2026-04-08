@@ -1,0 +1,168 @@
+{
+  "monday": [
+    { "id": "MON-01", "item": "Petty cash checked (counted & verified)", "section": "Financial Audit", "requiresPhoto": false, "requiresComment": true },
+    { "id": "MON-02", "item": "Banking numbers checked (deposits, reconciliations)", "section": "Financial Audit", "requiresPhoto": false, "requiresComment": true },
+    { "id": "MON-03", "item": "PO for Snowmen checked (exists & matches needs)", "section": "Inventory", "requiresPhoto": false, "requiresComment": true },
+    { "id": "MON-04", "item": "PO for Jubilee checked (exists & matches needs)", "section": "Inventory", "requiresPhoto": false, "requiresComment": true },
+    { "id": "MON-05", "item": "GRN done in last week for Jubilee", "section": "Inventory", "requiresPhoto": false, "requiresComment": true },
+    { "id": "MON-06", "item": "GRN done in last week for Snowmen", "section": "Inventory", "requiresPhoto": false, "requiresComment": true },
+    { "id": "MON-07", "item": "Safe tally expenses (match receipts & records)", "section": "Financial Audit", "requiresPhoto": false, "requiresComment": true },
+    { "id": "MON-08", "item": "Petty cash tally (balance matches records)", "section": "Financial Audit", "requiresPhoto": false, "requiresComment": true },
+    { "id": "MON-09", "item": "Spot audit performed for this store", "section": "Audit", "requiresPhoto": false, "requiresComment": true },
+    { "id": "MON-10", "item": "Cashier #1 verified (cash handling, no discrepancies)", "section": "Audit", "requiresPhoto": false, "requiresComment": true },
+    { "id": "MON-11", "item": "Random inventory check - Coffee beans", "section": "Inventory Check", "requiresPhoto": false, "requiresComment": true },
+    { "id": "MON-12", "item": "Random inventory check - Milks / Cups", "section": "Inventory Check", "requiresPhoto": false, "requiresComment": true },
+    { "id": "MON-13", "item": "Random inventory check - Syrup 1 (specify in comment)", "section": "Inventory Check", "requiresPhoto": false, "requiresComment": true },
+    { "id": "MON-14", "item": "Random inventory check - Syrup 2 (specify in comment)", "section": "Inventory Check", "requiresPhoto": false, "requiresComment": true }
+  ],
+  "tuesday": {
+    "section1": {
+      "title": "MTD Sales vs Target",
+      "fields": [
+        { "id": "TUE-S1-01", "label": "MTD Actual Sales (Rs)", "type": "number" },
+        { "id": "TUE-S1-02", "label": "MTD Target Sales (Rs)", "type": "number" }
+      ]
+    },
+    "section2": {
+      "title": "vs Last Year",
+      "lyFields": [
+        { "id": "TUE-S2-LY01", "label": "LY Average Daily Sales (Rs)", "type": "number" },
+        { "id": "TUE-S2-LY02", "label": "LY Average Per Check APC (Rs)", "type": "number" },
+        { "id": "TUE-S2-LY03", "label": "LY Average Daily Transactions ADT", "type": "number" }
+      ],
+      "tyFields": [
+        { "id": "TUE-S2-TY01", "label": "TY MTD Sales (Rs)", "type": "number" },
+        { "id": "TUE-S2-TY02", "label": "TY Average Daily Sales ADS (Rs)", "type": "number" },
+        { "id": "TUE-S2-TY03", "label": "TY Average Daily Transactions ADT", "type": "number" },
+        { "id": "TUE-S2-TY04", "label": "TY Average Per Check APC (Rs)", "type": "number" }
+      ]
+    },
+    "section3": {
+      "title": "In-Store KPIs",
+      "fields": [
+        { "id": "TUE-S3-01", "label": "Breakfast Combo MTD units sold", "type": "number" },
+        { "id": "TUE-S3-02", "label": "Daily units vs target excl breakfast", "type": "number" },
+        { "id": "TUE-S3-03", "label": "Donuts per day", "type": "number", "benchmark": 45 },
+        { "id": "TUE-S3-04", "label": "Timbits per day", "type": "number", "benchmark": 100 },
+        { "id": "TUE-S3-05", "label": "Water bottles per day", "type": "number", "benchmark": 10 },
+        { "id": "TUE-S3-06", "label": "RTE products per day", "type": "number", "benchmark": 10 }
+      ]
+    },
+    "section4": {
+      "title": "Beverage Size Mix",
+      "fields": [
+        { "id": "TUE-S4-01", "label": "Small percent", "type": "percent" },
+        { "id": "TUE-S4-02", "label": "Medium percent", "type": "percent" },
+        { "id": "TUE-S4-03", "label": "Large percent", "type": "percent" }
+      ]
+    },
+    "section5": {
+      "title": "Modifiers Per Day",
+      "fields": [
+        { "id": "TUE-S5-01", "label": "Actual modifiers per day", "type": "number" }
+      ],
+      "bands": {
+        "low": { "maxSales": 70000, "target": 30 },
+        "medium": { "minSales": 71000, "maxSales": 99000, "target": 40 },
+        "high": { "minSales": 100000, "target": 50 }
+      }
+    }
+  },
+  "wednesday": {
+    "machines": [
+      { "id": "WED-M01", "name": "Coffee Machine" },
+      { "id": "WED-M02", "name": "RO Machine" },
+      { "id": "WED-M03", "name": "Mary Chef" },
+      { "id": "WED-M04", "name": "iCombi" },
+      { "id": "WED-M05", "name": "Blenders" },
+      { "id": "WED-M06", "name": "Ice Machine" },
+      { "id": "WED-M07", "name": "Air Conditioning" },
+      { "id": "WED-M08", "name": "Under Counter Vertical Chillers" },
+      { "id": "WED-M09", "name": "Server" }
+    ],
+    "cleanliness": [
+      { "id": "WED-C01", "area": "Kitchen surfaces and equipment exteriors" },
+      { "id": "WED-C02", "area": "Floors walls ceiling tiles" },
+      { "id": "WED-C03", "area": "Washrooms" },
+      { "id": "WED-C04", "area": "Dining area" },
+      { "id": "WED-C05", "area": "Storage areas" }
+    ],
+    "pest": [
+      { "id": "WED-P01", "check": "Evidence of rodents" },
+      { "id": "WED-P02", "check": "Evidence of insects / cockroaches" },
+      { "id": "WED-P03", "check": "Drain condition" },
+      { "id": "WED-P04", "check": "Pest control contract status" },
+      { "id": "WED-P05", "check": "Last pest control visit date" }
+    ]
+  },
+  "friday": {
+    "section1": {
+      "title": "CI Call",
+      "fields": [
+        { "id": "FRI-S1-01", "label": "11am CI Call with CEO attended", "type": "yesno" }
+      ]
+    },
+    "section2": {
+      "title": "Complaints Last Week",
+      "fields": [
+        { "id": "FRI-S2-01", "label": "Number of complaints received", "type": "number" },
+        { "id": "FRI-S2-02", "label": "Category", "type": "select", "options": ["Food Quality", "Service", "Cleanliness", "Wait Time", "Other"] },
+        { "id": "FRI-S2-03", "label": "Resolution Status", "type": "select", "options": ["Resolved", "Pending", "Escalated"] }
+      ]
+    },
+    "section3": {
+      "title": "HOD Support Required",
+      "fields": [
+        { "id": "FRI-S3-01", "label": "Operations", "type": "textarea" },
+        { "id": "FRI-S3-02", "label": "Training", "type": "textarea" },
+        { "id": "FRI-S3-03", "label": "Marketing", "type": "textarea" },
+        { "id": "FRI-S3-04", "label": "HR", "type": "textarea" },
+        { "id": "FRI-S3-05", "label": "IT", "type": "textarea" }
+      ]
+    },
+    "section4": {
+      "title": "Weekend Readiness",
+      "fields": [
+        { "id": "FRI-S4-01", "label": "Stock thawing", "type": "select", "options": ["Yes", "No", "Partial"] },
+        { "id": "FRI-S4-02", "label": "Manpower allocation", "type": "select", "options": ["Yes", "No", "Partial"] },
+        { "id": "FRI-S4-03", "label": "Store readiness", "type": "select", "options": ["Yes", "No", "Partial"] }
+      ]
+    },
+    "section5": {
+      "title": "Owner Landlord Meeting",
+      "fields": [
+        { "id": "FRI-S5-01", "label": "Visited this month", "type": "yesno" },
+        { "id": "FRI-S5-02", "label": "Outcome notes", "type": "textarea" },
+        { "id": "FRI-S5-03", "label": "Next meeting date", "type": "date" }
+      ]
+    }
+  },
+  "saturday": [
+    { "id": "SAT-01", "item": "ACEs in place", "timed": false },
+    { "id": "SAT-02", "item": "Best cashier assigned on POP", "timed": false },
+    { "id": "SAT-03", "item": "POS has good display of RTE and water", "timed": false },
+    { "id": "SAT-04", "item": "Backlit LTO display visible and working", "timed": false },
+    { "id": "SAT-05", "item": "Speed of service check 1", "timed": true, "benchmark": "3:00" },
+    { "id": "SAT-06", "item": "Speed of service check 2", "timed": true, "benchmark": "3:00" },
+    { "id": "SAT-07", "item": "Speed of service check 3", "timed": true, "benchmark": "3:00" },
+    { "id": "SAT-08", "item": "Frosted glasses available and clean", "timed": false },
+    { "id": "SAT-09", "item": "Ceramic cups available and ready", "timed": false },
+    { "id": "SAT-10", "item": "Club apparel registration happening", "timed": false },
+    { "id": "SAT-11", "item": "QR feedback active", "timed": false },
+    { "id": "SAT-12", "item": "NPS core focus on hospitality", "timed": false }
+  ],
+  "sunday": [
+    { "id": "SUN-01", "item": "ACEs in place", "timed": false },
+    { "id": "SUN-02", "item": "Best cashier assigned on POP", "timed": false },
+    { "id": "SUN-03", "item": "POS has good display of RTE and water", "timed": false },
+    { "id": "SUN-04", "item": "Backlit LTO display visible and working", "timed": false },
+    { "id": "SUN-05", "item": "Speed of service check 1", "timed": true, "benchmark": "3:00" },
+    { "id": "SUN-06", "item": "Speed of service check 2", "timed": true, "benchmark": "3:00" },
+    { "id": "SUN-07", "item": "Speed of service check 3", "timed": true, "benchmark": "3:00" },
+    { "id": "SUN-08", "item": "Frosted glasses available and clean", "timed": false },
+    { "id": "SUN-09", "item": "Ceramic cups available and ready", "timed": false },
+    { "id": "SUN-10", "item": "Club apparel registration happening", "timed": false },
+    { "id": "SUN-11", "item": "QR feedback active", "timed": false },
+    { "id": "SUN-12", "item": "NPS core focus on hospitality", "timed": false }
+  ]
+}

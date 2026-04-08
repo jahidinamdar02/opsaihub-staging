@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1.0">
+<title>Dates &amp; Events</title>
+<style>
+:root{--red:#C8102E;--surface:#F2F2F7;--card:#fff;--border:#E5E5EA;--text:#1C1C1E;--text2:#8E8E93;--green:#34C759;--amber:#FF9500;--purple:#AF52DE;--blue:#007AFF;--ipl:#0066CC;--nav-h:72px;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--surface);padding-bottom:calc(var(--nav-h) + 16px);}
+.hdr{background:linear-gradient(160deg,#0A0A1A,#1A0A2A,#0A1520);padding:calc(env(safe-area-inset-top,0px) + 44px) 18px 18px;}
+.hdr-eye{font-size:10px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;}
+.hdr-ttl{font-size:26px;font-weight:700;color:#fff;letter-spacing:-0.5px;}
+.hdr-sub{font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;}
+.content{padding:12px 16px;}
+.chip-row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:10px;padding-bottom:2px;}
+.chip-row::-webkit-scrollbar{display:none;}
+.chip{flex-shrink:0;padding:9px 16px;border-radius:22px;border:1.5px solid var(--border);background:var(--card);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:all 0.15s;}
+.chip.on{background:var(--text);color:#fff;border-color:var(--text);}
+.chip.red{background:var(--red);color:#fff;border-color:var(--red);}
+.chip.blue{background:var(--blue);color:#fff;border-color:var(--blue);}
+.chip.amber{background:var(--amber);color:#fff;border-color:var(--amber);}
+.chip.purple{background:var(--purple);color:#fff;border-color:var(--purple);}
+.chip.ipl{background:var(--ipl);color:#fff;border-color:var(--ipl);}
+.chip.world{background:#FF3B30;color:#fff;border-color:#FF3B30;}
+.month-row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:14px;}
+.month-row::-webkit-scrollbar{display:none;}
+.mbtn{flex-shrink:0;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;color:var(--text2);background:var(--card);border:1.5px solid var(--border);cursor:pointer;}
+.mbtn.on{background:var(--text);color:#fff;border-color:var(--text);}
+.ecard{background:var(--card);border-radius:14px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,0.05);}
+.edate{min-width:44px;background:var(--surface);border-radius:10px;padding:6px 4px;text-align:center;}
+.edd{font-size:20px;font-weight:700;color:var(--text);line-height:1;}
+.emm{font-size:9px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+.edot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.ebody{flex:1;}
+.en{font-size:13px;font-weight:700;color:var(--text);}
+.enote{font-size:11px;color:var(--text2);margin-top:2px;line-height:1.4;}
+.etags{margin-top:5px;display:flex;gap:5px;flex-wrap:wrap;}
+.etag{display:inline-block;padding:2px 7px;border-radius:6px;font-size:9px;font-weight:700;background:rgba(0,0,0,0.06);}
+.icard{background:linear-gradient(135deg,#003D99,#0066CC);border-radius:14px;padding:12px 14px;margin-bottom:8px;display:flex;gap:12px;}
+.idate{min-width:44px;background:rgba(255,255,255,0.1);border-radius:10px;padding:6px 4px;text-align:center;}
+.idd{font-size:20px;font-weight:700;color:#fff;line-height:1;}
+.imm{font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-top:2px;}
+.lcard{border-radius:14px;padding:14px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+.wcard{background:var(--card);border-radius:12px;padding:12px 14px;margin-bottom:8px;border-left:3px solid var(--red);}
+.t-high{color:#FF3B30;font-size:9px;font-weight:700;}
+.t-med{color:#FF9500;font-size:9px;font-weight:700;}
+.t-low{color:#8E8E93;font-size:9px;font-weight:700;}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:6px 8px;min-width:50px;}
+.nav-icon{font-size:20px;}
+.nav-label{font-size:9px;font-weight:500;color:var(--text2);}
+.nav-item.active .nav-label{color:var(--purple);font-weight:700;}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="hdr-eye">Tim Hortons India</div>
+  <div class="hdr-ttl">Dates &amp; Events</div>
+  <div class="hdr-sub">Calendar &middot; Events &middot; Festivals &middot; Matches &middot; LTO &middot; World</div>
+</div>
+<div class="content">
+  <div class="chip-row" id="chipRow"></div>
+  <div class="month-row" id="monthRow"></div>
+  <div id="elist"></div>
+</div>
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item"><span class="nav-icon">&#127968;</span><span class="nav-label">Home</span></a>
+  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#9989;</span><span class="nav-label">Tasks</span></a>
+  <a href="events.html" class="nav-item active"><span class="nav-icon">&#128197;</span><span class="nav-label">Events</span></a>
+  <a href="performance.html" class="nav-item"><span class="nav-icon">&#128202;</span><span class="nav-label">Scores</span></a>
+  <a href="team.html" class="nav-item"><span class="nav-icon">&#128101;</span><span class="nav-label">Team</span></a>
+  <a href="audit.html" class="nav-item"><span class="nav-icon">&#128269;</span><span class="nav-label">Audits</span></a>
+</nav>
+<script>
+
+var CF='all', CM=new Date().getMonth()+1;
+var MN=['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var MF=['','January','February','March','April','May','June','July','August','September','October','November','December'];
+
+var CHIPS=[
+  {id:'all',     label:'All',          cls:'on'},
+  {id:'lto',     label:'LTO',          cls:'amber'},
+  {id:'events',  label:'Events',       cls:'blue'},
+  {id:'festival',label:'Festivals',    cls:'purple'},
+  {id:'holiday', label:'Holidays',     cls:'red'},
+  {id:'ipl',     label:'Matches',      cls:'ipl'},
+  {id:'business',label:'Business',     cls:'amber'},
+  {id:'world',   label:'World Events', cls:'world'}
+];
+
+var LTO=[
+{id:'mango2026',name:'Mango LTO',start:'2026-04-01',end:'2026-05-14',stores:'All 44 stores',tags:['Beverage','Food'],color:'#FF9500',year:2026}
+];
+var EV=[
+{d:'2026-01-01',n:"New Year's Day",ty:'holiday',tg:'holiday',imp:'HIGH',note:'National holiday. All malls open. Peak day.',c:'#34C759'},
+{d:'2026-01-14',n:'Makar Sankranti / Pongal / Lohri',ty:'festival',tg:'festival',imp:'HIGH',note:'Harvest festival. Punjab, Tamil Nadu, Gujarat peak day.',c:'#AF52DE'},
+{d:'2026-01-26',n:'Republic Day',ty:'holiday',tg:'holiday',imp:'HIGH',note:'National holiday. Malls and airports open.',c:'#34C759'},
+{d:'2026-02-14',n:"Valentine's Day",ty:'business',tg:'business',imp:'HIGH',note:'Premium cafe peak day. Push couple combos and gift items.',c:'#FF9500'},
+{d:'2026-02-19',n:'Chhatrapati Shivaji Jayanti',ty:'holiday',tg:'holiday',imp:'MEDIUM',note:'Public holiday in Maharashtra.',c:'#34C759'},
+{d:'2026-02-26',n:'Maha Shivratri',ty:'festival',tg:'religious',imp:'MEDIUM',note:'Hindu festival. North India and Maharashtra higher footfall.',c:'#C8102E'},
+{d:'2026-03-04',n:'Holi',ty:'festival',tg:'festival',imp:'HIGH',note:'Festival of colours. Massive mall footfall.',c:'#AF52DE'},
+{d:'2026-03-21',n:'Eid al-Fitr',ty:'festival',tg:'religious',imp:'HIGH',note:'Confirmed 21 March 2026. End of Ramadan. Peak footfall all mall stores.',c:'#C8102E'},
+{d:'2026-03-22',n:'Eid Holiday',ty:'holiday',tg:'holiday',imp:'HIGH',note:'Public holiday. Peak traffic.',c:'#34C759'},
+{d:'2026-03-26',n:'Ram Navami',ty:'festival',tg:'religious',imp:'MEDIUM',note:'Hindu festival - 26 March 2026. North India stores higher footfall. Temples busy.',c:'#C8102E'},
+{d:'2026-04-10',n:'Mahavir Jayanti',ty:'holiday',tg:'holiday',imp:'MEDIUM',note:'Public holiday.',c:'#34C759'},
+{d:'2026-04-14',n:'Baisakhi / Tamil New Year / Ambedkar Jayanti',ty:'festival',tg:'festival',imp:'HIGH',note:'Punjab harvest festival. Deepak region peak day. Plan max staffing.',c:'#AF52DE'},
+{d:'2026-04-18',n:'Good Friday',ty:'holiday',tg:'holiday',imp:'MEDIUM',note:'Public holiday.',c:'#34C759'},
+{d:'2026-04-20',n:'Easter Sunday',ty:'festival',tg:'festival',imp:'MEDIUM',note:'Premium cafes higher sales.',c:'#AF52DE'},
+{d:'2026-05-01',n:'Labour Day / Maharashtra Day / Gujarat Day',ty:'holiday',tg:'holiday',imp:'HIGH',note:'Public holiday. Maharashtra and Gujarat stores affected.',c:'#34C759'},
+{d:'2026-05-10',n:"Mother's Day",ty:'business',tg:'business',imp:'HIGH',note:'Major commercial day. Premium cafe and gifting surge.',c:'#FF9500'},
+{d:'2026-05-23',n:'Buddha Purnima',ty:'holiday',tg:'holiday',imp:'MEDIUM',note:'Public holiday.',c:'#34C759'},
+{d:'2026-05-27',n:'Bakri Eid',ty:'festival',tg:'religious',imp:'HIGH',note:'Major Muslim festival. High footfall at mall stores.',c:'#C8102E'},
+{d:'2026-06-15',n:"Father's Day",ty:'business',tg:'business',imp:'HIGH',note:'Commercial gifting day. Premium stores surge.',c:'#FF9500'},
+{d:'2026-06-16',n:'Muharram',ty:'festival',tg:'religious',imp:'MEDIUM',note:'Public holiday several states.',c:'#C8102E'},
+{d:'2026-06-21',n:'International Yoga Day',ty:'business',tg:'business',imp:'LOW',note:'Social media opportunity.',c:'#FF9500'},
+{d:'2026-07-25',n:'Shravan Month Begins',ty:'festival',tg:'festival',imp:'HIGH',note:'Holy month. Vegetarian surge. Plan menu adjustments.',c:'#AF52DE'},
+{d:'2026-08-09',n:'Raksha Bandhan',ty:'festival',tg:'festival',imp:'HIGH',note:'Major family occasion. Mall peak footfall.',c:'#AF52DE'},
+{d:'2026-08-15',n:'Independence Day',ty:'holiday',tg:'holiday',imp:'HIGH',note:'National holiday. All malls and airports open.',c:'#34C759'},
+{d:'2026-08-25',n:'Janmashtami',ty:'festival',tg:'religious',imp:'HIGH',note:'Krishna birthday. North India and Maharashtra celebrations.',c:'#C8102E'},
+{d:'2026-09-04',n:'Ganesh Chaturthi',ty:'festival',tg:'festival',imp:'HIGH',note:'Major 10-day festival. Maharashtra stores peak.',c:'#AF52DE'},
+{d:'2026-10-02',n:'Gandhi Jayanti',ty:'holiday',tg:'holiday',imp:'MEDIUM',note:'National holiday.',c:'#34C759'},
+{d:'2026-10-11',n:'Navratri Begins',ty:'festival',tg:'festival',imp:'HIGH',note:'9 days. Gujarat and Rajasthan peak. Vegetarian surge.',c:'#AF52DE'},
+{d:'2026-10-20',n:'Dussehra',ty:'holiday',tg:'holiday',imp:'HIGH',note:'Public holiday. Major footfall at all malls.',c:'#34C759'},
+{d:'2026-11-05',n:'Guru Nanak Jayanti',ty:'holiday',tg:'holiday',imp:'HIGH',note:'Public holiday. Big in Punjab.',c:'#34C759'},
+{d:'2026-11-08',n:'Diwali',ty:'festival',tg:'festival',imp:'HIGH',note:'BIGGEST FESTIVAL. All stores peak sales. Max staffing.',c:'#AF52DE'},
+{d:'2026-11-09',n:'Diwali Holiday',ty:'holiday',tg:'holiday',imp:'HIGH',note:'Public holiday. Peak gifting day.',c:'#34C759'},
+{d:'2026-12-24',n:'Christmas Eve',ty:'business',tg:'business',imp:'HIGH',note:'Evening peak. Push hot beverages and festive items.',c:'#FF9500'},
+{d:'2026-12-25',n:'Christmas Day',ty:'festival',tg:'festival',imp:'HIGH',note:'Major sales day. Premium cafes and malls at peak.',c:'#AF52DE'},
+{d:'2026-12-31',n:"New Year's Eve",ty:'business',tg:'business',imp:'HIGH',note:'Peak late-night sales. Extended hours all stores.',c:'#FF9500'}
+];
+var IPL=[
+{m:1,d:'2026-03-28',h:'RCB',a:'SRH',v:'Bengaluru',t:'7:30 PM'},
+{m:2,d:'2026-03-29',h:'MI',a:'KKR',v:'Mumbai',t:'7:30 PM'},
+{m:3,d:'2026-03-30',h:'RR',a:'CSK',v:'Guwahati',t:'7:30 PM'},
+{m:4,d:'2026-03-31',h:'PBKS',a:'GT',v:'New Chandigarh',t:'7:30 PM'},
+{m:5,d:'2026-04-01',h:'LSG',a:'DC',v:'Lucknow',t:'7:30 PM'},
+{m:6,d:'2026-04-02',h:'KKR',a:'SRH',v:'Kolkata',t:'7:30 PM'},
+{m:7,d:'2026-04-03',h:'CSK',a:'PBKS',v:'Chennai',t:'7:30 PM'},
+{m:8,d:'2026-04-04',h:'DC',a:'MI',v:'Delhi',t:'3:30 PM'},
+{m:9,d:'2026-04-04',h:'GT',a:'RR',v:'Ahmedabad',t:'7:30 PM'},
+{m:10,d:'2026-04-05',h:'SRH',a:'LSG',v:'Hyderabad',t:'3:30 PM'},
+{m:11,d:'2026-04-05',h:'RCB',a:'CSK',v:'Bengaluru',t:'7:30 PM'},
+{m:12,d:'2026-04-06',h:'KKR',a:'PBKS',v:'Kolkata',t:'7:30 PM'},
+{m:13,d:'2026-04-07',h:'RR',a:'MI',v:'Guwahati',t:'7:30 PM'},
+{m:14,d:'2026-04-08',h:'DC',a:'GT',v:'Delhi',t:'7:30 PM'},
+{m:15,d:'2026-04-09',h:'KKR',a:'LSG',v:'Kolkata',t:'7:30 PM'},
+{m:16,d:'2026-04-10',h:'RR',a:'RCB',v:'Guwahati',t:'7:30 PM'},
+{m:17,d:'2026-04-11',h:'PBKS',a:'SRH',v:'New Chandigarh',t:'3:30 PM'},
+{m:18,d:'2026-04-11',h:'CSK',a:'DC',v:'Chennai',t:'7:30 PM'},
+{m:19,d:'2026-04-12',h:'LSG',a:'GT',v:'Lucknow',t:'3:30 PM'},
+{m:20,d:'2026-04-12',h:'MI',a:'RCB',v:'Mumbai',t:'7:30 PM'},
+{m:21,d:'2026-04-13',h:'SRH',a:'RR',v:'Hyderabad',t:'7:30 PM'},
+{m:22,d:'2026-04-14',h:'CSK',a:'KKR',v:'Chennai',t:'7:30 PM'},
+{m:23,d:'2026-04-15',h:'RCB',a:'LSG',v:'Bengaluru',t:'7:30 PM'},
+{m:24,d:'2026-04-16',h:'MI',a:'PBKS',v:'Mumbai',t:'7:30 PM'},
+{m:25,d:'2026-04-17',h:'GT',a:'KKR',v:'Ahmedabad',t:'7:30 PM'},
+{m:26,d:'2026-04-18',h:'RCB',a:'DC',v:'Bengaluru',t:'3:30 PM'},
+{m:27,d:'2026-04-18',h:'SRH',a:'CSK',v:'Hyderabad',t:'7:30 PM'},
+{m:28,d:'2026-04-19',h:'KKR',a:'RR',v:'Kolkata',t:'3:30 PM'},
+{m:29,d:'2026-04-19',h:'PBKS',a:'LSG',v:'New Chandigarh',t:'7:30 PM'},
+{m:30,d:'2026-04-20',h:'GT',a:'MI',v:'Ahmedabad',t:'7:30 PM'},
+{m:31,d:'2026-04-21',h:'SRH',a:'DC',v:'Hyderabad',t:'7:30 PM'},
+{m:32,d:'2026-04-22',h:'LSG',a:'RR',v:'Lucknow',t:'7:30 PM'},
+{m:33,d:'2026-04-23',h:'MI',a:'CSK',v:'Mumbai',t:'7:30 PM'},
+{m:34,d:'2026-04-24',h:'RCB',a:'GT',v:'Bengaluru',t:'7:30 PM'},
+{m:35,d:'2026-04-25',h:'DC',a:'PBKS',v:'Delhi',t:'3:30 PM'},
+{m:36,d:'2026-04-25',h:'RR',a:'SRH',v:'Jaipur',t:'7:30 PM'},
+{m:37,d:'2026-04-26',h:'GT',a:'CSK',v:'Ahmedabad',t:'3:30 PM'},
+{m:38,d:'2026-04-26',h:'LSG',a:'KKR',v:'Lucknow',t:'7:30 PM'},
+{m:39,d:'2026-04-27',h:'DC',a:'RCB',v:'Delhi',t:'7:30 PM'},
+{m:40,d:'2026-04-28',h:'PBKS',a:'RR',v:'New Chandigarh',t:'7:30 PM'},
+{m:41,d:'2026-04-29',h:'MI',a:'SRH',v:'Mumbai',t:'7:30 PM'},
+{m:42,d:'2026-04-30',h:'GT',a:'RCB',v:'Ahmedabad',t:'7:30 PM'},
+{m:43,d:'2026-05-01',h:'RR',a:'DC',v:'Jaipur',t:'7:30 PM'},
+{m:44,d:'2026-05-02',h:'CSK',a:'MI',v:'Chennai',t:'7:30 PM'},
+{m:45,d:'2026-05-03',h:'SRH',a:'KKR',v:'Hyderabad',t:'3:30 PM'},
+{m:46,d:'2026-05-03',h:'GT',a:'PBKS',v:'Ahmedabad',t:'7:30 PM'},
+{m:47,d:'2026-05-04',h:'MI',a:'LSG',v:'Mumbai',t:'7:30 PM'},
+{m:48,d:'2026-05-05',h:'DC',a:'CSK',v:'Delhi',t:'7:30 PM'},
+{m:49,d:'2026-05-06',h:'SRH',a:'PBKS',v:'Hyderabad',t:'7:30 PM'},
+{m:50,d:'2026-05-07',h:'LSG',a:'RCB',v:'Lucknow',t:'7:30 PM'},
+{m:51,d:'2026-05-08',h:'DC',a:'KKR',v:'Delhi',t:'7:30 PM'},
+{m:52,d:'2026-05-09',h:'RR',a:'GT',v:'Jaipur',t:'7:30 PM'},
+{m:53,d:'2026-05-10',h:'CSK',a:'LSG',v:'Chennai',t:'3:30 PM'},
+{m:54,d:'2026-05-10',h:'RCB',a:'MI',v:'Raipur',t:'7:30 PM'},
+{m:55,d:'2026-05-11',h:'PBKS',a:'DC',v:'Dharamshala',t:'7:30 PM'},
+{m:56,d:'2026-05-12',h:'GT',a:'SRH',v:'Ahmedabad',t:'7:30 PM'},
+{m:57,d:'2026-05-13',h:'RCB',a:'KKR',v:'Raipur',t:'7:30 PM'},
+{m:58,d:'2026-05-14',h:'PBKS',a:'MI',v:'Dharamshala',t:'7:30 PM'},
+{m:59,d:'2026-05-15',h:'LSG',a:'CSK',v:'Lucknow',t:'7:30 PM'},
+{m:60,d:'2026-05-16',h:'KKR',a:'GT',v:'Kolkata',t:'7:30 PM'},
+{m:61,d:'2026-05-17',h:'PBKS',a:'RCB',v:'Dharamshala',t:'3:30 PM'},
+{m:62,d:'2026-05-17',h:'DC',a:'RR',v:'Delhi',t:'7:30 PM'},
+{m:63,d:'2026-05-18',h:'CSK',a:'SRH',v:'Chennai',t:'7:30 PM'},
+{m:64,d:'2026-05-19',h:'RR',a:'LSG',v:'Jaipur',t:'7:30 PM'},
+{m:65,d:'2026-05-20',h:'KKR',a:'MI',v:'Kolkata',t:'7:30 PM'},
+{m:66,d:'2026-05-21',h:'CSK',a:'GT',v:'Chennai',t:'7:30 PM'},
+{m:67,d:'2026-05-22',h:'SRH',a:'RCB',v:'Hyderabad',t:'7:30 PM'},
+{m:68,d:'2026-05-23',h:'LSG',a:'PBKS',v:'Lucknow',t:'7:30 PM'},
+{m:69,d:'2026-05-24',h:'MI',a:'RR',v:'Mumbai',t:'3:30 PM'},
+{m:70,d:'2026-05-24',h:'KKR',a:'DC',v:'Kolkata',t:'7:30 PM'}
+];
+
+var WORLD=[
+  {d:'2023-10-07',title:'Hamas attacks Israel',region:'Gaza/Israel',note:'Oil prices surge.'},
+  {d:'2025-06-13',title:'Israel strikes Iran',region:'Iran/Israel',note:'Strait of Hormuz disrupted. Indian oil rerouted.'},
+  {d:'2025-06-25',title:'US-Israel ceasefire with Iran',region:'Iran/Israel/USA',note:'Crude oil falls back.'},
+  {d:'2026-02-28',title:'US and Israel launch strikes on Iran',region:'Iran/Israel/USA',note:'Strait of Hormuz disrupted. Oil hits $120.'},
+  {d:'2026-03-06',title:'Multi-front war activated',region:'Middle East',note:'Shipping disrupted. India import costs surging.'},
+  {d:'2026-03-28',title:'US-Iran war ongoing',region:'Iran/USA/Israel',note:'Oil $120+. Fuel prices in India elevated.'}
+];
+
+function getToday(){var t=new Date();t.setHours(0,0,0,0);return t.getTime();}
+function fd(ds){var p=ds.split('-');return{day:parseInt(p[2]),mon:MN[parseInt(p[1])],ts:new Date(ds).setHours(0,0,0,0)};}
+
+function setChip(id){
+  CF=id;
+  document.querySelectorAll('.chip').forEach(function(b){b.className='chip';});
+  var chip=CHIPS.find(function(c){return c.id===id;});
+  var btn=document.querySelector('[data-chip="'+id+'"]');
+  if(btn&&chip) btn.className='chip '+chip.cls;
+  if(id==='events'){renderEventsTab();return;}
+  render();
+}
+
+function setMonth(m){
+  CM=m;
+  document.querySelectorAll('.mbtn').forEach(function(b){b.classList.toggle('on',parseInt(b.dataset.m)===m);});
+  if(CF==='events'){renderEventsTab();return;}
+  render();
+}
+
+function profitPct(e){
+  if(!e.salesGenerated||e.salesGenerated===0)return 0;
+  return Math.round(e.profit/e.salesGenerated*100);
+}
+function profitBand(p){
+  if(p>=36)return{color:'#1B7A3A',bg:'rgba(52,199,89,0.12)'};
+  if(p>=21)return{color:'#B36200',bg:'rgba(255,149,0,0.12)'};
+  return{color:'#C8102E',bg:'rgba(255,59,48,0.12)'};
+}
+function toggleEvRow(id,row){
+  var el=document.getElementById(id);
+  if(!el)return;
+  var open=el.style.display==='block';
+  el.style.display=open?'none':'block';
+  row.style.background=open?'':'rgba(200,16,46,0.04)';
+}
+function applyEvF(){
+  var af=document.getElementById('evAf').value;
+  var cf=document.getElementById('evCf').value;
+  document.querySelectorAll('.ev-trow').forEach(function(row){
+    var am=row.dataset.am||'';
+    var pct=parseInt(row.dataset.pct||'0');
+    var sa=!af||am===af;
+    var sc=!cf||(cf==='green'&&pct>=36)||(cf==='amber'&&pct>=21&&pct<36)||(cf==='red'&&pct<=20);
+    row.style.display=(sa&&sc)?'':'none';
+    var det=row.nextElementSibling;
+    if(det&&det.id&&det.id.slice(0,4)==='evd-')det.style.display='none';
+  });
+}
+
+function renderEventsTab(){
+  var el=document.getElementById('elist');
+  el.innerHTML='<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">Loading events...</div>';
+  fetch('/api/events').then(function(r){return r.json();}).then(function(d){
+    var evs=d.data||[];
+    var filtered=CM?evs.filter(function(e){return e.eventDate&&parseInt(e.eventDate.split('-')[1])===CM;}):evs;
+    var tS=evs.reduce(function(t,e){return t+(e.salesGenerated||0);},0);
+    var tP=evs.reduce(function(t,e){return t+(e.profit||0);},0);
+    var mS=filtered.reduce(function(t,e){return t+(e.salesGenerated||0);},0);
+    var mP=filtered.reduce(function(t,e){return t+(e.profit||0);},0);
+    var yPct=tS>0?Math.round(tP/tS*100):0;
+    var mPct=mS>0?Math.round(mP/mS*100):0;
+    var yB=profitBand(yPct);
+    var mB=profitBand(mPct);
+    var cP=evs.filter(function(e){return e.compliance&&e.compliance.score===100;}).length;
+    var cur='\u20B9';
+    var h='';
+    h+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">';
+    h+='<div style="background:var(--card);border-radius:12px;padding:14px;border-top:3px solid '+yB.color+';">';
+    h+='<div style="font-size:9px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">YTD All Events</div>';
+    h+='<div style="font-size:28px;font-weight:700;color:'+yB.color+';line-height:1;">'+yPct+'%</div>';
+    h+='<div style="font-size:10px;color:var(--text2);">Profit Margin</div>';
+    h+='<div style="margin-top:6px;border-top:1px solid var(--border);padding-top:5px;font-size:11px;color:var(--text2);">Sales: <b>'+cur+tS.toLocaleString('en-IN')+'</b><br>Profit: <b style="color:'+yB.color+'">'+cur+tP.toLocaleString('en-IN')+'</b><br>Events: <b>'+evs.length+'</b></div>';
+    h+='</div>';
+    h+='<div style="background:var(--card);border-radius:12px;padding:14px;border-top:3px solid '+mB.color+';">';
+    h+='<div style="font-size:9px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">MTD '+(MF[CM]||'Month')+'</div>';
+    h+='<div style="font-size:28px;font-weight:700;color:'+mB.color+';line-height:1;">'+mPct+'%</div>';
+    h+='<div style="font-size:10px;color:var(--text2);">Profit Margin</div>';
+    h+='<div style="margin-top:6px;border-top:1px solid var(--border);padding-top:5px;font-size:11px;color:var(--text2);">Sales: <b>'+cur+mS.toLocaleString('en-IN')+'</b><br>Profit: <b style="color:'+mB.color+'">'+cur+mP.toLocaleString('en-IN')+'</b><br>Events: <b>'+filtered.length+'</b></div>';
+    h+='</div></div>';
+    h+='<div style="background:var(--card);border-radius:10px;padding:10px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">';
+    h+='<div style="font-size:11px;color:var(--text2);">Compliance: <b style="color:var(--text)">'+cP+'/'+evs.length+'</b> passed</div>';
+    h+='<div style="display:flex;gap:5px;">';
+    h+='<span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:5px;background:rgba(255,59,48,0.12);color:#C8102E;">&le;20%</span>';
+    h+='<span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:5px;background:rgba(255,149,0,0.12);color:#B36200;">21-35%</span>';
+    h+='<span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:5px;background:rgba(52,199,89,0.12);color:#1B7A3A;">36%+</span>';
+    h+='</div></div>';
+    h+='<div style="display:flex;gap:8px;margin-bottom:10px;">';
+    h+='<select style="padding:7px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--card);font-size:12px;font-family:inherit;color:var(--text);outline:none;" id="evAf" onchange="applyEvF()"><option value="">All AMs</option>';
+    var ams=[...new Set(evs.map(function(e){return e.am||'';}))].filter(Boolean).sort();
+    ams.forEach(function(a){h+='<option value="'+a+'">'+a+'</option>';});
+    h+='</select>';
+    h+='<select style="padding:7px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--card);font-size:12px;font-family:inherit;color:var(--text);outline:none;" id="evCf" onchange="applyEvF()"><option value="">All</option><option value="green">Green 36%+</option><option value="amber">Amber 21-35%</option><option value="red">Red le;20%</option></select>';
+    h+='</div>';
+    if(!filtered.length){
+      h+='<div style="background:var(--card);border-radius:14px;padding:28px;text-align:center;color:var(--text2);font-size:13px;">No events'+(CM?' for '+MF[CM]:'')+'. Submit from Tasks page.</div>';
+      el.innerHTML=h;return;
+    }
+    h+='<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;">'+filtered.length+' Event'+(filtered.length!==1?'s':'')+(CM?' - '+MF[CM]:'')+'</div>';
+    h+='<div style="background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06);">';
+    h+='<div style="background:#1C1C1E;display:grid;grid-template-columns:60px 1fr 56px 56px 66px;padding:8px 14px;gap:6px;">';
+    ['Date','Store / AM','Margin','Comply','Profit'].forEach(function(hd){
+      h+='<div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;">'+hd+'</div>';
+    });
+    h+='</div>';
+    filtered.forEach(function(ev){
+      var dt=ev.eventDate?new Date(ev.eventDate+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short'}):'--';
+      var comp=ev.compliance?ev.compliance.score:0;
+      var ctc=comp===100?'#1B7A3A':comp>=67?'#B36200':'#C8102E';
+      var ctxt=comp===100?'Pass':comp+'%';
+      var pct=profitPct(ev);
+      var band=profitBand(pct);
+      var prof=ev.profit||0;
+      var pt=(prof>=0?'+':'')+cur+Math.abs(prof).toLocaleString('en-IN');
+      var rid='evd-'+ev.id;
+      h+='<div class="ev-trow" data-am="'+(ev.am||'')+'" data-pct="'+pct+'" style="display:grid;grid-template-columns:60px 1fr 56px 56px 66px;padding:10px 14px;gap:6px;" onclick="toggleEvRow(\''+rid+'\',this)">';
+      h+='<div style="font-size:11px;font-weight:700;color:var(--text);">'+dt+'</div>';
+      h+='<div><div style="font-size:12px;font-weight:600;color:var(--text);">'+(ev.store||'--').replace('TH ','')+'</div>';
+      h+='<div style="font-size:10px;color:var(--text2);">'+(ev.am||'')+'</div></div>';
+      h+='<div style="text-align:center;"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:5px;background:'+band.bg+';color:'+band.color+';">'+pct+'%</span></div>';
+      h+='<div style="text-align:center;"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:5px;background:'+(comp===100?'rgba(52,199,89,0.12)':comp>=67?'rgba(255,149,0,0.12)':'rgba(255,59,48,0.12)')+';color:'+ctc+';">'+ctxt+'</span></div>';
+      h+='<div style="text-align:right;font-size:11px;font-weight:700;color:'+band.color+';">'+pt+'</div>';
+      h+='</div>';
+      var sales=ev.salesGenerated||0;
+      var comm=ev.revenueSharePct||0;
+      var exp=ev.otherExpenses||0;
+      var rp=Math.round(sales*comm/100);
+      var fp=Math.round(sales*0.30);
+      var rep=Math.round(sales*0.05);
+      var cop=Math.round(sales*0.02);
+      var bp=Math.round(sales*0.02);
+      h+='<div id="'+rid+'" style="display:none;background:var(--surface);padding:12px 14px;border-bottom:1px solid var(--border);">';
+      h+='<div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;">P&L Breakdown</div>';
+      h+='<div style="background:var(--card);border-radius:10px;padding:10px 12px;margin-bottom:8px;">';
+      h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Sales</span><span style="font-size:11px;font-weight:600;color:#1B7A3A;">'+cur+sales.toLocaleString('en-IN')+'</span></div>';
+      h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Rev Share/Rentals ('+comm+'%)</span><span style="font-size:11px;font-weight:600;color:#C8102E;">-'+cur+rp.toLocaleString('en-IN')+'</span></div>';
+      h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Food Cost (30%)</span><span style="font-size:11px;font-weight:600;color:#C8102E;">-'+cur+fp.toLocaleString('en-IN')+'</span></div>';
+      h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Expenses (5%)</span><span style="font-size:11px;font-weight:600;color:#C8102E;">-'+cur+rep.toLocaleString('en-IN')+'</span></div>';
+      h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Commission (2%)</span><span style="font-size:11px;font-weight:600;color:#C8102E;">-'+cur+cop.toLocaleString('en-IN')+'</span></div>';
+      h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Bank Charges (2%)</span><span style="font-size:11px;font-weight:600;color:#C8102E;">-'+cur+bp.toLocaleString('en-IN')+'</span></div>';
+      if(exp>0){h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Other Expenses</span><span style="font-size:11px;font-weight:600;color:#C8102E;">-'+cur+exp.toLocaleString('en-IN')+'</span></div>';}
+      h+='<div style="display:flex;justify-content:space-between;padding:5px 0 2px;border-top:2px solid var(--border);margin-top:3px;"><span style="font-size:12px;font-weight:700;color:var(--text);">Net Profit</span><span style="font-size:12px;font-weight:700;color:'+band.color+';">'+(prof>=0?'+':'')+cur+Math.abs(prof).toLocaleString('en-IN')+' ('+pct+'%)</span></div>';
+      h+='</div>';
+      if(ev.compliance){
+        h+='<div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;">Compliance</div>';
+        var items=[{key:'manualBillBook',label:'Manual bill book used'},{key:'punchedInSystem',label:'Amount punched in system'},{key:'billsAttached',label:'Bills attached with POS'}];
+        items.forEach(function(item){
+          var c=ev.compliance[item.key]||{};
+          var ac=c.answer==='yes'?'#1B7A3A':'#C8102E';
+          h+='<div style="background:var(--card);border-radius:8px;padding:8px 12px;margin-bottom:4px;display:flex;justify-content:space-between;gap:8px;">';
+          h+='<div><div style="font-size:11px;font-weight:600;color:var(--text);">'+item.label+'</div>';
+          h+='<div style="font-size:10px;color:var(--text2);">'+(c.comment||'No comment')+'</div></div>';
+          h+='<div style="font-size:11px;font-weight:700;color:'+ac+';flex-shrink:0;">'+(c.answer||'--').toUpperCase()+'</div></div>';
+        });
+        h+='<div style="background:var(--card);border-radius:8px;padding:8px 12px;margin-bottom:4px;display:flex;justify-content:space-between;">';
+        h+='<span style="font-size:11px;font-weight:600;color:var(--text);">Manager Present</span>';
+        h+='<span style="font-size:11px;font-weight:700;color:var(--text);">'+(ev.compliance.managerPresent||'--')+'</span></div>';
+      }
+      if(ev.images&&ev.images.length){
+        h+='<div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin:8px 0 5px;">Images</div>';
+        h+='<div style="display:flex;gap:8px;flex-wrap:wrap;">';
+        ev.images.forEach(function(img){
+          h+='<img src="'+img+'" style="width:80px;height:80px;object-fit:cover;border-radius:8px;border:1px solid var(--border);">';
+        });
+        h+='</div>';
+      }
+      if(ev.notes){h+='<div style="margin-top:7px;padding:8px;background:var(--card);border-radius:8px;font-size:11px;color:var(--text2);">'+ev.notes+'</div>';}
+      h+='</div>';
+    });
+    h+='</div>';
+    el.innerHTML=h;
+  }).catch(function(){
+    el.innerHTML='<div style="text-align:center;padding:24px;color:var(--text2);">Could not load events.</div>';
+  });
+}
+
+function render(){
+  var el=document.getElementById('elist');
+  var today=getToday();
+  var label=MF[CM]+' 2026';
+  var out='';
+
+  if(CF==='lto'){
+    out='<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin:0 0 8px;">LTO Active &amp; Upcoming</div>';
+    var now=new Date();
+    LTO.forEach(function(lto){
+      var s=new Date(lto.start),e=new Date(lto.end);
+      var live=now>=s&&now<=e,up=now<s;
+      var lbl=live?'LIVE NOW':up?'UPCOMING':'ENDED';
+      var dl=live?Math.ceil((e-now)/86400000):up?Math.ceil((s-now)/86400000):0;
+      var msg=live?dl+' days left':up?'In '+dl+' days':'Ended';
+      var bg=(!live&&!up)?'linear-gradient(135deg,#555,#333)':'linear-gradient(135deg,'+lto.color+'CC,'+lto.color+')';
+      out+='<div class="lcard" style="background:'+bg+';">';
+      out+='<div style="display:inline-block;padding:2px 8px;border-radius:6px;font-size:9px;font-weight:700;background:rgba(255,255,255,0.15);color:#fff;margin-bottom:6px;">'+lbl+'</div>';
+      out+='<div style="font-size:18px;font-weight:700;color:#fff;">'+lto.name+'</div>';
+      out+='<div style="font-size:11px;color:rgba(255,255,255,0.75);">'+lto.stores+'</div>';
+      out+='<div style="font-size:11px;color:rgba(255,255,255,0.75);">'+new Date(lto.start).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})+' to '+new Date(lto.end).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})+'</div>';
+      out+='<div style="font-size:12px;font-weight:700;color:#fff;margin-top:4px;">'+msg+'</div></div>';
+    });
+    el.innerHTML=out;return;
+  }
+
+  if(CF==='world'){
+    out='<div style="background:rgba(255,59,48,0.06);border:1px solid rgba(255,59,48,0.15);border-radius:12px;padding:10px 12px;margin-bottom:12px;">';
+    out+='<div style="font-size:10px;font-weight:700;color:#FF3B30;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Middle East Conflict Monitor</div>';
+    out+='<div style="font-size:11px;color:var(--text2);">India business impact</div></div>';
+    WORLD.slice().reverse().forEach(function(e){
+      var p=e.d.split('-');
+      out+='<div class="wcard"><div style="display:flex;gap:10px;">';
+      out+='<div style="min-width:44px;background:var(--surface);border-radius:8px;padding:5px 4px;text-align:center;flex-shrink:0;">';
+      out+='<div style="font-size:16px;font-weight:700;color:var(--text);line-height:1;">'+parseInt(p[2])+'</div>';
+      out+='<div style="font-size:8px;font-weight:700;color:var(--text2);text-transform:uppercase;">'+MN[parseInt(p[1])]+' '+p[0]+'</div></div>';
+      out+='<div><div style="font-size:12px;font-weight:700;color:var(--text);">'+e.title+'</div>';
+      out+='<div style="font-size:10px;color:var(--text2);margin-top:2px;">'+e.region+'</div>';
+      out+='<div style="font-size:11px;color:var(--text);margin-top:4px;padding:4px 8px;background:rgba(255,59,48,0.05);border-radius:6px;">'+e.note+'</div>';
+      out+='</div></div></div>';
+    });
+    el.innerHTML=out;return;
+  }
+
+  if(CF==='ipl'){
+    var ms=IPL.filter(function(x){return parseInt(x.d.split('-')[1])===CM;});
+    if(!ms.length){el.innerHTML='<div style="text-align:center;padding:28px;color:var(--text2);">No IPL matches in '+label+'</div>';return;}
+    out='<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin:0 0 8px;">IPL 2026 - '+label+' ('+ms.length+' matches)</div>';
+    ms.forEach(function(x){
+      var f=fd(x.d);
+      var it=f.ts===today;
+      out+='<div class="icard"><div class="idate"><div class="idd">'+f.day+'</div><div class="imm">'+f.mon+'</div></div>';
+      out+='<div style="flex:1;"><div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);">Match '+x.m+(it?' TODAY':'')+'</div>';
+      out+='<div style="font-size:13px;font-weight:700;color:#fff;margin-top:2px;">'+x.h+' vs '+x.a+'</div>';
+      out+='<div style="font-size:11px;color:rgba(255,255,255,0.6);">'+x.v+' - '+x.t+'</div></div></div>';
+    });
+    el.innerHTML=out;return;
+  }
+
+  var items=[];
+  EV.forEach(function(e){
+    var em=parseInt(e.d.split('-')[1]);
+    if(em!==CM)return;
+    if(CF==='festival'&&e.ty!=='festival')return;
+    if(CF==='holiday'&&e.ty!=='holiday')return;
+    if(CF==='business'&&e.ty!=='business')return;
+    items.push({d:e.d,type:'ev',data:e});
+  });
+  if(CF==='all'){
+    IPL.forEach(function(x){if(parseInt(x.d.split('-')[1])===CM)items.push({d:x.d,type:'ipl',data:x});});
+  }
+  items.sort(function(a,b){return new Date(a.d)-new Date(b.d);});
+  if(!items.length){
+    el.innerHTML='<div style="text-align:center;padding:28px;background:var(--card);border-radius:14px;color:var(--text2);">No events in '+label+'</div>';
+    return;
+  }
+  out='<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin:0 0 8px;">'+label+'</div>';
+  items.forEach(function(item){
+    var f=fd(item.d);
+    var it=f.ts===today;
+    if(item.type==='ipl'){
+      var x=item.data;
+      out+='<div class="icard"><div class="idate"><div class="idd">'+f.day+'</div><div class="imm">'+f.mon+'</div></div>';
+      out+='<div style="flex:1;"><div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);">IPL Match '+x.m+(it?' TODAY':'')+'</div>';
+      out+='<div style="font-size:13px;font-weight:700;color:#fff;margin-top:2px;">'+x.h+' vs '+x.a+'</div>';
+      out+='<div style="font-size:11px;color:rgba(255,255,255,0.6);">'+x.v+' - '+x.t+'</div></div></div>';
+    } else {
+      var e=item.data;
+      var ic=e.imp==='HIGH'?'t-high':e.imp==='MEDIUM'?'t-med':'t-low';
+      out+='<div class="ecard"><div class="edate"><div class="edd">'+f.day+'</div><div class="emm">'+f.mon+'</div></div>';
+      out+='<div class="edot" style="background:'+e.c+';"></div>';
+      out+='<div class="ebody"><div class="en">'+e.n+(it?' TODAY':'')+'</div>';
+      out+='<div class="enote">'+e.note+'</div>';
+      out+='<div class="etags"><span class="etag">'+e.ty.toUpperCase()+'</span><span class="'+ic+'">'+e.imp+' IMPACT</span></div>';
+      out+='</div></div>';
+    }
+  });
+  el.innerHTML=out;
+}
+
+function init(){
+  var ch='';
+  CHIPS.forEach(function(c,i){
+    ch+='<button class="chip'+(i===0?' on':'')+'" data-chip="'+c.id+'" onclick="setChip(\''+c.id+'\')">'+c.label+'</button>';
+  });
+  document.getElementById('chipRow').innerHTML=ch;
+  var mh='';
+  for(var i=1;i<=12;i++){
+    mh+='<button class="mbtn'+(i===CM?' on':'')+'" data-m="'+i+'" onclick="setMonth('+i+')">'+MN[i]+'</button>';
+  }
+  document.getElementById('monthRow').innerHTML=mh;
+  render();
+}
+init();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,521 @@
+{
+  "generated": "2026-03-27T05:18:55.802756",
+  "stores": [
+    {
+      "store": "TH Malhar Road",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Sunview Enclave",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Bucho Bathinda",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Patiala",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Mohali",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Sangrur",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Elante Mall",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Sec 35 Chandigarh",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH DLF Cyberhub",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Golf Course AIPL",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Select City Saket",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Green Park",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Punjabi bagh",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Vegas Mall",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH NSP Pritampura",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Basant Lok",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Epicuria Nehru Place",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Skymark one",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Navrangpura",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Lokhandwala",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH FIFC Mumbai",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH HPCL Mumbai Pune Expressway",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Viman Nagar",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Nexus Seawood",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH FC Road",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Koramangala",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH HSR",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Lakeshore",
+      "score": 35,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 10
+      }
+    },
+    {
+      "store": "TH Phonix Mall Wakad",
+      "score": 33,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 8
+      }
+    },
+    {
+      "store": "TH T1D Dial",
+      "score": 30,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 5
+      }
+    },
+    {
+      "store": "TH T3D Food Court",
+      "score": 30,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 5
+      }
+    },
+    {
+      "store": "TH T1 Ahmedabad Airport",
+      "score": 30,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 5
+      }
+    },
+    {
+      "store": "TH Bandra",
+      "score": 30,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 5
+      }
+    },
+    {
+      "store": "TH Balewadi Pune",
+      "score": 30,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 5
+      }
+    },
+    {
+      "store": "TH NMIA Arrival",
+      "score": 30,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 5
+      }
+    },
+    {
+      "store": "TH NMiA Departure",
+      "score": 30,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 5
+      }
+    },
+    {
+      "store": "TH BIAL",
+      "score": 30,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 5
+      }
+    },
+    {
+      "store": "TH Mall of Asia",
+      "score": 30,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 5
+      }
+    },
+    {
+      "store": "TH Inorbit Mall-Hyderabad",
+      "score": 30,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 5
+      }
+    },
+    {
+      "store": "TH HIAL",
+      "score": 30,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 5
+      }
+    },
+    {
+      "store": "TH HIAL Arrival",
+      "score": 30,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 5
+      }
+    },
+    {
+      "store": "TH MC Kurla",
+      "score": 29,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 4
+      }
+    },
+    {
+      "store": "TH Sindhu Bhavan",
+      "score": 28,
+      "band": "CRITICAL",
+      "pillars": {
+        "ops": 0,
+        "sales": 25,
+        "maint": 0,
+        "team": 0,
+        "guest": 3
+      }
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+[
+  {
+    "am": "Raman",
+    "store": "T3DD",
+    "token": "t3dd"
+  },
+  {
+    "am": "Raman",
+    "store": "T3DD FC",
+    "token": "t3dd-fc"
+  },
+  {
+    "am": "Raman",
+    "store": "T1DD",
+    "token": "t1dd"
+  },
+  {
+    "am": "Harish",
+    "store": "Cyber Hub",
+    "token": "cyber-hub"
+  },
+  {
+    "am": "Harish",
+    "store": "Select City",
+    "token": "select-city"
+  },
+  {
+    "am": "Harish",
+    "store": "Green Park",
+    "token": "green-park"
+  },
+  {
+    "am": "Harish",
+    "store": "Basant Lok",
+    "token": "basant-lok"
+  },
+  {
+    "am": "Harish",
+    "store": "Epicuria",
+    "token": "epicuria"
+  },
+  {
+    "am": "Harish",
+    "store": "APL Golf Course",
+    "token": "apl-golf"
+  },
+  {
+    "am": "Rohit",
+    "store": "Skymark",
+    "token": "skymark"
+  },
+  {
+    "am": "Rohit",
+    "store": "Vegas Mall",
+    "token": "vegas-mall"
+  },
+  {
+    "am": "Rohit",
+    "store": "NSP",
+    "token": "nsp"
+  },
+  {
+    "am": "Rohit",
+    "store": "Punjabi Bagh",
+    "token": "punjabi-bagh"
+  },
+  {
+    "am": "Deepak",
+    "store": "CP67 Mohali",
+    "token": "cp67-mohali"
+  },
+  {
+    "am": "Deepak",
+    "store": "Elante Mall",
+    "token": "elante-mall"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sunview",
+    "token": "sunview"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sector 35",
+    "token": "sector-35"
+  },
+  {
+    "am": "Deepak",
+    "store": "Bhupindra Road",
+    "token": "bhupindra-road"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "token": "malhar-rd"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sangrur",
+    "token": "sangrur"
+  },
+  {
+    "am": "Deepak",
+    "store": "Bucho",
+    "token": "bucho"
+  },
+  {
+    "am": "Akash Chavan",
+    "store": "Balewadi",
+    "token": "balewadi"
+  },
+  {
+    "am": "Akash Chavan",
+    "store": "Lokhandwala",
+    "token": "lokhandwala"
+  },
+  {
+    "am": "Akash Chavan",
+    "store": "Supreme",
+    "token": "supreme"
+  },
+  {
+    "am": "Akash Chavan",
+    "store": "PMC Kurla",
+    "token": "pmc-kurla"
+  },
+  {
+    "am": "Akash Chavan",
+    "store": "Viman Nagar",
+    "token": "viman-nagar"
+  },
+  {
+    "am": "Akash Chavan",
+    "store": "PMC Wakad",
+    "token": "pmc-wakad"
+  },
+  {
+    "am": "Akash Chavan",
+    "store": "FC Road",
+    "token": "fc-road"
+  },
+  {
+    "am": "Akash Chavan",
+    "store": "FIFC",
+    "token": "fifc"
+  },
+  {
+    "am": "Akash Rathod",
+    "store": "HPCL-MPE",
+    "token": "hpcl-mpe"
+  },
+  {
+    "am": "Akash Rathod",
+    "store": "NMIAL",
+    "token": "nmial"
+  },
+  {
+    "am": "Akash Rathod",
+    "store": "NMIAL Arrival",
+    "token": "nmial-arrival"
+  },
+  {
+    "am": "Akash Rathod",
+    "store": "Seawoods",
+    "token": "seawoods"
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "Koramangala",
+    "token": "koramangala"
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "BIAL",
+    "token": "bial"
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "Mall of Asia",
+    "token": "mall-of-asia"
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "HSR Layout",
+    "token": "hsr-layout"
+  },
+  {
+    "am": "Shivam",
+    "store": "Inorbit Mall Hyd",
+    "token": "inorbit-hyd"
+  },
+  {
+    "am": "Shivam",
+    "store": "Hyderabad Arrivals",
+    "token": "hyd-arrivals"
+  },
+  {
+    "am": "Shivam",
+    "store": "Lakeshore",
+    "token": "lakeshore"
+  },
+  {
+    "am": "Shivam",
+    "store": "Hyderabad Airport",
+    "token": "hyd-airport"
+  },
+  {
+    "am": "Unassigned",
+    "store": "Ahmedabad Airport",
+    "token": "ahmedabad-airport"
+  },
+  {
+    "am": "Unassigned",
+    "store": "Sindhu Bhavan",
+    "token": "sindhu-bhavan"
+  },
+  {
+    "am": "Unassigned",
+    "store": "Navrangpura",
+    "token": "navrangpura"
+  }
+]

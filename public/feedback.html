@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Tim's Ops Connect — Share Your Feedback</title>
+<style>
+:root { --red:#C8102E; --red-dark:#9B0D22; --surface:#F5F5F7; --card:#FFFFFF; --text:#1D1D1F; --text2:#6E6E73; --border:#E5E5EA; --success:#34C759; }
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif; background:var(--surface); color:var(--text); min-height:100vh; }
+
+.hero { background:linear-gradient(150deg,var(--red) 0%,var(--red-dark) 60%,#1A1A1A 100%); padding:48px 24px 32px; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; background:rgba(255,255,255,0.06); border-radius:50%; }
+.hero-icon { font-size:48px; margin-bottom:12px; }
+.hero-title { font-size:26px; font-weight:700; color:#fff; letter-spacing:-0.5px; margin-bottom:6px; }
+.hero-sub { font-size:14px; color:rgba(255,255,255,0.7); line-height:1.5; }
+
+.form-wrap { max-width:520px; margin:0 auto; padding:20px 16px 40px; }
+
+.section-card { background:var(--card); border-radius:16px; padding:20px; margin-bottom:14px; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.section-title { font-size:12px; font-weight:700; color:var(--text2); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+
+.field { margin-bottom:16px; }
+.field-label { font-size:13px; font-weight:600; color:var(--text); margin-bottom:8px; display:block; }
+.field-sub { font-size:11px; color:var(--text2); margin-bottom:6px; }
+
+.text-input { width:100%; padding:12px 14px; border-radius:10px; border:1.5px solid var(--border); font-size:14px; color:var(--text); background:var(--surface); font-family:inherit; transition:border-color 0.2s; }
+.text-input:focus { outline:none; border-color:var(--red); }
+textarea.text-input { resize:none; min-height:80px; }
+
+.star-row { display:flex; gap:8px; }
+.star-btn { font-size:28px; cursor:pointer; transition:transform 0.15s; background:none; border:none; padding:2px; line-height:1; }
+.star-btn:active { transform:scale(1.3); }
+.star-btn.active { filter:none; }
+.star-btn.inactive { filter:grayscale(1) opacity(0.4); }
+
+.role-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.role-btn { padding:10px 12px; border-radius:10px; border:1.5px solid var(--border); font-size:13px; font-weight:600; color:var(--text2); background:var(--card); cursor:pointer; text-align:center; transition:all 0.2s; }
+.role-btn.active { background:var(--red); border-color:var(--red); color:#fff; }
+
+.feature-grid { display:flex; flex-wrap:wrap; gap:8px; }
+.feature-tag { padding:7px 14px; border-radius:20px; border:1.5px solid var(--border); font-size:12px; font-weight:600; color:var(--text2); background:var(--card); cursor:pointer; transition:all 0.2s; }
+.feature-tag.active { background:var(--red); border-color:var(--red); color:#fff; }
+
+.nps-row { display:flex; gap:4px; justify-content:space-between; }
+.nps-btn { flex:1; padding:10px 4px; border-radius:8px; border:1.5px solid var(--border); font-size:13px; font-weight:700; color:var(--text2); background:var(--card); cursor:pointer; text-align:center; transition:all 0.2s; }
+.nps-btn.active { color:#fff; border-color:transparent; }
+
+.submit-btn { width:100%; padding:16px; border-radius:14px; border:none; background:linear-gradient(135deg,var(--red),var(--red-dark)); color:#fff; font-size:16px; font-weight:700; cursor:pointer; box-shadow:0 4px 16px rgba(200,16,46,0.3); transition:all 0.2s; margin-top:8px; }
+.submit-btn:active { transform:scale(0.98); }
+.submit-btn:disabled { background:#E5E5EA; color:#AEAEB2; box-shadow:none; cursor:not-allowed; }
+
+.success-wrap { display:none; text-align:center; padding:48px 24px; }
+.success-icon { font-size:64px; margin-bottom:16px; }
+.success-title { font-size:24px; font-weight:700; color:var(--text); margin-bottom:8px; }
+.success-sub { font-size:14px; color:var(--text2); line-height:1.6; }
+
+.progress-wrap { background:var(--card); border-radius:12px; padding:12px 16px; margin-bottom:16px; box-shadow:0 1px 6px rgba(0,0,0,0.06); display:flex; align-items:center; gap:12px; }
+.progress-bar-bg { flex:1; background:#E5E5EA; border-radius:4px; height:6px; overflow:hidden; }
+.progress-bar-fill { height:100%; background:linear-gradient(90deg,var(--red),var(--red-dark)); border-radius:4px; transition:width 0.4s ease; }
+.progress-label { font-size:12px; font-weight:600; color:var(--text2); white-space:nowrap; }
+
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;}
+.nav-icon{font-size:22px;}
+.nav-label{font-size:10px;font-weight:500;color:#6E6E73;}
+.nav-item.active .nav-label{color:#C8102E;font-weight:600;}
+.nav-dot{width:4px;height:4px;background:#C8102E;border-radius:50%;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-icon">☕</div>
+  <div class="hero-title">Help Us Build Better</div>
+  <div class="hero-sub">You just experienced Tim's Ops Connect.<br>Your feedback shapes what we build next.</div>
+</div>
+
+<div class="form-wrap" id="formWrap">
+
+  <!-- Progress -->
+  <div class="progress-wrap" style="margin-top:16px;">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="progress-label" id="progressLabel">0 of 6</div>
+  </div>
+
+  <!-- S1: Who are you -->
+  <div class="section-card">
+    <div class="section-title">About You</div>
+    <div class="field">
+      <label class="field-label">Your Name</label>
+      <input type="text" class="text-input" id="f-name" placeholder="First name is fine" oninput="updateProgress()">
+    </div>
+    <div class="field">
+      <label class="field-label">Your Role</label>
+      <div class="role-grid" id="roleGrid">
+        <button class="role-btn" data-val="Area Manager">Area Manager</button>
+        <button class="role-btn" data-val="HOD / Operations">HOD / Operations</button>
+        <button class="role-btn" data-val="CEO / Leadership">CEO / Leadership</button>
+        <button class="role-btn" data-val="Other">Other</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2: Overall rating -->
+  <div class="section-card">
+    <div class="section-title">Overall Experience</div>
+    <div class="field">
+      <label class="field-label">How would you rate Tim's Ops Connect overall?</label>
+      <div class="star-row" id="starRow">
+        <button class="star-btn inactive" data-val="1">⭐</button>
+        <button class="star-btn inactive" data-val="2">⭐</button>
+        <button class="star-btn inactive" data-val="3">⭐</button>
+        <button class="star-btn inactive" data-val="4">⭐</button>
+        <button class="star-btn inactive" data-val="5">⭐</button>
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">First impression in one sentence</label>
+      <input type="text" class="text-input" id="f-impression" placeholder="What was your first thought?" oninput="updateProgress()">
+    </div>
+  </div>
+
+  <!-- S3: Features -->
+  <div class="section-card">
+    <div class="section-title">Features</div>
+    <div class="field">
+      <label class="field-label">Which features stood out most?</label>
+      <div class="feature-grid" id="featureGrid">
+        <button class="feature-tag" data-val="Daily Checklists">Daily Checklists</button>
+        <button class="feature-tag" data-val="Sales Intelligence">Sales Intelligence</button>
+        <button class="feature-tag" data-val="Performance Dashboard">Performance Dashboard</button>
+        <button class="feature-tag" data-val="Team Leaderboard">Team Leaderboard</button>
+        <button class="feature-tag" data-val="Store Coverage Heatmap">Coverage Heatmap</button>
+        <button class="feature-tag" data-val="Action Tracker">Action Tracker</button>
+        <button class="feature-tag" data-val="QTD & YTD View">QTD &amp; YTD View</button>
+        <button class="feature-tag" data-val="Badges & Streaks">Badges &amp; Streaks</button>
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">What feature would you add or improve?</label>
+      <textarea class="text-input" id="f-improve" placeholder="Your idea here..." oninput="updateProgress()"></textarea>
+    </div>
+  </div>
+
+  <!-- S4: Ease of use -->
+  <div class="section-card">
+    <div class="section-title">Ease of Use</div>
+    <div class="field">
+      <label class="field-label">How easy was it to navigate?</label>
+      <div class="role-grid">
+        <button class="role-btn ease-btn" data-val="Very Easy">&#x1F604; Very Easy</button>
+        <button class="role-btn ease-btn" data-val="Easy">&#x1F642; Easy</button>
+        <button class="role-btn ease-btn" data-val="Needs Work">&#x1F914; Needs Work</button>
+        <button class="role-btn ease-btn" data-val="Confusing">&#x1F615; Confusing</button>
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">Anything that confused you?</label>
+      <textarea class="text-input" id="f-confused" placeholder="Be honest — it helps us improve..." oninput="updateProgress()"></textarea>
+    </div>
+  </div>
+
+  <!-- S5: NPS -->
+  <div class="section-card">
+    <div class="section-title">Recommendation</div>
+    <div class="field">
+      <label class="field-label">How likely are you to recommend Tim's Ops Connect to another ops leader?</label>
+      <div class="field-sub">0 = Not at all · 10 = Absolutely</div>
+      <div class="nps-row" id="npsRow">
+        <button class="nps-btn" data-val="0">0</button>
+        <button class="nps-btn" data-val="1">1</button>
+        <button class="nps-btn" data-val="2">2</button>
+        <button class="nps-btn" data-val="3">3</button>
+        <button class="nps-btn" data-val="4">4</button>
+        <button class="nps-btn" data-val="5">5</button>
+        <button class="nps-btn" data-val="6">6</button>
+        <button class="nps-btn" data-val="7">7</button>
+        <button class="nps-btn" data-val="8">8</button>
+        <button class="nps-btn" data-val="9">9</button>
+        <button class="nps-btn" data-val="10">10</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6: Open feedback -->
+  <div class="section-card">
+    <div class="section-title">Final Thoughts</div>
+    <div class="field">
+      <label class="field-label">If you could change one thing about Tim's Ops Connect, what would it be?</label>
+      <textarea class="text-input" id="f-change" placeholder="Your most important feedback..." rows="3" oninput="updateProgress()"></textarea>
+    </div>
+    <div class="field">
+      <label class="field-label">Anything else you'd like us to know?</label>
+      <textarea class="text-input" id="f-other" placeholder="Open floor — say anything..." rows="3"></textarea>
+    </div>
+  </div>
+
+  <button class="submit-btn" id="submitBtn" onclick="submitFeedback()">Submit Feedback ☕</button>
+  <div style="text-align:center;margin-top:12px;font-size:11px;color:var(--text2);">Your feedback goes directly to Jahid Inamdar, Head of Operations</div>
+
+</div>
+
+<!-- Success -->
+<div class="success-wrap" id="successWrap">
+  <div class="success-icon">🙏</div>
+  <div class="success-title">Thank you!</div>
+  <div class="success-sub">Your feedback has been recorded.<br><br>Every response directly shapes how Tim's Ops Connect evolves.<br>You are part of building something great. ☕</div>
+  <div style="margin-top:24px;font-size:13px;color:var(--text2);">— Jahid Inamdar, Head of Operations, Tim Hortons India</div>
+</div>
+
+<script>
+var selectedRole = '';
+var selectedStars = 0;
+var selectedFeatures = [];
+var selectedEase = '';
+var selectedNPS = -1;
+
+// Role buttons
+document.getElementById('roleGrid').addEventListener('click', function(e) {
+  var btn = e.target.closest('.role-btn');
+  if (!btn) return;
+  document.querySelectorAll('#roleGrid .role-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  selectedRole = btn.getAttribute('data-val');
+  updateProgress();
+});
+
+// Star rating
+document.getElementById('starRow').addEventListener('click', function(e) {
+  var btn = e.target.closest('.star-btn');
+  if (!btn) return;
+  selectedStars = parseInt(btn.getAttribute('data-val'));
+  document.querySelectorAll('.star-btn').forEach(function(b, i) {
+    b.classList.toggle('active', i < selectedStars);
+    b.classList.toggle('inactive', i >= selectedStars);
+  });
+  updateProgress();
+});
+
+// Feature tags
+document.getElementById('featureGrid').addEventListener('click', function(e) {
+  var btn = e.target.closest('.feature-tag');
+  if (!btn) return;
+  btn.classList.toggle('active');
+  var val = btn.getAttribute('data-val');
+  var idx = selectedFeatures.indexOf(val);
+  if (idx >= 0) selectedFeatures.splice(idx, 1);
+  else selectedFeatures.push(val);
+});
+
+// Ease buttons
+document.querySelectorAll('.ease-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.ease-btn').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    selectedEase = btn.getAttribute('data-val');
+    updateProgress();
+  });
+});
+
+// NPS
+document.getElementById('npsRow').addEventListener('click', function(e) {
+  var btn = e.target.closest('.nps-btn');
+  if (!btn) return;
+  selectedNPS = parseInt(btn.getAttribute('data-val'));
+  document.querySelectorAll('.nps-btn').forEach(function(b) {
+    b.classList.remove('active');
+    b.style.background = '';
+    b.style.color = '';
+  });
+  btn.classList.add('active');
+  var color = selectedNPS >= 9 ? '#34C759' : selectedNPS >= 7 ? '#FF9500' : '#FF3B30';
+  btn.style.background = color;
+  btn.style.color = '#fff';
+  updateProgress();
+});
+
+function updateProgress() {
+  var filled = 0;
+  if (document.getElementById('f-name').value.trim()) filled++;
+  if (selectedRole) filled++;
+  if (selectedStars > 0) filled++;
+  if (selectedEase) filled++;
+  if (selectedNPS >= 0) filled++;
+  if (document.getElementById('f-change').value.trim()) filled++;
+  var pct = Math.round(filled/6*100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = filled + ' of 6';
+}
+
+function submitFeedback() {
+  var payload = {
+    name: document.getElementById('f-name').value.trim(),
+    role: selectedRole,
+    stars: selectedStars,
+    impression: document.getElementById('f-impression').value.trim(),
+    topFeatures: selectedFeatures,
+    improveIdea: document.getElementById('f-improve').value.trim(),
+    easeOfUse: selectedEase,
+    confusion: document.getElementById('f-confused').value.trim(),
+    nps: selectedNPS,
+    changeOne: document.getElementById('f-change').value.trim(),
+    other: document.getElementById('f-other').value.trim(),
+    submittedAt: new Date().toISOString()
+  };
+
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Saving...';
+
+  fetch('/api/feedback', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload)
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if (d.success) {
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('successWrap').style.display = 'block';
+    }
+  })
+  .catch(function(){
+    // Save locally if API fails
+    document.getElementById('formWrap').style.display = 'none';
+    document.getElementById('successWrap').style.display = 'block';
+  });
+}
+</script>
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Home</span></a>
+  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#x2705;</span><span class="nav-label">Tasks</span></a>
+  <a href="timsy.html" class="nav-item"><span class="nav-icon">&#x2615;</span><span class="nav-label">Timsy</span></a>
+  <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Scores</span></a>
+  <a href="team.html" class="nav-item active"><span class="nav-icon">&#x1F465;</span><span class="nav-label">Team</span>
+<div class="nav-dot"></div></a>
+</nav>
+</body>
+</html>

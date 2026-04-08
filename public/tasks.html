@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Tasks - Tim's Ops Connect</title>
+<style>
+:root {
+  --red:#C8102E; --red-dark:#9B0D22;
+  --surface:#F5F5F7; --card:#FFFFFF;
+  --text:#1D1D1F; --text2:#6E6E73;
+  --nav-h:72px;
+  --success:#34C759; --warning:#FF9500; --critical:#FF3B30;
+  --border:#E5E5EA;
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif; background:var(--surface); color:var(--text); min-height:100vh; padding-bottom:calc(var(--nav-h) + 20px); }
+.page-header { background:linear-gradient(150deg,var(--red) 0%,var(--red-dark) 100%); padding:52px 20px 20px; }
+.page-title { font-size:26px; font-weight:700; color:#fff; letter-spacing:-0.5px; }
+.page-sub { font-size:13px; color:rgba(255,255,255,0.65); margin-top:3px; }
+.day-pills { display:flex; gap:8px; padding:14px 16px 6px; overflow-x:auto; scrollbar-width:none; }
+.day-pills::-webkit-scrollbar { display:none; }
+.day-pill { flex-shrink:0; padding:7px 14px; border-radius:20px; font-size:12px; font-weight:600; background:var(--card); color:var(--text2); box-shadow:0 1px 4px rgba(0,0,0,0.08); cursor:pointer; transition:all 0.2s; border:none; }
+.day-pill.active { background:var(--red); color:#fff; }
+.day-pill.off { background:#E5E5EA; color:#AEAEB2; cursor:default; }
+.content { padding:12px 16px; }
+.hidden { display:none !important; }
+.rest-card { background:var(--card); border-radius:16px; padding:32px 20px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-top:8px; }
+.rest-icon { font-size:48px; margin-bottom:12px; }
+.rest-title { font-size:20px; font-weight:700; color:var(--text); margin-bottom:6px; }
+.rest-sub { font-size:14px; color:var(--text2); line-height:1.5; }
+.am-label { font-size:12px; font-weight:600; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
+.am-selected-bar { display:flex; align-items:center; justify-content:space-between; background:#fff; border-radius:12px; padding:12px 16px; box-shadow:0 1px 6px rgba(0,0,0,0.08); margin-bottom:12px; }
+.am-icon-box { width:36px; height:36px; background:linear-gradient(135deg,var(--red),var(--red-dark)); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; }
+.change-btn { background:var(--surface); border:none; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:600; color:var(--red); cursor:pointer; }
+.progress-wrap { background:var(--card); border-radius:14px; padding:14px 16px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+.progress-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.progress-label { font-size:13px; font-weight:600; color:var(--text); }
+.progress-count { font-size:13px; font-weight:700; color:var(--red); }
+.progress-bar-bg { background:#E5E5EA; border-radius:4px; height:6px; overflow:hidden; }
+.progress-bar-fill { height:100%; background:linear-gradient(90deg,var(--red),var(--red-dark)); border-radius:4px; transition:width 0.5s ease; }
+.store-list { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
+.store-item { background:var(--card); border-radius:12px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 1px 4px rgba(0,0,0,0.06); cursor:pointer; border:2px solid transparent; transition:all 0.2s; }
+.store-item.active { border-color:var(--red); background:#FFF5F6; }
+.store-item.completed { border-color:var(--success); }
+.store-dot { width:10px; height:10px; border-radius:50%; background:#E5E5EA; flex-shrink:0; margin-right:10px; }
+.store-dot.done { background:var(--success); }
+.store-dot.active { background:var(--red); }
+.store-item-name { font-size:14px; font-weight:600; color:var(--text); }
+.store-item-region { font-size:11px; color:var(--text2); margin-top:1px; }
+.form-header { background:var(--card); border-radius:14px; padding:14px 16px; margin-bottom:10px; box-shadow:0 2px 8px rgba(0,0,0,0.06); display:flex; align-items:center; gap:12px; }
+.form-store-icon { width:40px; height:40px; background:linear-gradient(135deg,var(--red),var(--red-dark)); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+.form-store-name { font-size:15px; font-weight:700; color:var(--text); }
+.form-store-sub { font-size:12px; color:var(--text2); margin-top:2px; }
+.section-card { background:var(--card); border-radius:14px; padding:16px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+.section-card-title { font-size:13px; font-weight:700; color:var(--text2); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+.field-row { margin-bottom:14px; }
+.field-label { font-size:13px; font-weight:600; color:var(--text); margin-bottom:6px; display:flex; align-items:center; justify-content:space-between; }
+.field-badge { font-size:11px; padding:2px 8px; border-radius:10px; font-weight:600; }
+.badge-green { background:#E8F8ED; color:#1B7A3A; }
+.badge-red { background:#FEE8E8; color:#C8102E; }
+.badge-yellow { background:#FFF3E0; color:#E65100; }
+.num-input { width:100%; padding:12px 14px; border-radius:10px; border:1.5px solid var(--border); font-size:16px; font-weight:600; color:var(--text); background:var(--surface); -webkit-appearance:none; }
+.num-input:focus { outline:none; border-color:var(--red); }
+.calc-result { background:var(--surface); border-radius:10px; padding:10px 14px; margin-top:8px; font-size:13px; color:var(--text2); }
+.calc-val { font-size:18px; font-weight:700; }
+.calc-val.positive { color:var(--success); }
+.calc-val.negative { color:var(--critical); }
+.calc-val.neutral { color:var(--warning); }
+.three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+.kpi-row { display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border); }
+.kpi-row:last-child { border-bottom:none; }
+.kpi-label { font-size:13px; color:var(--text); flex:1; }
+.kpi-benchmark { font-size:11px; color:var(--text2); margin-right:10px; }
+.kpi-input-wrap { display:flex; align-items:center; gap:8px; }
+.kpi-input { width:80px; padding:8px 10px; border-radius:8px; border:1.5px solid var(--border); font-size:14px; font-weight:600; text-align:right; background:var(--surface); }
+.kpi-input:focus { outline:none; border-color:var(--red); }
+.kpi-flag { font-size:16px; }
+.size-mix { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+.size-box { text-align:center; }
+.size-label { font-size:11px; color:var(--text2); margin-bottom:4px; font-weight:600; }
+.size-input { width:100%; padding:10px 8px; border-radius:10px; border:1.5px solid var(--border); font-size:16px; font-weight:700; text-align:center; background:var(--surface); }
+.size-input:focus { outline:none; border-color:var(--red); }
+.size-hint { font-size:11px; color:var(--text2); margin-top:4px; text-align:center; }
+.modifier-band { background:var(--surface); border-radius:10px; padding:10px 14px; margin-bottom:10px; font-size:13px; color:var(--text2); }
+.modifier-target { font-size:16px; font-weight:700; color:var(--red); }
+.submit-btn { width:100%; padding:16px; border-radius:14px; border:none; background:linear-gradient(135deg,var(--red),var(--red-dark)); color:#fff; font-size:16px; font-weight:700; cursor:pointer; transition:all 0.2s; box-shadow:0 4px 16px rgba(200,16,46,0.3); margin-bottom:8px; }
+.submit-btn:disabled { background:#E5E5EA; color:#AEAEB2; box-shadow:none; cursor:not-allowed; }
+.submit-btn:not(:disabled):active { transform:scale(0.98); }
+.success-card { background:var(--card); border-radius:16px; padding:32px 20px; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,0.08); animation:popIn 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+@keyframes popIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
+.success-icon { font-size:56px; margin-bottom:16px; }
+.success-title { font-size:22px; font-weight:700; color:var(--text); margin-bottom:8px; }
+.success-sub { font-size:14px; color:var(--text2); line-height:1.5; margin-bottom:20px; }
+.success-next-btn { width:100%; padding:14px; border-radius:12px; border:none; background:var(--surface); color:var(--red); font-size:15px; font-weight:600; cursor:pointer; }
+.bottom-nav { position:fixed; bottom:0; left:0; right:0; height:var(--nav-h); background:rgba(255,255,255,0.88); backdrop-filter:blur(20px) saturate(180%); border-top:1px solid rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:space-around; padding-bottom:env(safe-area-inset-bottom); z-index:1000; }
+.nav-item { display:flex; flex-direction:column; align-items:center; gap:3px; text-decoration:none; padding:8px 12px; min-width:56px; }
+.nav-icon { font-size:22px; }
+.nav-label { font-size:10px; font-weight:500; color:var(--text2); }
+.nav-item.active .nav-label { color:var(--red); font-weight:600; }
+.nav-dot { width:4px; height:4px; background:var(--red); border-radius:50%; margin-top:-2px; }
+
+.ev-tile{background:linear-gradient(135deg,#C8102E,#8B0B1F);border-radius:16px;padding:18px;margin-bottom:12px;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 20px rgba(200,16,46,0.35);}
+.ev-tile:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(200,16,46,0.45);}
+.ev-tile-icon{font-size:32px;margin-bottom:10px;}
+.ev-tile-title{font-size:16px;font-weight:700;color:#fff;}
+.ev-tile-sub{font-size:12px;color:rgba(255,255,255,0.75);margin-top:4px;}
+.ev-form-wrap{display:none;}
+.ev-form-wrap.open{display:block;}
+.ev-section-title{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin:16px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+.ev-field{margin-bottom:12px;}
+.ev-label{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;display:block;}
+.ev-label .req{color:var(--red);}
+.ev-input{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid var(--border);font-size:14px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;}
+.ev-input:focus{border-color:var(--red);}
+.ev-toggle-row{display:flex;gap:8px;}
+.ev-toggle-btn{flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--border);background:var(--card);font-size:13px;font-weight:700;cursor:pointer;text-align:center;transition:all 0.2s;}
+.ev-toggle-btn.yes-sel{background:rgba(52,199,89,0.12);border-color:#34C759;color:#1B7A3A;}
+.ev-toggle-btn.no-sel{background:rgba(255,59,48,0.1);border-color:#FF3B30;color:#C8102E;}
+.ev-profit-box{background:linear-gradient(135deg,#0D0D1A,#1A0508);border-radius:12px;padding:14px;margin-bottom:12px;text-align:center;}
+.ev-profit-label{font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.ev-profit-val{font-size:28px;font-weight:700;color:#34C759;}
+.ev-img-preview{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.ev-img-thumb{width:80px;height:80px;object-fit:cover;border-radius:8px;border:1px solid var(--border);}
+.ev-submit-btn{width:100%;padding:15px;border-radius:12px;border:none;background:var(--red);color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:8px;}
+.ev-submit-btn:disabled{opacity:0.5;cursor:not-allowed;}
+.ev-success{background:rgba(52,199,89,0.1);border:1px solid rgba(52,199,89,0.3);border-radius:12px;padding:16px;text-align:center;margin-top:12px;display:none;}
+</style>
+</head>
+<body>
+<div class="page-header">
+  <div class="page-title">Tasks</div>
+  <div class="page-sub">Weekly checklist tracker</div>
+</div>
+
+<div id="eventTileWrap" style="padding:0 16px;margin-top:24px;margin-bottom:8px;">
+  <div class="ev-tile" onclick="toggleEvForm()">
+    <div class="ev-tile-icon">&#127942;</div>
+    <div class="ev-tile-title">Event Submission</div>
+    <div class="ev-tile-sub">Log an external event — compliance, financials, images</div>
+  </div>
+  <div class="ev-form-wrap" id="evFormWrap">
+
+    <div class="ev-section-title">Event Information</div>
+
+    <div class="ev-field">
+      <label class="ev-label">Your Name (AM) <span class="req">*</span></label>
+      <select class="ev-input" id="evAm">
+        <option value="">Select Area Manager</option>
+        <option>Raman</option><option>Harish</option><option>Rohit</option>
+        <option>Deepak</option><option>Akash Chavan</option><option>Akash Rathod</option>
+        <option>Jagadeesha</option><option>Shivam</option>
+      </select>
+    </div>
+
+    <div class="ev-field">
+      <label class="ev-label">Store <span class="req">*</span></label>
+      <select class="ev-input" id="evStore">
+        <option value="">Select store...</option>
+      </select>
+    </div>
+
+    <div class="ev-field">
+      <label class="ev-label">Date of Event <span class="req">*</span></label>
+      <input type="date" class="ev-input" id="evDate">
+    </div>
+
+    <div class="ev-field">
+      <label class="ev-label">Venue &amp; Location <span class="req">*</span></label>
+      <input type="text" class="ev-input" id="evVenue" placeholder="e.g. DLF Mall Atrium, Ground Floor">
+    </div>
+
+    <div class="ev-section-title">Financials</div>
+
+    <div class="ev-field">
+      <label class="ev-label">Menu Pricing <span class="req">*</span></label>
+      <div class="ev-toggle-row" id="menuPricingRow">
+        <button class="ev-toggle-btn" onclick="setMenuPricing('store',this)">Same as Store</button>
+        <button class="ev-toggle-btn" onclick="setMenuPricing('custom',this)">Custom Pricing</button>
+      </div>
+      <input type="number" class="ev-input" id="evCustomPrice" placeholder="Enter custom price" style="margin-top:8px;display:none;">
+    </div>
+
+    <div class="ev-field">
+      <label class="ev-label">Sales Generated (&#8377;) <span class="req">*</span></label>
+      <input type="number" class="ev-input" id="evSales" placeholder="0" oninput="calcProfit()">
+    </div>
+
+    <div class="ev-field">
+      <label class="ev-label">Revenue Share / Commission (%) <span class="req">*</span></label>
+      <input type="number" class="ev-input" id="evCommission" placeholder="0" oninput="calcProfit()">
+    </div>
+
+    <div class="ev-field">
+      <label class="ev-label">Other Expenses (&#8377;) <span class="req">*</span></label>
+      <input type="number" class="ev-input" id="evExpenses" placeholder="0" oninput="calcProfit()">
+    </div>
+
+    <div class="ev-profit-box">
+      <div class="ev-profit-label">Calculated Profit</div>
+      <div class="ev-profit-val" id="evProfitDisplay">&#8377; 0</div>
+    <div id="evProfitBreakdown" style="display:none;font-size:10px;color:rgba(255,255,255,0.4);margin-top:8px;line-height:1.9;text-align:left;"></div>
+    </div>
+
+    <div class="ev-section-title">Compliance Checklist</div>
+
+    <div class="ev-field">
+      <label class="ev-label">Was the manual bill book used? <span class="req">*</span></label>
+      <div class="ev-toggle-row" id="billBookRow">
+        <button class="ev-toggle-btn" onclick="setCompliance('billBook','yes',this)">Yes</button>
+        <button class="ev-toggle-btn" onclick="setCompliance('billBook','no',this)">No</button>
+      </div>
+      <textarea class="ev-input" id="billBookComment" placeholder="Comments (mandatory)" rows="2" style="margin-top:8px;"></textarea>
+    </div>
+
+    <div class="ev-field">
+      <label class="ev-label">Was the amount punched in the system? <span class="req">*</span></label>
+      <div class="ev-toggle-row" id="punchedRow">
+        <button class="ev-toggle-btn" onclick="setCompliance('punched','yes',this)">Yes</button>
+        <button class="ev-toggle-btn" onclick="setCompliance('punched','no',this)">No</button>
+      </div>
+      <textarea class="ev-input" id="punchedComment" placeholder="Comments (mandatory)" rows="2" style="margin-top:8px;"></textarea>
+    </div>
+
+    <div class="ev-field">
+      <label class="ev-label">Were manual bills attached with POS bills? <span class="req">*</span></label>
+      <div class="ev-toggle-row" id="billsAttachedRow">
+        <button class="ev-toggle-btn" onclick="setCompliance('billsAttached','yes',this)">Yes</button>
+        <button class="ev-toggle-btn" onclick="setCompliance('billsAttached','no',this)">No</button>
+      </div>
+      <textarea class="ev-input" id="billsAttachedComment" placeholder="Comments (mandatory)" rows="2" style="margin-top:8px;"></textarea>
+    </div>
+
+    <div class="ev-field">
+      <label class="ev-label">Manager Present <span class="req">*</span></label>
+      <input type="text" class="ev-input" id="evManager" placeholder="Enter manager name">
+    </div>
+
+    <div class="ev-section-title">Images</div>
+
+    <div class="ev-field">
+      <label class="ev-label">Picture 1 <span class="req">*</span></label>
+      <input type="file" class="ev-input" id="evImg1" accept="image/*" onchange="previewImg('evImg1','prev1')">
+      <div id="prev1" class="ev-img-preview"></div>
+    </div>
+    <div class="ev-field">
+      <label class="ev-label">Picture 2 <span style="color:var(--text2);">(Optional)</span></label>
+      <input type="file" class="ev-input" id="evImg2" accept="image/*" onchange="previewImg('evImg2','prev2')">
+      <div id="prev2" class="ev-img-preview"></div>
+    </div>
+    <div class="ev-field">
+      <label class="ev-label">Picture 3 <span style="color:var(--text2);">(Optional)</span></label>
+      <input type="file" class="ev-input" id="evImg3" accept="image/*" onchange="previewImg('evImg3','prev3')">
+      <div id="prev3" class="ev-img-preview"></div>
+    </div>
+
+    <div class="ev-section-title">Notes</div>
+    <div class="ev-field">
+      <label class="ev-label">Event Notes / Observations</label>
+      <textarea class="ev-input" id="evNotes" placeholder="Any additional observations..." rows="3"></textarea>
+    </div>
+
+    <button class="ev-submit-btn" id="evSubmitBtn" onclick="submitEvent()">Submit Event</button>
+    <div id="evSuccess" class="ev-success">
+      <div style="font-size:24px;margin-bottom:8px;">&#9989;</div>
+      <div style="font-size:15px;font-weight:700;color:#1B7A3A;">Event submitted successfully</div>
+      <div id="evSuccessDetail" style="font-size:12px;color:#5C5753;margin-top:4px;"></div>
+    </div>
+  </div>
+</div>
+
+<div id="festAlert" style="display:none;margin:10px 16px;"></div>
+<div class="day-pills" id="dayPills">
+  <button class="day-pill" data-day="1">MON</button>
+  <button class="day-pill" data-day="2">TUE</button>
+  <button class="day-pill" data-day="3">WED</button>
+  <button class="day-pill" data-day="4" style="opacity:0.6;">THU</button>
+  <button class="day-pill" data-day="5">FRI</button>
+  <button class="day-pill" data-day="6">SAT</button>
+  <button class="day-pill" data-day="0">SUN</button>
+</div>
+
+<div class="content hidden" id="view-thu">
+  <div class="rest-card">
+    <div class="rest-icon">&#x1F634;</div>
+    <div class="rest-title">Recharge Day</div>
+    <div class="rest-sub">Thursday is your rest day. See you tomorrow &#x2615;</div>
+  </div>
+</div>
+<div class="content hidden" id="view-coming">
+  <div class="rest-card">
+    <div class="rest-icon" id="comingIcon">&#x1F4CB;</div>
+    <div class="rest-title" id="comingTitle">Coming Soon</div>
+    <div class="rest-sub" id="comingSub">This checklist is being built soon.</div>
+  </div>
+</div>
+
+<div class="content hidden" id="view-mon">
+  <div id="monAMPicker">
+    <div class="am-label">Who are you?</div>
+    <div id="monAMCards" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
+  </div>
+  <div id="monAMBar" class="hidden am-selected-bar">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="am-icon-box">&#x1F464;</div>
+      <div>
+        <div style="font-size:13px;color:#6E6E73;font-weight:500;">Area Manager</div>
+        <div style="font-size:15px;font-weight:700;color:#1D1D1F;" id="monAMName">-</div>
+      </div>
+    </div>
+    <button class="change-btn" id="monChangeBtn">Change</button>
+  </div>
+  <div class="progress-wrap hidden" id="monProgress">
+    <div class="progress-top">
+      <div class="progress-label">Store Submissions</div>
+      <div class="progress-count"><span id="monDone">0</span> of <span id="monTotal">0</span></div>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="monProgressFill" style="width:0%"></div></div>
+  </div>
+  <div id="monStoreListWrap" class="hidden">
+    <div class="am-label" style="padding:0 4px;margin-bottom:8px;">Your Stores</div>
+    <div class="store-list" id="monStoreList"></div>
+  </div>
+  <div id="monFormWrap" class="hidden"></div>
+  <div id="monSuccessWrap" class="hidden">
+    <div class="success-card">
+      <div class="success-icon">&#x1F4C8;</div>
+      <div class="success-title">Sales Data Saved!</div>
+      <div class="success-sub" id="monSuccessMsg">Store submitted successfully.</div>
+      <button class="success-next-btn" id="monNextBtn">Next Store</button>
+    </div>
+  </div>
+</div>
+
+<div class="content hidden" id="view-wed">
+  <div id="wedAMPicker">
+    <div class="am-label">Who are you?</div>
+    <div id="wedAMCards" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
+  </div>
+  <div id="wedAMBar" class="hidden am-selected-bar">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="am-icon-box">&#x1F464;</div>
+      <div>
+        <div style="font-size:13px;color:#6E6E73;font-weight:500;">Area Manager</div>
+        <div style="font-size:15px;font-weight:700;color:#1D1D1F;" id="wedAMName">-</div>
+      </div>
+    </div>
+    <button class="change-btn" id="wedChangeBtn">Change</button>
+  </div>
+  <div id="wedStorePicker" class="hidden">
+    <div class="am-label" style="padding:0 4px;margin-bottom:8px;">Select Store to Visit</div>
+    <div class="store-list" id="wedStoreList"></div>
+    <div style="background:#FFF5F6;border-radius:12px;padding:12px 16px;margin-top:8px;font-size:13px;color:#C8102E;">
+      &#x1F4CD; Wednesday is an on-site visit. Select the store you are visiting today.
+    </div>
+  </div>
+  <div id="wedFormWrap" class="hidden"></div>
+  <div id="wedSuccessWrap" class="hidden">
+    <div class="success-card">
+      <div class="success-icon">&#x1F527;</div>
+      <div class="success-title">Visit Submitted!</div>
+      <div class="success-sub" id="wedSuccessMsg">Store visit saved successfully.</div>
+      <button class="success-next-btn" id="wedNewVisitBtn">Visit Another Store</button>
+    </div>
+  </div>
+</div>
+<div class="content hidden" id="view-fri">
+  <div id="friAMPicker">
+    <div class="am-label">Who are you?</div>
+    <div id="friAMCards" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
+  </div>
+  <div id="friAMBar" class="hidden am-selected-bar">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="am-icon-box">&#x1F464;</div>
+      <div>
+        <div style="font-size:13px;color:#6E6E73;font-weight:500;">Area Manager</div>
+        <div style="font-size:15px;font-weight:700;color:#1D1D1F;" id="friAMName">-</div>
+      </div>
+    </div>
+    <button class="change-btn" id="friChangeBtn">Change</button>
+  </div>
+  <div id="friStorePicker" class="hidden">
+    <div class="am-label" style="padding:0 4px;margin-bottom:8px;">Select Store You Are Visiting</div>
+    <div class="store-list" id="friStoreList"></div>
+    <div style="background:#FFF5F6;border-radius:12px;padding:12px 16px;margin-top:8px;font-size:13px;color:#C8102E;">
+      &#x1F91D; Friday is an on-site visit. Select the store you are at today.
+    </div>
+  </div>
+  <div id="friFormWrap" class="hidden"></div>
+  <div id="friSuccessWrap" class="hidden">
+    <div class="success-card">
+      <div class="success-icon">&#x1F91D;</div>
+      <div class="success-title">Friday Submitted!</div>
+      <div class="success-sub" id="friSuccessMsg">Store visit saved successfully.</div>
+      <button class="success-next-btn" id="friNewVisitBtn">Visit Another Store</button>
+    </div>
+  </div>
+</div>
+<div class="content hidden" id="view-sat">
+  <div id="satAMPicker">
+    <div class="am-label">Who are you?</div>
+    <div id="satAMCards" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
+  </div>
+  <div id="satAMBar" class="hidden am-selected-bar">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="am-icon-box">&#x1F464;</div>
+      <div>
+        <div style="font-size:13px;color:#6E6E73;font-weight:500;">Area Manager</div>
+        <div style="font-size:15px;font-weight:700;color:#1D1D1F;" id="satAMName">-</div>
+      </div>
+    </div>
+    <button class="change-btn" id="satChangeBtn">Change</button>
+  </div>
+  <div id="satStorePicker" class="hidden">
+    <div class="am-label" style="padding:0 4px;margin-bottom:8px;">Select Store You Are Visiting</div>
+    <div class="store-list" id="satStoreList"></div>
+  </div>
+  <div id="satFormWrap" class="hidden"></div>
+  <div id="satSuccessWrap" class="hidden">
+    <div class="success-card">
+      <div class="success-icon">&#x26A1;</div>
+      <div class="success-title">Saturday Submitted!</div>
+      <div class="success-sub" id="satSuccessMsg">Weekend checklist saved.</div>
+      <button class="success-next-btn" id="satNewVisitBtn">Visit Another Store</button>
+    </div>
+  </div>
+</div>
+
+<div class="content hidden" id="view-sun">
+  <div id="sunAMPicker">
+    <div class="am-label">Who are you?</div>
+    <div id="sunAMCards" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
+  </div>
+  <div id="sunAMBar" class="hidden am-selected-bar">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="am-icon-box">&#x1F464;</div>
+      <div>
+        <div style="font-size:13px;color:#6E6E73;font-weight:500;">Area Manager</div>
+        <div style="font-size:15px;font-weight:700;color:#1D1D1F;" id="sunAMName">-</div>
+      </div>
+    </div>
+    <button class="change-btn" id="sunChangeBtn">Change</button>
+  </div>
+  <div id="sunStorePicker" class="hidden">
+    <div class="am-label" style="padding:0 4px;margin-bottom:8px;">Select Store You Are Visiting</div>
+    <div class="store-list" id="sunStoreList"></div>
+  </div>
+  <div id="sunFormWrap" class="hidden"></div>
+  <div id="sunSuccessWrap" class="hidden">
+    <div class="success-card">
+      <div class="success-icon">&#x1F305;</div>
+      <div class="success-title">Sunday Submitted!</div>
+      <div class="success-sub" id="sunSuccessMsg">Weekend checklist saved.</div>
+      <button class="success-next-btn" id="sunNewVisitBtn">Visit Another Store</button>
+    </div>
+  </div>
+</div>
+<div class="content hidden" id="view-tue">
+  <div id="tueAMPicker">
+    <div class="am-label">Who are you?</div>
+    <div id="tueAMCards" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
+  </div>
+  <div id="tueAMBar" class="hidden am-selected-bar">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="am-icon-box">&#x1F464;</div>
+      <div>
+        <div style="font-size:13px;color:#6E6E73;font-weight:500;">Area Manager</div>
+        <div style="font-size:15px;font-weight:700;color:#1D1D1F;" id="tueAMName">-</div>
+      </div>
+    </div>
+    <button class="change-btn" id="tueChangeBtn">Change</button>
+  </div>
+  <div class="progress-wrap hidden" id="tueProgress">
+    <div class="progress-top">
+      <div class="progress-label">Store Submissions</div>
+      <div class="progress-count"><span id="tueDone">0</span> of <span id="tueTotal">0</span></div>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="tueProgressFill" style="width:0%"></div></div>
+  </div>
+  <div id="tueStoreListWrap" class="hidden">
+    <div class="am-label" style="padding:0 4px;margin-bottom:8px;">Your Stores</div>
+    <div class="store-list" id="tueStoreList"></div>
+  </div>
+  <div id="tueFormWrap" class="hidden"></div>
+  <div id="tueSuccessWrap" class="hidden">
+    <div class="success-card">
+      <div class="success-icon">&#x1F4C8;</div>
+      <div class="success-title">Sales Data Saved!</div>
+      <div class="success-sub" id="tueSuccessMsg">Store submitted successfully.</div>
+      <button class="success-next-btn" id="tueNextBtn">Next Store</button>
+    </div>
+  </div>
+</div>
+
+<div style="padding:0 16px 12px;">
+  <a href="fdu-upload.html" style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:16px;padding:14px 16px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid #C8102E;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="font-size:24px;">&#x1F369;</div>
+      <div><div style="font-size:14px;font-weight:700;color:#1D1D1F;">FDU Display Check</div>
+      <div style="font-size:11px;color:#6E6E73;">Donut quality + display photo upload</div></div>
+    </div>
+    <div style="font-size:13px;color:#C8102E;font-weight:700;">Open &#x276F;</div>
+  </a>
+</div>
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Home</span></a>
+  <a href="tasks.html" class="nav-item active"><span class="nav-icon">&#x2705;</span><span class="nav-label">Tasks</span><div class="nav-dot"></div></a>
+  <a href="events.html" class="nav-item"><span class="nav-icon">&#128197;</span><span class="nav-label">Events</span></a>
+  <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Scores</span></a>
+  <a href="team.html" class="nav-item"><span class="nav-icon">&#x1F465;</span><span class="nav-label">Team</span></a>
+</nav>
+
+<script>
+var amList = [
+  {name:'Raman', region:'Delhi NCR', icon:'&#x1F3D9;'},
+  {name:'Harish', region:'Delhi NCR', icon:'&#x1F3D9;'},
+  {name:'Rohit', region:'Delhi NCR', icon:'&#x1F3D9;'},
+  {name:'Deepak', region:'Punjab', icon:'&#x1F33E;'},
+  {name:'Akash Chavan', region:'Maharashtra', icon:'&#x1F30A;'},
+  {name:'Akash Rathod', region:'Maharashtra', icon:'&#x1F30A;'},
+  {name:'Jagadeesha', region:'Bangalore', icon:'&#x1F333;'},
+  {name:'Shivam', region:'Hyderabad', icon:'&#x1F48E;'},
+  {name:'Unassigned', region:'Gujarat', icon:'&#x1F981;'}
+];
+
+var monState = {am:'', stores:[], completed:{}, currentStore:null};
+var tueState = {am:'', stores:[], completed:{}, currentStore:null};
+
+function renderAMCards(containerId, onSelect) {
+  var c = document.getElementById(containerId);
+  c.innerHTML = '';
+  amList.forEach(function(am) {
+    var d = document.createElement('div');
+    d.style.cssText = 'background:#fff;border-radius:14px;padding:14px 12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.07);cursor:pointer;border:2px solid transparent;';
+    d.innerHTML = '<div style="font-size:28px;margin-bottom:6px;">' + am.icon + '</div>' +
+      '<div style="font-size:14px;font-weight:700;color:#1D1D1F;margin-bottom:2px;">' + am.name + '</div>' +
+      '<div style="font-size:11px;color:#6E6E73;">' + am.region + '</div>';
+    d.addEventListener('click', function() { onSelect(am.name); });
+    c.appendChild(d);
+  });
+}
+
+function selectDay(d) {
+  document.querySelectorAll('.day-pill').forEach(function(p) { p.classList.remove('active'); });
+  var pill = document.querySelector('[data-day="' + d + '"]');
+  if (pill) pill.classList.add('active');
+  ['view-thu','view-coming','view-mon','view-tue','view-wed','view-fri','view-sat','view-sun'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.add('hidden');
+  });
+  if (d === 4) {
+    document.getElementById('view-thu').classList.remove('hidden');
+  } else if (d === 1) {
+    document.getElementById('view-mon').classList.remove('hidden');
+  } else if (d === 2) {
+    document.getElementById('view-tue').classList.remove('hidden');
+  } else if (d === 3) {
+    document.getElementById('view-wed').classList.remove('hidden');
+  } else if (d === 5) {
+    document.getElementById('view-fri').classList.remove('hidden');
+  } else if (d === 6) {
+    document.getElementById('view-sat').classList.remove('hidden');
+  } else if (d === 0) {
+    document.getElementById('view-sun').classList.remove('hidden');
+  } else {
+    var info = {
+      
+      
+      
+      6:{title:'Saturday Checklist',sub:'Weekend operations - coming in Step 7.'}
+    };
+    var i = info[d] || {title:'Coming Soon',sub:'This checklist is being built soon.'};
+    document.getElementById('comingTitle').textContent = i.title;
+    document.getElementById('comingSub').textContent = i.sub;
+    document.getElementById('view-coming').classList.remove('hidden');
+  }
+}
+
+document.getElementById('dayPills').addEventListener('click', function(e) {
+  var btn = e.target.closest('[data-day]');
+  if (!btn) return;
+  selectDay(parseInt(btn.getAttribute('data-day')));
+});
+
+// ── MONDAY (reuse from previous step) ──
+renderAMCards('monAMCards', function(name) {
+  monState.am = name;
+  monState.completed = {};
+  monState.currentStore = null;
+  document.getElementById('monAMPicker').classList.add('hidden');
+  var bar = document.getElementById('monAMBar');
+  bar.classList.remove('hidden');
+  document.getElementById('monAMName').textContent = name;
+  loadMonStores();
+});
+document.getElementById('monChangeBtn').addEventListener('click', function() {
+  monState.am = '';
+  document.getElementById('monAMPicker').classList.remove('hidden');
+  document.getElementById('monAMBar').classList.add('hidden');
+  document.getElementById('monProgress').classList.add('hidden');
+  document.getElementById('monStoreListWrap').classList.add('hidden');
+  document.getElementById('monFormWrap').classList.add('hidden');
+  document.getElementById('monSuccessWrap').classList.add('hidden');
+});
+
+var mondayItems = [
+  {id:'MON-01',text:'Petty cash checked (counted and verified)',section:'Financial Audit'},
+  {id:'MON-02',text:'Banking numbers checked (deposits, reconciliations)',section:'Financial Audit'},
+  {id:'MON-03',text:'PO for Snowmen checked (exists and matches needs)',section:'Inventory'},
+  {id:'MON-04',text:'PO for Jubilee checked (exists and matches needs)',section:'Inventory'},
+  {id:'MON-05',text:'GRN done in last week for Jubilee',section:'Inventory'},
+  {id:'MON-06',text:'GRN done in last week for Snowmen',section:'Inventory'},
+  {id:'MON-07',text:'Safe tally expenses (match receipts and records)',section:'Financial Audit'},
+  {id:'MON-08',text:'Petty cash tally (balance matches records)',section:'Financial Audit'},
+  {id:'MON-09',text:'Spot audit performed for this store',section:'Audit'},
+  {id:'MON-10',text:'Cashier number 1 verified (cash handling, no discrepancies)',section:'Audit'},
+  {id:'MON-11',text:'Random inventory check - Coffee beans',section:'Inventory Check'},
+  {id:'MON-12',text:'Random inventory check - Milks and Cups',section:'Inventory Check'},
+  {id:'MON-13',text:'Random inventory check - Syrup 1 (specify in comment)',section:'Inventory Check'},
+  {id:'MON-14',text:'Random inventory check - Syrup 2 (specify in comment)',section:'Inventory Check'}
+];
+var monAnswers = {};
+
+function loadMonStores() {
+  fetch('/api/stores/am/' + encodeURIComponent(monState.am))
+    .then(function(r){return r.json();})
+    .then(function(d){
+      monState.stores = d.data || [];
+      document.getElementById('monTotal').textContent = monState.stores.length;
+      document.getElementById('monProgress').classList.remove('hidden');
+      document.getElementById('monStoreListWrap').classList.remove('hidden');
+      document.getElementById('monFormWrap').classList.add('hidden');
+      document.getElementById('monSuccessWrap').classList.add('hidden');
+      renderMonStoreList();
+      updateMonProgress();
+    });
+}
+
+function renderMonStoreList() {
+  var list = document.getElementById('monStoreList');
+  list.innerHTML = '';
+  monState.stores.forEach(function(s) {
+    var done = monState.completed[s.name];
+    var isActive = monState.currentStore && monState.currentStore.name === s.name;
+    var div = document.createElement('div');
+    div.className = 'store-item' + (done?' completed':'') + (isActive?' active':'');
+    div.innerHTML = '<div style="display:flex;align-items:center;">' +
+      '<div class="store-dot' + (done?' done':isActive?' active':'') + '"></div>' +
+      '<div><div class="store-item-name">' + s.name + '</div>' +
+      '<div class="store-item-region">' + s.region + '</div></div></div>' +
+      '<div style="font-size:18px;">' + (done?'✅':isActive?'▶':'○') + '</div>';
+    div.addEventListener('click', function(){openMonStore(s.name);});
+    list.appendChild(div);
+  });
+}
+
+function updateMonProgress() {
+  var done = Object.keys(monState.completed).length;
+  var total = monState.stores.length;
+  document.getElementById('monDone').textContent = done;
+  document.getElementById('monTotal').textContent = total;
+  document.getElementById('monProgressFill').style.width = (total>0?Math.round(done/total*100):0) + '%';
+}
+
+function openMonStore(name) {
+  var store = monState.stores.find(function(s){return s.name===name;});
+  if (!store || monState.completed[name]) return;
+  monState.currentStore = store;
+  monAnswers = {};
+  document.getElementById('monSuccessWrap').classList.add('hidden');
+  renderMonForm(store);
+  document.getElementById('monFormWrap').classList.remove('hidden');
+  renderMonStoreList();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderMonForm(store) {
+  var sections = {};
+  mondayItems.forEach(function(item){
+    if(!sections[item.section]) sections[item.section]=[];
+    sections[item.section].push(item);
+  });
+  var wrap = document.getElementById('monFormWrap');
+  wrap.innerHTML = '';
+  var hdr = document.createElement('div');
+  hdr.className = 'form-header';
+  hdr.innerHTML = '<div class="form-store-icon">&#x1F3EA;</div><div>' +
+    '<div class="form-store-name">' + store.name + '</div>' +
+    '<div class="form-store-sub">Monday - Financial and Inventory Audit</div></div>';
+  wrap.appendChild(hdr);
+  Object.keys(sections).forEach(function(sec){
+    var card = document.createElement('div');
+    card.className = 'section-card';
+    card.innerHTML = '<div class="section-card-title">' + sec + '</div>';
+    sections[sec].forEach(function(item){
+      var itemDiv = document.createElement('div');
+      itemDiv.style.marginBottom = '14px';
+      itemDiv.innerHTML = '<div style="font-size:11px;color:var(--text2);margin-bottom:4px;">Item ' + (mondayItems.indexOf(item)+1) + ' of 14</div>' +
+        '<div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:10px;">' + item.text + '</div>';
+      var btnWrap = document.createElement('div');
+      btnWrap.style.cssText = 'display:flex;gap:8px;margin-bottom:8px;';
+      var itemDiv2 = itemDiv;
+      ['yes','no','na'].forEach(function(val){
+        var btn = document.createElement('button');
+        btn.style.cssText = 'flex:1;padding:9px 6px;border-radius:10px;border:1.5px solid #E5E5EA;font-size:13px;font-weight:600;background:#fff;color:#6E6E73;cursor:pointer;';
+        btn.textContent = val==='yes'?'✅ YES':val==='no'?'❌ NO':'— N/A';
+        btn.addEventListener('click', function(){
+          monAnswers[item.id] = val;
+          btnWrap.querySelectorAll('button').forEach(function(b){
+            b.style.background='#fff'; b.style.color='#6E6E73'; b.style.borderColor='#E5E5EA';
+          });
+          if(val==='yes'){btn.style.background='#34C759';btn.style.color='#fff';btn.style.borderColor='#34C759';}
+          else if(val==='no'){btn.style.background='#FF3B30';btn.style.color='#fff';btn.style.borderColor='#FF3B30';}
+          else{btn.style.background='#8E8E93';btn.style.color='#fff';btn.style.borderColor='#8E8E93';}
+          checkMonComplete();
+        });
+        btnWrap.appendChild(btn);
+      });
+      var ta = document.createElement('textarea');
+      ta.id = 'mon-comment-' + item.id;
+      ta.placeholder = 'Add comment...';
+      ta.rows = 2;
+      ta.style.cssText = 'width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid #E5E5EA;font-size:13px;background:var(--surface);font-family:inherit;resize:none;';
+      itemDiv.appendChild(btnWrap);
+      itemDiv.appendChild(ta);
+      card.appendChild(itemDiv);
+    });
+    wrap.appendChild(card);
+  });
+  var submitBtn = document.createElement('button');
+  submitBtn.className = 'submit-btn';
+  submitBtn.id = 'monSubmitBtn';
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Complete All Items to Submit';
+  submitBtn.addEventListener('click', submitMonStore);
+  wrap.appendChild(submitBtn);
+}
+
+function checkMonComplete() {
+  var all = mondayItems.every(function(item){return monAnswers[item.id];});
+  var btn = document.getElementById('monSubmitBtn');
+  if (!btn) return;
+  if (all) {
+    btn.disabled = false;
+    btn.textContent = 'Submit - ' + monState.currentStore.name;
+  } else {
+    btn.disabled = true;
+    var rem = mondayItems.filter(function(item){return !monAnswers[item.id];}).length;
+    btn.textContent = rem + ' items remaining';
+  }
+}
+
+function submitMonStore() {
+  var yes=0, applicable=0;
+  mondayItems.forEach(function(item){
+    var a=monAnswers[item.id];
+    if(a==='yes'){yes++;applicable++;}
+    else if(a==='no'){applicable++;}
+  });
+  var score = applicable>0?Math.round(yes/applicable*100):0;
+  var comments={};
+  mondayItems.forEach(function(item){
+    var c=document.getElementById('mon-comment-'+item.id);
+    if(c&&c.value.trim()) comments[item.id]=c.value.trim();
+  });
+  fetch('/api/submissions',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({am:monState.am,store:monState.currentStore.name,region:monState.currentStore.region,day:'monday',answers:monAnswers,comments:comments,score:score})})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.success){
+      monState.completed[monState.currentStore.name]={score:score};
+      document.getElementById('monFormWrap').classList.add('hidden');
+      document.getElementById('monSuccessWrap').classList.remove('hidden');
+      var band=score>=90?'🟢':score>=75?'🟡':score>=60?'🟠':'🔴';
+      var rem=monState.stores.length-Object.keys(monState.completed).length;
+      document.getElementById('monSuccessMsg').textContent=monState.currentStore.name+' submitted. Score: '+band+' '+score+'%. '+rem+' stores remaining.';
+      updateMonProgress(); renderMonStoreList();
+    }
+  });
+}
+document.getElementById('monNextBtn').addEventListener('click', function(){
+  document.getElementById('monSuccessWrap').classList.add('hidden');
+  var next=monState.stores.find(function(s){return !monState.completed[s.name];});
+  if(next){openMonStore(next.name);}
+  else{document.getElementById('monStoreListWrap').innerHTML='<div class="rest-card"><div class="rest-icon">&#x1F389;</div><div class="rest-title">All Stores Done!</div><div class="rest-sub">Monday checklist complete for all stores.</div></div>';}
+});
+
+// ── TUESDAY ──
+renderAMCards('tueAMCards', function(name) {
+  tueState.am = name;
+  tueState.completed = {};
+  tueState.currentStore = null;
+  document.getElementById('tueAMPicker').classList.add('hidden');
+  var bar = document.getElementById('tueAMBar');
+  bar.classList.remove('hidden');
+  document.getElementById('tueAMName').textContent = name;
+  loadTueStores();
+});
+document.getElementById('tueChangeBtn').addEventListener('click', function() {
+  tueState.am = '';
+  document.getElementById('tueAMPicker').classList.remove('hidden');
+  document.getElementById('tueAMBar').classList.add('hidden');
+  document.getElementById('tueProgress').classList.add('hidden');
+  document.getElementById('tueStoreListWrap').classList.add('hidden');
+  document.getElementById('tueFormWrap').classList.add('hidden');
+  document.getElementById('tueSuccessWrap').classList.add('hidden');
+});
+
+function loadTueStores() {
+  fetch('/api/stores/am/' + encodeURIComponent(tueState.am))
+    .then(function(r){return r.json();})
+    .then(function(d){
+      tueState.stores = d.data || [];
+      document.getElementById('tueTotal').textContent = tueState.stores.length;
+      document.getElementById('tueProgress').classList.remove('hidden');
+      document.getElementById('tueStoreListWrap').classList.remove('hidden');
+      document.getElementById('tueFormWrap').classList.add('hidden');
+      document.getElementById('tueSuccessWrap').classList.add('hidden');
+      renderTueStoreList();
+      updateTueProgress();
+    });
+}
+
+function renderTueStoreList() {
+  var list = document.getElementById('tueStoreList');
+  list.innerHTML = '';
+  tueState.stores.forEach(function(s) {
+    var done = tueState.completed[s.name];
+    var isActive = tueState.currentStore && tueState.currentStore.name === s.name;
+    var div = document.createElement('div');
+    div.className = 'store-item' + (done?' completed':'') + (isActive?' active':'');
+    div.innerHTML = '<div style="display:flex;align-items:center;">' +
+      '<div class="store-dot' + (done?' done':isActive?' active':'') + '"></div>' +
+      '<div><div class="store-item-name">' + s.name + '</div>' +
+      '<div class="store-item-region">' + s.region + '</div></div></div>' +
+      '<div style="font-size:18px;">' + (done?'✅':isActive?'▶':'○') + '</div>';
+    div.addEventListener('click', function(){openTueStore(s.name);});
+    list.appendChild(div);
+  });
+}
+
+function updateTueProgress() {
+  var done = Object.keys(tueState.completed).length;
+  var total = tueState.stores.length;
+  document.getElementById('tueDone').textContent = done;
+  document.getElementById('tueTotal').textContent = total;
+  document.getElementById('tueProgressFill').style.width = (total>0?Math.round(done/total*100):0) + '%';
+}
+
+function openTueStore(name) {
+  var store = tueState.stores.find(function(s){return s.name===name;});
+  if (!store || tueState.completed[name]) return;
+  tueState.currentStore = store;
+  document.getElementById('tueSuccessWrap').classList.add('hidden');
+  renderTueForm(store);
+  document.getElementById('tueFormWrap').classList.remove('hidden');
+  renderTueStoreList();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function fmt(n) { return n ? parseInt(n).toLocaleString('en-IN') : '0'; }
+function pct(a,b) { return b>0 ? ((a-b)/b*100).toFixed(1) : '0.0'; }
+function arrow(v) { return parseFloat(v)>=0 ? '▲' : '▼'; }
+function colorClass(v) { return parseFloat(v)>=0 ? 'positive' : 'negative'; }
+
+function renderTueForm(store) {
+  var wrap = document.getElementById('tueFormWrap');
+  var band = store.dailySalesBand || 'medium';
+  var modTarget = band==='high' ? 50 : band==='medium' ? 40 : 30;
+  var bandLabel = band==='high' ? 'Above Rs 1Cr/day' : band==='medium' ? 'Rs 71K-99K/day' : 'Below Rs 70K/day';
+
+  function row(label, id, hint) {
+    return '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #E5E5EA;">' +
+      '<div style="font-size:13px;font-weight:500;color:#1D1D1F;flex:1;">' + label + (hint?'<div style="font-size:11px;color:#6E6E73;margin-top:2px;">'+hint+'</div>':'') + '</div>' +
+      '<input type="number" id="' + id + '" placeholder="0" max="99999999" style="width:130px;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:14px;font-weight:600;text-align:right;background:#F5F5F7;" oninput="tueLiveCalc()">' +
+      '</div>';
+  }
+
+  function kpiRow(label, id, target) {
+    return '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #E5E5EA;">' +
+      '<div style="font-size:13px;font-weight:500;color:#1D1D1F;flex:1;">' + label + '<div style="font-size:11px;color:#6E6E73;">target ' + target + '</div></div>' +
+      '<div style="display:flex;align-items:center;gap:6px;">' +
+      '<span id="' + id + '-flag" style="font-size:16px;"></span>' +
+      '<input type="number" id="' + id + '" placeholder="0" style="width:80px;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:14px;font-weight:600;text-align:right;background:#F5F5F7;" oninput="tueLiveCalc()">' +
+      '</div></div>';
+  }
+
+  wrap.innerHTML =
+    '<div class="form-header">' +
+    '<div class="form-store-icon">&#x1F4C8;</div>' +
+    '<div><div class="form-store-name">' + store.name + '</div>' +
+    '<div class="form-store-sub">Tuesday - Sales Intelligence</div></div></div>' +
+
+    // S1
+    '<div class="section-card">' +
+    '<div class="section-card-title">Section 1 - MTD Sales vs Target</div>' +
+    row('MTD Actual Sales (Rs)', 't-mtd-actual', 'e.g. 45000000') +
+    row('MTD Target Sales (Rs)', 't-mtd-target', 'e.g. 50000000') +
+    '<div id="t-mtd-result" style="margin-top:10px;padding:10px 14px;background:#F5F5F7;border-radius:10px;font-size:13px;color:#6E6E73;">Enter both values</div>' +
+    '</div>' +
+
+    // S2
+    '<div class="section-card">' +
+    '<div class="section-card-title">Section 2 - vs Last Year</div>' +
+    '<div style="background:#FFF5F6;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:12px;color:#C8102E;font-weight:600;">LY Baseline — enter once per month</div>' +
+    row('LY Avg Daily Sales (Rs)', 't-ly-ads', '') +
+    row('LY APC (Rs)', 't-ly-apc', 'Avg Per Check') +
+    row('LY ADT', 't-ly-adt', 'Avg Daily Transactions') +
+    '<div style="height:1px;background:#E5E5EA;margin:12px 0;"></div>' +
+    '<div style="font-size:12px;font-weight:700;color:#6E6E73;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">This Year Actuals</div>' +
+    row('TY MTD Sales (Rs)', 't-ty-mtd', '') +
+    row('TY ADS (Rs)', 't-ty-ads', 'Avg Daily Sales') +
+    row('TY ADT', 't-ty-adt', 'Avg Daily Transactions') +
+    row('TY APC (Rs)', 't-ty-apc', 'Avg Per Check') +
+    '<div id="t-yoy-result" style="margin-top:10px;padding:10px 14px;background:#F5F5F7;border-radius:10px;font-size:13px;color:#6E6E73;">Enter LY and TY values</div>' +
+    '</div>' +
+
+    // S3
+    '<div class="section-card">' +
+    '<div class="section-card-title">Section 3 - In-Store KPIs</div>' +
+    '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #E5E5EA;"><div style="font-size:13px;font-weight:500;color:#1D1D1F;flex:1;">BF Combo UPD (Units Per Day)</div><input type="number" id="t-breakfast" placeholder="0" style="width:80px;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:14px;font-weight:600;text-align:right;background:#F5F5F7;" oninput="tueLiveCalc()"></div>' +
+    '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #E5E5EA;"><div style="font-size:13px;font-weight:500;color:#1D1D1F;flex:1;">Other Combos UPD (Units Per Day MTD)</div><input type="number" id="t-daily-units" placeholder="0" style="width:80px;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:14px;font-weight:600;text-align:right;background:#F5F5F7;" oninput="tueLiveCalc()"></div>' +
+    kpiRow('Donuts per day', 't-donuts', 45) +
+    kpiRow('Timbits per day', 't-timbits', 100) +
+    kpiRow('Water bottles per day', 't-water', 10) +
+    kpiRow('RTE products per day', 't-rte', 10) +
+    '</div>' +
+
+    // S4
+    '<div class="section-card">' +
+    '<div class="section-card-title">Section 4 - Beverage Size Mix</div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">' +
+    '<div style="text-align:center;"><div style="font-size:11px;color:#6E6E73;font-weight:600;margin-bottom:6px;">SMALL %</div><input type="number" id="t-small" placeholder="0" max="100" style="width:100%;padding:10px 8px;border-radius:10px;border:1.5px solid #E5E5EA;font-size:18px;font-weight:700;text-align:center;background:#F5F5F7;" oninput="tueLiveCalc()"></div>' +
+    '<div style="text-align:center;"><div style="font-size:11px;color:#6E6E73;font-weight:600;margin-bottom:6px;">MEDIUM %</div><input type="number" id="t-medium" placeholder="0" max="100" style="width:100%;padding:10px 8px;border-radius:10px;border:1.5px solid #E5E5EA;font-size:18px;font-weight:700;text-align:center;background:#F5F5F7;" oninput="tueLiveCalc()"></div>' +
+    '<div style="text-align:center;"><div style="font-size:11px;color:#6E6E73;font-weight:600;margin-bottom:6px;">LARGE %</div><input type="number" id="t-large" placeholder="0" max="100" style="width:100%;padding:10px 8px;border-radius:10px;border:1.5px solid #E5E5EA;font-size:18px;font-weight:700;text-align:center;background:#F5F5F7;" oninput="tueLiveCalc()"></div>' +
+    '</div><div id="t-size-result" style="margin-top:10px;font-size:13px;color:#6E6E73;text-align:center;"></div></div>' +
+
+    // S5
+    '<div class="section-card">' +
+    '<div class="section-card-title">Section 5 - Modifiers Per Day</div>' +
+    '<div style="background:#F5F5F7;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:13px;color:#6E6E73;">Band: <strong>' + bandLabel + '</strong> — Target: <span style="font-size:16px;font-weight:700;color:#C8102E;">' + modTarget + '/day</span></div>' +
+    '<div style="display:flex;align-items:center;justify-content:space-between;">' +
+    '<div style="font-size:13px;font-weight:500;color:#1D1D1F;">Actual modifiers per day</div>' +
+    '<div style="display:flex;align-items:center;gap:8px;">' +
+    '<span id="t-mod-flag" style="font-size:16px;"></span>' +
+    '<input type="number" id="t-modifiers" placeholder="0" data-target="' + modTarget + '" style="width:80px;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:14px;font-weight:600;text-align:right;background:#F5F5F7;" oninput="tueLiveCalc()">' +
+    '</div></div></div>' +
+
+    '<button class="submit-btn" id="tueSubmitBtn" onclick="submitTueStore()">Save - ' + store.name + '</button>';
+
+  // Bind live calc
+  tueLiveCalc();
+}
+
+function tueLiveCalc() {
+  // MTD calc
+  var actual = parseFloat(document.getElementById('t-mtd-actual') && document.getElementById('t-mtd-actual').value) || 0;
+  var target = parseFloat(document.getElementById('t-mtd-target') && document.getElementById('t-mtd-target').value) || 0;
+  if (actual && target) {
+    var pctVal = (actual/target*100).toFixed(1);
+    var variance = actual - target;
+    var cls = pctVal>=100?'#34C759':pctVal>=90?'#FF9500':'#FF3B30';
+    var flag = pctVal>=100?'✅':pctVal>=90?'⚠️':'🔴';
+    var r = document.getElementById('t-mtd-result');
+    if(r) r.innerHTML = flag + ' <span style="font-size:18px;font-weight:700;color:'+cls+'">'+pctVal+'%</span> of target &nbsp;|&nbsp; Variance: <strong>'+(variance>=0?'+':'')+' Rs '+Math.abs(Math.round(variance)).toLocaleString('en-IN')+'</strong>';
+  }
+
+  // YOY calc
+  var lyADS = parseFloat(document.getElementById('t-ly-ads') && document.getElementById('t-ly-ads').value) || 0;
+  var tyADS = parseFloat(document.getElementById('t-ty-ads') && document.getElementById('t-ty-ads').value) || 0;
+  var lyAPC = parseFloat(document.getElementById('t-ly-apc') && document.getElementById('t-ly-apc').value) || 0;
+  var tyAPC = parseFloat(document.getElementById('t-ty-apc') && document.getElementById('t-ty-apc').value) || 0;
+  var lyADT = parseFloat(document.getElementById('t-ly-adt') && document.getElementById('t-ly-adt').value) || 0;
+  var tyADT = parseFloat(document.getElementById('t-ty-adt') && document.getElementById('t-ty-adt').value) || 0;
+  if (lyADS && tyADS) {
+    function yoyBlock(label, ly, ty) {
+      if (!ly || !ty) return '';
+      var v = ((ty-ly)/ly*100).toFixed(1);
+      var c = parseFloat(v)>=0?'#34C759':'#FF3B30';
+      var a = parseFloat(v)>=0?'▲':'▼';
+      return '<div style="text-align:center;"><div style="font-size:11px;color:#6E6E73;margin-bottom:4px;">'+label+'</div><div style="font-size:18px;font-weight:700;color:'+c+'">'+a+' '+Math.abs(v)+'%</div></div>';
+    }
+    var r2 = document.getElementById('t-yoy-result');
+    if(r2) r2.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">' +
+      yoyBlock('ADS YOY', lyADS, tyADS) +
+      yoyBlock('APC YOY', lyAPC, tyAPC) +
+      yoyBlock('ADT YOY', lyADT, tyADT) + '</div>';
+  }
+
+  // KPI flags
+  function setFlag(inputId, flagId, tgt) {
+    var el = document.getElementById(inputId);
+    var fl = document.getElementById(flagId);
+    if (!el || !fl) return;
+    var v = parseFloat(el.value)||0;
+    if (v===0) { fl.textContent=''; return; }
+    fl.textContent = v>=tgt ? '✅' : '🔴';
+  }
+  setFlag('t-donuts','t-donuts-flag',45);
+  setFlag('t-timbits','t-timbits-flag',100);
+  setFlag('t-water','t-water-flag',10);
+  setFlag('t-rte','t-rte-flag',10);
+
+  // Size mix
+  var sm = parseFloat(document.getElementById('t-small') && document.getElementById('t-small').value)||0;
+  var md = parseFloat(document.getElementById('t-medium') && document.getElementById('t-medium').value)||0;
+  var lg = parseFloat(document.getElementById('t-large') && document.getElementById('t-large').value)||0;
+  if (sm||md||lg) {
+    var tot = sm+md+lg;
+    var sr = document.getElementById('t-size-result');
+    if(sr) sr.innerHTML = 'Total: <strong>'+tot+'%</strong> '+(tot!==100?'⚠️ Must equal 100%':'✅')+
+      (lg<20&&lg>0?' &nbsp;🔴 Low large % — upselling opportunity':'');
+  }
+
+  // Modifiers
+  var modEl = document.getElementById('t-modifiers');
+  var modFlag = document.getElementById('t-mod-flag');
+  if (modEl && modFlag) {
+    var modVal = parseFloat(modEl.value)||0;
+    var modTgt = parseFloat(modEl.getAttribute('data-target'))||40;
+    if (modVal>0) modFlag.textContent = modVal>=modTgt ? '✅' : '🔴';
+  }
+}
+
+function updateSplit() {
+  var d = parseInt(document.getElementById('split-dinein').value)||0;
+  var del = parseInt(document.getElementById('split-delivery').value)||0;
+  var tot = d + del;
+  var el = document.getElementById('split-total');
+  if(el) {
+    el.textContent = tot + '%';
+    el.style.color = tot===100?'#34C759':'#FF3B30';
+  }
+}
+
+function submitTueStore() {
+  var data = {
+    am: tueState.am,
+    store: tueState.currentStore.name,
+    region: tueState.currentStore.region,
+    day: 'tuesday',
+      delivery: {
+        swiggy: {
+          revenue: parseFloat(document.getElementById('swiggy-revenue').value)||0,
+          target: parseFloat(document.getElementById('swiggy-target').value)||0,
+          ordersPerDay: parseFloat(document.getElementById('swiggy-orders').value)||0,
+          aov: parseFloat(document.getElementById('swiggy-aov').value)||0,
+          lyRevenue: parseFloat(document.getElementById('swiggy-ly').value)||0
+        },
+        zomato: {
+          revenue: parseFloat(document.getElementById('zomato-revenue').value)||0,
+          target: parseFloat(document.getElementById('zomato-target').value)||0,
+          ordersPerDay: parseFloat(document.getElementById('zomato-orders').value)||0,
+          aov: parseFloat(document.getElementById('zomato-aov').value)||0,
+          lyRevenue: parseFloat(document.getElementById('zomato-ly').value)||0
+        },
+        dineinPct: parseFloat(document.getElementById('split-dinein').value)||0,
+        deliveryPct: parseFloat(document.getElementById('split-delivery').value)||0
+      },
+    mtdActual: parseFloat(document.getElementById('t-mtd-actual').value)||0,
+    mtdTarget: parseFloat(document.getElementById('t-mtd-target').value)||0,
+    lyADS: parseFloat(document.getElementById('t-ly-ads').value)||0,
+    lyAPC: parseFloat(document.getElementById('t-ly-apc').value)||0,
+    lyADT: parseFloat(document.getElementById('t-ly-adt').value)||0,
+    tyMTD: parseFloat(document.getElementById('t-ty-mtd').value)||0,
+    tyADS: parseFloat(document.getElementById('t-ty-ads').value)||0,
+    tyADT: parseFloat(document.getElementById('t-ty-adt').value)||0,
+    tyAPC: parseFloat(document.getElementById('t-ty-apc').value)||0,
+    breakfast: parseFloat(document.getElementById('t-breakfast').value)||0,
+    dailyUnits: parseFloat(document.getElementById('t-daily-units').value)||0,
+    donuts: parseFloat(document.getElementById('t-donuts').value)||0,
+    timbits: parseFloat(document.getElementById('t-timbits').value)||0,
+    water: parseFloat(document.getElementById('t-water').value)||0,
+    rte: parseFloat(document.getElementById('t-rte').value)||0,
+    sizeSmall: parseFloat(document.getElementById('t-small').value)||0,
+    sizeMedium: parseFloat(document.getElementById('t-medium').value)||0,
+    sizeLarge: parseFloat(document.getElementById('t-large').value)||0,
+    modifiers: parseFloat(document.getElementById('t-modifiers').value)||0
+  };
+  fetch('/api/submissions',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.success){
+      tueState.completed[tueState.currentStore.name] = true;
+      document.getElementById('tueFormWrap').classList.add('hidden');
+      document.getElementById('tueSuccessWrap').classList.remove('hidden');
+      var rem = tueState.stores.length - Object.keys(tueState.completed).length;
+      document.getElementById('tueSuccessMsg').textContent = tueState.currentStore.name + ' sales data saved. ' + rem + ' stores remaining.';
+      updateTueProgress(); renderTueStoreList();
+    }
+  });
+}
+
+document.getElementById('tueNextBtn').addEventListener('click', function(){
+  document.getElementById('tueSuccessWrap').classList.add('hidden');
+  var next = tueState.stores.find(function(s){return !tueState.completed[s.name];});
+  if(next){openTueStore(next.name);}
+  else{document.getElementById('tueStoreListWrap').innerHTML='<div class="rest-card"><div class="rest-icon">&#x1F389;</div><div class="rest-title">All Stores Done!</div><div class="rest-sub">Tuesday sales data complete for all stores.</div></div>';}
+});
+
+
+var wedState = {am:'', currentStore:null};
+
+renderAMCards('wedAMCards', function(name) {
+  wedState.am = name;
+  wedState.currentStore = null;
+  document.getElementById('wedAMPicker').classList.add('hidden');
+  var bar = document.getElementById('wedAMBar');
+  bar.classList.remove('hidden');
+  document.getElementById('wedAMName').textContent = name;
+  loadWedStores();
+});
+
+document.getElementById('wedChangeBtn').addEventListener('click', function() {
+  wedState.am = '';
+  document.getElementById('wedAMPicker').classList.remove('hidden');
+  document.getElementById('wedAMBar').classList.add('hidden');
+  document.getElementById('wedStorePicker').classList.add('hidden');
+  document.getElementById('wedFormWrap').classList.add('hidden');
+  document.getElementById('wedSuccessWrap').classList.add('hidden');
+});
+
+function loadWedStores() {
+  fetch('/api/stores/am/' + encodeURIComponent(wedState.am))
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var stores = d.data || [];
+      var list = document.getElementById('wedStoreList');
+      list.innerHTML = '';
+      stores.forEach(function(s) {
+        var div = document.createElement('div');
+        div.className = 'store-item';
+        div.innerHTML = '<div style="display:flex;align-items:center;">' +
+          '<div class="store-dot"></div>' +
+          '<div><div class="store-item-name">' + s.name + '</div>' +
+          '<div class="store-item-region">' + s.region + '</div></div></div>' +
+          '<div style="font-size:18px;">&#x25B6;</div>';
+        div.addEventListener('click', function(){openWedForm(s);});
+        list.appendChild(div);
+      });
+      document.getElementById('wedStorePicker').classList.remove('hidden');
+      document.getElementById('wedFormWrap').classList.add('hidden');
+      document.getElementById('wedSuccessWrap').classList.add('hidden');
+    });
+}
+
+function openWedForm(store) {
+  wedState.currentStore = store;
+  document.getElementById('wedStorePicker').classList.add('hidden');
+  document.getElementById('wedSuccessWrap').classList.add('hidden');
+  renderWedForm(store);
+  document.getElementById('wedFormWrap').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+var machines = [
+  'Coffee Machine','RO Machine','Mary Chef','iCombi',
+  'Blenders','Ice Machine','Air Conditioning',
+  'Under Counter / Vertical Chillers','Server'
+];
+var cleanAreas = [
+  'Kitchen surfaces and equipment exteriors',
+  'Floors, walls, ceiling tiles',
+  'Washrooms','Dining area','Storage areas'
+];
+var pestChecks = [
+  'Evidence of rodents',
+  'Evidence of insects / cockroaches',
+  'Drain condition',
+  'Pest control contract status',
+  'Last pest control visit date'
+];
+
+function renderWedForm(store) {
+  var wrap = document.getElementById('wedFormWrap');
+  var html = '<div class="form-header">' +
+    '<div class="form-store-icon">&#x1F527;</div>' +
+    '<div><div class="form-store-name">' + store.name + '</div>' +
+    '<div class="form-store-sub">Wednesday - Maintenance + Cleanliness + Pest</div></div></div>';
+
+  html += '<div class="section-card"><div class="section-card-title">Section 1 - Machine Maintenance</div>';
+  machines.forEach(function(machine, i) {
+    html += '<div id="machine-wrap-' + i + '" style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #E5E5EA;">' +
+      '<div style="font-size:14px;font-weight:600;color:#1D1D1F;margin-bottom:8px;">&#x1F527; ' + machine + '</div>' +
+      '<div style="display:flex;gap:8px;margin-bottom:8px;">' +
+      '<button class="ans-btn wed-machine-btn" data-idx="' + i + '" data-val="working">&#x2705; Working</button>' +
+      '<button class="ans-btn wed-machine-btn" data-idx="' + i + '" data-val="repair">&#x1F6A7; Under Repair</button>' +
+      '<button class="ans-btn wed-machine-btn" data-idx="' + i + '" data-val="down">&#x274C; Not Working</button>' +
+      '</div>' +
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">' +
+      '<span style="font-size:12px;color:#6E6E73;white-space:nowrap;">Comment:</span>' +
+      '<input type="text" id="m-' + i + '-date" placeholder="Add comment or maintenance note..." style="flex:1;padding:7px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:13px;background:#F5F5F7;">' +
+      '</div>' +
+      '<div id="m-' + i + '-extra" class="hidden">' +
+      '<textarea id="m-' + i + '-issue" placeholder="Issue description..." rows="2" style="width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:13px;background:#F5F5F7;font-family:inherit;resize:none;margin-bottom:6px;"></textarea>' +
+      '<input type="text" id="m-' + i + '-vendor" placeholder="Vendor name..." style="width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:13px;background:#F5F5F7;margin-bottom:6px;">' +
+      '<div style="display:flex;align-items:center;gap:8px;">' +
+      '<span style="font-size:12px;color:#6E6E73;white-space:nowrap;">Est. fix date:</span>' +
+      '<input type="date" id="m-' + i + '-fixdate" style="flex:1;padding:7px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:13px;background:#F5F5F7;">' +
+      '</div></div></div>';
+  });
+  html += '</div>';
+
+  html += '<div class="section-card"><div class="section-card-title">Section 2 - Cleanliness Health</div>';
+  cleanAreas.forEach(function(area, i) {
+    html += '<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #E5E5EA;">' +
+      '<div style="font-size:14px;font-weight:600;color:#1D1D1F;margin-bottom:8px;">&#x1F9F9; ' + area + '</div>' +
+      '<div style="display:flex;gap:8px;margin-bottom:8px;">' +
+      '<button class="ans-btn wed-clean-btn" data-idx="' + i + '" data-val="clean">&#x2705; Clean</button>' +
+      '<button class="ans-btn wed-clean-btn" data-idx="' + i + '" data-val="attention">&#x26A0;&#xFE0F; Needs Attention</button>' +
+      '<button class="ans-btn wed-clean-btn" data-idx="' + i + '" data-val="critical">&#x1F534; Critical</button>' +
+      '</div>' +
+      '<textarea id="c-' + i + '-comment" placeholder="Comment..." rows="2" style="width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:13px;background:#F5F5F7;font-family:inherit;resize:none;"></textarea>' +
+      '</div>';
+  });
+  html += '</div>';
+
+  html += '<div class="section-card"><div class="section-card-title">Section 3 - Pest Activity</div>';
+  pestChecks.forEach(function(check, i) {
+    html += '<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #E5E5EA;">' +
+      '<div style="font-size:14px;font-weight:600;color:#1D1D1F;margin-bottom:8px;">&#x1F41E; ' + check + '</div>' +
+      '<div style="display:flex;gap:8px;margin-bottom:8px;">' +
+      '<button class="ans-btn wed-pest-btn" data-idx="' + i + '" data-val="clear">&#x2705; Clear</button>' +
+      '<button class="ans-btn wed-pest-btn" data-idx="' + i + '" data-val="found">&#x1F534; Activity Found</button>' +
+      '<button class="ans-btn wed-pest-btn" data-idx="' + i + '" data-val="action">&#x1F6A7; Action Taken</button>' +
+      '</div>' +
+      '<textarea id="p-' + i + '-comment" placeholder="Comment..." rows="2" style="width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:13px;background:#F5F5F7;font-family:inherit;resize:none;"></textarea>' +
+      '</div>';
+  });
+  html += '</div>';
+
+  html += '<button class="submit-btn" id="wedSubmitBtn">Submit Visit - ' + store.name + '</button>';
+  wrap.innerHTML = html;
+
+  document.getElementById('wedSubmitBtn').addEventListener('click', submitWedStore);
+
+  wrap.addEventListener('click', function(e) {
+    var btn = e.target.closest('.wed-machine-btn');
+    if (btn) {
+      var idx = parseInt(btn.getAttribute('data-idx'));
+      var val = btn.getAttribute('data-val');
+      wedMachineStatus[idx] = val;
+      wrap.querySelectorAll('.wed-machine-btn[data-idx="' + idx + '"]').forEach(function(b) {
+        b.style.background='#fff'; b.style.color='#6E6E73'; b.style.borderColor='#E5E5EA';
+      });
+      if(val==='working'){btn.style.background='#34C759';btn.style.color='#fff';btn.style.borderColor='#34C759';}
+      else if(val==='repair'){btn.style.background='#FF9500';btn.style.color='#fff';btn.style.borderColor='#FF9500';}
+      else{btn.style.background='#FF3B30';btn.style.color='#fff';btn.style.borderColor='#FF3B30';}
+      var extra = document.getElementById('m-' + idx + '-extra');
+      if(extra){if(val==='repair'||val==='down'){extra.classList.remove('hidden');}else{extra.classList.add('hidden');}}
+      return;
+    }
+    var cb = e.target.closest('.wed-clean-btn');
+    if (cb) {
+      var idx = parseInt(cb.getAttribute('data-idx'));
+      var val = cb.getAttribute('data-val');
+      wedCleanStatus[idx] = val;
+      wrap.querySelectorAll('.wed-clean-btn[data-idx="' + idx + '"]').forEach(function(b) {
+        b.style.background='#fff'; b.style.color='#6E6E73'; b.style.borderColor='#E5E5EA';
+      });
+      if(val==='clean'){cb.style.background='#34C759';cb.style.color='#fff';cb.style.borderColor='#34C759';}
+      else if(val==='attention'){cb.style.background='#FF9500';cb.style.color='#fff';cb.style.borderColor='#FF9500';}
+      else{cb.style.background='#FF3B30';cb.style.color='#fff';cb.style.borderColor='#FF3B30';}
+      return;
+    }
+    var pb = e.target.closest('.wed-pest-btn');
+    if (pb) {
+      var idx = parseInt(pb.getAttribute('data-idx'));
+      var val = pb.getAttribute('data-val');
+      wedPestStatus[idx] = val;
+      wrap.querySelectorAll('.wed-pest-btn[data-idx="' + idx + '"]').forEach(function(b) {
+        b.style.background='#fff'; b.style.color='#6E6E73'; b.style.borderColor='#E5E5EA';
+      });
+      if(val==='clear'){pb.style.background='#34C759';pb.style.color='#fff';pb.style.borderColor='#34C759';}
+      else if(val==='found'){pb.style.background='#FF3B30';pb.style.color='#fff';pb.style.borderColor='#FF3B30';}
+      else{pb.style.background='#FF9500';pb.style.color='#fff';pb.style.borderColor='#FF9500';}
+      return;
+    }
+  });
+}
+
+var wedMachineStatus = {};
+var wedCleanStatus = {};
+var wedPestStatus = {};
+
+
+
+
+
+
+
+function submitWedStore() {
+  var machineData = machines.map(function(name, i) {
+    return {
+      machine: name,
+      status: wedMachineStatus[i] || 'not-set',
+      lastService: (document.getElementById('m-'+i+'-date') && document.getElementById('m-'+i+'-date').value) || '',
+      issue: (document.getElementById('m-'+i+'-issue') && document.getElementById('m-'+i+'-issue').value) || '',
+      vendor: (document.getElementById('m-'+i+'-vendor') && document.getElementById('m-'+i+'-vendor').value) || '',
+      fixDate: (document.getElementById('m-'+i+'-fixdate') && document.getElementById('m-'+i+'-fixdate').value) || ''
+    };
+  });
+  var cleanData = cleanAreas.map(function(area, i) {
+    return {
+      area: area,
+      status: wedCleanStatus[i] || 'not-set',
+      comment: (document.getElementById('c-'+i+'-comment') && document.getElementById('c-'+i+'-comment').value) || ''
+    };
+  });
+  var pestData = pestChecks.map(function(check, i) {
+    return {
+      check: check,
+      status: wedPestStatus[i] || 'not-set',
+      comment: (document.getElementById('p-'+i+'-comment') && document.getElementById('p-'+i+'-comment').value) || ''
+    };
+  });
+
+  var now = new Date();
+  var month = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
+
+  var payload = {
+    am: wedState.am,
+    store: wedState.currentStore.name,
+    region: wedState.currentStore.region,
+    day: 'wednesday',
+    machines: machineData,
+    cleanliness: cleanData,
+    pest: pestData,
+    visitDate: now.toISOString()
+  };
+
+  fetch('/api/submissions', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload)
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if (d.success) {
+      fetch('/api/coverage', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({am: wedState.am, month: month, store: wedState.currentStore.name, day: 'wed'})
+      });
+      document.getElementById('wedFormWrap').classList.add('hidden');
+      document.getElementById('wedSuccessWrap').classList.remove('hidden');
+      var issues = machineData.filter(function(m){return m.status!=='working'&&m.status!=='not-set';}).length;
+      var pestIssues = pestData.filter(function(p){return p.status==='found';}).length;
+      document.getElementById('wedSuccessMsg').textContent =
+        wedState.currentStore.name + ' visit saved. ' +
+        (issues>0 ? issues + ' machine issue(s) flagged. ' : 'All machines OK. ') +
+        (pestIssues>0 ? pestIssues + ' pest alert(s)!' : 'No pest activity.');
+    }
+  })
+  .catch(function(){alert('Submission failed. Please try again.');});
+}
+
+document.getElementById('wedNewVisitBtn').addEventListener('click', function() {
+  wedMachineStatus = {}; wedCleanStatus = {}; wedPestStatus = {};
+  document.getElementById('wedSuccessWrap').classList.add('hidden');
+  document.getElementById('wedFormWrap').classList.add('hidden');
+  loadWedStores();
+});
+
+
+var friState = {am:'', currentStore:null};
+
+renderAMCards('friAMCards', function(name) {
+  friState.am = name;
+  friState.currentStore = null;
+  document.getElementById('friAMPicker').classList.add('hidden');
+  document.getElementById('friAMBar').classList.remove('hidden');
+  document.getElementById('friAMName').textContent = name;
+  loadFriStores();
+});
+
+document.getElementById('friChangeBtn').addEventListener('click', function() {
+  friState.am = '';
+  document.getElementById('friAMPicker').classList.remove('hidden');
+  document.getElementById('friAMBar').classList.add('hidden');
+  document.getElementById('friStorePicker').classList.add('hidden');
+  document.getElementById('friFormWrap').classList.add('hidden');
+  document.getElementById('friSuccessWrap').classList.add('hidden');
+});
+
+function loadFriStores() {
+  fetch('/api/stores/am/' + encodeURIComponent(friState.am))
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var stores = d.data || [];
+      var list = document.getElementById('friStoreList');
+      list.innerHTML = '';
+      stores.forEach(function(s) {
+        var div = document.createElement('div');
+        div.className = 'store-item';
+        div.innerHTML = '<div style="display:flex;align-items:center;">' +
+          '<div class="store-dot"></div>' +
+          '<div><div class="store-item-name">' + s.name + '</div>' +
+          '<div class="store-item-region">' + s.region + '</div></div></div>' +
+          '<div style="font-size:18px;">&#x25B6;</div>';
+        div.addEventListener('click', function(){openFriForm(s);});
+        list.appendChild(div);
+      });
+      document.getElementById('friStorePicker').classList.remove('hidden');
+      document.getElementById('friFormWrap').classList.add('hidden');
+      document.getElementById('friSuccessWrap').classList.add('hidden');
+    });
+}
+
+function openFriForm(store) {
+  friState.currentStore = store;
+  document.getElementById('friStorePicker').classList.add('hidden');
+  document.getElementById('friSuccessWrap').classList.add('hidden');
+  renderFriForm(store);
+  document.getElementById('friFormWrap').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderFriForm(store) {
+  var wrap = document.getElementById('friFormWrap');
+
+  function select3(name, opts, ids) {
+    var html = '<div style="display:flex;gap:8px;margin-bottom:8px;">';
+    opts.forEach(function(opt, i) {
+      html += '<button class="ans-btn fri-sel-btn" data-group="' + name + '" data-val="' + ids[i] + '">' + opt + '</button>';
+    });
+    return html + '</div>';
+  }
+
+  var html = '<div class="form-header">' +
+    '<div class="form-store-icon">&#x1F91D;</div>' +
+    '<div><div class="form-store-name">' + store.name + '</div>' +
+    '<div class="form-store-sub">Friday - People + Readiness + Relationships</div></div></div>';
+
+  // S1 CI Call
+  html += '<div class="section-card"><div class="section-card-title">Section 1 - CI Call</div>' +
+    '<div style="font-size:14px;font-weight:500;color:#1D1D1F;margin-bottom:10px;">11am Continuous Improvement call with CEO attended?</div>' +
+    select3('ci-call', ['✅ Yes', '❌ No'], ['yes','no']) +
+    '<textarea id="fri-comment-ci" placeholder="Comment..." rows="2" style="width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:13px;background:#F5F5F7;font-family:inherit;resize:none;margin-top:6px;"></textarea>' +
+    '</div>';
+
+  // S2 Complaints
+  html += '<div class="section-card"><div class="section-card-title">Section 2 - Complaints Last Week</div>' +
+    '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">' +
+    '<div style="font-size:13px;font-weight:500;color:#1D1D1F;">Number of complaints received</div>' +
+    '<input type="number" id="fri-complaints" placeholder="0" min="0" style="width:80px;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:16px;font-weight:700;text-align:right;background:#F5F5F7;">' +
+    '</div>' +
+    '<div style="font-size:13px;font-weight:600;color:#6E6E73;margin-bottom:8px;">Category</div>' +
+    '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">' +
+    ['Food Quality','Service','Cleanliness','Wait Time','Other'].map(function(cat) {
+      return '<button class="ans-btn fri-sel-btn" data-group="complaint-cat" data-val="' + cat + '">' + cat + '</button>';
+    }).join('') +
+    '</div>' +
+    '<div style="font-size:13px;font-weight:600;color:#6E6E73;margin-bottom:8px;">Resolution Status</div>' +
+    select3('resolution', ['✅ Resolved', '⏳ Pending', '🔴 Escalated'], ['resolved','pending','escalated']) +
+    '<textarea id="fri-comment-complaints" placeholder="Details of complaints and actions taken..." rows="2" style="width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:13px;background:#F5F5F7;font-family:inherit;resize:none;margin-top:6px;"></textarea>' +
+    '</div>';
+
+  // S3 HOD Support
+  html += '<div class="section-card"><div class="section-card-title">Section 3 - HOD Support Required</div>' +
+    '<div style="font-size:12px;color:#6E6E73;margin-bottom:12px;">Leave blank if no support needed in that area</div>';
+  ['Operations','Training','Marketing','HR','IT'].forEach(function(dept) {
+    html += '<div style="margin-bottom:10px;">' +
+      '<div style="font-size:13px;font-weight:600;color:#1D1D1F;margin-bottom:6px;">' + dept + '</div>' +
+      '<textarea id="fri-hod-' + dept.toLowerCase() + '" placeholder="Describe support needed..." rows="2" ' +
+      'style="width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:13px;background:#F5F5F7;font-family:inherit;resize:none;"></textarea>' +
+      '</div>';
+  });
+  html += '</div>';
+
+  // S4 Weekend Readiness
+  html += '<div class="section-card"><div class="section-card-title">Section 4 - Weekend Readiness</div>';
+  [
+    {label:'Stock thawing', id:'fri-thawing'},
+    {label:'Manpower allocation', id:'fri-manpower'},
+    {label:'Store readiness', id:'fri-readiness'}
+  ].forEach(function(item) {
+    html += '<div style="margin-bottom:14px;">' +
+      '<div style="font-size:14px;font-weight:500;color:#1D1D1F;margin-bottom:8px;">' + item.label + '</div>' +
+      '<div style="display:flex;gap:8px;">' +
+      '<button class="ans-btn fri-sel-btn" data-group="' + item.id + '" data-val="yes">✅ Yes</button>' +
+      '<button class="ans-btn fri-sel-btn" data-group="' + item.id + '" data-val="no">❌ No</button>' +
+      '<button class="ans-btn fri-sel-btn" data-group="' + item.id + '" data-val="partial">⚠️ Partial</button>' +
+      '</div>' +
+      '<textarea id="fri-comment-' + item.id + '" placeholder="Comment on ' + item.label + '..." rows="2" style="width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:13px;background:#F5F5F7;font-family:inherit;resize:none;margin-top:8px;"></textarea>' +
+      '</div>';
+  });
+  html += '</div>';
+
+  // S5 Landlord Meeting
+  html += '<div class="section-card"><div class="section-card-title">Section 5 - Owner / Landlord Meeting</div>' +
+    '<div style="font-size:14px;font-weight:500;color:#1D1D1F;margin-bottom:10px;">Visited this month?</div>' +
+    '<div style="display:flex;gap:8px;margin-bottom:12px;">' +
+    '<button class="ans-btn fri-sel-btn" data-group="landlord-visited" data-val="yes">✅ Yes</button>' +
+    '<button class="ans-btn fri-sel-btn" data-group="landlord-visited" data-val="no">❌ No</button>' +
+    '</div>' +
+    '<div id="fri-landlord-details">' +
+    '<div style="font-size:13px;font-weight:600;color:#1D1D1F;margin-bottom:6px;">Outcome notes</div>' +
+    '<textarea id="fri-landlord-notes" placeholder="What was discussed / agreed..." rows="3" ' +
+    'style="width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:13px;background:#F5F5F7;font-family:inherit;resize:none;margin-bottom:10px;"></textarea>' +
+    '<div style="display:flex;align-items:center;gap:8px;">' +
+    '<span style="font-size:13px;font-weight:600;color:#1D1D1F;white-space:nowrap;">Next meeting:</span>' +
+    '<input type="date" id="fri-next-meeting" style="flex:1;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:13px;background:#F5F5F7;">' +
+    '</div></div></div>';
+
+  html += '<button class="submit-btn" id="friSubmitBtn">Submit Friday - ' + store.name + '</button>';
+  wrap.innerHTML = html;
+
+  document.getElementById('friSubmitBtn').addEventListener('click', submitFriStore);
+
+  // Event delegation for all fri-sel-btn
+  wrap.addEventListener('click', function(e) {
+    var btn = e.target.closest('.fri-sel-btn');
+    if (!btn) return;
+    var group = btn.getAttribute('data-group');
+    var val = btn.getAttribute('data-val');
+    wrap.querySelectorAll('.fri-sel-btn[data-group="' + group + '"]').forEach(function(b) {
+      b.style.background='#fff'; b.style.color='#6E6E73'; b.style.borderColor='#E5E5EA';
+    });
+    btn.style.background='#C8102E'; btn.style.color='#fff'; btn.style.borderColor='#C8102E';
+    // Show/hide landlord details
+    if (group === 'landlord-visited') {
+      var details = document.getElementById('fri-landlord-details');
+      if (details) {
+        if (val === 'yes') { details.style.display='block'; }
+        else { details.style.display='none'; }
+      }
+    }
+  });
+}
+
+var friSelections = {};
+
+function getSelVal(group) {
+  var btn = document.querySelector('.fri-sel-btn[data-group="' + group + '"][style*="rgb(200"]');
+  if (!btn) {
+    // fallback - check background
+    var btns = document.querySelectorAll('.fri-sel-btn[data-group="' + group + '"]');
+    for (var i=0; i<btns.length; i++) {
+      if (btns[i].style.background === 'rgb(200, 16, 46)' || btns[i].style.backgroundColor === 'rgb(200, 16, 46)') {
+        return btns[i].getAttribute('data-val');
+      }
+    }
+    return '';
+  }
+  return btn.getAttribute('data-val');
+}
+
+function submitFriStore() {
+  var now = new Date();
+  var month = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
+
+  function gv(id) { var el=document.getElementById(id); return el?el.value:''; }
+  function getSel(group) {
+    var btns = document.querySelectorAll('.fri-sel-btn[data-group="' + group + '"]');
+    for (var i=0; i<btns.length; i++) {
+      if (btns[i].style.backgroundColor === 'rgb(200, 16, 46)') return btns[i].getAttribute('data-val');
+    }
+    return '';
+  }
+
+  var payload = {
+    am: friState.am,
+    store: friState.currentStore.name,
+    region: friState.currentStore.region,
+    day: 'friday',
+    ciCall: getSel('ci-call'),
+    complaints: parseInt(gv('fri-complaints'))||0,
+    complaintCategory: getSel('complaint-cat'),
+    resolution: getSel('resolution'),
+    hodSupport: {
+      operations: gv('fri-hod-operations'),
+      training: gv('fri-hod-training'),
+      marketing: gv('fri-hod-marketing'),
+      hr: gv('fri-hod-hr'),
+      it: gv('fri-hod-it')
+    },
+    weekendReadiness: {
+      thawing: getSel('fri-thawing'),
+      manpower: getSel('fri-manpower'),
+      readiness: getSel('fri-readiness')
+    },
+    landlord: {
+      visited: getSel('landlord-visited'),
+      notes: gv('fri-landlord-notes'),
+      nextMeeting: gv('fri-next-meeting')
+    },
+    visitDate: now.toISOString()
+  };
+
+  fetch('/api/submissions', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if (d.success) {
+      fetch('/api/coverage',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({am:friState.am,month:month,store:friState.currentStore.name,day:'fri'})});
+      document.getElementById('friFormWrap').classList.add('hidden');
+      document.getElementById('friSuccessWrap').classList.remove('hidden');
+      var readiness = payload.weekendReadiness;
+      var allReady = readiness.thawing==='yes' && readiness.manpower==='yes' && readiness.readiness==='yes';
+      document.getElementById('friSuccessMsg').textContent =
+        friState.currentStore.name + ' Friday submitted. Weekend readiness: ' +
+        (allReady ? '✅ All systems go!' : '⚠️ Some items need attention.');
+    }
+  })
+  .catch(function(){alert('Submission failed. Please try again.');});
+}
+
+document.getElementById('friNewVisitBtn').addEventListener('click', function() {
+  document.getElementById('friSuccessWrap').classList.add('hidden');
+  document.getElementById('friFormWrap').classList.add('hidden');
+  loadFriStores();
+});
+
+
+var weekendItems = [
+  {id:'WK-01', text:'ACEs in place', timed:false},
+  {id:'WK-02', text:'Best cashier assigned on POS', timed:false},
+  {id:'WK-03', text:'POS has good display of RTE and water', timed:false},
+  {id:'WK-04', text:'Backlit LTO display visible and working', timed:false},
+  {id:'WK-05', text:'Speed of service check 1', timed:true, benchmark:'3:00'},
+  {id:'WK-06', text:'Speed of service check 2', timed:true, benchmark:'3:00'},
+  {id:'WK-07', text:'Speed of service check 3', timed:true, benchmark:'3:00'},
+  {id:'WK-08', text:'Frosted glasses available and clean', timed:false},
+  {id:'WK-09', text:'Ceramic cups available and ready', timed:false},
+  {id:'WK-10', text:'Club apparel registration happening', timed:false},
+  {id:'WK-11', text:'QR feedback active', timed:false},
+  {id:'WK-12', text:'NPS core focus on hospitality', timed:false}
+];
+
+function setupWeekendDay(prefix, dayName, successIcon) {
+  var state = {am:'', currentStore:null, answers:{}, times:{}};
+  window[prefix + 'State'] = state;
+
+  renderAMCards(prefix + 'AMCards', function(name) {
+    state.am = name;
+    state.currentStore = null;
+    document.getElementById(prefix + 'AMPicker').classList.add('hidden');
+    document.getElementById(prefix + 'AMBar').classList.remove('hidden');
+    document.getElementById(prefix + 'AMName').textContent = name;
+    loadWeekendStores(prefix, state);
+  });
+
+  document.getElementById(prefix + 'ChangeBtn').addEventListener('click', function() {
+    state.am = '';
+    document.getElementById(prefix + 'AMPicker').classList.remove('hidden');
+    document.getElementById(prefix + 'AMBar').classList.add('hidden');
+    document.getElementById(prefix + 'StorePicker').classList.add('hidden');
+    document.getElementById(prefix + 'FormWrap').classList.add('hidden');
+    document.getElementById(prefix + 'SuccessWrap').classList.add('hidden');
+  });
+
+  document.getElementById(prefix + 'NewVisitBtn').addEventListener('click', function() {
+    state.answers = {}; state.times = {};
+    document.getElementById(prefix + 'SuccessWrap').classList.add('hidden');
+    document.getElementById(prefix + 'FormWrap').classList.add('hidden');
+    loadWeekendStores(prefix, state);
+  });
+}
+
+function loadWeekendStores(prefix, state) {
+  fetch('/api/stores/am/' + encodeURIComponent(state.am))
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var stores = d.data || [];
+      var list = document.getElementById(prefix + 'StoreList');
+      list.innerHTML = '';
+      stores.forEach(function(s) {
+        var div = document.createElement('div');
+        div.className = 'store-item';
+        div.innerHTML = '<div style="display:flex;align-items:center;">' +
+          '<div class="store-dot"></div>' +
+          '<div><div class="store-item-name">' + s.name + '</div>' +
+          '<div class="store-item-region">' + s.region + '</div></div></div>' +
+          '<div style="font-size:18px;">&#x25B6;</div>';
+        div.addEventListener('click', function(){openWeekendForm(prefix, s, state);});
+        list.appendChild(div);
+      });
+      document.getElementById(prefix + 'StorePicker').classList.remove('hidden');
+      document.getElementById(prefix + 'FormWrap').classList.add('hidden');
+      document.getElementById(prefix + 'SuccessWrap').classList.add('hidden');
+    });
+}
+
+function openWeekendForm(prefix, store, state) {
+  state.currentStore = store;
+  state.answers = {};
+  state.times = {};
+  document.getElementById(prefix + 'StorePicker').classList.add('hidden');
+  document.getElementById(prefix + 'SuccessWrap').classList.add('hidden');
+  renderWeekendForm(prefix, store, state);
+  document.getElementById(prefix + 'FormWrap').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderWeekendForm(prefix, store, state) {
+  var wrap = document.getElementById(prefix + 'FormWrap');
+  var dayLabel = prefix === 'sat' ? 'Saturday' : 'Sunday';
+
+  var html = '<div class="form-header">' +
+    '<div class="form-store-icon">&#x26A1;</div>' +
+    '<div><div class="form-store-name">' + store.name + '</div>' +
+    '<div class="form-store-sub">' + dayLabel + ' - Weekend Operations</div></div></div>';
+
+  html += '<div style="background:#E8F8ED;border-radius:12px;padding:10px 16px;margin-bottom:12px;font-size:13px;color:#1B7A3A;">' +
+    '&#x23F1; Speed benchmark: Dine-in and Take-away under 2:30</div>';
+
+  html += '<div class="section-card">';
+  weekendItems.forEach(function(item, i) {
+    html += '<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #E5E5EA;">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">' +
+      '<div style="font-size:11px;color:#6E6E73;">Item ' + (i+1) + ' of 12</div>' +
+      (item.timed ? '<div style="font-size:11px;background:#FFF3E0;color:#E65100;padding:2px 8px;border-radius:6px;font-weight:600;">TIMED</div>' : '') +
+      '</div>' +
+      '<div style="font-size:14px;font-weight:600;color:#1D1D1F;margin-bottom:10px;">' + item.text + '</div>';
+
+    if (item.timed) {
+      html += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">' +
+        '<input type="text" id="' + prefix + '-time-' + item.id + '" placeholder="mm:ss" maxlength="5" ' +
+        'style="width:90px;padding:10px 12px;border-radius:10px;border:1.5px solid #E5E5EA;font-size:18px;font-weight:700;text-align:center;background:#F5F5F7;" ' +
+        'data-flag="' + prefix + '-speed-flag-' + item.id + '" data-bench="' + item.benchmark + '" oninput="checkSpeedInput(this)">' +
+        '<span id="' + prefix + '-speed-flag-' + item.id + '" style="font-size:24px;"></span>' +
+        '<div style="font-size:12px;color:#6E6E73;">Benchmark: ' + item.benchmark + '</div></div>';
+    }
+
+    html += '<div style="display:flex;gap:8px;">' +
+      '<button class="ans-btn wknd-ans-btn" data-prefix="' + prefix + '" data-id="' + item.id + '" data-val="yes">&#x2705; YES</button>' +
+      '<button class="ans-btn wknd-ans-btn" data-prefix="' + prefix + '" data-id="' + item.id + '" data-val="no">&#x274C; NO</button>' +
+      '<button class="ans-btn wknd-ans-btn" data-prefix="' + prefix + '" data-id="' + item.id + '" data-val="na">&#x2014; N/A</button>' +
+      '</div>' +
+      '<textarea id="' + prefix + '-comment-' + item.id + '" placeholder="Add comment..." rows="2" style="width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid #E5E5EA;font-size:13px;background:#F5F5F7;font-family:inherit;resize:none;margin-top:8px;"></textarea>' +
+      '</div>';
+  });
+  html += '</div>';
+
+  html += '<button class="submit-btn" id="' + prefix + 'SubmitBtn">Submit ' + dayLabel + ' - ' + store.name + '</button>';
+  wrap.innerHTML = html;
+
+  wrap.addEventListener('click', function(e) {
+    var btn = e.target.closest('.wknd-ans-btn');
+    if (!btn) return;
+    var p = btn.getAttribute('data-prefix');
+    var id = btn.getAttribute('data-id');
+    var val = btn.getAttribute('data-val');
+    if (p !== prefix) return;
+    state.answers[id] = val;
+    wrap.querySelectorAll('.wknd-ans-btn[data-id="' + id + '"][data-prefix="' + prefix + '"]').forEach(function(b) {
+      b.style.background='#fff'; b.style.color='#6E6E73'; b.style.borderColor='#E5E5EA';
+    });
+    if(val==='yes'){btn.style.background='#34C759';btn.style.color='#fff';btn.style.borderColor='#34C759';}
+    else if(val==='no'){btn.style.background='#FF3B30';btn.style.color='#fff';btn.style.borderColor='#FF3B30';}
+    else{btn.style.background='#8E8E93';btn.style.color='#fff';btn.style.borderColor='#8E8E93';}
+    checkWeekendComplete(prefix, state);
+  });
+
+  document.getElementById(prefix + 'SubmitBtn').addEventListener('click', function(){
+    submitWeekendStore(prefix, state);
+  });
+}
+
+function checkSpeed(input, flagId, benchmark) {
+  var val = input.value;
+  if (val.length === 5 && val[2] === ':') {
+    var parts = val.split(':');
+    var mins = parseInt(parts[0]);
+    var secs = parseInt(parts[1]);
+    var total = mins * 60 + secs;
+    var benchParts = benchmark.split(':');
+    var benchTotal = parseInt(benchParts[0]) * 60 + parseInt(benchParts[1]);
+    var flag = document.getElementById(flagId);
+    if (flag) flag.textContent = total <= benchTotal ? '✅' : '🔴';
+  }
+  // Auto-format: insert colon after 2 digits
+  if (val.length === 2 && !val.includes(':')) {
+    input.value = val + ':';
+  }
+}
+
+function checkWeekendComplete(prefix, state) {
+  var allDone = weekendItems.every(function(item){return state.answers[item.id];});
+  var btn = document.getElementById(prefix + 'SubmitBtn');
+  if (!btn) return;
+  var remaining = weekendItems.filter(function(item){return !state.answers[item.id];}).length;
+  if (allDone) {
+    btn.style.opacity = '1';
+  } else {
+    btn.style.opacity = '0.6';
+  }
+}
+
+function submitWeekendStore(prefix, state) {
+  var now = new Date();
+  var month = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
+  var dayKey = prefix === 'sat' ? 'saturday' : 'sunday';
+
+  var yes=0, applicable=0;
+  weekendItems.forEach(function(item){
+    var a = state.answers[item.id];
+    if(a==='yes'){yes++;applicable++;}
+    else if(a==='no'){applicable++;}
+  });
+  var score = applicable>0 ? Math.round(yes/applicable*100) : 0;
+  // Soft nudge — allow submit but show reminder if incomplete
+  var answeredCount = Object.keys(state.answers||{}).length;
+  if(answeredCount < weekendItems.length && answeredCount > 0){
+    var nudgeEl = document.getElementById(prefix+'-nudge');
+    if(nudgeEl){ nudgeEl.textContent = answeredCount+' of '+weekendItems.length+' items filled — submitting as partial. You can resubmit anytime to update.';
+    nudgeEl.style.display='block'; }
+  }
+
+  var times = {};
+  weekendItems.filter(function(item){return item.timed;}).forEach(function(item){
+    var el = document.getElementById(prefix + '-time-' + item.id);
+    if (el && el.value) times[item.id] = el.value;
+  });
+
+  var payload = {
+    am: state.am,
+    store: state.currentStore.name,
+    region: state.currentStore.region,
+    day: dayKey,
+    answers: state.answers,
+    speedTimes: times,
+    score: score,
+    visitDate: now.toISOString()
+  };
+
+  fetch('/api/submissions',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.success){
+      fetch('/api/coverage',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({am:state.am,month:month,store:state.currentStore.name,day:prefix})});
+      document.getElementById(prefix + 'FormWrap').classList.add('hidden');
+      document.getElementById(prefix + 'SuccessWrap').classList.remove('hidden');
+      var band = score>=90?'🟢':score>=75?'🟡':score>=60?'🟠':'🔴';
+      document.getElementById(prefix + 'SuccessMsg').textContent =
+        state.currentStore.name + ' submitted. Score: ' + band + ' ' + score + '%';
+    }
+  })
+  .catch(function(){alert('Submission failed. Please try again.');});
+}
+
+setupWeekendDay('sat', 'Saturday', '&#x26A1;');
+setupWeekendDay('sun', 'Sunday', '&#x1F305;');
+selectDay(new Date().getDay());
+
+// Festival Readiness Alert
+(function(){
+  var FA=[
+    {d:'2026-04-14',n:'Baisakhi',c:['Staff up all Punjab stores','Stock order for Deepak region','Brief AMs on festive offers']},
+    {d:'2026-05-01',n:'Maharashtra Day',c:['Staff all Maharashtra stores','Stock Lokhandwala, Bandra, FIFC, Kurla','Akash Chavan and Rathod to confirm']},
+    {d:'2026-05-10',n:"Mother's Day",c:['Activate promotions all stores','Stock gift combo items','Brief cashiers on upselling']},
+    {d:'2026-05-27',n:'Bakri Eid',c:['Holiday staffing confirmed','Advance stock orders placed','Recognise your team today']},
+    {d:'2026-08-15',n:'Independence Day',c:['Patriotic promotions live','Full staffing confirmed','Airport stores at peak ready']},
+    {d:'2026-11-08',n:'Diwali',c:['MAX STAFFING all 44 stores','Stock order 2 weeks prior','Festive offers activated','Celebrate and recognise your team']}
+  ];
+  var now=new Date(); now.setHours(0,0,0,0);
+  for(var i=0;i<FA.length;i++){
+    var fd=new Date(FA[i].d); fd.setHours(0,0,0,0);
+    var diff=Math.ceil((fd-now)/86400000);
+    if(diff<=7 && diff>=-1){
+      var el=document.getElementById('festAlert');
+      if(!el) break;
+      var uc=diff<=2?'#FF3B30':diff<=5?'#FF9500':'#007AFF';
+      var lbl=diff===0?'TODAY':diff<0?'Celebrate':diff+' days away';
+      var h='<div style="background:rgba(255,149,0,0.08);border:1.5px solid '+uc+';border-radius:14px;padding:12px 14px;">';
+      h+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">';
+      h+='<div><div style="font-size:9px;font-weight:700;color:'+uc+';text-transform:uppercase;letter-spacing:1px;">Festival Readiness</div>';
+      h+='<div style="font-size:15px;font-weight:700;color:#1C1C1E;">'+FA[i].n+'</div></div>';
+      h+='<div style="background:'+uc+';color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;">'+lbl+'</div></div>';
+      for(var j=0;j<FA[i].c.length;j++){
+        h+='<div style="display:flex;gap:8px;padding:4px 0;font-size:12px;color:#1C1C1E;border-bottom:1px solid rgba(0,0,0,0.05);">';
+        h+='<span style="min-width:16px;font-size:9px;font-weight:700;color:'+uc+';">'+(j+1)+'.</span>'+FA[i].c[j]+'</div>';
+      }
+      if(diff<=0) h+='<div style="margin-top:8px;background:rgba(52,199,89,0.1);border-radius:8px;padding:8px;font-size:11px;color:#1B7A3A;font-weight:600;">Go recognise your team today.</div>';
+      h+='</div>';
+      el.innerHTML=h; el.style.display='block'; break;
+    }
+  }
+})();
+
+
+// ── EVENT SUBMISSION ────────────────────────────────────
+var EV_AM_STORES = {
+  'Raman': ['TH T3D DIAL','TH T3D Food Court','TH T1D Dial'],
+  'Harish': ['TH DLF Cyberhub','TH Golf Course AIPL','TH Select City Saket','TH Green Park','TH Basant Lok','TH Epicuria Nehru Place'],
+  'Rohit': ['TH Skymark one','TH Vegas Mall','TH NSP Pritampura','TH Punjabi bagh'],
+  'Deepak': ['TH Malhar Road','TH Sunview Enclave','TH Bucho Bathinda','TH Patiala','TH Mohali','TH Sangrur','TH Elante Mall','TH Sec 35 Chandigarh'],
+  'Akash Chavan': ['TH Balewadi Pune','TH Lokhandwala','TH MC Kurla','TH Viman Nagar','TH Phonix Mall Wakad','TH FC Road','TH FIFC Mumbai'],
+  'Akash Rathod': ['TH HPCL Mumbai Pune Expressway','TH NMIA Arrival','TH NMiA Departure','TH Nexus Seawood'],
+  'Jagadeesha': ['TH Koramangala','TH BIAL','TH Mall of Asia','TH HSR'],
+  'Shivam': ['TH Inorbit Mall-Hyderabad','TH HIAL','TH HIAL Arrival','TH Lakeshore']
+};
+var evState = { menuPricing:'', billBook:'', punched:'', billsAttached:'' };
+
+// Show event tile always
+window.addEventListener('load', function(){
+  // Event tile always visible at bottom
+  // Pre-fill AM from localStorage
+  var savedAm = localStorage.getItem('th_am_name');
+  if(savedAm){
+    var sel = document.getElementById('evAm');
+    if(sel){ sel.value = savedAm; updateEvStores(savedAm); }
+  }
+  // Default date to today
+  var dt = document.getElementById('evDate');
+  if(dt) dt.value = new Date().toISOString().split('T')[0];
+});
+
+document.addEventListener('change', function(e){
+  if(e.target.id === 'evAm') updateEvStores(e.target.value);
+});
+
+function updateEvStores(am){
+  var sel = document.getElementById('evStore');
+  if(!sel) return;
+  sel.innerHTML = '<option value="">Select store...</option>';
+  var stores = EV_AM_STORES[am]||[];
+  stores.forEach(function(s){
+    var opt = document.createElement('option');
+    opt.value = s; opt.textContent = s.replace('TH ','');
+    sel.appendChild(opt);
+  });
+}
+
+function toggleEvForm(){
+  var wrap = document.getElementById('evFormWrap');
+  if(!wrap) return;
+  var open = wrap.classList.contains('open');
+  wrap.classList.toggle('open', !open);
+}
+
+function setMenuPricing(val, btn){
+  evState.menuPricing = val;
+  document.querySelectorAll('#menuPricingRow .ev-toggle-btn').forEach(function(b){ b.className='ev-toggle-btn'; });
+  btn.className = 'ev-toggle-btn yes-sel';
+  document.getElementById('evCustomPrice').style.display = val==='custom'?'block':'none';
+}
+
+function setCompliance(field, val, btn){
+  evState[field] = val;
+  var rowId = field==='billBook'?'billBookRow':field==='punched'?'punchedRow':'billsAttachedRow';
+  document.querySelectorAll('#'+rowId+' .ev-toggle-btn').forEach(function(b){ b.className='ev-toggle-btn'; });
+  btn.className = 'ev-toggle-btn '+(val==='yes'?'yes-sel':'no-sel');
+}
+
+function calcProfit(){
+  var sales = parseFloat(document.getElementById('evSales').value)||0;
+  var comm  = parseFloat(document.getElementById('evCommission').value)||0;
+  var exp   = parseFloat(document.getElementById('evExpenses').value)||0;
+  var revenueShare = sales * (comm/100);   // AM-entered %
+  var foodCost     = sales * 0.30;          // 30% food cost
+  var rental       = sales * 0.05;          // 5% expenses
+  var commCharge   = sales * 0.02;          // 2% commission
+  var bankCharges  = sales * 0.02;          // 2% bank charges
+  var profit = sales - revenueShare - foodCost - rental - commCharge - bankCharges - exp;
+  var el = document.getElementById('evProfitDisplay');
+  if(el){
+    el.textContent = (profit>=0?'+':'-') + '₹' + Math.abs(Math.round(profit)).toLocaleString('en-IN');
+    el.style.color = profit>=0?'#34C759':'#FF3B30';
+  }
+}
+
+function previewImg(inputId, previewId){
+  var input = document.getElementById(inputId);
+  var preview = document.getElementById(previewId);
+  if(!input||!preview||!input.files[0]) return;
+  var reader = new FileReader();
+  reader.onload = function(e){
+    preview.innerHTML = '<img class="ev-img-thumb" src="'+e.target.result+'">';
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+function submitEvent(){
+  // Validate
+  var am = document.getElementById('evAm').value;
+  var store = document.getElementById('evStore').value;
+  var date = document.getElementById('evDate').value;
+  var venue = document.getElementById('evVenue').value;
+  var sales = document.getElementById('evSales').value;
+  var comm = document.getElementById('evCommission').value;
+  var exp = document.getElementById('evExpenses').value;
+  var manager = document.getElementById('evManager').value;
+  var img1 = document.getElementById('evImg1');
+  var billBookComment = document.getElementById('billBookComment').value;
+  var punchedComment = document.getElementById('punchedComment').value;
+  var billsComment = document.getElementById('billsAttachedComment').value;
+
+  if(!am||!store||!date||!venue||!sales||comm===''||exp===''||!manager){
+    alert('Please fill in all mandatory fields.');return;
+  }
+  if(!evState.menuPricing){ alert('Please select menu pricing type.');return; }
+  if(!evState.billBook){ alert('Please answer: Was the manual bill book used?');return; }
+  if(!billBookComment.trim()){ alert('Please add a comment for the manual bill book question.');return; }
+  if(!evState.punched){ alert('Please answer: Was the amount punched in system?');return; }
+  if(!punchedComment.trim()){ alert('Please add a comment for the system punch question.');return; }
+  if(!evState.billsAttached){ alert('Please answer: Were manual bills attached with POS?');return; }
+  if(!billsComment.trim()){ alert('Please add a comment for the bills attached question.');return; }
+  if(!img1.files||!img1.files[0]){ alert('Please upload at least 1 image.');return; }
+
+  var btn = document.getElementById('evSubmitBtn');
+  btn.disabled = true; btn.textContent = 'Submitting...';
+
+  var fd = new FormData();
+  fd.append('am', am);
+  fd.append('store', store);
+  fd.append('region', document.getElementById('evStore').selectedOptions[0]?'':'' );
+  fd.append('eventDate', date);
+  fd.append('venue', venue);
+  fd.append('menuPricing', evState.menuPricing);
+  if(evState.menuPricing==='custom') fd.append('customPrice', document.getElementById('evCustomPrice').value);
+  fd.append('salesGenerated', sales);
+  fd.append('revenueShare', comm);
+  fd.append('otherExpenses', exp);
+  fd.append('manualBillBook', evState.billBook);
+  fd.append('manualBillBookComment', billBookComment);
+  fd.append('punchedInSystem', evState.punched);
+  fd.append('punchedInSystemComment', punchedComment);
+  fd.append('billsAttached', evState.billsAttached);
+  fd.append('billsAttachedComment', billsComment);
+  fd.append('managerPresent', manager);
+  fd.append('notes', document.getElementById('evNotes').value);
+
+  // Images
+  ['evImg1','evImg2','evImg3'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el&&el.files&&el.files[0]) fd.append('images', el.files[0]);
+  });
+
+  fetch('/api/events/submit', {method:'POST', body:fd})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.success){
+      var profit = d.profit>=0?'+₹'+d.profit.toLocaleString('en-IN'):'-₹'+Math.abs(d.profit).toLocaleString('en-IN');
+      document.getElementById('evSuccessDetail').textContent = 'Compliance: '+d.complianceScore+'% | Profit: '+profit;
+      document.getElementById('evSuccess').style.display = 'block';
+      btn.textContent = 'Submit Another';
+      btn.disabled = false;
+      btn.onclick = function(){ document.getElementById('evSuccess').style.display='none'; document.getElementById('evFormWrap').innerHTML=''; toggleEvForm(); };
+    } else {
+      alert('Error: '+(d.error||'Submission failed'));
+      btn.disabled=false; btn.textContent='Submit Event';
+    }
+  })
+  .catch(function(){
+    alert('Network error. Please try again.');
+    btn.disabled=false; btn.textContent='Submit Event';
+  });
+}
+
+</script>
+</body>
+</html>

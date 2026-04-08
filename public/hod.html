@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1.0">
+<title>HOD Dashboard</title>
+<style>
+:root{--red:#C8102E;--surface:#F2F2F7;--card:#fff;--border:#E5E5EA;--text:#1C1C1E;--text2:#8E8E93;--green:#34C759;--amber:#FF9500;--critical:#FF3B30;--blue:#007AFF;--nav-h:72px;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--surface);padding-bottom:calc(var(--nav-h)+16px);}
+.hdr{background:linear-gradient(160deg,#0D0D1A 0%,#1A0508 60%,#2D0A15 100%);padding:calc(env(safe-area-inset-top,0px)+44px) 18px 18px;position:relative;overflow:hidden;}
+.hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(200,16,46,0.25) 0%,transparent 70%);}
+.hdr-eyebrow{font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;position:relative;}
+.hdr-title{font-size:26px;font-weight:700;color:#fff;letter-spacing:-0.5px;position:relative;}
+.hdr-sub{font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;position:relative;}
+.hdr-stats{display:flex;gap:10px;margin-top:14px;position:relative;}
+.hstat{background:rgba(255,255,255,0.08);border-radius:12px;padding:10px;flex:1;text-align:center;}
+.hstat-num{font-size:22px;font-weight:700;color:#fff;}
+.hstat-lbl{font-size:9px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+.content{padding:12px 16px;}
+.sec-hdr{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin:14px 0 8px;}
+.tog-row{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;scrollbar-width:none;}
+.tog-row::-webkit-scrollbar{display:none;}
+.tog-btn{flex-shrink:0;padding:8px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--card);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;white-space:nowrap;}
+.tog-btn.active{background:var(--red);color:#fff;border-color:var(--red);}
+.kpi-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
+.kc{background:var(--card);border-radius:12px;padding:10px;text-align:center;border:1px solid var(--border);}
+.kc-val{font-size:17px;font-weight:700;color:var(--text);}
+.kc-lbl{font-size:9px;color:var(--text2);text-transform:uppercase;letter-spacing:0.3px;margin-top:2px;}
+.am-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.am-card{background:var(--card);border-radius:16px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.06);border:1px solid var(--border);}
+.am-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.am-name{font-size:14px;font-weight:700;color:var(--text);}
+.am-region{font-size:10px;color:var(--text2);margin-top:2px;}
+.am-score{font-size:20px;font-weight:700;}
+.am-bar-bg{height:4px;background:var(--border);border-radius:2px;margin-top:6px;}
+.am-bar{height:100%;border-radius:2px;}
+.am-meta{font-size:10px;color:var(--text2);margin-top:5px;}
+.badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:9px;font-weight:700;margin-top:4px;}
+.badge-ok{background:rgba(52,199,89,0.12);color:#1B7A3A;}
+.badge-miss{background:rgba(255,59,48,0.12);color:#C8102E;}
+.sub-table{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:14px;}
+.sub-row{display:flex;align-items:center;padding:9px 12px;border-bottom:1px solid var(--border);gap:8px;}
+.sub-row:last-child{border-bottom:none;}
+.sub-hdr-row{background:#1C1C1E;padding:7px 12px;}
+.sub-hc{font-size:9px;font-weight:700;color:rgba(255,255,255,0.55);text-transform:uppercase;}
+.flag-card{background:linear-gradient(135deg,#FFF5F5,#FFEEEE);border-radius:12px;padding:11px 13px;margin-bottom:8px;border:1px solid rgba(200,16,46,0.15);}
+.flag-title{font-size:12px;font-weight:700;color:var(--critical);margin-bottom:3px;}
+.flag-detail{font-size:11px;color:var(--text2);}
+.issue-card{background:var(--card);border-radius:12px;padding:12px;margin-bottom:8px;border-left:3px solid var(--critical);box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+.empty{text-align:center;padding:24px;color:var(--text2);font-size:13px;}
+.spinner{width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin 0.8s linear infinite;margin:30px auto;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(255,255,255,0.9);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;min-width:56px;}
+.nav-icon{font-size:22px;}
+.nav-label{font-size:10px;font-weight:500;color:var(--text2);}
+.nav-item.active .nav-label{color:var(--red);font-weight:700;}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="hdr-eyebrow">Head of Operations</div>
+  <div class="hdr-title">Command Centre</div>
+  <div class="hdr-sub" id="hodDate">Loading...</div>
+  <div class="hdr-stats">
+    <div class="hstat"><div class="hstat-num" id="hTot">--</div><div class="hstat-lbl">Submissions</div></div>
+    <div class="hstat"><div class="hstat-num" id="hAvg">--</div><div class="hstat-lbl">Avg Score</div></div>
+    <div class="hstat"><div class="hstat-num" id="hFlg">--</div><div class="hstat-lbl">Red Flags</div></div>
+  </div>
+</div>
+<div class="content">
+  <div class="tog-row">
+    <button class="tog-btn active" onclick="sv('overview')">Overview</button>
+    <button class="tog-btn" onclick="sv('submissions')">Submissions</button>
+    <button class="tog-btn" onclick="sv('coverage')">Coverage</button>
+    <button class="tog-btn" onclick="sv('issues')">Issues</button>
+    <button class="tog-btn" onclick="sv('health')">&#127973; Health</button>
+  </div>
+  <div id="v-overview"></div>
+  <div id="v-submissions" style="display:none"></div>
+  <div id="v-coverage" style="display:none"></div>
+  <div id="v-issues" style="display:none"></div>
+  <div id="v-health" style="display:none"></div>
+</div>
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item"><span class="nav-icon">&#127968;</span><span class="nav-label">Home</span></a>
+  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#9989;</span><span class="nav-label">Tasks</span></a>
+  <a href="events.html" class="nav-item"><span class="nav-icon">&#128197;</span><span class="nav-label">Events</span></a>
+  <a href="performance.html" class="nav-item"><span class="nav-icon">&#128202;</span><span class="nav-label">Scores</span></a>
+  <a href="team.html" class="nav-item"><span class="nav-icon">&#128101;</span><span class="nav-label">Team</span></a>
+  <a href="audit.html" class="nav-item"><span class="nav-icon">&#128269;</span><span class="nav-label">Audits</span></a>
+</nav>
+<script>
+var subs=[],issues=[];
+var AMS=[
+  {n:'Raman',r:'Delhi NCR',s:3},{n:'Harish',r:'Delhi NCR',s:6},
+  {n:'Rohit',r:'Delhi NCR',s:4},{n:'Deepak',r:'Punjab',s:7},
+  {n:'Akash Chavan',r:'Maharashtra',s:7},{n:'Akash Rathod',r:'Maharashtra',s:4},
+  {n:'Jagadeesha',r:'Karnataka',s:4},{n:'Shivam',r:'Telangana',s:4}
+];
+function bc(s){if(s===null||s===undefined)return'#8E8E93';if(s>=90)return'#34C759';if(s>=60)return'#FF9500';return'#FF3B30';}
+function ta(iso){if(!iso)return'';var d=new Date(iso),now=new Date(),diff=Math.floor((now-d)/60000);if(diff<60)return diff+'m ago';if(diff<1440)return Math.floor(diff/60)+'h ago';return Math.floor(diff/1440)+'d ago';}
+function sv(v){
+  ['overview','submissions','coverage','issues','health'].forEach(function(id){document.getElementById('v-'+id).style.display=id===v?'block':'none';});
+  document.querySelectorAll('.tog-btn').forEach(function(b,i){b.classList.toggle('active',['overview','submissions','coverage','issues','health'][i]===v);});
+}
+function load(){
+  var now=new Date();
+  document.getElementById('hodDate').textContent=now.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('v-overview').innerHTML='<div class="spinner"></div>';
+  fetch('/api/submissions').then(function(r){return r.json();}).then(function(d){
+    subs=d.data||[];
+    renderOverview();renderSubmissions();
+  }).catch(function(){subs=[];renderOverview();renderSubmissions();});
+  fetch('/api/issues').then(function(r){return r.json();}).then(function(d){
+    issues=d.data||[];renderIssues();
+  }).catch(function(){issues=[];renderIssues();});
+  renderCoverage();
+}
+function renderOverview(){
+  var scored=subs.filter(function(s){return s.score!==null&&s.score!==undefined;});
+  var avg=scored.length>0?Math.round(scored.reduce(function(a,s){return a+s.score;},0)/scored.length):0;
+  var flags=subs.filter(function(s){return s.score!==null&&s.score!==undefined&&s.score<60;}).length;
+  document.getElementById('hTot').textContent=subs.length;
+  document.getElementById('hAvg').textContent=avg?avg+'%':'--';
+  document.getElementById('hFlg').textContent=flags;
+  var html='<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;">India MTD — March 2026</div>';
+  html+='<div class="kpi-strip">';
+  html+='<div class="kc"><div class="kc-val">&#8377;82K</div><div class="kc-lbl">ADS</div></div>';
+  html+='<div class="kc"><div class="kc-val">148</div><div class="kc-lbl">ADT</div></div>';
+  html+='<div class="kc"><div class="kc-val">&#8377;558</div><div class="kc-lbl">APC</div></div>';
+  html+='<div class="kc"><div class="kc-val" style="color:var(--green)">&#8593;107%</div><div class="kc-lbl">vs LY</div></div>';
+  html+='<div class="kc"><div class="kc-val" style="color:var(--green)">&#8593;105%</div><div class="kc-lbl">vs LM</div></div>';
+  html+='<div class="kc"><div class="kc-val">&#8377;8.45Cr</div><div class="kc-lbl">MTD Rev</div></div>';
+  html+='</div>';
+  html+='<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin:14px 0 8px;">Area Manager Scores</div>';
+  html+='<div class="am-grid">';
+  AMS.forEach(function(am){
+    var amSubs=subs.filter(function(s){return s.am===am.n;});
+    var amScored=amSubs.filter(function(s){return s.score!==null&&s.score!==undefined&&s.score>0;});
+    var amAvg=amScored.length>0?Math.round(amScored.reduce(function(a,s){return a+s.score;},0)/amScored.length):null;
+    var color=bc(amAvg);
+    var bw=amAvg||0;
+    var badge=amSubs.length>0?'<span class="badge badge-ok">'+amSubs.length+' submitted</span>':'<span class="badge badge-miss">No data</span>';
+    html+='<div class="am-card"><div class="am-top"><div><div class="am-name">'+am.n+'</div><div class="am-region">'+am.r+'</div></div><div class="am-score" style="color:'+color+'">'+(amAvg!==null?amAvg+'%':'--')+'</div></div>';
+    html+='<div class="am-bar-bg"><div class="am-bar" style="width:'+bw+'%;background:'+color+';"></div></div>';
+    html+='<div class="am-meta">'+am.s+' stores</div>'+badge+'</div>';
+  });
+  html+='</div>';
+  html+='<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin:14px 0 8px;">Red Flags</div>';
+  var lowSubs=subs.filter(function(s){return s.score!==null&&s.score!==undefined&&s.score<60;});
+  var wedSubs=subs.filter(function(s){return s.day==='wednesday';});
+  var hasFlags=false;
+  lowSubs.forEach(function(s){
+    hasFlags=true;
+    html+='<div class="flag-card"><div class="flag-title">&#128681; '+s.store+' &mdash; '+s.score+'%</div><div class="flag-detail">'+s.am+' &middot; '+s.day+' &middot; '+ta(s.submittedAt)+'</div></div>';
+  });
+  wedSubs.forEach(function(s){
+    (s.machines||[]).filter(function(m){return m.status==='down'||m.status==='repair';}).forEach(function(m){
+      hasFlags=true;
+      html+='<div class="flag-card"><div class="flag-title">&#128295; '+m.machine+' &mdash; '+m.status.toUpperCase()+'</div><div class="flag-detail">'+s.store+' &middot; '+s.am+(m.issue?' &middot; '+m.issue:'')+'</div></div>';
+    });
+    (s.pest||[]).filter(function(p){return p.status==='found';}).forEach(function(p){
+      hasFlags=true;
+      html+='<div class="flag-card" style="border-left-color:var(--amber)"><div class="flag-title" style="color:var(--amber)">&#128027; Pest &mdash; '+p.check+'</div><div class="flag-detail">'+s.store+' &middot; '+s.am+'</div></div>';
+    });
+  });
+  if(!hasFlags) html+='<div class="empty" style="color:var(--green)">&#10003; No red flags today</div>';
+  document.getElementById('v-overview').innerHTML=html;
+}
+function renderSubmissions(){
+  if(subs.length===0){document.getElementById('v-submissions').innerHTML='<div class="empty">No submissions yet</div>';return;}
+  var sorted=subs.slice().sort(function(a,b){return new Date(b.submittedAt||0)-new Date(a.submittedAt||0);});
+  var html='<div class="sub-table"><div class="sub-row sub-hdr-row"><div class="sub-hc" style="min-width:30px">Day</div><div class="sub-hc" style="flex:1">Store</div><div class="sub-hc" style="min-width:55px">AM</div><div class="sub-hc" style="min-width:36px;text-align:right">Score</div><div class="sub-hc" style="min-width:44px;text-align:right">When</div></div>';
+  sorted.forEach(function(s){
+    var c=bc(s.score);
+    var sc=s.score!==null&&s.score!==undefined?s.score+'%':'Data';
+    html+='<div class="sub-row"><div style="min-width:30px;font-size:11px;font-weight:700;color:var(--red)">'+(s.day||'').slice(0,3).toUpperCase()+'</div><div style="flex:1;font-size:12px;font-weight:600">'+s.store+'</div><div style="min-width:55px;font-size:11px;color:var(--text2)">'+s.am+'</div><div style="min-width:36px;text-align:right;font-size:13px;font-weight:700;color:'+c+'">'+sc+'</div><div style="min-width:44px;text-align:right;font-size:10px;color:var(--text2)">'+ta(s.submittedAt)+'</div></div>';
+  });
+  html+='</div>';
+  document.getElementById('v-submissions').innerHTML=html;
+}
+function renderCoverage(){
+  var html='<div class="sub-table">';
+  AMS.forEach(function(am){
+    var amSubs=subs.filter(function(s){return s.am===am.n;});
+    var stores=new Set(amSubs.map(function(s){return s.store;}));
+    var pct=am.s>0?Math.round(stores.size/am.s*100):0;
+    var c=pct===100?'var(--green)':pct>=50?'var(--amber)':'var(--critical)';
+    html+='<div class="sub-row" style="padding:10px 12px;"><div style="flex:1"><div style="font-size:13px;font-weight:600">'+am.n+'</div><div style="font-size:10px;color:var(--text2)">'+stores.size+'/'+am.s+' stores have submissions &middot; '+am.r+'</div></div><div style="font-size:14px;font-weight:700;color:'+c+'">'+pct+'%</div></div>';
+  });
+  html+='</div>';
+  document.getElementById('v-coverage').innerHTML=html;
+}
+function renderIssues(){
+  if(issues.length===0){document.getElementById('v-issues').innerHTML='<div class="empty" style="color:var(--green)">&#10003; No issues reported yet</div>';return;}
+  var sorted=issues.slice().sort(function(a,b){return new Date(b.timestamp||0)-new Date(a.timestamp||0);});
+  var html='';
+  sorted.forEach(function(issue){
+    html+='<div class="issue-card"><div style="font-size:13px;font-weight:700;color:var(--text)">'+(issue.name||'AM')+(issue.store?' &mdash; '+issue.store:'')+'</div><div style="font-size:12px;color:var(--text);margin:4px 0">'+(issue.description||'')+'</div><div style="font-size:11px;color:var(--text2)">'+ta(issue.timestamp)+'</div></div>';
+  });
+  document.getElementById('v-issues').innerHTML=html;
+}
+load();
+setInterval(load,60000);
+
+function renderHealth(){
+  fetch('/api/health-scores').then(function(r){return r.json();}).then(function(d){
+    var scores=d.data||[];
+    if(scores.length===0){document.getElementById('v-health').innerHTML='<div class="empty">Health scores calculating... Check back after AMs start submitting.</div>';return;}
+    var html='<div style="background:linear-gradient(135deg,#0D0D1A,#1A0508);border-radius:16px;padding:14px;margin-bottom:12px;">';
+    html+='<div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Store Health Scores &mdash; '+scores.length+' stores</div>';
+    html+='<div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:10px;">Scores go live to AMs on 7 April 2026. Baseline period in progress.</div>';
+    var bands={excellent:0,good:0,attention:0,critical:0};
+    scores.forEach(function(s){bands[s.band]=(bands[s.band]||0)+1;});
+    html+='<div style="display:flex;gap:8px;margin-bottom:10px;">';
+    html+='<div style="background:rgba(52,199,89,0.2);border-radius:8px;padding:6px 10px;flex:1;text-align:center"><div style="font-size:18px;font-weight:700;color:#34C759">'+bands.excellent+'</div><div style="font-size:9px;color:rgba(255,255,255,0.4)">EXCELLENT</div></div>';
+    html+='<div style="background:rgba(255,149,0,0.2);border-radius:8px;padding:6px 10px;flex:1;text-align:center"><div style="font-size:18px;font-weight:700;color:#FF9500">'+(bands.good+bands.attention)+'</div><div style="font-size:9px;color:rgba(255,255,255,0.4)">ATTENTION</div></div>';
+    html+='<div style="background:rgba(255,59,48,0.2);border-radius:8px;padding:6px 10px;flex:1;text-align:center"><div style="font-size:18px;font-weight:700;color:#FF3B30">'+bands.critical+'</div><div style="font-size:9px;color:rgba(255,255,255,0.4)">CRITICAL</div></div>';
+    html+='</div></div>';
+    html+='<div class="sub-table"><div class="sub-row sub-hdr-row"><div class="sub-hc" style="min-width:20px">#</div><div class="sub-hc" style="flex:1">Store</div><div class="sub-hc" style="min-width:50px;text-align:right">Score</div><div class="sub-hc" style="min-width:60px;text-align:right">Band</div></div>';
+    scores.forEach(function(s,i){
+      var c2=s.color||'#8E8E93';
+      html+='<div class="sub-row"><div style="min-width:20px;font-size:10px;color:var(--text2)">'+(i+1)+'</div><div style="flex:1;font-size:12px;font-weight:600">'+s.store.replace('TH ','')+'</div><div style="min-width:50px;text-align:right;font-size:14px;font-weight:700;color:'+c2+'">'+s.score+'</div><div style="min-width:60px;text-align:right;font-size:9px;font-weight:700;color:'+c2+'">'+s.band.toUpperCase()+'</div></div>';
+    });
+    html+='</div>';
+    document.getElementById('v-health').innerHTML=html;
+  }).catch(function(){
+    document.getElementById('v-health').innerHTML='<div class="empty">Health scores not available yet</div>';
+  });
+}
+</script>
+<nav class="bottom-nav" style="position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000;">
+  <a href="index.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;"><span style="font-size:22px;">&#x1F3E0;</span><span style="font-size:10px;color:#6E6E73;">Home</span></a>
+  <a href="tasks.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;"><span style="font-size:22px;">&#x2705;</span><span style="font-size:10px;color:#6E6E73;">Tasks</span></a>
+  <a href="timsy.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;"><span style="font-size:22px;">&#x2615;</span><span style="font-size:10px;color:#6E6E73;">Timsy</span></a>
+  <a href="performance.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;"><span style="font-size:22px;">&#x1F4CA;</span><span style="font-size:10px;color:#6E6E73;">Scores</span></a>
+  <a href="team.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;"><span style="font-size:22px;">&#x1F465;</span><span style="font-size:10px;color:#6E6E73;">Team</span></a>
+</nav>
+</body>
+</html>

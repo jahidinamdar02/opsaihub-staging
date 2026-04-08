@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tim's Ops Connect</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#1A0508;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.box{background:#fff;border-radius:20px;padding:32px;width:100%;max-width:360px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.logo{font-size:40px;margin-bottom:10px}
+.title{font-size:20px;font-weight:700;color:#1D1D1F;margin-bottom:6px}
+.sub{font-size:13px;color:#6E6E73;margin-bottom:24px;line-height:1.5}
+input{width:100%;padding:14px;border-radius:12px;border:1.5px solid #E5E5EA;font-size:18px;margin-bottom:14px;outline:none;text-align:center;letter-spacing:4px;background:#F5F5F7}
+input:focus{border-color:#C8102E}
+button{width:100%;padding:14px;border-radius:12px;border:none;background:#C8102E;color:#fff;font-size:16px;font-weight:700;cursor:pointer}
+button:active{background:#9B0D22}
+.err{color:#FF3B30;font-size:13px;margin-top:12px;display:none}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="logo">&#9749;</div>
+  <div class="title">Tim's Ops Connect</div>
+  <div class="sub">Internal Operations Platform<br>Tim Hortons India</div>
+  <input type="password" id="pw" placeholder="Access Code" onkeydown="if(event.key==='Enter')go()">
+  <button onclick="go()">Enter Platform</button>
+  <div class="err" id="err">Incorrect access code. Try again.</div>
+</div>
+<script>
+function go(){
+  var v=document.getElementById("pw").value.trim();
+  if(!v){return;}
+  window.location.href="/?access="+encodeURIComponent(v);
+}
+</script>
+</body></html>

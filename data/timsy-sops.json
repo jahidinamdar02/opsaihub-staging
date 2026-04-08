@@ -1,0 +1,52 @@
+[
+  {
+    "module": "Store Opening Procedures",
+    "id": "SOP-01",
+    "content": "1. Arrive at store 30 minutes before opening time. 2. Check all safety locks and alarm status, disarm using your personal code. 3. Turn on all equipment in sequence: RO Machine, Coffee Machine, iCombi, Mary Chef, Blenders, Ice Machine, Chillers. 4. Allow Coffee Machine to complete its full warm-up cycle (minimum 15 minutes) before brewing any beverages. 5. Check product thaw status, all thaw items must have been placed the previous closing. 6. Verify counter cleanliness and sanitise all food contact surfaces. 7. Check POS system is booted and all screens are operational. 8. Verify cash float is correct per the safe count sheet. 9. Check RTE display is stocked and priced correctly. 10. Ensure opening team is fully briefed on LTOs and focus items for the day. 11. Conduct a final walk-through of front of house, kitchen, washrooms, drive-through if applicable. 12. Open doors on time. Never open late without logging a delay reason.",
+    "assessmentQuestions": [
+      { "q": "How many minutes before opening should an Area Manager arrive at the store?", "options": ["15 minutes", "30 minutes", "45 minutes", "60 minutes"], "correct": 1 },
+      { "q": "What is the minimum warm-up time required for the Coffee Machine before brewing?", "options": ["5 minutes", "10 minutes", "15 minutes", "20 minutes"], "correct": 2 },
+      { "q": "Which step must be completed FIRST in the equipment start-up sequence?", "options": ["Coffee Machine", "iCombi", "RO Machine", "Blenders"], "correct": 2 }
+    ]
+  },
+  {
+    "module": "Store Closing Procedures",
+    "id": "SOP-02",
+    "content": "1. Begin wind-down 45 minutes before closing. 2. Cash up: count all tills, complete daily cash report, secure excess cash in safe. 3. Safe count must be witnessed by two team members and signed. 4. Equipment shutdown sequence: Blenders, Mary Chef, iCombi, Coffee Machine, Ice Machine. Do NOT turn off chillers overnight. 5. Coffee Machine must run its cleaning cycle before shutdown, never skip. 6. Clean and sanitise all food contact surfaces, equipment exteriors, and counters. 7. Mop all floors, kitchen first, then front of house. 8. Take out all waste, do not leave bins full overnight. 9. Check all products in chillers are covered and labelled with date. 10. Set alarm, lock all entry points, and confirm on the closing checklist that all items are complete. 11. Last person out signs the closing log with time and name.",
+    "assessmentQuestions": [
+      { "q": "Which equipment must NEVER be turned off during overnight closing?", "options": ["Coffee Machine", "Blenders", "Chillers", "iCombi"], "correct": 2 },
+      { "q": "How many team members must witness and sign the safe count?", "options": ["One", "Two", "Three", "Manager only"], "correct": 1 },
+      { "q": "When should you stop adding new thaw items during the closing wind-down?", "options": ["At closing time", "1 hour before closing", "45 minutes before closing", "30 minutes before closing"], "correct": 2 }
+    ]
+  },
+  {
+    "module": "Food Safety & Hygiene",
+    "id": "SOP-03",
+    "content": "1. All team members must wash hands on arrival, after using washroom, after handling raw food, after touching waste, after sneezing or coughing. 2. Correct handwash procedure: wet hands, apply soap, scrub for minimum 20 seconds, rinse thoroughly, dry with paper towel. 3. Gloves must be worn when handling ready-to-eat food. Change gloves between tasks. 4. FIFO, First In First Out, must be followed for all products. Check dates every morning. 5. Temperature checks: chillers at 1 to 4 degrees Celsius. Record temperatures twice daily, morning and evening. 6. Hot holding temperature: minimum 63 degrees Celsius for all hot food items. 7. Never serve food past its hold time. Hold times: sandwiches 4 hours, baked goods 12 hours, brewed coffee 20 minutes. 8. Allergen awareness: all team must know the top 14 allergens. Never guess, check the allergen matrix. 9. No jewellery except plain wedding band in food preparation areas. 10. Report any signs of illness to manager immediately, never work sick.",
+    "assessmentQuestions": [
+      { "q": "What is the correct chiller temperature range for food storage?", "options": ["0 to 2 degrees", "1 to 4 degrees", "5 to 8 degrees", "Below 10 degrees"], "correct": 1 },
+      { "q": "What is the maximum hold time for brewed coffee?", "options": ["10 minutes", "15 minutes", "20 minutes", "30 minutes"], "correct": 2 },
+      { "q": "What does FIFO stand for?", "options": ["First In Final Out", "First In First Out", "Fresh Items Fresh Output", "Full Inventory Fresh Operations"], "correct": 1 }
+    ]
+  },
+  {
+    "module": "Coffee Brewing Standards",
+    "id": "SOP-04",
+    "content": "1. Tim Hortons coffee is brewed from 100% Arabica beans, always store in sealed containers away from light and heat. 2. Brew cycle: every 20 minutes or when pot reaches the fill line, whichever comes first. 3. Never top up an existing pot, always brew a fresh full batch. 4. Water temperature for brewing: 92 to 96 degrees Celsius. If machine shows error on temperature, do not brew, call for service. 5. Espresso-based drinks: shots must be pulled between 25 to 30 seconds. Outside this range, adjust grind. 6. Milk steaming: heat to 60 to 65 degrees Celsius. Never re-steam milk. Use fresh milk for every drink. 7. Cold brew: prepared fresh daily, held maximum 24 hours in chiller at 1 to 4 degrees. 8. Blended beverages: always use fresh ice. Clean blender jug between every 5 uses minimum. 9. All coffee equipment must be cleaned per the manufacturer schedule, logged in the maintenance book. 10. Serve with a smile, every cup must be consistent.",
+    "assessmentQuestions": [
+      { "q": "How often must coffee be brewed at minimum?", "options": ["Every 10 minutes", "Every 15 minutes", "Every 20 minutes", "Every 30 minutes"], "correct": 2 },
+      { "q": "What is the correct milk steaming temperature?", "options": ["50 to 55 degrees", "60 to 65 degrees", "70 to 75 degrees", "80 to 85 degrees"], "correct": 1 },
+      { "q": "What should you do if an espresso shot pulls outside the 25 to 30 second range?", "options": ["Discard and retry", "Adjust grind", "Change water temperature", "Call for service"], "correct": 1 }
+    ]
+  },
+  {
+    "module": "Customer Service Standards",
+    "id": "SOP-05",
+    "content": "1. The Tim Hortons greeting: every guest is greeted within 10 seconds of entering or approaching the counter, with eye contact and a genuine smile. 2. Speed of service targets: drive-through under 3 minutes, in-store under 5 minutes from order to hand-off. 3. Use the guest name if taken at POS, personalisation is a key NPS driver. 4. Upselling is always polite and natural, never pushy. 5. If a guest complaint arises: Listen, Apologise, Act, Follow up. Never argue. Never dismiss. 6. Refunds and replacements: any product complaint gets a replacement immediately, no questions asked. Manager logs all replacements. 7. Club App: always prompt guests to sign up. Scan before payment. Explain the rewards benefit. 8. NPS feedback QR code must be visible at all times on the counter. Encourage every guest to scan. 9. Hospitality is not a transaction, it is a feeling. Every interaction must leave the guest better than when they arrived. 10. Weekend operations: deploy your best cashier on POS. Energy, speed, and warmth, all three at once.",
+    "assessmentQuestions": [
+      { "q": "What is the in-store speed of service target from order to hand-off?", "options": ["Under 3 minutes", "Under 4 minutes", "Under 5 minutes", "Under 7 minutes"], "correct": 2 },
+      { "q": "What is the correct complaint resolution sequence?", "options": ["Act Listen Apologise Follow up", "Listen Apologise Act Follow up", "Apologise Listen Act Follow up", "Listen Act Apologise Follow up"], "correct": 1 },
+      { "q": "Within how many seconds must a guest be greeted on arrival?", "options": ["5 seconds", "10 seconds", "15 seconds", "20 seconds"], "correct": 1 }
+    ]
+  }
+]

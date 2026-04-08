@@ -1,0 +1,157 @@
+{
+  "lastUpdated": "2026-03-28",
+  "events": [
+    {
+      "d": "2023-10-07",
+      "title": "Hamas attacks Israel - Gaza War begins",
+      "region": "Gaza/Israel",
+      "impact": "HIGH",
+      "indiaImpact": "Oil prices surge. Indian diaspora in Gulf affected. Air India reroutes flights.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2023-10-08",
+      "title": "Israel declares war on Hamas",
+      "region": "Israel/Gaza",
+      "impact": "HIGH",
+      "indiaImpact": "Crude oil rises 5%. India monitors closely - large Indian community in Israel.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2024-04-01",
+      "title": "Israel strikes Iranian consulate in Damascus",
+      "region": "Syria/Iran",
+      "impact": "HIGH",
+      "indiaImpact": "Oil prices spike. India urges restraint. Indian workers in Gulf on alert.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2024-04-14",
+      "title": "Iran launches 300+ drones and missiles at Israel",
+      "region": "Iran/Israel",
+      "impact": "HIGH",
+      "indiaImpact": "Strait of Hormuz tension. 80%+ of India oil imports pass through Gulf. Fuel prices spike.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2024-07-31",
+      "title": "Hamas leader Ismail Haniyeh assassinated in Tehran",
+      "region": "Iran",
+      "impact": "HIGH",
+      "indiaImpact": "Escalation fears. Indian govt advisory for Gulf region.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2024-09-17",
+      "title": "Israel pager/walkie-talkie attack on Hezbollah Lebanon",
+      "region": "Lebanon",
+      "impact": "HIGH",
+      "indiaImpact": "Shock attack. Lebanese Indian community on high alert.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2024-11-27",
+      "title": "Israel-Lebanon ceasefire signed",
+      "region": "Lebanon/Israel",
+      "impact": "MEDIUM",
+      "indiaImpact": "Temporary relief. Oil prices ease slightly.",
+      "c": "#FF9500"
+    },
+    {
+      "d": "2024-12-08",
+      "title": "Assad regime falls - Syria changes hands",
+      "region": "Syria",
+      "impact": "HIGH",
+      "indiaImpact": "Regional power shift. India recalibrates Middle East policy.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2025-03-18",
+      "title": "Israel resumes Gaza offensive - ceasefire collapses",
+      "region": "Gaza/Israel",
+      "impact": "HIGH",
+      "indiaImpact": "Oil prices rise. Air India Pakistan airspace issues continue.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2025-06-13",
+      "title": "Israel launches Operation Rising Lion - strikes Iran",
+      "region": "Iran/Israel",
+      "impact": "HIGH",
+      "indiaImpact": "Strait of Hormuz partially disrupted. Indian oil tankers rerouted. Jet fuel costs up.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2025-06-25",
+      "title": "12-Day War ends - US-Israel ceasefire with Iran",
+      "region": "Iran/Israel/USA",
+      "impact": "HIGH",
+      "indiaImpact": "Crude oil falls back. Indian diaspora in Gulf relief. Pakistan airspace still closed.",
+      "c": "#FF9500"
+    },
+    {
+      "d": "2025-10-01",
+      "title": "Gaza ceasefire - October 2025",
+      "region": "Gaza/Israel",
+      "impact": "MEDIUM",
+      "indiaImpact": "Regional tension eases. India humanitarian aid to Gaza.",
+      "c": "#FF9500"
+    },
+    {
+      "d": "2025-12-28",
+      "title": "Iran protests begin - currency collapse, inflation",
+      "region": "Iran",
+      "impact": "HIGH",
+      "indiaImpact": "Iran instability watched closely. Indian trade with Iran affected by sanctions.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2026-01-08",
+      "title": "Iran internet blackout - mass protest crackdown",
+      "region": "Iran",
+      "impact": "HIGH",
+      "indiaImpact": "Indian govt issues advisory. Gulf Indian community monitoring situation.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2026-01-26",
+      "title": "US deploys largest Middle East military buildup since 2003",
+      "region": "Gulf/USA",
+      "impact": "HIGH",
+      "indiaImpact": "Oil market volatility. India on alert for Strait of Hormuz closure risk.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2026-02-28",
+      "title": "US and Israel launch strikes on Iran - 2026 Iran War begins",
+      "region": "Iran/Israel/USA",
+      "impact": "HIGH",
+      "indiaImpact": "CRITICAL: Strait of Hormuz disrupted. Oil hits $120/barrel. Air India Gulf routes affected. Indian diaspora 3.5M in Gulf region.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2026-03-01",
+      "title": "Iran launches retaliatory missiles at Israel and US bases in Gulf",
+      "region": "Iran/Gulf",
+      "impact": "HIGH",
+      "indiaImpact": "Gulf airports disrupted. Dubai, Doha, Bahrain bases attacked. Indian flights rerouted.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2026-03-06",
+      "title": "Multi-front war - Lebanon, Iraq, Yemen all activated",
+      "region": "Middle East",
+      "impact": "HIGH",
+      "indiaImpact": "Shipping through Red Sea and Hormuz severely disrupted. India import costs surging.",
+      "c": "#FF3B30"
+    },
+    {
+      "d": "2026-03-28",
+      "title": "Ongoing: US-Iran war continues - ceasefire talks stalled",
+      "region": "Iran/USA/Israel",
+      "impact": "HIGH",
+      "indiaImpact": "Oil remains at $120+/barrel. Fuel prices in India elevated. Indian diplomats working backchannel. 9M Indian diaspora in Gulf watching closely.",
+      "c": "#FF3B30"
+    }
+  ]
+}

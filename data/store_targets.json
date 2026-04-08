@@ -1,0 +1,181 @@
+{
+  "month": "2026-04",
+  "stores": {
+    "TH Malhar Road": {
+      "ads": 76600,
+      "qr": 30
+    },
+    "TH Sunview Enclave": {
+      "ads": 72400,
+      "qr": 30
+    },
+    "TH Bucho Bathinda": {
+      "ads": 44600,
+      "qr": 30
+    },
+    "TH Patiala": {
+      "ads": 54800,
+      "qr": 50
+    },
+    "TH Mohali": {
+      "ads": 69500,
+      "qr": 35
+    },
+    "TH Sangrur": {
+      "ads": 63100,
+      "qr": 30
+    },
+    "TH Elante Mall": {
+      "ads": 91100,
+      "qr": 70
+    },
+    "TH Sec 35 Chandigarh": {
+      "ads": 61500,
+      "qr": 30
+    },
+    "TH DLF Cyberhub": {
+      "ads": 182100,
+      "qr": 64
+    },
+    "TH Golf Course AIPL": {
+      "ads": 85600,
+      "qr": 17
+    },
+    "TH Select City Saket": {
+      "ads": 138600,
+      "qr": 62
+    },
+    "TH Green Park": {
+      "ads": 71000,
+      "qr": 30
+    },
+    "TH Punjabi bagh": {
+      "ads": 39900,
+      "qr": 20
+    },
+    "TH Vegas Mall": {
+      "ads": 109700,
+      "qr": 60
+    },
+    "TH T3D DIAL": {
+      "ads": 0,
+      "qr": 0
+    },
+    "TH NSP Pritampura": {
+      "ads": 52500,
+      "qr": 30
+    },
+    "TH Basant Lok": {
+      "ads": 45800,
+      "qr": 23
+    },
+    "TH Epicuria Nehru Place": {
+      "ads": 44000,
+      "qr": 21
+    },
+    "TH T1D Dial": {
+      "ads": 438000,
+      "qr": 0
+    },
+    "TH T3D Food Court": {
+      "ads": 103000,
+      "qr": 0
+    },
+    "TH Skymark one": {
+      "ads": 98500,
+      "qr": 30
+    },
+    "TH T1 Ahmedabad Airport": {
+      "ads": 80900,
+      "qr": 0
+    },
+    "TH Sindhu Bhavan": {
+      "ads": 88300,
+      "qr": 70
+    },
+    "TH Navrangpura": {
+      "ads": 61300,
+      "qr": 30
+    },
+    "TH Lokhandwala": {
+      "ads": 134200,
+      "qr": 100
+    },
+    "TH MC Kurla": {
+      "ads": 66000,
+      "qr": 80
+    },
+    "TH Bandra": {
+      "ads": 108200,
+      "qr": 0
+    },
+    "TH Balewadi Pune": {
+      "ads": 73300,
+      "qr": 0
+    },
+    "TH FIFC Mumbai": {
+      "ads": 79900,
+      "qr": 40
+    },
+    "TH HPCL Mumbai Pune Expressway": {
+      "ads": 109300,
+      "qr": 80
+    },
+    "TH Viman Nagar": {
+      "ads": 75300,
+      "qr": 70
+    },
+    "TH Phonix Mall Wakad": {
+      "ads": 65600,
+      "qr": 50
+    },
+    "TH Nexus Seawood": {
+      "ads": 79900,
+      "qr": 50
+    },
+    "TH FC Road": {
+      "ads": 41600,
+      "qr": 20
+    },
+    "TH NMIA Arrival": {
+      "ads": 63600,
+      "qr": 0
+    },
+    "TH NMiA Departure": {
+      "ads": 9400,
+      "qr": 0
+    },
+    "TH BIAL": {
+      "ads": 113900,
+      "qr": 0
+    },
+    "TH Mall of Asia": {
+      "ads": 96300,
+      "qr": 0
+    },
+    "TH Koramangala": {
+      "ads": 90000,
+      "qr": 50
+    },
+    "TH HSR": {
+      "ads": 88100,
+      "qr": 20
+    },
+    "TH Inorbit Mall-Hyderabad": {
+      "ads": 82100,
+      "qr": 100
+    },
+    "TH HIAL": {
+      "ads": 216600,
+      "qr": 0
+    },
+    "TH HIAL Arrival": {
+      "ads": 66400,
+      "qr": 0
+    },
+    "TH Lakeshore": {
+      "ads": 30500,
+      "qr": 20
+    }
+  }
+}

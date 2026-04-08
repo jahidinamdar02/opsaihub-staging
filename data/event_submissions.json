@@ -1,0 +1,40 @@
+{
+  "submissions": [
+    {
+      "id": "1774763999537",
+      "am": "Shivam",
+      "store": "TH Lakeshore",
+      "region": "",
+      "eventDate": "2026-03-28",
+      "venue": "Lakeshore mall",
+      "menuPricing": "store",
+      "customPrice": null,
+      "salesGenerated": 5463,
+      "revenueSharePct": 0,
+      "otherExpenses": 0,
+      "profit": 3332,
+      "compliance": {
+        "manualBillBook": {
+          "answer": "yes",
+          "comment": "Used manual bill book "
+        },
+        "punchedInSystem": {
+          "answer": "yes",
+          "comment": "In eod all items punched in system "
+        },
+        "billsAttached": {
+          "answer": "yes",
+          "comment": "Done "
+        },
+        "managerPresent": "Sami",
+        "score": 100
+      },
+      "images": [
+        "/uploads/events/de6fda74d173d75049df1f6695c8f9a9.jpeg"
+      ],
+      "notes": "It was desert event where we setup a donut dipping session for the guest. Guest can choose there dipping and topping on a chargeble basis. ",
+      "submittedAt": "2026-03-29T05:59:59.537Z"
+    }
+  ],
+  "lastUpdated": "2026-03-29T05:59:59.537Z"
+}

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1.0">
+<title>KPI Dashboard — Tim's Ops Connect</title>
+<style>
+:root{--red:#C8102E;--surface:#F2F2F7;--card:#FFFFFF;--card2:#F7F7F9;--text:#1C1C1E;--text2:#8E8E93;--text3:#AEAEB2;--border:#E5E5EA;--green:#34C759;--amber:#FF9500;--blue:#007AFF;--purple:#AF52DE;--teal:#30B0C7;--nav-h:72px;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;color:var(--text);background:var(--surface);padding-bottom:calc(var(--nav-h) + 16px);}
+.page-hdr{background:linear-gradient(160deg,#0D0D1A 0%,#1A0508 60%,#2D0A15 100%);padding:calc(env(safe-area-inset-top) + 44px) 18px 18px;position:relative;overflow:hidden;}
+.page-hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(200,16,46,0.25) 0%,transparent 70%);}
+.hdr-back{color:rgba(255,255,255,0.55);text-decoration:none;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:5px;margin-bottom:10px;position:relative;}
+.hdr-eyebrow{font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;position:relative;}
+.hdr-title{font-size:28px;font-weight:700;color:#fff;letter-spacing:-0.5px;position:relative;}
+.hdr-sub{font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;position:relative;}
+.tab-bar{display:flex;background:var(--card);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{flex-shrink:0;padding:13px 16px;font-size:12px;font-weight:600;color:var(--text2);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color 0.2s,border-color 0.2s;}
+.tab-btn.active{color:var(--red);border-bottom-color:var(--red);}
+.content{padding:14px 16px;}
+.hidden{display:none!important;}
+/* Hero */
+.hero{background:linear-gradient(135deg,#0D0D1A,#1A0508);border-radius:20px;padding:18px;margin-bottom:14px;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;top:-30px;right:-20px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,0.3),transparent 70%);pointer-events:none;}
+.hero-label{font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;}
+.hero-stat{background:rgba(255,255,255,0.06);border-radius:12px;padding:10px 6px;text-align:center;}
+.hero-abbr{font-size:9px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.hero-num{font-size:17px;font-weight:700;color:#fff;line-height:1;}
+.hero-name{font-size:9px;color:rgba(255,255,255,0.35);margin-top:2px;}
+.hero-cmp{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.hero-cmp-box{background:rgba(255,255,255,0.04);border-radius:10px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;}
+.hero-cmp-lbl{font-size:10px;color:rgba(255,255,255,0.4);}
+.hero-cmp-val{font-size:13px;font-weight:700;color:#34C759;}
+/* Month toggle */
+.month-toggle{display:flex;background:var(--card);border-radius:12px;padding:4px;margin-bottom:14px;border:1px solid var(--border);}
+.month-btn{flex:1;padding:8px;border-radius:9px;border:none;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--text2);transition:all 0.2s;}
+.month-btn.active{background:var(--red);color:#fff;}
+/* KPI grid */
+.sec-hdr{display:flex;justify-content:space-between;align-items:center;margin:16px 0 10px;}
+.sec-title{font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;}
+.sec-note{font-size:11px;color:var(--text3);font-style:italic;}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.kc{background:var(--card);border-radius:16px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,0.05);border:1px solid var(--border);position:relative;overflow:hidden;}
+.kc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;}
+.kc.g::before{background:var(--green);} .kc.a::before{background:var(--amber);} .kc.r::before{background:var(--red);} .kc.b::before{background:var(--blue);} .kc.p::before{background:var(--purple);} .kc.t::before{background:var(--teal);}
+.kc-icon{font-size:20px;margin-bottom:5px;}
+.kc-abbr{font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;}
+.kc-name{font-size:11px;font-weight:700;color:var(--text2);margin-bottom:8px;}
+.kc-val{font-size:30px;font-weight:700;color:var(--text);line-height:1;letter-spacing:-1px;}
+.kc-unit{font-size:11px;color:var(--text2);}
+.kc-foot{font-size:11px;color:var(--text2);margin-top:6px;padding-top:6px;border-top:1px solid var(--border);}
+.kc-trend{font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;display:inline-block;margin-top:4px;}
+.kc-trend.up{background:rgba(52,199,89,0.12);color:#1B7A3A;}
+.kc-trend.dn{background:rgba(255,59,48,0.12);color:#C8102E;}
+/* Wide card */
+.kc-wide{background:var(--card);border-radius:16px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,0.05);margin-bottom:10px;border:1px solid var(--border);border-left:3px solid var(--teal);}
+.wide-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.wide-lbl{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;}
+.wide-val{font-size:20px;font-weight:700;}
+.wide-chips{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.wchip{background:var(--card2);border-radius:10px;padding:8px;text-align:center;}
+.wchip-num{font-size:15px;font-weight:700;}
+.wchip-lbl{font-size:9px;color:var(--text2);margin-top:2px;text-transform:uppercase;}
+/* Store cards */
+.store-filter-row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:12px;padding-bottom:2px;}
+.store-filter-row::-webkit-scrollbar{display:none;}
+.sfpill{flex-shrink:0;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;background:var(--card);color:var(--text2);border:1.5px solid var(--border);cursor:pointer;transition:all 0.15s;}
+.sfpill.active{background:var(--red);color:#fff;border-color:var(--red);}
+.store-cards{display:grid;grid-template-columns:1fr;gap:8px;}
+.scard{background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,0.05);}
+.scard-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.scard-name{font-size:13px;font-weight:700;color:var(--text);}
+.scard-ads{font-size:12px;font-weight:700;color:var(--red);}
+.scard-region{font-size:10px;color:var(--text2);margin-top:2px;}
+.scard-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.sk{background:var(--card2);border-radius:8px;padding:6px;text-align:center;}
+.sk-val{font-size:13px;font-weight:700;}
+.sk-lbl{font-size:8px;color:var(--text2);margin-top:1px;text-transform:uppercase;}
+/* Team table */
+.filter-row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:12px;}
+.filter-row::-webkit-scrollbar{display:none;}
+.fpill{flex-shrink:0;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;background:var(--card);color:var(--text2);border:1.5px solid var(--border);cursor:pointer;}
+.fpill.active{background:var(--red);color:#fff;border-color:var(--red);}
+.team-table{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.05);border:1px solid var(--border);margin-bottom:12px;}
+.tt-hdr{display:flex;background:var(--text);padding:10px 12px;}
+.tt-hc{font-size:9px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.5px;}
+.tt-row{display:flex;padding:9px 12px;border-bottom:1px solid var(--border);align-items:center;}
+.tt-row:last-child{border-bottom:none;}
+.tt-row.even{background:var(--card2);}
+.tt-cell{font-size:12px;color:var(--text);}
+/* Outlook */
+.ol-card{background:var(--card);border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.05);margin-bottom:10px;border:1px solid var(--border);}
+.ol-title{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;}
+.ol-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;}
+.ol-row:last-child{border-bottom:none;}
+/* QR */
+.qr-hero{background:linear-gradient(135deg,#003824,#006400);border-radius:16px;padding:16px;margin-bottom:10px;}
+.qr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.qr-title-txt{font-size:11px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.8px;}
+.qr-sub{font-size:12px;color:rgba(255,255,255,0.5);margin-top:3px;}
+.qr-pct{font-size:36px;font-weight:700;color:#fff;letter-spacing:-1px;}
+.qr-bar-bg{height:8px;background:rgba(255,255,255,0.15);border-radius:4px;margin-bottom:10px;overflow:hidden;}
+.qr-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#34C759,#30D158);}
+.qr-stores{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;}
+.qr-store{background:rgba(255,255,255,0.1);border-radius:10px;padding:8px;}
+.qr-store-name{font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.qr-store-pct{font-size:14px;font-weight:700;}
+.qr-store-nums{font-size:9px;color:rgba(255,255,255,0.4);margin-top:1px;}
+.qr-flags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.1);}
+.qr-flag{font-size:10px;font-weight:700;padding:3px 8px;border-radius:8px;}
+/* Glossary */
+.glossary{background:var(--card2);border-radius:12px;padding:12px;border:1px solid var(--border);margin-top:4px;}
+/* Nav */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(255,255,255,0.9);backdrop-filter:blur(20px) saturate(180%);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;min-width:56px;}
+.nav-icon{font-size:22px;}
+.nav-label{font-size:10px;font-weight:500;color:var(--text2);}
+.nav-item.active .nav-label{color:var(--red);font-weight:700;}
+.nav-dot{width:4px;height:4px;background:var(--red);border-radius:50%;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fadeUp 0.35s ease both;}
+</style>
+</head>
+<body>
+<div class="page-hdr">
+  <a href="performance.html" class="hdr-back">&#8592; Scores</a>
+  <div class="hdr-eyebrow">KPI Intelligence</div>
+  <div class="hdr-title">&#128230; Store KPIs</div>
+  <div class="hdr-sub" id="heroSub">March 2026 &middot; 1&#8211;24 Mar &middot; 44 Stores</div>
+</div>
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="india">&#127470;&#127475; India</button>
+  <button class="tab-btn" data-tab="store">&#127978; My Store</button>
+  <button class="tab-btn" data-tab="team">&#128101; Team</button>
+  <button class="tab-btn" data-tab="outlook">&#128197; Outlook</button>
+</div>
+
+<!-- INDIA TAB -->
+<div class="tab-content content active" id="tab-india">
+  <div class="month-toggle">
+    <button class="month-btn active" onclick="setMonth('mar')">March 2026 (1&#8211;22)</button>
+    <button class="month-btn" onclick="setMonth('feb')">February 2026</button>
+  </div>
+  <div class="hero fu">
+    <div class="hero-label" id="heroLabel">India &middot; March 1&#8211;22 &middot; 44 Stores &middot; 22 Days</div>
+    <div class="hero-grid">
+      <div class="hero-stat"><div class="hero-abbr">ADS</div><div class="hero-num" id="h-ads">&#8377;82K</div><div class="hero-name">Avg Daily Sales</div></div>
+      <div class="hero-stat"><div class="hero-abbr">ADT</div><div class="hero-num" id="h-adt">148</div><div class="hero-name">Avg Daily Txns</div></div>
+      <div class="hero-stat"><div class="hero-abbr">APC</div><div class="hero-num" id="h-apc">&#8377;558</div><div class="hero-name">Avg Per Check</div></div>
+    </div>
+    <div style="background:rgba(255,255,255,0.06);border-radius:10px;padding:10px 12px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;">
+      <div><div style="font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px">MTD Revenue</div><div style="font-size:20px;font-weight:700;color:#fff" id="h-mtd-rev">&#8377;8.45 Cr</div></div>
+      <div style="text-align:right"><div style="font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px">vs Last Month</div><div style="font-size:16px;font-weight:700;color:#34C759" id="h-lm-rev">&#8593; 4.8%</div></div>
+    </div>
+    <div class="hero-cmp">
+      <div class="hero-cmp-box"><div class="hero-cmp-lbl">vs LY</div><div class="hero-cmp-val" id="h-ly">&#8593; 107%</div></div>
+      <div class="hero-cmp-box"><div class="hero-cmp-lbl">vs LM</div><div class="hero-cmp-val" id="h-lm">&#8593; 109%</div></div>
+    </div>
+  </div>
+  <div class="sec-hdr"><div class="sec-title">KPI Daily Averages (UPD)</div><div class="sec-note" id="kpiNote">March actuals &mdash; 22 days</div></div>
+  <div class="kpi-grid" id="kpiGrid">
+    <div class="kc g fu" style="animation-delay:0.05s"><div class="kc-icon">&#127849;</div><div class="kc-abbr">UPD</div><div class="kc-name">Donuts</div><div class="kc-val" id="k-donut">33.1<span class="kc-unit">/day</span></div><div class="kc-foot" id="kf-donut">India MTD: 31,306 units</div></div>
+    <div class="kc a fu" style="animation-delay:0.08s"><div class="kc-icon">&#127852;</div><div class="kc-abbr">UPD</div><div class="kc-name">Timbits</div><div class="kc-val" id="k-timbit">64.0<span class="kc-unit">/day</span></div><div class="kc-foot" id="kf-timbit">India MTD: 60,566 units</div></div>
+    <div class="kc b fu" style="animation-delay:0.11s"><div class="kc-icon">&#128138;</div><div class="kc-abbr">UPD</div><div class="kc-name">Protein Drinks</div><div class="kc-val" id="k-protein">6.2<span class="kc-unit">/day</span></div><div class="kc-foot" id="kf-protein">India MTD: 5,742 units</div></div>
+    <div class="kc t fu" style="animation-delay:0.14s"><div class="kc-icon">&#128167;</div><div class="kc-abbr">UPD</div><div class="kc-name">Water Bottles</div><div class="kc-val" id="k-water">3.3<span class="kc-unit">/day</span></div><div class="kc-foot" id="kf-water">India MTD: 2,750 units</div></div>
+    <div class="kc p fu" style="animation-delay:0.17s"><div class="kc-icon">&#129360;</div><div class="kc-abbr">UPD</div><div class="kc-name">Puff &amp; Roll</div><div class="kc-val" id="k-puff">9.0<span class="kc-unit">/day</span></div><div class="kc-foot" id="kf-puff">Puff 5.1 + Roll 3.9</div></div>
+    <div class="kc r fu" style="animation-delay:0.20s"><div class="kc-icon">&#9749;</div><div class="kc-abbr">UPD</div><div class="kc-name">Coffee Pouch</div><div class="kc-val" id="k-coffee">1.2<span class="kc-unit">/day</span></div><div class="kc-foot" id="kf-coffee">India MTD: 1,060 units</div></div>
+  </div>
+  <div class="kc-wide fu" style="animation-delay:0.22s">
+    <div class="wide-row"><div class="wide-lbl">&#128717; Merchandise (UPD)</div><div class="wide-val" id="k-merch">0.9/day</div></div>
+    <div class="wide-chips">
+      <div class="wchip"><div class="wchip-num" id="wc-units">812</div><div class="wchip-lbl">Units MTD</div></div>
+      <div class="wchip"><div class="wchip-num">1%</div><div class="wchip-lbl">Sale %</div></div>
+      <div class="wchip"><div class="wchip-num" id="wc-best">T1D 5.0</div><div class="wchip-lbl">Best UPD</div></div>
+      <div class="wchip"><div class="wchip-num" id="wc-month">Mar</div><div class="wchip-lbl">Month</div></div>
+    </div>
+  </div>
+  <div class="qr-hero fu" style="animation-delay:0.25s">
+    <div class="qr-top"><div><div class="qr-title-txt">&#128241; QR Feedback &middot; 16&#8211;22 Mar</div><div class="qr-sub">1,717 achieved vs 1,592 target</div></div><div class="qr-pct">108%</div></div>
+    <div class="qr-bar-bg"><div class="qr-bar-fill" style="width:100%"></div></div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:6px">Top performers</div>
+    <div class="qr-stores">
+      <div class="qr-store"><div class="qr-store-name">AIPL Gurugram</div><div class="qr-store-pct" style="color:#34C759">312%</div><div class="qr-store-nums">17 tgt &middot; 53 achieved</div></div>
+      <div class="qr-store"><div class="qr-store-name">Punjabi Bagh</div><div class="qr-store-pct" style="color:#34C759">230%</div><div class="qr-store-nums">20 tgt &middot; 46 achieved</div></div>
+      <div class="qr-store"><div class="qr-store-name">Lakeshore</div><div class="qr-store-pct" style="color:#34C759">235%</div><div class="qr-store-nums">20 tgt &middot; 47 achieved</div></div>
+      <div class="qr-store"><div class="qr-store-name">Lokhandwala</div><div class="qr-store-pct" style="color:#34C759">197%</div><div class="qr-store-nums">100 tgt &middot; 197 achieved</div></div>
+    </div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:10px;margin-bottom:5px">Needs attention</div>
+    <div class="qr-flags">
+      <span class="qr-flag" style="background:rgba(255,59,48,0.2);color:#FF3B30">Bandra 34%</span>
+      <span class="qr-flag" style="background:rgba(255,59,48,0.2);color:#FF3B30">MC Kurla 29%</span>
+      <span class="qr-flag" style="background:rgba(255,149,0,0.2);color:#FF9500">Mohali 40%</span>
+      <span class="qr-flag" style="background:rgba(255,149,0,0.2);color:#FF9500">Balewadi 47%</span>
+    </div>
+  </div>
+  <div class="glossary">
+    <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">Glossary</div>
+    <div style="font-size:11px;color:var(--text2);line-height:1.8"><b>ADS</b> Avg Daily Sales &nbsp;&middot;&nbsp; <b>ADT</b> Avg Daily Transactions &nbsp;&middot;&nbsp; <b>APC</b> Avg Per Check<br><b>UPD</b> Units Per Day &nbsp;&middot;&nbsp; <b>LFL</b> Like-for-Like vs LY &nbsp;&middot;&nbsp; <b>IPT</b> Items Per Transaction<br><b>RTE</b> Ready to Eat &nbsp;&middot;&nbsp; <b>LTO</b> Limited Time Offer &nbsp;&middot;&nbsp; <b>QR</b> Customer Feedback Tracking<br><b>BF Combo</b> Breakfast Combo &#8377;245 &nbsp;&middot;&nbsp; <b>CA</b> Club Apparel Loyalty</div>
+  </div>
+</div>
+
+<!-- MY STORE TAB -->
+<div class="tab-content content hidden" id="tab-store">
+  <div class="store-filter-row" id="amFilter">
+    <button class="sfpill active" data-am="all">All Stores</button>
+    <button class="sfpill" data-am="Raman">Raman</button>
+    <button class="sfpill" data-am="Harish">Harish</button>
+    <button class="sfpill" data-am="Rohit">Rohit</button>
+    <button class="sfpill" data-am="Deepak">Deepak</button>
+    <button class="sfpill" data-am="Akash Chavan">A.Chavan</button>
+    <button class="sfpill" data-am="Akash Rathod">A.Rathod</button>
+    <button class="sfpill" data-am="Jagadeesha">Jagadeesha</button>
+    <button class="sfpill" data-am="Shivam">Shivam</button>
+  </div>
+  <div style="font-size:11px;color:var(--text2);margin-bottom:10px" id="storeCount">Showing all 44 stores &middot; March 2026 actuals</div>
+  <div class="store-cards" id="storeCards"></div>
+</div>
+
+<!-- TEAM TAB -->
+<div class="tab-content content hidden" id="tab-team">
+  <div class="filter-row" id="teamFilters">
+    <button class="fpill active" data-kpi="donut">&#127849; Donuts</button>
+    <button class="fpill" data-kpi="timbit">&#127852; Timbits</button>
+    <button class="fpill" data-kpi="protein">&#128138; Protein</button>
+    <button class="fpill" data-kpi="water">&#128167; Water</button>
+    <button class="fpill" data-kpi="coffee">&#9749; Coffee</button>
+    <button class="fpill" data-kpi="merch">&#128717; Merch</button>
+    <button class="fpill" data-kpi="qr">&#128241; QR%</button>
+    <button class="fpill" data-kpi="ads">&#8377; ADS</button>
+  </div>
+  <div id="teamTable"></div>
+</div>
+
+<!-- OUTLOOK TAB -->
+<div class="tab-content content hidden" id="tab-outlook">
+  <div class="ol-card">
+    <div class="ol-title">&#128197; April 2026 &mdash; Sales Targets</div>
+    <div style="background:var(--card2);border-radius:10px;padding:10px;margin-bottom:10px;font-size:11px;color:var(--text2);line-height:1.6"><b style="color:var(--blue)">Method:</b> March run rate &times;1.09 for ADS &ge;60K &middot; &times;1.05 for sub-60K<br><b style="color:var(--amber)">Why +9%?</b> End of FY &middot; Summer beverage season &middot; School holidays</div>
+    <div class="ol-row"><span>TH T1D Dial</span><span style="font-weight:700;color:var(--red)">&#8377;4.38L/day</span></div>
+    <div class="ol-row"><span>TH HIAL</span><span style="font-weight:700">&#8377;2.17L/day</span></div>
+    <div class="ol-row"><span>TH DLF Cyberhub</span><span style="font-weight:700">&#8377;1.82L/day</span></div>
+    <div class="ol-row"><span>TH Select City Saket</span><span style="font-weight:700">&#8377;1.42L/day</span></div>
+    <div class="ol-row"><span>TH Lokhandwala</span><span style="font-weight:700">&#8377;1.34L/day</span></div>
+    <div class="ol-row"><span>TH BIAL</span><span style="font-weight:700">&#8377;1.14L/day</span></div>
+    <div class="ol-row"><span>+ 38 more stores</span><span style="font-weight:700;color:var(--blue)">in targets.html</span></div>
+  </div>
+  <div class="ol-card" style="border-left:3px solid var(--amber)">
+    <div class="ol-title">&#128230; April 2026 &mdash; KPI Targets (UPD)</div>
+    <div class="ol-row"><span>&#127849; Donuts</span><span style="font-weight:700;color:var(--green)">35 UPD</span></div>
+    <div class="ol-row"><span>&#127852; Timbits</span><span style="font-weight:700;color:var(--amber)">73 UPD</span></div>
+    <div class="ol-row"><span>&#128138; Protein Drinks</span><span style="font-weight:700;color:var(--blue)">7 UPD</span></div>
+    <div class="ol-row"><span>&#128167; Water Bottles</span><span style="font-weight:700;color:var(--teal)">3.3 UPD</span></div>
+    <div class="ol-row"><span>&#129360; Puff &amp; Roll</span><span style="font-weight:700;color:var(--purple)">10 UPD</span></div>
+    <div class="ol-row"><span>&#9749; Coffee Pouch</span><span style="font-weight:700;color:var(--red)">1.3 UPD</span></div>
+    <div class="ol-row"><span>&#128717; Merchandise</span><span style="font-weight:700">1.0 UPD</span></div>
+  </div>
+  <div class="ol-card" style="border-left:3px solid var(--green)">
+    <div class="ol-title">&#128202; March vs LY &amp; LM</div>
+    <div class="ol-row"><span>India vs LY March &#39;25</span><span style="font-weight:700;color:var(--green)">&#8593; 107%</span></div>
+    <div class="ol-row"><span>India vs LM Feb &#39;26</span><span style="font-weight:700;color:var(--green)">&#8593; 109%</span></div>
+    <div class="ol-row"><span>Best LFL</span><span style="font-weight:700;color:var(--green)">T1D Dial 453%</span></div>
+    <div class="ol-row"><span>QR Feedback India</span><span style="font-weight:700;color:var(--green)">108% &#10003;</span></div>
+    <div class="ol-row"><span>Sub-60K method</span><span style="font-weight:700;color:var(--amber)">&times;1.05 stepped</span></div>
+  </div>
+</div>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item"><span class="nav-icon">&#127968;</span><span class="nav-label">Home</span></a>
+  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#9989;</span><span class="nav-label">Tasks</span></a>
+  <a href="events.html" class="nav-item"><span class="nav-icon">&#128197;</span><span class="nav-label">Events</span></a>
+  <a href="performance.html" class="nav-item active"><span class="nav-icon">&#128202;</span><span class="nav-label">Scores</span><div class="nav-dot"></div></a>
+  <a href="team.html" class="nav-item"><span class="nav-icon">&#128101;</span><span class="nav-label">Team</span></a>
+  <a href="audit.html" class="nav-item"><span class="nav-icon">&#128269;</span><span class="nav-label">Audits</span></a>
+</nav>
+
+<script>
+
+var FEB = {"TH Malhar Road": {"ads": 72664, "adt": 120, "apc": 605, "donut": 40, "timbit": 65, "protein": 0, "water": 1, "puff": 5, "roll": 3, "merch": 1.4, "coffee": 1.2, "qr": 0}, "TH Sunview Enclave": {"ads": 68837, "adt": 95, "apc": 724, "donut": 23, "timbit": 48, "protein": 0, "water": 2, "puff": 4, "roll": 3, "merch": 0.9, "coffee": 0.5, "qr": 0}, "TH Bucho Bathinda": {"ads": 52024, "adt": 76, "apc": 684, "donut": 14, "timbit": 26, "protein": 0, "water": 1, "puff": 1, "roll": 1, "merch": 0.6, "coffee": 0.4, "qr": 0}, "TH Patiala": {"ads": 49138, "adt": 76, "apc": 646, "donut": 23, "timbit": 39, "protein": 0, "water": 1, "puff": 3, "roll": 2, "merch": 1.0, "coffee": 0.6, "qr": 0}, "TH Mohali": {"ads": 58540, "adt": 88, "apc": 665, "donut": 24, "timbit": 41, "protein": 0, "water": 2, "puff": 4, "roll": 2, "merch": 1.5, "coffee": 0.8, "qr": 0}, "TH Sangrur": {"ads": 62017, "adt": 97, "apc": 639, "donut": 15, "timbit": 32, "protein": 0, "water": 2, "puff": 2, "roll": 2, "merch": 1.0, "coffee": 1.0, "qr": 0}, "TH Elante Mall": {"ads": 76457, "adt": 119, "apc": 642, "donut": 30, "timbit": 55, "protein": 0, "water": 4, "puff": 5, "roll": 5, "merch": 1.7, "coffee": 1.0, "qr": 0}, "TH Sec 35 Chandigarh": {"ads": 58405, "adt": 90, "apc": 649, "donut": 25, "timbit": 42, "protein": 0, "water": 1, "puff": 4, "roll": 2, "merch": 2.3, "coffee": 1.1, "qr": 0}, "TH DLF Cyberhub": {"ads": 164238, "adt": 259, "apc": 634, "donut": 49, "timbit": 86, "protein": 0, "water": 6, "puff": 7, "roll": 4, "merch": 3.3, "coffee": 1.4, "qr": 0}, "TH Golf Course AIPL": {"ads": 81925, "adt": 148, "apc": 554, "donut": 54, "timbit": 61, "protein": 0, "water": 2, "puff": 5, "roll": 2, "merch": 0.3, "coffee": 1.5, "qr": 0}, "TH Select City Saket": {"ads": 130239, "adt": 205, "apc": 635, "donut": 53, "timbit": 86, "protein": 0, "water": 13, "puff": 10, "roll": 6, "merch": 1.8, "coffee": 1.4, "qr": 0}, "TH Green Park": {"ads": 67229, "adt": 114, "apc": 590, "donut": 39, "timbit": 62, "protein": 0, "water": 1, "puff": 6, "roll": 2, "merch": 0.1, "coffee": 2.5, "qr": 0}, "TH Punjabi bagh": {"ads": 39662, "adt": 63, "apc": 629, "donut": 15, "timbit": 34, "protein": 0, "water": 1, "puff": 1, "roll": 1, "merch": 0.6, "coffee": 1.3, "qr": 0}, "TH Vegas Mall": {"ads": 90314, "adt": 158, "apc": 572, "donut": 32, "timbit": 54, "protein": 0, "water": 3, "puff": 6, "roll": 5, "merch": 1.2, "coffee": 1.4, "qr": 0}, "TH T3D DIAL": {"ads": 0, "adt": 0, "apc": 0, "donut": 0, "timbit": 0, "protein": 0, "water": 0, "puff": 0, "roll": 0, "merch": 0, "coffee": 0, "qr": 0}, "TH NSP Pritampura": {"ads": 49615, "adt": 80, "apc": 620, "donut": 17, "timbit": 34, "protein": 0, "water": 1, "puff": 2, "roll": 1, "merch": 0.7, "coffee": 1.2, "qr": 0}, "TH Basant Lok": {"ads": 45553, "adt": 72, "apc": 632, "donut": 25, "timbit": 47, "protein": 0, "water": 1, "puff": 1, "roll": 2, "merch": 0.7, "coffee": 1.4, "qr": 0}, "TH Epicuria Nehru Place": {"ads": 46101, "adt": 75, "apc": 615, "donut": 22, "timbit": 38, "protein": 0, "water": 2, "puff": 3, "roll": 1, "merch": 0.4, "coffee": 1.1, "qr": 0}, "TH T1D Dial": {"ads": 431972, "adt": 556, "apc": 777, "donut": 136, "timbit": 236, "protein": 0, "water": 0, "puff": 28, "roll": 27, "merch": 4.5, "coffee": 2.7, "qr": 0}, "TH T3D Food Court": {"ads": 92253, "adt": 133, "apc": 694, "donut": 28, "timbit": 37, "protein": 0, "water": 0, "puff": 4, "roll": 3, "merch": 1.2, "coffee": 0.6, "qr": 0}, "TH Skymark one": {"ads": 94363, "adt": 154, "apc": 613, "donut": 36, "timbit": 76, "protein": 0, "water": 3, "puff": 5, "roll": 3, "merch": 1.5, "coffee": 2.0, "qr": 0}, "TH T1 Ahmedabad Airport": {"ads": 91782, "adt": 132, "apc": 696, "donut": 28, "timbit": 34, "protein": 0, "water": 7, "puff": 3, "roll": 4, "merch": 0.9, "coffee": 1.1, "qr": 0}, "TH Sindhu Bhavan": {"ads": 81116, "adt": 132, "apc": 615, "donut": 30, "timbit": 37, "protein": 0, "water": 3, "puff": 5, "roll": 3, "merch": 0.4, "coffee": 2.5, "qr": 0}, "TH Navrangpura": {"ads": 63082, "adt": 107, "apc": 590, "donut": 24, "timbit": 38, "protein": 0, "water": 1, "puff": 3, "roll": 3, "merch": 0.2, "coffee": 0.8, "qr": 0}, "TH Lokhandwala": {"ads": 119075, "adt": 195, "apc": 610, "donut": 61, "timbit": 101, "protein": 0, "water": 5, "puff": 11, "roll": 4, "merch": 1.0, "coffee": 2.8, "qr": 0}, "TH MC Kurla": {"ads": 61267, "adt": 97, "apc": 632, "donut": 26, "timbit": 58, "protein": 0, "water": 3, "puff": 4, "roll": 3, "merch": 0.1, "coffee": 0.6, "qr": 0}, "TH Bandra": {"ads": 99492, "adt": 162, "apc": 614, "donut": 73, "timbit": 98, "protein": 0, "water": 2, "puff": 7, "roll": 4, "merch": 1.0, "coffee": 3.8, "qr": 0}, "TH Balewadi Pune": {"ads": 60204, "adt": 112, "apc": 538, "donut": 33, "timbit": 68, "protein": 0, "water": 2, "puff": 4, "roll": 1, "merch": 0.5, "coffee": 1.4, "qr": 0}, "TH FIFC Mumbai": {"ads": 81111, "adt": 126, "apc": 644, "donut": 35, "timbit": 69, "protein": 0, "water": 3, "puff": 5, "roll": 3, "merch": 0.4, "coffee": 0.8, "qr": 0}, "TH HPCL Mumbai Pune Expressway": {"ads": 97401, "adt": 135, "apc": 721, "donut": 39, "timbit": 85, "protein": 0, "water": 6, "puff": 7, "roll": 6, "merch": 0.8, "coffee": 0.7, "qr": 0}, "TH Viman Nagar": {"ads": 59976, "adt": 105, "apc": 571, "donut": 39, "timbit": 38, "protein": 0, "water": 3, "puff": 4, "roll": 3, "merch": 0.3, "coffee": 1.0, "qr": 0}, "TH Phonix Mall Wakad": {"ads": 48749, "adt": 91, "apc": 536, "donut": 34, "timbit": 54, "protein": 0, "water": 2, "puff": 4, "roll": 2, "merch": 0.2, "coffee": 0.3, "qr": 0}, "TH Nexus Seawood": {"ads": 66950, "adt": 104, "apc": 644, "donut": 32, "timbit": 62, "protein": 0, "water": 2, "puff": 3, "roll": 3, "merch": 0.6, "coffee": 0.6, "qr": 0}, "TH FC Road": {"ads": 35634, "adt": 75, "apc": 475, "donut": 20, "timbit": 36, "protein": 0, "water": 1, "puff": 2, "roll": 2, "merch": 0.5, "coffee": 0.6, "qr": 0}, "TH NMIA Arrival": {"ads": 46215, "adt": 48, "apc": 963, "donut": 11, "timbit": 23, "protein": 0, "water": 6, "puff": 2, "roll": 3, "merch": 0.6, "coffee": 0.5, "qr": 0}, "TH NMiA Departure": {"ads": 9745, "adt": 11, "apc": 886, "donut": 2, "timbit": 5, "protein": 0, "water": 2, "puff": 1, "roll": 1, "merch": 0.1, "coffee": 0.0, "qr": 0}, "TH BIAL": {"ads": 120026, "adt": 154, "apc": 779, "donut": 27, "timbit": 57, "protein": 0, "water": 6, "puff": 6, "roll": 8, "merch": 0.6, "coffee": 0.9, "qr": 0}, "TH Mall of Asia": {"ads": 73925, "adt": 131, "apc": 565, "donut": 30, "timbit": 97, "protein": 0, "water": 3, "puff": 3, "roll": 2, "merch": 0.8, "coffee": 1.4, "qr": 0}, "TH Koramangala": {"ads": 83535, "adt": 157, "apc": 532, "donut": 50, "timbit": 127, "protein": 0, "water": 2, "puff": 6, "roll": 4, "merch": 0.4, "coffee": 2.0, "qr": 0}, "TH HSR": {"ads": 77504, "adt": 145, "apc": 534, "donut": 43, "timbit": 94, "protein": 0, "water": 2, "puff": 6, "roll": 4, "merch": 0.2, "coffee": 1.8, "qr": 0}, "TH Inorbit Mall-Hyderabad": {"ads": 65734, "adt": 103, "apc": 638, "donut": 51, "timbit": 167, "protein": 0, "water": 4, "puff": 3, "roll": 4, "merch": 1.8, "coffee": 1.8, "qr": 0}, "TH HIAL": {"ads": 205026, "adt": 354, "apc": 579, "donut": 66, "timbit": 148, "protein": 0, "water": 0, "puff": 16, "roll": 17, "merch": 1.5, "coffee": 0.8, "qr": 0}, "TH HIAL Arrival": {"ads": 72885, "adt": 110, "apc": 663, "donut": 31, "timbit": 55, "protein": 0, "water": 0, "puff": 5, "roll": 3, "merch": 0.8, "coffee": 0.7, "qr": 0}, "TH Lakeshore": {"ads": 24255, "adt": 52, "apc": 466, "donut": 24, "timbit": 61, "protein": 0, "water": 4, "puff": 3, "roll": 2, "merch": 0.5, "coffee": 0.0, "qr": 0}};
+var MAR = {"TH Malhar Road": {"ads": 70956, "adt": 121, "apc": 587, "donut": 39, "timbit": 56, "protein": 5, "water": 1, "puff": 5, "roll": 3, "merch": 1.7, "coffee": 1.2, "qr": 127}, "TH Sunview Enclave": {"ads": 67818, "adt": 97, "apc": 699, "donut": 26, "timbit": 50, "protein": 3, "water": 3, "puff": 4, "roll": 3, "merch": 0.9, "coffee": 0.5, "qr": 150}, "TH Bucho Bathinda": {"ads": 42499, "adt": 64, "apc": 664, "donut": 11, "timbit": 22, "protein": 3, "water": 1, "puff": 1, "roll": 1, "merch": 0.6, "coffee": 0.4, "qr": 60}, "TH Patiala": {"ads": 49138, "adt": 101, "apc": 486, "donut": 22, "timbit": 40, "protein": 4, "water": 1, "puff": 3, "roll": 2, "merch": 1.0, "coffee": 0.6, "qr": 92}, "TH Mohali": {"ads": 65910, "adt": 118, "apc": 559, "donut": 25, "timbit": 47, "protein": 11, "water": 2, "puff": 4, "roll": 2, "merch": 0.6, "coffee": 1.1, "qr": 40}, "TH Sangrur": {"ads": 60091, "adt": 94, "apc": 640, "donut": 14, "timbit": 32, "protein": 2, "water": 2, "puff": 2, "roll": 2, "merch": 1.2, "coffee": 1.7, "qr": 150}, "TH Elante Mall": {"ads": 84999, "adt": 127, "apc": 670, "donut": 31, "timbit": 56, "protein": 7, "water": 5, "puff": 5, "roll": 5, "merch": 2.4, "coffee": 0.4, "qr": 124}, "TH Sec 35 Chandigarh": {"ads": 59596, "adt": 105, "apc": 568, "donut": 20, "timbit": 45, "protein": 6, "water": 0, "puff": 4, "roll": 2, "merch": 1.8, "coffee": 0.9, "qr": 110}, "TH DLF Cyberhub": {"ads": 166701, "adt": 294, "apc": 567, "donut": 43, "timbit": 66, "protein": 13, "water": 7, "puff": 7, "roll": 4, "merch": 1.3, "coffee": 1.1, "qr": 94}, "TH Golf Course AIPL": {"ads": 79500, "adt": 153, "apc": 519, "donut": 47, "timbit": 55, "protein": 6, "water": 2, "puff": 5, "roll": 2, "merch": 0.3, "coffee": 1.6, "qr": 312}, "TH Select City Saket": {"ads": 130600, "adt": 254, "apc": 514, "donut": 48, "timbit": 87, "protein": 10, "water": 13, "puff": 10, "roll": 6, "merch": 0.9, "coffee": 1.4, "qr": 173}, "TH Green Park": {"ads": 65167, "adt": 137, "apc": 476, "donut": 39, "timbit": 58, "protein": 3, "water": 1, "puff": 6, "roll": 2, "merch": 0.2, "coffee": 1.0, "qr": 173}, "TH Punjabi bagh": {"ads": 37966, "adt": 75, "apc": 506, "donut": 16, "timbit": 31, "protein": 3, "water": 1, "puff": 1, "roll": 1, "merch": 0.3, "coffee": 0.6, "qr": 230}, "TH Vegas Mall": {"ads": 100600, "adt": 201, "apc": 500, "donut": 33, "timbit": 52, "protein": 14, "water": 4, "puff": 6, "roll": 5, "merch": 0.6, "coffee": 1.1, "qr": 110}, "TH T3D DIAL": {"ads": 0, "adt": 0, "apc": 0, "donut": 0, "timbit": 0, "protein": 0, "water": 0, "puff": 0, "roll": 0, "merch": 0, "coffee": 0, "qr": 0}, "TH NSP Pritampura": {"ads": 50000, "adt": 99, "apc": 505, "donut": 15, "timbit": 31, "protein": 3, "water": 1, "puff": 2, "roll": 1, "merch": 0.6, "coffee": 0.9, "qr": 133}, "TH Basant Lok": {"ads": 43500, "adt": 91, "apc": 478, "donut": 22, "timbit": 43, "protein": 4, "water": 2, "puff": 1, "roll": 2, "merch": 0.5, "coffee": 0.7, "qr": 78}, "TH Epicuria Nehru Place": {"ads": 41900, "adt": 91, "apc": 461, "donut": 19, "timbit": 33, "protein": 3, "water": 1, "puff": 3, "roll": 1, "merch": 0.1, "coffee": 0.5, "qr": 157}, "TH T1D Dial": {"ads": 401971, "adt": 707, "apc": 569, "donut": 129, "timbit": 219, "protein": 26, "water": 0, "puff": 28, "roll": 27, "merch": 5.0, "coffee": 3.5, "qr": 0}, "TH T3D Food Court": {"ads": 94500, "adt": 168, "apc": 562, "donut": 19, "timbit": 6, "protein": 6, "water": 0, "puff": 4, "roll": 3, "merch": 1.5, "coffee": 0.5, "qr": 104}, "TH Skymark one": {"ads": 92700, "adt": 173, "apc": 536, "donut": 35, "timbit": 72, "protein": 5, "water": 2, "puff": 5, "roll": 3, "merch": 0.9, "coffee": 1.9, "qr": 187}, "TH T1 Ahmedabad Airport": {"ads": 76400, "adt": 144, "apc": 531, "donut": 23, "timbit": 32, "protein": 6, "water": 9, "puff": 3, "roll": 4, "merch": 0.4, "coffee": 0.6, "qr": 0}, "TH Sindhu Bhavan": {"ads": 82800, "adt": 169, "apc": 490, "donut": 28, "timbit": 45, "protein": 5, "water": 3, "puff": 5, "roll": 3, "merch": 0.4, "coffee": 2.0, "qr": 21}, "TH Navrangpura": {"ads": 58500, "adt": 128, "apc": 457, "donut": 17, "timbit": 35, "protein": 2, "water": 1, "puff": 3, "roll": 3, "merch": 0.2, "coffee": 1.1, "qr": 173}, "TH Lokhandwala": {"ads": 123100, "adt": 249, "apc": 494, "donut": 53, "timbit": 101, "protein": 8, "water": 5, "puff": 11, "roll": 4, "merch": 0.4, "coffee": 2.5, "qr": 197}, "TH MC Kurla": {"ads": 62400, "adt": 121, "apc": 516, "donut": 28, "timbit": 62, "protein": 6, "water": 3, "puff": 4, "roll": 3, "merch": 0.1, "coffee": 0.7, "qr": 29}, "TH Bandra": {"ads": 99300, "adt": 206, "apc": 482, "donut": 75, "timbit": 88, "protein": 5, "water": 3, "puff": 7, "roll": 4, "merch": 0.4, "coffee": 3.0, "qr": 34}, "TH Balewadi Pune": {"ads": 67200, "adt": 143, "apc": 470, "donut": 30, "timbit": 101, "protein": 5, "water": 2, "puff": 4, "roll": 1, "merch": 0.3, "coffee": 2.0, "qr": 47}, "TH FIFC Mumbai": {"ads": 73300, "adt": 149, "apc": 492, "donut": 31, "timbit": 74, "protein": 8, "water": 2, "puff": 5, "roll": 3, "merch": 0.2, "coffee": 1.0, "qr": 120}, "TH HPCL Mumbai Pune Expressway": {"ads": 100300, "adt": 172, "apc": 583, "donut": 37, "timbit": 85, "protein": 5, "water": 6, "puff": 7, "roll": 6, "merch": 1.4, "coffee": 1.0, "qr": 100}, "TH Viman Nagar": {"ads": 69000, "adt": 133, "apc": 519, "donut": 32, "timbit": 49, "protein": 5, "water": 4, "puff": 4, "roll": 3, "merch": 0.9, "coffee": 1.2, "qr": 140}, "TH Phonix Mall Wakad": {"ads": 60200, "adt": 116, "apc": 519, "donut": 31, "timbit": 54, "protein": 4, "water": 3, "puff": 4, "roll": 2, "merch": 0.5, "coffee": 0.5, "qr": 42}, "TH Nexus Seawood": {"ads": 73200, "adt": 133, "apc": 550, "donut": 32, "timbit": 59, "protein": 6, "water": 2, "puff": 3, "roll": 3, "merch": 1.1, "coffee": 0.8, "qr": 104}, "TH FC Road": {"ads": 39600, "adt": 95, "apc": 417, "donut": 22, "timbit": 43, "protein": 4, "water": 2, "puff": 2, "roll": 2, "merch": 0.5, "coffee": 0.4, "qr": 215}, "TH NMIA Arrival": {"ads": 60900, "adt": 61, "apc": 998, "donut": 10, "timbit": 17, "protein": 3, "water": 4, "puff": 2, "roll": 3, "merch": 0.6, "coffee": 0.4, "qr": 0}, "TH NMiA Departure": {"ads": 9300, "adt": 15, "apc": 620, "donut": 3, "timbit": 3, "protein": 0, "water": 3, "puff": 1, "roll": 1, "merch": 0.4, "coffee": 0.0, "qr": 0}, "TH BIAL": {"ads": 104500, "adt": 195, "apc": 536, "donut": 22, "timbit": 48, "protein": 8, "water": 6, "puff": 6, "roll": 8, "merch": 0.7, "coffee": 1.1, "qr": 0}, "TH Mall of Asia": {"ads": 88300, "adt": 166, "apc": 532, "donut": 31, "timbit": 116, "protein": 10, "water": 4, "puff": 3, "roll": 2, "merch": 0.5, "coffee": 2.1, "qr": 0}, "TH Koramangala": {"ads": 82600, "adt": 198, "apc": 417, "donut": 47, "timbit": 117, "protein": 9, "water": 1, "puff": 6, "roll": 4, "merch": 0.2, "coffee": 1.8, "qr": 112}, "TH HSR": {"ads": 80800, "adt": 183, "apc": 441, "donut": 39, "timbit": 103, "protein": 8, "water": 2, "puff": 6, "roll": 4, "merch": 0.7, "coffee": 1.7, "qr": 85}, "TH Inorbit Mall-Hyderabad": {"ads": 75300, "adt": 147, "apc": 512, "donut": 52, "timbit": 172, "protein": 4, "water": 6, "puff": 3, "roll": 4, "merch": 1.6, "coffee": 1.4, "qr": 51}, "TH HIAL": {"ads": 198600, "adt": 359, "apc": 553, "donut": 69, "timbit": 132, "protein": 8, "water": 0, "puff": 16, "roll": 17, "merch": 1.7, "coffee": 0.6, "qr": 0}, "TH HIAL Arrival": {"ads": 60900, "adt": 112, "apc": 544, "donut": 30, "timbit": 48, "protein": 3, "water": 0, "puff": 5, "roll": 3, "merch": 0.8, "coffee": 0.7, "qr": 0}, "TH Lakeshore": {"ads": 29000, "adt": 66, "apc": 439, "donut": 28, "timbit": 68, "protein": 2, "water": 5, "puff": 3, "roll": 2, "merch": 0.5, "coffee": 0.0, "qr": 235}};
+var AM_STORES = {
+  "Raman":        ["TH T3D DIAL","TH T3D Food Court","TH T1D Dial"],
+  "Harish":       ["TH DLF Cyberhub","TH Select City Saket","TH Green Park","TH Basant Lok","TH Epicuria Nehru Place","TH Golf Course AIPL"],
+  "Rohit":        ["TH Skymark one","TH Vegas Mall","TH NSP Pritampura","TH Punjabi bagh"],
+  "Deepak":       ["TH Malhar Road","TH Sunview Enclave","TH Bucho Bathinda","TH Mohali","TH Sangrur","TH Elante Mall","TH Sec 35 Chandigarh"],
+  "Akash Chavan": ["TH Balewadi Pune","TH Lokhandwala","TH MC Kurla","TH Viman Nagar","TH Phonix Mall Wakad","TH FC Road","TH FIFC Mumbai","TH BIAL"],
+  "Akash Rathod": ["TH HPCL Mumbai Pune Expressway","TH NMIA Arrival","TH NMiA Departure","TH Nexus Seawood"],
+  "Jagadeesha":   ["TH Koramangala","TH BIAL","TH Mall of Asia","TH HSR"],
+  "Shivam":       ["TH Inorbit Mall-Hyderabad","TH HIAL","TH HIAL Arrival","TH Lakeshore"]
+};
+var ACTIVE_MONTH = 'mar';
+
+var MAR_META = {ads:81841,adt:148,apc:558,ly:107,lm:109,days:24,label:'India &middot; March 1&ndash;24 &middot; 44 Stores &middot; 24 Days',note:'March actuals &mdash; 24 days (official report)'};
+var FEB_META = {ads:68000,adt:113,apc:602,ly:107,lm:109,days:28,label:'India &middot; Feb 2026 &middot; 44 Stores &middot; 28 Days',note:'February actuals &mdash; 28 days'};
+
+function rag(v,ref){
+  if(!ref) return '#8E8E93';
+  var r=v/ref;
+  return r>=0.9?'var(--green)':r>=0.6?'var(--amber)':'var(--red)';
+}
+function fmt(n){return n>=100000?'&#8377;'+Math.round(n/100000*10)/10+'L':n>=1000?'&#8377;'+Math.round(n/1000)+'K':'&#8377;'+n;}
+
+function setMonth(m){
+  ACTIVE_MONTH=m;
+  document.querySelectorAll('.month-btn').forEach(function(b){b.classList.toggle('active',b.onclick.toString().includes("'"+m+"'"));});
+  var D=m==='mar'?MAR:FEB;
+  var META=m==='mar'?MAR_META:FEB_META;
+  // Update hero
+  document.getElementById('heroLabel').innerHTML=META.label;
+  document.getElementById('kpiNote').textContent=META.note;
+  document.getElementById('h-ads').innerHTML='&#8377;'+Math.round(META.ads/1000)+'K';
+  document.getElementById('h-adt').textContent=META.adt;
+  document.getElementById('h-apc').innerHTML='&#8377;'+META.apc;
+  // Update KPI cards
+  var keys=['donut','timbit','protein','water','puff','coffee'];
+  keys.forEach(function(k){
+    var vals=Object.values(D).map(function(s){return s[k]||0;}).filter(function(v){return v>0;});
+    var avg=vals.length?Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length*10)/10:0;
+    var el=document.getElementById('k-'+k);
+    if(el){el.innerHTML=avg+'<span class="kc-unit">/day</span>';}
+    var tel=document.getElementById('kf-'+k);
+    if(tel){tel.textContent='India MTD: '+Math.round(avg*META.days*44).toLocaleString()+' units';}
+  });
+  var mvals=Object.values(D).map(function(s){return s.merch||0;}).filter(function(v){return v>0;});
+  var mavg=mvals.length?Math.round(mvals.reduce(function(a,b){return a+b;},0)/mvals.length*10)/10:0;
+  document.getElementById('k-merch').textContent=mavg+'/day';
+  document.getElementById('wc-month').textContent=m==='mar'?'Mar':'Feb';
+
+  // Update MTD revenue and delivery
+  var MTD_DATA = {
+    mar: {mtd:'&#8377;8.45 Cr', del:'&#8377;1.52 Cr', delpct:'18%', ly:'&#8593; 107%', lm:'&#8593; 105%', lfl:'&#8593; 107%', deladt:19, delapc:324},
+    feb: {mtd:'&#8377;10.08 Cr', del:'&#8377;1.79 Cr', delpct:'18%', ly:'&#8593; 109%', lm:'&#8593; 100%', lfl:'&#8593; 109%', deladt:23, delapc:428}
+  };
+  var md = MTD_DATA[m] || MTD_DATA['mar'];
+  var mtdEl = document.getElementById('h-mtd-rev');
+  var delEl = document.getElementById('h-del-rev');
+  var lyEl  = document.getElementById('h-ly');
+  var lmEl  = document.getElementById('h-lm');
+  var lflEl = document.getElementById('h-lfl-ly');
+  var delPctEl = document.getElementById('h-del-pct');
+  if(mtdEl) mtdEl.innerHTML = md.mtd;
+  if(delEl) delEl.innerHTML = md.del;
+  if(lyEl)  lyEl.innerHTML  = md.ly;
+  if(lmEl)  lmEl.innerHTML  = md.lm;
+  if(lflEl) lflEl.innerHTML = md.lfl;
+  if(delPctEl) delPctEl.innerHTML = md.delpct;
+
+  // Re-render store cards
+  renderStoreCards(document.querySelector('#amFilter .sfpill.active').getAttribute('data-am'));
+}
+
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(x){x.classList.remove('active');});
+    document.querySelectorAll('.tab-content').forEach(function(x){x.classList.add('hidden');});
+    b.classList.add('active');
+    document.getElementById('tab-'+b.getAttribute('data-tab')).classList.remove('hidden');
+    if(b.getAttribute('data-tab')==='team') renderTeam('donut');
+    if(b.getAttribute('data-tab')==='store') renderStoreCards('all');
+  });
+});
+
+// AM filter
+document.getElementById('amFilter').addEventListener('click',function(e){
+  var p=e.target.closest('.sfpill');if(!p)return;
+  document.querySelectorAll('#amFilter .sfpill').forEach(function(x){x.classList.remove('active');});
+  p.classList.add('active');
+  renderStoreCards(p.getAttribute('data-am'));
+});
+
+function renderStoreCards(am){
+  var D=ACTIVE_MONTH==='mar'?MAR:FEB;
+  var stores=Object.entries(D);
+  if(am!=='all' && AM_STORES[am]){
+    var amList=AM_STORES[am];
+    stores=stores.filter(function(e){return amList.indexOf(e[0])>=0;});
+  }
+  stores.sort(function(a,b){return b[1].ads-a[1].ads;});
+  document.getElementById('storeCount').textContent='Showing '+stores.length+' stores &middot; '+(ACTIVE_MONTH==='mar'?'March 2026':'Feb 2026')+' actuals';
+  var html='';
+  stores.forEach(function(entry){
+    var name=entry[0], s=entry[1];
+    var inactive = s.ads===0;
+    var dc=rag(s.donut,30),tc=rag(s.timbit,60),wc2=rag(s.water,3),cc=rag(s.coffee,1.2);
+    var adsK=inactive?'Inactive':s.ads>=100000?Math.round(s.ads/100000*10)/10+'L':Math.round(s.ads/1000)+'K';
+    var adsColor=inactive?'var(--text3)':'var(--red)';
+    html+='<div class="scard" style="'+(inactive?'opacity:0.6;':'')+'">'+
+      '<div class="scard-top">'+
+        '<div><div class="scard-name">'+name.replace('TH ','')+'</div>'+
+        (inactive?'<div style="font-size:10px;color:var(--text3);margin-top:2px">Currently inactive</div>':'')+
+        '</div>'+
+        '<div style="text-align:right"><div class="scard-ads" style="color:'+adsColor+'">'+adsK+(inactive?'':'\/day')+'</div>'+
+        (!inactive?'<div style="font-size:10px;color:var(--text2)">APC &#8377;'+s.apc+'</div>':'')+
+        '</div>'+
+      '</div>'+
+      (!inactive?'<div class="scard-kpis">'+
+        '<div class="sk"><div class="sk-val" style="color:'+dc+'">'+s.donut+'</div><div class="sk-lbl">Donut</div></div>'+
+        '<div class="sk"><div class="sk-val" style="color:'+tc+'">'+s.timbit+'</div><div class="sk-lbl">Timbit</div></div>'+
+        '<div class="sk"><div class="sk-val" style="color:'+wc2+'">'+s.water+'</div><div class="sk-lbl">Water</div></div>'+
+        '<div class="sk"><div class="sk-val" style="color:'+cc+'">'+s.coffee+'</div><div class="sk-lbl">Coffee</div></div>'+
+      '</div>':'')+
+    '</div>';
+  });
+  document.getElementById('storeCards').innerHTML=html||'<div style="padding:30px;text-align:center;color:var(--text2)">No stores found</div>';
+}
+
+// Team table
+document.getElementById('teamFilters').addEventListener('click',function(e){
+  var p=e.target.closest('.fpill');if(!p)return;
+  document.querySelectorAll('#teamFilters .fpill').forEach(function(x){x.classList.remove('active');});
+  p.classList.add('active');
+  renderTeam(p.getAttribute('data-kpi'));
+});
+
+function renderTeam(kpi){
+  var D=ACTIVE_MONTH==='mar'?MAR:FEB;
+  var rows=Object.entries(D).map(function(e){return {s:e[0],v:e[1][kpi]||0,ads:e[1].ads};})
+    .filter(function(r){return r.v>0 && r.ads>0;})
+    .sort(function(a,b){return b.v-a.v;});
+  var labels={donut:'Donuts UPD',timbit:'Timbits UPD',protein:'Protein UPD',water:'Water UPD',coffee:'Coffee UPD',merch:'Merch UPD',qr:'QR Feedback %',ads:'ADS'};
+  var html='<div class="team-table"><div class="tt-hdr">'+
+    '<div class="tt-hc" style="flex:2.5">Store</div>'+
+    '<div class="tt-hc" style="flex:1.2;text-align:right">'+(ACTIVE_MONTH==='mar'?'Mar':'Feb')+'</div>'+
+    '<div class="tt-hc" style="flex:0.8;text-align:right">Rank</div></div>';
+  rows.forEach(function(r,i){
+    var col=i<3?'var(--green)':i<10?'var(--amber)':'var(--text2)';
+    var disp=kpi==='ads'?('&#8377;'+(r.v>=100000?Math.round(r.v/100000*10)/10+'L':Math.round(r.v/1000)+'K')):r.v;
+    html+='<div class="tt-row '+(i%2===0?'even':'')+'">'+
+      '<div class="tt-cell" style="flex:2.5;font-size:11px">'+r.s.replace('TH ','')+'</div>'+
+      '<div class="tt-cell" style="flex:1.2;text-align:right;font-weight:700;color:'+col+'">'+disp+'</div>'+
+      '<div class="tt-cell" style="flex:0.8;text-align:right;color:var(--text3);font-size:11px">#'+(i+1)+'</div></div>';
+  });
+  html+='</div><div style="font-size:11px;color:var(--text2);padding:6px 0">'+(labels[kpi]||kpi)+' &middot; Sorted highest first &middot; '+(ACTIVE_MONTH==='mar'?'March 2026':'Feb 2026')+'</div>';
+  document.getElementById('teamTable').innerHTML=html;
+}
+
+// Init
+renderStoreCards('all');
+renderTeam('donut');
+</script>
+</body>
+</html>

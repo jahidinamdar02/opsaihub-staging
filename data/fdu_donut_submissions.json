@@ -1,0 +1,3890 @@
+[
+  {
+    "id": "1775292872931",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-04T08:54:32.931Z",
+    "photo1": "/uploads/fdu/5c73ce9d0ea4d548411a123c1a508899",
+    "photo2": "/uploads/fdu/02118c641632ef779108796289aa906a"
+  },
+  {
+    "id": "1775293103166",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-04T08:58:23.166Z",
+    "photo1": "/uploads/fdu/644287b659a16370099fc8cf93e83d5a",
+    "photo2": "/uploads/fdu/b4a939fb4f3bf1504f3512e65b389bbd"
+  },
+  {
+    "id": "1775297133532",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-04T10:05:33.532Z",
+    "photo1": "/uploads/fdu/59de7ccb9a00790945d7e44ea9189069",
+    "photo2": "/uploads/fdu/a46a975b24aec98a7d4e19757bc292d3"
+  },
+  {
+    "id": "1775335955898",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-04T20:52:35.898Z",
+    "photo1": "/uploads/fdu/bd102c7a8ee4c46fa93d41e6fdd72b53",
+    "photo2": "/uploads/fdu/396fe39388b37a0d7f7702dbae06c78a"
+  },
+  {
+    "id": "1775337638553",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-04T21:20:38.553Z",
+    "photo1": "/uploads/fdu/21b29a1e90e2e6ba01c65d7813bf9c46",
+    "photo2": "/uploads/fdu/06eaa3d133a78251564561ceadfc15e0"
+  },
+  {
+    "id": "1775350118507",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T00:48:38.507Z",
+    "photo1": "/uploads/fdu/711c597ed275aea498c742bdf1bda5ed",
+    "photo2": "/uploads/fdu/d6613a9dd75d403ebc79ff5bb62b4f8a"
+  },
+  {
+    "id": "1775350321401",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T00:52:01.401Z",
+    "photo1": "/uploads/fdu/539c7d933e255d91da75ff1d85980db9",
+    "photo2": "/uploads/fdu/31e753e774e315fa27fcba8de19052b2"
+  },
+  {
+    "id": "1775358627515",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T03:10:27.515Z",
+    "photo1": "/uploads/fdu/23a8234dae558808aa80f0893f07d5b7",
+    "photo2": "/uploads/fdu/fcc5d2277a59545f8821e1dcb4a4f999"
+  },
+  {
+    "id": "1775358738260",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T03:12:18.260Z",
+    "photo1": "/uploads/fdu/9e39709fc345dbe33ae6f886915b67e3",
+    "photo2": "/uploads/fdu/f9e48e0e54018a4def2a2c331a6c45c9"
+  },
+  {
+    "id": "1775360420065",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T03:40:20.065Z",
+    "photo1": "/uploads/fdu/1844469506445f5e5738df620ec7b598",
+    "photo2": "/uploads/fdu/332233ac0da7e2504d77d3b34f72a354"
+  },
+  {
+    "id": "1775360444509",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T03:40:44.509Z",
+    "photo1": "/uploads/fdu/28fec5e0cbe39cd6b5455dcf0189ba31",
+    "photo2": "/uploads/fdu/7e435e2b0e3f20952258f27545e329a6"
+  },
+  {
+    "id": "1775360680041",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T03:44:40.041Z",
+    "photo1": "/uploads/fdu/080c232567596cc5d9edac6c73e2d61e",
+    "photo2": "/uploads/fdu/bdb750f13f0e983df5d52b446ef87109"
+  },
+  {
+    "id": "1775361112343",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T03:51:52.343Z",
+    "photo1": "/uploads/fdu/efce0d053f1d876bdcde4ed43b0fed58",
+    "photo2": "/uploads/fdu/257c20c7ebb625be7c457ddad5bff92c"
+  },
+  {
+    "id": "1775361632234",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T04:00:32.234Z",
+    "photo1": "/uploads/fdu/328a530b274bc5f12aa1362f100f8b9c",
+    "photo2": "/uploads/fdu/696d1da697abdd03eaaaa9726cf2ab52"
+  },
+  {
+    "id": "1775361824277",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T04:03:44.277Z",
+    "photo1": "/uploads/fdu/3457488ac8cd15b01a9e9c026a5540c1",
+    "photo2": "/uploads/fdu/afa099fd2340579f44ff9c9949195d54"
+  },
+  {
+    "id": "1775361989372",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T04:06:29.372Z",
+    "photo1": "/uploads/fdu/05e735e65270c7e71b3ec10d45d7dd0b",
+    "photo2": "/uploads/fdu/7ad19d278d4b24c7d3ff809f72bc643f"
+  },
+  {
+    "id": "1775362329838",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T04:12:09.838Z",
+    "photo1": "/uploads/fdu/99b5106411f43ac62617d5d3048f4128",
+    "photo2": "/uploads/fdu/52717cd3e75e711fea7a646455b5a867"
+  },
+  {
+    "id": "1775362571555",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T04:16:11.555Z",
+    "photo1": "/uploads/fdu/dbaa5bde10a8803666aa62e86f6c4118",
+    "photo2": "/uploads/fdu/f7550f7a74d4e5800fa230cf6dff6132"
+  },
+  {
+    "id": "1775362765334",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T04:19:25.334Z",
+    "photo1": "/uploads/fdu/61f8941b4455654597486646ce162073",
+    "photo2": "/uploads/fdu/24339b12cf3841113184f650170d1baa"
+  },
+  {
+    "id": "1775362939293",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T04:22:19.293Z",
+    "photo1": "/uploads/fdu/957195ccdef74aee708cb277584c2549",
+    "photo2": "/uploads/fdu/cad4de821092787e2d5700dde3299bec"
+  },
+  {
+    "id": "1775362974631",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T04:22:54.631Z",
+    "photo1": "/uploads/fdu/799e44cc8b97401375eebd60ecd4f26e",
+    "photo2": "/uploads/fdu/3965e8ea8f872028d9e5b2fabeb91184"
+  },
+  {
+    "id": "1775363117177",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T04:25:17.177Z",
+    "photo1": "/uploads/fdu/6fd31050754a947f4defab6129759111",
+    "photo2": "/uploads/fdu/d0c02fe16e673cf50b2a9efffc9b5f12"
+  },
+  {
+    "id": "1775364016584",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T04:40:16.584Z",
+    "photo1": "/uploads/fdu/c43631704db0ba38cfc26dc4e7bb3983",
+    "photo2": "/uploads/fdu/aba381c143db9d09d7de4af2e6058a11"
+  },
+  {
+    "id": "1775364287415",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T04:44:47.415Z",
+    "photo1": "/uploads/fdu/0d39a8992192c589239603d44b30c3bd",
+    "photo2": "/uploads/fdu/b57468925561a9232ceb73b126a0a7dd"
+  },
+  {
+    "id": "1775364568629",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T04:49:28.629Z",
+    "photo1": "/uploads/fdu/912f60172c15edd4e0e043034bc2146c",
+    "photo2": "/uploads/fdu/7479c600fa973b524d1d4d615caec495"
+  },
+  {
+    "id": "1775365856717",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T05:10:56.717Z",
+    "photo1": "/uploads/fdu/174e664bf7e5464b1c727aaf03172d53",
+    "photo2": "/uploads/fdu/6b693d07e21cae6f86d9a425f226f86f"
+  },
+  {
+    "id": "1775366071721",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T05:14:31.721Z",
+    "photo1": "/uploads/fdu/069722bddbe3fae1dbb568ab1415a1a0",
+    "photo2": "/uploads/fdu/0e29da0c0379a4d741822c9f051f875c"
+  },
+  {
+    "id": "1775366927689",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T05:28:47.689Z",
+    "photo1": "/uploads/fdu/683f17b4dbbce14a80b9b707e8b44d2a",
+    "photo2": "/uploads/fdu/d58d17da0816246aa33dc894e747054d"
+  },
+  {
+    "id": "1775368136182",
+    "store": "",
+    "am": "",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T05:48:56.182Z",
+    "photo1": "/uploads/fdu/50d22e26cd6b20c60a7d23e3c14b92c4",
+    "photo2": "/uploads/fdu/67dc98d4a705ce3ad307284e1a3c3ee0"
+  },
+  {
+    "id": "1775381954035",
+    "store": "t3dd",
+    "am": "Raman",
+    "donut1Id": "",
+    "donut2Id": "",
+    "grade1": "",
+    "grade2": "",
+    "submittedAt": "2026-04-05T09:39:14.035Z",
+    "photo1": "",
+    "photo2": ""
+  },
+  {
+    "id": "1775382186223",
+    "store": "t3dd",
+    "am": "Raman",
+    "submittedAt": "2026-04-05T09:43:06.223Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "",
+    "photo2": "",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775427783650",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-05T22:23:03.651Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/9810a0faef4f2bb5bd4d51b1099e7876",
+    "photo2": "/uploads/fdu/8f1401729f5cc5ba470c03b040be6877",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775429394998",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-05T22:49:54.998Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/acdd637a9e6e572e04c11fb1f7600daf",
+    "photo2": "/uploads/fdu/40089155c0ff11bed9a13ac1c27b74df",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775445968468",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T03:26:08.468Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/a2cbe49021c557d7feec1428ccd4142e",
+    "photo2": "/uploads/fdu/d5766a5dba06307d17be7f94e5eaff34",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775446396547",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T03:33:16.547Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/42c03ff84af55a61b5e3cfa119749026",
+    "photo2": "/uploads/fdu/302aa7e422bd7b3a454d34d192a3a75d",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775447239359",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T03:47:19.359Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/03824e33a844cf21761edcb8611df677",
+    "photo2": "/uploads/fdu/ee62d8206d95dfdb3fdccece3e46c383",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775447331468",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T03:48:51.468Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/8b2e1d8e37653feb5943c2707754f249",
+    "photo2": "/uploads/fdu/543f22eb2eded5b6f56573b54eecb8ab",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775447787134",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T03:56:27.134Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/3065c8540a4cac5868e6e557e01dfcbd",
+    "photo2": "/uploads/fdu/7661a148563323efc836eb4178cd25f2",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775447852667",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T03:57:32.667Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/cf6a7d3a0de8b83278d25a01d1b68d43",
+    "photo2": "/uploads/fdu/8f6dfd22706451561c3b9fd3b265b276",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775448030263",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:00:30.263Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/f394bfc3afaa68ca1ebd63fe8b6df24e",
+    "photo2": "/uploads/fdu/ce26211ec04758db9c6cde6df036538c",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775448107815",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:01:47.815Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/e064878c5597fabea14c7bc74eea4483",
+    "photo2": "/uploads/fdu/0ba66988153c780effc07d023003c103",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775448151157",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:02:31.157Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/dcc87d96c4c10a5b8b8e87d972423548",
+    "photo2": "/uploads/fdu/1860f4824b40b8e4ba0fcc1ad0935f35",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775448180420",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:03:00.420Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/60d8aa199352fda31e129ad6f67f61b9",
+    "photo2": "/uploads/fdu/180ea5719f78750d4b8c097e31ef10f7",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775448494126",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:08:14.126Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/c1745722b692879987edabf2b10ba330",
+    "photo2": "/uploads/fdu/785afd1ba8bb455829c8f65238a68813",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775448915295",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:15:15.295Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/579a48bc04959c21e87c2cb72dbe6b02",
+    "photo2": "/uploads/fdu/85fd781e1bfe7b3b8f47e4e7971707bd",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775449378476",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:22:58.476Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/d3794aed87842c067a19acbb2fde008c",
+    "photo2": "/uploads/fdu/a93f6ae812913e723e9993873201bd24",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775449727197",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:28:47.198Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/9315525a380314daa6f0b28056946642",
+    "photo2": "/uploads/fdu/9f13866b0fb072965adb9d34d610d53b",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775450070794",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:34:30.794Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/5e698020b651ff9fa9242af279cd9f9d",
+    "photo2": "/uploads/fdu/f49c231622b9dad5d37768eab755b027",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775450309596",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:38:29.596Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/2bafd2851f81dca33a0d45b750cd7b4b",
+    "photo2": "/uploads/fdu/27894445f8bb4381fc1c2b3326c1e92b",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775450413738",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:40:13.738Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/564dda88abd55b276ee41d215690f8e0",
+    "photo2": "/uploads/fdu/efa1c8c0c19c807a80f448dcd5422784",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775450562422",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:42:42.422Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/6cf3bb27f86ed9bcab7501e47e2e2076",
+    "photo2": "/uploads/fdu/622eb548df6e1de50bb61e8e5e033d7d",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775451160116",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:52:40.116Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/a58e75a82b46903f4ef9926b89b3af2c",
+    "photo2": "/uploads/fdu/31d55992998e7b56ae0bd4e87813959f",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775451318194",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:55:18.194Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/b25800a71e4b766a11e5e0011c3ad198",
+    "photo2": "/uploads/fdu/2a40fe7ec6ab6993edd3411ff5563c73",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775451512004",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T04:58:32.004Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/b24b026c89629c14490d6d74b0e0bfa6",
+    "photo2": "/uploads/fdu/7286896f0feecfcb1599492ad470b6b8",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775451748655",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T05:02:28.655Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/d3e0928f76faef07aa77385b46383a10",
+    "photo2": "/uploads/fdu/9b490a9393b3b952482e67e379bc535b",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775452062579",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T05:07:42.579Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/605c4320f660edccc9bdf0ded96812b5",
+    "photo2": "/uploads/fdu/883b5ac6e988708a074a2bd13bfcc8dd",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775452530281",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T05:15:30.281Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/3e8ad39397cb606ce41919699f3e128d",
+    "photo2": "/uploads/fdu/3b241a469421cc26710e54fe4f1c5672",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775452533247",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T05:15:33.247Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/bea1cc38da6ac9d7c8e4260231d15825",
+    "photo2": "/uploads/fdu/6b2c46f7b8285ec6233dfba6af7034e8",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775512209550",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T21:50:09.550Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/86cb3674869056684ec9c96bc457549c",
+    "photo2": "/uploads/fdu/8f9ce7bbc5b84b17b74bda8da610de58",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775516386644",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-06T22:59:46.644Z",
+    "donut1": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "donut2": {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "standards": "Smooth chocolate fondant top. Round filled shape. Even chocolate coverage. No collapsed shape. No visible holes."
+    },
+    "photo1": "/uploads/fdu/d6f913406f9179b8a20ec62243d8fe88",
+    "photo2": "/uploads/fdu/695872c74549723835e0ec8e87eccbb6",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775524006767",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-07T01:06:46.767Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/192aa7c01566e24e47838bbf67c29023",
+    "photo2": "/uploads/fdu/7ecfdb41f59448d3a1c014503ddad8e1",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775524065567",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-07T01:07:45.567Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/d0cce5ea696fc1b64d014444756a75ea",
+    "photo2": "/uploads/fdu/08c909482b4f08f00ab1cdf8c4acf6b9",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775524108677",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-07T01:08:28.677Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/6ca909935466d1541dc1d5a54c71a44a",
+    "photo2": "/uploads/fdu/9186dc4cd54f11359ae3f5c8102488b9",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775530505390",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-07T02:55:05.390Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/d8bec034a08bfe8c660168c49db9da7a",
+    "photo2": "/uploads/fdu/3594ad8ad4743e66fd7b1ce6b8cfe65d",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775530845493",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-07T03:00:45.493Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/027fb422a2c631085c001eafe89cac73",
+    "photo2": "/uploads/fdu/0c0d2f9dcb1cb872b834746002f46e38",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775531199432",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-07T03:06:39.432Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/f58e24aed39448fbf6f28f5c4f45d2c5",
+    "photo2": "/uploads/fdu/017dc1e1fd19c6b40c0adf3f9c600fc3",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Vanilla dip is unevenly applied with bare spots on the ring, and sprinkles are clumped rather than uniformly distributed.",
+    "feedback2": "Maple fondant appears unevenly applied with visible cracking and drying on the surface, and caramel drizzle is insufficient.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to uneven coating application, inadequate topping distribution, and surface defects."
+  },
+  {
+    "id": "1775531571249",
+    "store": "supreme",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T03:12:51.249Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/5d4a17b647b9fe02143a6ec2c4be1fc5",
+    "photo2": "/uploads/fdu/178c47e01be0fa4fa0f8574ffe19a676",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Vanilla dip application is uneven with visible gaps and poor fondant coverage on the ring surface.",
+    "feedback2": "Maple fondant appears cracked and dry with inadequate caramel drizzle distribution and uneven topping application.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to inconsistent coating application and surface defects."
+  },
+  {
+    "id": "1775532661130",
+    "store": "nmial",
+    "am": "Area Manager: Akash Rathod",
+    "submittedAt": "2026-04-07T03:31:01.130Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/4209472b559c1e24560757c2a7bcd1d7",
+    "photo2": "/uploads/fdu/cf030c9b7e5f5fe4b712739f0796824c",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip shows uneven fondant application with clumped sprinkles concentrated on one side and poor uniform distribution across the donut surface.",
+    "feedback2": "Maple Dip displays even fondant base with visible caramel topping, good color definition, and no visible surface cracks or dryness.",
+    "overallPass": false,
+    "summary": "One of two donuts meets quality standards; Vanilla Dip requires reformulation or process adjustment to achieve consistent sprinkle distribution and fondant coverage."
+  },
+  {
+    "id": "1775532874546",
+    "store": "koramangala",
+    "am": "Area Manager: Jagadeesha",
+    "submittedAt": "2026-04-07T03:34:34.546Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/fdcc00399f2c80e67ead8fa3e88ccf82",
+    "photo2": "/uploads/fdu/844c22f7e32c98f6899246892dfe3414",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775532951493",
+    "store": "navrangpura",
+    "am": "Area Manager: Unassigned",
+    "submittedAt": "2026-04-07T03:35:51.493Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/69cab3940ba501507cbe427552a2688b",
+    "photo2": "/uploads/fdu/5b69b47470ffefcad1006ca54396b19b",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Vanilla Dip has uneven fondant application with visible bare spots, and sprinkles are heavily clumped rather than uniformly distributed.",
+    "feedback2": "Maple & Salted Caramel shows a dry, cracked surface with no visible caramel fudge topping or drizzle, failing to meet glossy finish standards.",
+    "overallPass": false,
+    "summary": "Both donuts fail quality standards due to improper coating application and finishing."
+  },
+  {
+    "id": "1775533503850",
+    "store": "malhar-rd",
+    "am": "Area Manager: Deepak",
+    "submittedAt": "2026-04-07T03:45:03.850Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/50bb5fb44db0a0ce59b616f8f88b2937",
+    "photo2": "/uploads/fdu/1b7770b7be6225f63acb83103c769fd0",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed with excessive buildup, failing uniformity standards.",
+    "feedback2": "Surface shows visible cracking and drying with uneven fondant application, not meeting quality appearance standards.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to improper topping application and surface condition issues."
+  },
+  {
+    "id": "1775534579300",
+    "store": "fifc",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T04:02:59.300Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/7fdb7c9e1ea8a9cee8a854ab271abe98",
+    "photo2": "/uploads/fdu/d35920b2fe18b3ee994c7b022b56bdae",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775534608609",
+    "store": "supreme",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T04:03:28.609Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/74b3fe7ca7432717f2bd9453d8f3c95a",
+    "photo2": "/uploads/fdu/af375284a69b74b07c0faa3c5991b011",
+    "grade1": "Pass",
+    "grade2": "Fail",
+    "feedback1": "Vanilla dip donut has vibrant, evenly distributed sprinkles with intact ring shape and no clumping.",
+    "feedback2": "Maple and salted caramel donut exhibits cracked, dry surface with insufficient caramel drizzle visibility and uneven fondant application.",
+    "overallPass": false,
+    "summary": "One of two donuts met quality standards; the maple caramel donut requires process adjustment for proper fondant coverage and topping distribution."
+  },
+  {
+    "id": "1775534673576",
+    "store": "green-park",
+    "am": "Area Manager: Harish",
+    "submittedAt": "2026-04-07T04:04:33.576Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/9cc65917e11063e1e307b39c4f837e0a",
+    "photo2": "/uploads/fdu/dff00269aa8bfd9401e7a24d5ab648e5",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775534753082",
+    "store": "punjabi-bagh",
+    "am": "Area Manager: Rohit",
+    "submittedAt": "2026-04-07T04:05:53.082Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/e2763bdfdeccdba64a6f2a07994f2b0f",
+    "photo2": "/uploads/fdu/91e713fd09748722b61e10016f4ea34b",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped in multiple areas with uneven distribution across the donut surface.",
+    "feedback2": "Maple fondant is evenly applied with generous caramel drizzle and visible fudge pieces; surface is smooth without cracks.",
+    "overallPass": false,
+    "summary": "Donut 1 fails due to clumped sprinkles violating uniform distribution standards; Donut 2 meets all quality specifications."
+  },
+  {
+    "id": "1775535473922",
+    "store": "nmial-arrival",
+    "am": "Area Manager: Akash Rathod",
+    "submittedAt": "2026-04-07T04:17:53.923Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/fd27b38af7f75d8e6c31918a22a0d10b",
+    "photo2": "/uploads/fdu/c4d76786de33f106550c368946f491a5",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775535538474",
+    "store": "sindhu-bhavan",
+    "am": "Area Manager: Unassigned",
+    "submittedAt": "2026-04-07T04:18:58.474Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/2129905f8068e177dc8a513e1d1476a9",
+    "photo2": "/uploads/fdu/d8710ac18487bb129cf2aa079454f2ee",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip donuts show uneven sprinkle distribution with significant clumping and bare patches on the surface, failing to meet uniform application standards.",
+    "feedback2": "Maple & Salted Caramel donuts display generous caramel drizzle with even fondant base and glossy finish, meeting all quality standards.",
+    "overallPass": false,
+    "summary": "One product meets standards while the other requires process improvement in sprinkle application and distribution consistency."
+  },
+  {
+    "id": "1775535554358",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T04:19:14.358Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/4ebc0866aef752039c0e87b212cb3d0a",
+    "photo2": "/uploads/fdu/fbc46a9aa436671e62121f22103ab6fe",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface, failing to meet uniform distribution standards.",
+    "feedback2": "Maple fondant is evenly applied with visible caramel fudge topping and good gloss, meeting all quality standards.",
+    "overallPass": false,
+    "summary": "One donut passes quality standards while the other fails due to poor sprinkle application and clumping."
+  },
+  {
+    "id": "1775535625638",
+    "store": "bucho",
+    "am": "Area Manager: Deepak",
+    "submittedAt": "2026-04-07T04:20:25.638Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/711a476d04e5646e8c3c7e272232547f",
+    "photo2": "/uploads/fdu/f8d6fa339e0a03c2b5712c40388e56a5",
+    "grade1": "Pass",
+    "grade2": "Fail",
+    "feedback1": "Vanilla Dip displays even fondant coverage with uniformly distributed colorful sprinkles and intact ring shape.",
+    "feedback2": "Maple & Salted Caramel shows visible dry cracking on the surface and insufficient caramel drizzle visibility, failing quality standards.",
+    "overallPass": false,
+    "summary": "One donut meets standards while the other exhibits surface defects and inadequate topping application."
+  },
+  {
+    "id": "1775535634051",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T04:20:34.051Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/80b3c59df900b394cf938266973b951a",
+    "photo2": "/uploads/fdu/15b3ca794a3017d11edfb2d0b6d559e0",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip donut has uneven sprinkle distribution with visible clumping and bare spots on the ring.",
+    "feedback2": "Maple & Salted Caramel donuts display even fondant application with intact ring shapes and glossy finish.",
+    "overallPass": false,
+    "summary": "One of two donut types meets quality standards; Vanilla Dip requires sprinkle application adjustment."
+  },
+  {
+    "id": "1775535651413",
+    "store": "cyber-hub",
+    "am": "Area Manager: Harish",
+    "submittedAt": "2026-04-07T04:20:51.413Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/4aac7405856fbfe42fc777c80705597d",
+    "photo2": "/uploads/fdu/7d5af8177f475b4a833f8af0e098493a",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution, and coverage appears sparse in certain areas of the donut.",
+    "feedback2": "Maple fondant is evenly applied with visible caramel drizzle and no surface cracks; presentation meets quality standards.",
+    "overallPass": false,
+    "summary": "One donut meets standards while the other fails due to sprinkle application defects."
+  },
+  {
+    "id": "1775535818178",
+    "store": "ahmedabad-airport",
+    "am": "Area Manager: Unassigned",
+    "submittedAt": "2026-04-07T04:23:38.178Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/e2b7b86d581132137fea420fbdca0978",
+    "photo2": "/uploads/fdu/729e96ecd2338fa568f6e0d5a23608bc",
+    "grade1": "Pass",
+    "grade2": "Fail",
+    "feedback1": "Vanilla dip evenly applied with uniformly distributed colorful sprinkles and intact ring shape.",
+    "feedback2": "Maple fondant surface appears dry and cracked with insufficient visible caramel fudge topping and drizzle.",
+    "overallPass": false,
+    "summary": "Donut 1 meets all quality standards while Donut 2 fails due to poor fondant application and inadequate caramel presentation."
+  },
+  {
+    "id": "1775536234635",
+    "store": "skymark",
+    "am": "Area Manager: Rohit",
+    "submittedAt": "2026-04-07T04:30:34.635Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/3fc6cde48bb37677809698dbcf76fa3d",
+    "photo2": "/uploads/fdu/42674e473d2a89f390ae7eadf2f4c465",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip donuts show significant clumping of sprinkles with uneven distribution and bare spots on the ring surface.",
+    "feedback2": "Maple & Salted Caramel donuts display even fondant application with generous caramel drizzle and intact ring shape throughout.",
+    "overallPass": false,
+    "summary": "Quality control issues identified with Vanilla Dip batch requiring immediate remediation of sprinkle application process."
+  },
+  {
+    "id": "1775536320614",
+    "store": "skymark",
+    "am": "Area Manager: Rohit",
+    "submittedAt": "2026-04-07T04:32:00.614Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/a06f0fdb4dd5758453403cc24ee2ae3b",
+    "photo2": "/uploads/fdu/f4702bce995a2342685db4f47c5ffae7",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775537015870",
+    "store": "bhupindra-road",
+    "am": "Area Manager: Deepak",
+    "submittedAt": "2026-04-07T04:43:35.870Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/8a58d5516c8e746773bf172b72bfd4c3",
+    "photo2": "/uploads/fdu/8ebabc906a1474324676658dcb884992",
+    "grade1": "Pass",
+    "grade2": "Pass",
+    "feedback1": "Vanilla dip is evenly applied with uniform sprinkle distribution and intact ring shape.",
+    "feedback2": "Maple fondant base is even with clearly visible caramel fudge topping and generous drizzle without surface cracks.",
+    "overallPass": true,
+    "summary": "Both donuts meet QSR quality standards with proper coating application, topping distribution, and structural integrity."
+  },
+  {
+    "id": "1775537089650",
+    "store": "sector-35",
+    "am": "Area Manager: Deepak",
+    "submittedAt": "2026-04-07T04:44:49.650Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/27552251e2f02f45d4ee21e5090d1b16",
+    "photo2": "/uploads/fdu/68b14101689e7f092cf355c3c148655f",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775537153802",
+    "store": "hyd-arrivals",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-07T04:45:53.802Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/d1cc6dce0b4a401fe0b4fb4073d87d47",
+    "photo2": "/uploads/fdu/97ccb341a4a1b70bd70dc0bcaf625a3f",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775537902108",
+    "store": "pmc-wakad",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T04:58:22.108Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/3b1f84835657020834989d16354f240a",
+    "photo2": "/uploads/fdu/96d3b7e3f334927e409a059015863b4b",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip donuts have uneven sprinkle distribution with visible clumping and bare spots, failing uniformity standards.",
+    "feedback2": "Maple Dip donuts display even fondant application with glossy finish and intact ring shape meeting quality standards.",
+    "overallPass": false,
+    "summary": "One of two donut varieties fails quality inspection due to inconsistent sprinkle application."
+  },
+  {
+    "id": "1775537952495",
+    "store": "select-city",
+    "am": "Area Manager: Harish",
+    "submittedAt": "2026-04-07T04:59:12.495Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/698470ca73e380e4ca88524d8c819afe",
+    "photo2": "/uploads/fdu/501da3f2a16371292f893a9370a94053",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip donuts show uneven sprinkle distribution with significant clumping and bare spots, failing uniformity standards.",
+    "feedback2": "Maple & Salted Caramel donuts display even fondant application with visible caramel drizzle and intact ring shape meeting all standards.",
+    "overallPass": false,
+    "summary": "One product line fails quality standards due to poor sprinkle application consistency; immediate corrective action required for Vanilla Dip production."
+  },
+  {
+    "id": "1775537953149",
+    "store": "cyber-hub",
+    "am": "Area Manager: Harish",
+    "submittedAt": "2026-04-07T04:59:13.149Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/2f2a4b90c0e78b5a7594bab54780588f",
+    "photo2": "/uploads/fdu/c64b1149ecdfae7b1160987b5921dca6",
+    "grade1": "Pass",
+    "grade2": "Pass",
+    "feedback1": "Vanilla dip donuts show even fondant coverage with uniformly distributed colorful sprinkles and intact ring shape, though some minor sprinkle clumping is visible.",
+    "feedback2": "Maple & Salted Caramel donuts display even maple fondant base with visible caramel drizzle and toffee pieces on top; surface appears smooth without cracks.",
+    "overallPass": true,
+    "summary": "Both donut varieties meet QSR quality standards with proper presentation and finishing techniques."
+  },
+  {
+    "id": "1775538063238",
+    "store": "vegas-mall",
+    "am": "Area Manager: Rohit",
+    "submittedAt": "2026-04-07T05:01:03.238Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/f7610755536635b272003e566faeb634",
+    "photo2": "/uploads/fdu/99786d1a9d57fdedc6bdb05fdfcf9a7f",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed with excessive buildup in the center, failing to meet uniform distribution standards.",
+    "feedback2": "Maple dip is evenly applied with good color, smooth surface, and proper ring shape integrity meeting all quality standards.",
+    "overallPass": false,
+    "summary": "One donut passes inspection while the other fails due to poor sprinkle application and clumping issues."
+  },
+  {
+    "id": "1775538084368",
+    "store": "pmc-kurla",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T05:01:24.368Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/1bb42ceb467314a2b2322e1872fe27c5",
+    "photo2": "/uploads/fdu/f0d97cdd9fc3d56738d942fbbf878eb7",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775538452212",
+    "store": "lakeshore",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-07T05:07:32.212Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/4cc9bf5288442b6c6467fd5d6855b772",
+    "photo2": "/uploads/fdu/ca5302d04eac2396a0fc683f16bf556d",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution, and the donut ring shape shows structural integrity issues.",
+    "feedback2": "Caramel topping appears unevenly applied with visible dry/cracked surface texture and insufficient visible caramel drizzle.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to application and presentation defects."
+  },
+  {
+    "id": "1775538995344",
+    "store": "inorbit-hyd",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-07T05:16:35.344Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/daeb017dcfb9516021ed4726e498699c",
+    "photo2": "/uploads/fdu/e83ed32808091a7d17d1ad7fd3b5b381",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Vanilla Dip donuts show uneven sprinkle distribution with excessive clumping and bare patches on the surface, failing uniformity standards.",
+    "feedback2": "Maple & Salted Caramel donuts display visible cracking and drying on the fondant surface with insufficient caramel drizzle visibility, compromising product quality.",
+    "overallPass": false,
+    "summary": "Both donut varieties fail quality standards due to uneven application, visible defects, and failure to meet presentation requirements."
+  },
+  {
+    "id": "1775539039326",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T05:17:19.326Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/c2c8aef7711b446beb7493c7ba469e8b",
+    "photo2": "/uploads/fdu/6552173e5ecf0fcf9b444de5b8b9bf75",
+    "grade1": "Pass",
+    "grade2": "Fail",
+    "feedback1": "Vanilla Dip donut meets standards with evenly applied white fondant, uniformly distributed colorful sprinkles, and intact ring shape.",
+    "feedback2": "Maple & Salted Caramel donut fails due to visible dry and cracked surface on the fondant with insufficient caramel drizzle visibility.",
+    "overallPass": false,
+    "summary": "One of two donuts meets quality standards; the Maple & Salted Caramel requires remaking due to surface defects and inadequate topping application."
+  },
+  {
+    "id": "1775539194475",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T05:19:54.475Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/1a34d0d38ad2fbddf1702725bb9c8623",
+    "photo2": "/uploads/fdu/270582a55915883af6908f43e8c614c9",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip donuts show uneven sprinkle distribution with visible clumping and bare spots on the surface.",
+    "feedback2": "Maple & Salted Caramel donuts display even fondant application, generous caramel drizzle, intact ring shape, and no surface defects.",
+    "overallPass": false,
+    "summary": "One donut meets quality standards while the other fails due to inconsistent sprinkle application and clumping."
+  },
+  {
+    "id": "1775539270346",
+    "store": "inorbit-hyd",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-07T05:21:10.346Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/f80a56e34bbdaecfe0cdab072f07630f",
+    "photo2": "/uploads/fdu/ecaf2776f929145b61e7a2a93eec1345",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Vanilla Dip donut has uneven sprinkle distribution with significant clumping and bare spots on the surface.",
+    "feedback2": "Maple & Salted Caramel donut exhibits a dry, cracked surface with insufficient visible caramel drizzle and uneven fondant application.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to poor presentation and surface finish issues."
+  },
+  {
+    "id": "1775539276639",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T05:21:16.639Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/06f916fcc3f06304332704074ca33b05",
+    "photo2": "/uploads/fdu/30e447717aaeac8f2e1ad7f795e31819",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped with poor uniform distribution throughout both donuts, violating the even distribution standard.",
+    "feedback2": "Surface shows visible cracking and dryness, with uneven caramel drizzle application that appears sparse rather than generous.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to sprinkle clumping and surface integrity issues."
+  },
+  {
+    "id": "1775539341047",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T05:22:21.047Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/51974ccdbdb23871b5dd9d9d7641398d",
+    "photo2": "/uploads/fdu/cd7e611edf0627167eaace4abeecdd59",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface, failing to meet uniform distribution standards.",
+    "feedback2": "Maple fondant is evenly applied with generous caramel drizzle, smooth finish, and no visible cracks or dry spots.",
+    "overallPass": false,
+    "summary": "One donut meets standards while the other fails due to poor sprinkle application and clumping."
+  },
+  {
+    "id": "1775539406313",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T05:23:26.313Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/28ed5eced89213dc0c4f2e836c99a759",
+    "photo2": "/uploads/fdu/6b1bb401612e49cbf5cb308ec16cb4c1",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface.",
+    "feedback2": "Fondant application appears uneven with visible dry patches and insufficient caramel drizzle visibility.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to poor topping application and distribution issues."
+  },
+  {
+    "id": "1775539417088",
+    "store": "inorbit-hyd",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-07T05:23:37.088Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/3e56c9ef337eefd46ba435faf2e8592a",
+    "photo2": "/uploads/fdu/ae782772136177ea11f2fada641aca75",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution and the vanilla fondant application is inconsistent with bare spots visible.",
+    "feedback2": "Maple fondant surface is cracked and dry with no visible caramel fudge topping or drizzle, appearing under-finished.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to application defects and missing or improperly executed toppings."
+  },
+  {
+    "id": "1775539606439",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T05:26:46.439Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/edaadbda55a8a75f006792e1d04b1a0b",
+    "photo2": "/uploads/fdu/683eaf1be2fad8c31cbed3e196a994b3",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Vanilla dip donuts have severely clumped sprinkles with uneven distribution and excessive buildup rather than uniform coverage.",
+    "feedback2": "Maple donuts exhibit dry, cracked fondant surface with insufficient caramel drizzle visibility and compromised coating integrity.",
+    "overallPass": false,
+    "summary": "Both donuts fail quality standards due to application defects and surface integrity issues."
+  },
+  {
+    "id": "1775539779349",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T05:29:39.349Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/15be9ed82da13fa893722c9dbb514683",
+    "photo2": "/uploads/fdu/95c0b5345e2e5420daa763871642b9dc",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed with excessive buildup, failing to meet uniform distribution standards.",
+    "feedback2": "Surface shows visible cracking and drying with uneven fondant application and insufficient caramel drizzle visibility.",
+    "overallPass": false,
+    "summary": "Both donuts fail quality standards due to application defects and uneven topping distribution."
+  },
+  {
+    "id": "1775540064132",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T05:34:24.132Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/f5ad6728d562258f940b3ff75dea66ad",
+    "photo2": "/uploads/fdu/045f9130c920fa251cb28020132be11e",
+    "grade1": "Pass",
+    "grade2": "Fail",
+    "feedback1": "Vanilla Dip meets standards with vibrant, uniformly distributed sprinkles, intact ring shape, and no clumping.",
+    "feedback2": "Maple & Salted Caramel fails due to visible dry, cracked surface on the fondant and insufficient caramel drizzle visibility.",
+    "overallPass": false,
+    "summary": "One donut meets quality standards while the second shows surface defects and inadequate topping application."
+  },
+  {
+    "id": "1775540173150",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T05:36:13.150Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/b47602629e5bdfeeb8476360c8f3219a",
+    "photo2": "/uploads/fdu/76d758615450ee753033d7299e2c8188",
+    "grade1": "Pass",
+    "grade2": "Fail",
+    "feedback1": "Vanilla dip donuts meet standards with evenly applied white fondant, uniformly distributed colorful sprinkles, intact ring shape, and no clumping.",
+    "feedback2": "Maple & Salted Caramel donuts fail due to uneven fondant application, visible dry/cracked surface areas, and insufficient caramel drizzle visibility.",
+    "overallPass": false,
+    "summary": "One of two donut varieties meets quality standards; the maple caramel variant requires reformulation and application process improvement."
+  },
+  {
+    "id": "1775540457341",
+    "store": "epicuria",
+    "am": "Area Manager: Harish",
+    "submittedAt": "2026-04-07T05:40:57.341Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/653c6b92496e6003de79b5d8349a0e4b",
+    "photo2": "/uploads/fdu/b7580f76154cb22d8e474db7b1c293ff",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip has uneven sprinkle distribution with visible clumping and sparse coverage in certain areas.",
+    "feedback2": "Chocolate Dip has even fondant application and intact ring shape, though this is not the specified Maple & Salted Caramel donut.",
+    "overallPass": false,
+    "summary": "Photo 1 fails quality standards due to sprinkle inconsistency; Photo 2 shows a different product than specified for inspection."
+  },
+  {
+    "id": "1775541506137",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T05:58:26.137Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/50f69d6e4b70a06d88844425f5230309",
+    "photo2": "/uploads/fdu/0dec3c2542dce2d22b80b89b232ebbb1",
+    "grade1": "Pass",
+    "grade2": "Fail",
+    "feedback1": "Vanilla dip is evenly applied with uniform sprinkle distribution and intact ring shape.",
+    "feedback2": "Maple fondant appears dry and cracked with insufficient visible caramel topping and inadequate caramel drizzle coverage.",
+    "overallPass": false,
+    "summary": "Donut 1 meets all quality standards, but Donut 2 fails due to dry appearance and insufficient caramel application."
+  },
+  {
+    "id": "1775541591036",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-07T05:59:51.036Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/e7dec0056d3677b03d27c0597749b05c",
+    "photo2": "/uploads/fdu/49a9b851bb12d84ada5d7adaac0205c6",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed with large bare patches; application does not meet uniform distribution standard.",
+    "feedback2": "Surface shows visible cracking and drying with uneven caramel application; the fondant appears dry and lacks the glossy finish required by standards.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to poor topping application and surface condition issues."
+  },
+  {
+    "id": "1775602439722",
+    "store": "t3dd-fc",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-07T22:53:59.722Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/4071c230eaa01b58fdc251c4e93bb324",
+    "photo2": "/uploads/fdu/8a187fb7a5be2a1b823bd554c75f2b66",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed with significant bare spots; ring shape integrity compromised.",
+    "feedback2": "Fondant surface is cracked and dry with visible damage; caramel topping is minimal and poorly applied with rubber bands visible.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to poor topping application and surface integrity issues."
+  },
+  {
+    "id": "1775602475980",
+    "store": "t3dd-fc",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-07T22:54:35.980Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/2208f0e772085af07fced253fb9237de",
+    "photo2": "/uploads/fdu/bc80714b305a05e3f0473935ae27f8a7",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed with large bare spots, violating uniform distribution standards.",
+    "feedback2": "Surface shows visible cracking and drying with inadequate caramel coverage; the maple fondant appears compromised with insufficient fudge topping visibility.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to application and topping deficiencies."
+  },
+  {
+    "id": "1775602679736",
+    "store": "t3dd-fc",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-07T22:57:59.736Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "standards": "Maple fondant base evenly applied. Caramel fudge topping clearly visible. Generous caramel drizzle. No dry or cracked surface."
+    },
+    "photo1": "/uploads/fdu/4a9a03d63fdbe08c55e044d38b3f2b0d",
+    "photo2": "/uploads/fdu/0eb813a645a3793d7039c13fe997a755",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775607133344",
+    "store": "t1dd",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-08T00:12:13.344Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/962dd8959c39b40b4d92c24825223a97",
+    "photo2": "/uploads/fdu/dcfff5fdec77465a88ec6a78653c0690",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Vanilla dip donut has uneven fondant coverage with excessive clumping of sprinkles and poor uniform distribution across the surface.",
+    "feedback2": "Maple dip donut shows uneven amber coloring with pale patches and visible cracking in the fondant coating.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet quality standards for fondant application, appearance, and structural integrity."
+  },
+  {
+    "id": "1775607242624",
+    "store": "t1dd",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-08T00:14:02.624Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/64795b062d89d987bf9afd346873ecb0",
+    "photo2": "/uploads/fdu/1679a21829630ac69470c30870f00908",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface, violating uniformity standards.",
+    "feedback2": "Fondant application shows uneven coloring with pale patches and the ring shape integrity is compromised by visible cracking.",
+    "overallPass": false,
+    "summary": "Both donuts fail quality standards due to sprinkle clumping on Donut 1 and uneven fondant coverage with cracking on Donut 2."
+  },
+  {
+    "id": "1775607398970",
+    "store": "t1dd",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-08T00:16:38.970Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/ee42e228922c9a9b7f9b24ae714a1858",
+    "photo2": "/uploads/fdu/af3777ed39b9c7a8a92c8796e07d030e",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface, failing uniformity standards.",
+    "feedback2": "Golden maple fondant is evenly applied with clean ring shape, uniform amber colour, and no visible cracking or discolouration.",
+    "overallPass": false,
+    "summary": "Donut 1 fails due to clumped and non-uniform sprinkle application; Donut 2 meets all maple dip standards."
+  },
+  {
+    "id": "1775607654974",
+    "store": "t1dd",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-08T00:20:54.974Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/4a10a06e2d99d5073aba7c340ac988b8",
+    "photo2": "/uploads/fdu/709ec03b898889b23156781635407813",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution and excessive buildup, failing uniformity standards.",
+    "feedback2": "Fondant shows uneven color with pale patches and the ring shape exhibits visible cracking on the surface.",
+    "overallPass": false,
+    "summary": "Both donuts fail quality inspection due to sprinkle clumping and fondant application defects respectively."
+  },
+  {
+    "id": "1775607928719",
+    "store": "t1dd",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-08T00:25:28.719Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/e29315e2dd545a5e3ba42d78a15b76f3",
+    "photo2": "/uploads/fdu/35946d3679bde817a37edb8d296f4b89",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed with poor coverage on the ring.",
+    "feedback2": "Fondant shows uneven application with visible pale patches and lacks uniform amber coloring.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards for presentation and finish."
+  },
+  {
+    "id": "1775608060133",
+    "store": "t1dd",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-08T00:27:40.133Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/64ac12fcf58316a29f36c123caef33f0",
+    "photo2": "/uploads/fdu/999adb5036dd1087e1ff5cdf13456d78",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution and excessive clustering rather than uniform coverage.",
+    "feedback2": "Fondant shows pale and uneven coloring with visible discoloration patches that do not meet the uniform amber standard.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to sprinkle application issues and fondant inconsistency."
+  },
+  {
+    "id": "1775608608798",
+    "store": "t1dd",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-08T00:36:48.798Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/2eceef5304dadfdc2dc2c721b8502b9d",
+    "photo2": "/uploads/fdu/ab451bf2172cf4331835f3ef6e9439b1",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface, failing uniformity standards.",
+    "feedback2": "Golden maple fondant is evenly applied with clean ring shape, uniform amber color, and no cracking detected.",
+    "overallPass": false,
+    "summary": "Donut 2 meets quality standards, but Donut 1 fails due to significant sprinkle clumping and poor distribution."
+  },
+  {
+    "id": "1775608711876",
+    "store": "t1dd",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-08T00:38:31.876Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/1ade1180c00890e551779b6dfcdc57c0",
+    "photo2": "/uploads/fdu/ae70a7a3d9f2a5be51088e92e37e2080",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla fondant is unevenly applied with bare spots visible, and sprinkles are heavily clumped rather than uniformly distributed.",
+    "feedback2": "Maple fondant is evenly applied with good uniform amber color, clean ring shape, and no cracking detected.",
+    "overallPass": false,
+    "summary": "One donut meets quality standards while the other has significant coating and topping application issues."
+  },
+  {
+    "id": "1775608952122",
+    "store": "t1dd",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-08T00:42:32.122Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/53bc1bc67b6ff8e6afa550d06cddef95",
+    "photo2": "/uploads/fdu/f38feae10706eff286a8d8bc11274c1b",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed, failing to meet uniform distribution standards.",
+    "feedback2": "Fondant coating shows uneven color with pale patches and the ring shape appears compromised with visible surface irregularities.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to improper coating application and decoration defects."
+  },
+  {
+    "id": "1775609059505",
+    "store": "t1dd",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-08T00:44:19.505Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/0c331e46047cb89d81eda3aa45a5a51d",
+    "photo2": "/uploads/fdu/5788d5348c7761ec560263d8beb2873e",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are severely clumped and unevenly distributed with excessive color concentration in certain areas rather than uniform distribution.",
+    "feedback2": "Golden maple fondant is evenly applied with consistent amber color, clean ring shape, and no visible cracking or discoloration.",
+    "overallPass": false,
+    "summary": "Donut 1 fails due to poor sprinkle distribution and clumping; Donut 2 meets all maple dip standards."
+  },
+  {
+    "id": "1775609286315",
+    "store": "t1dd",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-08T00:48:06.315Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/de0292637d16fdde6b0b9a04bc012d7e",
+    "photo2": "/uploads/fdu/0a225a80906cb16f989304dc6df4e475",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution and excessive buildup rather than uniform coverage.",
+    "feedback2": "Golden maple fondant is evenly applied with consistent amber coloring, clean ring shape, and no visible cracking.",
+    "overallPass": false,
+    "summary": "One donut meets quality standards while the other has significant sprinkle application defects."
+  },
+  {
+    "id": "1775609615598",
+    "store": "t1dd",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-08T00:53:35.598Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/26d981bc735021e8a0aa836fc54d41ca",
+    "photo2": "/uploads/fdu/9178f20fc91ec724fc4b190f9bcc7aee",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla dip has uneven application with bare spots visible, and sprinkles are heavily clumped rather than uniformly distributed.",
+    "feedback2": "Maple dip exhibits even golden fondant coverage, clean ring shape, and uniform amber coloration meeting all standards.",
+    "overallPass": false,
+    "summary": "One donut meets quality standards while the vanilla dip requires remaking due to coating and sprinkle application defects."
+  },
+  {
+    "id": "1775609684117",
+    "store": "t1dd",
+    "am": "Area Manager: Raman",
+    "submittedAt": "2026-04-08T00:54:44.117Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/9c1fefd4eaccbe56e64233dd80f27b68",
+    "photo2": "/uploads/fdu/656ac9f51a5520e63382dfc4d6a89101",
+    "grade1": "Pass",
+    "grade2": "Pass",
+    "feedback1": "Vanilla fondant is evenly applied with colorful sprinkles uniformly distributed across the ring; shape is intact.",
+    "feedback2": "Maple fondant displays consistent golden amber color with clean ring shape and no visible cracking or discoloration.",
+    "overallPass": true,
+    "summary": "Both donuts meet QSR quality standards for appearance, coating consistency, and structural integrity."
+  },
+  {
+    "id": "1775611585856",
+    "store": "lokhandwala",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T01:26:25.856Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/cb37873db4569015d2204152d47f0ca0",
+    "photo2": "/uploads/fdu/694761b9534b07e245ae708ae0d5c59c",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the surface, failing uniformity standards.",
+    "feedback2": "Golden maple fondant is evenly applied with clean ring shape and uniform amber colour throughout.",
+    "overallPass": false,
+    "summary": "Donut 1 fails due to clumped and non-uniform sprinkle distribution; Donut 2 meets all maple dip standards."
+  },
+  {
+    "id": "1775615220027",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T02:27:00.027Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/147439a0c8af21aec0a0e267265281ca",
+    "photo2": "/uploads/fdu/a5788189615c024a14e10006c3e4ec55",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface, failing to meet uniform distribution standards.",
+    "feedback2": "Golden maple fondant is evenly applied with consistent amber color, clean ring shape, and no visible cracking or discoloration.",
+    "overallPass": false,
+    "summary": "One donut passes quality standards while the other fails due to sprinkle application issues."
+  },
+  {
+    "id": "1775617824622",
+    "store": "fifc",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T03:10:24.622Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/20e0189ba7901afc5619523462f271ce",
+    "photo2": "/uploads/fdu/4d820cd779ab0cc6adda2ff311b8576b",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip has uneven fondant coverage with excessive sprinkle clumping and non-uniform distribution across the surface.",
+    "feedback2": "Maple Dip displays even golden fondant application, intact ring shape, and uniform amber coloring without cracking or discoloration.",
+    "overallPass": false,
+    "summary": "One donut meets quality standards while the other has significant coating and topping distribution issues."
+  },
+  {
+    "id": "1775618786479",
+    "store": "nmial-arrival",
+    "am": "Area Manager: Akash Rathod",
+    "submittedAt": "2026-04-08T03:26:26.479Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/4d1427cc6edd39e426a2e0d18d433544",
+    "photo2": "/uploads/fdu/dac6102de4bca5a2bf47abe14cc65a97",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip has uneven sprinkle distribution with visible clumping and bare patches on the fondant surface.",
+    "feedback2": "Maple Dip exhibits even golden fondant application, intact ring shape, and uniform amber coloration meeting all standards.",
+    "overallPass": false,
+    "summary": "One of two donuts passed inspection; Vanilla Dip requires corrective action in sprinkle application and fondant coverage consistency."
+  },
+  {
+    "id": "1775619327946",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T03:35:27.946Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/7d7fc75c2effc76ce042eeca353c090d",
+    "photo2": "/uploads/fdu/dd722f65d32ebcf4d1e72c69ed5dbd82",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution and inadequate fondant coverage visible on the donut surface.",
+    "feedback2": "Fondant coating shows uneven application with pale patches and color inconsistency across the ring surface.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards for coating application and visual presentation."
+  },
+  {
+    "id": "1775619360840",
+    "store": "nmial",
+    "am": "Area Manager: Akash Rathod",
+    "submittedAt": "2026-04-08T03:36:00.840Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/355e102a39e880d79afa8db8ce6b6461",
+    "photo2": "/uploads/fdu/0a076c7883c68a6d8cefd58da1383935",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution and excessive buildup on top surface.",
+    "feedback2": "Fondant coating is uneven with visible pale patches and the ring shape shows slight irregularity.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards for presentation and consistency."
+  },
+  {
+    "id": "1775619411857",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T03:36:51.857Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/84133bf47e223ae83a4c9adc5a228e75",
+    "photo2": "/uploads/fdu/e6d5924bbfdce48bc24e5b5e7b46c5de",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution and poor coverage on lower portions of the donut.",
+    "feedback2": "Golden maple fondant is evenly applied with uniform amber color, clean ring shape, and no visible cracking or discoloration.",
+    "overallPass": false,
+    "summary": "One donut meets quality standards while the other fails due to significant sprinkle application defects."
+  },
+  {
+    "id": "1775619490676",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T03:38:10.676Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/566f642df21b752e94da6b35b49499ba",
+    "photo2": "/uploads/fdu/95e08abafcaea46d4fe8f1c7d88dbfbf",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface.",
+    "feedback2": "Golden maple fondant is evenly applied with uniform amber color and intact ring shape.",
+    "overallPass": false,
+    "summary": "Donut 1 fails quality standards due to clumped sprinkles; Donut 2 meets all maple dip specifications."
+  },
+  {
+    "id": "1775619598514",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T03:39:58.514Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/6796f41127ccfbc409f23c35e2433791",
+    "photo2": "/uploads/fdu/09463685eb8b11a3a68d9a12a5b7d70e",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Vanilla dip unevenly applied with excessive clumping of sprinkles and poor uniform distribution across the surface.",
+    "feedback2": "Maple dip shows uneven color with pale patches and visible cracking throughout the fondant coating.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR standards for coating evenness and surface quality."
+  },
+  {
+    "id": "1775619722227",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T03:42:02.227Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/071397db4651649c56ea5b728a07b1f9",
+    "photo2": "/uploads/fdu/13bfba3fae098c6cdba05446bf3f2268",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed with excessive buildup, failing uniformity standards.",
+    "feedback2": "Fondant application shows uneven color with visible pale patches and the ring shape appears slightly compromised.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to sprinkle distribution issues and fondant application inconsistencies."
+  },
+  {
+    "id": "1775619726881",
+    "store": "navrangpura",
+    "am": "Area Manager: Unassigned",
+    "submittedAt": "2026-04-08T03:42:06.881Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/2a3896921b740e20f03d1441db854ea1",
+    "photo2": "/uploads/fdu/08029d74caf9b9670647a5ec21a8e9d7",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface.",
+    "feedback2": "Golden maple fondant is evenly applied with uniform amber color and intact ring shape.",
+    "overallPass": false,
+    "summary": "One donut meets standards while the first donut fails due to significant sprinkle clumping issues."
+  },
+  {
+    "id": "1775619791194",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T03:43:11.194Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/51dfe98359c1bac5aeb8f32d5c202bf9",
+    "photo2": "/uploads/fdu/6b032a13e280f6a3c5597c480f3059c1",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution and excessive buildup rather than uniform coverage.",
+    "feedback2": "Maple fondant shows uneven application with visible pale patches and inconsistent amber coloring across the surface.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR standards due to application and coating inconsistencies."
+  },
+  {
+    "id": "1775620437660",
+    "store": "sindhu-bhavan",
+    "am": "Area Manager: Unassigned",
+    "submittedAt": "2026-04-08T03:53:57.660Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/afda362d29ee4a0268b2c04cc9ca9ffb",
+    "photo2": "/uploads/fdu/6268fc017004ece82dd2d6bc9e48b226",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip has excessively clumped and unevenly distributed sprinkles with poor coverage, failing to meet uniform distribution standards.",
+    "feedback2": "Maple Dip displays even golden fondant application, intact ring shape, and uniform amber colour without cracking or pale patches.",
+    "overallPass": false,
+    "summary": "One donut passes quality standards while the other fails due to poor sprinkle application and distribution."
+  },
+  {
+    "id": "1775620537209",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T03:55:37.209Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/e51de6d833c472724cc68551baa244f2",
+    "photo2": "/uploads/fdu/541b57885c083223dc006ab1fa1ba7fd",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the surface, failing to meet uniform distribution standards.",
+    "feedback2": "Golden maple fondant is evenly applied with clean ring shape, uniform amber color, and no cracking or discoloration.",
+    "overallPass": false,
+    "summary": "Donut 1 fails due to clumped and non-uniform sprinkle application; Donut 2 passes all maple dip standards."
+  },
+  {
+    "id": "1775620564256",
+    "store": "green-park",
+    "am": "Area Manager: Harish",
+    "submittedAt": "2026-04-08T03:56:04.256Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/4f4c9a7ccdf0ce03b04ec9102e59f93e",
+    "photo2": "/uploads/fdu/84144b844da9e63f822dea5a4bbc2da3",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip fails due to uneven fondant application with excessive clumping of sprinkles and non-uniform distribution across the surface.",
+    "feedback2": "Maple Dip passes with even golden fondant application, intact ring shape, and uniform amber coloring without cracking or discoloration.",
+    "overallPass": false,
+    "summary": "One of two donuts meets quality standards; Vanilla Dip requires reprocessing for proper fondant and sprinkle application."
+  },
+  {
+    "id": "1775620659530",
+    "store": "koramangala",
+    "am": "Area Manager: Jagadeesha",
+    "submittedAt": "2026-04-08T03:57:39.530Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/fa6d625b85283459dc07ab2226aad57c",
+    "photo2": "/uploads/fdu/ffbf3dcb8778e7bc67f423ce6f23109a",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775620688745",
+    "store": "green-park",
+    "am": "Area Manager: Harish",
+    "submittedAt": "2026-04-08T03:58:08.745Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/084c25f9f8db11aaa756e52a8ddaf112",
+    "photo2": "/uploads/fdu/1f905e946166c5c230e436dee5b97884",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip donuts show clumped and unevenly distributed sprinkles with excessive buildup in concentrated areas rather than uniform distribution.",
+    "feedback2": "Maple Dip donuts display clean ring shape, even golden amber fondant application, and consistent color without cracking or pale patches.",
+    "overallPass": false,
+    "summary": "Vanilla Dip fails QSR standards due to poor sprinkle distribution; Maple Dip meets all quality specifications."
+  },
+  {
+    "id": "1775620721558",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T03:58:41.558Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/9416f262fa53a9819e412634011904e7",
+    "photo2": "/uploads/fdu/2e3b79ba24a74c3cc5fdf1d93f5d3c18",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution across the surface, failing uniformity standards.",
+    "feedback2": "Golden maple fondant is evenly applied with clean ring shape, uniform amber colour, and no cracking.",
+    "overallPass": false,
+    "summary": "One donut meets standards while the other fails due to significant sprinkle application defects."
+  },
+  {
+    "id": "1775620775597",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T03:59:35.597Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/e5ea1bfdb7bbec721e7af1edc7d2b77b",
+    "photo2": "/uploads/fdu/c1bf12fbc94be9fd7cc1873e8dbb2b74",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla dip unevenly applied with visible clumping and uneven sprinkle distribution; fondant coverage is inconsistent.",
+    "feedback2": "Maple dip evenly applied with uniform amber colour, clean ring shape, and no visible cracking or defects.",
+    "overallPass": false,
+    "summary": "Donut 1 fails quality standards due to uneven coating and sprinkle distribution, while Donut 2 meets all maple dip specifications."
+  },
+  {
+    "id": "1775620839401",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T04:00:39.401Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/b859cad3fb568d9aa472319f5704e704",
+    "photo2": "/uploads/fdu/8ca4bffb87e9a3b03c54dcd6e4eb7b6f",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed with poor coverage in multiple areas.",
+    "feedback2": "Fondant shows significant cracking across the surface and uneven color with pale patches.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards for appearance and finish."
+  },
+  {
+    "id": "1775620886377",
+    "store": "koramangala",
+    "am": "Area Manager: Jagadeesha",
+    "submittedAt": "2026-04-08T04:01:26.377Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/416ae6b898c1919a0cb3c1bb2bae168f",
+    "photo2": "/uploads/fdu/ebe95ee7e95e76323e339f6b1eb08c7a",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775620993459",
+    "store": "fifc",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T04:03:13.459Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/116745e1f686ce584bfd86897b21264c",
+    "photo2": "/uploads/fdu/6b56b84bd1817031280c24eaa6af62ba",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution and the vanilla fondant appearance is obscured by irregular coating.",
+    "feedback2": "Maple fondant is evenly applied with uniform amber colour, clean ring shape, and no cracking or discolouration detected.",
+    "overallPass": false,
+    "summary": "Donut 1 fails due to sprinkle clumping and uneven fondant application; Donut 2 meets all maple dip standards."
+  },
+  {
+    "id": "1775621016793",
+    "store": "skymark",
+    "am": "Area Manager: Rohit",
+    "submittedAt": "2026-04-08T04:03:36.793Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/085ef0517827e43b0c369abc453a126f",
+    "photo2": "/uploads/fdu/c7daff6da61262d7e5d28e2ffadf5bbf",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775621074639",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T04:04:34.639Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/8f5ce4838fb8b3b4dddb347587830427",
+    "photo2": "/uploads/fdu/8739c3f2d89bc843a874a47cad43f8fc",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution and visible bare patches on the vanilla fondant surface.",
+    "feedback2": "Maple fondant shows significant cracking and uneven color with pale patches visible on the ring surface.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR standards due to application and finishing defects."
+  },
+  {
+    "id": "1775621076706",
+    "store": "fc-road",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T04:04:36.706Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/23c618266abed79a858f34c7bf82d8e1",
+    "photo2": "/uploads/fdu/b57a0a0565869880f8755a3805e51d3a",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface, failing uniformity standards.",
+    "feedback2": "Golden maple fondant is evenly applied with clean ring shape and uniform amber color throughout.",
+    "overallPass": false,
+    "summary": "Donut 1 fails due to clumped sprinkles while Donut 2 meets all maple dip standards."
+  },
+  {
+    "id": "1775621779638",
+    "store": "",
+    "am": "",
+    "submittedAt": "2026-04-08T04:16:19.638Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/af3d10729199beb825f74964fecb4042",
+    "photo2": "/uploads/fdu/54542bfd36ed8936d701e0087be39ce4",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip exhibits severely clumped sprinkles with uneven distribution and excessive buildup in concentrated areas rather than uniform coverage.",
+    "feedback2": "Maple Dip displays even golden fondant application, clean ring shape, and uniform amber coloration without cracking or discoloration.",
+    "overallPass": false,
+    "summary": "Vanilla Dip fails due to poor sprinkle distribution and clumping, while Maple Dip meets all quality standards."
+  },
+  {
+    "id": "1775621901974",
+    "store": "basant-lok",
+    "am": "Area Manager: Harish",
+    "submittedAt": "2026-04-08T04:18:21.974Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/977438e124fbc52b728727f3d0a5c357",
+    "photo2": "/uploads/fdu/4f8f045303f8fe0d0208811f45d48742",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip donuts show uneven sprinkle distribution with visible clumping and bare spots on multiple units.",
+    "feedback2": "Maple Dip donuts display consistent golden amber fondant with intact ring shapes and uniform color across all visible units.",
+    "overallPass": false,
+    "summary": "One product line meets standards while the other requires immediate corrective action on sprinkle application consistency."
+  },
+  {
+    "id": "1775622007621",
+    "store": "basant-lok",
+    "am": "Area Manager: Harish",
+    "submittedAt": "2026-04-08T04:20:07.621Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/80206c12c6b229bd3fdcb3993bd1d5a2",
+    "photo2": "/uploads/fdu/d88ff801c437e8a03d21b2d05d83d229",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip shows clumped and unevenly distributed sprinkles with excessive concentration in some areas, failing uniformity standards.",
+    "feedback2": "Maple Dip displays even golden fondant application, clean ring shape, and uniform amber coloring without cracking or pale patches.",
+    "overallPass": false,
+    "summary": "One donut meets standards while the other fails due to poor sprinkle distribution quality."
+  },
+  {
+    "id": "1775622043402",
+    "store": "supreme",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T04:20:43.402Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/8b3df27c4a5c8cb06f08654da66b5136",
+    "photo2": "/uploads/fdu/3114f4eae3a842bd4e35f58cd22e5b5f",
+    "grade1": "Pass",
+    "grade2": "Pass",
+    "feedback1": "Vanilla fondant is evenly applied with colorful sprinkles uniformly distributed across the donut; ring shape is intact.",
+    "feedback2": "Maple fondant is evenly applied with consistent golden-amber color, clean ring shape, and no visible cracking or discoloration.",
+    "overallPass": true,
+    "summary": "Both donuts meet QSR quality standards with proper glazing, even distribution of toppings, and intact structural integrity."
+  },
+  {
+    "id": "1775622473065",
+    "store": "malhar-rd",
+    "am": "Area Manager: Deepak",
+    "submittedAt": "2026-04-08T04:27:53.065Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/c0ffcaf0d92cb9c9d874b279fc37d152",
+    "photo2": "/uploads/fdu/8346ae0f2002235889ac8f6ae91ad66f",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775622725017",
+    "store": "bucho",
+    "am": "Area Manager: Deepak",
+    "submittedAt": "2026-04-08T04:32:05.017Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/09e6cb746080d150973791356e8134c1",
+    "photo2": "/uploads/fdu/e08626a5c58a1c260543fd9ef619005a",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip has uneven sprinkle distribution with visible clumping and bare patches on the fondant coating.",
+    "feedback2": "Maple Dip displays even golden fondant application, intact ring shape, and uniform amber coloring without visible cracking.",
+    "overallPass": false,
+    "summary": "One donut fails quality standards due to inconsistent sprinkle application and coating coverage."
+  },
+  {
+    "id": "1775623295393",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T04:41:35.393Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/6da6693b0970efcef0e31ad4180b8c44",
+    "photo2": "/uploads/fdu/41b27acd73916a395eb8f0b01b374509",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the vanilla dip surface.",
+    "feedback2": "Maple dip exhibits even golden coating with clean ring shape and uniform amber color throughout.",
+    "overallPass": false,
+    "summary": "One donut passes quality standards while the other fails due to sprinkle application defects."
+  },
+  {
+    "id": "1775623363805",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T04:42:43.805Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/5db13e93147f1864dff9b679f8fc5690",
+    "photo2": "/uploads/fdu/afcc648fb37602118f5c7e9e92623b56",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the surface, failing uniform distribution standards.",
+    "feedback2": "Golden maple fondant is evenly applied with clean ring shape, uniform amber color, and no cracking observed.",
+    "overallPass": false,
+    "summary": "Vanilla Dip fails due to clumped sprinkles; Maple Dip meets all quality standards."
+  },
+  {
+    "id": "1775623593440",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T04:46:33.441Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/af59432acb46ebf14628516dde1bb823",
+    "photo2": "/uploads/fdu/7cc7f74a57de563322cdfecaf9ebb6c0",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface, failing uniformity standards.",
+    "feedback2": "Golden maple fondant is evenly applied with clean ring shape, uniform amber colour, and no cracking or discoloration.",
+    "overallPass": false,
+    "summary": "One of two donuts passed inspection; Vanilla Dip failed due to clumped and non-uniform sprinkle application."
+  },
+  {
+    "id": "1775623690738",
+    "store": "sector-35",
+    "am": "Area Manager: Deepak",
+    "submittedAt": "2026-04-08T04:48:10.738Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/0827edf06daf9c8e40551fdb9282e85c",
+    "photo2": "/uploads/fdu/f999389b9a0e6627d9b7ca223826e2e5",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775623742738",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T04:49:02.738Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/4c7f839ef879b942834a507fade9a6c8",
+    "photo2": "/uploads/fdu/9ba4fd9e58a44ccb5f94377dadcb7183",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip has excessive sprinkle clumping with uneven distribution and bare spots on the fondant surface.",
+    "feedback2": "Maple Dip has even golden fondant application, intact ring shape, and uniform amber color throughout.",
+    "overallPass": false,
+    "summary": "One donut meets quality standards while the other requires remaking due to poor sprinkle application and coverage."
+  },
+  {
+    "id": "1775623743679",
+    "store": "punjabi-bagh",
+    "am": "Area Manager: Rohit",
+    "submittedAt": "2026-04-08T04:49:03.679Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/93894e480127fc2d84363c439efe4871",
+    "photo2": "/uploads/fdu/7256e31db7f797ba3d48723fce9b6252",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface, failing to meet uniformity standards.",
+    "feedback2": "Golden maple fondant is evenly applied with consistent amber color, clean ring shape intact, and no visible cracking.",
+    "overallPass": false,
+    "summary": "One donut meets quality standards while the other fails due to poor sprinkle distribution and clumping."
+  },
+  {
+    "id": "1775623864114",
+    "store": "viman-nagar",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T04:51:04.114Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/26276b8d65f89eb4f4e28754f4162683",
+    "photo2": "/uploads/fdu/9c4a24a88713d58f1508aaf65d9649a9",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip has uneven sprinkle distribution with visible clumping and bare patches on the fondant surface.",
+    "feedback2": "Maple Dip demonstrates even golden coating, intact ring shape, and uniform amber colour throughout.",
+    "overallPass": false,
+    "summary": "One of two donuts meets quality standards; the Vanilla Dip requires process improvement in sprinkle application consistency."
+  },
+  {
+    "id": "1775624169313",
+    "store": "select-city",
+    "am": "Area Manager: Harish",
+    "submittedAt": "2026-04-08T04:56:09.313Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/e01042e69b43a5a7718e793299f9f6c3",
+    "photo2": "/uploads/fdu/a5ec714cebb9424e1814855a349a1ea8",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775624551318",
+    "store": "lakeshore",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-08T05:02:31.318Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/6860a50e963b35f4c5c3980744723745",
+    "photo2": "/uploads/fdu/78d6287c2b6b3518c2194d3347d726bd",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the surface, failing uniformity standards.",
+    "feedback2": "Golden maple fondant is evenly applied with clean ring shape and uniform amber colour throughout.",
+    "overallPass": false,
+    "summary": "Donut 1 fails due to clumped sprinkles; Donut 2 meets all maple dip standards."
+  },
+  {
+    "id": "1775624589517",
+    "store": "hyd-arrivals",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-08T05:03:09.517Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/d9ca00557cf2d33d6e24671b648feafc",
+    "photo2": "/uploads/fdu/52c797dd2d6ac334b3bea8030cb85561",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775624706594",
+    "store": "pmc-wakad",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-08T05:05:06.594Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/c9ae897359c92d91e6efe97513eb2bf6",
+    "photo2": "/uploads/fdu/09c32c7cf3111d1e18fa0f3313233649",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Vanilla Dip donuts show uneven sprinkle distribution with visible clumping and excessive concentration in certain areas rather than uniform coverage.",
+    "feedback2": "Maple Dip donuts display clean ring shapes with evenly applied golden fondant and consistent amber coloring throughout.",
+    "overallPass": false,
+    "summary": "One donut meets quality standards while the other fails due to sprinkle application issues."
+  },
+  {
+    "id": "1775624908235",
+    "store": "cyber-hub",
+    "am": "Area Manager: Harish",
+    "submittedAt": "2026-04-08T05:08:28.235Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/9ae9bf72c30ac3bc1f52c5d62ea7dbae",
+    "photo2": "/uploads/fdu/ace421271b7b1b5e61b72c8805406f97",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775625578123",
+    "store": "inorbit-hyd",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-08T05:19:38.123Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/5433691113635d7fec346fcc1831cde6",
+    "photo2": "/uploads/fdu/70928edd5fe675d4b5f2199a5290ef3b",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface.",
+    "feedback2": "Golden maple fondant is evenly applied with uniform amber color and intact ring shape.",
+    "overallPass": false,
+    "summary": "One donut meets standards while the other has significant sprinkle distribution defects."
+  },
+  {
+    "id": "1775625746315",
+    "store": "inorbit-hyd",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-08T05:22:26.315Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/c19acffb98062cbb67683048d38b960c",
+    "photo2": "/uploads/fdu/df6484b975adc43bb2e0322bf06ff086",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface.",
+    "feedback2": "Golden maple fondant is evenly applied with uniform amber color and intact ring shape.",
+    "overallPass": false,
+    "summary": "One donut meets standards while the other fails due to improper sprinkle application."
+  },
+  {
+    "id": "1775625817123",
+    "store": "inorbit-hyd",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-08T05:23:37.123Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/d3f5220d52183c6b2ba1c700ef2e4f3d",
+    "photo2": "/uploads/fdu/dd9be64dda6524a17280c9c25b581a45",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the vanilla fondant surface.",
+    "feedback2": "Maple fondant is evenly applied with uniform amber color, clean ring shape, and no visible cracking or discoloration.",
+    "overallPass": false,
+    "summary": "One donut meets standards while the other fails due to poor sprinkle application and distribution."
+  },
+  {
+    "id": "1775626042207",
+    "store": "inorbit-hyd",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-08T05:27:22.207Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/b9dfefa6145464701fa5f23f7dae493d",
+    "photo2": "/uploads/fdu/2031727fa2fba2d02b501012c63c13ef",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface.",
+    "feedback2": "Golden maple fondant is evenly applied with uniform amber colour and intact ring shape.",
+    "overallPass": false,
+    "summary": "One donut meets quality standards while the other fails due to poor sprinkle application and distribution."
+  },
+  {
+    "id": "1775626172427",
+    "store": "inorbit-hyd",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-08T05:29:32.427Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/4506ade51e8248a80b6a41ab8553dc1b",
+    "photo2": "/uploads/fdu/e9768d5cebf79b006784f5295d7a0d6f",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface.",
+    "feedback2": "Golden maple fondant is evenly applied with uniform amber colour and clean ring shape intact.",
+    "overallPass": false,
+    "summary": "Donut 1 fails due to poor sprinkle distribution; Donut 2 meets all maple dip standards."
+  },
+  {
+    "id": "1775626373655",
+    "store": "hyd-airport",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-08T05:32:53.655Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/af820a12cdbe1089c3a06dba1c99c805",
+    "photo2": "/uploads/fdu/ab60aa2c6779fda9b417d14c6c0cdc59",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface.",
+    "feedback2": "Golden maple fondant is evenly applied with uniform amber color and intact ring shape.",
+    "overallPass": false,
+    "summary": "Donut 1 fails due to clumped sprinkles; Donut 2 meets maple dip standards."
+  },
+  {
+    "id": "1775626717320",
+    "store": "hyd-airport",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-08T05:38:37.320Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/71561e79d03ecf555cd2407042b4b661",
+    "photo2": "/uploads/fdu/ef0a8fa3999e62beb7ef73ca0a335c5e",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution and excessive buildup obscuring the vanilla fondant base.",
+    "feedback2": "Golden maple fondant is evenly applied with uniform amber colour, clean ring shape, and no cracking detected.",
+    "overallPass": false,
+    "summary": "Donut 1 fails due to sprinkle application defects while Donut 2 meets all maple dip standards."
+  },
+  {
+    "id": "1775627161413",
+    "store": "hyd-airport",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-08T05:46:01.413Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/d37d392017f824fabd8846de059d458e",
+    "photo2": "/uploads/fdu/7d43ce8a76719628a0b33d5235a17b1a",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed across the donut surface.",
+    "feedback2": "Golden maple fondant is evenly applied with uniform amber color and intact ring shape.",
+    "overallPass": false,
+    "summary": "One donut passes quality standards while the other fails due to poor sprinkle application."
+  },
+  {
+    "id": "1775627706837",
+    "store": "hyd-airport",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-08T05:55:06.837Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/3c993b33ecf7d76d10e4639029ed154a",
+    "photo2": "/uploads/fdu/17ba6022488812b9953f6b1a862af2ee",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Sprinkles are heavily clumped and unevenly distributed with poor coverage in multiple areas.",
+    "feedback2": "Fondant coating is uneven with visible pale patches and the ring structure shows slight irregularities.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to coating inconsistencies and application defects."
+  },
+  {
+    "id": "1775631374707",
+    "store": "hyd-airport",
+    "am": "Area Manager: Shivam",
+    "submittedAt": "2026-04-08T06:56:14.707Z",
+    "donut1": {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+    },
+    "photo1": "/uploads/fdu/45360883571a71990dcf15b067b8cd78",
+    "photo2": "/uploads/fdu/33201d2bc121feea9ef992b52b4964f9",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Sprinkles are heavily clumped with uneven distribution and excessive buildup in concentrated areas.",
+    "feedback2": "Golden maple fondant is evenly applied with uniform amber colour, clean ring shape, and no visible cracking.",
+    "overallPass": false,
+    "summary": "One donut meets standards while the other has significant sprinkle application defects requiring retraining on distribution technique."
+  }
+]

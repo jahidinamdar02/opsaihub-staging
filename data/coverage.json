@@ -1,0 +1,209 @@
+[
+  {
+    "am": "Rohit",
+    "month": "2026-03",
+    "stores": [
+      {
+        "store": "Skymark",
+        "wed": true,
+        "fri": true,
+        "sat": false,
+        "sun": false
+      },
+      {
+        "store": "Vegas Mall",
+        "wed": false,
+        "fri": false,
+        "sat": true,
+        "sun": true
+      }
+    ]
+  },
+  {
+    "am": "Raman",
+    "month": "2026-03",
+    "stores": [
+      {
+        "store": "T3DD",
+        "wed": true,
+        "fri": false,
+        "sat": false,
+        "sun": false
+      },
+      {
+        "store": "T3DD FC",
+        "wed": true,
+        "fri": true,
+        "sat": false,
+        "sun": false
+      },
+      {
+        "store": "T1DD",
+        "wed": true,
+        "fri": true,
+        "sat": false,
+        "sun": false
+      }
+    ]
+  },
+  {
+    "am": "Jagadeesha",
+    "month": "2026-03",
+    "stores": [
+      {
+        "store": "Koramangala",
+        "wed": true,
+        "fri": true,
+        "sat": false,
+        "sun": false
+      },
+      {
+        "store": "BIAL",
+        "wed": false,
+        "fri": false,
+        "sat": true,
+        "sun": false
+      },
+      {
+        "store": "Mall of Asia",
+        "wed": false,
+        "fri": false,
+        "sat": true,
+        "sun": false
+      }
+    ]
+  },
+  {
+    "am": "Deepak",
+    "month": "2026-03",
+    "stores": [
+      {
+        "store": "Malhar Rd",
+        "wed": false,
+        "fri": true,
+        "sat": false,
+        "sun": false
+      },
+      {
+        "store": "Sunview",
+        "wed": false,
+        "fri": false,
+        "sat": true,
+        "sun": false
+      }
+    ]
+  },
+  {
+    "am": "Akash Chavan",
+    "month": "2026-03",
+    "stores": [
+      {
+        "store": "PMC Kurla",
+        "wed": false,
+        "fri": true,
+        "sat": false,
+        "sun": false
+      }
+    ]
+  },
+  {
+    "am": "Harish",
+    "month": "2026-03",
+    "stores": [
+      {
+        "store": "Select City",
+        "wed": false,
+        "fri": true,
+        "sat": false,
+        "sun": false
+      },
+      {
+        "store": "Epicuria",
+        "wed": false,
+        "fri": false,
+        "sat": true,
+        "sun": true
+      }
+    ]
+  },
+  {
+    "am": "Akash Rathod",
+    "month": "2026-03",
+    "stores": [
+      {
+        "store": "Seawoods",
+        "wed": false,
+        "fri": true,
+        "sat": false,
+        "sun": false
+      },
+      {
+        "store": "NMIAL Arrival",
+        "wed": false,
+        "fri": false,
+        "sat": true,
+        "sun": false
+      }
+    ]
+  },
+  {
+    "am": "Shivam",
+    "month": "2026-03",
+    "stores": [
+      {
+        "store": "Lakeshore",
+        "wed": false,
+        "fri": false,
+        "sat": true,
+        "sun": false
+      },
+      {
+        "store": "Hyderabad Airport",
+        "wed": false,
+        "fri": false,
+        "sat": false,
+        "sun": true
+      }
+    ]
+  },
+  {
+    "am": "Deepak",
+    "month": "2026-04",
+    "stores": [
+      {
+        "store": "CP67 Mohali",
+        "wed": false,
+        "fri": false,
+        "sat": true,
+        "sun": false
+      },
+      {
+        "store": "Malhar Rd",
+        "wed": false,
+        "fri": false,
+        "sat": true,
+        "sun": false
+      },
+      {
+        "store": "Bhupindra Road",
+        "wed": false,
+        "fri": false,
+        "sat": false,
+        "sun": true
+      }
+    ]
+  },
+  {
+    "am": "Harish",
+    "month": "2026-04",
+    "stores": [
+      {
+        "store": "Select City",
+        "wed": false,
+        "fri": false,
+        "sat": true,
+        "sun": false
+      }
+    ]
+  }
+]

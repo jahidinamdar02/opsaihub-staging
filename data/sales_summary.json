@@ -1,0 +1,33 @@
+{
+  "march": {
+    "days": 25,
+    "total_mtd": 87805608,
+    "ads": 81680,
+    "adt": 148,
+    "apc": 558,
+    "del_mtd": 15197465,
+    "del_adt": 19,
+    "del_apc": 324,
+    "vs_ly": 107,
+    "vs_lm": 105,
+    "lfl_vs_ly": 107,
+    "lfl_vs_lm": 105,
+    "lfl_note": "LFL to be updated",
+    "last_updated": "2026-03-27T05:52:05.593969",
+    "last_daily_date": "2026-03-26"
+  },
+  "feb": {
+    "days": 28,
+    "total_mtd": 100838386,
+    "ads": 81849,
+    "adt": 151,
+    "apc": 564,
+    "del_mtd": 17923480,
+    "del_adt": 23,
+    "del_apc": 428,
+    "vs_ly": 109,
+    "vs_lm": 100,
+    "lfl_vs_ly": 109,
+    "lfl_vs_lm": 100
+  }
+}

@@ -1,0 +1,267 @@
+[
+  {
+    "date": "2026-03-26",
+    "india": {
+      "adt": 141,
+      "at": 540,
+      "net_sales": 3345507,
+      "delivery_adt": 33,
+      "delivery_at": 427,
+      "delivery_sales": 628784
+    },
+    "regions": {
+      "Delhi": {
+        "adt": 190,
+        "at": 538,
+        "net_sales": 1326673
+      },
+      "Karnataka": {
+        "adt": 181,
+        "at": 483,
+        "net_sales": 348953
+      },
+      "Maharashtra": {
+        "adt": 114,
+        "at": 534,
+        "net_sales": 733776
+      },
+      "Telangana": {
+        "adt": 150,
+        "at": 558,
+        "net_sales": 334925
+      },
+      "Gujarat": {
+        "adt": 138,
+        "at": 511,
+        "net_sales": 211132
+      },
+      "Punjab": {
+        "adt": 77,
+        "at": 632,
+        "net_sales": 390048
+      }
+    },
+    "stores": {
+      "TH DLF Cyberhub": {
+        "adt": 323,
+        "at": 615,
+        "net_sales": 198679
+      },
+      "TH Golf Course AIPL": {
+        "adt": 162,
+        "at": 490,
+        "net_sales": 79324
+      },
+      "TH Select City Saket": {
+        "adt": 223,
+        "at": 522,
+        "net_sales": 116344
+      },
+      "TH Green Park": {
+        "adt": 142,
+        "at": 500,
+        "net_sales": 70934
+      },
+      "TH Punjabi bagh": {
+        "adt": 63,
+        "at": 575,
+        "net_sales": 36218
+      },
+      "TH Vegas Mall": {
+        "adt": 180,
+        "at": 467,
+        "net_sales": 84138
+      },
+      "TH T3D DIAL": {
+        "adt": 0,
+        "at": 0,
+        "net_sales": 0
+      },
+      "TH NSP Pritampura": {
+        "adt": 90,
+        "at": 499,
+        "net_sales": 44910
+      },
+      "TH Basant Lok": {
+        "adt": 84,
+        "at": 524,
+        "net_sales": 43985
+      },
+      "TH Epicuria Nehru Place": {
+        "adt": 110,
+        "at": 431,
+        "net_sales": 47380
+      },
+      "TH T1D Dial": {
+        "adt": 745,
+        "at": 567,
+        "net_sales": 422214
+      },
+      "TH T3D Food Court": {
+        "adt": 164,
+        "at": 528,
+        "net_sales": 86613
+      },
+      "TH Skymark one": {
+        "adt": 180,
+        "at": 533,
+        "net_sales": 95934
+      },
+      "TH BIAL": {
+        "adt": 200,
+        "at": 562,
+        "net_sales": 112328
+      },
+      "TH Koramangala": {
+        "adt": 201,
+        "at": 424,
+        "net_sales": 85195
+      },
+      "TH Mall of Asia": {
+        "adt": 144,
+        "at": 554,
+        "net_sales": 79723
+      },
+      "TH HSR": {
+        "adt": 178,
+        "at": 403,
+        "net_sales": 71707
+      },
+      "TH Inorbit Mall-Hyderabad": {
+        "adt": 92,
+        "at": 616,
+        "net_sales": 56705
+      },
+      "TH HIAL": {
+        "adt": 342,
+        "at": 565,
+        "net_sales": 193325
+      },
+      "TH HIAL Arrival": {
+        "adt": 128,
+        "at": 526,
+        "net_sales": 67314
+      },
+      "TH Lakeshore": {
+        "adt": 38,
+        "at": 463,
+        "net_sales": 17581
+      },
+      "TH T1 Ahmedabad Airport": {
+        "adt": 118,
+        "at": 568,
+        "net_sales": 67008
+      },
+      "TH Sindhu Bhavan": {
+        "adt": 151,
+        "at": 500,
+        "net_sales": 75440
+      },
+      "TH Navrangpura": {
+        "adt": 144,
+        "at": 477,
+        "net_sales": 68684
+      },
+      "TH Lokhandwala": {
+        "adt": 237,
+        "at": 485,
+        "net_sales": 114991
+      },
+      "TH MC Kurla": {
+        "adt": 122,
+        "at": 597,
+        "net_sales": 72891
+      },
+      "TH Bandra": {
+        "adt": 207,
+        "at": 480,
+        "net_sales": 99451
+      },
+      "TH Balewadi Pune": {
+        "adt": 133,
+        "at": 479,
+        "net_sales": 63771
+      },
+      "TH FIFC Mumbai": {
+        "adt": 128,
+        "at": 615,
+        "net_sales": 78657
+      },
+      "TH HPCL Mumbai Pune Expressway": {
+        "adt": 154,
+        "at": 600,
+        "net_sales": 92422
+      },
+      "TH Viman Nagar": {
+        "adt": 100,
+        "at": 535,
+        "net_sales": 53480
+      },
+      "TH Phonix Mall Wakad": {
+        "adt": 87,
+        "at": 488,
+        "net_sales": 42470
+      },
+      "TH Nexus Seawood": {
+        "adt": 68,
+        "at": 658,
+        "net_sales": 44738
+      },
+      "TH FC Road": {
+        "adt": 69,
+        "at": 396,
+        "net_sales": 27314
+      },
+      "TH NMIA Arrival": {
+        "adt": 54,
+        "at": 560,
+        "net_sales": 30231
+      },
+      "TH NMiA Departure": {
+        "adt": 14,
+        "at": 954,
+        "net_sales": 13360
+      },
+      "TH Malhar Road": {
+        "adt": 70,
+        "at": 653,
+        "net_sales": 45707
+      },
+      "TH Sunview Enclave": {
+        "adt": 78,
+        "at": 740,
+        "net_sales": 57697
+      },
+      "TH Bucho Bathinda": {
+        "adt": 55,
+        "at": 702,
+        "net_sales": 38615
+      },
+      "TH Patiala": {
+        "adt": 77,
+        "at": 633,
+        "net_sales": 48705
+      },
+      "TH Mohali": {
+        "adt": 88,
+        "at": 501,
+        "net_sales": 44119
+      },
+      "TH Sangrur": {
+        "adt": 68,
+        "at": 724,
+        "net_sales": 49219
+      },
+      "TH Elante Mall": {
+        "adt": 100,
+        "at": 610,
+        "net_sales": 60988
+      },
+      "TH Sec 35 Chandigarh": {
+        "adt": 81,
+        "at": 556,
+        "net_sales": 44998
+      }
+    }
+  }
+]
