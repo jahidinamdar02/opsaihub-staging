@@ -998,23 +998,34 @@ function sendEmail(to, subject, html, cb){
   });
 }
 
-function emailStyle(){
-  return '<style>body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#F5F5F7;margin:0;padding:0;}'+
-    '.wrap{max-width:600px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;margin-top:20px;}'+
-    '.hdr{background:linear-gradient(135deg,#C8102E,#8B0B1F);padding:28px 28px 20px;text-align:center;}'+
-    '.hdr-logo{font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.5px;}'+
-    '.hdr-sub{font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;}'+
-    '.body{padding:24px 28px;}'+
-    '.greeting{font-size:18px;font-weight:700;color:#1C1C1E;margin-bottom:16px;}'+
-    '.card{background:#F5F5F7;border-radius:12px;padding:16px;margin-bottom:12px;}'+
-    '.card-ttl{font-size:11px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}'+
-    '.card-val{font-size:24px;font-weight:700;color:#1C1C1E;}'+
-    '.green{color:#1B7A3A;}.red{color:#C8102E;}.amber{color:#B36200;}'+
-    '.btn{display:block;background:#C8102E;color:#fff;text-align:center;padding:14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;margin:20px 0;}'+
-    '.footer{padding:16px 28px;background:#F5F5F7;text-align:center;font-size:11px;color:#8E8E93;}'+
-    '.row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #E5E5EA;}'+
-    '.row:last-child{border-bottom:none;}'+
-    '</style>';
+function emailStyle(){ return ''; }
+function eWrap(content,title,sub){
+  return '<div style="background:#F5F5F7;margin:0;padding:20px 0;font-family:-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;">'+
+    '<div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;">'+
+    '<div style="background:linear-gradient(135deg,#C8102E,#8B0B1F);padding:28px;text-align:center;">'+
+    '<div style="font-size:22px;font-weight:700;color:#ffffff;letter-spacing:-0.5px;">Tim Ops Connect</div>'+
+    '<div style="font-size:12px;color:rgba(255,255,255,0.75);margin-top:4px;">'+sub+'</div></div>'+
+    '<div style="padding:24px 28px;background:#ffffff;">'+content+'</div>'+
+    '<div style="padding:16px 28px;background:#F5F5F7;text-align:center;font-size:11px;color:#8E8E93;">'+
+    'Tim Hortons India &middot; OpsAIHub &middot; Automated</div></div></div>';
+}
+function eCard(title,content){
+  return '<div style="background:#F5F5F7;border-radius:12px;padding:16px;margin-bottom:12px;">'+
+    '<div style="font-size:11px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">'+title+'</div>'+
+    content+'</div>';
+}
+function eDarkCard(title,content){
+  return '<div style="background:#1A1A2E;border-radius:12px;padding:16px;margin-bottom:12px;">'+
+    '<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">'+title+'</div>'+
+    content+'</div>';
+}
+function eRow(label,value,color){
+  return '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #E5E5EA;">'+
+    '<span style="font-size:13px;color:#1C1C1E;">'+label+'</span>'+
+    '<span style="font-size:12px;font-weight:700;color:'+(color||'#8E8E93')+';">'+value+'</span></div>';
+}
+function eBtn(label,url){
+  return '<a href="'+url+'" style="display:block;background:#C8102E;color:#ffffff;text-align:center;padding:14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;margin:20px 0;">'+label+'</a>';
 }
 
 // ── CLAUDE HAIKU DAILY BRIEFING ───────────────────────────
@@ -1082,24 +1093,14 @@ cron.schedule('0 8 * * 1', function(){
       'Shivam':['Inorbit Mall','Hyderabad Arrivals','Lakeshore','Hyderabad Airport']
     }[am] || [];
     
-    var html = emailStyle()+'<div class="wrap">'+
-      '<div class="hdr"><div class="hdr-logo">Tim Ops Connect</div><div class="hdr-sub">Weekly Checklist Reminder &mdash; Week of '+weekStr+'</div></div>'+
-      '<div class="body">'+
-      '<div class="greeting">Good morning, '+am+' ☕</div>'+
-      '<p style="color:#3C3C43;font-size:14px;line-height:1.6;">New week, fresh start. Your Monday and Tuesday checklists cover all your stores and are due by <strong>Tuesday midnight.</strong></p>'+
-      '<div class="card"><div class="card-ttl">Your Stores This Week</div>'+
-      stores.map(function(s){return '<div class="row"><span style="font-size:13px;color:#1C1C1E;">'+s+'</span><span style="font-size:11px;color:#8E8E93;">MON + TUE required</span></div>';}).join('')+
-      '</div>'+
-      '<div class="card"><div class="card-ttl">This Week Checklist</div>'+
-      '<div class="row"><span style="font-size:13px;">Monday</span><span class="amber" style="font-size:12px;font-weight:700;">Financial &amp; Inventory Audit</span></div>'+
-      '<div class="row"><span style="font-size:13px;">Tuesday</span><span class="amber" style="font-size:12px;font-weight:700;">Sales Intelligence</span></div>'+
-      '<div class="row"><span style="font-size:13px;">Wednesday</span><span style="font-size:12px;color:#8E8E93;">Maintenance Visit</span></div>'+
-      '<div class="row"><span style="font-size:13px;">Friday</span><span style="font-size:12px;color:#8E8E93;">People &amp; Readiness</span></div>'+
-      '<div class="row"><span style="font-size:13px;">Sat / Sun</span><span style="font-size:12px;color:#8E8E93;">Weekend Operations</span></div>'+
-      '</div>'+
-      '<a href="https://staging.opsaihub.in/tasks.html" class="btn">Open Tasks &rarr;</a>'+
-      '</div>'+
-      '<div class="footer">Tim Hortons India &middot; OpsAIHub &middot; This is an automated reminder</div></div>';
+    var storeRows=stores.map(function(s){return eRow(s,'MON+TUE','#8E8E93');}).join('');
+    var checklistRows=eRow('Monday','Financial & Inventory','#B36200')+eRow('Tuesday','Sales Intelligence','#B36200')+eRow('Wednesday','Maintenance Visit','#8E8E93')+eRow('Friday','People & Readiness','#8E8E93')+eRow('Sat/Sun','Weekend Ops','#8E8E93');
+    var body='<div style="font-size:18px;font-weight:700;color:#1C1C1E;margin-bottom:12px;">Good morning, '+am+' ☕</div>'+
+      '<p style="font-size:14px;line-height:1.6;color:#3C3C43;margin-bottom:16px;">New week, fresh start. Monday and Tuesday checklists cover all stores — due by <strong>Tuesday midnight.</strong></p>'+
+      eCard('Your Stores This Week',storeRows)+
+      eCard('This Week Schedule',checklistRows)+
+      eBtn('Open Tasks &rarr;','https://staging.opsaihub.in/tasks.html');
+    var html=eWrap(body,'Weekly Reminder','Weekly Checklist Reminder &mdash; Week of '+weekStr);
     
     sendEmail(AM_EMAILS[am], '[Tim Ops] Week of '+weekStr+' &mdash; Checklists Ready', html);
   });
