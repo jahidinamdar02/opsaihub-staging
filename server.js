@@ -45,7 +45,7 @@ app.post('/api/delivery', function(req, res) {
 
 // ── FDU Dashboard APIs (before static) ───────────────────
 app.get('/api/fdu/submissions', function(req, res) {
-  try { res.json({ success:true, data:readJSON('fdu_donut_submissions.json', []) }); }
+  try { res.json({ success:true, data:readJSON('fdu_submissions.json', []) }); }
   catch(err) { res.status(500).json({ success:false }); }
 });
 
@@ -439,9 +439,9 @@ app.post('/api/fdu/submit', multer({dest:'uploads/fdu/'}).fields([{name:'photo'}
     var entry = {
       id: Date.now().toString(),
       store: req.body.store || '',
-      am: req.body.am || '',
+      am: (req.body.am||'').replace('Area Manager: ','').trim(),
       submittedAt: new Date().toISOString(),
-      photos: req.files ? Object.keys(req.files).map(function(k){ return req.files[k][0].filename; }) : []
+      photos: req.files ? Object.keys(req.files).map(function(k){ return '/uploads/fdu/'+req.files[k][0].filename; }) : []
     };
     data.push(entry);
     writeJSON('fdu_submissions.json', data);

@@ -58,20 +58,20 @@
     }
   ],
   "todaysPick": {
-    "date": "2026-04-08",
+    "date": "2026-04-09",
     "donut1": {
-      "id": "vanilla-dip",
-      "name": "Vanilla Dip",
-      "type": "Classic Ring",
-      "description": "Classic ring dipped in vanilla with colourful sprinkles.",
-      "standards": "White vanilla fondant evenly applied. Colourful sprinkles uniformly distributed. Ring shape intact. Sprinkles not clumped."
+      "id": "blueberry-cheesecake",
+      "name": "Blueberry Cheesecake",
+      "type": "Dream",
+      "description": "Donut filled with cheesecake, dipped in vanilla fondant, blueberry sauce drizzle.",
+      "standards": "Vanilla fondant base smooth and even. Blueberry sauce drizzle clearly visible. Generous filling. Premium appearance. No dry cracks."
     },
     "donut2": {
-      "id": "maple-dip",
-      "name": "Maple Dip",
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
       "type": "Classic Ring",
-      "description": "Classic ring donut dipped in maple sauce.",
-      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches."
+      "description": "Classic ring donut dipped in melted chocolate.",
+      "standards": "Even dark chocolate glaze covering entire top surface. Ring shape intact. No gaps or drips. Glossy finish. No pale patches."
     }
   }
 }

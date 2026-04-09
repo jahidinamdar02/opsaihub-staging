@@ -267,6 +267,8 @@ function submitFDU() {
   var fd = new FormData();
   fd.append("token", TOKEN);
   fd.append("photo", fduFile);
+  fd.append("store", document.getElementById("storeName").textContent||"");
+  fd.append("am", (document.getElementById("storeAM").textContent||"").replace("Area Manager: ","").trim());
   var prog = 0;
   var pi = setInterval(function() { prog = Math.min(prog + 5, 85); document.getElementById("fduFill").style.width = prog + "%"; }, 150);
   fetch("/api/fdu/submit", { method: "POST", body: fd })
@@ -307,7 +309,7 @@ function submitDonut() {
   fd.append("photo1", d1File);
   fd.append("photo2", d2File);
   fd.append("store", document.getElementById("storeSel").value || "");
-  fd.append("am", document.getElementById("storeAM").textContent || "");
+  fd.append("am", (document.getElementById("storeAM").textContent||"").replace("Area Manager: ","").trim());
   var prog = 0;
   var pi = setInterval(function() { prog = Math.min(prog + 4, 85); document.getElementById("donutFill").style.width = prog + "%"; }, 150);
   fetch("/api/fdu/donut-submit", { method: "POST", body: fd })
