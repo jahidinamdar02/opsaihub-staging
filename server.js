@@ -433,7 +433,7 @@ app.get('/api/fdu/donut-sop', function(req, res) {
   } catch(err) { res.status(500).json({ success:false, error:err.message }); }
 });
 
-app.post('/api/fdu/submit', multer({dest:'uploads/fdu/'}).fields([{name:'photo'}]), function(req, res) {
+app.post('/api/fdu/submit', multer({storage:require('multer').diskStorage({destination:'uploads/fdu/',filename:function(req,file,cb){cb(null,Date.now()+'-'+Math.random().toString(36).substr(2,9)+'.jpg');}})}). fields([{name:'photo'}]), function(req, res) {
   try {
     var data = readJSON('fdu_submissions.json', []);
     var entry = {
@@ -441,7 +441,7 @@ app.post('/api/fdu/submit', multer({dest:'uploads/fdu/'}).fields([{name:'photo'}
       store: req.body.store || '',
       am: (req.body.am||'').replace('Area Manager: ','').trim(),
       submittedAt: new Date().toISOString(),
-      photos: req.files ? Object.keys(req.files).map(function(k){ return '/uploads/fdu/'+req.files[k][0].filename; }) : []
+      photos: req.files ? Object.keys(req.files).map(function(k){ return '/uploads/fdu/'+req.files[k][0].filename+'.jpg'; }) : []
     };
     data.push(entry);
     writeJSON('fdu_submissions.json', data);
@@ -449,7 +449,7 @@ app.post('/api/fdu/submit', multer({dest:'uploads/fdu/'}).fields([{name:'photo'}
   } catch(err) { res.status(500).json({ success:false, error:err.message }); }
 });
 
-app.post('/api/fdu/donut-submit', multer({dest:'uploads/fdu/', limits:{fileSize:20*1024*1024}}).fields([{name:'photo1'},{name:'photo2'}]), async function(req, res) {
+app.post('/api/fdu/donut-submit', multer({storage:require('multer').diskStorage({destination:'uploads/fdu/',filename:function(req,file,cb){cb(null,Date.now()+'-'+Math.random().toString(36).substr(2,9)+'.jpg');}}),limits:{fileSize:20*1024*1024}}).fields([{name:'photo1'},{name:'photo2'}]), async function(req, res) {
   try {
     var sop = readJSON('donut_sop.json', {});
     var pick = sop.todaysPick || {};
