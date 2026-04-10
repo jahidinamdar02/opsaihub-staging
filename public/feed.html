@@ -52,7 +52,7 @@ body { padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom)); }
 /* POST IMAGE */
 .post-image-wrap { position:relative; width:100%; background:#F5F5F7; }
 .post-image-wrap img { width:100%; max-height:500px; object-fit:cover; display:block; }
-.post-no-image { width:100%; min-height:200px; background:linear-gradient(135deg,#FFF5F6,#F5F5F7); display:flex; align-items:center; justify-content:center; font-size:64px; }
+.post-no-image { width:100%; min-height:160px; background:linear-gradient(135deg,rgba(200,16,46,0.08),rgba(26,26,46,0.15)); display:flex; align-items:center; justify-content:center; font-size:64px; border-radius:0; }
 .double-tap-heart { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); font-size:80px; pointer-events:none; transition:transform 0.1s,opacity 0.3s; opacity:0; }
 .double-tap-heart.show { transform:translate(-50%,-50%) scale(1); opacity:1; }
 
@@ -520,7 +520,7 @@ function renderPost(post, idx) {
     '<div class="post-header">' +
       '<div class="post-avatar">'+(amAvatarMap[post.author]?'<img src="'+amAvatarMap[post.author]+'" alt="'+post.author+'">':'<span style="font-size:16px">'+(amIcons[post.author]||'&#x1F464;')+'</span>')+'</div>' +
       '<div class="post-author-wrap">' +
-        '<div class="post-author">' + post.author +
+        '<div class="post-author">' + (amIcons[post.author]?amIcons[post.author]+' ':'')+post.author+
           (post.taggedPerson?' <span style="color:#6E6E73;font-weight:400;">with</span> <span style="color:#007AFF;font-weight:700;">'+post.taggedPerson+'</span>':'') +
         '</div>' +
         '<div class="post-location">' + (post.store?'&#x1F4CD; '+post.store:'Tim Hortons India') + '</div>' +
@@ -547,7 +547,7 @@ function renderPost(post, idx) {
     // Reactions
     '<div class="reactions-bar">'+reactionsHtml+'</div>' +
     // Caption
-    '<div class="post-caption"><span class="author-name">'+post.author+'</span>' + parseCaption(post.caption) + '</div>' +
+    '<div class="post-caption"><span class="author-name">'+(amIcons[post.author]?amIcons[post.author]+' ':'')+post.author+'</span>' + parseCaption(post.caption) + '</div>' +
     // Comments
     (moreComments) +
     '<div class="comments-section">'+commentsHtml+'</div>' +

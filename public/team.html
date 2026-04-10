@@ -40,12 +40,12 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;
 
 <div class="page-header">
   <div class="page-title">&#x1F465; Team</div>
-  <div class="page-sub">Feed · Training · Product · Ops Excellence</div>
+  <div class="page-sub">Feed · Product · Ops Excellence</div>
 </div>
 
 <div class="tab-bar">
   <button class="tab-btn active" id="btn-feed">&#x1F4AC; Feed</button>
-  <button class="tab-btn" id="btn-training">&#x1F393; Training</button>
+  
   <button class="tab-btn" id="btn-product">&#x1F9C1; Product</button>
   <button class="tab-btn" id="btn-ops">&#x2B50; Ops Excellence</button>
 </div>
@@ -65,23 +65,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;
 </div>
 
 <!-- TRAINING TAB -->
-<div class="tab-content" id="tab-training">
-  <div style="background:linear-gradient(135deg,#1A1A2E,#0F3460);border-radius:16px;padding:18px;margin-bottom:12px;">
-    <div style="font-size:11px;color:rgba(255,255,255,0.5);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">People Capability Health</div>
-    <div id="trnScore" style="font-size:52px;font-weight:700;color:#fff;line-height:1;letter-spacing:-2px;">--</div>
-    <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-top:4px;" id="trnSubtitle">Loading...</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;">
-      <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px;text-align:center;"><div id="trnSMGap" style="font-size:20px;font-weight:700;color:#fff;">--</div><div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px;">SM Gaps</div></div>
-      <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px;text-align:center;"><div id="trnFostacGap" style="font-size:20px;font-weight:700;color:#fff;">--</div><div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px;">FOSTAC Gaps</div></div>
-      <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px;text-align:center;"><div id="trnPipeline" style="font-size:20px;font-weight:700;color:#fff;">--</div><div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px;">In Pipeline</div></div>
-    </div>
-  </div>
-  <div class="section-card"><div class="section-title">&#x1F465; Manpower vs Budget</div><div id="trnManpower"><div class="spinner"></div></div></div>
-  <div class="section-card"><div class="section-title">&#x23F0; Tenure Distribution</div><div id="trnTenure"></div></div>
-  <div class="section-card"><div class="section-title">&#x1F4C8; Development Pipeline</div><div id="trnPipelineDetail"></div></div>
-  <div class="section-card"><div class="section-title">&#x1F3C5; Certifications</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;" id="trnCerts"></div></div>
-  <div class="section-card"><div class="section-title">&#x1F464; By Area Manager</div><div id="trnByAM"></div></div>
-</div>
+
 
 <!-- PRODUCT TAB -->
 <div class="tab-content" id="tab-product">
@@ -178,7 +162,7 @@ var AM_AVATAR={
 function amAv(name,size){size=size||36;var s=size+'px';return AM_AVATAR[name]?'<img src="'+AM_AVATAR[name]+'" style="width:'+s+';height:'+s+';border-radius:50%;object-fit:cover;" alt="'+name+'">':(name?name.substring(0,2).toUpperCase():'AM');}
 
 // TAB SWITCHING
-var tabs = ['feed','training','product','ops'];
+var tabs = ['feed','product','ops'];
 tabs.forEach(function(t) {
   document.getElementById('btn-'+t).addEventListener('click', function() {
     tabs.forEach(function(x) {
