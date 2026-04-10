@@ -420,7 +420,7 @@ app.post('/api/posts/comment', function(req, res) {
   } catch(err) { res.json({ success:false }); }
 });
 
-app.post('/api/feed/upload', multer({dest:'uploads/feed/'}).single('photo'), function(req, res) {
+app.post('/api/feed/upload', multer({storage:require('multer').diskStorage({destination:'uploads/feed/',filename:function(req,file,cb){cb(null,Date.now()+'-'+Math.random().toString(36).substr(2,9)+'.jpg');}}),limits:{fileSize:10*1024*1024}}).single('photo'), function(req, res) {
   try {
     if(!req.file) return res.json({ success:false });
     res.json({ success:true, url:'/uploads/feed/'+req.file.filename });
@@ -1287,6 +1287,7 @@ app.get('/api/mtd/flags',function(req,res){
   }catch(e){res.status(500).json({success:false,error:e.message});}
 });
 
+app.use("/uploads/feed", require("express").static(require("path").join(__dirname,"uploads/feed")));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(PORT, function() { console.log('OpsAIHub Staging running on port ' + PORT); });
