@@ -83,5 +83,22 @@
     "name": "Tim Hortons Water Bottles",
     "standards": "Minimum 6 water bottles displayed upright on bottom shelf of FDU. All bottles facing forward with Tim Hortons label clearly visible. No gaps between bottles. Clean and dust-free. Caps aligned uniformly.",
     "minimumQuantity": 6
+  },
+  "todaysPick": {
+    "date": "2026-04-10",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "type": "Classic Ring",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "type": "Classic Ring",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    }
   }
 }
