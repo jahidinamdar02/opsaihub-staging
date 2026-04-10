@@ -1625,5 +1625,36 @@
     "submittedAt": "2026-04-08T08:42:29.088Z",
     "date": "2026-04-08",
     "id": "1775637749088"
+  },
+  {
+    "am": "Akash Chavan",
+    "store": "PMC Kurla",
+    "region": "Maharashtra",
+    "day": "friday",
+    "ciCall": "no",
+    "complaints": 0,
+    "complaintCategory": "Other",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "Need Support for RM - (Akash Chavan Aligned)",
+      "training": "Vrunda Aligned for weekly visit and IST check",
+      "marketing": "NA ",
+      "hr": "Male crews to be planned",
+      "it": "Camera online not working in App "
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "NA",
+      "nextMeeting": "2026-04-11"
+    },
+    "visitDate": "2026-04-10T08:42:20.631Z",
+    "submittedAt": "2026-04-10T08:42:21.831Z",
+    "date": "2026-04-10",
+    "id": "1775810541831"
   }
 ]

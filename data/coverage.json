@@ -212,5 +212,18 @@
         "sun": false
       }
     ]
+  },
+  {
+    "am": "Akash Chavan",
+    "month": "2026-04",
+    "stores": [
+      {
+        "store": "PMC Kurla",
+        "wed": false,
+        "fri": true,
+        "sat": false,
+        "sun": false
+      }
+    ]
   }
 ]

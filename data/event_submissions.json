@@ -34,7 +34,43 @@
       ],
       "notes": "It was desert event where we setup a donut dipping session for the guest. Guest can choose there dipping and topping on a chargeble basis. ",
       "submittedAt": "2026-03-29T05:59:59.537Z"
+    },
+    {
+      "id": "1775811926168",
+      "am": "Deepak",
+      "store": "TH Malhar Road",
+      "region": "",
+      "eventDate": "2026-04-08",
+      "venue": "Malhar Road ",
+      "menuPricing": "store",
+      "customPrice": null,
+      "salesGenerated": 13600,
+      "revenueSharePct": 0,
+      "otherExpenses": 0,
+      "profit": 8296,
+      "compliance": {
+        "manualBillBook": {
+          "answer": "yes",
+          "comment": "punch in system "
+        },
+        "punchedInSystem": {
+          "answer": "yes",
+          "comment": "punch in system"
+        },
+        "billsAttached": {
+          "answer": "no",
+          "comment": "manual book not used \r\n"
+        },
+        "managerPresent": "Harmeet Singh",
+        "score": 67
+      },
+      "images": [
+        "/uploads/events/2455112c67c4ffd7aa5dc3a98a0092ef.jpg",
+        "/uploads/events/24e7ed22c7677c44650aa453e1146a59.jpg"
+      ],
+      "notes": "Vacation event by Trend Club  ",
+      "submittedAt": "2026-04-10T09:05:26.168Z"
     }
   ],
-  "lastUpdated": "2026-03-29T05:59:59.537Z"
+  "lastUpdated": "2026-04-10T09:05:26.168Z"
 }
