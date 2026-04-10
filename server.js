@@ -269,8 +269,26 @@ app.get('/api/performance', function(req, res) {
 });
 app.get('/api/coverage', function(req, res) {
   try {
-    let data = readJSON('coverage.json', []);
-    if (req.query.am) data = data.filter(function(c) { return c.am === req.query.am; });
+    var all = readJSON('coverage.json', []);
+    var am = req.query.am;
+    var month = req.query.month;
+    var filtered = all;
+    if(am) filtered = filtered.filter(function(c){ return c.am === am; });
+    if(month) {
+      var monthFiltered = filtered.filter(function(c){ return c.month === month; });
+      // If no data for requested month, fall back to most recent month
+      if(monthFiltered.length === 0 && filtered.length > 0) {
+        filtered.sort(function(a,b){ return b.month.localeCompare(a.month); });
+        var latestMonth = filtered[0].month;
+        monthFiltered = filtered.filter(function(c){ return c.month === latestMonth; });
+        res.json({ success:true, data:monthFiltered, note:'No data for '+month+', showing '+latestMonth });
+        return;
+      }
+      filtered = monthFiltered;
+    }
+    res.json({ success:true, data:filtered });
+  } catch(e) { res.status(500).json({ success:false, error:e.message }); }
+});
     if (req.query.month) data = data.filter(function(c) { return c.month === req.query.month; });
     res.json({ success: true, data: data });
   } catch (err) { res.status(500).json({ success: false, error: err.message }); }
