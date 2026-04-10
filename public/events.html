@@ -448,7 +448,41 @@ out+='<div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5p
     el.innerHTML=out;return;
   }
 
-  if(CF==='world'){
+  if(CF==='india'){
+  el.innerHTML='<div style="text-align:center;padding:30px;color:var(--text2);font-size:13px;">Loading live news...</div>';
+  fetch('/api/news/india')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(!d.success||!d.data.length){el.innerHTML='<div style="padding:20px;color:var(--text2);">No news available</div>';return;}
+      var cities=['Delhi','Mumbai','Chandigarh','Pune','Ahmedabad','Bengaluru','Hyderabad','MPEH'];
+      var cityColors={'Delhi':'#C8102E','Mumbai':'#007AFF','Chandigarh':'#34C759','Pune':'#FF9500','Ahmedabad':'#AF52DE','Bengaluru':'#FF2D55','Hyderabad':'#5AC8FA','MPEH':'#FF6B35'};
+      var out='<div style="font-size:11px;color:var(--text2);margin-bottom:12px;display:flex;justify-content:space-between;"><span>&#x1F4F0; Live India News</span><span style="color:#34C759;">&#x25CF; Updated just now</span></div>';
+      cities.forEach(function(city){
+        var items=d.data.filter(function(n){return n.city===city;});
+        if(!items.length) return;
+        var col=cityColors[city]||'#C8102E';
+        out+='<div style="margin-bottom:14px;">';
+        out+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">';
+        out+='<div style="width:8px;height:8px;border-radius:50%;background:'+col+';flex-shrink:0;"></div>';
+        out+='<div style="font-size:11px;font-weight:700;color:'+col+';text-transform:uppercase;letter-spacing:0.8px;">'+city+'</div>';
+        out+='</div>';
+        items.forEach(function(n){
+          var t=n.pubDate?new Date(n.pubDate).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}):'';
+          out+='<a href="'+n.link+'" target="_blank" style="display:block;background:var(--card);border-radius:10px;padding:10px 12px;margin-bottom:6px;text-decoration:none;border-left:3px solid '+col+';">';
+          out+='<div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:4px;">'+n.title+'</div>';
+          out+='<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text2);">';
+          out+='<span>'+n.source+'</span><span>'+t+'</span></div>';
+          out+='</a>';
+        });
+        out+='</div>';
+      });
+      el.innerHTML=out;
+    })
+    .catch(function(){el.innerHTML='<div style="padding:20px;color:var(--text2);">Could not load news</div>';});
+  return;
+}
+
+if(CF==='world'){
     out='<div style="background:rgba(255,59,48,0.06);border:1px solid rgba(255,59,48,0.15);border-radius:12px;padding:10px 12px;margin-bottom:12px;">';
     out+='<div style="font-size:10px;font-weight:700;color:#FF3B30;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Middle East Conflict Monitor</div>';
     out+='<div style="font-size:11px;color:var(--text2);">India business impact</div></div>';
