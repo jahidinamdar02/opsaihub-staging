@@ -469,11 +469,14 @@ app.post('/api/fdu/donut-submit', multer({storage:require('multer').diskStorage(
     try {
       var Anthropic = require('@anthropic-ai/sdk');
       var client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-      var textPrompt = 'You are a QSR food quality inspector.' +
-        ' Donut 1: ' + entry.donut1.name + '. Standards: ' + entry.donut1.standards +
-        ' Donut 2: ' + entry.donut2.name + '. Standards: ' + entry.donut2.standards +
-        ' Look at both photos and grade each donut.' +
-        ' Respond ONLY in valid JSON, no markdown: {"grade1":"Pass or Fail","grade2":"Pass or Fail","feedback1":"one sentence","feedback2":"one sentence","overallPass":true or false,"summary":"one sentence"}';
+      var waterStd='Minimum 6 Tim Hortons water bottles upright on bottom FDU shelf, labels forward, no gaps, clean.';
+      var textPrompt = 'You are a strict Tim Hortons India QSR quality inspector. Grade each item ONLY against its exact SOP standards. Be strict — partial compliance is a FAIL.' +
+        ' DONUT 1 — ' + entry.donut1.name + ' (' + (entry.donut1.type||'') + '). SOP STANDARDS: ' + entry.donut1.standards +
+        ' DONUT 2 — ' + entry.donut2.name + ' (' + (entry.donut2.type||'') + '). SOP STANDARDS: ' + entry.donut2.standards +
+        ' WATER BOTTLES — Check Photo 1 (FDU display). SOP STANDARDS: ' + waterStd +
+        ' For each donut: check coating evenness, topping/drizzle count and pattern, quantity in basket (min 3), shape and finish.' +
+        ' For water bottles: count visible bottles (min 6), check upright position, label visibility, gaps.' +
+        ' Respond ONLY in valid JSON, no markdown: {"grade1":"Pass or Fail","grade2":"Pass or Fail","waterBottles":"Pass or Fail","feedback1":"specific one sentence citing exact SOP deviation if fail","feedback2":"specific one sentence citing exact SOP deviation if fail","feedbackWater":"one sentence on water bottle compliance","overallPass":true or false,"summary":"one sentence overall"}';
       var msgContent = [];
       var photo1Path = req.files && req.files.photo1 ? req.files.photo1[0].path : null;
       var photo2Path = req.files && req.files.photo2 ? req.files.photo2[0].path : null;
@@ -502,8 +505,10 @@ app.post('/api/fdu/donut-submit', multer({storage:require('multer').diskStorage(
       var parsed = JSON.parse(rawText);
       entry.grade1 = parsed.grade1 || 'Pass';
       entry.grade2 = parsed.grade2 || 'Pass';
+      entry.waterBottles = parsed.waterBottles || 'Submitted';
       entry.feedback1 = parsed.feedback1 || '';
       entry.feedback2 = parsed.feedback2 || '';
+      entry.feedbackWater = parsed.feedbackWater || '';
       entry.overallPass = parsed.overallPass !== false;
       entry.summary = parsed.summary || '';
     } catch(aiErr) {

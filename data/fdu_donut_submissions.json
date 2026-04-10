@@ -4606,5 +4606,293 @@
     "feedback2": "Photo received. Manual review pending.",
     "overallPass": true,
     "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775773630082",
+    "store": "t1dd",
+    "am": "Raman",
+    "submittedAt": "2026-04-09T22:27:10.082Z",
+    "donut1": {
+      "id": "blueberry-cheesecake",
+      "name": "Blueberry Cheesecake",
+      "standards": "Vanilla fondant base smooth and even. Blueberry sauce drizzle clearly visible. Generous filling. Premium appearance. No dry cracks."
+    },
+    "donut2": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate glaze covering entire top surface. Ring shape intact. No gaps or drips. Glossy finish. No pale patches."
+    },
+    "photo1": "/uploads/fdu/1775773619994-x7hij7pfg.jpg",
+    "photo2": "/uploads/fdu/1775773625082-gp34bj30n.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Fondant is uneven with visible cracking and bare spots; blueberry sauce is present but application is messy with inadequate coverage.",
+    "feedback2": "Chocolate glaze is thin and uneven with pale patches visible; the glazing does not provide complete coverage of the donut surface.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to inconsistent glazing, uneven application, and surface defects."
+  },
+  {
+    "id": "1775774096127",
+    "store": "t3dd-fc",
+    "am": "Raman",
+    "submittedAt": "2026-04-09T22:34:56.127Z",
+    "donut1": {
+      "id": "blueberry-cheesecake",
+      "name": "Blueberry Cheesecake",
+      "standards": "Vanilla fondant base smooth and even. Blueberry sauce drizzle clearly visible. Generous filling. Premium appearance. No dry cracks."
+    },
+    "donut2": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate glaze covering entire top surface. Ring shape intact. No gaps or drips. Glossy finish. No pale patches."
+    },
+    "photo1": "/uploads/fdu/1775774094014-e4vjzzmyq.jpg",
+    "photo2": "/uploads/fdu/1775774095866-kx9k50p8e.jpg",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Fondant base shows uneven coverage with visible drizzle pattern breaks and a foreign debris particle present on the surface.",
+    "feedback2": "Chocolate glaze is evenly applied with glossy finish, intact ring shape, and consistent dark color coverage throughout.",
+    "overallPass": false,
+    "summary": "Donut 1 fails quality standards due to surface irregularities and contamination, while Donut 2 meets all chocolate dip specifications."
+  },
+  {
+    "id": "1775774708509",
+    "store": "t3dd-fc",
+    "am": "Raman",
+    "submittedAt": "2026-04-09T22:45:08.509Z",
+    "donut1": {
+      "id": "blueberry-cheesecake",
+      "name": "Blueberry Cheesecake",
+      "standards": "Vanilla fondant base smooth and even. Blueberry sauce drizzle clearly visible. Generous filling. Premium appearance. No dry cracks."
+    },
+    "donut2": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate glaze covering entire top surface. Ring shape intact. No gaps or drips. Glossy finish. No pale patches."
+    },
+    "photo1": "/uploads/fdu/1775774707370-5rx8tbfrl.jpg",
+    "photo2": "/uploads/fdu/1775774708339-hx3l5jv3g.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Vanilla fondant base lacks smoothness with visible cracks, blueberry sauce drizzle is minimal, and crusty topping detracts from premium appearance.",
+    "feedback2": "Chocolate glaze is uneven with pale patches and poor coverage on top surface, compromising the glossy finish standard.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to surface finish defects and incomplete coverage."
+  },
+  {
+    "id": "1775774911870",
+    "store": "t3dd-fc",
+    "am": "Raman",
+    "submittedAt": "2026-04-09T22:48:31.870Z",
+    "donut1": {
+      "id": "blueberry-cheesecake",
+      "name": "Blueberry Cheesecake",
+      "standards": "Vanilla fondant base smooth and even. Blueberry sauce drizzle clearly visible. Generous filling. Premium appearance. No dry cracks."
+    },
+    "donut2": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate glaze covering entire top surface. Ring shape intact. No gaps or drips. Glossy finish. No pale patches."
+    },
+    "photo1": "/uploads/fdu/1775774909526-wwcvujgvt.jpg",
+    "photo2": "/uploads/fdu/1775774911280-h3dcr4w3g.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Vanilla fondant appears uneven with visible gaps; blueberry drizzle is present but fondant lacks the smooth, premium finish required.",
+    "feedback2": "Chocolate glaze coverage is incomplete with noticeable pale patches on the ring surface and uneven glossiness; does not meet even coating standards.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to uneven coating application and incomplete coverage."
+  },
+  {
+    "id": "1775774977455",
+    "store": "t3dd-fc",
+    "am": "Raman",
+    "submittedAt": "2026-04-09T22:49:37.455Z",
+    "donut1": {
+      "id": "blueberry-cheesecake",
+      "name": "Blueberry Cheesecake",
+      "standards": "Vanilla fondant base smooth and even. Blueberry sauce drizzle clearly visible. Generous filling. Premium appearance. No dry cracks."
+    },
+    "donut2": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate glaze covering entire top surface. Ring shape intact. No gaps or drips. Glossy finish. No pale patches."
+    },
+    "photo1": "/uploads/fdu/1775774972487-jahqe86ym.jpg",
+    "photo2": "/uploads/fdu/1775774976980-7idi2ncmv.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775776236074",
+    "store": "t1dd",
+    "am": "Raman",
+    "submittedAt": "2026-04-09T23:10:36.074Z",
+    "donut1": {
+      "id": "blueberry-cheesecake",
+      "name": "Blueberry Cheesecake",
+      "standards": "Vanilla fondant base smooth and even. Blueberry sauce drizzle clearly visible. Generous filling. Premium appearance. No dry cracks."
+    },
+    "donut2": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate glaze covering entire top surface. Ring shape intact. No gaps or drips. Glossy finish. No pale patches."
+    },
+    "photo1": "/uploads/fdu/1775776172418-31jo0f763.jpg",
+    "photo2": "/uploads/fdu/1775776207185-85ap5ftvx.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775779295954",
+    "store": "hyd-airport",
+    "am": "Shivam",
+    "submittedAt": "2026-04-10T00:01:35.954Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate glaze covering entire top surface. Ring shape intact. No gaps or drips. Glossy finish. No pale patches."
+    },
+    "donut2": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "photo1": "/uploads/fdu/1775779292187-02hfhv7oy.jpg",
+    "photo2": "/uploads/fdu/1775779293717-v550bic4i.jpg",
+    "grade1": "Pass",
+    "grade2": "Pass",
+    "feedback1": "Chocolate dip donuts display even, glossy dark chocolate coverage with intact ring shape and no visible drips or pale patches.",
+    "feedback2": "Chocolate filled donuts feature clean vanilla fondant base with consistent, clearly visible chocolate drizzle pattern across all units.",
+    "overallPass": true,
+    "summary": "Both donut varieties meet quality standards with proper glazing, consistent appearance, and premium presentation."
+  },
+  {
+    "id": "1775782593442",
+    "store": "hpcl-mpe",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-10T00:56:33.442Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate glaze covering entire top surface. Ring shape intact. No gaps or drips. Glossy finish. No pale patches."
+    },
+    "donut2": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "photo1": "/uploads/fdu/1775782587623-rhxpub11f.jpg",
+    "photo2": "/uploads/fdu/1775782592438-jj3052t32.jpg",
+    "grade1": "Pass",
+    "grade2": "Fail",
+    "feedback1": "Chocolate dip is evenly applied with glossy finish and intact ring shape, meeting all quality standards.",
+    "feedback2": "Vanilla fondant base is uneven with incomplete chocolate drizzle coverage, failing to meet premium appearance standards.",
+    "overallPass": false,
+    "summary": "One donut meets quality standards while the second requires rework for consistent drizzle application and fondant evenness."
+  },
+  {
+    "id": "1775782726337",
+    "store": "hpcl-mpe",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-10T00:58:46.337Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate glaze covering entire top surface. Ring shape intact. No gaps or drips. Glossy finish. No pale patches."
+    },
+    "donut2": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "photo1": "/uploads/fdu/1775782719836-fsu1mcsm4.jpg",
+    "photo2": "/uploads/fdu/1775782723178-dsrw09wjc.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate glaze is uneven with visible pale patches and incomplete coverage on the sides; ring shape has structural integrity issues.",
+    "feedback2": "Vanilla fondant base is uneven with poor presentation; chocolate drizzle pattern is inconsistent and lacks the clean, premium appearance required.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards for glaze coverage, finish consistency, and overall presentation."
+  },
+  {
+    "id": "1775783497918",
+    "store": "nmial-arrival",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-10T01:11:37.918Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate glaze covering entire top surface. Ring shape intact. No gaps or drips. Glossy finish. No pale patches."
+    },
+    "donut2": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "photo1": "/uploads/fdu/1775783389933-h8rv7wkmb.jpg",
+    "photo2": "/uploads/fdu/1775783415982-592hlwspa.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate dip has uneven coverage with pale patches and inconsistent glaze application on the donut ring.",
+    "feedback2": "Vanilla fondant base appears uneven and lumpy with chocolate drizzle lines appearing too thick and irregular rather than clean and premium.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards due to inconsistent coating application and finish."
+  },
+  {
+    "id": "1775784227277",
+    "store": "hpcl-mpe",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-10T01:23:47.277Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate glaze covering entire top surface. Ring shape intact. No gaps or drips. Glossy finish. No pale patches."
+    },
+    "donut2": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "photo1": "/uploads/fdu/1775784223136-okm8rqt6n.jpg",
+    "photo2": "/uploads/fdu/1775784226712-zzxfslen7.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate dip has uneven coverage with pale/exposed areas and lacks the required glossy finish; ring shape integrity compromised.",
+    "feedback2": "Vanilla fondant base is uneven with inconsistent surface, and chocolate drizzle application is irregular with gaps in coverage pattern.",
+    "overallPass": false,
+    "summary": "Both donuts fail to meet QSR quality standards for glaze evenness, finish quality, and professional presentation."
+  },
+  {
+    "id": "1775784301286",
+    "store": "hpcl-mpe",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-10T01:25:01.286Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate glaze covering entire top surface. Ring shape intact. No gaps or drips. Glossy finish. No pale patches."
+    },
+    "donut2": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top. Round filled shape. Premium look. No missing drizzle."
+    },
+    "photo1": "/uploads/fdu/1775784297105-9ih3qp0vv.jpg",
+    "photo2": "/uploads/fdu/1775784298323-qmhpoe09w.jpg",
+    "grade1": "Fail",
+    "grade2": "Pass",
+    "feedback1": "Donut 1 has uneven chocolate coverage with pale patches and inconsistent glaze application that does not meet premium standards.",
+    "feedback2": "Donut 2 displays excellent presentation with clean vanilla fondant base, prominent chocolate drizzle, and professional appearance.",
+    "overallPass": false,
+    "summary": "One of two donuts failed quality inspection due to inadequate glaze coverage and inconsistency."
   }
 ]
