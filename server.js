@@ -1352,5 +1352,55 @@ app.get('/api/news/india',function(req,res){
   });
 });
 
+// ── WORLD NEWS ───────────────────────────────────────────
+var worldCache={data:null,ts:0};
+app.get('/api/news/world',function(req,res){
+  var now=Date.now();
+  if(worldCache.data&&(now-worldCache.ts)<5*60*1000){
+    return res.json({success:true,data:worldCache.data,cached:true});
+  }
+  var https=require('https');
+  var topics=[
+    {name:'Global Economy',q:'global+economy+India+impact',color:'#FF9500'},
+    {name:'Middle East',q:'Middle+East+conflict+oil+price',color:'#FF3B30'},
+    {name:'US Markets',q:'US+markets+Fed+rate+dollar',color:'#007AFF'},
+    {name:'China Trade',q:'China+trade+India+exports',color:'#FF2D55'},
+    {name:'Crude Oil',q:'crude+oil+price+India',color:'#AF52DE'}
+  ];
+  var results=[];
+  var done=0;
+  topics.forEach(function(topic){
+    var opts={
+      hostname:'news.google.com',
+      path:'/rss/search?q='+topic.q+'&hl=en-IN&gl=IN&ceid=IN:en',
+      method:'GET',
+      headers:{'User-Agent':'Mozilla/5.0'}
+    };
+    var req2=https.request(opts,function(r){
+      var d='';
+      r.on('data',function(c){d+=c;});
+      r.on('end',function(){
+        try{
+          var items=[];var sp=0;
+          while(true){var s=d.indexOf('<item>',sp),e=d.indexOf('</item>',sp);if(s<0||e<0)break;items.push(d.substring(s,e+7));sp=e+7;}
+          items.slice(0,2).forEach(function(item){
+            var title=[null,'']; var tc1=item.indexOf('<title>'),tc2=item.indexOf('</title>'); if(tc1>-1&&tc2>-1){var tr=item.substring(tc1+7,tc2); if(tr.indexOf('CDATA')>-1){tr=tr.replace('<![CDATA[','').replace(']]>','');} title=[null,tr.trim()];}
+            var link=[null,'']; var lc1=item.indexOf('<link>'),lc2=item.indexOf('</link>'); if(lc1>-1&&lc2>-1){link=[null,item.substring(lc1+6,lc2).trim()];}
+            var pubDate=[null,'']; var pc1=item.indexOf('<pubDate>'),pc2=item.indexOf('</pubDate>'); if(pc1>-1&&pc2>-1){pubDate=[null,item.substring(pc1+9,pc2).trim()];}
+            var source=[null,'']; var sc1=item.indexOf('>',item.indexOf('<source')),sc2=item.indexOf('</source>'); if(sc1>-1&&sc2>-1){source=[null,item.substring(sc1+1,sc2).trim()];}
+            if(title[1]&&title[1].length>10){
+              results.push({topic:topic.name,color:topic.color,title:title[1].replace(/ - .*$//,'').trim(),source:source[1]||'Google News',pubDate:pubDate[1]||'',link:link[1]||''});
+            }
+          });
+        }catch(e){}
+        done++;
+        if(done===topics.length){worldCache={data:results,ts:Date.now()};res.json({success:true,data:results});}
+      });
+    });
+    req2.on('error',function(){done++;if(done===topics.length)res.json({success:true,data:results});});
+    req2.end();
+  });
+});
+
 app.listen(PORT, function() { console.log('OpsAIHub Staging running on port ' + PORT); });
 module.exports = { readJSON: readJSON, writeJSON: writeJSON };

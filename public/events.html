@@ -484,21 +484,35 @@ out+='<div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5p
 }
 
 if(CF==='world'){
-    out='<div style="background:rgba(255,59,48,0.06);border:1px solid rgba(255,59,48,0.15);border-radius:12px;padding:10px 12px;margin-bottom:12px;">';
-    out+='<div style="font-size:10px;font-weight:700;color:#FF3B30;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Middle East Conflict Monitor</div>';
-    out+='<div style="font-size:11px;color:var(--text2);">India business impact</div></div>';
-    WORLD.slice().reverse().forEach(function(e){
-      var p=e.d.split('-');
-      out+='<div class="wcard"><div style="display:flex;gap:10px;">';
-      out+='<div style="min-width:44px;background:var(--surface);border-radius:8px;padding:5px 4px;text-align:center;flex-shrink:0;">';
-      out+='<div style="font-size:16px;font-weight:700;color:var(--text);line-height:1;">'+parseInt(p[2])+'</div>';
-      out+='<div style="font-size:8px;font-weight:700;color:var(--text2);text-transform:uppercase;">'+MN[parseInt(p[1])]+' '+p[0]+'</div></div>';
-      out+='<div><div style="font-size:12px;font-weight:700;color:var(--text);">'+e.title+'</div>';
-      out+='<div style="font-size:10px;color:var(--text2);margin-top:2px;">'+e.region+'</div>';
-      out+='<div style="font-size:11px;color:var(--text);margin-top:4px;padding:4px 8px;background:rgba(255,59,48,0.05);border-radius:6px;">'+e.note+'</div>';
-      out+='</div></div></div>';
-    });
-    el.innerHTML=out;return;
+    el.innerHTML='<div style="text-align:center;padding:30px;color:var(--text2);font-size:13px;">Loading world news...</div>';
+    fetch('/api/news/world')
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(!d.success||!d.data.length){el.innerHTML='<div style="padding:20px;color:var(--text2);">No news available</div>';return;}
+        var topics=['Global Economy','Middle East','US Markets','China Trade','Crude Oil'];
+        var out='<div style="font-size:11px;color:var(--text2);margin-bottom:12px;display:flex;justify-content:space-between;"><span>&#x1F310; World News — India Impact</span><span style="color:#34C759;">&#x25CF; Live</span></div>';
+        topics.forEach(function(topic){
+          var items=d.data.filter(function(n){return n.topic===topic;});
+          if(!items.length) return;
+          var col=items[0].color||'#FF3B30';
+          out+='<div style="margin-bottom:14px;">';
+          out+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">';
+          out+='<div style="width:8px;height:8px;border-radius:50%;background:'+col+';flex-shrink:0;"></div>';
+          out+='<div style="font-size:11px;font-weight:700;color:'+col+';text-transform:uppercase;letter-spacing:0.8px;">'+topic+'</div>';
+          out+='</div>';
+          items.forEach(function(n){
+            var t=n.pubDate?new Date(n.pubDate).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}):'';
+            out+='<a href="'+n.link+'" target="_blank" style="display:block;background:var(--card);border-radius:10px;padding:10px 12px;margin-bottom:6px;text-decoration:none;border-left:3px solid '+col+';">';
+            out+='<div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:4px;">'+n.title+'</div>';
+            out+='<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text2);"><span>'+n.source+'</span><span>'+t+'</span></div>';
+            out+='</a>';
+          });
+          out+='</div>';
+        });
+        el.innerHTML=out;
+      })
+      .catch(function(){el.innerHTML='<div style="padding:20px;color:var(--text2);">Could not load news</div>';});
+    return;
   }
 
   if(CF==='ipl'){
