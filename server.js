@@ -1389,7 +1389,7 @@ app.get('/api/news/world',function(req,res){
             var pubDate=[null,'']; var pc1=item.indexOf('<pubDate>'),pc2=item.indexOf('</pubDate>'); if(pc1>-1&&pc2>-1){pubDate=[null,item.substring(pc1+9,pc2).trim()];}
             var source=[null,'']; var sc1=item.indexOf('>',item.indexOf('<source')),sc2=item.indexOf('</source>'); if(sc1>-1&&sc2>-1){source=[null,item.substring(sc1+1,sc2).trim()];}
             if(title[1]&&title[1].length>10){
-              results.push({topic:topic.name,color:topic.color,title:title[1].replace(/ - .*$//,'').trim(),source:source[1]||'Google News',pubDate:pubDate[1]||'',link:link[1]||''});
+              results.push({topic:topic.name,color:topic.color,title:title[1].split(' - ')[0].trim(),source:source[1]||'Google News',pubDate:pubDate[1]||'',link:link[1]||''});
             }
           });
         }catch(e){}
