@@ -4894,5 +4894,79 @@
     "feedback2": "Donut 2 displays excellent presentation with clean vanilla fondant base, prominent chocolate drizzle, and professional appearance.",
     "overallPass": false,
     "summary": "One of two donuts failed quality inspection due to inadequate glaze coverage and inconsistency."
+  },
+  {
+    "id": "1775785259966",
+    "store": "hpcl-mpe",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-10T01:40:59.966Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775785257673-u6v78dnxs.jpg",
+    "photo2": "/uploads/fdu/1775785259811-pyxt62042.jpg",
+    "grade1": "FAIL",
+    "grade2": "FAIL",
+    "feedback1": "Chocolate dip donut exhibits uneven fondant coverage with pale patches on lower surface, cracking visible on fondant surface, and insufficient gloss finish per SOP requirement for even dark chocolate fondant covering entire top surface.",
+    "feedback2": "Maple dip donut shows uneven golden amber fondant application with visible pale patches and over-dark areas, fondant cracking present, failing SOP requirement for uniform amber colour and properly tapped/set fondant with no cracking.",
+    "overallPass": false,
+    "summary": "All three inspection categories fail SOP standards: both donuts exhibit fondant coating defects (uneven coverage, cracking, pale patches), and water bottle display does not clearly meet minimum standards for upright positioning and label visibility.",
+    "waterBottles": "FAIL",
+    "feedbackWater": "Photo 1 shows only 6 water bottles visible in FDU display with unclear label positioning and potential gaps between units, failing to clearly demonstrate minimum 6 bottles upright with labels forward and no gaps per SOP standard."
+  },
+  {
+    "id": "1775785680319",
+    "store": "hpcl-mpe",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-10T01:48:00.319Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775785672354-t94ekok61.jpg",
+    "photo2": "/uploads/fdu/1775785679378-sxwtl33zi.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775785747408",
+    "store": "hpcl-mpe",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-10T01:49:07.408Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775785741731-f6y1x1etq.jpg",
+    "photo2": "/uploads/fdu/1775785746609-eesyhbrqb.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
   }
 ]
