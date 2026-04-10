@@ -456,7 +456,7 @@ app.post('/api/fdu/submit', multer({storage:require('multer').diskStorage({desti
       store: req.body.store || '',
       am: (req.body.am||'').replace('Area Manager: ','').trim(),
       submittedAt: new Date().toISOString(),
-      photos: req.files ? Object.keys(req.files).map(function(k){ return '/uploads/fdu/'+req.files[k][0].filename+'.jpg'; }) : []
+      photos: req.files ? Object.keys(req.files).map(function(k){ return '/uploads/fdu/'+req.files[k][0].filename; }) : []
     };
     data.push(entry);
     writeJSON('fdu_submissions.json', data);
