@@ -516,7 +516,7 @@ function renderPost(post, idx) {
       '<span class="post-category-badge '+cat.cls+'">'+cat.label+'</span>' +
     '</div>' +
     // Image
-    (post.photo && post.photo.length > 50 ?
+    (post.photo && post.photo.length > 5 ?
       '<div class="post-image-wrap" data-post-idx="'+idx+'">' +
         '<img src="'+post.photo+'" loading="lazy">' +
         '<div class="double-tap-heart" id="heart-'+idx+'">&#x2764;</div>' +
