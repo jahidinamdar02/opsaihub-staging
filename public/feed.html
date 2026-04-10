@@ -446,15 +446,16 @@ function seedDemoPosts() {
 // ── RENDER STORIES ───────────────────────────────────────
 function renderStories() {
   var wrap = document.getElementById('storiesWrap');
-  var authors = [];
-  var seen = new Set();
-  allPosts.forEach(function(p){ if(!seen.has(p.author)){ seen.add(p.author); authors.push(p.author); } });
+  var allAMs = ['Jahid','Raman','Harish','Rohit','Deepak','Akash Chavan','Akash Rathod','Jagadeesha','Shivam'];
+  var hasPost = new Set();
+  allPosts.forEach(function(p){ hasPost.add(p.author); });
   var storyHtml = '<div class="story-item" onclick="openNewPost()">' +
     '<div class="story-ring"><div class="story-inner story-add">&#x2B;</div></div>' +
     '<div class="story-name">Your Story</div></div>';
-  authors.slice(0,8).forEach(function(author){
+  allAMs.forEach(function(author){
+    var ring = hasPost.has(author) ? 'story-ring' : 'story-ring seen';
     storyHtml += '<div class="story-item">' +
-      '<div class="story-ring"><div class="story-inner">' + (amIcons[author]||'&#x1F464;') + '</div></div>' +
+      '<div class="'+ring+'"><div class="story-inner">' + (amIcons[author]||'&#x1F464;') + '</div></div>' +
       '<div class="story-name">' + author.split(' ')[0] + '</div></div>';
   });
   wrap.innerHTML = storyHtml;

@@ -4994,5 +4994,29 @@
     "summary": "All three inspection categories FAIL due to inconsistent fondant application on both donut varieties and inability to verify water bottle compliance standards.",
     "waterBottles": "Fail",
     "feedbackWater": "Water bottle display cannot be verified from provided photos; FDU shelf visibility is obscured and bottle count, positioning, and label orientation cannot be confirmed against minimum 6-bottle upright SOP requirement."
+  },
+  {
+    "id": "1775790270777",
+    "store": "koramangala",
+    "am": "Jagadeesha",
+    "submittedAt": "2026-04-10T03:04:30.777Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775790266640-nlk5evt0a.jpg",
+    "photo2": "/uploads/fdu/1775790268937-gmanbqjt2.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
   }
 ]
