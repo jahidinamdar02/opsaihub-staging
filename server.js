@@ -635,11 +635,7 @@ app.post('/api/ask-jahid/chat', async function(req, res) {
     }).join(' | ');
 
     var systemPrompt = "You are the OpsAIHub AI for Tim Hortons India. You are Jahid's intelligent ops partner — sharp, direct, data-driven.\n\nPERSONALITY: Confident, friendly, slightly witty. Think smart business partner, not a bot. Always give insight + recommendation after data.\n\nRULES:\n- ONLY use data provided below. Never hallucinate numbers.\n- If asked about something not in data, say \"data will be available as AMs submit\"\n- Structure every answer: Direct answer → Insight → Next step\n- Keep responses under 200 words unless asked for detail\n- For store comparisons, rank by performance\n- For AM performance, always cite specific stores\n\nPLATFORM: OpsAIHub — 44 stores, 9 AMs, 6 regions\nAM ROSTER: Raman(Delhi NCR-3 stores), Harish(Delhi NCR-6), Rohit(Delhi NCR-4), Deepak(Punjab-8), Akash Chavan(Maharashtra-8), Akash Rathod(Maharashtra-4), Jagadeesha(Karnataka-4), Shivam(Telangana-4), Gujarat unassigned(3)\n\nCHECKLISTS: Mon=Financial+Inventory(all stores), Tue=Sales Intelligence(all stores), Wed=Maintenance visit, Thu=Rest, Fri=People+Readiness, Sat/Sun=Weekend Ops\n\nSCORING BANDS: Excellent 90-100% | Good 75-89% | Needs Attention 60-74% | Critical below 60%\n\nLIVE DATA AS OF TODAY (2026-04-10):\n\nMARCH 2026 MTD (25 days):\n- Total Revenue: Rs.847,946,550\n- Network ADS: Rs.770861\n- Network ADT: 145 transactions/store/day\n- Network APC: Rs.545\n- India ADT: 148 | India APC: Rs.558\n\nTOP 5 STORES BY ADS:\n- TH T1D Dial: Rs.3872834/day, ADT:707, APC:568\n- TH HIAL: Rs.1896940/day, ADT:357, APC:552\n- TH DLF Cyberhub: Rs.1611845/day, ADT:281, APC:596\n- TH Select City Saket: Rs.1228972/day, ADT:234, APC:546\n- TH Lokhandwala: Rs.1174031/day, ADT:238, APC:512\n\nBOTTOM 5 STORES BY ADS:\n- TH Punjabi bagh: Rs.364617/day, ADT:71, APC:535\n- TH NMIA Arrival: Rs.353712/day, ADT:59, APC:618\n- TH Lakeshore: Rs.270881/day, ADT:58, APC:489\n- TH NMiA Departure: Rs.86595/day, ADT:15, APC:619\n- TH T3D DIAL: Rs.0/day, ADT:0, APC:0\n\nKEY FLAGS (stores below benchmark):\n- Donuts below 45/day: TH DLF Cyberhub(43), TH BIAL(22), TH HPCL Mumbai Pune Expressway(37), TH Vegas Mall(33), TH T3D Food Court(19), TH Skymark one(35), TH Mall of Asia(31), TH Elante Mall(31), TH Sindhu Bhavan(28), TH HSR(39), TH T1 Ahmedabad Airport(23), TH FIFC Mumbai(31), TH Malhar Road(39), TH Nexus Seawood(32), TH Balewadi Pune(30), TH Viman Nagar(32), TH Sunview Enclave(26), TH Green Park(39), TH Mohali(25), TH MC Kurla(28), TH HIAL Arrival(30), TH Sangrur(14), TH Sec 35 Chandigarh(20), TH Navrangpura(17), TH Phonix Mall Wakad(31), TH Patiala(22), TH NSP Pritampura(15), TH Basant Lok(22), TH Bucho Bathinda(11), TH Epicuria Nehru Place(19), TH FC Road(22), TH Punjabi bagh(16), TH NMIA Arrival(10), TH Lakeshore(28), TH NMiA Departure(3)\n- Timbits below 100/day: TH DLF Cyberhub(66), TH Select City Saket(87), TH BIAL(48), TH HPCL Mumbai Pune Expressway(85), TH Bandra(88), TH Vegas Mall(52), TH T3D Food Court(6), TH Skymark one(72), TH Elante Mall(56), TH Sindhu Bhavan(45), TH Golf Course AIPL(55), TH T1 Ahmedabad Airport(32), TH FIFC Mumbai(74), TH Malhar Road(56), TH Nexus Seawood(59), TH Viman Nagar(49), TH Sunview Enclave(50), TH Green Park(58), TH Mohali(47), TH MC Kurla(62), TH HIAL Arrival(48), TH Sangrur(32), TH Sec 35 Chandigarh(45), TH Navrangpura(35), TH Phonix Mall Wakad(54), TH Patiala(40), TH NSP Pritampura(31), TH Basant Lok(43), TH Bucho Bathinda(22), TH Epicuria Nehru Place(33), TH FC Road(43), TH Punjabi bagh(31), TH NMIA Arrival(17), TH Lakeshore(68), TH NMiA Departure(3)\n- Water below 10/day: TH DLF Cyberhub(7), TH Lokhandwala(5), TH BIAL(6), TH HPCL Mumbai Pune Expressway(6), TH Bandra(3), TH Vegas Mall(4), TH Skymark one(2), TH Mall of Asia(4), TH Elante Mall(5), TH Koramangala(1), TH Sindhu Bhavan(3), TH Golf Course AIPL(2), TH HSR(2), TH T1 Ahmedabad Airport(9), TH FIFC Mumbai(2), TH Inorbit Mall-Hyderabad(6), TH Malhar Road(1), TH Nexus Seawood(2), TH Balewadi Pune(2), TH Viman Nagar(4), TH Sunview Enclave(3), TH Green Park(1), TH Mohali(2), TH MC Kurla(3), TH Sangrur(2), TH Navrangpura(1), TH Phonix Mall Wakad(3), TH Patiala(1), TH NSP Pritampura(1), TH Basant Lok(2), TH Bucho Bathinda(1), TH Epicuria Nehru Place(1), TH FC Road(2), TH Punjabi bagh(1), TH NMIA Arrival(4), TH Lakeshore(5), TH NMiA Departure(3)\n\nFDU COMPLIANCE TODAY:\n- FDU Display submissions: 3 stores\n- Donut checks: 9 (Pass:3 Fail:6)\n\nCHECKLIST SUBMISSIONS TODAY: 0\n\nFY27 AOP TARGET: Rs.N/A\n\nSTORE-LEVEL KPIs (all 44 stores):\nTH T1D Dial: ADS=3872834 ADT=707 APC=568 Donuts=129 Timbits=219 Water=0\nTH HIAL: ADS=1896940 ADT=357 APC=552 Donuts=69 Timbits=132 Water=0\nTH DLF Cyberhub: ADS=1611845 ADT=281 APC=596 Donuts=43 Timbits=66 Water=7\nTH Select City Saket: ADS=1228972 ADT=234 APC=546 Donuts=48 Timbits=87 Water=13\nTH Lokhandwala: ADS=1174031 ADT=238 APC=512 Donuts=53 Timbits=101 Water=5\nTH BIAL: ADS=997327 ADT=188 APC=550 Donuts=22 Timbits=48 Water=6\nTH HPCL Mumbai Pune Expressway: ADS=965760 ADT=159 APC=632 Donuts=37 Timbits=85 Water=6\nTH Bandra: ADS=951563 ADT=200 APC=493 Donuts=75 Timbits=88 Water=3\nTH Vegas Mall: ADS=951288 ADT=186 APC=531 Donuts=33 Timbits=52 Water=4\nTH T3D Food Court: ADS=910505 ADT=169 APC=559 Donuts=19 Timbits=6 Water=0\nTH Skymark one: ADS=871248 ADT=164 APC=551 Donuts=35 Timbits=72 Water=2\nTH Mall of Asia: ADS=818792 ADT=150 APC=565 Donuts=31 Timbits=116 Water=4\nTH Elante Mall: ADS=805958 ADT=116 APC=724 Donuts=31 Timbits=56 Water=5\nTH Koramangala: ADS=798111 ADT=189 APC=437 Donuts=47 Timbits=117 Water=1\nTH Sindhu Bhavan: ADS=781371 ADT=157 APC=517 Donuts=28 Timbits=45 Water=3\nTH Golf Course AIPL: ADS=757780 ADT=144 APC=545 Donuts=47 Timbits=55 Water=2\nTH HSR: ADS=754193 ADT=171 APC=457 Donuts=39 Timbits=103 Water=2\nTH T1 Ahmedabad Airport: ADS=732117 ADT=143 APC=532 Donuts=23 Timbits=32 Water=9\nTH FIFC Mumbai: ADS=711641 ADT=144 APC=514 Donuts=31 Timbits=74 Water=2\nTH Inorbit Mall-Hyderabad: ADS=708339 ADT=135 APC=547 Donuts=52 Timbits=172 Water=6\nTH Malhar Road: ADS=677949 ADT=112 APC=631 Donuts=39 Timbits=56 Water=1\nTH Nexus Seawood: ADS=677572 ADT=121 APC=581 Donuts=32 Timbits=59 Water=2\nTH Balewadi Pune: ADS=643092 ADT=131 APC=508 Donuts=30 Timbits=101 Water=2\nTH Viman Nagar: ADS=640627 ADT=118 APC=566 Donuts=32 Timbits=49 Water=4\nTH Sunview Enclave: ADS=640106 ADT=89 APC=746 Donuts=26 Timbits=50 Water=3\nTH Green Park: ADS=628251 ADT=133 APC=491 Donuts=39 Timbits=58 Water=1\nTH Mohali: ADS=619408 ADT=108 APC=595 Donuts=25 Timbits=47 Water=2\nTH MC Kurla: ADS=589436 ADT=111 APC=549 Donuts=28 Timbits=62 Water=3\nTH HIAL Arrival: ADS=585164 ADT=112 APC=540 Donuts=30 Timbits=48 Water=0\nTH Sangrur: ADS=575058 ADT=87 APC=691 Donuts=14 Timbits=32 Water=2\nTH Sec 35 Chandigarh: ADS=563817 ADT=98 APC=600 Donuts=20 Timbits=45 Water=0\nTH Navrangpura: ADS=559954 ADT=121 APC=479 Donuts=17 Timbits=35 Water=1\nTH Phonix Mall Wakad: ADS=554991 ADT=103 APC=561 Donuts=31 Timbits=54 Water=3\nTH Patiala: ADS=503483 ADT=93 APC=564 Donuts=22 Timbits=40 Water=1\nTH NSP Pritampura: ADS=478187 ADT=95 APC=522 Donuts=15 Timbits=31 Water=1\nTH Basant Lok: ADS=414728 ADT=87 APC=494 Donuts=22 Timbits=43 Water=2\nTH Bucho Bathinda: ADS=409552 ADT=57 APC=747 Donuts=11 Timbits=22 Water=1\nTH Epicuria Nehru Place: ADS=403742 ADT=88 APC=475 Donuts=19 Timbits=33 Water=1\nTH FC Road: ADS=376325 ADT=83 APC=471 Donuts=22 Timbits=43 Water=2\nTH Punjabi bagh: ADS=364617 ADT=71 APC=535 Donuts=16 Timbits=31 Water=1\nTH NMIA Arrival: ADS=353712 ADT=59 APC=618 Donuts=10 Timbits=17 Water=4\nTH Lakeshore: ADS=270881 ADT=58 APC=489 Donuts=28 Timbits=68 Water=5\nTH NMiA Departure: ADS=86595 ADT=15 APC=619 Donuts=3 Timbits=3 Water=3\nTH T3D DIAL: ADS=0 ADT=0 APC=0 Donuts=0 Timbits=0 Water=0";
-    model: 'claude-haiku-4-5-20251001',
-      max_tokens: 400,
-      system: systemPrompt,
-      messages: apiMessages
-    });
+    var body=JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:600,system:systemPrompt,messages:apiMessages});
     var opts = {
       hostname:'api.anthropic.com', path:'/v1/messages', method:'POST',
       headers:{'Content-Type':'application/json','x-api-key':process.env.ANTHROPIC_API_KEY,'anthropic-version':'2023-06-01','Content-Length':Buffer.byteLength(body)}
@@ -934,193 +930,6 @@ app.get('/api/home-scores', function(req, res){
 
 app.use("/uploads/fdu", require("express").static(require("path").join(__dirname,"uploads/fdu")));
 app.use("/uploads/donuts",require("express").static(require("path").join(__dirname,"uploads/donuts")));
-app.use(express.static(path.join(__dirname, 'public')));
-
-// ── MTD SALES ROUTES ─────────────────────────────────────
-app.get('/api/mtd/summary', function(req,res){
-  try{
-    var d=readJSON('performance.json',{});
-    var summary=d.summary||d.india||{};
-    res.json({success:true,data:summary});
-  }catch(e){res.status(500).json({success:false,error:e.message});}
-});
-
-app.get('/api/mtd/stores', function(req,res){
-  try{
-    var d=readJSON('performance.json',{});
-    var stores=d.stores||[];
-    res.json({success:true,data:stores});
-  }catch(e){res.status(500).json({success:false,error:e.message});}
-});
-
-app.get('/api/mtd/stores/:storeCode', function(req,res){
-  try{
-    var d=readJSON('performance.json',{});
-    var stores=d.stores||[];
-    var store=stores.find(function(s){return s.storeCode===req.params.storeCode;});
-    if(!store) return res.status(404).json({success:false,error:'Store not found'});
-    res.json({success:true,data:store});
-  }catch(e){res.status(500).json({success:false,error:e.message});}
-});
-
-app.get('/api/mtd/am/:amName', function(req,res){
-  try{
-    var d=readJSON('performance.json',{});
-    var ams=d.areaManagers||d.am||[];
-    var am=ams.find(function(a){return a.am===req.params.amName||a.name===req.params.amName;});
-    if(!am){
-      var stores=d.stores||[];
-      var amStores=stores.filter(function(s){return s.am===req.params.amName;});
-      if(amStores.length===0) return res.status(404).json({success:false,error:'AM not found'});
-      var totalSales=amStores.reduce(function(sum,s){return sum+(s.mtdSales||0);},0);
-      var avgADT=Math.round(amStores.reduce(function(sum,s){return sum+(s.adt||0);},0)/amStores.length);
-      var avgAT=Math.round(amStores.reduce(function(sum,s){return sum+(s.at||0);},0)/amStores.length);
-      return res.json({success:true,data:{am:req.params.amName,totalMTDSales:totalSales,avgADT:avgADT,avgAT:avgAT,storeCount:amStores.length,stores:amStores}});
-    }
-    res.json({success:true,data:am});
-  }catch(e){res.status(500).json({success:false,error:e.message});}
-});
-
-app.get('/api/mtd/am-summary', function(req,res){
-  try{
-    var d=readJSON('performance.json',{});
-    var ams=d.areaManagers||d.am||[];
-    res.json({success:true,data:ams});
-  }catch(e){res.status(500).json({success:false,error:e.message});}
-});
-
-app.get('/api/mtd/region/:regionName', function(req,res){
-  try{
-    var d=readJSON('performance.json',{});
-    var regions=d.regions||[];
-    var region=regions.find(function(r){return r.region===req.params.regionName||r.name===req.params.regionName;});
-    if(!region) return res.status(404).json({success:false,error:'Region not found'});
-    res.json({success:true,data:region});
-  }catch(e){res.status(500).json({success:false,error:e.message});}
-});
-
-app.get('/api/mtd/flags', function(req,res){
-  try{
-    var d=readJSON('performance.json',{});
-    var flags=d.flags||d.operationalFlags||[];
-    res.json({success:true,data:flags});
-  }catch(e){res.status(500).json({success:false,error:e.message});}
-});
-
-app.use(function(req, res) {
-  const p = path.join(__dirname, 'public', req.path.replace('/', '') + '.html');
-  if (fs.existsSync(p)) { res.sendFile(p); } else { res.sendFile(path.join(__dirname, 'public', 'index.html')); }
-});
-
-// ════════════════════════════════════════════════════════════
-// STEP 12 — AUTOMATION & SELF-HEALING
-// ════════════════════════════════════════════════════════════
-const cron = require('node-cron');
-const https = require('https');
-
-var AM_EMAILS = {
-  'Raman':       'raman@timhortonsindia.com',
-  'Harish':      'harish@timhortonsindia.com',
-  'Rohit':       'rohit@timhortonsindia.com',
-  'Deepak':      'deepak@timhortonsindia.com',
-  'Akash Chavan':'akash.chavan@timhortonsindia.com',
-  'Akash Rathod':'akash.rathod@timhortonsindia.com',
-  'Jagadeesha':  'jagadeesha@timhortonsindia.com',
-  'Shivam':      'shivam@timhortonsindia.com'
-};
-var HOD_EMAIL = 'jahid.inamdar@timhortonsindia.com';
-var FROM_EMAIL = '"Tim Ops Connect" <' + (process.env.EMAIL_USER||'jahidinamdar02@opsaihub.in') + '>';
-
-function sendEmail(to, subject, html, cb){
-  var opts = {
-    from: FROM_EMAIL,
-    to: Array.isArray(to) ? to.join(', ') : to,
-    subject: subject,
-    html: html
-  };
-  transporter.sendMail(opts, function(err, info){
-    if(err) console.log('Email error:', err.message);
-    else console.log('Email sent:', subject, '->', opts.to);
-    if(cb) cb(err, info);
-  });
-}
-
-function emailStyle(){ return ''; }
-function eWrap(content,title,sub){
-  return '<div style="background:#F5F5F7;margin:0;padding:20px 0;font-family:-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;">'+
-    '<div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;">'+
-    '<div style="background:linear-gradient(135deg,#C8102E,#8B0B1F);padding:28px;text-align:center;">'+
-    '<div style="font-size:22px;font-weight:700;color:#ffffff;letter-spacing:-0.5px;">Tim Ops Connect</div>'+
-    '<div style="font-size:12px;color:rgba(255,255,255,0.75);margin-top:4px;">'+sub+'</div></div>'+
-    '<div style="padding:24px 28px;background:#ffffff;">'+content+'</div>'+
-    '<div style="padding:16px 28px;background:#F5F5F7;text-align:center;font-size:11px;color:#8E8E93;">'+
-    'Tim Hortons India &middot; OpsAIHub &middot; Automated</div></div></div>';
-}
-function eCard(title,content){
-  return '<div style="background:#F5F5F7;border-radius:12px;padding:16px;margin-bottom:12px;">'+
-    '<div style="font-size:11px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">'+title+'</div>'+
-    content+'</div>';
-}
-function eDarkCard(title,content){
-  return '<div style="background:#1A1A2E;border-radius:12px;padding:16px;margin-bottom:12px;">'+
-    '<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">'+title+'</div>'+
-    content+'</div>';
-}
-function eRow(label,value,color){
-  return '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #E5E5EA;">'+
-    '<span style="font-size:13px;color:#1C1C1E;">'+label+'</span>'+
-    '<span style="font-size:12px;font-weight:700;color:'+(color||'#8E8E93')+';">'+value+'</span></div>';
-}
-function eBtn(label,url){
-  return '<a href="'+url+'" style="display:block;background:#C8102E;color:#ffffff;text-align:center;padding:14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;margin:20px 0;">'+label+'</a>';
-}
-
-// ── CLAUDE HAIKU DAILY BRIEFING ───────────────────────────
-function generateBriefing(callback){
-  var subs = readJSON('submissions.json', []);
-  var kpi = readJSON('sales_summary.json', {});
-  var today = new Date();
-  var dayName = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][today.getDay()];
-  
-  var context = 'Today is '+dayName+', '+today.toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})+'. ';
-  context += 'Tim Hortons India Operations Summary: ';
-  context += '44 stores, 9 Area Managers, 6 regions. ';
-  if(kpi.march){ context += 'March MTD: ADS Rs.'+kpi.march.totalADS+', ADT '+kpi.march.totalADT+', APC Rs.'+kpi.march.totalAPC+'. '; }
-  context += 'Submissions today: '+subs.filter(function(s){var d=new Date(s.submittedAt||s.timestamp||Date.now());return d.toDateString()===today.toDateString();}).length+' received. ';
-  
-  var body = JSON.stringify({
-    model: 'claude-haiku-4-5-20251001',
-    max_tokens: 500,
-    messages:[{role:'user',content:context+' Generate a sharp 5-line morning ops briefing for the Head of Operations. Cover: 1) Key priority for today 2) Any risk to watch 3) One coaching point for AMs 4) Weather/seasonal note if relevant 5) One motivational close. Be direct, no fluff, QSR operations lens.'}]
-  });
-  
-  var opts = {
-    hostname: 'api.anthropic.com',
-    path: '/v1/messages',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': process.env.ANTHROPIC_API_KEY,
-      'anthropic-version': '2023-06-01',
-      'Content-Length': Buffer.byteLength(body)
-    }
-  };
-  
-  var req = https.request(opts, function(res){
-    var data = '';
-    res.on('data', function(c){ data += c; });
-    res.on('end', function(){
-      try{
-        var parsed = JSON.parse(data);
-        var text = parsed.content && parsed.content[0] ? parsed.content[0].text : 'Briefing unavailable today.';
-        callback(null, text);
-      } catch(e){ callback(null, 'Briefing generation failed: '+e.message); }
-    });
-  });
-  req.on('error', function(e){ callback(null, 'API error: '+e.message); });
-  req.write(body);
-  req.end();
-}
 
 // ── MONDAY 8AM — WEEKLY NUDGE TO ALL AMs ─────────────────
 cron.schedule('0 8 * * 1', function(){
@@ -1389,11 +1198,12 @@ app.get('/api/mtd/summary',function(req,res){
     var kpi=readJSON('kpi_mar2026.json',{});
     var stores=kpi.stores||{};
     var names=Object.keys(stores);
+    if(names.length===0) return res.json({success:true,data:{totalMTDSales:0,avgADT:0,avgAPC:0,storeCount:0}});
     var totalSales=names.reduce(function(sum,s){return sum+(stores[s].ads||0)*(kpi.days||25);},0);
-    var avgADT=Math.round(names.reduce(function(sum,s){return sum+(stores[s].adt||0);},0)/Math.max(names.length,1));
-    var avgAPC=Math.round(names.reduce(function(sum,s){return sum+(stores[s].apc||0);},0)/Math.max(names.length,1));
+    var avgADT=Math.round(names.reduce(function(sum,s){return sum+(stores[s].adt||0);},0)/names.length);
+    var avgAPC=Math.round(names.reduce(function(sum,s){return sum+(stores[s].apc||0);},0)/names.length);
     res.json({success:true,data:{totalMTDSales:totalSales,avgADT:avgADT,avgAPC:avgAPC,storeCount:names.length,days:kpi.days||25,indiaADT:kpi.india_adt||avgADT,indiaAPC:kpi.india_apc||avgAPC}});
-  }catch(e){res.status(500).json({success:false,error:e.message});}
+  }catch(e){console.error('MTD summary error:',e.message);res.status(500).json({success:false,error:e.message});}
 });
 app.get('/api/mtd/stores',function(req,res){
   try{
@@ -1402,7 +1212,7 @@ app.get('/api/mtd/stores',function(req,res){
     var kd=kpi.stores||{};
     var result=master.map(function(s){
       var d=kd[s.name]||kd['TH '+s.name]||{};
-      return {storeCode:s.id||s.name,storeName:s.name,am:s.am,region:s.region,mtdSales:(d.ads||0)*(kpi.days||25),ads:d.ads||0,adt:d.adt||0,apc:d.apc||0,donut:d.donut||0,timbit:d.timbit||0,water:d.water||0};
+      return {storeCode:s.id,storeName:s.name,am:s.am,region:s.region,mtdSales:(d.ads||0)*(kpi.days||25),ads:d.ads||0,adt:d.adt||0,apc:d.apc||0,donut:d.donut||0,timbit:d.timbit||0,water:d.water||0};
     });
     res.json({success:true,data:result});
   }catch(e){res.status(500).json({success:false,error:e.message});}
@@ -1412,7 +1222,7 @@ app.get('/api/mtd/am/:amName',function(req,res){
     var kpi=readJSON('kpi_mar2026.json',{});
     var master=readJSON('stores.json',[]);
     var kd=kpi.stores||{};
-    var amStores=master.filter(function(s){return s.am&&s.am.toLowerCase()===req.params.amName.toLowerCase();});
+    var amStores=master.filter(function(s){return s.am&&s.am.toLowerCase()===decodeURIComponent(req.params.amName).toLowerCase();});
     if(!amStores.length) return res.status(404).json({success:false,error:'AM not found'});
     var sd=amStores.map(function(s){var d=kd[s.name]||kd['TH '+s.name]||{};return {storeName:s.name,ads:d.ads||0,adt:d.adt||0,apc:d.apc||0,mtdSales:(d.ads||0)*(kpi.days||25)};});
     var totalSales=sd.reduce(function(sum,s){return sum+s.mtdSales;},0);
@@ -1459,6 +1269,8 @@ app.get('/api/mtd/flags',function(req,res){
     res.json({success:true,data:flags});
   }catch(e){res.status(500).json({success:false,error:e.message});}
 });
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(PORT, function() { console.log('OpsAIHub Staging running on port ' + PORT); });
 module.exports = { readJSON: readJSON, writeJSON: writeJSON };
