@@ -289,10 +289,7 @@ app.get('/api/coverage', function(req, res) {
     res.json({ success:true, data:filtered });
   } catch(e) { res.status(500).json({ success:false, error:e.message }); }
 });
-    if (req.query.month) data = data.filter(function(c) { return c.month === req.query.month; });
-    res.json({ success: true, data: data });
-  } catch (err) { res.status(500).json({ success: false, error: err.message }); }
-});
+
 app.post('/api/coverage', function(req, res) {
   try {
     const coverage = readJSON('coverage.json', []);
