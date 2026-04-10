@@ -422,7 +422,8 @@ function render(){
       if(lto.badge) out+='<div style="display:inline-block;padding:2px 8px;border-radius:6px;font-size:9px;font-weight:700;background:#C8102E;color:#fff;">'+lto.badge+'</div>';
       out+='</div>';
       // Title + tagline
-      out+='<div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px;">'+lto.name+'</div>';
+      if(lto.image) out+='<img src="'+lto.image+'" style="width:100%;border-radius:10px;margin-bottom:10px;object-fit:cover;max-height:180px;" onerror="this.style.display=\'none\'">';
+out+='<div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px;">'+lto.name+'</div>';
       if(lto.tagline) out+='<div style="font-size:12px;color:rgba(255,255,255,0.85);margin-top:2px;font-style:italic;">'+lto.tagline+'</div>';
       // Products
       if(lto.products&&lto.products.length){
