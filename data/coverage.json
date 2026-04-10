@@ -180,7 +180,7 @@
       {
         "store": "Malhar Rd",
         "wed": false,
-        "fri": false,
+        "fri": true,
         "sat": true,
         "sun": false
       },
@@ -219,6 +219,19 @@
     "stores": [
       {
         "store": "PMC Kurla",
+        "wed": false,
+        "fri": true,
+        "sat": false,
+        "sun": false
+      }
+    ]
+  },
+  {
+    "am": "Jagadeesha",
+    "month": "2026-04",
+    "stores": [
+      {
+        "store": "Koramangala",
         "wed": false,
         "fri": true,
         "sat": false,

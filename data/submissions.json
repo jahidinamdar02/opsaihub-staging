@@ -1656,5 +1656,67 @@
     "submittedAt": "2026-04-10T08:42:21.831Z",
     "date": "2026-04-10",
     "id": "1775810541831"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "friday",
+    "ciCall": "no",
+    "complaints": 0,
+    "complaintCategory": "Other",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "",
+      "training": "",
+      "marketing": "",
+      "hr": "",
+      "it": ""
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "Need to clean BOH chiller after every usage and after making back up, Food station need to keep product under 4 Hrs shelf life, focus on new LTO, focus on KPI, google review to keep NPS above 90%",
+      "nextMeeting": "2026-04-10"
+    },
+    "visitDate": "2026-04-10T10:07:14.465Z",
+    "submittedAt": "2026-04-10T10:07:10.241Z",
+    "date": "2026-04-10",
+    "id": "1775815630241"
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "Koramangala",
+    "region": "Bangalore",
+    "day": "friday",
+    "ciCall": "",
+    "complaints": 3,
+    "complaintCategory": "Food Quality",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "NA",
+      "training": "Team knowledge Check on LTO",
+      "marketing": "NO",
+      "hr": "NO",
+      "it": "No"
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "No",
+      "nextMeeting": "2026-04-17"
+    },
+    "visitDate": "2026-04-10T10:54:24.952Z",
+    "submittedAt": "2026-04-10T10:54:25.169Z",
+    "date": "2026-04-10",
+    "id": "1775818465169"
   }
 ]

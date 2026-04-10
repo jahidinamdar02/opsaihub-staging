@@ -90,7 +90,19 @@ var CHIPS=[
 ];
 
 var LTO=[
-{id:'mango2026',name:'Mango LTO',start:'2026-04-01',end:'2026-05-14',stores:'All 44 stores',tags:['Beverage','Food'],color:'#FF9500',year:2026}
+{id:'mango2026',
+ name:'Mango Season',
+ tagline:'This is what summer tastes like!',
+ start:'2026-04-01',
+ end:'2026-05-14',
+ stores:'All 44 stores',
+ tags:['Beverage','LTO'],
+ color:'#FF9500',
+ year:2026,
+ badge:'NEW',
+ products:['Mango Iced Tea','Mango Yuzu Matcha Cooler','Tims Mango Shake','Mango Grapefruit Cooler'],
+ note:'Limited Edition — push upsell at POS. Target: 15 units/store/day.'
+}
 ];
 var EV=[
 {d:'2026-01-01',n:"New Year's Day",ty:'holiday',tg:'holiday',imp:'HIGH',note:'National holiday. All malls open. Peak day.',c:'#34C759'},
@@ -403,12 +415,34 @@ function render(){
       var dl=live?Math.ceil((e-now)/86400000):up?Math.ceil((s-now)/86400000):0;
       var msg=live?dl+' days left':up?'In '+dl+' days':'Ended';
       var bg=(!live&&!up)?'linear-gradient(135deg,#555,#333)':'linear-gradient(135deg,'+lto.color+'CC,'+lto.color+')';
-      out+='<div class="lcard" style="background:'+bg+';">';
-      out+='<div style="display:inline-block;padding:2px 8px;border-radius:6px;font-size:9px;font-weight:700;background:rgba(255,255,255,0.15);color:#fff;margin-bottom:6px;">'+lbl+'</div>';
-      out+='<div style="font-size:18px;font-weight:700;color:#fff;">'+lto.name+'</div>';
+      out+='<div class="lcard" style="background:'+bg+';overflow:hidden;position:relative;">';
+      // Badge row
+      out+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">';
+      out+='<div style="display:inline-block;padding:2px 8px;border-radius:6px;font-size:9px;font-weight:700;background:rgba(255,255,255,0.2);color:#fff;">'+lbl+'</div>';
+      if(lto.badge) out+='<div style="display:inline-block;padding:2px 8px;border-radius:6px;font-size:9px;font-weight:700;background:#C8102E;color:#fff;">'+lto.badge+'</div>';
+      out+='</div>';
+      // Title + tagline
+      out+='<div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px;">'+lto.name+'</div>';
+      if(lto.tagline) out+='<div style="font-size:12px;color:rgba(255,255,255,0.85);margin-top:2px;font-style:italic;">'+lto.tagline+'</div>';
+      // Products
+      if(lto.products&&lto.products.length){
+        out+='<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;">';
+        lto.products.forEach(function(p){
+          out+='<span style="background:rgba(255,255,255,0.2);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:8px;">&#x1F96D; '+p+'</span>';
+        });
+        out+='</div>';
+      }
+      // Dates + status
+      out+='<div style="margin-top:10px;display:flex;justify-content:space-between;align-items:flex-end;">';
+      out+='<div>';
+      out+='<div style="font-size:10px;color:rgba(255,255,255,0.7);">'+new Date(lto.start).toLocaleDateString('en-IN',{day:'numeric',month:'short'})+' — '+new Date(lto.end).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})+'</div>';
       out+='<div style="font-size:11px;color:rgba(255,255,255,0.75);">'+lto.stores+'</div>';
-      out+='<div style="font-size:11px;color:rgba(255,255,255,0.75);">'+new Date(lto.start).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})+' to '+new Date(lto.end).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})+'</div>';
-      out+='<div style="font-size:12px;font-weight:700;color:#fff;margin-top:4px;">'+msg+'</div></div>';
+      if(lto.note) out+='<div style="font-size:10px;color:rgba(255,255,255,0.7);margin-top:3px;font-style:italic;">'+lto.note+'</div>';
+      out+='</div>';
+      out+='<div style="text-align:right;">';
+      out+='<div style="font-size:24px;font-weight:800;color:#fff;">'+msg+'</div>';
+      out+='</div></div>';
+      out+='</div>';
     });
     el.innerHTML=out;return;
   }
