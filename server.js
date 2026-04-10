@@ -880,6 +880,8 @@ app.get('/api/events/stats/am', function(req, res){
 
 // Serve event images
 app.use('/uploads/events', require('express').static('uploads/events'));
+app.use('/uploads/feed', require('express').static('uploads/feed'));
+app.use('/uploads/checklist', require('express').static('uploads/checklist'));
 
 
 
@@ -1287,7 +1289,6 @@ app.get('/api/mtd/flags',function(req,res){
   }catch(e){res.status(500).json({success:false,error:e.message});}
 });
 
-app.use("/uploads/feed", require("express").static(require("path").join(__dirname,"uploads/feed")));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(PORT, function() { console.log('OpsAIHub Staging running on port ' + PORT); });
