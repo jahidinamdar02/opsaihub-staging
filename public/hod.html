@@ -92,6 +92,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--su
   <a href="audit.html" class="nav-item"><span class="nav-icon">&#128269;</span><span class="nav-label">Audits</span></a>
 </nav>
 <script>
+var AM_AVATAR={
+  'Jahid':'/images/am/jahid.svg',
+  'Raman':'/images/am/raman.svg',
+  'Harish':'/images/am/harish.svg',
+  'Rohit':'/images/am/rohit.svg',
+  'Deepak':'/images/am/deepak.svg',
+  'Akash Chavan':'/images/am/akash-chavan.svg',
+  'Akash Rathod':'/images/am/akash-rathod.svg',
+  'Jagadeesha':'/images/am/jagadeesha.svg',
+  'Shivam':'/images/am/shivam.svg'
+};
+function amAv(name,size){size=size||36;var s=size+'px';return AM_AVATAR[name]?'<img src="'+AM_AVATAR[name]+'" style="width:'+s+';height:'+s+';border-radius:50%;object-fit:cover;" alt="'+name+'">':(name?name.substring(0,2).toUpperCase():'AM');}
+
 var subs=[],issues=[];
 var AMS=[
   {n:'Raman',r:'Delhi NCR',s:3},{n:'Harish',r:'Delhi NCR',s:6},

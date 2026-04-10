@@ -164,6 +164,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;
 </nav>
 
 <script>
+var AM_AVATAR={
+  'Jahid':'/images/am/jahid.svg',
+  'Raman':'/images/am/raman.svg',
+  'Harish':'/images/am/harish.svg',
+  'Rohit':'/images/am/rohit.svg',
+  'Deepak':'/images/am/deepak.svg',
+  'Akash Chavan':'/images/am/akash-chavan.svg',
+  'Akash Rathod':'/images/am/akash-rathod.svg',
+  'Jagadeesha':'/images/am/jagadeesha.svg',
+  'Shivam':'/images/am/shivam.svg'
+};
+function amAv(name,size){size=size||36;var s=size+'px';return AM_AVATAR[name]?'<img src="'+AM_AVATAR[name]+'" style="width:'+s+';height:'+s+';border-radius:50%;object-fit:cover;" alt="'+name+'">':(name?name.substring(0,2).toUpperCase():'AM');}
+
 // TAB SWITCHING
 var tabs = ['feed','training','product','ops'];
 tabs.forEach(function(t) {
@@ -321,7 +334,7 @@ function renderTraining(td) {
     var smG=st.reduce(function(a,d){return a+Math.max(0,(d.smBudget||1)-(d.smActual||0));},0);
     var fG=st.reduce(function(a,d){return a+Math.max(0,4-(d.fostac||0));},0);
     return '<div style="display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border);">'+
-      '<div style="width:34px;height:34px;background:linear-gradient(135deg,#C8102E,#9B0D22);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">'+am.i+'</div>'+
+      '<div style="width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,#C8102E,#9B0D22);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;">'+amAv(am.n,34)+'</div>'+
       '<div style="flex:1;"><div style="font-size:14px;font-weight:600;">'+am.n+'</div>'+
       '<div style="font-size:11px;color:var(--text2);">'+st.length+' stores'+
         (smG>0?' &middot; <span style="color:#FF3B30;">SM -'+smG+'</span>':'')+
