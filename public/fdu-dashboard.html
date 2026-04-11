@@ -93,8 +93,50 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;ba
 .lightbox img{max-width:95vw;max-height:90vh;border-radius:12px;object-fit:contain;}
 .lightbox-close{position:absolute;top:20px;right:20px;color:#fff;font-size:28px;cursor:pointer;background:rgba(255,255,255,0.15);border:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
 </style>
+<style id="pin-wall-css">
+#pin-wall{position:fixed;inset:0;z-index:99999;background:#1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
+.pin-logo{font-size:48px;margin-bottom:8px;}
+.pin-title{font-size:24px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.5px;}
+.pin-sub{font-size:13px;color:#6E6E73;margin-bottom:40px;}
+.pin-dots{display:flex;gap:16px;margin-bottom:32px;}
+.pin-dot{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.15);transition:all 0.2s;}
+.pin-dot.filled{background:#C8102E;}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:240px;}
+.pin-btn{height:64px;border-radius:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;font-size:22px;font-weight:600;cursor:pointer;transition:all 0.15s;}
+.pin-btn:active{background:rgba(200,16,46,0.3);transform:scale(0.95);}
+.pin-error{font-size:13px;color:#FF3B30;margin-top:16px;opacity:0;transition:opacity 0.3s;}
+.pin-error.show{opacity:1;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.pin-dots.shake{animation:shake 0.3s ease;}
+</style>
 </head>
 <body>
+<div id="pin-wall">
+  <div class="pin-logo">☕</div>
+  <div class="pin-title">Tim's Ops Connect</div>
+  <div class="pin-sub">Enter your PIN to continue</div>
+  <div class="pin-dots" id="pinDots">
+    <div class="pin-dot" id="d0"></div>
+    <div class="pin-dot" id="d1"></div>
+    <div class="pin-dot" id="d2"></div>
+    <div class="pin-dot" id="d3"></div>
+  </div>
+  <div class="pin-pad">
+    <button class="pin-btn" onclick="pinPress('1')">1</button>
+    <button class="pin-btn" onclick="pinPress('2')">2</button>
+    <button class="pin-btn" onclick="pinPress('3')">3</button>
+    <button class="pin-btn" onclick="pinPress('4')">4</button>
+    <button class="pin-btn" onclick="pinPress('5')">5</button>
+    <button class="pin-btn" onclick="pinPress('6')">6</button>
+    <button class="pin-btn" onclick="pinPress('7')">7</button>
+    <button class="pin-btn" onclick="pinPress('8')">8</button>
+    <button class="pin-btn" onclick="pinPress('9')">9</button>
+    <button class="pin-btn" onclick="pinPress('c')" style="font-size:14px;">Clear</button>
+    <button class="pin-btn" onclick="pinPress('0')">0</button>
+    <button class="pin-btn" onclick="pinPress('x')" style="font-size:20px;">⌫</button>
+  </div>
+  <div class="pin-error" id="pinError">Incorrect PIN. Try again.</div>
+</div>
 <div class="hdr">
   <a href="index.html" class="back">&#x2190; Home</a>
   <div class="hdr-title">&#x1F369; FDU Compliance</div>
@@ -288,6 +330,69 @@ function render(){
   document.getElementById('mainContent').innerHTML=html;
 }
 loadData();
+</script>
+<script id="pin-wall-js">
+(function(){
+  var AM_PIN='2026';
+  var HOD_PIN='2202';
+  var entered='';
+  var isHOD=localStorage.getItem('th_is_hod')==='1';
+  var unlocked=localStorage.getItem('th_pin_ok')==='1';
+  var hodUnlocked=localStorage.getItem('th_hod_ok')==='1';
+
+  // Check if this page needs HOD access
+  var isHODPage=window.location.pathname.indexOf('hod')>-1;
+
+  if(unlocked && (!isHODPage || hodUnlocked)){
+    document.getElementById('pin-wall').style.display='none';
+    return;
+  }
+
+  function pinPress(v){
+    if(v==='c'){entered='';updateDots();return;}
+    if(v==='x'){entered=entered.slice(0,-1);updateDots();return;}
+    if(entered.length>=4) return;
+    entered+=v;
+    updateDots();
+    if(entered.length===4) checkPIN();
+  }
+
+  function updateDots(){
+    for(var i=0;i<4;i++){
+      document.getElementById('d'+i).className='pin-dot'+(i<entered.length?' filled':'');
+    }
+  }
+
+  function checkPIN(){
+    if(entered===HOD_PIN){
+      localStorage.setItem('th_pin_ok','1');
+      localStorage.setItem('th_hod_ok','1');
+      localStorage.setItem('th_is_hod','1');
+      document.getElementById('pin-wall').style.display='none';
+    } else if(entered===AM_PIN){
+      if(isHODPage){
+        wrongPIN();return;
+      }
+      localStorage.setItem('th_pin_ok','1');
+      document.getElementById('pin-wall').style.display='none';
+    } else {
+      wrongPIN();
+    }
+  }
+
+  function wrongPIN(){
+    entered='';
+    updateDots();
+    var dots=document.getElementById('pinDots');
+    var err=document.getElementById('pinError');
+    dots.classList.add('shake');
+    err.classList.add('show');
+    setTimeout(function(){dots.classList.remove('shake');},400);
+    setTimeout(function(){err.classList.remove('show');},2000);
+  }
+
+  window.pinPress=pinPress;
+})();
 </script>
 </body>
 </html>
