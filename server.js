@@ -1416,7 +1416,7 @@ app.post("/api/sap/upload-pdf",sapUp.single("pdf"),function(req,res){
   var fp=req.file.path, fn=req.file.originalname;
   var spawn=require("child_process").spawn;
   var lines=["import pdfplumber,re,json","def pn(s):","  if not s or str(s).strip() in ['-','','None']: return 0","  s=re.sub(r'[^\\d]','',str(s).strip())","  return int(s) if s else 0","result={}","report_date=None","days=None","with pdfplumber.open('"+fp+"') as pdf:"," page=pdf.pages[0]"," text=page.extract_text() or ''"," m=re.search(r'Report Date:\\s*(\\d{2})-(\\d{2})-(\\d{4})',text)"," if m:"+"  d,mo,y=m.groups()","  report_date=f'{y}-{mo}-{d}'","  days=int(d)"," tables=page.extract_tables()"," if tables:","  regions={'Delhi','Karnataka','Telangana','Maharashtra','Gujarat','Punjab'}","  for row in tables[0]:","   if not row or len(row)<7: continue","   region=str(row[1] or '').strip()","   if region not in regions: continue","   store=str(row[3] or '').strip()","   if not store or store=='Total': continue","   adt=pn(row[4]);apc=pn(row[5]);sales=pn(row[6])","   ads=sales//days if days and days>0 else 0","   result[store]={'ads':ads,'adt':adt,'apc':apc,'salesMTD':sales,'region':region}","total=sum(s['salesMTD'] for s in result.values())","valid=[s for s in result.values() if s['adt']>0]","avg_adt=sum(s['adt'] for s in valid)//len(valid) if valid else 0","avg_apc=sum(s['apc'] for s in valid)//len(valid) if valid else 0","print(json.dumps({'month':report_date[:7] if report_date else None,'reportDate':report_date,'days':days,'summary':{'totalMTDSales':total,'avgADT':avg_adt,'avgAPC':avg_apc,'storeCount':len(result),'indiaADT':avg_adt,'indiaAPC':avg_apc},'stores':result}))"];
-  var py=spawn("python3",["-c",lines.join("\n")]);
+  var py=spawn("python3",["/root/th-am-ops-staging/sap_parser.py",fp]);
   var out="",err="";
   py.stdout.on("data",function(d){out+=d.toString();});
   py.stderr.on("data",function(d){err+=d.toString();});
@@ -1437,5 +1437,18 @@ app.post("/api/sap/upload-pdf",sapUp.single("pdf"),function(req,res){
 });
 app.get("/api/sap/history",function(req,res){res.json({success:true,data:readJSON("data/sap_uploads.json",[])});});
 app.use("/uploads/sap",require("express").static("uploads/sap"));
+
+app.post('/api/sap/parse-direct',function(req,res){
+  var month=req.body.month||'2026-04';
+  var kpiFile='data/kpi_'+month.replace('-','')+'.json';
+  var data=readJSON(kpiFile,null);
+  if(!data||!data.stores){return res.status(404).json({success:false,error:'No data for '+month});}
+  var history=readJSON('data/sap_uploads.json',[]);
+  history.unshift({filename:'Manual-'+month+'.pdf',month:month,reportDate:data.reportDate||month+'-01',days:data.days||10,storeCount:data.summary?data.summary.storeCount:44,totalMTD:data.summary?data.summary.totalMTDSales:0,avgADT:data.summary?data.summary.avgADT:0,uploadedAt:new Date().toISOString()});
+  if(history.length>20)history=history.slice(0,20);
+  writeJSON('data/sap_uploads.json',history);
+  writeJSON('data/kpi_latest.json',data);
+  res.json({success:true,message:'Loaded '+month+' data - '+(data.summary?data.summary.storeCount:0)+' stores',data:{month:month,storeCount:data.summary?data.summary.storeCount:0,days:data.days||10,totalMTD:data.summary?data.summary.totalMTDSales:0,avgADT:data.summary?data.summary.avgADT:0,avgAPC:data.summary?data.summary.avgAPC:0}});
+});
 app.listen(PORT, function() { console.log('OpsAIHub Staging running on port ' + PORT); });
 module.exports = { readJSON: readJSON, writeJSON: writeJSON };
