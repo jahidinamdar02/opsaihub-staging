@@ -223,6 +223,13 @@
         "fri": true,
         "sat": false,
         "sun": false
+      },
+      {
+        "store": "FIFC",
+        "wed": false,
+        "fri": false,
+        "sat": true,
+        "sun": false
       }
     ]
   },
@@ -235,6 +242,19 @@
         "wed": false,
         "fri": true,
         "sat": false,
+        "sun": false
+      }
+    ]
+  },
+  {
+    "am": "Akash Rathod",
+    "month": "2026-04",
+    "stores": [
+      {
+        "store": "Seawoods",
+        "wed": false,
+        "fri": false,
+        "sat": true,
         "sun": false
       }
     ]

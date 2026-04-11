@@ -1718,5 +1718,95 @@
     "submittedAt": "2026-04-10T10:54:25.169Z",
     "date": "2026-04-10",
     "id": "1775818465169"
+  },
+  {
+    "am": "Akash Chavan",
+    "store": "FIFC",
+    "region": "Maharashtra",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "02:10",
+      "WK-06": "03:55",
+      "WK-07": "02:35"
+    },
+    "score": 100,
+    "visitDate": "2026-04-11T08:12:11.098Z",
+    "submittedAt": "2026-04-11T08:12:11.198Z",
+    "date": "2026-04-11",
+    "id": "1775895131198"
+  },
+  {
+    "am": "Deepak",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "no",
+      "WK-07": "no",
+      "WK-09": "yes",
+      "WK-08": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "no"
+    },
+    "speedTimes": {
+      "WK-05": "02:30",
+      "WK-06": "02:60",
+      "WK-07": "02:45"
+    },
+    "score": 75,
+    "visitDate": "2026-04-11T08:24:17.638Z",
+    "submittedAt": "2026-04-11T08:24:17.870Z",
+    "date": "2026-04-11",
+    "id": "1775895857870"
+  },
+  {
+    "am": "Akash Rathod",
+    "store": "Seawoods",
+    "region": "Maharashtra",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "yes",
+      "WK-07": "no",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "3:45",
+      "WK-06": "2:33",
+      "WK-07": "4:14"
+    },
+    "score": 83,
+    "visitDate": "2026-04-11T10:03:28.267Z",
+    "submittedAt": "2026-04-11T10:03:28.737Z",
+    "date": "2026-04-11",
+    "id": "1775901808737"
   }
 ]

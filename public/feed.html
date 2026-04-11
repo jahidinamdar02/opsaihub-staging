@@ -349,7 +349,7 @@ function submitPost() {
     id: Date.now().toString(),
     author: author,
     category: currentCat,
-    store: document.getElementById('postStore').value,
+    store: document.getElementById('postStore').value.replace(/\b\w/g,function(c){return c.toUpperCase();}),
     taggedPerson: document.getElementById('postTag').value,
     caption: caption,
     photo: document.getElementById('previewImg').src || '',

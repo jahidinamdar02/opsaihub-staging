@@ -5966,5 +5966,869 @@
     "summary": "All three inspection categories fail: both donuts show improper fondant application with cracking and uneven coverage, and water bottles are not visible for compliance verification.",
     "waterBottles": "Fail",
     "feedbackWater": "Water bottles not visible in FDU display shelf in Photo 1; cannot verify minimum 6 bottles upright with forward labels."
+  },
+  {
+    "id": "1775859823991",
+    "store": "t3dd-fc",
+    "am": "Raman",
+    "submittedAt": "2026-04-10T22:23:43.991Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775859816849-n4ls3qgc6.jpg",
+    "photo2": "/uploads/fdu/1775859821033-5wz2e0aps.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775860265972",
+    "store": "bial",
+    "am": "Jagadeesha",
+    "submittedAt": "2026-04-10T22:31:05.972Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775860261630-6x3mcdejr.jpg",
+    "photo2": "/uploads/fdu/1775860263664-no6ef474k.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate fondant exhibits uneven coverage with pale/lighter patches on surface and incomplete glossy finish, failing even dark chocolate coating SOP requirement.",
+    "feedback2": "Maple fondant shows uneven amber application with visible pale patches and lack of uniform golden colour consistency required by SOP standards.",
+    "overallPass": false,
+    "summary": "Both donuts fail SOP coating evenness and finish standards; water bottle compliance cannot be verified from images provided.",
+    "waterBottles": "Not Visible",
+    "feedbackWater": "Water bottles not visible in provided photographs; cannot assess compliance against minimum 6 upright bottles with forward-facing labels SOP requirement."
+  },
+  {
+    "id": "1775862773095",
+    "store": "t1dd",
+    "am": "Raman",
+    "submittedAt": "2026-04-10T23:12:53.095Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775862751553-b9aokzdn2.jpg",
+    "photo2": "/uploads/fdu/1775862760407-ucthu7jlf.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate fondant coating is uneven with visible pale/translucent patches on top surface and insufficient glossy finish coverage, violating even dark chocolate fondant SOP requirement.",
+    "feedback2": "Maple fondant shows uneven amber coloration with darker patches and incomplete coverage across top surface, failing uniform golden maple fondant SOP standard.",
+    "overallPass": false,
+    "summary": "Both donuts fail SOP standards due to uneven fondant application and inadequate finish quality; water bottle compliance unverifiable from images provided.",
+    "waterBottles": "Fail",
+    "feedbackWater": "Water bottle display cannot be assessed from provided photos; FDU shelf visibility insufficient to verify minimum 6 bottles upright with labels forward."
+  },
+  {
+    "id": "1775863016127",
+    "store": "t1dd",
+    "am": "Raman",
+    "submittedAt": "2026-04-10T23:16:56.127Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775862969142-uzspaod5p.jpg",
+    "photo2": "/uploads/fdu/1775863005270-v03x5eyzm.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775866529518",
+    "store": "hpcl-mpe",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-11T00:15:29.518Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775866527503-xf6uhtdd9.jpg",
+    "photo2": "/uploads/fdu/1775866528549-73daw6fxn.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate fondant has uneven coverage with pale patches visible on upper surface and incomplete tapping/setting evident from surface texture irregularities.",
+    "feedback2": "Maple fondant shows uneven amber coloration with visible pale patches and lacks the glossy, properly-set finish required by SOP standards.",
+    "overallPass": false,
+    "summary": "Both donuts fail SOP standards due to uneven fondant coverage and improper setting; water bottle compliance cannot be assessed from available imagery.",
+    "waterBottles": "Cannot assess",
+    "feedbackWater": "Water bottle FDU display not visible in provided photos; assessment cannot be completed."
+  },
+  {
+    "id": "1775870750703",
+    "store": "hpcl-mpe",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-11T01:25:50.703Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775870731875-e6gcelu3e.jpg",
+    "photo2": "/uploads/fdu/1775870742183-9fqr944o0.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate fondant exhibits uneven coverage with pale patches visible on lower half of donut, and glossy finish is compromised in multiple areas—does not meet even dark chocolate coating SOP requirement.",
+    "feedback2": "Maple fondant shows uneven amber coloration with darker patches concentrated on top surface, indicating improper tapping and setting—fails uniform amber colour and even application SOP standards.",
+    "overallPass": false,
+    "summary": "Both donuts fail SOP standards due to uneven fondant application and finish defects; water bottle compliance cannot be assessed from images provided.",
+    "waterBottles": "Cannot Assess",
+    "feedbackWater": "Water bottle shelf not visible in provided photographs; cannot verify minimum 6 upright bottles with forward labels or compliance with FDU display standards."
+  },
+  {
+    "id": "1775871088229",
+    "store": "hpcl-mpe",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-11T01:31:28.229Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775871058084-7yzevhl6j.jpg",
+    "photo2": "/uploads/fdu/1775871071558-wu1679p0h.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate dip donut fails SOP: fondant coating is incomplete with visible pale/exposed dough patches and uneven coverage on top surface.",
+    "feedback2": "Maple dip donuts fail SOP: foundant application is uneven with visible pale patches and inconsistent amber coloring; minimum 3 donuts in basket requirement not met (only 2 visible).",
+    "overallPass": false,
+    "summary": "All three quality checks fail: chocolate donut has incomplete fondant coverage, maple donuts lack uniform coating and minimum quantity, and water bottle FDU display is not visible for verification.",
+    "waterBottles": "Fail",
+    "feedbackWater": "Water bottle compliance cannot be assessed - FDU display shelf with minimum 6 upright bottles, labels forward, is not visible in provided photos."
+  },
+  {
+    "id": "1775871888082",
+    "store": "hpcl-mpe",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-11T01:44:48.082Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775871839694-n6tfai7is.jpg",
+    "photo2": "/uploads/fdu/1775871868762-yn4obx1ot.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775872602445",
+    "store": "hyd-arrivals",
+    "am": "Shivam",
+    "submittedAt": "2026-04-11T01:56:42.445Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775872601603-drvhfbzle.jpg",
+    "photo2": "/uploads/fdu/1775872602081-wnrk8kf4x.jpg",
+    "grade1": "FAIL",
+    "grade2": "FAIL",
+    "feedback1": "Chocolate dip shows uneven coverage with pale patches visible on sides, fondant appears insufficiently set with visible texture inconsistency, and glossy finish is compromised.",
+    "feedback2": "Maple dip coating is uneven with visible pale/grainy patches across surface, fondant tapping and set integrity appears compromised with inconsistent finish, and only 2 donuts visible in frame instead of minimum 3 required in basket.",
+    "overallPass": false,
+    "summary": "Complete SOP non-compliance: both donuts fail coating standards, basket quantity deficient, and water bottle display absent.",
+    "waterBottles": "FAIL",
+    "feedbackWater": "No water bottles visible in either photo; FDU display compliance cannot be verified against minimum 6 bottle requirement."
+  },
+  {
+    "id": "1775872810640",
+    "store": "hyd-arrivals",
+    "am": "Shivam",
+    "submittedAt": "2026-04-11T02:00:10.640Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775872809750-ce6dxptn5.jpg",
+    "photo2": "/uploads/fdu/1775872810254-6veaejll6.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775876607617",
+    "store": "fc-road",
+    "am": "Akash Chavan",
+    "submittedAt": "2026-04-11T03:03:27.617Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775876605652-z06ume34g.jpg",
+    "photo2": "/uploads/fdu/1775876606818-toa2ypxx9.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate dip shows uneven coverage with pale patches visible on fondant surface and insufficient gloss finish; fondant application does not meet even dark chocolate coating standard.",
+    "feedback2": "Maple dip fondant exhibits visible cracking across surface and uneven amber coloration with pale patches; fondant tapped and set improperly violating SOP standards.",
+    "overallPass": false,
+    "summary": "Critical SOP failures: both donuts have improper fondant coating with visible defects (uneven coverage, cracking, pale patches), and water bottle compliance cannot be verified from image provided.",
+    "waterBottles": "Fail",
+    "feedbackWater": "Water bottle display not visible in provided photo; cannot verify minimum 6 bottles, upright positioning, label visibility, or cleanliness standards."
+  },
+  {
+    "id": "1775878546205",
+    "store": "balewadi",
+    "am": "Akash Chavan",
+    "submittedAt": "2026-04-11T03:35:46.205Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775878532495-pocinyp1i.jpg",
+    "photo2": "/uploads/fdu/1775878540884-lekl2fqy9.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate Dip coating is uneven with visible pale patches and incomplete fondant coverage on portions of the donut surface, failing SOP requirement for even dark chocolate covering entire top.",
+    "feedback2": "Maple Dip fondant shows uneven application with inconsistent amber coloration and visible pale patches on ring surface, violating SOP standard for uniform golden maple coverage.",
+    "overallPass": false,
+    "summary": "All three items fail SOP compliance due to uneven fondant coating on both donuts and absent water bottle verification in displays.",
+    "waterBottles": "Fail",
+    "feedbackWater": "Water bottles are not visible in either FDU display photo; cannot verify minimum 6 bottles upright with labels forward on bottom shelf."
+  },
+  {
+    "id": "1775880329535",
+    "store": "koramangala",
+    "am": "Jagadeesha",
+    "submittedAt": "2026-04-11T04:05:29.535Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775880271182-484qoztu7.jpg",
+    "photo2": "/uploads/fdu/1775880292803-90wz74443.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate dip donut fails SOP: fondant shows visible cracking across surface and lacks uniform glossy finish required by standard.",
+    "feedback2": "Maple dip donut fails SOP: fondant application is uneven with visible pale patches on lower half, contradicting requirement for uniform amber colour coverage.",
+    "overallPass": false,
+    "summary": "Both donuts fail strict SOP compliance due to fondant surface defects (cracking and uneven colour); water bottle inspection inconclusive due to missing FDU photo.",
+    "waterBottles": "Not Visible",
+    "feedbackWater": "Water bottle compliance cannot be assessed—no FDU display photo provided showing bottom shelf water bottle arrangement."
+  },
+  {
+    "id": "1775880565786",
+    "store": "nmial-arrival",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-11T04:09:25.786Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775880562779-o4aos0ohd.jpg",
+    "photo2": "/uploads/fdu/1775880564183-891w04j4y.jpg",
+    "grade1": "FAIL",
+    "grade2": "FAIL",
+    "feedback1": "Chocolate fondant shows uneven coverage with pale patches, incomplete top surface coating, and visible cracking — fondant not tapped and set properly per SOP.",
+    "feedback2": "Maple fondant application is uneven with visible pale spots and inconsistent amber colour distribution; fondant appears improperly set with surface irregularities violating coating uniformity SOP.",
+    "overallPass": false,
+    "summary": "All three items fail strict SOP compliance: donuts lack proper fondant coverage and finish standards, and water bottle display does not meet minimum quantity and presentation requirements.",
+    "waterBottles": "FAIL",
+    "feedbackWater": "Water bottles in Photo 1 display are not clearly visible or countable — cannot confirm minimum 6 upright bottles with forward labels on bottom FDU shelf."
+  },
+  {
+    "id": "1775880577336",
+    "store": "navrangpura",
+    "am": "Unassigned",
+    "submittedAt": "2026-04-11T04:09:37.336Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775880574608-8nk49shpa.jpg",
+    "photo2": "/uploads/fdu/1775880576360-wcn01gr4p.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate fondant shows visible pale/uneven patches, incomplete coverage on lower ring surface, and lacks uniform glossy finish required by SOP.",
+    "feedback2": "Maple fondant displays uneven golden colour with pale streaking across surface and visible cracking in fondant layer, failing SOP uniformity and set standards.",
+    "overallPass": false,
+    "summary": "Both donuts fail SOP standards due to uneven fondant coverage, colour inconsistency, and surface finish defects; water bottle compliance cannot be assessed from available imagery.",
+    "waterBottles": "Not Visible",
+    "feedbackWater": "FDU water bottle shelf not visible in provided photos; cannot assess minimum 6 bottle requirement, upright positioning, or label visibility."
+  },
+  {
+    "id": "1775880588852",
+    "store": "cyber-hub",
+    "am": "Harish",
+    "submittedAt": "2026-04-11T04:09:48.852Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775880583606-m0uabc13n.jpg",
+    "photo2": "/uploads/fdu/1775880586654-xbjmggczf.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775880668841",
+    "store": "sindhu-bhavan",
+    "am": "Unassigned",
+    "submittedAt": "2026-04-11T04:11:08.841Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775880667444-0ti3z6ti4.jpg",
+    "photo2": "/uploads/fdu/1775880668276-tgm9t0nia.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate Dip shows uneven fondant coverage with pale/under-coated patches visible on top surface, failing even dark chocolate coating requirement.",
+    "feedback2": "Maple Dip displays non-uniform amber coloration with visible pale patches and inconsistent fondant application, violating golden maple fondant evenness SOP.",
+    "overallPass": false,
+    "summary": "Both donuts fail coating evenness and uniformity standards; water bottle compliance cannot be verified from images provided.",
+    "waterBottles": "Fail",
+    "feedbackWater": "Water bottle shelf not visible in provided photos; cannot verify minimum 6 bottles upright with forward labels and clean display."
+  },
+  {
+    "id": "1775881124040",
+    "store": "bucho",
+    "am": "Deepak",
+    "submittedAt": "2026-04-11T04:18:44.040Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775881119603-3c66lnafv.jpg",
+    "photo2": "/uploads/fdu/1775881122451-ku9cwz6y2.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate Dip fondant shows uneven coverage with pale patches visible on top surface and incomplete coating on ring edges, violating even dark chocolate fondant covering entire top surface SOP requirement.",
+    "feedback2": "Maple Dip fondant application is uneven with visible pale/under-coated patches and inconsistent amber colour across donuts, failing uniform golden maple fondant evenness SOP standard.",
+    "overallPass": false,
+    "summary": "All three inspection areas fail SOP standards: both donuts show uneven fondant coverage with colour inconsistencies, and water bottle compliance cannot be verified from display visibility.",
+    "waterBottles": "Fail",
+    "feedbackWater": "Water bottles not visible in FDU display shelf in either photo — cannot confirm minimum 6 upright bottles with forward labels meeting SOP requirement."
+  },
+  {
+    "id": "1775881220251",
+    "store": "basant-lok",
+    "am": "Harish",
+    "submittedAt": "2026-04-11T04:20:20.251Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775881212958-phzhzojnp.jpg",
+    "photo2": "/uploads/fdu/1775881217075-ki43fvlpr.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate Dip shows uneven fondant coverage with visible pale patches and incomplete top surface coating not meeting even dark chocolate fondant SOP standard.",
+    "feedback2": "Maple Dip displays cracking in fondant finish and uneven amber coloration with pale patches, failing the requirement for properly tapped and set fondant with uniform colour.",
+    "overallPass": false,
+    "summary": "Critical SOP failures across both donut varieties due to fondant application defects and inability to verify water bottle compliance from available imagery.",
+    "waterBottles": "Fail",
+    "feedbackWater": "Water bottle section not visible in provided photos; cannot verify minimum 6 bottles upright with forward labels on bottom FDU shelf."
+  },
+  {
+    "id": "1775881250539",
+    "store": "malhar-rd",
+    "am": "Deepak",
+    "submittedAt": "2026-04-11T04:20:50.539Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775881244882-lisl77pir.jpg",
+    "photo2": "/uploads/fdu/1775881247617-ksk1suxxz.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775881708149",
+    "store": "skymark",
+    "am": "Rohit",
+    "submittedAt": "2026-04-11T04:28:28.149Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775881705546-ru7ngwfc9.jpg",
+    "photo2": "/uploads/fdu/1775881706864-z919qvc8r.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate Dip fondant shows uneven coverage with pale patches and inconsistent glossy finish across top surface, failing even application SOP requirement.",
+    "feedback2": "Maple Dip fondant exhibits cracking on visible donuts and uneven amber coloration with darker patches, failing the 'no cracking' and 'uniform colour' SOP standards.",
+    "overallPass": false,
+    "summary": "Critical SOP failures across all three categories: fondant coating evenness, cracking defects, and water bottle display compliance not met.",
+    "waterBottles": "Fail",
+    "feedbackWater": "Water bottles not visible in either FDU display photo; cannot confirm minimum 6 bottles upright with labels forward on bottom shelf."
+  },
+  {
+    "id": "1775882080855",
+    "store": "green-park",
+    "am": "Harish",
+    "submittedAt": "2026-04-11T04:34:40.855Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775882079751-26uses65u.jpg",
+    "photo2": "/uploads/fdu/1775882080449-y34ya1gx0.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate Dip exhibits uneven fondant coverage with visible pale patches on top surface and inconsistent glossy finish, violating even dark chocolate coating SOP requirement.",
+    "feedback2": "Maple Dip shows non-uniform amber colour with darker patches visible on surface, failing the uniform golden maple fondant SOP standard.",
+    "overallPass": false,
+    "summary": "All three items fail SOP compliance: both donuts show uneven fondant application and colour inconsistency, and water bottle display is entirely absent from FDU.",
+    "waterBottles": "Fail",
+    "feedbackWater": "No water bottles visible on FDU bottom shelf in either photo; minimum 6 Tim Hortons water bottles upright with labels forward required by SOP."
+  },
+  {
+    "id": "1775882123754",
+    "store": "punjabi-bagh",
+    "am": "Rohit",
+    "submittedAt": "2026-04-11T04:35:23.754Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775882117123-9rls5oyq9.jpg",
+    "photo2": "/uploads/fdu/1775882120532-8c42cbldw.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775882941259",
+    "store": "supreme",
+    "am": "Akash Chavan",
+    "submittedAt": "2026-04-11T04:49:01.259Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775882940523-w73aw1cn4.jpg",
+    "photo2": "/uploads/fdu/1775882940936-4e4n6parq.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate fondant coating is uneven with visible pale patches on lower portion of donut, and glossy finish is inconsistent across top surface.",
+    "feedback2": "Maple fondant shows cracking on surface and uneven amber coloration with pale patches visible, indicating improper tapping and setting.",
+    "overallPass": false,
+    "summary": "Both donuts fail SOP standards due to uneven fondant application, visible cracking, and pale patches; water bottle compliance cannot be assessed from available imagery.",
+    "waterBottles": "Fail",
+    "feedbackWater": "Water bottles are not visible in the provided photo - FDU display cannot be verified for minimum 6 bottles requirement."
+  },
+  {
+    "id": "1775883215209",
+    "store": "fifc",
+    "am": "Area Manager: Akash Chavan",
+    "submittedAt": "2026-04-11T04:53:35.209Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775883194195-garlngir3.jpg",
+    "photo2": "/uploads/fdu/1775883205182-5zcmfw4fm.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775883209100",
+    "store": "epicuria",
+    "am": "Harish",
+    "submittedAt": "2026-04-11T04:53:29.100Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775883193846-qipxl6k9q.jpg",
+    "photo2": "/uploads/fdu/1775883202452-4lfr0dbju.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate Dip shows uneven fondant coverage with pale patches visible on top surface and incomplete ring coating, failing even application SOP requirement.",
+    "feedback2": "Maple Dip exhibits inconsistent amber colour with over-dark patches and visible fondant cracking on multiple donuts, violating uniform colour and proper fondant set SOP standards.",
+    "overallPass": false,
+    "summary": "Critical donut coating and finish failures across both Chocolate and Maple Dip varieties due to uneven fondant application and improper setting, while water bottle display meets standards.",
+    "waterBottles": "Pass",
+    "feedbackWater": "Minimum 6 Tim Hortons water bottles present upright on bottom shelf with labels forward and no gaps, meeting water bottle compliance standards."
+  },
+  {
+    "id": "1775883641075",
+    "store": "select-city",
+    "am": "Harish",
+    "submittedAt": "2026-04-11T05:00:41.075Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775883586508-zxf6rflcs.jpg",
+    "photo2": "/uploads/fdu/1775883602518-tbn9r8b0v.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775883769206",
+    "store": "viman-nagar",
+    "am": "Akash Chavan",
+    "submittedAt": "2026-04-11T05:02:49.206Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775883767335-m8ddb5hys.jpg",
+    "photo2": "/uploads/fdu/1775883768673-o8z8piga6.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate dip shows uneven coverage with pale patches visible on fondant surface and inconsistent glossy finish across the ring.",
+    "feedback2": "Maple dip exhibits cracking on fondant surface and uneven amber coloration with pale patches, indicating improper fondant setting and application.",
+    "overallPass": false,
+    "summary": "Multiple critical SOP violations across donut coating quality and fondant application standards; water bottle compliance cannot be verified from images provided.",
+    "waterBottles": "Fail",
+    "feedbackWater": "Water bottles not visible in provided FDU display photos; cannot verify minimum 6 bottles upright with forward labels and no gaps."
+  },
+  {
+    "id": "1775883851446",
+    "store": "viman-nagar",
+    "am": "Akash Chavan",
+    "submittedAt": "2026-04-11T05:04:11.446Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775883845728-y8j9ktkgu.jpg",
+    "photo2": "/uploads/fdu/1775883849108-yfe72a43i.jpg",
+    "grade1": "FAIL",
+    "grade2": "FAIL",
+    "feedback1": "Chocolate Dip Donut 1 fails SOP: fondant coating is uneven with visible pale yellow base patches, glossy finish compromised, and dark chocolate coverage does not uniformly cover entire top surface.",
+    "feedback2": "Maple Dip donuts fail SOP: fondant exhibits uneven amber coloration with pale patches visible on ring surfaces, and coating consistency is non-uniform across all three visible maple donuts.",
+    "overallPass": false,
+    "summary": "All three categories FAIL SOP standards due to uneven fondant coverage on both chocolate and maple donuts, and insufficient visible water bottle count on FDU display.",
+    "waterBottles": "FAIL",
+    "feedbackWater": "Water bottle compliance cannot be assessed from provided photos — FDU shelf display in Photo 1 shows only 3 partial/obscured bottles visible, failing the minimum 6 upright bottles requirement with labels forward."
+  },
+  {
+    "id": "1775884094379",
+    "store": "pmc-wakad",
+    "am": "Akash Chavan",
+    "submittedAt": "2026-04-11T05:08:14.379Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775884093081-guurwvvj9.jpg",
+    "photo2": "/uploads/fdu/1775884093812-sgu3xczv3.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate Dip fondant shows uneven coverage with pale yellow patches visible on top surface, violating even dark chocolate coating SOP requirement.",
+    "feedback2": "Maple Dip fondant displays inconsistent amber coloring with darker patches on some donuts, failing uniform color SOP standard.",
+    "overallPass": false,
+    "summary": "All three quality checks failed due to uneven fondant application on both donut varieties and absence of required water bottle display on FDU shelf.",
+    "waterBottles": "Fail",
+    "feedbackWater": "Water bottles not visible in display; only decorative baskets with striped liners shown in FDU — minimum 6 upright Tim Hortons water bottles with forward labels not present."
+  },
+  {
+    "id": "1775884392816",
+    "store": "lakeshore",
+    "am": "Shivam",
+    "submittedAt": "2026-04-11T05:13:12.816Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775884387228-mrmhfdn2e.jpg",
+    "photo2": "/uploads/fdu/1775884390847-parp9f5bd.jpg",
+    "grade1": "Fail",
+    "grade2": "Fail",
+    "feedback1": "Chocolate fondant exhibits pale/uneven patches and lack of glossy finish; coating does not meet even dark chocolate coverage SOP requirement.",
+    "feedback2": "Maple fondant shows uneven amber coloration with visible pale patches; uniform golden maple coverage SOP standard not met.",
+    "overallPass": false,
+    "summary": "Both donuts fail due to uneven fondant application and improper set finish; water bottle compliance cannot be assessed from available images.",
+    "waterBottles": "Cannot assess",
+    "feedbackWater": "Water bottle FDU display not visible in provided photos; cannot verify minimum 6 bottles upright with forward labels."
+  },
+  {
+    "id": "1775884940589",
+    "store": "skymark",
+    "am": "Rohit",
+    "submittedAt": "2026-04-11T05:22:20.589Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775884926495-bv5kch1tj.jpg",
+    "photo2": "/uploads/fdu/1775884934957-8f8d7x64b.jpg",
+    "grade1": "Submitted",
+    "grade2": "Submitted",
+    "feedback1": "Photo received. Manual review pending.",
+    "feedback2": "Photo received. Manual review pending.",
+    "overallPass": true,
+    "summary": "Photos submitted successfully for review."
+  },
+  {
+    "id": "1775885817127",
+    "store": "lokhandwala",
+    "am": "Akash Chavan",
+    "submittedAt": "2026-04-11T05:36:57.127Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775885816157-oeh9joerh.jpg",
+    "photo2": "/uploads/fdu/1775885816620-6p4fz4hdl.jpg",
+    "grade1": "FAIL",
+    "grade2": "FAIL",
+    "feedback1": "Chocolate dip exhibits uneven coverage with visible pale patches on fondant surface and incomplete coating distribution, violating SOP requirement for even dark chocolate covering entire top surface.",
+    "feedback2": "Maple dip shows visible cracking across fondant surface and uneven amber coloration with darker patches, violating SOP requirement for proper fondant tapping/setting and uniform color application.",
+    "overallPass": false,
+    "summary": "Both donuts fail SOP standards due to improper fondant application, uneven coverage, and visible cracking; water bottle compliance cannot be assessed from provided imagery.",
+    "waterBottles": "FAIL",
+    "feedbackWater": "Water bottle FDU display not visible in provided photos; cannot verify minimum 6 bottles upright with labels forward and proper shelf placement."
+  },
+  {
+    "id": "1775888616964",
+    "store": "nmial",
+    "am": "Akash Rathod",
+    "submittedAt": "2026-04-11T06:23:36.964Z",
+    "donut1": {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket."
+    },
+    "donut2": {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket."
+    },
+    "photo1": "/uploads/fdu/1775888562098-1ai0y7pha.jpg",
+    "photo2": "/uploads/fdu/1775888615125-khudz3v0b.jpg",
+    "grade1": "FAIL",
+    "grade2": "FAIL",
+    "feedback1": "Chocolate Dip shows uneven fondant coverage with pale patches visible on top surface and incomplete uniform dark chocolate coating across entire donut.",
+    "feedback2": "Maple Dip displays inconsistent amber colour with visible pale/light patches on multiple donuts and uneven fondant application not meeting golden uniform standard.",
+    "overallPass": false,
+    "summary": "All three compliance areas failed: Chocolate Dip and Maple Dip show uneven fondant coverage and colour inconsistency; water bottle section is completely empty with zero bottles versus required minimum of 6.",
+    "waterBottles": "FAIL",
+    "feedbackWater": "No Tim Hortons water bottles visible in FDU display — zero bottles present fails minimum 6-bottle requirement."
   }
 ]
