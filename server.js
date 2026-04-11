@@ -1300,14 +1300,18 @@ app.get('/api/news/india',function(req,res){
   }
   var https=require('https');
   var cities=[
-    {name:'Delhi',q:'Delhi+news'},
-    {name:'Mumbai',q:'Mumbai+news'},
-    {name:'Chandigarh',q:'Chandigarh+news'},
-    {name:'Pune',q:'Pune+news'},
-    {name:'Ahmedabad',q:'Ahmedabad+news'},
-    {name:'Bengaluru',q:'Bengaluru+news'},
-    {name:'Hyderabad',q:'Hyderabad+news'},
-    {name:'MPEH',q:'Mumbai+Pune+Expressway'}
+    {name:'Delhi',q:'Delhi+business+economy+retail'},
+    {name:'Mumbai',q:'Mumbai+business+economy+retail'},
+    {name:'Chandigarh',q:'Chandigarh+Punjab+business+economy'},
+    {name:'Pune',q:'Pune+business+economy+retail'},
+    {name:'Ahmedabad',q:'Ahmedabad+Gujarat+business+economy'},
+    {name:'Bengaluru',q:'Bengaluru+business+economy+retail'},
+    {name:'Hyderabad',q:'Hyderabad+business+economy+retail'},
+    {name:'MPEH',q:'Mumbai+Pune+Expressway+highway+business'},
+    {name:'Delhi Airport',q:'Delhi+IGI+airport+business+travel+footfall'},
+    {name:'Bengaluru Airport',q:'Bengaluru+BIAL+airport+business+travel'},
+    {name:'Hyderabad Airport',q:'Hyderabad+RGIA+airport+business+travel'},
+    {name:'Ahmedabad Airport',q:'Ahmedabad+airport+business+travel'}
   ];
   var results=[];
   var done=0;
@@ -1361,11 +1365,12 @@ app.get('/api/news/world',function(req,res){
   }
   var https=require('https');
   var topics=[
-    {name:'Global Economy',q:'global+economy+India+impact',color:'#FF9500'},
-    {name:'Middle East',q:'Middle+East+conflict+oil+price',color:'#FF3B30'},
-    {name:'US Markets',q:'US+markets+Fed+rate+dollar',color:'#007AFF'},
-    {name:'China Trade',q:'China+trade+India+exports',color:'#FF2D55'},
-    {name:'Crude Oil',q:'crude+oil+price+India',color:'#AF52DE'}
+    {name:'India Economy',q:'India+GDP+economy+growth+RBI',color:'#FF9500'},
+    {name:'Consumer Spending',q:'India+consumer+spending+retail+QSR+food',color:'#34C759'},
+    {name:'Oil & Fuel',q:'crude+oil+petrol+diesel+India+price',color:'#FF3B30'},
+    {name:'Rupee & Markets',q:'rupee+dollar+Sensex+Nifty+India+markets',color:'#007AFF'},
+    {name:'Food & Hospitality',q:'India+food+restaurant+hospitality+industry',color:'#FF6B35'},
+    {name:'Airport & Travel',q:'India+airport+aviation+travel+passenger+footfall',color:'#AF52DE'}
   ];
   var results=[];
   var done=0;
