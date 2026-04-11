@@ -1,2 +1,7 @@
 node_modules/
+uploads/fdu/
+uploads/feed/
+uploads/events/
+uploads/checklist/
 .env
+*.log
