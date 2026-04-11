@@ -115,9 +115,11 @@ function doUpload(){
   var iv=setInterval(function(){if(si<steps.length){bar.style.width=steps[si].p+'%';lbl.textContent=steps[si].t;si++;}},700);
   var fd=new FormData();
   fd.append('pdf',selFile);
-  fetch('/api/sap/upload-pdf',{method:'POST',body:fd})
-    .then(function(r){return r.json();})
-    .then(function(d){
+  var xhr=new XMLHttpRequest();
+  xhr.open('POST','/api/sap/upload-pdf',true);
+  xhr.onload=function(){
+    var d;try{d=JSON.parse(xhr.responseText);}catch(e){d={success:false,error:'Server error'};}
+    (function(d){
       clearInterval(iv);
       bar.style.width='100%';
       lbl.textContent='Complete!';
@@ -138,7 +140,9 @@ function doUpload(){
         document.getElementById('resultTitle').innerHTML='❌ '+(d.error||'Upload failed');
       }
     })
-    .catch(function(e){clearInterval(iv);alert('Failed: '+e.message);btn.disabled=false;btn.innerHTML='<span>📤</span> Parse & Update Platform';});
+    })(d);};
+  xhr.onerror=function(){clearInterval(iv);alert('Upload failed - check connection');btn.disabled=false;btn.innerHTML='<span>📤</span> Parse & Update Platform';};
+  xhr.send(fd);
 }
 function loadHistory(){
   fetch('/api/sap/history').then(function(r){return r.json();}).then(function(d){

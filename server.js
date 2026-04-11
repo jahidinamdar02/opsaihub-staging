@@ -1407,5 +1407,35 @@ app.get('/api/news/world',function(req,res){
   });
 });
 
+
+// SAP PDF UPLOAD
+var sapSt=multer.diskStorage({destination:function(req,file,cb){require("fs").mkdirSync("uploads/sap/",{recursive:true});cb(null,"uploads/sap/");},filename:function(req,file,cb){cb(null,Date.now()+"-"+file.originalname.replace(/[^a-zA-Z0-9._-]/g,"_"));}});
+var sapUp=multer({storage:sapSt,limits:{fileSize:20*1024*1024}});
+app.post("/api/sap/upload-pdf",sapUp.single("pdf"),function(req,res){
+  if(!req.file) return res.status(400).json({success:false,error:"No file"});
+  var fp=req.file.path, fn=req.file.originalname;
+  var spawn=require("child_process").spawn;
+  var lines=["import pdfplumber,re,json","def pn(s):","  if not s or str(s).strip() in ['-','','None']: return 0","  s=re.sub(r'[^\\d]','',str(s).strip())","  return int(s) if s else 0","result={}","report_date=None","days=None","with pdfplumber.open('"+fp+"') as pdf:"," page=pdf.pages[0]"," text=page.extract_text() or ''"," m=re.search(r'Report Date:\\s*(\\d{2})-(\\d{2})-(\\d{4})',text)"," if m:"+"  d,mo,y=m.groups()","  report_date=f'{y}-{mo}-{d}'","  days=int(d)"," tables=page.extract_tables()"," if tables:","  regions={'Delhi','Karnataka','Telangana','Maharashtra','Gujarat','Punjab'}","  for row in tables[0]:","   if not row or len(row)<7: continue","   region=str(row[1] or '').strip()","   if region not in regions: continue","   store=str(row[3] or '').strip()","   if not store or store=='Total': continue","   adt=pn(row[4]);apc=pn(row[5]);sales=pn(row[6])","   ads=sales//days if days and days>0 else 0","   result[store]={'ads':ads,'adt':adt,'apc':apc,'salesMTD':sales,'region':region}","total=sum(s['salesMTD'] for s in result.values())","valid=[s for s in result.values() if s['adt']>0]","avg_adt=sum(s['adt'] for s in valid)//len(valid) if valid else 0","avg_apc=sum(s['apc'] for s in valid)//len(valid) if valid else 0","print(json.dumps({'month':report_date[:7] if report_date else None,'reportDate':report_date,'days':days,'summary':{'totalMTDSales':total,'avgADT':avg_adt,'avgAPC':avg_apc,'storeCount':len(result),'indiaADT':avg_adt,'indiaAPC':avg_apc},'stores':result}))"];
+  var py=spawn("python3",["-c",lines.join("\n")]);
+  var out="",err="";
+  py.stdout.on("data",function(d){out+=d.toString();});
+  py.stderr.on("data",function(d){err+=d.toString();});
+  py.on("close",function(code){
+    if(code!==0) return res.status(500).json({success:false,error:"Parse failed: "+err.substring(0,200)});
+    try{
+      var data=JSON.parse(out.trim());
+      var month=data.month;
+      writeJSON("data/kpi_"+month.replace("-","")+".json",data);
+      writeJSON("data/kpi_latest.json",data);
+      var history=readJSON("data/sap_uploads.json",[]);
+      history.unshift({filename:fn,month:month,reportDate:data.reportDate,days:data.days,storeCount:data.summary.storeCount,totalMTD:data.summary.totalMTDSales,avgADT:data.summary.avgADT,uploadedAt:new Date().toISOString()});
+      if(history.length>20) history=history.slice(0,20);
+      writeJSON("data/sap_uploads.json",history);
+      res.json({success:true,message:"Updated "+data.summary.storeCount+" stores for "+month,data:{month:month,storeCount:data.summary.storeCount,days:data.days,totalMTD:data.summary.totalMTDSales,avgADT:data.summary.avgADT,avgAPC:data.summary.avgAPC}});
+    }catch(e){res.status(500).json({success:false,error:"Parse error: "+e.message});}
+  });
+});
+app.get("/api/sap/history",function(req,res){res.json({success:true,data:readJSON("data/sap_uploads.json",[])});});
+app.use("/uploads/sap",require("express").static("uploads/sap"));
 app.listen(PORT, function() { console.log('OpsAIHub Staging running on port ' + PORT); });
 module.exports = { readJSON: readJSON, writeJSON: writeJSON };
