@@ -2100,56 +2100,45 @@ function submitEvent(){
 </script>
 <script id="pin-wall-js">
 (function(){
-  var AM_PIN='2026';
-  var HOD_PIN='2202';
-  var entered='';
-  var isHOD=localStorage.getItem('th_is_hod')==='1';
-  var unlocked=localStorage.getItem('th_pin_ok')==='1';
-  var hodUnlocked=localStorage.getItem('th_hod_ok')==='1';
-
-  // Check if this page needs HOD access
+  var PINS={'am':'2026','hod':'2202'};
+  var wall=document.getElementById('pin-wall');
   var isHODPage=window.location.pathname.indexOf('hod')>-1;
-
-  if(unlocked && (!isHODPage || hodUnlocked)){
-    document.getElementById('pin-wall').style.display='none';
-    return;
-  }
-
+  var pinOK=localStorage.getItem('th_pin_ok')==='1';
+  var hodOK=localStorage.getItem('th_hod_ok')==='1';
+  if(pinOK&&(!isHODPage||hodOK)){wall.style.display='none';return;}
+  var entered=[];
   function pinPress(v){
-    if(v==='c'){entered='';updateDots();return;}
-    if(v==='x'){entered=entered.slice(0,-1);updateDots();return;}
+    if(v==='c'){entered=[];render();return;}
+    if(v==='x'){entered.pop();render();return;}
     if(entered.length>=4) return;
-    entered+=v;
-    updateDots();
-    if(entered.length===4) checkPIN();
+    entered.push(v);
+    render();
+    if(entered.length===4){
+      setTimeout(function(){check();},100);
+    }
   }
-
-  function updateDots(){
+  function render(){
     for(var i=0;i<4;i++){
       document.getElementById('d'+i).className='pin-dot'+(i<entered.length?' filled':'');
     }
   }
-
-  function checkPIN(){
-    if(entered===HOD_PIN){
+  function check(){
+    var pin=entered.join('');
+    if(pin===PINS.hod){
       localStorage.setItem('th_pin_ok','1');
       localStorage.setItem('th_hod_ok','1');
       localStorage.setItem('th_is_hod','1');
-      document.getElementById('pin-wall').style.display='none';
-    } else if(entered===AM_PIN){
-      if(isHODPage){
-        wrongPIN();return;
-      }
+      wall.style.display='none';
+    }else if(pin===PINS.am&&!isHODPage){
       localStorage.setItem('th_pin_ok','1');
-      document.getElementById('pin-wall').style.display='none';
-    } else {
-      wrongPIN();
+      wall.style.display='none';
+    }else{
+      wrong();
     }
   }
-
-  function wrongPIN(){
-    entered='';
-    updateDots();
+  function wrong(){
+    entered=[];
+    render();
     var dots=document.getElementById('pinDots');
     var err=document.getElementById('pinError');
     dots.classList.add('shake');
@@ -2157,7 +2146,6 @@ function submitEvent(){
     setTimeout(function(){dots.classList.remove('shake');},400);
     setTimeout(function(){err.classList.remove('show');},2000);
   }
-
   window.pinPress=pinPress;
 })();
 </script>
