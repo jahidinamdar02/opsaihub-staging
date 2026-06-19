@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Settings — OpsAIHub</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · macrostructure: Bento Grid · genre: modern-minimal · theme: custom (brand-locked)
+ * nav: N9 edge-aligned · footer: Ft2 inline rule
+ * page: Settings */
+
+
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--surface);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-lg);
+}
+
+.nav-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-md);
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.03em;
+}
+
+.nav-wordmark span { color: var(--red); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.nav-link {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text2);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.nav-link:hover { color: var(--text); }
+.nav-link.active { color: var(--red); }
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--surface);
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nav-user:hover {
+  background: var(--card);
+  border-color: var(--text3);
+}
+
+.nav-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.nav-user-name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Hero */
+.hero {
+  padding-top: calc(var(--nav-h) + var(--space-2xl));
+  padding-bottom: var(--space-xl);
+}
+
+.hero-greeting {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-xs);
+}
+
+.hero-name {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Settings sections */
+.settings-section {
+  background: var(--card);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--divider);
+}
+
+.section-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-lg);
+  flex-shrink: 0;
+}
+
+.section-icon.profile { background: var(--red-tint); }
+.section-icon.notifications { background: var(--green-tint); }
+.section-icon.display { background: rgba(0,122,255,0.1); }
+.section-icon.about { background: rgba(255,149,0,0.1); }
+
+.section-title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.section-subtitle {
+  font-size: var(--text-xs);
+  color: var(--text3);
+  margin-top: 2px;
+}
+
+/* Profile card */
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  background: var(--surface);
+  border-radius: var(--border-radius);
+}
+
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--red), var(--red-dark));
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.profile-role {
+  font-size: var(--text-sm);
+  color: var(--text2);
+}
+
+.profile-stores {
+  font-size: var(--text-xs);
+  color: var(--text3);
+  margin-top: 4px;
+}
+
+/* Settings rows */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.setting-row:last-child {
+  border-bottom: none;
+}
+
+.setting-label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text);
+}
+
+.setting-desc {
+  font-size: var(--text-xs);
+  color: var(--text3);
+  margin-top: 2px;
+}
+
+/* Toggle switch */
+.toggle {
+  position: relative;
+  width: 48px;
+  height: 28px;
+  background: var(--border);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.toggle.active {
+  background: var(--red);
+}
+
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  background: var(--white);
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.toggle.active::after {
+  transform: translateX(20px);
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: var(--font-body);
+  border: none;
+}
+
+.btn-primary {
+  background: var(--red);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--red-dark);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--border);
+}
+
+.btn-danger {
+  background: var(--critical);
+  color: var(--white);
+}
+
+.btn-danger:hover {
+  background: #d32f2f;
+}
+
+.btn-block {
+  width: 100%;
+  text-align: center;
+}
+
+/* App info */
+.app-info {
+  text-align: center;
+  padding: var(--space-lg);
+  color: var(--text3);
+  font-size: var(--text-xs);
+}
+
+.app-logo {
+  font-size: 32px;
+  margin-bottom: var(--space-sm);
+}
+
+.app-name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.app-version {
+  font-size: var(--text-xs);
+  color: var(--text3);
+}
+
+/* Footer */
+.footer {
+  padding: var(--space-xl) 0;
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-xl);
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  color: var(--text3);
+}
+
+.footer-brand { font-weight: 500; }
+
+.footer-links {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.footer-link {
+  color: var(--text3);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer-link:hover { color: var(--text); }
+
+/* Mobile nav */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  z-index: 100;
+  padding: 0 var(--space-md);
+}
+
+.mobile-nav-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  padding: var(--space-sm);
+}
+
+.mobile-nav-icon { font-size: 20px; }
+
+.mobile-nav-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text3);
+}
+
+.mobile-nav-item.active .mobile-nav-label { color: var(--red); }
+
+@media (max-width: 768px) {
+  .mobile-nav { display: block; }
+  body { padding-bottom: var(--nav-h); }
+  .nav-links { display: none; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .toggle::after { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <a href="index.html" class="nav-wordmark">Ops<span>AI</span>Hub</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="tasks.html" class="nav-link">Tasks</a>
+    <a href="events.html" class="nav-link">Events</a>
+    <a href="performance.html" class="nav-link">Scores</a>
+    <a href="team.html" class="nav-link">Team</a>
+    <a href="fdu-dashboard.html" class="nav-link">FDU</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:var(--space-sm);">
+    <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="nav-user" onclick="location.href='index.html'">
+      <div class="nav-avatar" id="navAvatar">?</div>
+      <span class="nav-user-name" id="navUserName">Select</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero container">
+  <div class="hero-greeting">Settings</div>
+  <h1 class="hero-name">Account & Preferences</h1>
+</section>
+
+<!-- SETTINGS CONTENT -->
+<main class="container">
+  
+  <!-- Profile Section -->
+  <div class="settings-section">
+    <div class="section-header">
+      <div class="section-icon profile">👤</div>
+      <div>
+        <div class="section-title">Profile</div>
+        <div class="section-subtitle">Your account information</div>
+      </div>
+    </div>
+    <div class="profile-card">
+      <div style="position:relative;cursor:pointer;" onclick="document.getElementById('photoInput').click()">
+        <div class="profile-avatar" id="profileAvatar">?</div>
+        <img id="profilePhoto" style="display:none;width:64px;height:64px;border-radius:50%;object-fit:cover;position:absolute;top:0;left:0;" />
+        <div style="position:absolute;bottom:0;right:0;width:22px;height:22px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--card);">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+        <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="uploadPhoto(this)" />
+      </div>
+      <div class="profile-info">
+        <div class="profile-name" id="profileName">Not logged in</div>
+        <div class="profile-role" id="profileRole">Area Manager</div>
+        <div class="profile-stores" id="profileStores">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notifications Section -->
+  <div class="settings-section">
+    <div class="section-header">
+      <div class="section-icon notifications">🔔</div>
+      <div>
+        <div class="section-title">Notifications</div>
+        <div class="section-subtitle">Manage your alert preferences</div>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Task Reminders</div>
+        <div class="setting-desc">Get notified about pending tasks</div>
+      </div>
+      <div class="toggle active" id="toggleTasks" onclick="toggleSetting(this)"></div>
+    </div>
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Visit Alerts</div>
+        <div class="setting-desc">Reminders for scheduled store visits</div>
+      </div>
+      <div class="toggle active" id="toggleVisits" onclick="toggleSetting(this)"></div>
+    </div>
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Score Updates</div>
+        <div class="setting-desc">When store scores change</div>
+      </div>
+      <div class="toggle" id="toggleScores" onclick="toggleSetting(this)"></div>
+    </div>
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Weekly Summary</div>
+        <div class="setting-desc">Receive weekly performance digest</div>
+      </div>
+      <div class="toggle active" id="toggleWeekly" onclick="toggleSetting(this)"></div>
+    </div>
+  </div>
+
+  <!-- Display Section -->
+  <div class="settings-section">
+    <div class="section-header">
+      <div class="section-icon display">🎨</div>
+      <div>
+        <div class="section-title">Display</div>
+        <div class="section-subtitle">Customize your view</div>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Compact Mode</div>
+        <div class="setting-desc">Show more content on screen</div>
+      </div>
+      <div class="toggle" id="toggleCompact" onclick="toggleSetting(this)"></div>
+    </div>
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Show Store Codes</div>
+        <div class="setting-desc">Display store codes alongside names</div>
+      </div>
+      <div class="toggle active" id="toggleCodes" onclick="toggleSetting(this)"></div>
+    </div>
+  </div>
+
+  <!-- Account Section -->
+  <div class="settings-section">
+    <div class="section-header">
+      <div class="section-icon about">⚙️</div>
+      <div>
+        <div class="section-title">Account</div>
+        <div class="section-subtitle">Manage your session</div>
+      </div>
+    </div>
+    <button class="btn btn-secondary btn-block" onclick="switchAccount()" style="margin-bottom:var(--space-sm);">
+      Switch Account
+    </button>
+    <button class="btn btn-danger btn-block" onclick="logout()">
+      Logout
+    </button>
+  </div>
+
+  <!-- App Info -->
+  <div class="settings-section">
+    <div class="app-info">
+      <div class="app-logo">☕</div>
+      <div class="app-name">OpsAIHub</div>
+      <div class="app-version">Tim Hortons India · v1.0.0</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer container">
+  <div class="footer-content">
+    <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
+    <div class="footer-links">
+      <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a>
+      <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+      <span class="mobile-nav-label">Home</span>
+    </a>
+    <a href="tasks.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span class="mobile-nav-label">Tasks</span>
+    </a>
+    <a href="events.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      <span class="mobile-nav-label">Events</span>
+    </a>
+    <a href="performance.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span class="mobile-nav-label">Scores</span>
+    </a>
+    <a href="feed.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="mobile-nav-label">Team</span>
+    </a>
+  </div>
+</nav>
+
+<script>
+// Load user info
+function loadUserInfo() {
+  var am = localStorage.getItem('th_am_name') || '';
+  var role = localStorage.getItem('th_am_role') || 'Area Manager';
+  
+  if (!am) {
+    window.location.href = 'index.html';
+    return;
+  }
+  
+  document.getElementById('navAvatar').textContent = am.charAt(0);
+  document.getElementById('navUserName').textContent = am;
+  document.getElementById('profileAvatar').textContent = am.charAt(0);
+  document.getElementById('profileName').textContent = am;
+  document.getElementById('profileRole').textContent = role === 'hod' ? 'Head of Department' : 'Area Manager';
+  
+  // Load profile photo
+  loadPhoto(am);
+  
+  // Load store count
+  fetch('/api/stores/am/' + encodeURIComponent(am))
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      var stores = d.data || [];
+      document.getElementById('profileStores').textContent = stores.length + ' stores assigned';
+    })
+    .catch(function() {
+      document.getElementById('profileStores').textContent = '—';
+    });
+}
+
+// Load profile photo
+function loadPhoto(am) {
+  fetch('/api/profile/photo/' + encodeURIComponent(am))
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      if (d.url) {
+        var img = document.getElementById('profilePhoto');
+        img.src = d.url;
+        img.style.display = 'block';
+        document.getElementById('profileAvatar').style.opacity = '0';
+      }
+    })
+    .catch(function() {});
+}
+
+// Upload profile photo
+function uploadPhoto(input) {
+  var file = input.files[0];
+  if (!file) return;
+  
+  var am = localStorage.getItem('th_am_name') || '';
+  if (!am) return;
+  
+  var formData = new FormData();
+  formData.append('photo', file);
+  formData.append('am', am);
+  
+  fetch('/api/profile/photo', { method: 'POST', body: formData })
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      if (d.success && d.url) {
+        var img = document.getElementById('profilePhoto');
+        img.src = d.url + '?t=' + Date.now();
+        img.style.display = 'block';
+        document.getElementById('profileAvatar').style.opacity = '0';
+      }
+    })
+    .catch(function(e) { alert('Upload failed: ' + e.message); });
+}
+
+// Toggle setting
+function toggleSetting(el) {
+  el.classList.toggle('active');
+  saveSettings();
+}
+
+// Save settings to localStorage
+function saveSettings() {
+  var settings = {
+    tasks: document.getElementById('toggleTasks').classList.contains('active'),
+    visits: document.getElementById('toggleVisits').classList.contains('active'),
+    scores: document.getElementById('toggleScores').classList.contains('active'),
+    weekly: document.getElementById('toggleWeekly').classList.contains('active'),
+    compact: document.getElementById('toggleCompact').classList.contains('active'),
+    codes: document.getElementById('toggleCodes').classList.contains('active')
+  };
+  localStorage.setItem('th_settings', JSON.stringify(settings));
+}
+
+// Load settings from localStorage
+function loadSettings() {
+  var saved = localStorage.getItem('th_settings');
+  if (!saved) return;
+  
+  try {
+    var settings = JSON.parse(saved);
+    if (settings.tasks !== undefined) document.getElementById('toggleTasks').classList.toggle('active', settings.tasks);
+    if (settings.visits !== undefined) document.getElementById('toggleVisits').classList.toggle('active', settings.visits);
+    if (settings.scores !== undefined) document.getElementById('toggleScores').classList.toggle('active', settings.scores);
+    if (settings.weekly !== undefined) document.getElementById('toggleWeekly').classList.toggle('active', settings.weekly);
+    if (settings.compact !== undefined) document.getElementById('toggleCompact').classList.toggle('active', settings.compact);
+    if (settings.codes !== undefined) document.getElementById('toggleCodes').classList.toggle('active', settings.codes);
+  } catch(e) {}
+}
+
+// Switch account
+function switchAccount() {
+  localStorage.removeItem('th_am_name');
+  localStorage.removeItem('th_token');
+  localStorage.removeItem('th_am_role');
+  window.location.href = 'index.html';
+}
+
+// Logout
+function logout() {
+  localStorage.removeItem('th_am_name');
+  localStorage.removeItem('th_token');
+  localStorage.removeItem('th_am_role');
+  window.location.href = 'index.html';
+}
+
+// Init
+loadUserInfo();
+loadSettings();
+</script>
+
+<script src="/js/api.js"></script>
+<script src="theme.js"></script>
+<script>applyTheme(getTheme());</script>
+</body>
+</html>

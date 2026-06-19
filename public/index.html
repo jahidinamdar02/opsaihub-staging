@@ -4,751 +4,1314 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>OpsAIHub — Tim Hortons India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
 <style>
+/* Hallmark · macrostructure: Bento Grid · genre: modern-minimal · theme: custom (brand-locked)
+ * nav: N9 edge-aligned · footer: Ft2 inline rule
+ * enrichment: none (typography only)
+ * pre-emit critique: P5 H4 E5 S4 R5 V5 */
+
+/* Page-specific tokens */
 :root {
-  --red: #C8102E;
-  --red-dark: #9B0D22;
-  --white: #FFFFFF;
-  --dark: #1A1A1A;
-  --surface: #F5F5F7;
-  --card: #FFFFFF;
-  --success: #34C759;
-  --warning: #FF9500;
-  --critical: #FF3B30;
-  --text: #1D1D1F;
-  --text2: #6E6E73;
-  --nav-h: 72px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+  --text-xs: 0.64rem;
+  --text-sm: 0.8rem;
+  --text-base: 1rem;
+  --text-md: 1.25rem;
+  --text-lg: 1.5625rem;
+  --text-xl: 1.9531rem;
+  --text-2xl: 2.4414rem;
+  --text-3xl: 3.0518rem;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --nav-h: 64px;
+  --content-max: 1200px;
+  --border-radius: 12px;
 }
-* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-html { font-size: 16px; }
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-  background: var(--surface);
-  color: var(--text);
-  min-height: 100vh;
-  padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom));
-  overflow-x: hidden;
+  line-height: 1.5;
 }
 
-/* ── HERO ── */
-.hero {
-  background: linear-gradient(150deg, var(--red) 0%, var(--red-dark) 60%, #1A1A1A 100%);
-  padding: 56px 20px 32px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 220px; height: 220px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 50%;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -40px; left: -40px;
-  width: 160px; height: 160px;
-  background: rgba(255,255,255,0.04);
-  border-radius: 50%;
-}
-.hero-greeting {
-  font-size: 14px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.7);
-  letter-spacing: 0.5px;
-  margin-bottom: 4px;
-}
-.hero-name {
-  font-size: 28px;
-  font-weight: 700;
-  color: #FFFFFF;
-  letter-spacing: -0.5px;
-  margin-bottom: 2px;
-}
-.hero-date {
-  font-size: 13px;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 24px;
-}
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  position: relative;
-  z-index: 1;
-}
-.hero-stat {
-  background: rgba(255,255,255,0.12);
-  border-radius: 12px;
-  padding: 12px;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.15);
-}
-.hero-stat-num {
-  font-size: 24px;
-  font-weight: 700;
-  color: #FFFFFF;
-  line-height: 1;
-}
-.hero-stat-label {
-  font-size: 10px;
-  color: rgba(255,255,255,0.65);
-  margin-top: 3px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
 
-/* ── ANNOUNCEMENT ── */
-.announcement {
-  margin: 16px 16px 0;
-  background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
-  border-radius: 14px;
-  padding: 14px 16px;
+.container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION — N9 Edge-aligned minimal
+   ═══════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
   display: flex;
   align-items: center;
-  gap: 12px;
-  border-left: 3px solid var(--red);
+  justify-content: space-between;
+  padding: 0 var(--space-lg);
 }
-.ann-icon { font-size: 20px; flex-shrink: 0; }
-.ann-label {
-  font-size: 10px;
-  font-weight: 600;
+
+.nav-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-md);
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.03em;
+}
+
+.nav-wordmark span {
   color: var(--red);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 2px;
 }
-.ann-text {
-  font-size: 13px;
-  color: rgba(255,255,255,0.85);
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.nav-link {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text2);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.nav-link:hover {
+  color: var(--text);
+}
+
+.nav-link.active {
+  color: var(--red);
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--surface);
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nav-user:hover {
+  background: var(--card);
+  border-color: var(--text3);
+}
+
+.nav-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.nav-user-name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* ═══════════════════════════════════════════
+   HERO — Compact greeting
+   ═══════════════════════════════════════════ */
+.hero {
+  padding-top: calc(var(--nav-h) + var(--space-2xl));
+  padding-bottom: var(--space-xl);
+}
+
+.hero-greeting {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-xs);
+}
+
+.hero-name {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: var(--space-xs);
+}
+
+.hero-date {
+  font-size: var(--text-sm);
+  color: var(--text2);
+}
+
+/* ═══════════════════════════════════════════
+   BENTO GRID — Dashboard sections
+   ═══════════════════════════════════════════ */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-3xl);
+}
+
+.cell-link {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--red);
+  text-decoration: none;
+}
+
+.cell-link:hover {
+  text-decoration: underline;
+}
+
+/* Welcome card */
+.welcome-cell {
+  background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+  color: var(--white);
+  border: none;
+}
+
+.welcome-cell .cell-title {
+  color: rgba(255,255,255,0.7);
+}
+
+.welcome-greeting {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.welcome-message {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.welcome-footer {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  font-size: var(--text-xs);
+  opacity: 0.7;
+}
+
+/* Stats */
+.stat-value {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+
+.stat-label {
+  font-size: var(--text-xs);
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.stat-row {
+  display: flex;
+  gap: var(--space-xl);
+}
+
+.stat-item {
+  flex: 1;
+}
+
+/* Activity feed */
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  flex-shrink: 0;
+}
+
+.activity-icon.visit { background: var(--red-tint); }
+.activity-icon.checklist { background: var(--green-tint); }
+.activity-icon.fdu { background: var(--amber-tint); }
+
+.activity-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-text {
+  font-size: var(--text-sm);
+  color: var(--text);
   line-height: 1.4;
 }
 
-/* ── SECTION HEADER ── */
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 16px 10px;
-}
-.section-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.3px;
-}
-.section-link {
-  font-size: 13px;
-  color: var(--red);
-  font-weight: 500;
-  text-decoration: none;
+.activity-text strong {
+  font-weight: 600;
 }
 
-/* ── TODAY CHECKLIST CARD ── */
-.today-card {
-  margin: 0 16px;
-  background: var(--card);
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-decoration: none;
-}
-.today-card:active { transform: scale(0.98); }
-.today-card-left { display: flex; align-items: center; gap: 14px; }
-.today-icon {
-  width: 48px; height: 48px;
-  background: linear-gradient(135deg, var(--red), var(--red-dark));
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
-}
-.today-day {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 2px;
-}
-.today-sub {
-  font-size: 12px;
-  color: var(--text2);
-}
-.today-arrow {
-  font-size: 20px;
-  color: var(--text2);
+.activity-time {
+  font-size: var(--text-xs);
+  color: var(--text3);
+  margin-top: 2px;
 }
 
-/* ── STORE SCORE CARDS ── */
-.stores-scroll {
-  padding: 0 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.store-card {
-  background: var(--card);
-  border-radius: 14px;
-  padding: 14px 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+/* Today's checklist */
+.checklist-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  animation: fadeUp 0.4s ease both;
+  padding: var(--space-lg);
+  background: var(--surface);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: background 0.15s ease;
 }
-@keyframes fadeUp {
-  from { opacity:0; transform: translateY(12px); }
-  to   { opacity:1; transform: translateY(0); }
+
+.checklist-card:hover {
+  background: var(--border);
 }
-.store-info { flex: 1; }
-.store-name {
-  font-size: 14px;
+
+.checklist-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.checklist-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--red);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-lg);
+}
+
+.checklist-day {
+  font-size: var(--text-base);
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 3px;
 }
-.store-region {
-  font-size: 11px;
+
+.checklist-sub {
+  font-size: var(--text-xs);
   color: var(--text2);
+  margin-top: 2px;
 }
-.store-score {
+
+.checklist-arrow {
+  font-size: var(--text-lg);
+  color: var(--text3);
+}
+
+/* Store scores */
+.store-item {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--divider);
 }
-.score-num {
-  font-size: 20px;
+
+.store-item:last-child {
+  border-bottom: none;
+}
+
+.store-info {
+  flex: 1;
+}
+
+.store-name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.store-region {
+  font-size: var(--text-xs);
+  color: var(--text3);
+  margin-top: 2px;
+}
+
+.store-score {
+  text-align: right;
+}
+
+.score-value {
+  font-size: var(--text-lg);
   font-weight: 700;
   line-height: 1;
 }
-.score-bar-wrap {
+
+.score-value.high { color: var(--success); }
+.score-value.medium { color: var(--warning); }
+.score-value.low { color: var(--critical); }
+
+.score-bar {
   width: 60px;
   height: 4px;
-  background: #E5E5EA;
+  background: var(--border);
   border-radius: 2px;
+  margin-top: var(--space-xs);
   overflow: hidden;
 }
-.score-bar {
+
+.score-bar-fill {
   height: 100%;
   border-radius: 2px;
-  transition: width 1s ease;
+  transition: width 0.6s ease;
 }
-.band-green  { color: var(--success); }
-.band-yellow { color: var(--warning); }
-.band-orange { color: #FF6B00; }
-.band-red    { color: var(--critical); }
-.bar-green   { background: var(--success); }
-.bar-yellow  { background: var(--warning); }
-.bar-orange  { background: #FF6B00; }
-.bar-red     { background: var(--critical); }
 
-/* ── BOTTOM NAV ── */
-.bottom-nav {
+.score-bar-fill.high { background: var(--success); }
+.score-bar-fill.medium { background: var(--warning); }
+.score-bar-fill.low { background: var(--critical); }
+
+/* Leaderboard */
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.leaderboard-item:last-child {
+  border-bottom: none;
+}
+
+.leaderboard-rank {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text3);
+  width: 24px;
+  text-align: center;
+}
+
+.leaderboard-rank.top { color: var(--red); }
+
+.leaderboard-name {
+  flex: 1;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.leaderboard-visits {
+  font-size: var(--text-xs);
+  color: var(--text3);
+}
+
+/* Quick links */
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.quick-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--surface);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.quick-link:hover {
+  background: var(--border);
+}
+
+.quick-link-icon {
+  font-size: var(--text-xl);
+}
+
+.quick-link-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.quick-link-sub {
+  font-size: var(--text-xs);
+  color: var(--text3);
+  margin-top: 2px;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER — Ft2 Inline rule
+   ═══════════════════════════════════════════ */
+.footer {
+  padding: var(--space-xl) 0;
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-3xl);
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  color: var(--text3);
+}
+
+.footer-brand {
+  font-weight: 500;
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.footer-link {
+  color: var(--text3);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer-link:hover {
+  color: var(--text);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — Laptop-first
+   ═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .bento {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  .span-12 { grid-column: span 6; }
+  .span-8 { grid-column: span 6; }
+  .span-6 { grid-column: span 6; }
+  .span-4 { grid-column: span 3; }
+  .span-3 { grid-column: span 3; }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --space-lg: 16px;
+    --space-xl: 24px;
+    --space-2xl: 32px;
+    --space-3xl: 48px;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .bento {
+    grid-template-columns: 1fr;
+  }
+  
+  .span-12, .span-8, .span-6, .span-4, .span-3 {
+    grid-column: span 1;
+  }
+  
+  .hero-name {
+    font-size: var(--text-xl);
+  }
+  
+  .stat-row {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .quick-links {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+  }
+}
+
+/* Mobile nav */
+.mobile-nav {
+  display: none;
   position: fixed;
-  bottom: 0; left: 0; right: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: var(--nav-h);
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-top: 1px solid rgba(0,0,0,0.08);
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  z-index: 100;
+  padding: 0 var(--space-md);
+}
+
+.mobile-nav-items {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding-bottom: env(safe-area-inset-bottom);
-  z-index: 1000;
+  height: 100%;
 }
-.nav-item {
+
+.mobile-nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 12px;
-  transition: all 0.2s ease;
-  min-width: 56px;
+  padding: var(--space-sm);
 }
-.nav-item:active { transform: scale(0.9); }
-.nav-icon { font-size: 22px; line-height: 1; }
-.nav-label {
+
+.mobile-nav-icon {
+  font-size: 20px;
+}
+
+.mobile-nav-label {
   font-size: 10px;
   font-weight: 500;
-  color: var(--text2);
-  letter-spacing: 0.2px;
-}
-.nav-item.active .nav-label { color: var(--red); font-weight: 600; }
-.nav-item.active .nav-icon { filter: none; }
-.nav-dot {
-  width: 4px; height: 4px;
-  background: var(--red);
-  border-radius: 50%;
-  margin-top: -2px;
+  color: var(--text3);
 }
 
-/* ── LOADING SPINNER ── */
-.loading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
-  gap: 12px;
-  color: var(--text2);
-  font-size: 14px;
+.mobile-nav-item.active .mobile-nav-label {
+  color: var(--red);
 }
-.spinner {
-  width: 28px; height: 28px;
-  border: 3px solid #E5E5EA;
-  border-top-color: var(--red);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
 
-/* ── EMPTY STATE ── */
-.empty {
+@media (max-width: 768px) {
+  .mobile-nav {
+    display: block;
+  }
+  
+  body {
+    padding-bottom: var(--nav-h);
+  }
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, var(--border) 25%, var(--divider) 50%, var(--border) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+  .live-dot { animation: none; }
+  .score-bar-fill { transition: none; }
+  .cell { transition: none; }
+}
+
+/* Empty state */
+.empty-state {
   text-align: center;
-  padding: 40px 20px;
-  color: var(--text2);
-  font-size: 14px;
+  padding: var(--space-xl);
+  color: var(--text3);
 }
-.empty-icon { font-size: 40px; margin-bottom: 12px; }
 
-.pb-safe { padding-bottom: 20px; }
+.empty-icon {
+  margin-bottom: var(--space-sm);
+  display: flex;
+  justify-content: center;
+}
 
-/* Identity Selector */
-.id-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9000;display:flex;align-items:flex-end;backdrop-filter:blur(4px);}
-.id-sheet{background:#fff;border-radius:24px 24px 0 0;padding:24px 20px 40px;width:100%;max-height:70vh;overflow-y:auto;}
-.id-title{font-size:20px;font-weight:700;color:#1D1D1F;margin-bottom:4px;}
-.id-sub{font-size:13px;color:#8E8E93;margin-bottom:20px;}
-.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.id-btn{padding:14px 10px;border-radius:14px;border:1.5px solid #E5E5EA;background:#F5F5F7;font-size:14px;font-weight:600;color:#1D1D1F;cursor:pointer;text-align:center;transition:all 0.15s;}
-.id-btn:active{background:#C8102E;color:#fff;border-color:#C8102E;}
-.id-btn.selected{background:#C8102E;color:#fff;border-color:#C8102E;}
+.empty-text {
+  font-size: var(--text-sm);
+}
 
-</style>
-<style id="pin-wall-css">
-#pin-wall{position:fixed;inset:0;z-index:99999;background:#1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
-.pin-logo{font-size:48px;margin-bottom:8px;}
-.pin-title{font-size:24px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.5px;}
-.pin-sub{font-size:13px;color:#6E6E73;margin-bottom:40px;}
-.pin-dots{display:flex;gap:16px;margin-bottom:32px;}
-.pin-dot{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.15);transition:all 0.2s;}
-.pin-dot.filled{background:#C8102E;}
-.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:240px;}
-.pin-btn{height:64px;border-radius:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;font-size:22px;font-weight:600;cursor:pointer;transition:all 0.15s;}
-.pin-btn:active{background:rgba(200,16,46,0.3);transform:scale(0.95);}
-.pin-error{font-size:13px;color:#FF3B30;margin-top:16px;opacity:0;transition:opacity 0.3s;}
-.pin-error.show{opacity:1;}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-.pin-dots.shake{animation:shake 0.3s ease;}
+/* Live dot */
+.live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+  margin-right: var(--space-xs);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
 </style>
 </head>
 <body>
-<div id="pin-wall">
-  <div class="pin-logo">☕</div>
-  <div class="pin-title">Tim's Ops Connect</div>
-  <div class="pin-sub">Enter your PIN to continue</div>
-  <div class="pin-dots" id="pinDots">
-    <div class="pin-dot" id="d0"></div>
-    <div class="pin-dot" id="d1"></div>
-    <div class="pin-dot" id="d2"></div>
-    <div class="pin-dot" id="d3"></div>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <a href="index.html" class="nav-wordmark">Ops<span>AI</span>Hub</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="tasks.html" class="nav-link">Tasks</a>
+    <a href="events.html" class="nav-link">Events</a>
+    <a href="performance.html" class="nav-link">Scores</a>
+    <a href="team.html" class="nav-link">Team</a>
+    <a href="fdu-dashboard.html" class="nav-link">FDU</a>
   </div>
-  <div class="pin-pad">
-    <button class="pin-btn" onclick="pinPress('1')">1</button>
-    <button class="pin-btn" onclick="pinPress('2')">2</button>
-    <button class="pin-btn" onclick="pinPress('3')">3</button>
-    <button class="pin-btn" onclick="pinPress('4')">4</button>
-    <button class="pin-btn" onclick="pinPress('5')">5</button>
-    <button class="pin-btn" onclick="pinPress('6')">6</button>
-    <button class="pin-btn" onclick="pinPress('7')">7</button>
-    <button class="pin-btn" onclick="pinPress('8')">8</button>
-    <button class="pin-btn" onclick="pinPress('9')">9</button>
-    <button class="pin-btn" onclick="pinPress('c')" style="font-size:14px;">Clear</button>
-    <button class="pin-btn" onclick="pinPress('0')">0</button>
-    <button class="pin-btn" onclick="pinPress('x')" style="font-size:20px;">⌫</button>
+  <div style="display:flex;align-items:center;gap:var(--space-sm);">
+    <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a href="settings.html" id="settingsLink" class="nav-btn" style="display:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></a>
+    <div class="nav-user" id="navUserBtn" onclick="showIdentitySelector()">
+      <div style="position:relative;width:28px;height:28px;">
+        <div class="nav-avatar" id="navAvatar">?</div>
+        <img id="navPhoto" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;position:absolute;top:0;left:0;" />
+      </div>
+      <span class="nav-user-name" id="navUserName">Select</span>
+    </div>
+    <button id="logoutBtn" onclick="logout()" class="nav-btn" style="display:none;">Logout</button>
   </div>
-  <div class="pin-error" id="pinError">Incorrect PIN. Try again.</div>
-</div>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-greeting" id="greeting">Good morning</div>
-  <div class="hero-name" id="amName">OpsAIHub ☕</div>
-  <div class="hero-date" id="todayDate"></div>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num" id="statStores">44</div>
-      <div class="hero-stat-label">Stores</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num" id="statAMs">9</div>
-      <div class="hero-stat-label">Area Mgrs</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num" id="statRegions">6</div>
-      <div class="hero-stat-label">Regions</div>
-    </div>
-  </div>
-</div>
-
-<!-- ANNOUNCEMENT -->
-<div class="announcement">
-  <div class="ann-icon">📢</div>
-  <div>
-    <div class="ann-label">From Jahid</div>
-    <div class="ann-text" id="annText">Welcome to OpsAIHub. Let's build something great together. ☕</div>
-  </div>
-</div>
-
-<!-- TODAY CHECKLIST -->
-<div class="section-header">
-  <div class="section-title">Today's Checklist</div>
-  <a href="tasks.html" class="section-link">View all</a>
-</div>
-<a href="tasks.html" class="today-card">
-  <div class="today-card-left">
-    <div class="today-icon" id="todayIcon">📋</div>
-    <div>
-      <div class="today-day" id="todayDayLabel">Loading...</div>
-      <div class="today-sub" id="todaySub">Tap to open checklist</div>
-    </div>
-  </div>
-  <div class="today-arrow">›</div>
-</a>
-
-
-<!-- TODAY'S PULSE -->
-<div style="padding:0 16px 12px;">
-  <div style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;" id="pulseStrip">
-    <div class="pulse-chip" id="pulse-tasks" onclick="location.href='tasks.html'" style="flex-shrink:0;background:#fff;border:1.5px solid #E5E5EA;border-radius:20px;padding:8px 14px;display:flex;align-items:center;gap:6px;cursor:pointer;">
-      <span style="font-size:14px;">&#9989;</span>
-      <span style="font-size:12px;font-weight:600;color:#1D1D1F;" id="pulse-tasks-txt">Loading...</span>
-    </div>
-    <div class="pulse-chip" id="pulse-flags" onclick="location.href='performance.html'" style="flex-shrink:0;background:#fff;border:1.5px solid #E5E5EA;border-radius:20px;padding:8px 14px;display:flex;align-items:center;gap:6px;cursor:pointer;">
-      <span style="font-size:14px;">&#128681;</span>
-      <span style="font-size:12px;font-weight:600;color:#1D1D1F;" id="pulse-flags-txt">Loading...</span>
-    </div>
-    <div class="pulse-chip" id="pulse-score" onclick="location.href='performance.html'" style="flex-shrink:0;background:#fff;border:1.5px solid #E5E5EA;border-radius:20px;padding:8px 14px;display:flex;align-items:center;gap:6px;cursor:pointer;">
-      <span style="font-size:14px;">&#127881;</span>
-      <span style="font-size:12px;font-weight:600;color:#1D1D1F;" id="pulse-score-txt">Loading...</span>
-    </div>
-  </div>
-</div>
-<!-- QUICK LINKS -->
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:0 16px 12px;">
-  <a href="fdu-dashboard.html" style="display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:14px;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,0.06);">
-    <span style="font-size:28px;">&#x1F369;</span>
-    <div><div style="font-size:13px;font-weight:700;color:#1D1D1F;">FDU</div><div style="font-size:11px;color:#6E6E73;">Compliance</div></div>
-  </a>
-  <a href="hod.html" style="display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:14px;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,0.06);">
-    <span style="font-size:28px;">&#x1F451;</span>
-    <div><div style="font-size:13px;font-weight:700;color:#1D1D1F;">HOD</div><div style="font-size:11px;color:#6E6E73;">Dashboard</div></div>
-  </a>
-</div>
-
-<!-- STORE SCORES -->
-<div class="section-header">
-  <div class="section-title">Store Scores</div>
-  <a href="performance.html" class="section-link">Full view</a>
-</div>
-<div class="stores-scroll" id="storeList">
-  <div class="empty" id="storeListEmpty" style="padding:30px 16px;text-align:center;color:#6E6E73;">
-    <div style="font-size:36px;margin-bottom:8px;">&#x1F3EA;</div>
-    <div style="font-size:14px;font-weight:600;">Select your name above</div>
-    <div style="font-size:12px;margin-top:4px;">Your store scores will appear here</div>
-  </div>
-</div>
-
-<div class="pb-safe"></div>
-
-<!-- BOTTOM NAV -->
-
-
-<!-- Ask Jahid floating button -->
-<a href="ask-jahid.html" style="position:fixed;bottom:calc(var(--nav-h,72px) + 16px);right:16px;z-index:1100;display:flex;align-items:center;gap:8px;background:#C8102E;color:#fff;border-radius:50px;padding:8px 16px 8px 8px;text-decoration:none;box-shadow:0 4px 20px rgba(200,16,46,0.45);font-size:13px;font-weight:700;">
-  <img src="/images/am/jahid.svg" style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.3);">
-  Ask Jahid
-</a>
-
-<!-- AM Identity Selector -->
-<div class="id-overlay" id="idOverlay" style="display:none;">
-  <div class="id-sheet">
-    <div style="width:40px;height:4px;background:#E5E5EA;border-radius:2px;margin:0 auto 20px;"></div>
-    <div class="id-title">Who are you?</div>
-    <div class="id-sub">Select your name. We'll remember it on this device.</div>
-    <div class="id-grid">
-      <button class="id-btn" onclick="selectAM('Raman')">Raman</button>
-      <button class="id-btn" onclick="selectAM('Harish')">Harish</button>
-      <button class="id-btn" onclick="selectAM('Rohit')">Rohit</button>
-      <button class="id-btn" onclick="selectAM('Deepak')">Deepak</button>
-      <button class="id-btn" onclick="selectAM('Akash Chavan')">Akash Chavan</button>
-      <button class="id-btn" onclick="selectAM('Akash Rathod')">Akash Rathod</button>
-      <button class="id-btn" onclick="selectAM('Jagadeesha')">Jagadeesha</button>
-      <button class="id-btn" onclick="selectAM('Shivam')">Shivam</button>
-      <button class="id-btn" onclick="selectAM('Jahid')" style="grid-column:1/-1;background:#1A1A1A;color:#fff;border-color:#1A1A1A;">Jahid (HOD)</button>
-    </div>
-  </div>
-</div>
-
-<nav class="bottom-nav">
-  <a href="index.html" class="nav-item active">
-    <span class="nav-icon">🏠</span>
-    <span class="nav-label">Home</span>
-    <div class="nav-dot"></div>
-  </a>
-  <a href="tasks.html" class="nav-item">
-    <span class="nav-icon">✅</span>
-    <span class="nav-label">Tasks</span>
-  </a>
-  <a href="events.html" class="nav-item"><span class="nav-icon">&#128197;</span><span class="nav-label">Events</span></a>
-  <a href="performance.html" class="nav-item">
-    <span class="nav-icon">📊</span>
-    <span class="nav-label">Scores</span>
-  </a>
-  <a href="team.html" class="nav-item">
-    <span class="nav-icon">👥</span>
-    <span class="nav-label">Team</span>
-  </a>
-  <a href="audit.html" class="nav-item"><span class="nav-icon">&#128269;</span><span class="nav-label">Audits</span></a>
 </nav>
 
+<!-- HERO -->
+<section class="hero container">
+  <div class="hero-greeting" id="greeting">Good morning</div>
+  <h1 class="hero-name" id="heroName">Welcome to OpsAIHub</h1>
+  <div class="hero-date" id="todayDate"></div>
+</section>
+
+<!-- BENTO GRID -->
+<main class="container">
+  <div class="bento">
+    
+    <!-- Welcome Card -->
+    <article class="cell span-8 welcome-cell">
+      <div class="cell-title">Today's Vibe</div>
+      <div class="welcome-greeting" id="welcomeTime">Good Morning</div>
+      <div class="welcome-message" id="welcomeMsg"></div>
+      <div class="welcome-footer">Tim Hortons India — Always Fresh, Always First</div>
+    </article>
+    
+    <!-- Stats -->
+    <article class="cell span-4">
+      <div class="cell-title">Overview</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value" id="statStores">44</div>
+          <div class="stat-label">Stores</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="statAMs">10</div>
+          <div class="stat-label">Area Mgrs</div>
+        </div>
+      </div>
+    </article>
+    
+    <!-- Today's Checklist -->
+    <article class="cell span-6">
+      <div class="cell-header">
+        <div class="cell-title">Today's Checklist</div>
+        <a href="tasks.html" class="cell-link">View all</a>
+      </div>
+      <a href="tasks.html" class="checklist-card">
+        <div class="checklist-left">
+          <div class="checklist-icon" id="todayIcon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <div>
+            <div class="checklist-day" id="todayDayLabel">Loading...</div>
+            <div class="checklist-sub" id="todaySub">Tap to open checklist</div>
+          </div>
+        </div>
+        <div class="checklist-arrow">›</div>
+      </a>
+    </article>
+    
+    <!-- Quick Links -->
+    <article class="cell span-6">
+      <div class="cell-header">
+        <div class="cell-title">Quick Access</div>
+      </div>
+      <div class="quick-links">
+        <a href="fdu-dashboard.html" class="quick-link">
+          <div class="quick-link-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/></svg></div>
+          <div>
+            <div class="quick-link-title">FDU</div>
+            <div class="quick-link-sub">Compliance</div>
+          </div>
+        </a>
+        <a href="hod.html" class="quick-link">
+          <div class="quick-link-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <div>
+            <div class="quick-link-title">HOD</div>
+            <div class="quick-link-sub">Dashboard</div>
+          </div>
+        </a>
+      </div>
+    </article>
+    
+    <!-- Activity Feed -->
+    <article class="cell span-6">
+      <div class="cell-header">
+        <div class="cell-title"><span class="live-dot"></span>Live Activity</div>
+        <div id="activityCount" style="font-size:var(--text-xs);color:var(--text3);"></div>
+      </div>
+      <div id="activityFeedCard">
+        <div class="empty-state">
+          <div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="empty-text">No recent activity</div>
+        </div>
+      </div>
+    </article>
+    
+    <!-- Store Scores -->
+    <article class="cell span-6">
+      <div class="cell-header">
+        <div class="cell-title">Store Scores</div>
+        <a href="performance.html" class="cell-link">Full view</a>
+      </div>
+      <div id="storeList">
+        <div class="empty-state">
+          <div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="empty-text">Select your name to view scores</div>
+        </div>
+      </div>
+    </article>
+    
+    <!-- Leaderboard -->
+    <article class="cell span-12">
+      <div class="cell-header">
+        <div class="cell-title">This Week's Visits</div>
+        <div id="lbWeekLabel" style="font-size:var(--text-xs);color:var(--text3);"></div>
+      </div>
+      <div id="leaderboardCard">
+        <div class="empty-state">
+          <div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
+          <div class="empty-text">Loading leaderboard...</div>
+        </div>
+      </div>
+    </article>
+    
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer container">
+  <div class="footer-content">
+    <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
+    <div class="footer-links">
+      <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a>
+      <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item active">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+      <span class="mobile-nav-label">Home</span>
+    </a>
+    <a href="tasks.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span class="mobile-nav-label">Tasks</span>
+    </a>
+    <a href="events.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      <span class="mobile-nav-label">Events</span>
+    </a>
+    <a href="performance.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span class="mobile-nav-label">Scores</span>
+    </a>
+    <a href="team.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="mobile-nav-label">Team</span>
+    </a>
+  </div>
+</nav>
+
+<!-- IDENTITY SELECTOR -->
+<div class="id-overlay" id="idOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(4px);">
+  <div style="background:var(--card);border-radius:var(--border-radius);padding:var(--space-xl);max-width:400px;width:90%;box-shadow:var(--shadow-lg);">
+    <!-- Step 1: Name selection -->
+    <div id="nameStep">
+      <h3 style="font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-sm);">Who are you?</h3>
+      <p style="font-size:var(--text-sm);color:var(--text2);margin-bottom:var(--space-lg);">Select your name to continue.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-sm);" id="idGrid">
+        <button class="id-btn" onclick="selectAM('Raman')">Raman</button>
+        <button class="id-btn" onclick="selectAM('Harish')">Harish</button>
+        <button class="id-btn" onclick="selectAM('Rohit')">Rohit</button>
+        <button class="id-btn" onclick="selectAM('Deepak')">Deepak</button>
+        <button class="id-btn" onclick="selectAM('Kajal')">Kajal</button>
+        <button class="id-btn" onclick="selectAM('Sandeep Mukharjee')">Sandeep</button>
+        <button class="id-btn" onclick="selectAM('Akash Rathod')">Akash</button>
+        <button class="id-btn" onclick="selectAM('Jagadeesha')">Jagadeesha</button>
+        <button class="id-btn" onclick="selectAM('Shivam')">Shivam</button>
+        <button class="id-btn" onclick="selectAM('Vrunda')">Vrunda</button>
+        <button class="id-btn" onclick="selectAM('Jahid')" style="grid-column:1/-1;background:var(--dark);color:var(--white);border-color:var(--dark);">Jahid (HOD)</button>
+      </div>
+    </div>
+    <!-- Step 2: PIN verification -->
+    <div id="pinStep" style="display:none;">
+      <h3 style="font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-sm);">Enter PIN</h3>
+      <p style="font-size:var(--text-sm);color:var(--text2);margin-bottom:var(--space-lg);">Welcome, <strong id="pinAmName"></strong>. Enter your 4-digit PIN.</p>
+      <div style="display:flex;gap:var(--space-sm);justify-content:center;margin-bottom:var(--space-lg);" id="pinDots">
+        <div class="pin-dot" id="d0"></div>
+        <div class="pin-dot" id="d1"></div>
+        <div class="pin-dot" id="d2"></div>
+        <div class="pin-dot" id="d3"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-sm);max-width:240px;margin:0 auto;">
+        <button class="pin-btn" onclick="pinPress('1')">1</button>
+        <button class="pin-btn" onclick="pinPress('2')">2</button>
+        <button class="pin-btn" onclick="pinPress('3')">3</button>
+        <button class="pin-btn" onclick="pinPress('4')">4</button>
+        <button class="pin-btn" onclick="pinPress('5')">5</button>
+        <button class="pin-btn" onclick="pinPress('6')">6</button>
+        <button class="pin-btn" onclick="pinPress('7')">7</button>
+        <button class="pin-btn" onclick="pinPress('8')">8</button>
+        <button class="pin-btn" onclick="pinPress('9')">9</button>
+        <button class="pin-btn" onclick="pinPress('c')" style="font-size:var(--text-xs);">Clear</button>
+        <button class="pin-btn" onclick="pinPress('0')">0</button>
+        <button class="pin-btn" onclick="pinPress('x')" style="font-size:var(--text-base);">⌫</button>
+      </div>
+      <div id="pinError" style="font-size:var(--text-xs);color:var(--critical);text-align:center;margin-top:var(--space-md);opacity:0;transition:opacity 0.3s;">Incorrect PIN. Try again.</div>
+      <button onclick="backToNameStep()" class="nav-btn" style="width:100%;margin-top:var(--space-lg);">← Back to name selection</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.id-btn {
+  padding: 12px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: var(--font-body);
+}
+
+.id-btn:hover {
+  background: var(--border);
+}
+
+.id-btn:active {
+  background: var(--red);
+  color: var(--white);
+  border-color: var(--red);
+}
+
+/* PIN dots */
+.pin-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.2s ease;
+}
+
+.pin-dot.filled {
+  background: var(--red);
+}
+
+.pin-btn {
+  height: 56px;
+  border-radius: var(--border-radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: var(--font-body);
+}
+
+.pin-btn:hover {
+  background: var(--border);
+}
+
+.pin-btn:active {
+  background: var(--red);
+  color: var(--white);
+  border-color: var(--red);
+  transform: scale(0.95);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.pin-dots.shake {
+  animation: shake 0.3s ease;
+}
+</style>
+
+<script src="theme.js"></script>
 <script>
+applyTheme(getTheme());
+</script>
+<script>
+var ICON = {
+  store: '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+  activity: '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+  trophy: '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>',
+  alert: '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+  checklist: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>',
+  visit: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+  fdu: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>'
+};
+
 // ── Greeting ──
 function setGreeting() {
-  const h = new Date().getHours();
-  const g = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  var h = new Date().getHours();
+  var g = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
   document.getElementById('greeting').textContent = g;
-  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const now = new Date();
-  document.getElementById('todayDate').textContent =
+  
+  var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var now = new Date();
+  document.getElementById('todayDate').textContent = 
     days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
 }
-setGreeting();
 
 // ── Today checklist card ──
 function setTodayCard() {
-  const day = new Date().getDay();
-  const map = {
-    0: { label: 'Sunday Checklist', sub: 'Weekend Operations', icon: '🌅' },
-    1: { label: 'Monday Checklist', sub: 'Financial & Inventory Audit', icon: '💰' },
-    2: { label: 'Tuesday Checklist', sub: 'Sales Intelligence', icon: '📈' },
-    3: { label: 'Wednesday Checklist', sub: 'Maintenance + Cleanliness + Pest', icon: '🔧' },
-    4: { label: 'Thursday — Rest Day', sub: 'Recharge day — see you tomorrow ☕', icon: '😴' },
-    5: { label: 'Friday Checklist', sub: 'People + Readiness + Relationships', icon: '🤝' },
-    6: { label: 'Saturday Checklist', sub: 'Weekend Operations', icon: '⚡' }
+  var day = new Date().getDay();
+  var map = {
+    0: { label: 'Sunday Checklist', sub: 'Weekend Operations' },
+    1: { label: 'Monday Checklist', sub: 'Financial & Inventory' },
+    2: { label: 'AI Academy — Tuesday', sub: 'Watch this week\'s AI video' },
+    3: { label: 'Wednesday Checklist', sub: 'Maintenance + Cleanliness' },
+    4: { label: 'Thursday — Rest Day', sub: 'Recharge day' },
+    5: { label: 'Friday Checklist', sub: 'People + Readiness' },
+    6: { label: 'Saturday Checklist', sub: 'Weekend Operations' }
   };
-  const info = map[day];
+  var info = map[day];
   document.getElementById('todayDayLabel').textContent = info.label;
   document.getElementById('todaySub').textContent = info.sub;
-  document.getElementById('todayIcon').textContent = info.icon;
 }
-setTodayCard();
+
+// ── Welcome message ──
+function setWelcomeMessage() {
+  var h = new Date().getHours();
+  var msg = '';
+  if (h < 12) {
+    msg = 'Start your day with focus. Check your tasks and visit schedule.';
+  } else if (h < 17) {
+    msg = 'You\'re making great progress today. Keep the momentum going.';
+  } else {
+    msg = 'Wrap up your day strong. Review what\'s done and plan tomorrow.';
+  }
+  document.getElementById('welcomeMsg').textContent = msg;
+  
+  var greetTime = h < 12 ? 'Good Morning' : h < 17 ? 'Good Afternoon' : 'Good Evening';
+  document.getElementById('welcomeTime').textContent = greetTime;
+}
 
 // ── Score band ──
 function getBand(score) {
-  if (score >= 90) return 'green';
-  if (score >= 75) return 'yellow';
-  if (score >= 60) return 'orange';
-  return 'red';
+  if (score >= 90) return 'high';
+  if (score >= 75) return 'medium';
+  return 'low';
 }
 
-// ── Load stores ──
+// ── Load stores (filtered by AM) ──
 async function loadStores() {
   try {
-    const r = await fetch('/api/home-scores');
-    const d = await r.json();
-    const stores = d.data || [];
-    const list = document.getElementById('storeList');
-    if (!list) return;
+    var am = localStorage.getItem('th_am_name') || '';
+    if (!am) return;
+    
+    var r = await fetch('/api/stores/am/' + encodeURIComponent(am));
+    var d = await r.json();
+    var stores = d.data || [];
+    var list = document.getElementById('storeList');
+    
     if (!stores.length) {
-      list.innerHTML = '<div class="empty"><div class="empty-icon">&#127978;</div>No stores found</div>';
+      list.innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.store + '</div><div class="empty-text">No stores assigned to you</div></div>';
       return;
     }
-    list.innerHTML = stores.map(function(s, i) {
-      if (!s.hasData) {
-        return '<div class="store-card" style="animation-delay:'+(i*0.04)+'s;opacity:0.45">'
-          + '<div class="store-info">'
-          + '<div class="store-name">'+s.name+'</div>'
-          + '<div class="store-region">'+(s.region||'')+((s.region&&s.am)?' &middot; ':'')+( s.am||'')+'</div>'
-          + '</div>'
-          + '<div class="store-score">'
-          + '<div class="score-num" style="font-size:11px;font-weight:600;color:var(--text2)">No data</div>'
-          + '<div class="score-bar-wrap"><div class="score-bar" style="width:0%"></div></div>'
-          + '</div>'
-          + '</div>';
-      }
+    
+    list.innerHTML = stores.map(function(s) {
       var score = s.score || 0;
       var band = getBand(score);
-      var badges = (s.days||[]).slice(0,3).map(function(dy){
-        return '<span style="font-size:8px;background:rgba(200,16,46,0.08);color:var(--red);padding:1px 5px;border-radius:4px;font-weight:700;margin-right:2px;">'+dy.slice(0,3).toUpperCase()+'</span>';
-      }).join('');
-      return '<div class="store-card" style="animation-delay:'+(i*0.04)+'s">'
-        + '<div class="store-info">'
-        + '<div class="store-name">'+s.name+'</div>'
-        + '<div class="store-region">'+(s.region||'')+((s.region&&s.am)?' &middot; ':'')+( s.am||'')+'</div>'
-        + (badges ? '<div style="margin-top:4px;">'+badges+'</div>' : '')
-        + '</div>'
-        + '<div class="store-score">'
-        + '<div class="score-num band-'+band+'">'+score+'%</div>'
-        + '<div class="score-bar-wrap"><div class="score-bar bar-'+band+'" style="width:'+score+'%"></div></div>'
-        + '</div>'
+      return '<div class="store-item">'
+        + '<div class="store-info"><div class="store-name">' + s.name + '</div>'
+        + '<div class="store-region">' + (s.region || '') + (s.code ? ' · ' + s.code : '') + '</div></div>'
+        + '<div class="store-score"><div class="score-value ' + band + '">' + (score ? score + '%' : '—') + '</div>'
+        + (score ? '<div class="score-bar"><div class="score-bar-fill ' + band + '" style="width:' + score + '%"></div></div>' : '')
+        + '</div></div>';
+    }).join('');
+    
+    // Update stats
+    document.getElementById('statStores').textContent = stores.length;
+  } catch(e) {
+    document.getElementById('storeList').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.alert + '</div><div class="empty-text">Could not load stores</div></div>';
+  }
+}
+
+// ── Load activity feed ──
+async function loadActivityFeed() {
+  try {
+    var r = await fetch('/api/activity-feed');
+    var d = await r.json();
+    var el = document.getElementById('activityFeedCard');
+    
+    if (!d.data || !d.data.length) {
+      el.innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.activity + '</div><div class="empty-text">No recent activity</div></div>';
+      return;
+    }
+    
+    el.innerHTML = d.data.slice(0, 5).map(function(e) {
+      var icons = { visit: ICON.visit, checklist: ICON.checklist, fdu: ICON.fdu };
+      var time = e.timestamp ? new Date(e.timestamp).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '';
+      return '<div class="activity-item">'
+        + '<div class="activity-icon ' + (e.type || 'visit') + '">' + (icons[e.type] || ICON.visit) + '</div>'
+        + '<div class="activity-content">'
+        + '<div class="activity-text"><strong>' + e.am + '</strong> visited ' + e.store + (e.day ? ' · ' + e.day : '') + '</div>'
+        + '<div class="activity-time">' + time + '</div>'
+        + '</div></div>';
+    }).join('');
+  } catch(e) {
+    document.getElementById('activityFeedCard').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.alert + '</div><div class="empty-text">Unable to load</div></div>';
+  }
+}
+
+// ── Load leaderboard ──
+async function loadLeaderboard() {
+  try {
+    var r = await fetch('/api/am-visits/hod-summary');
+    var d = await r.json();
+    var el = document.getElementById('leaderboardCard');
+    
+    if (!d.data || !d.data.length) {
+      el.innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.trophy + '</div><div class="empty-text">No data</div></div>';
+      return;
+    }
+    
+    var sorted = d.data.sort(function(a, b) { return b.todayVisits.length - a.todayVisits.length; });
+    el.innerHTML = sorted.slice(0, 5).map(function(a, i) {
+      return '<div class="leaderboard-item">'
+        + '<div class="leaderboard-rank' + (i < 3 ? ' top' : '') + '">' + (i + 1) + '</div>'
+        + '<div class="leaderboard-name">' + a.am + '</div>'
+        + '<div class="leaderboard-visits">' + a.todayVisits.length + ' visits today</div>'
         + '</div>';
     }).join('');
   } catch(e) {
-    var list = document.getElementById('storeList');
-    if(list) list.innerHTML = '<div class="empty"><div class="empty-icon">&#9888;&#65039;</div>Could not load scores</div>';
+    document.getElementById('leaderboardCard').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.alert + '</div><div class="empty-text">Unable to load</div></div>';
   }
 }
-loadStores();
 
-// ── AM Identity System ──────────────────────────────────
-var currentAM = localStorage.getItem('th_am_name') || '';
+// ── Identity system ──
+var _pin = '';
+var _selectedAM = '';
+
+function showIdentitySelector() {
+  document.getElementById('idOverlay').style.display = 'flex';
+  document.getElementById('nameStep').style.display = 'block';
+  document.getElementById('pinStep').style.display = 'none';
+  _selectedAM = '';
+  _pin = '';
+  renderPinDots();
+}
 
 function selectAM(name) {
-  localStorage.setItem('th_am_name', name);
-  currentAM = name;
-  document.getElementById('idOverlay').style.display = 'none';
-  // Update greeting
-  var greetEl = document.getElementById('greetName');
-  if(greetEl) greetEl.textContent = name;
-  // Reload to apply
-  location.reload();
+  _selectedAM = name;
+  document.getElementById('pinAmName').textContent = name;
+  document.getElementById('nameStep').style.display = 'none';
+  document.getElementById('pinStep').style.display = 'block';
+  _pin = '';
+  renderPinDots();
 }
 
-function checkIdentity() {
-  var name = localStorage.getItem('th_am_name');
-  if(!name) {
-    document.getElementById('idOverlay').style.display = 'flex';
-  } else {
-    var greetEl = document.getElementById('greetName');
-    if(greetEl) greetEl.textContent = name;
+function backToNameStep() {
+  document.getElementById('nameStep').style.display = 'block';
+  document.getElementById('pinStep').style.display = 'none';
+  _selectedAM = '';
+  _pin = '';
+  renderPinDots();
+}
+
+function pinPress(k) {
+  if (k === 'c') { _pin = ''; }
+  else if (k === 'x') { _pin = _pin.slice(0, -1); }
+  else if (_pin.length < 4) { _pin += k; }
+  renderPinDots();
+  if (_pin.length === 4) verifyPin(_pin);
+}
+
+function renderPinDots() {
+  for (var i = 0; i < 4; i++) {
+    document.getElementById('d' + i).className = 'pin-dot' + (i < _pin.length ? ' filled' : '');
   }
 }
 
-// Change AM button
-function changeAM() {
-  document.getElementById('idOverlay').style.display = 'flex';
-}
-
-window.addEventListener('load', checkIdentity);
-
-
-// ── Today's Pulse ────────────────────────────────────────
-function loadPulse() {
-  var am = localStorage.getItem('th_am_name') || '';
-  var today = new Date();
-  var days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
-  var todayDay = days[today.getDay()];
-
-  // Task chip
-  var taskTxt = document.getElementById('pulse-tasks-txt');
-  if(taskTxt) {
-    if(todayDay === 'thursday') {
-      taskTxt.textContent = 'Day off ☕';
-      document.getElementById('pulse-tasks').style.borderColor = '#34C759';
+function verifyPin(pin) {
+  API.fetch('/api/auth/verify-pin', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ pin: pin })
+  })
+  .then(function(d) {
+    if (d.success) {
+      localStorage.setItem('th_am_name', _selectedAM);
+      localStorage.setItem('th_am_role', d.role);
+      localStorage.setItem('th_token', d.token);
+      document.getElementById('idOverlay').style.display = 'none';
+      init();
     } else {
-      taskTxt.textContent = todayDay.charAt(0).toUpperCase()+todayDay.slice(1)+' checklist due';
-      document.getElementById('pulse-tasks').style.borderColor = '#FF9500';
+      document.getElementById('pinError').style.opacity = '1';
+      document.getElementById('pinDots').classList.add('shake');
+      setTimeout(function() {
+        document.getElementById('pinError').style.opacity = '0';
+        document.getElementById('pinDots').classList.remove('shake');
+        _pin = '';
+        renderPinDots();
+      }, 1500);
     }
-  }
-
-  // Score chip - load from API
-  if(am) {
-    fetch('/api/submissions?am=' + encodeURIComponent(am))
-    .then(function(r){return r.json();})
-    .then(function(d){
-      var subs = d.data || [];
-      var scored = subs.filter(function(s){return s.score!=null&&s.score>0;});
-      var scoreTxt = document.getElementById('pulse-score-txt');
-      if(scoreTxt) {
-        if(scored.length > 0) {
-          var latest = scored[scored.length-1];
-          var color = latest.score>=90?'#34C759':latest.score>=75?'#FF9500':'#FF3B30';
-          scoreTxt.textContent = 'Latest score: ' + latest.score + '%';
-          scoreTxt.style.color = color;
-          document.getElementById('pulse-score').style.borderColor = color;
-        } else {
-          scoreTxt.textContent = 'No scores yet';
-        }
-      }
-    }).catch(function(){});
-  }
-
-  // Flags chip
-  var flagTxt = document.getElementById('pulse-flags-txt');
-  if(flagTxt) flagTxt.textContent = 'View my scores';
+  })
+  .catch(function() {
+    _pin = '';
+    renderPinDots();
+  });
 }
-window.addEventListener('load', function(){ loadPulse(); });
 
+function updateNavUser() {
+  var am = localStorage.getItem('th_am_name') || '';
+  var avatar = document.getElementById('navAvatar');
+  var userName = document.getElementById('navUserName');
+  var logoutBtn = document.getElementById('logoutBtn');
+  var settingsLink = document.getElementById('settingsLink');
+  var navPhoto = document.getElementById('navPhoto');
+  
+  if (am) {
+    avatar.textContent = am.charAt(0);
+    userName.textContent = am;
+    document.getElementById('heroName').textContent = am;
+    logoutBtn.style.display = 'block';
+    settingsLink.style.display = 'inline-block';
+    // Load profile photo
+    fetch('/api/profile/photo/' + encodeURIComponent(am))
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (d.url && navPhoto) {
+          navPhoto.src = d.url;
+          navPhoto.style.display = 'block';
+          avatar.style.opacity = '0';
+        }
+      })
+      .catch(function() {});
+  } else {
+    avatar.textContent = '?';
+    userName.textContent = 'Select';
+    document.getElementById('heroName').textContent = 'Welcome to OpsAIHub';
+    logoutBtn.style.display = 'none';
+    settingsLink.style.display = 'none';
+    if (navPhoto) { navPhoto.style.display = 'none'; avatar.style.opacity = '1'; }
+  }
+}
 
-setInterval(function(){ // Only load stores if AM is selected
-var _am=localStorage.getItem('th_am_name')||'';
-if(_am){ loadStores(); } else {
-  var el=document.getElementById('storeListEmpty');
-  if(el) el.style.display='block';
-} }, 5*60*1000); // auto-refresh scores
+function logout() {
+  localStorage.removeItem('th_am_name');
+  localStorage.removeItem('th_token');
+  localStorage.removeItem('th_am_role');
+  document.getElementById('idOverlay').style.display = 'flex';
+  document.getElementById('nameStep').style.display = 'block';
+  document.getElementById('pinStep').style.display = 'none';
+  updateNavUser();
+  document.getElementById('storeList').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.store + '</div><div class="empty-text">Select your name to view stores</div></div>';
+  document.getElementById('activityFeedCard').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.activity + '</div><div class="empty-text">No recent activity</div></div>';
+  document.getElementById('leaderboardCard').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.trophy + '</div><div class="empty-text">Loading leaderboard...</div></div>';
+}
 
-setInterval(loadStores, 5*60*1000); // refresh every 5 mins
+// ── Init ──
+function init() {
+  setGreeting();
+  setTodayCard();
+  setWelcomeMessage();
+  updateNavUser();
+  loadStores();
+  loadActivityFeed();
+  loadLeaderboard();
+}
+
+// Check if already logged in
+var savedAm = localStorage.getItem('th_am_name');
+var savedToken = localStorage.getItem('th_token');
+if (savedAm && savedToken) {
+  init();
+} else {
+  localStorage.removeItem('th_am_name');
+  localStorage.removeItem('th_token');
+  localStorage.removeItem('th_am_role');
+  document.getElementById('idOverlay').style.display = 'flex';
+  setGreeting();
+  setTodayCard();
+  setWelcomeMessage();
+}
+
+// Auto-refresh every 5 minutes
+setInterval(function() {
+  var am = localStorage.getItem('th_am_name') || '';
+  if (am) {
+    loadStores();
+    loadActivityFeed();
+  }
+}, 5 * 60 * 1000);
 </script>
-<script id="pin-wall-js">
-(function(){
-  var PINS={'am':'2026','hod':'2202'};
-  var wall=document.getElementById('pin-wall');
-  var isHODPage=window.location.pathname.indexOf('hod')>-1;
-  var pinOK=localStorage.getItem('th_pin_ok')==='1';
-  var hodOK=localStorage.getItem('th_hod_ok')==='1';
-  if(pinOK&&(!isHODPage||hodOK)){wall.style.display='none';return;}
-  var entered=[];
-  function pinPress(v){
-    if(v==='c'){entered=[];render();return;}
-    if(v==='x'){entered.pop();render();return;}
-    if(entered.length>=4) return;
-    entered.push(v);
-    render();
-    if(entered.length===4){
-      setTimeout(function(){check();},100);
-    }
-  }
-  function render(){
-    for(var i=0;i<4;i++){
-      document.getElementById('d'+i).className='pin-dot'+(i<entered.length?' filled':'');
-    }
-  }
-  function check(){
-    var pin=entered.join('');
-    if(pin===PINS.hod){
-      localStorage.setItem('th_pin_ok','1');
-      localStorage.setItem('th_hod_ok','1');
-      localStorage.setItem('th_is_hod','1');
-      wall.style.display='none';
-    }else if(pin===PINS.am&&!isHODPage){
-      localStorage.setItem('th_pin_ok','1');
-      wall.style.display='none';
-    }else{
-      wrong();
-    }
-  }
-  function wrong(){
-    entered=[];
-    render();
-    var dots=document.getElementById('pinDots');
-    var err=document.getElementById('pinError');
-    dots.classList.add('shake');
-    err.classList.add('show');
-    setTimeout(function(){dots.classList.remove('shake');},400);
-    setTimeout(function(){err.classList.remove('show');},2000);
-  }
-  window.pinPress=pinPress;
-})();
-</script>
+
+<script src="/js/api.js"></script>
 </body>
 </html>

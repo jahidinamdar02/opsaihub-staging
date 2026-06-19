@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1.0">
 <title>Dates &amp; Events</title>
+<link rel="stylesheet" href="styles.css">
 <style>
-:root{--red:#C8102E;--surface:#F2F2F7;--card:#fff;--border:#E5E5EA;--text:#1C1C1E;--text2:#8E8E93;--green:#34C759;--amber:#FF9500;--purple:#AF52DE;--blue:#007AFF;--ipl:#0066CC;--nav-h:72px;}
+
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--surface);padding-bottom:calc(var(--nav-h) + 16px);}
+body{background:var(--surface);padding-bottom:calc(var(--nav-h) + 16px);}
 .hdr{background:linear-gradient(160deg,#0A0A1A,#1A0A2A,#0A1520);padding:calc(env(safe-area-inset-top,0px) + 44px) 18px 18px;}
 .hdr-eye{font-size:10px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;}
 .hdr-ttl{font-size:26px;font-weight:700;color:#fff;letter-spacing:-0.5px;}
@@ -15,14 +16,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--su
 .content{padding:12px 16px;}
 .chip-row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:10px;padding-bottom:2px;}
 .chip-row::-webkit-scrollbar{display:none;}
-.chip{flex-shrink:0;padding:9px 16px;border-radius:22px;border:1.5px solid var(--border);background:var(--card);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:all 0.15s;}
+.chip{flex-shrink:0;padding:9px 16px;border-radius:22px;border:1.5px solid var(--border);background:var(--card);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:background-color 120ms ease-out,color 120ms ease-out;}
 .chip.on{background:var(--text);color:#fff;border-color:var(--text);}
 .chip.red{background:var(--red);color:#fff;border-color:var(--red);}
 .chip.blue{background:var(--blue);color:#fff;border-color:var(--blue);}
 .chip.amber{background:var(--amber);color:#fff;border-color:var(--amber);}
 .chip.purple{background:var(--purple);color:#fff;border-color:var(--purple);}
 .chip.ipl{background:var(--ipl);color:#fff;border-color:var(--ipl);}
-.chip.world{background:#FF3B30;color:#fff;border-color:#FF3B30;}
+.chip.world{background:var(--critical);color:#fff;border-color:var(--critical);}
 .month-row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:14px;}
 .month-row::-webkit-scrollbar{display:none;}
 .mbtn{flex-shrink:0;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;color:var(--text2);background:var(--card);border:1.5px solid var(--border);cursor:pointer;}
@@ -36,37 +37,166 @@ body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--su
 .en{font-size:13px;font-weight:700;color:var(--text);}
 .enote{font-size:11px;color:var(--text2);margin-top:2px;line-height:1.4;}
 .etags{margin-top:5px;display:flex;gap:5px;flex-wrap:wrap;}
-.etag{display:inline-block;padding:2px 7px;border-radius:6px;font-size:9px;font-weight:700;background:rgba(0,0,0,0.06);}
+.etag{display:inline-block;padding:2px 7px;border-radius:6px;font-size:9px;font-weight:700;background:var(--surface);color:var(--text2);}
 .icard{background:linear-gradient(135deg,#003D99,#0066CC);border-radius:14px;padding:12px 14px;margin-bottom:8px;display:flex;gap:12px;}
 .idate{min-width:44px;background:rgba(255,255,255,0.1);border-radius:10px;padding:6px 4px;text-align:center;}
 .idd{font-size:20px;font-weight:700;color:#fff;line-height:1;}
 .imm{font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-top:2px;}
 .lcard{border-radius:14px;padding:14px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
-.wcard{background:var(--card);border-radius:12px;padding:12px 14px;margin-bottom:8px;border-left:3px solid var(--red);}
-.t-high{color:#FF3B30;font-size:9px;font-weight:700;}
-.t-med{color:#FF9500;font-size:9px;font-weight:700;}
-.t-low{color:#8E8E93;font-size:9px;font-weight:700;}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000;}
+.wcard{background:var(--card);border-radius:12px;padding:12px 14px;margin-bottom:8px;border:1.5px solid var(--red);}
+.t-high{color:var(--critical);font-size:9px;font-weight:700;}
+.t-med{color:var(--warning);font-size:9px;font-weight:700;}
+.t-low{color:var(--text3);font-size:9px;font-weight:700;}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:var(--nav-bg);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:var(--z-nav); transform:translateZ(0);-webkit-transform:translateZ(0); }
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:6px 8px;min-width:50px;}
 .nav-icon{font-size:20px;}
 .nav-label{font-size:9px;font-weight:500;color:var(--text2);}
-.nav-item.active .nav-label{color:var(--purple);font-weight:700;}
+.nav-item.active .nav-label{color:var(--red);font-weight:700;}
+/* ── Event log form ── */
+#evSheet{position:fixed;inset:0;z-index:var(--z-modal);display:none;}
+#evSheet.open{display:block;}
+#evSheetBg{position:absolute;inset:0;background:rgba(0,0,0,0.45);}
+#evSheetBody{position:absolute;bottom:0;left:0;right:0;background:var(--card);border-radius:20px 20px 0 0;padding:20px 18px calc(env(safe-area-inset-bottom)+20px);max-height:92vh;overflow-y:auto;}
+.ev-field{margin-bottom:14px;}
+.ev-label{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:5px;}
+.ev-inp{width:100%;padding:11px 13px;border-radius:11px;border:1.5px solid var(--border);font-size:14px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;-webkit-appearance:none;}
+.ev-inp:focus{border-color:var(--blue);background:var(--card);}
+.ev-inp:focus-visible{outline:2px solid #007AFF;outline-offset:2px;}
+.ev-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+#evPreview{background:var(--surface);border-radius:12px;padding:12px 14px;margin-bottom:16px;display:none;}
+.ev-submit{width:100%;padding:14px;background:#C8102E;color:#fff;border:none;border-radius:13px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;}
+.ev-submit:active{opacity:0.85;}
+#evFab{position:fixed;bottom:calc(var(--nav-h) + 14px);right:16px;z-index:var(--z-overlay);height:46px;padding:0 18px 0 14px;border-radius:50px;background:#C8102E;color:#fff;border:none;font-size:14px;font-weight:700;font-family:inherit;letter-spacing:0.2px;display:none;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 16px rgba(200,16,46,0.4);cursor:pointer;white-space:nowrap;}
+
+@media (min-width:768px) {
+  #evFab {
+    bottom: 24px;
+    right: 24px;
+  }
+}
 </style>
 <style id="pin-wall-css">
-#pin-wall{position:fixed;inset:0;z-index:99999;background:#1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
+#pin-wall{position:fixed;inset:0;z-index:var(--z-wall);background:#1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
 .pin-logo{font-size:48px;margin-bottom:8px;}
 .pin-title{font-size:24px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.5px;}
-.pin-sub{font-size:13px;color:#6E6E73;margin-bottom:40px;}
+.pin-sub{font-size:13px;color:var(--text2);margin-bottom:40px;}
 .pin-dots{display:flex;gap:16px;margin-bottom:32px;}
-.pin-dot{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.15);transition:all 0.2s;}
+.pin-dot{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.15);transition:background-color 120ms ease-out;}
 .pin-dot.filled{background:#C8102E;}
 .pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:240px;}
-.pin-btn{height:64px;border-radius:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;font-size:22px;font-weight:600;cursor:pointer;transition:all 0.15s;}
+.pin-btn{height:64px;border-radius:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;font-size:22px;font-weight:600;cursor:pointer;transition:background-color 120ms ease-out,transform 150ms ease-out;}
 .pin-btn:active{background:rgba(200,16,46,0.3);transform:scale(0.95);}
-.pin-error{font-size:13px;color:#FF3B30;margin-top:16px;opacity:0;transition:opacity 0.3s;}
+.pin-error{font-size:13px;color:var(--critical);margin-top:16px;opacity:0;transition:opacity 0.3s;}
 .pin-error.show{opacity:1;}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 .pin-dots.shake{animation:shake 0.3s ease;}
+</style>
+<!-- nav-upgrade-v1 -->
+<style>
+/* ═══════════════════════════════════════════════
+   LAPTOP-FIRST NAV — 220 px side rail (desktop)
+   bottom tab bar restored at ≤ 767 px
+   ═══════════════════════════════════════════════ */
+/* ── desktop body canvas ── */
+body{padding-left:var(--nav-w)!important;padding-bottom:0!important;}
+
+/* ── 220 px side rail ── */
+.bottom-nav{
+  position:fixed!important;top:0!important;left:0!important;
+  bottom:auto!important;right:auto!important;
+  width:var(--nav-w)!important;height:100dvh!important;
+  background:var(--nav-bg)!important;
+  backdrop-filter:blur(20px)!important;
+  border-right:1px solid var(--border)!important;
+  border-top:none!important;
+  display:flex!important;flex-direction:column!important;
+  justify-content:flex-start!important;align-items:stretch!important;
+  padding:0 10px 20px!important;
+  z-index:50!important;overflow-y:auto!important;gap:2px!important;
+  transform:translateZ(0)!important;
+}
+.bottom-nav::before{
+  content:'☕  Tim\2019s Ops'!important;
+  font-size:15px!important;font-weight:700!important;
+  color:var(--text)!important;letter-spacing:-0.3px!important;
+  display:block!important;
+  padding:20px 10px 16px!important;margin-bottom:6px!important;
+  border-bottom:1px solid var(--border)!important;flex-shrink:0!important;
+}
+.nav-item{
+  display:flex!important;flex-direction:row!important;
+  align-items:center!important;gap:10px!important;
+  text-decoration:none!important;
+  padding:10px 12px!important;border-radius:10px!important;
+  min-width:0!important;
+  transition:background 0.15s ease-out!important;
+}
+.nav-item:hover{background:rgba(200,16,46,0.06)!important;}
+.nav-item.active{background:rgba(200,16,46,0.1)!important;}
+.nav-icon{font-size:18px!important;flex-shrink:0!important;}
+.nav-label{
+  font-size:13px!important;font-weight:500!important;
+  color:var(--text2)!important;white-space:nowrap!important;
+  overflow:hidden!important;text-overflow:ellipsis!important;
+}
+.nav-item.active .nav-label{color:var(--red)!important;font-weight:600!important;}
+.nav-dot{display:none!important;}
+
+/* ── desktop white sticky header ── */
+.hdr{
+  background:var(--card)!important;
+  border-bottom:1px solid var(--border)!important;
+  padding:0 32px!important;height:60px!important;
+  display:flex!important;align-items:center!important;gap:16px!important;
+  position:sticky!important;top:0!important;z-index:89!important;
+}
+.hdr-ttl,.hdr-title{font-size:20px!important;font-weight:700!important;color:var(--text)!important;letter-spacing:-0.3px!important;}
+.hdr-eye{font-size:11px!important;font-weight:700!important;color:var(--text2)!important;text-transform:uppercase!important;letter-spacing:1.5px!important;}
+.hdr-sub{font-size:12px!important;color:var(--text2)!important;margin-left:auto!important;}
+/* neutral content-area padding */
+.content{padding:24px 32px!important;max-width:1400px!important;margin:0 auto!important;}
+
+/* ── semantic token fill-in (for pages that lack them) ── */
+/* ═══════════════════════════════════════════════
+   MOBILE OVERRIDE ≤ 767 px
+   ═══════════════════════════════════════════════ */
+@media (max-width:767px){
+  body{padding-left:0!important;padding-bottom:calc(var(--nav-h,64px) + 16px)!important;}
+
+  .bottom-nav{
+    width:100%!important;height:var(--nav-h,64px)!important;
+    top:auto!important;bottom:0!important;left:0!important;right:0!important;
+    flex-direction:row!important;justify-content:space-around!important;
+    align-items:center!important;
+    padding:0 0 env(safe-area-inset-bottom)!important;
+    border-right:none!important;border-top:1px solid var(--border)!important;
+    overflow-y:visible!important;gap:0!important;
+  }
+  .bottom-nav::before{display:none!important;}
+  .nav-item{
+    flex-direction:column!important;gap:3px!important;
+    padding:8px 12px!important;border-radius:0!important;
+    transition:none!important;
+  }
+  .nav-item:hover,.nav-item.active{background:transparent!important;}
+  .nav-item.active .nav-label{color:var(--red)!important;}
+  .nav-icon{font-size:22px!important;}
+  .nav-label{font-size:10px!important;}
+
+  /* restore mobile gradient header */
+  .hdr{
+    background:linear-gradient(150deg,#1A0508 0%,#C8102E 60%,#9B0D22 100%)!important;
+    padding:calc(env(safe-area-inset-top,0px) + 44px) 16px 18px!important;
+    height:auto!important;position:static!important;
+    flex-direction:column!important;align-items:flex-start!important;gap:4px!important;
+  }
+  .hdr-ttl,.hdr-title{font-size:24px!important;color:#fff!important;}
+  .hdr-eye{color:rgba(255,255,255,0.55)!important;}
+  .hdr-sub{font-size:12px!important;color:rgba(255,255,255,0.6)!important;margin-left:0!important;}
+
+  /* restore mobile content padding */
+  .content{padding:14px 16px!important;max-width:100%!important;}
+}
 </style>
 </head>
 <body>
@@ -90,9 +220,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--su
     <button class="pin-btn" onclick="pinPress('7')">7</button>
     <button class="pin-btn" onclick="pinPress('8')">8</button>
     <button class="pin-btn" onclick="pinPress('9')">9</button>
-    <button class="pin-btn" onclick="pinPress('c')" style="font-size:14px;">Clear</button>
+    <button class="pin-btn" onclick="pinPress('c')" >Clear</button>
     <button class="pin-btn" onclick="pinPress('0')">0</button>
-    <button class="pin-btn" onclick="pinPress('x')" style="font-size:20px;">⌫</button>
+    <button class="pin-btn" onclick="pinPress('x')" >⌫</button>
   </div>
   <div class="pin-error" id="pinError">Incorrect PIN. Try again.</div>
 </div>
@@ -106,13 +236,90 @@ body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--su
   <div class="month-row" id="monthRow"></div>
   <div id="elist"></div>
 </div>
+<!-- FAB: Log Event -->
+<button id="evFab" onclick="openEvSheet()"><span style="font-size:20px;line-height:1;">+</span> Log Event</button>
+
+<!-- Log Event Sheet -->
+<div id="evSheet">
+  <div id="evSheetBg" onclick="closeEvSheet()"></div>
+  <div id="evSheetBody">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+      <div style="font-size:18px;font-weight:700;color:var(--text);">Log Event</div>
+      <button onclick="closeEvSheet()" style="background:var(--surface);border:none;border-radius:50%;width:32px;height:32px;font-size:18px;color:var(--text2);cursor:pointer;">&#x2715;</button>
+    </div>
+    <div class="ev-field">
+      <div class="ev-label">Area Manager</div>
+      <select class="ev-inp" id="efAM">
+        <option value="">Select AM</option>
+        <option>Raman</option><option>Harish</option><option>Rohit</option>
+        <option>Deepak</option><option>Kajal</option>
+        <option>Sandeep Mukharjee</option><option>Akash Rathod</option>
+        <option>Jagadeesha</option><option>Shivam</option>
+      </select>
+    </div>
+    <div class="ev-field">
+      <div class="ev-label">Store</div>
+      <select class="ev-inp" id="efStore">
+        <option value="">Select store</option>
+        <option>T3DD</option><option>T3DD FC</option><option>T1DD</option><option>Cyber Hub</option><option>Select City</option>
+        <option>Green Park</option><option>Basant Lok</option><option>Epicuria</option><option>APL Golf Course</option>
+        <option>Skymark</option><option>Vegas Mall</option><option>NSP</option><option>Punjabi Bagh</option>
+        <option>CP67 Mohali</option><option>Elante Mall</option><option>Sunview</option><option>Sector 35</option>
+        <option>Bhupindra Road</option><option>Malhar Rd</option><option>Sangrur</option><option>Bucho</option>
+        <option>Balewadi</option><option>Lokhandwala</option><option>Supreme</option><option>PMC Kurla</option>
+        <option>Viman Nagar</option><option>PMC Wakad</option><option>FC Road</option><option>FIFC</option>
+        <option>HPCL-MPE</option><option>NMIAL</option><option>NMIAL Arrival</option><option>Seawoods</option>
+        <option>Koramangala</option><option>BIAL</option><option>Mall of Asia</option><option>HSR Layout</option>
+        <option>Inorbit Mall Hyd</option><option>Hyderabad Arrivals</option><option>Lakeshore</option>
+        <option>Hyderabad Airport</option><option>Ahmedabad Airport</option><option>Sindhu Bhavan</option><option>Navrangpura</option>
+      </select>
+    </div>
+    <div class="ev-field">
+      <div class="ev-label">Event Name</div>
+      <input class="ev-inp" id="efName" type="text" placeholder="e.g. Corporate Breakfast, College Event">
+    </div>
+    <div class="ev-row2">
+      <div class="ev-field">
+        <div class="ev-label">Event Date</div>
+        <input class="ev-inp" id="efDate" type="date">
+      </div>
+      <div class="ev-field">
+        <div class="ev-label">Sales (&#x20B9;)</div>
+        <input class="ev-inp" id="efSales" type="number" placeholder="0" oninput="updateEvPreview()">
+      </div>
+    </div>
+    <div class="ev-row2">
+      <div class="ev-field">
+        <div class="ev-label">Rev Share / Rental %</div>
+        <input class="ev-inp" id="efRevShare" type="number" placeholder="0" min="0" max="100" oninput="updateEvPreview()">
+      </div>
+      <div class="ev-field">
+        <div class="ev-label">Other Expenses (&#x20B9;)</div>
+        <input class="ev-inp" id="efExp" type="number" placeholder="0" oninput="updateEvPreview()">
+      </div>
+    </div>
+    <div id="evPreview">
+      <div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">P&amp;L Preview</div>
+      <div id="evPreviewRows"></div>
+    </div>
+    <div class="ev-field">
+      <div class="ev-label">Notes (optional)</div>
+      <input class="ev-inp" id="efNotes" type="text" placeholder="Any remarks">
+    </div>
+    <div id="evErr" style="color:var(--red);font-size:12px;margin-bottom:10px;display:none;"></div>
+    <button class="ev-submit" onclick="submitEvQuick()">Save Event</button>
+  </div>
+</div>
+
 <nav class="bottom-nav">
-  <a href="index.html" class="nav-item"><span class="nav-icon">&#127968;</span><span class="nav-label">Home</span></a>
-  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#9989;</span><span class="nav-label">Tasks</span></a>
-  <a href="events.html" class="nav-item active"><span class="nav-icon">&#128197;</span><span class="nav-label">Events</span></a>
-  <a href="performance.html" class="nav-item"><span class="nav-icon">&#128202;</span><span class="nav-label">Scores</span></a>
-  <a href="team.html" class="nav-item"><span class="nav-icon">&#128101;</span><span class="nav-label">Team</span></a>
-  <a href="audit.html" class="nav-item"><span class="nav-icon">&#128269;</span><span class="nav-label">Audits</span></a>
+  <a href="index.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="nav-label">Home</span></a>
+  <a href="tasks.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span class="nav-label">Tasks</span></a>
+  <a href="events.html" class="nav-item active"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span class="nav-label">Events</span>
+    <div class="nav-dot"></div>
+  </a>
+  <a href="performance.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">Scores</span></a>
+  <a href="team.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="nav-label">Team</span></a>
+  <a href="audit.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><span class="nav-label">Audits</span></a>
 </nav>
 <script>
 
@@ -318,7 +525,7 @@ function applyEvF(){
 
 function renderEventsTab(){
   var el=document.getElementById('elist');
-  el.innerHTML='<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">Loading events...</div>';
+  el.innerHTML='<div class="empty-sm">Loading events...</div>';
   fetch('/api/events').then(function(r){return r.json();}).then(function(d){
     var evs=d.data||[];
     var filtered=CM?evs.filter(function(e){return e.eventDate&&parseInt(e.eventDate.split('-')[1])===CM;}):evs;
@@ -337,19 +544,19 @@ function renderEventsTab(){
     h+='<div style="background:var(--card);border-radius:12px;padding:14px;border-top:3px solid '+yB.color+';">';
     h+='<div style="font-size:9px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">YTD All Events</div>';
     h+='<div style="font-size:28px;font-weight:700;color:'+yB.color+';line-height:1;">'+yPct+'%</div>';
-    h+='<div style="font-size:10px;color:var(--text2);">Profit Margin</div>';
+    h+='<div class="text-xs-10 text-muted">Profit Margin</div>';
     h+='<div style="margin-top:6px;border-top:1px solid var(--border);padding-top:5px;font-size:11px;color:var(--text2);">Sales: <b>'+cur+tS.toLocaleString('en-IN')+'</b><br>Profit: <b style="color:'+yB.color+'">'+cur+tP.toLocaleString('en-IN')+'</b><br>Events: <b>'+evs.length+'</b></div>';
     h+='</div>';
     h+='<div style="background:var(--card);border-radius:12px;padding:14px;border-top:3px solid '+mB.color+';">';
     h+='<div style="font-size:9px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">MTD '+(MF[CM]||'Month')+'</div>';
     h+='<div style="font-size:28px;font-weight:700;color:'+mB.color+';line-height:1;">'+mPct+'%</div>';
-    h+='<div style="font-size:10px;color:var(--text2);">Profit Margin</div>';
+    h+='<div class="text-xs-10 text-muted">Profit Margin</div>';
     h+='<div style="margin-top:6px;border-top:1px solid var(--border);padding-top:5px;font-size:11px;color:var(--text2);">Sales: <b>'+cur+mS.toLocaleString('en-IN')+'</b><br>Profit: <b style="color:'+mB.color+'">'+cur+mP.toLocaleString('en-IN')+'</b><br>Events: <b>'+filtered.length+'</b></div>';
     h+='</div></div>';
     h+='<div style="background:var(--card);border-radius:10px;padding:10px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">';
-    h+='<div style="font-size:11px;color:var(--text2);">Compliance: <b style="color:var(--text)">'+cP+'/'+evs.length+'</b> passed</div>';
+    h+='<div class="text-xs-muted">Compliance: <b style="color:var(--text)">'+cP+'/'+evs.length+'</b> passed</div>';
     h+='<div style="display:flex;gap:5px;">';
-    h+='<span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:5px;background:rgba(255,59,48,0.12);color:#C8102E;">&le;20%</span>';
+    h+='<span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:5px;background:rgba(255,59,48,0.12);color:var(--red);">&le;20%</span>';
     h+='<span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:5px;background:rgba(255,149,0,0.12);color:#B36200;">21-35%</span>';
     h+='<span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:5px;background:rgba(52,199,89,0.12);color:#1B7A3A;">36%+</span>';
     h+='</div></div>';
@@ -361,7 +568,12 @@ function renderEventsTab(){
     h+='<select style="padding:7px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--card);font-size:12px;font-family:inherit;color:var(--text);outline:none;" id="evCf" onchange="applyEvF()"><option value="">All</option><option value="green">Green 36%+</option><option value="amber">Amber 21-35%</option><option value="red">Red le;20%</option></select>';
     h+='</div>';
     if(!filtered.length){
-      h+='<div style="background:var(--card);border-radius:14px;padding:28px;text-align:center;color:var(--text2);font-size:13px;">No events'+(CM?' for '+MF[CM]:'')+'. Submit from Tasks page.</div>';
+      h+='<div style="background:var(--card);border-radius:14px;padding:32px 20px;text-align:center;">'
+        +'<div style="font-size:32px;margin-bottom:10px;">📋</div>'
+        +'<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px;">No events'+(CM?' for '+MF[CM]:'')+' yet</div>'
+        +'<div style="font-size:13px;color:var(--text2);margin-bottom:16px;">Tap the <b style="color:var(--red);">+ Log Event</b> button below to add your first event</div>'
+        +'<button onclick="openEvSheet()" style="background:#C8102E;color:#fff;border:none;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;">+ Log Event</button>'
+        +'</div>';
       el.innerHTML=h;return;
     }
     h+='<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;">'+filtered.length+' Event'+(filtered.length!==1?'s':'')+(CM?' - '+MF[CM]:'')+'</div>';
@@ -384,7 +596,7 @@ function renderEventsTab(){
       h+='<div class="ev-trow" data-am="'+(ev.am||'')+'" data-pct="'+pct+'" style="display:grid;grid-template-columns:60px 1fr 56px 56px 66px;padding:10px 14px;gap:6px;" onclick="toggleEvRow(\''+rid+'\',this)">';
       h+='<div style="font-size:11px;font-weight:700;color:var(--text);">'+dt+'</div>';
       h+='<div><div style="font-size:12px;font-weight:600;color:var(--text);">'+(ev.store||'--').replace('TH ','')+'</div>';
-      h+='<div style="font-size:10px;color:var(--text2);">'+(ev.am||'')+'</div></div>';
+      h+='<div class="text-xs-10 text-muted">'+(ev.am||'')+'</div></div>';
       h+='<div style="text-align:center;"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:5px;background:'+band.bg+';color:'+band.color+';">'+pct+'%</span></div>';
       h+='<div style="text-align:center;"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:5px;background:'+(comp===100?'rgba(52,199,89,0.12)':comp>=67?'rgba(255,149,0,0.12)':'rgba(255,59,48,0.12)')+';color:'+ctc+';">'+ctxt+'</span></div>';
       h+='<div style="text-align:right;font-size:11px;font-weight:700;color:'+band.color+';">'+pt+'</div>';
@@ -400,13 +612,13 @@ function renderEventsTab(){
       h+='<div id="'+rid+'" style="display:none;background:var(--surface);padding:12px 14px;border-bottom:1px solid var(--border);">';
       h+='<div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;">P&L Breakdown</div>';
       h+='<div style="background:var(--card);border-radius:10px;padding:10px 12px;margin-bottom:8px;">';
-      h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Sales</span><span style="font-size:11px;font-weight:600;color:#1B7A3A;">'+cur+sales.toLocaleString('en-IN')+'</span></div>';
-      h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Rev Share/Rentals ('+comm+'%)</span><span style="font-size:11px;font-weight:600;color:#C8102E;">-'+cur+rp.toLocaleString('en-IN')+'</span></div>';
-      h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Food Cost (30%)</span><span style="font-size:11px;font-weight:600;color:#C8102E;">-'+cur+fp.toLocaleString('en-IN')+'</span></div>';
-      h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Expenses (5%)</span><span style="font-size:11px;font-weight:600;color:#C8102E;">-'+cur+rep.toLocaleString('en-IN')+'</span></div>';
-      h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Commission (2%)</span><span style="font-size:11px;font-weight:600;color:#C8102E;">-'+cur+cop.toLocaleString('en-IN')+'</span></div>';
-      h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Bank Charges (2%)</span><span style="font-size:11px;font-weight:600;color:#C8102E;">-'+cur+bp.toLocaleString('en-IN')+'</span></div>';
-      if(exp>0){h+='<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--text2);">Other Expenses</span><span style="font-size:11px;font-weight:600;color:#C8102E;">-'+cur+exp.toLocaleString('en-IN')+'</span></div>';}
+      h+='<div class="row-border"><span class="text-xs-muted">Sales</span><span style="font-size:11px;font-weight:600;color:#1B7A3A;">'+cur+sales.toLocaleString('en-IN')+'</span></div>';
+      h+='<div class="row-border"><span class="text-xs-muted">Rev Share/Rentals ('+comm+'%)</span><span class="text-xs-muted font-semibold" class="text-red">-'+cur+rp.toLocaleString('en-IN')+'</span></div>';
+      h+='<div class="row-border"><span class="text-xs-muted">Food Cost (30%)</span><span class="text-xs-muted font-semibold" class="text-red">-'+cur+fp.toLocaleString('en-IN')+'</span></div>';
+      h+='<div class="row-border"><span class="text-xs-muted">Expenses (5%)</span><span class="text-xs-muted font-semibold" class="text-red">-'+cur+rep.toLocaleString('en-IN')+'</span></div>';
+      h+='<div class="row-border"><span class="text-xs-muted">Commission (2%)</span><span class="text-xs-muted font-semibold" class="text-red">-'+cur+cop.toLocaleString('en-IN')+'</span></div>';
+      h+='<div class="row-border"><span class="text-xs-muted">Bank Charges (2%)</span><span class="text-xs-muted font-semibold" class="text-red">-'+cur+bp.toLocaleString('en-IN')+'</span></div>';
+      if(exp>0){h+='<div class="row-border"><span class="text-xs-muted">Other Expenses</span><span class="text-xs-muted font-semibold" class="text-red">-'+cur+exp.toLocaleString('en-IN')+'</span></div>';}
       h+='<div style="display:flex;justify-content:space-between;padding:5px 0 2px;border-top:2px solid var(--border);margin-top:3px;"><span style="font-size:12px;font-weight:700;color:var(--text);">Net Profit</span><span style="font-size:12px;font-weight:700;color:'+band.color+';">'+(prof>=0?'+':'')+cur+Math.abs(prof).toLocaleString('en-IN')+' ('+pct+'%)</span></div>';
       h+='</div>';
       if(ev.compliance){
@@ -417,7 +629,7 @@ function renderEventsTab(){
           var ac=c.answer==='yes'?'#1B7A3A':'#C8102E';
           h+='<div style="background:var(--card);border-radius:8px;padding:8px 12px;margin-bottom:4px;display:flex;justify-content:space-between;gap:8px;">';
           h+='<div><div style="font-size:11px;font-weight:600;color:var(--text);">'+item.label+'</div>';
-          h+='<div style="font-size:10px;color:var(--text2);">'+(c.comment||'No comment')+'</div></div>';
+          h+='<div class="text-xs-10 text-muted">'+(c.comment||'No comment')+'</div></div>';
           h+='<div style="font-size:11px;font-weight:700;color:'+ac+';flex-shrink:0;">'+(c.answer||'--').toUpperCase()+'</div></div>';
         });
         h+='<div style="background:var(--card);border-radius:8px;padding:8px 12px;margin-bottom:4px;display:flex;justify-content:space-between;">';
@@ -483,7 +695,7 @@ out+='<div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5p
       out+='<div style="font-size:11px;color:rgba(255,255,255,0.75);">'+lto.stores+'</div>';
       if(lto.note) out+='<div style="font-size:10px;color:rgba(255,255,255,0.7);margin-top:3px;font-style:italic;">'+lto.note+'</div>';
       out+='</div>';
-      out+='<div style="text-align:right;">';
+      out+='<div class="text-right">';
       out+='<div style="font-size:24px;font-weight:800;color:#fff;">'+msg+'</div>';
       out+='</div></div>';
       out+='</div>';
@@ -499,19 +711,19 @@ out+='<div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5p
       if(!d.success||!d.data.length){el.innerHTML='<div style="padding:20px;color:var(--text2);">No news available</div>';return;}
       var cities=['Delhi','Mumbai','Chandigarh','Pune','Ahmedabad','Bengaluru','Hyderabad','MPEH'];
       var cityColors={'Delhi':'#C8102E','Mumbai':'#007AFF','Chandigarh':'#34C759','Pune':'#FF9500','Ahmedabad':'#AF52DE','Bengaluru':'#FF2D55','Hyderabad':'#5AC8FA','MPEH':'#FF6B35'};
-      var out='<div style="font-size:11px;color:var(--text2);margin-bottom:12px;display:flex;justify-content:space-between;"><span>&#x1F4F0; Live India News</span><span style="color:#34C759;">&#x25CF; Updated just now</span></div>';
+      var out='<div style="font-size:11px;color:var(--text2);margin-bottom:12px;display:flex;justify-content:space-between;"><span>&#x1F4F0; Live India News</span><span style="color:var(--success);">&#x25CF; Updated just now</span></div>';
       cities.forEach(function(city){
         var items=d.data.filter(function(n){return n.city===city;});
         if(!items.length) return;
         var col=cityColors[city]||'#C8102E';
-        out+='<div style="margin-bottom:14px;">';
+        out+='<div class="mb-14">';
         out+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">';
         out+='<div style="width:8px;height:8px;border-radius:50%;background:'+col+';flex-shrink:0;"></div>';
         out+='<div style="font-size:11px;font-weight:700;color:'+col+';text-transform:uppercase;letter-spacing:0.8px;">'+city+'</div>';
         out+='</div>';
         items.forEach(function(n){
           var t=n.pubDate?new Date(n.pubDate).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}):'';
-          out+='<a href="'+n.link+'" target="_blank" style="display:block;background:var(--card);border-radius:10px;padding:10px 12px;margin-bottom:6px;text-decoration:none;border-left:3px solid '+col+';">';
+          out+='<a href="'+n.link+'" target="_blank" style="display:block;background:var(--card);border-radius:10px;padding:10px 12px;margin-bottom:6px;text-decoration:none;border:1.5px solid '+col+';">';
           out+='<div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:4px;">'+n.title+'</div>';
           out+='<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text2);">';
           out+='<span>'+n.source+'</span><span>'+t+'</span></div>';
@@ -532,12 +744,12 @@ if(CF==='world'){
       .then(function(d){
         if(!d.success||!d.data.length){el.innerHTML='<div style="padding:20px;color:var(--text2);">No news available</div>';return;}
         var topics=['Global Economy','Middle East','US Markets','China Trade','Crude Oil'];
-        var out='<div style="font-size:11px;color:var(--text2);margin-bottom:12px;display:flex;justify-content:space-between;"><span>&#x1F310; World News — India Impact</span><span style="color:#34C759;">&#x25CF; Live</span></div>';
+        var out='<div style="font-size:11px;color:var(--text2);margin-bottom:12px;display:flex;justify-content:space-between;"><span>&#x1F310; World News — India Impact</span><span style="color:var(--success);">&#x25CF; Live</span></div>';
         topics.forEach(function(topic){
           var items=d.data.filter(function(n){return n.topic===topic;});
           if(!items.length) return;
           var col=items[0].color||'#FF3B30';
-          out+='<div style="margin-bottom:14px;">';
+          out+='<div class="mb-14">';
           out+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">';
           out+='<div style="width:8px;height:8px;border-radius:50%;background:'+col+';flex-shrink:0;"></div>';
           out+='<div style="font-size:11px;font-weight:700;color:'+col+';text-transform:uppercase;letter-spacing:0.8px;">'+topic+'</div>';
@@ -565,7 +777,7 @@ if(CF==='world'){
       var f=fd(x.d);
       var it=f.ts===today;
       out+='<div class="icard"><div class="idate"><div class="idd">'+f.day+'</div><div class="imm">'+f.mon+'</div></div>';
-      out+='<div style="flex:1;"><div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);">Match '+x.m+(it?' TODAY':'')+'</div>';
+      out+='<div class="flex-1"><div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);">Match '+x.m+(it?' TODAY':'')+'</div>';
       out+='<div style="font-size:13px;font-weight:700;color:#fff;margin-top:2px;">'+x.h+' vs '+x.a+'</div>';
       out+='<div style="font-size:11px;color:rgba(255,255,255,0.6);">'+x.v+' - '+x.t+'</div></div></div>';
     });
@@ -596,7 +808,7 @@ if(CF==='world'){
     if(item.type==='ipl'){
       var x=item.data;
       out+='<div class="icard"><div class="idate"><div class="idd">'+f.day+'</div><div class="imm">'+f.mon+'</div></div>';
-      out+='<div style="flex:1;"><div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);">IPL Match '+x.m+(it?' TODAY':'')+'</div>';
+      out+='<div class="flex-1"><div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);">IPL Match '+x.m+(it?' TODAY':'')+'</div>';
       out+='<div style="font-size:13px;font-weight:700;color:#fff;margin-top:2px;">'+x.h+' vs '+x.a+'</div>';
       out+='<div style="font-size:11px;color:rgba(255,255,255,0.6);">'+x.v+' - '+x.t+'</div></div></div>';
     } else {
@@ -628,10 +840,115 @@ function init(){
 }
 init();
 
+// ── Event Log Form ───────────────────────────────────────
+function openEvSheet(){
+  var fab=document.getElementById('evFab');
+  var sheet=document.getElementById('evSheet');
+  // Pre-fill AM from localStorage
+  var storedAM=localStorage.getItem('th_am_name')||'';
+  if(storedAM){
+    var sel=document.getElementById('efAM');
+    for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===storedAM){sel.selectedIndex=i;break;}}
+  }
+  // Default date to today
+  if(!document.getElementById('efDate').value){
+    document.getElementById('efDate').value=new Date().toISOString().slice(0,10);
+  }
+  sheet.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeEvSheet(){
+  document.getElementById('evSheet').classList.remove('open');
+  document.body.style.overflow='';
+}
+function updateEvPreview(){
+  var cur='₹';
+  var sales=parseFloat(document.getElementById('efSales').value)||0;
+  var revPct=parseFloat(document.getElementById('efRevShare').value)||0;
+  var exp=parseFloat(document.getElementById('efExp').value)||0;
+  var preview=document.getElementById('evPreview');
+  if(sales<=0){preview.style.display='none';return;}
+  var revShare=Math.round(sales*revPct/100);
+  var foodCost=Math.round(sales*0.30);
+  var rental=Math.round(sales*0.05);
+  var comm=Math.round(sales*0.02);
+  var bank=Math.round(sales*0.02);
+  var profit=Math.round(sales-revShare-foodCost-rental-comm-bank-exp);
+  var pct=Math.round(profit/sales*100);
+  var col=pct>=36?'#1B7A3A':pct>=21?'#B36200':'#C8102E';
+  var rows=[
+    ['Sales',cur+sales.toLocaleString('en-IN'),'#1B7A3A'],
+    ['Rev Share/Rental ('+revPct+'%)','-'+cur+revShare.toLocaleString('en-IN'),'#C8102E'],
+    ['Food Cost (30%)','-'+cur+foodCost.toLocaleString('en-IN'),'#C8102E'],
+    ['Expenses (5%)','-'+cur+rental.toLocaleString('en-IN'),'#C8102E'],
+    ['Commission (2%)','-'+cur+comm.toLocaleString('en-IN'),'#C8102E'],
+    ['Bank Charges (2%)','-'+cur+bank.toLocaleString('en-IN'),'#C8102E'],
+  ];
+  if(exp>0) rows.push(['Other Expenses','-'+cur+exp.toLocaleString('en-IN'),'#C8102E']);
+  var h='';
+  rows.forEach(function(r){
+    h+='<div class="row-border"><span class="text-xs-muted">'+r[0]+'</span><span style="font-size:11px;font-weight:600;color:'+r[2]+';">'+r[1]+'</span></div>';
+  });
+  h+='<div style="display:flex;justify-content:space-between;padding:6px 0 2px;border-top:2px solid var(--border);margin-top:3px;"><span style="font-size:13px;font-weight:700;color:var(--text);">Net Profit</span><span style="font-size:13px;font-weight:700;color:'+col+';">'+cur+profit.toLocaleString('en-IN')+' ('+pct+'%)</span></div>';
+  document.getElementById('evPreviewRows').innerHTML=h;
+  preview.style.display='block';
+}
+function submitEvQuick(){
+  var err=document.getElementById('evErr');
+  err.style.display='none';
+  var am=document.getElementById('efAM').value;
+  var store=document.getElementById('efStore').value;
+  var name=document.getElementById('efName').value.trim();
+  var date=document.getElementById('efDate').value;
+  var sales=document.getElementById('efSales').value;
+  if(!am||!store||!name||!date||!sales){
+    err.textContent='Please fill in AM, Store, Event Name, Date and Sales.';
+    err.style.display='block';
+    return;
+  }
+  var btn=document.querySelector('.ev-submit');
+  btn.disabled=true;btn.textContent='Saving...';
+  fetch('/api/events/quick',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      am:am,store:store,eventName:name,eventDate:date,
+      salesGenerated:parseFloat(sales)||0,
+      revenueShare:parseFloat(document.getElementById('efRevShare').value)||0,
+      otherExpenses:parseFloat(document.getElementById('efExp').value)||0,
+      notes:document.getElementById('efNotes').value
+    })
+  }).then(function(r){return r.json();}).then(function(d){
+    if(!d.success){err.textContent=d.error||'Save failed';err.style.display='block';btn.disabled=false;btn.textContent='Save Event';return;}
+    // Reset form
+    ['efAM','efStore','efName','efSales','efRevShare','efExp','efNotes'].forEach(function(id){document.getElementById(id).value='';});
+    document.getElementById('efDate').value='';
+    document.getElementById('evPreview').style.display='none';
+    closeEvSheet();
+    // Refresh the events tab
+    if(CF==='events') renderEventsTab();
+    btn.disabled=false;btn.textContent='Save Event';
+  }).catch(function(){
+    err.textContent='Network error. Please try again.';err.style.display='block';
+    btn.disabled=false;btn.textContent='Save Event';
+  });
+}
+// Show/hide FAB based on active chip
+var _origSetChip=setChip;
+setChip=function(id){
+  _origSetChip(id);
+  var fab=document.getElementById('evFab');
+  fab.style.display=id==='events'?'flex':'none';
+};
+// Show FAB on load if events chip is default active
+window.addEventListener('load',function(){
+  var fab=document.getElementById('evFab');
+  if(CF==='events') fab.style.display='flex';
+});
+
 </script>
 <script id="pin-wall-js">
 (function(){
-  var PINS={'am':'2026','hod':'2202'};
   var wall=document.getElementById('pin-wall');
   var isHODPage=window.location.pathname.indexOf('hod')>-1;
   var pinOK=localStorage.getItem('th_pin_ok')==='1';
@@ -644,9 +961,7 @@ init();
     if(entered.length>=4) return;
     entered.push(v);
     render();
-    if(entered.length===4){
-      setTimeout(function(){check();},100);
-    }
+    if(entered.length===4){setTimeout(function(){check();},100);}
   }
   function render(){
     for(var i=0;i<4;i++){
@@ -655,17 +970,19 @@ init();
   }
   function check(){
     var pin=entered.join('');
-    if(pin===PINS.hod){
+    fetch('/api/verify-pin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pin:pin})})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(!d.success){wrong();return;}
       localStorage.setItem('th_pin_ok','1');
-      localStorage.setItem('th_hod_ok','1');
-      localStorage.setItem('th_is_hod','1');
+      localStorage.setItem('th_am_name',d.am);
+      if(d.role==='hod'||d.role==='ceo'){
+        localStorage.setItem('th_hod_ok','1');
+        localStorage.setItem('th_is_hod','1');
+      }
       wall.style.display='none';
-    }else if(pin===PINS.am&&!isHODPage){
-      localStorage.setItem('th_pin_ok','1');
-      wall.style.display='none';
-    }else{
-      wrong();
-    }
+    })
+    .catch(function(){wrong();});
   }
   function wrong(){
     entered=[];
@@ -680,5 +997,6 @@ init();
   window.pinPress=pinPress;
 })();
 </script>
-</body>
+<script src="/js/api.js"></script>
+<div id="themeFloating" style="position:fixed;top:12px;right:12px;z-index:150;"><button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode" style="border-radius:50%;width:36px;height:36px;padding:0;display:flex;align-items:center;justify-content:center;background:var(--card);box-shadow:var(--shadow-mid);"><svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div><script src="theme.js"></script><script>applyTheme(getTheme());</script></body>
 </html>

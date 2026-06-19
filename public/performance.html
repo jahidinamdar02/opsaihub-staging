@@ -5,28 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <title>Performance - Tim's Ops Connect</title>
+<link rel="stylesheet" href="styles.css">
 <style>
-:root {
-  --red:#C8102E; --red-dark:#9B0D22;
-  --surface:#F5F5F7; --card:#FFFFFF;
-  --text:#1D1D1F; --text2:#6E6E73;
-  --nav-h:72px;
-  --success:#34C759; --warning:#FF9500; --critical:#FF3B30;
-  --gold:#FFD700; --border:#E5E5EA;
-}
+
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif; background:var(--surface); color:var(--text); min-height:100vh; padding-bottom:calc(var(--nav-h) + 20px); overflow-x:hidden; }
+body { min-height: 100vh; padding-bottom: calc(var(--nav-h) + 20px); }
 
 /* HEADER */
 .page-header { background:linear-gradient(150deg,var(--red) 0%,var(--red-dark) 60%,#1A1A1A 100%); padding:52px 20px 20px; position:relative; overflow:hidden; }
-.page-header::before { content:''; position:absolute; top:-40px; right:-40px; width:180px; height:180px; background:rgba(255,255,255,0.05); border-radius:50%; }
 .page-title { font-size:26px; font-weight:700; color:#fff; letter-spacing:-0.5px; }
 .page-sub { font-size:13px; color:rgba(255,255,255,0.65); margin-top:3px; }
 
 /* TOGGLE */
-.toggle-bar { display:flex; gap:0; margin:16px 16px 0; background:#E5E5EA; border-radius:12px; padding:3px; }
-.toggle-btn { flex:1; padding:9px; border-radius:10px; border:none; font-size:13px; font-weight:600; background:transparent; color:var(--text2); cursor:pointer; transition:all 0.2s; }
-.toggle-btn.active { background:#fff; color:var(--text); box-shadow:0 1px 4px rgba(0,0,0,0.1); }
+.toggle-bar { display:flex; gap:0; margin:16px 16px 0; background:var(--border); border-radius:12px; padding:3px; }
+.toggle-btn { flex:1; padding:9px; border-radius:10px; border:none; font-size:13px; font-weight:600; background:transparent; color:var(--text2); cursor:pointer; transition:background-color 120ms ease-out,color 120ms ease-out; }
+.toggle-btn.active { background:var(--card); color:var(--text); box-shadow:0 1px 4px rgba(0,0,0,0.1); }
 
 .content { padding:12px 16px; }
 .hidden { display:none !important; }
@@ -46,7 +39,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
 .revenue-amount { font-size:40px; font-weight:700; color:#fff; letter-spacing:-1px; line-height:1; margin-bottom:4px; }
 .revenue-sub { font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:16px; }
 .revenue-progress-bg { background:rgba(255,255,255,0.15); border-radius:6px; height:8px; margin-bottom:6px; overflow:hidden; }
-.revenue-progress-fill { height:100%; border-radius:6px; transition:width 1.2s cubic-bezier(0.34,1.56,0.64,1); }
+.revenue-progress-fill { height:100%; border-radius:6px; transition:width 1.2s ease-out; }
 .revenue-progress-label { display:flex; justify-content:space-between; font-size:12px; }
 .revenue-pct { font-weight:700; }
 .revenue-target { color:rgba(255,255,255,0.5); }
@@ -68,7 +61,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
 .badge-item { flex-shrink:0; text-align:center; width:72px; }
 .badge-icon { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; margin:0 auto 6px; border:3px solid transparent; }
 .badge-icon.earned { background:linear-gradient(135deg,#FFD700,#FFA500); border-color:#FFD700; box-shadow:0 4px 12px rgba(255,215,0,0.4); }
-.badge-icon.locked { background:#F5F5F7; border-color:#E5E5EA; filter:grayscale(1); opacity:0.5; }
+.badge-icon.locked { background:var(--surface); border-color:var(--border); filter:grayscale(1); opacity:0.5; }
 .badge-name { font-size:10px; font-weight:600; color:var(--text2); text-align:center; line-height:1.3; }
 
 /* RANK CARD */
@@ -85,13 +78,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
 .pb-date { font-size:11px; color:rgba(0,0,0,0.5); margin-top:2px; }
 
 /* WINS */
-.win-card { background:linear-gradient(135deg,#E8F8ED,#F0FFF4); border-radius:14px; padding:14px; margin-bottom:10px; border-left:4px solid var(--success); }
+.win-card { background:linear-gradient(135deg,#E8F8ED,#F0FFF4); border-radius:14px; padding:14px; margin-bottom:10px; border:1.5px solid var(--success); }
 .win-title { font-size:13px; font-weight:700; color:#1B7A3A; margin-bottom:4px; }
 .win-text { font-size:13px; color:var(--text); line-height:1.4; }
 .win-date { font-size:11px; color:var(--text2); margin-top:6px; }
 
 /* RED FLAGS */
-.flag-card { background:#FFF5F5; border-radius:14px; padding:14px; margin-bottom:10px; border-left:4px solid var(--critical); }
+.flag-card { background:#FFF5F5; border-radius:14px; padding:14px; margin-bottom:10px; border:1.5px solid var(--critical); }
 .flag-title { font-size:12px; font-weight:700; color:var(--critical); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; display:flex; align-items:center; gap:6px; }
 .flag-text { font-size:13px; color:var(--text); line-height:1.4; }
 .flag-pulse { display:inline-block; width:8px; height:8px; background:var(--critical); border-radius:50%; animation:pulse 1.5s infinite; }
@@ -103,11 +96,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
 .heatmap-table th { padding:4px 6px; color:var(--text2); font-weight:600; text-align:center; font-size:10px; }
 .heatmap-table td { padding:4px; text-align:center; }
 .heat-cell { width:28px; height:28px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; margin:1px; }
-.heat-0 { background:#F5F5F7; color:#AEAEB2; }
+.heat-0 { background:var(--surface); color:var(--disabled-text); }
 .heat-1 { background:#E8F8ED; color:#1B7A3A; }
 .heat-2 { background:#B8EFC8; color:#1B7A3A; }
-.heat-3 { background:#34C759; color:#fff; }
-.heat-leave { background:#E5E5EA; color:#AEAEB2; }
+.heat-3 { background:var(--success); color:#fff; }
+.heat-leave { background:var(--border); color:var(--disabled-text); }
 .store-name-cell { font-size:11px; font-weight:600; color:var(--text); text-align:left; padding:4px 6px; max-width:80px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 /* RECOGNITION */
@@ -121,16 +114,16 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
 .leave-toggle-wrap { display:flex; align-items:center; justify-content:space-between; background:var(--card); border-radius:12px; padding:12px 16px; margin-bottom:12px; box-shadow:0 1px 6px rgba(0,0,0,0.06); }
 .leave-toggle-label { font-size:14px; font-weight:600; color:var(--text); }
 .leave-toggle-sub { font-size:12px; color:var(--text2); margin-top:2px; }
-.toggle-switch { width:44px; height:26px; background:#E5E5EA; border-radius:13px; position:relative; cursor:pointer; transition:background 0.2s; border:none; }
+.toggle-switch { width:44px; height:26px; background:var(--border); border-radius:13px; position:relative; cursor:pointer; transition:background-color 120ms ease-out; border:none; }
 .toggle-switch.on { background:var(--success); }
-.toggle-switch::after { content:''; position:absolute; top:3px; left:3px; width:20px; height:20px; background:#fff; border-radius:50%; transition:transform 0.2s; box-shadow:0 1px 4px rgba(0,0,0,0.2); }
+.toggle-switch::after { content:''; position:absolute; top:3px; left:3px; width:20px; height:20px; background:var(--card); border-radius:50%; transition:transform 150ms ease-out; box-shadow:0 1px 4px rgba(0,0,0,0.2); }
 .toggle-switch.on::after { transform:translateX(18px); }
 
 /* ACTION TRACKER */
-.action-item { background:var(--card); border-radius:14px; padding:14px; margin-bottom:10px; box-shadow:0 2px 8px rgba(0,0,0,0.06); border-left:3px solid var(--border); }
-.action-item.pending { border-left-color:var(--warning); }
-.action-item.completed { border-left-color:var(--success); opacity:0.75; }
-.action-item.na { border-left-color:var(--text2); opacity:0.6; }
+.action-item { background:var(--card); border-radius:14px; padding:14px; margin-bottom:10px; box-shadow:0 2px 8px rgba(0,0,0,0.06); border:1.5px solid var(--border); }
+.action-item.pending { border-color:var(--warning); }
+.action-item.completed { border-color:var(--success); opacity:0.75; }
+.action-item.na { border-color:var(--text2); opacity:0.6; }
 .action-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
 .action-store { font-size:12px; font-weight:700; color:var(--red); }
 .action-date { font-size:11px; color:var(--text2); }
@@ -138,10 +131,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
 .action-text { font-size:13px; font-weight:500; color:var(--text); margin-bottom:8px; line-height:1.4; }
 .action-comment { font-size:12px; color:var(--text2); background:var(--surface); border-radius:8px; padding:8px 10px; margin-bottom:10px; font-style:italic; }
 .action-status-btns { display:flex; gap:6px; }
-.status-btn { flex:1; padding:7px; border-radius:8px; border:1.5px solid var(--border); font-size:11px; font-weight:700; background:#fff; color:var(--text2); cursor:pointer; text-align:center; transition:all 0.2s; }
-.status-btn.sel-pending { background:#FF9500; border-color:#FF9500; color:#fff; }
+.status-btn { flex:1; padding:7px; border-radius:8px; border:1.5px solid var(--border); font-size:11px; font-weight:700; background:var(--card); color:var(--text2); cursor:pointer; text-align:center; transition:background-color 120ms ease-out,color 120ms ease-out; }
+.status-btn.sel-pending { background:var(--warning); border-color:var(--warning); color:#fff; }
 .status-btn.sel-completed { background:var(--success); border-color:var(--success); color:#fff; }
-.status-btn.sel-na { background:#8E8E93; border-color:#8E8E93; color:#fff; }
+.status-btn.sel-na { background:var(--text3); border-color:var(--text3); color:#fff; }
 
 /* LEADERBOARD */
 .leader-row { display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--border); }
@@ -155,12 +148,12 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
 /* BAR CHART */
 .bar-chart { display:flex; align-items:flex-end; gap:6px; height:80px; }
 .bar-wrap { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; height:100%; justify-content:flex-end; }
-.bar { width:100%; border-radius:4px 4px 0 0; min-height:3px; transition:height 0.8s cubic-bezier(0.34,1.56,0.64,1); }
+.bar { width:100%; border-radius:4px 4px 0 0; min-height:3px; transition:height 0.8s ease-out; }
 .bar-day { font-size:10px; color:var(--text2); font-weight:600; }
 .bar-val { font-size:10px; font-weight:700; }
 
 /* CONFETTI */
-.confetti-piece { position:fixed; width:10px; height:10px; top:-10px; z-index:9999; animation:confettiFall linear forwards; border-radius:2px; }
+.confetti-piece { position:fixed; width:10px; height:10px; top:-10px; z-index:var(--z-wall); animation:confettiFall linear forwards; border-radius:2px; }
 @keyframes confettiFall { to { transform:translateY(100vh) rotate(720deg); opacity:0; } }
 
 /* FILTER PILLS */
@@ -170,33 +163,142 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
 .filter-pill.active { background:var(--red); color:#fff; }
 
 /* BOTTOM NAV */
-.bottom-nav { position:fixed; bottom:0; left:0; right:0; height:var(--nav-h); background:rgba(255,255,255,0.88); backdrop-filter:blur(20px) saturate(180%); border-top:1px solid rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:space-around; padding-bottom:env(safe-area-inset-bottom); z-index:1000; }
+.bottom-nav { position:fixed; bottom:0; left:0; right:0; height:var(--nav-h); background:rgba(255,255,255,0.88); backdrop-filter:blur(20px) saturate(180%); border-top:1px solid rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:space-around; padding-bottom:env(safe-area-inset-bottom); z-index:var(--z-nav);  transform:translateZ(0);-webkit-transform:translateZ(0); }
 .nav-item { display:flex; flex-direction:column; align-items:center; gap:3px; text-decoration:none; padding:8px 12px; min-width:56px; }
 .nav-icon { font-size:22px; }
 .nav-label { font-size:10px; font-weight:500; color:var(--text2); }
 .nav-item.active .nav-label { color:var(--red); font-weight:600; }
 .nav-dot { width:4px; height:4px; background:var(--red); border-radius:50%; margin-top:-2px; }
 
-.spinner { width:24px; height:24px; border:3px solid #E5E5EA; border-top-color:var(--red); border-radius:50%; animation:spin 0.8s linear infinite; margin:30px auto; display:block; }
+.spinner { width:24px; height:24px; border:3px solid var(--border); border-top-color:var(--red); border-radius:50%; animation:spin 0.8s linear infinite; margin:30px auto; display:block; }
 @keyframes spin { to { transform:rotate(360deg); } }
 @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 .fade-up { animation:fadeUp 0.5s ease both; }
+
+
 </style>
 <style id="pin-wall-css">
-#pin-wall{position:fixed;inset:0;z-index:99999;background:#1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
+#pin-wall{position:fixed;inset:0;z-index:var(--z-wall);background:#1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
 .pin-logo{font-size:48px;margin-bottom:8px;}
 .pin-title{font-size:24px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.5px;}
-.pin-sub{font-size:13px;color:#6E6E73;margin-bottom:40px;}
+.pin-sub{font-size:13px;color:var(--text2);margin-bottom:40px;}
 .pin-dots{display:flex;gap:16px;margin-bottom:32px;}
-.pin-dot{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.15);transition:all 0.2s;}
+.pin-dot{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.15);transition:background-color 120ms ease-out;}
 .pin-dot.filled{background:#C8102E;}
 .pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:240px;}
-.pin-btn{height:64px;border-radius:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;font-size:22px;font-weight:600;cursor:pointer;transition:all 0.15s;}
+.pin-btn{height:64px;border-radius:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;font-size:22px;font-weight:600;cursor:pointer;transition:background-color 120ms ease-out,transform 150ms ease-out;}
 .pin-btn:active{background:rgba(200,16,46,0.3);transform:scale(0.95);}
-.pin-error{font-size:13px;color:#FF3B30;margin-top:16px;opacity:0;transition:opacity 0.3s;}
+.pin-error{font-size:13px;color:var(--critical);margin-top:16px;opacity:0;transition:opacity 0.3s;}
 .pin-error.show{opacity:1;}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 .pin-dots.shake{animation:shake 0.3s ease;}
+</style>
+<!-- nav-upgrade-v1 -->
+<style>
+/* ═══════════════════════════════════════════════
+   LAPTOP-FIRST NAV — 220 px side rail (desktop)
+   bottom tab bar restored at ≤ 767 px
+   ═══════════════════════════════════════════════ */
+/* ── desktop body canvas ── */
+body{padding-left:var(--nav-w)!important;padding-bottom:0!important;}
+
+/* ── 220 px side rail ── */
+.bottom-nav{
+  position:fixed!important;top:0!important;left:0!important;
+  bottom:auto!important;right:auto!important;
+  width:var(--nav-w)!important;height:100dvh!important;
+  background:rgba(255,255,255,0.95)!important;
+  backdrop-filter:blur(20px)!important;
+  border-right:1px solid var(--border)!important;
+  border-top:none!important;
+  display:flex!important;flex-direction:column!important;
+  justify-content:flex-start!important;align-items:stretch!important;
+  padding:0 10px 20px!important;
+  z-index:50!important;overflow-y:auto!important;gap:2px!important;
+  transform:translateZ(0)!important;
+}
+.bottom-nav::before{
+  content:'☕  Tim\2019s Ops'!important;
+  font-size:15px!important;font-weight:700!important;
+  color:var(--text)!important;letter-spacing:-0.3px!important;
+  display:block!important;
+  padding:20px 10px 16px!important;margin-bottom:6px!important;
+  border-bottom:1px solid var(--border)!important;flex-shrink:0!important;
+}
+.nav-item{
+  display:flex!important;flex-direction:row!important;
+  align-items:center!important;gap:10px!important;
+  text-decoration:none!important;
+  padding:10px 12px!important;border-radius:10px!important;
+  min-width:0!important;
+  transition:background 0.15s ease-out!important;
+}
+.nav-item:hover{background:rgba(200,16,46,0.06)!important;}
+.nav-item.active{background:rgba(200,16,46,0.1)!important;}
+.nav-icon{font-size:18px!important;flex-shrink:0!important;}
+.nav-label{
+  font-size:13px!important;font-weight:500!important;
+  color:var(--text2)!important;white-space:nowrap!important;
+  overflow:hidden!important;text-overflow:ellipsis!important;
+}
+.nav-item.active .nav-label{color:#C8102E!important;font-weight:600!important;}
+.nav-dot{display:none!important;}
+
+/* ── desktop white sticky header ── */
+.hdr{
+  background:var(--card)!important;
+  border-bottom:1px solid var(--border)!important;
+  padding:0 32px!important;height:60px!important;
+  display:flex!important;align-items:center!important;gap:16px!important;
+  position:sticky!important;top:0!important;z-index:89!important;
+}
+.hdr-ttl,.hdr-title{font-size:20px!important;font-weight:700!important;color:var(--text)!important;letter-spacing:-0.3px!important;}
+.hdr-eye{font-size:11px!important;font-weight:700!important;color:var(--text2)!important;text-transform:uppercase!important;letter-spacing:1.5px!important;}
+.hdr-sub{font-size:12px!important;color:var(--text2)!important;margin-left:auto!important;}
+/* neutral content-area padding */
+.content{padding:24px 32px!important;max-width:1400px!important;margin:0 auto!important;}
+
+/* ── semantic token fill-in (for pages that lack them) ── */
+/* ═══════════════════════════════════════════════
+   MOBILE OVERRIDE ≤ 767 px
+   ═══════════════════════════════════════════════ */
+@media (max-width:767px){
+  body{padding-left:0!important;padding-bottom:calc(var(--nav-h,64px) + 16px)!important;}
+
+  .bottom-nav{
+    width:100%!important;height:var(--nav-h,64px)!important;
+    top:auto!important;bottom:0!important;left:0!important;right:0!important;
+    flex-direction:row!important;justify-content:space-around!important;
+    align-items:center!important;
+    padding:0 0 env(safe-area-inset-bottom)!important;
+    border-right:none!important;border-top:1px solid rgba(0,0,0,0.08)!important;
+    overflow-y:visible!important;gap:0!important;
+  }
+  .bottom-nav::before{display:none!important;}
+  .nav-item{
+    flex-direction:column!important;gap:3px!important;
+    padding:8px 12px!important;border-radius:0!important;
+    transition:none!important;
+  }
+  .nav-item:hover,.nav-item.active{background:transparent!important;}
+  .nav-item.active .nav-label{color:#C8102E!important;}
+  .nav-icon{font-size:22px!important;}
+  .nav-label{font-size:10px!important;}
+
+  /* restore mobile gradient header */
+  .hdr{
+    background:linear-gradient(150deg,#1A0508 0%,#C8102E 60%,#9B0D22 100%)!important;
+    padding:calc(env(safe-area-inset-top,0px) + 44px) 16px 18px!important;
+    height:auto!important;position:static!important;
+    flex-direction:column!important;align-items:flex-start!important;gap:4px!important;
+  }
+  .hdr-ttl,.hdr-title{font-size:24px!important;color:#fff!important;}
+  .hdr-eye{color:rgba(255,255,255,0.55)!important;}
+  .hdr-sub{font-size:12px!important;color:rgba(255,255,255,0.6)!important;margin-left:0!important;}
+
+  /* restore mobile content padding */
+  .content{padding:14px 16px!important;max-width:100%!important;}
+}
 </style>
 </head>
 <body>
@@ -220,9 +322,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
     <button class="pin-btn" onclick="pinPress('7')">7</button>
     <button class="pin-btn" onclick="pinPress('8')">8</button>
     <button class="pin-btn" onclick="pinPress('9')">9</button>
-    <button class="pin-btn" onclick="pinPress('c')" style="font-size:14px;">Clear</button>
+    <button class="pin-btn" onclick="pinPress('c')" >Clear</button>
     <button class="pin-btn" onclick="pinPress('0')">0</button>
-    <button class="pin-btn" onclick="pinPress('x')" style="font-size:20px;">⌫</button>
+    <button class="pin-btn" onclick="pinPress('x')" >⌫</button>
   </div>
   <div class="pin-error" id="pinError">Incorrect PIN. Try again.</div>
 </div>
@@ -242,10 +344,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
   </div>
   <div style="background:rgba(255,255,255,0.15);color:#fff;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:700;">View &#x276F;</div>
 </a>
-<div class="toggle-bar" style="display:flex;gap:0;margin:16px 16px 0;background:#E5E5EA;border-radius:12px;padding:3px;">
-  <button class="toggle-btn active" id="toggleMy" style="flex:1;padding:9px;border-radius:10px;border:none;font-size:12px;font-weight:600;background:transparent;color:var(--text2);cursor:pointer;transition:all 0.2s;">My Dashboard</button>
-  <button class="toggle-btn" id="toggleTeam" style="flex:1;padding:9px;border-radius:10px;border:none;font-size:12px;font-weight:600;background:transparent;color:var(--text2);cursor:pointer;transition:all 0.2s;">Team View</button>
-  <button class="toggle-btn" id="toggleQTD" style="flex:1;padding:9px;border-radius:10px;border:none;font-size:12px;font-weight:600;background:transparent;color:var(--text2);cursor:pointer;transition:all 0.2s;">QTD &amp; YTD</button>
+<div class="toggle-bar" style="display:flex;gap:0;margin:16px 16px 0;background:var(--border);border-radius:12px;padding:3px;">
+  <button class="toggle-btn active" id="toggleMy" style="flex:1;padding:9px;border-radius:10px;border:none;font-size:12px;font-weight:600;background:transparent;color:var(--text2);cursor:pointer;transition:background-color 120ms ease-out,color 120ms ease-out;">My Dashboard</button>
+  <button class="toggle-btn" id="toggleTeam" style="flex:1;padding:9px;border-radius:10px;border:none;font-size:12px;font-weight:600;background:transparent;color:var(--text2);cursor:pointer;transition:background-color 120ms ease-out,color 120ms ease-out;">Team View</button>
+  <button class="toggle-btn" id="toggleQTD" style="flex:1;padding:9px;border-radius:10px;border:none;font-size:12px;font-weight:600;background:transparent;color:var(--text2);cursor:pointer;transition:background-color 120ms ease-out,color 120ms ease-out;">QTD &amp; YTD</button>
 </div>
 
 <!-- AM PICKER -->
@@ -258,19 +360,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
 <div id="myView" class="hidden">
 
   <!-- AM Bar -->
-  <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:12px;padding:12px 16px;margin:12px 16px 0;box-shadow:0 1px 6px rgba(0,0,0,0.08);">
-    <div style="display:flex;align-items:center;gap:10px;">
-      <div style="width:40px;height:40px;background:linear-gradient(135deg,#C8102E,#9B0D22);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">&#x1F464;</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;background:var(--card);border-radius:12px;padding:12px 16px;margin:12px 16px 0;box-shadow:0 1px 6px rgba(0,0,0,0.08);">
+    <div class="flex-center">
+      <div style="width:40px;height:40px;background:linear-gradient(135deg,#C8102E,#9B0D22);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">&#x1F31F;</div>
       <div>
-        <div style="font-size:13px;color:#6E6E73;">Good to see you,</div>
-        <div style="font-size:17px;font-weight:700;color:#1D1D1F;" id="perfAMName">-</div>
+        <div style="font-size:13px;color:var(--text2);">Good to see you,</div>
+        <div style="font-size:17px;font-weight:700;color:var(--text);" id="perfAMName">-</div>
       </div>
     </div>
-    <button onclick="changePerfAM()" style="background:#F5F5F7;border:none;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;color:#C8102E;cursor:pointer;">Change</button>
+    <button onclick="changePerfAM()" style="background:var(--surface);border:none;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;color:var(--red);cursor:pointer;">Change</button>
   </div>
 
   
-<a href="kpi.html" style="display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#0D0D1A,#1A0508);border-radius:16px;padding:16px;margin:12px 16px;text-decoration:none;border:1px solid rgba(200,16,46,0.3)"><div style="font-size:28px">&#128230;</div><div style="flex:1"><div style="font-size:15px;font-weight:700;color:#fff">Store KPIs</div><div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">Donuts &middot; Timbits &middot; Protein &middot; Water &middot; Puff &amp; Roll &middot; Coffee &middot; Merch &middot; QR</div></div><div style="font-size:20px;color:rgba(255,255,255,0.4)">&#8250;</div></a>
+<a href="kpi.html" style="display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#0D0D1A,#1A0508);border-radius:16px;padding:16px;margin:12px 16px;text-decoration:none;border:1px solid rgba(200,16,46,0.3)"><div style="font-size:28px">&#128230;</div><div class="flex-1"><div style="font-size:15px;font-weight:700;color:#fff">Store KPIs</div><div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">Donuts &middot; Timbits &middot; Protein &middot; Water &middot; Puff &amp; Roll &middot; Coffee &middot; Merch &middot; QR</div></div><div style="font-size:20px;color:rgba(255,255,255,0.4)">&#8250;</div></a>
 <div class="content" id="dashContent">
 <!-- MTD REVENUE TILE -->
 <a href="kpi.html" style="display:block;text-decoration:none;margin:12px 16px 0;">
@@ -279,17 +381,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
   <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;">&#128202; MTD Performance &mdash; March 2026</div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
     <div style="background:rgba(255,255,255,0.06);border-radius:10px;padding:10px;text-align:center;">
-      <div style="font-size:9px;font-weight:700;color:#C8102E;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;">MTD Revenue</div>
+      <div style="font-size:9px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;">MTD Revenue</div>
       <div style="font-size:18px;font-weight:700;color:#fff;">&#8377;8.45Cr</div>
       <div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:2px;">24 days</div>
     </div>
     <div style="background:rgba(255,255,255,0.06);border-radius:10px;padding:10px;text-align:center;">
-      <div style="font-size:9px;font-weight:700;color:#C8102E;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;">ADT</div>
+      <div style="font-size:9px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;">ADT</div>
       <div style="font-size:18px;font-weight:700;color:#fff;">148</div>
       <div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:2px;">Avg daily txns</div>
     </div>
     <div style="background:rgba(255,255,255,0.06);border-radius:10px;padding:10px;text-align:center;">
-      <div style="font-size:9px;font-weight:700;color:#C8102E;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;">APC</div>
+      <div style="font-size:9px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;">APC</div>
       <div style="font-size:18px;font-weight:700;color:#fff;">&#8377;558</div>
       <div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:2px;">Avg per check</div>
     </div>
@@ -297,11 +399,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
     <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:8px;text-align:center;">
       <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-bottom:2px;">vs LY</div>
-      <div style="font-size:15px;font-weight:700;color:#34C759;">&#8593; 107%</div>
+      <div style="font-size:15px;font-weight:700;color:var(--success);">&#8593; 107%</div>
     </div>
     <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:8px;text-align:center;">
       <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-bottom:2px;">vs LM</div>
-      <div style="font-size:15px;font-weight:700;color:#34C759;">&#8593; 105%</div>
+      <div style="font-size:15px;font-weight:700;color:var(--success);">&#8593; 105%</div>
     </div>
     <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:8px;text-align:center;">
       <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-bottom:2px;">Delivery</div>
@@ -353,15 +455,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
     <div id="qtdAMCards" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"></div>
   </div>
   <div id="qtdContent" class="hidden">
-    <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:12px;padding:12px 16px;margin:12px 16px 0;box-shadow:0 1px 6px rgba(0,0,0,0.08);">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div style="width:40px;height:40px;background:linear-gradient(135deg,#C8102E,#9B0D22);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">&#x1F464;</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;background:var(--card);border-radius:12px;padding:12px 16px;margin:12px 16px 0;box-shadow:0 1px 6px rgba(0,0,0,0.08);">
+      <div class="flex-center">
+        <div style="width:40px;height:40px;background:linear-gradient(135deg,#C8102E,#9B0D22);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">&#x1F31F;</div>
         <div>
-          <div style="font-size:13px;color:#6E6E73;">Viewing</div>
-          <div style="font-size:17px;font-weight:700;color:#1D1D1F;" id="qtdAMName">-</div>
+          <div style="font-size:13px;color:var(--text2);">Viewing</div>
+          <div style="font-size:17px;font-weight:700;color:var(--text);" id="qtdAMName">-</div>
         </div>
       </div>
-      <button id="qtdChangeBtn" style="background:#F5F5F7;border:none;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;color:#C8102E;cursor:pointer;">Change</button>
+      <button id="qtdChangeBtn" style="background:var(--surface);border:none;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;color:var(--red);cursor:pointer;">Change</button>
     </div>
     <div class="content" id="qtdDashContent"></div>
   </div>
@@ -372,45 +474,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',
 
 
 
-<!-- KPI TILE — bottom of scores page -->
-<div style="padding:0 16px 16px">
-  <a href="kpi.html" style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#0D0D1A,#1A0508);border-radius:18px;padding:18px;text-decoration:none;border:1px solid rgba(200,16,46,0.3);box-shadow:0 4px 16px rgba(0,0,0,0.15)">
-    <div style="width:48px;height:48px;background:rgba(200,16,46,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">&#128230;</div>
-    <div style="flex:1">
-      <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:3px">Store KPI Dashboard</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.45);line-height:1.4">Donuts &middot; Timbits &middot; Protein &middot; Water &middot; Puff &amp; Roll &middot; Coffee &middot; Merch &middot; QR Feedback</div>
-      <div style="font-size:10px;color:#C8102E;font-weight:700;margin-top:4px;text-transform:uppercase;letter-spacing:0.5px">March 2026 Actuals &#8594;</div>
-    </div>
-    <div style="font-size:22px;color:rgba(255,255,255,0.3)">&#8250;</div>
-  </a>
-</div>
-<div style="padding:0 16px 12px;">
-  <a href="targets.html" style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:14px;padding:13px 16px;margin-bottom:8px;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,0.06);border-left:4px solid #FF9500;">
-    <div style="display:flex;align-items:center;gap:10px;"><div style="font-size:20px;">&#x1F3AF;</div>
-    <div><div style="font-size:13px;font-weight:700;color:#1D1D1F;">Store Targets</div>
-    <div style="font-size:11px;color:#6E6E73;">Set monthly targets per store</div></div></div>
-    <div style="font-size:12px;color:#FF9500;font-weight:700;">Manage &#x276F;</div>
-  </a>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-    <a href="delivery.html" style="display:flex;flex-direction:column;background:#fff;border-radius:14px;padding:14px;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,0.06);">
-      <div style="font-size:22px;margin-bottom:6px;">&#x1F6F5;</div>
-      <div style="font-size:13px;font-weight:700;color:#1D1D1F;">Delivery</div>
-      <div style="font-size:11px;color:#6E6E73;">Swiggy + Zomato</div>
-    </a>
-    <a href="ceo.html" style="display:flex;flex-direction:column;background:#1A1A2E;border-radius:14px;padding:14px;text-decoration:none;">
-      <div style="font-size:22px;margin-bottom:6px;">&#x1F451;</div>
-      <div style="font-size:13px;font-weight:700;color:#fff;">CEO View</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.5);">Command Centre</div>
-    </a>
-  </div>
-</div>
 <nav class="bottom-nav">
-  <a href="index.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Home</span></a>
-  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#x2705;</span><span class="nav-label">Tasks</span></a>
-  <a href="events.html" class="nav-item"><span class="nav-icon">&#128197;</span><span class="nav-label">Events</span></a>
-  <a href="performance.html" class="nav-item active"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Scores</span><div class="nav-dot"></div></a>
-  <a href="team.html" class="nav-item"><span class="nav-icon">&#x1F465;</span><span class="nav-label">Team</span></a>
-  <a href="audit.html" class="nav-item"><span class="nav-icon">&#128269;</span><span class="nav-label">Audits</span></a>
+  <a href="index.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="nav-label">Home</span></a>
+  <a href="tasks.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span class="nav-label">Tasks</span></a>
+  <a href="events.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span class="nav-label">Events</span></a>
+  <a href="performance.html" class="nav-item active"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">Scores</span>
+    <div class="nav-dot"></div>
+  </a>
+  <a href="team.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="nav-label">Team</span></a>
+  <a href="audit.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><span class="nav-label">Audits</span></a>
 </nav>
 
 <script>
@@ -420,10 +492,12 @@ var AM_AVATAR={
   'Harish':'/images/am/harish.svg',
   'Rohit':'/images/am/rohit.svg',
   'Deepak':'/images/am/deepak.svg',
-  'Akash Chavan':'/images/am/akash-chavan.svg',
+  'Sandeep Mukharjee':'/images/am/akash-chavan.svg',
   'Akash Rathod':'/images/am/akash-rathod.svg',
   'Jagadeesha':'/images/am/jagadeesha.svg',
-  'Shivam':'/images/am/shivam.svg'
+  'Shivam':'/images/am/shivam.svg',
+  'Kajal':'/images/am/kajal.svg',
+  'Vrunda':'/images/am/vrunda.svg'
 };
 function amAv(name,size){size=size||36;var s=size+'px';return AM_AVATAR[name]?'<img src="'+AM_AVATAR[name]+'" style="width:'+s+';height:'+s+';border-radius:50%;object-fit:cover;" alt="'+name+'">':(name?name.substring(0,2).toUpperCase():'AM');}
 
@@ -436,15 +510,18 @@ var onLeave = false;
 var leaveDays = [];
 
 var amList = [
-  {name:'Raman', region:'Delhi NCR', icon:'&#x1F3D9;'},
-  {name:'Harish', region:'Delhi NCR', icon:'&#x1F3D9;'},
-  {name:'Rohit', region:'Delhi NCR', icon:'&#x1F3D9;'},
-  {name:'Deepak', region:'Punjab', icon:'&#x1F33E;'},
-  {name:'Akash Chavan', region:'Maharashtra', icon:'&#x1F30A;'},
-  {name:'Akash Rathod', region:'Maharashtra', icon:'&#x1F30A;'},
-  {name:'Jagadeesha', region:'Bangalore', icon:'&#x1F333;'},
-  {name:'Shivam', region:'Hyderabad', icon:'&#x1F48E;'},
-  {name:'Unassigned', region:'Gujarat', icon:'&#x1F981;'}
+  {name:'Raman', region:'Delhi NCR', icon:'&#x1F4BC;'},
+  {name:'Harish', region:'Delhi NCR', icon:'&#x1F4BC;'},
+  {name:'Rohit', region:'Delhi NCR', icon:'&#x1F4BC;'},
+  {name:'Deepak', region:'Punjab', icon:'&#x1F4BC;'},
+  {name:'Kajal', region:'Punjab', icon:'&#x1F4BC;'},
+  {name:'Sandeep Mukharjee', region:'Mumbai', icon:'&#x1F4BC;'},
+  {name:'Akash Rathod', region:'Navi Mumbai', icon:'&#x1F4BC;'},
+  {name:'TBA', region:'Pune', icon:'&#x1F4BC;'},
+  {name:'Jagadeesha', region:'Bangalore', icon:'&#x1F4BC;'},
+  {name:'Shivam', region:'Hyderabad', icon:'&#x1F4BC;'},
+  {name:'Vrunda', region:'Training - West', icon:'&#x1F4DA;'},
+  {name:'Unassigned', region:'Gujarat', icon:'&#x1F4BC;'}
 ];
 
 // India FY quarters
@@ -492,9 +569,9 @@ function renderAMCards() {
   c.innerHTML = '';
   amList.forEach(function(am) {
     var d = document.createElement('div');
-    d.style.cssText = 'background:#fff;border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.07);cursor:pointer;';
-    d.innerHTML = '<div style="display:flex;align-items:center;gap:8px;justify-content:center;">'+amAv(am.name,32)+'<div style="font-size:13px;font-weight:700;color:#1D1D1F;">'+am.name+'</div></div>' +
-      '<div style="font-size:11px;color:#6E6E73;">' + am.region + '</div>';
+    d.style.cssText = 'background:var(--card);border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.07);cursor:pointer;';
+    d.innerHTML = '<div style="font-size:13px;font-weight:700;color:var(--text);">' + am.name + '</div>' +
+      '<div style="font-size:11px;color:var(--text2);">' + am.region + '</div>';
     d.addEventListener('click', function() { selectAM(am.name); });
     c.appendChild(d);
   });
@@ -551,7 +628,15 @@ function loadDashboard() {
       .then(function(cd) {
         coverageData = cd.data || [];
         renderDashboard();
+      })
+      .catch(function(err) {
+        console.error('Coverage load failed:', err);
+        coverageData = [];
+        renderDashboard();
       });
+  }).catch(function(err) {
+    console.error('Dashboard load failed:', err);
+    document.getElementById('dashContent').innerHTML = '<div class="empty-sm">Failed to load dashboard. Please try again.</div>';
   });
 }
 
@@ -576,12 +661,24 @@ function calcSubmissionStreak() {
     weeks[wk].add(s.day);
   });
   var sortedWeeks = Object.keys(weeks).sort().reverse();
+  
+  // Current streak (consecutive from most recent)
   var streak = 0;
   for (var i=0; i<sortedWeeks.length; i++) {
     var days = weeks[sortedWeeks[i]];
     if (days.size >= 4) { streak++; } else { break; }
   }
-  return { streak:streak, bestStreak:Math.max(streak, sortedWeeks.length > 0 ? streak : 0) };
+  
+  // Best streak (longest run ever)
+  var bestStreak = 0;
+  var currentRun = 0;
+  for (var i=sortedWeeks.length-1; i>=0; i--) {
+    var days = weeks[sortedWeeks[i]];
+    if (days.size >= 4) { currentRun++; bestStreak = Math.max(bestStreak, currentRun); }
+    else { currentRun = 0; }
+  }
+  
+  return { streak:streak, bestStreak:bestStreak };
 }
 
 function calcScores() {
@@ -637,10 +734,10 @@ function renderDashboard() {
   var pctToTarget = rev.target > 0 ? Math.round(rev.actual/rev.target*100) : 0;
   var lflPct = rev.ly > 0 ? ((rev.actual - rev.ly)/rev.ly*100).toFixed(1) : null;
 
-  // Check if score is 90+ for confetti
-  if (scores.thisWeek >= 90) {
-    setTimeout(launchConfetti, 500);
-  }
+  // Confetti disabled - was too frequent and annoying
+  // if (scores.thisWeek >= 90) {
+  //   setTimeout(launchConfetti, 500);
+  // }
 
   var diff = scores.thisWeek - scores.lastWeek;
   var trendColor = diff >= 0 ? '#34C759' : '#FF3B30';
@@ -656,7 +753,7 @@ function renderDashboard() {
   var progColor = pctToTarget >= 100 ? '#34C759' : pctToTarget >= 90 ? '#FF9500' : '#FF3B30';
   html += '<div class="revenue-hero fade-up">' +
     '<div class="revenue-label">MTD Revenue — ' + new Date().toLocaleString('en-IN',{month:'long'}) + '</div>' +
-    '<div class="revenue-amount">' + (rev.actual > 0 ? fmt(rev.actual) : '<span style="font-size:18px;color:#8E8E93">Pending</span>') + '</div>' +
+    '<div class="revenue-amount">' + (rev.actual > 0 ? fmt(rev.actual) : '<span style="font-size:18px;color:var(--text3)">Pending</span>') + '</div>' +
     '<div class="revenue-sub">Target: ' + (rev.target > 0 ? fmt(rev.target) : 'Not set yet') + '</div>' +
     '<div class="revenue-progress-bg"><div class="revenue-progress-fill" style="width:' + Math.min(pctToTarget,100) + '%;background:' + progColor + ';"></div></div>' +
     '<div class="revenue-progress-label"><span class="revenue-pct" style="color:' + progColor + ';">' + (pctToTarget > 0 ? pctToTarget + '% to target' : 'Submit Tuesday checklist to populate') + '</span><span class="revenue-target">' + (rev.target>0?fmt(rev.target):'') + '</span></div>' +
@@ -694,7 +791,8 @@ function renderDashboard() {
         '<div style="font-size:12px;color:var(--text2);margin-top:4px;">MTD: <strong>' + (scores.mtd>0?scores.mtd+'%':'--') + '</strong></div>' +
       '</div>' +
     '</div>' +
-    '<div id="miniBarChart" style="margin-top:8px;"></div>' +
+    '<div id="miniBarChart" class="mt-8"></div>' +
+    '<div id="submissionHistory"></div>' +
   '</div>';
 
   // Render mini bar chart
@@ -716,7 +814,7 @@ function renderDashboard() {
     {q:3, label:'Q3 FY', months:['10','11','12'], dates:'Oct-Dec'},
     {q:4, label:'Q4 FY', months:['01','02','03'], dates:'Jan-Mar'}
   ];
-  html += '<div class="section-card fade-up"><div class="section-card-title">&#x1F4C5; India FY Performance</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">';
+  html += '<div class="section-card fade-up"><div class="section-card-title">&#x1F4C5; India FY Performance</div><div class="grid-2">';
   qDefs.forEach(function(qt) {
     var qScored = allSubs.filter(function(s){
       if (!s.submittedAt || s.score===undefined) return false;
@@ -801,6 +899,7 @@ function renderDashboard() {
   });
 
   renderMiniBar();
+  renderSubmissionHistory();
   renderActionList('all');
 }
 
@@ -823,15 +922,18 @@ function renderMiniBar() {
   });
   html += '</div>';
   el.innerHTML = html;
+}
 
-  // ── SUBMISSION HISTORY ────────────────────────────────
-  var histHtml = '<div class="section-card fade-up" style="margin-top:12px;">';
-  histHtml += '<div class="section-card-title">&#128221; Submission History <span style="font-size:11px;font-weight:400;color:var(--text2);">' + allSubs.length + ' total</span></div>';
+function renderSubmissionHistory() {
+  var el = document.getElementById('submissionHistory');
+  if (!el) return;
+  
+  var html = '<div class="section-card fade-up">';
+  html += '<div class="section-card-title">&#128221; Submission History <span class="text-xs-muted">' + allSubs.length + ' total</span></div>';
   
   if (allSubs.length === 0) {
-    histHtml += '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">No submissions yet. Start by filling your daily checklist.</div>';
+    html += '<div class="empty-sm">No submissions yet. Start by filling your daily checklist.</div>';
   } else {
-    // Sort by date newest first
     var sortedSubs = allSubs.slice().sort(function(a,b){
       return new Date(b.submittedAt||0) - new Date(a.submittedAt||0);
     });
@@ -842,19 +944,18 @@ function renderMiniBar() {
       var scoreStr = hasScore ? score + '%' : 'Data';
       var date = s.submittedAt ? s.submittedAt.substring(0,10) : '';
       var dayLabel = (s.day||'').charAt(0).toUpperCase() + (s.day||'').slice(1);
-      var late = s.late ? ' <span style="background:#FF3B30;color:#fff;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700;">LATE</span>' : '';
-      histHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">' +
+      var late = s.late ? ' <span class="pill pill-red">LATE</span>' : '';
+      html += '<div class="row-border">' +
         '<div>' +
-          '<div style="font-size:13px;font-weight:600;color:var(--text);">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
-          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + date + '</div>' +
+          '<div class="font-semibold">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
+          '<div class="text-xs-muted" style="margin-top:2px">' + date + '</div>' +
         '</div>' +
         '<div style="font-size:18px;font-weight:700;color:' + color + ';">' + scoreStr + '</div>' +
       '</div>';
     });
   }
-  histHtml += '</div>';
-  el.innerHTML += histHtml;
-
+  html += '</div>';
+  el.innerHTML = html;
 }
 
 function buildHeatmap() {
@@ -984,7 +1085,7 @@ function renderActionList(filter) {
   });
 
   if (filtered.length === 0) {
-    list.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">' + (filter==='pending'?'&#x2705; No open actions — great work!':'No items here') + '</div>';
+    list.innerHTML = '<div class="empty-sm">' + (filter==='pending'?'&#x2705; No open actions — great work!':'No items here') + '</div>';
     return;
   }
 
@@ -1141,34 +1242,33 @@ function renderLiveLeaderboard(subs) {
     var color = am.thisWeek>0?getBandColor(am.thisWeek):'#E5E5EA';
     var moveHtml = '';
     if (am.thisWeek > 0 && am.lastWeek > 0) {
-      if (rankMove > 0) moveHtml = '<span style="color:#34C759;font-size:11px;font-weight:700;">&#x25B2; +'+rankMove+'</span>';
-      else if (rankMove < 0) moveHtml = '<span style="color:#FF3B30;font-size:11px;font-weight:700;">&#x25BC; '+rankMove+'</span>';
-      else moveHtml = '<span style="color:#6E6E73;font-size:11px;">&#x2014;</span>';
+      if (rankMove > 0) moveHtml = '<span style="color:var(--success);font-size:11px;font-weight:700;">&#x25B2; +'+rankMove+'</span>';
+      else if (rankMove < 0) moveHtml = '<span style="color:var(--critical);font-size:11px;font-weight:700;">&#x25BC; '+rankMove+'</span>';
+      else moveHtml = '<span style="color:var(--text2);font-size:11px;">&#x2014;</span>';
     }
 
     var isTop = i === 0 && am.thisWeek > 0;
     html +=
       '<div style="display:flex;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);background:' + (isTop?'linear-gradient(135deg,rgba(255,215,0,0.05),transparent)':'transparent') + ';border-radius:' + (isTop?'8px':'0') + ';padding-left:' + (isTop?'8px':'0') + ';">' +
         '<div style="width:32px;text-align:center;font-size:18px;flex-shrink:0;">' + (medal||'<span style="font-size:14px;font-weight:700;color:var(--text2);">'+(i+1)+'</span>') + '</div>' +
-        '<div style="width:36px;height:36px;background:linear-gradient(135deg,#C8102E,#9B0D22);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 10px;flex-shrink:0;">' + am.icon + '</div>' +
-        '<div style="flex:1;">' +
-          '<div style="display:flex;align-items:center;gap:8px;">'+amAv(am.name,32)+'<div style="font-size:14px;font-weight:700;color:var(--text);">'+am.name+'</div></div>' +
+        '<div class="flex-1">' +
+          '<div style="font-size:14px;font-weight:700;color:var(--text);">'+am.name+'</div>' +
           '<div style="font-size:11px;color:var(--text2);margin-top:1px;">' + am.region + ' &nbsp;·&nbsp; Streak: ' + am.streak + (am.streak>0?' &#x1F525;':'') + '</div>' +
         '</div>' +
-        '<div style="text-align:right;">' +
+        '<div class="text-right">' +
           '<div style="font-size:22px;font-weight:700;color:' + color + ';">' + (am.thisWeek>0?am.thisWeek+'%':'--') + '</div>' +
-          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + moveHtml + ' &nbsp; MTD: <strong>' + (am.mtd>0?am.mtd+'%':'--') + '</strong></div>' +
+          '<div class="text-xs-muted" style="margin-top:2px">' + moveHtml + ' &nbsp; MTD: <strong>' + (am.mtd>0?am.mtd+'%':'--') + '</strong></div>' +
         '</div>' +
       '</div>';
   });
   el.innerHTML = html;
 
   // ── SUBMISSION HISTORY ────────────────────────────────
-  var histHtml = '<div class="section-card fade-up" style="margin-top:12px;">';
-  histHtml += '<div class="section-card-title">&#128221; Submission History <span style="font-size:11px;font-weight:400;color:var(--text2);">' + allSubs.length + ' total</span></div>';
+  var histHtml = '<div class="section-card fade-up" class="mt-12">';
+  histHtml += '<div class="section-card-title">&#128221; Submission History <span class="text-xs-muted">' + allSubs.length + ' total</span></div>';
   
   if (allSubs.length === 0) {
-    histHtml += '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">No submissions yet. Start by filling your daily checklist.</div>';
+    histHtml += '<div class="empty-sm">No submissions yet. Start by filling your daily checklist.</div>';
   } else {
     // Sort by date newest first
     var sortedSubs = allSubs.slice().sort(function(a,b){
@@ -1181,11 +1281,11 @@ function renderLiveLeaderboard(subs) {
       var scoreStr = hasScore ? score + '%' : 'Data';
       var date = s.submittedAt ? s.submittedAt.substring(0,10) : '';
       var dayLabel = (s.day||'').charAt(0).toUpperCase() + (s.day||'').slice(1);
-      var late = s.late ? ' <span style="background:#FF3B30;color:#fff;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700;">LATE</span>' : '';
-      histHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">' +
+      var late = s.late ? ' <span class="pill pill-red">LATE</span>' : '';
+      histHtml += '<div class="row-between-border">' +
         '<div>' +
-          '<div style="font-size:13px;font-weight:600;color:var(--text);">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
-          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + date + '</div>' +
+          '<div class="font-semibold">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
+          '<div class="text-xs-muted" style="margin-top:2px">' + date + '</div>' +
         '</div>' +
         '<div style="font-size:18px;font-weight:700;color:' + color + ';">' + scoreStr + '</div>' +
       '</div>';
@@ -1224,12 +1324,12 @@ function renderRegionalBattle(subs) {
             (isLeading?'<span style="font-size:16px;">&#x1F3C6;</span>':'<span style="font-size:14px;font-weight:700;color:var(--text2);">'+(i+1)+'</span>') +
             '<div>' +
               '<div style="font-size:14px;font-weight:700;">' + r.name + '</div>' +
-              '<div style="font-size:11px;color:var(--text2);">' + r.count + ' of ' + r.total + ' AMs submitted</div>' +
+              '<div class="text-xs-muted">' + r.count + ' of ' + r.total + ' AMs submitted</div>' +
             '</div>' +
           '</div>' +
           '<div style="font-size:22px;font-weight:700;color:' + color + ';">' + (r.avg>0?r.avg+'%':'--') + '</div>' +
         '</div>' +
-        '<div style="background:#E5E5EA;border-radius:6px;height:10px;overflow:hidden;">' +
+        '<div style="background:var(--border);border-radius:6px;height:10px;overflow:hidden;">' +
           '<div style="height:100%;background:' + color + ';border-radius:6px;width:' + r.avg + '%;transition:width 1s ease;"></div>' +
         '</div>' +
       '</div>';
@@ -1237,11 +1337,11 @@ function renderRegionalBattle(subs) {
   el.innerHTML = html;
 
   // ── SUBMISSION HISTORY ────────────────────────────────
-  var histHtml = '<div class="section-card fade-up" style="margin-top:12px;">';
-  histHtml += '<div class="section-card-title">&#128221; Submission History <span style="font-size:11px;font-weight:400;color:var(--text2);">' + allSubs.length + ' total</span></div>';
+  var histHtml = '<div class="section-card fade-up" class="mt-12">';
+  histHtml += '<div class="section-card-title">&#128221; Submission History <span class="text-xs-muted">' + allSubs.length + ' total</span></div>';
   
   if (allSubs.length === 0) {
-    histHtml += '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">No submissions yet. Start by filling your daily checklist.</div>';
+    histHtml += '<div class="empty-sm">No submissions yet. Start by filling your daily checklist.</div>';
   } else {
     // Sort by date newest first
     var sortedSubs = allSubs.slice().sort(function(a,b){
@@ -1254,11 +1354,11 @@ function renderRegionalBattle(subs) {
       var scoreStr = hasScore ? score + '%' : 'Data';
       var date = s.submittedAt ? s.submittedAt.substring(0,10) : '';
       var dayLabel = (s.day||'').charAt(0).toUpperCase() + (s.day||'').slice(1);
-      var late = s.late ? ' <span style="background:#FF3B30;color:#fff;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700;">LATE</span>' : '';
-      histHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">' +
+      var late = s.late ? ' <span class="pill pill-red">LATE</span>' : '';
+      histHtml += '<div class="row-between-border">' +
         '<div>' +
-          '<div style="font-size:13px;font-weight:600;color:var(--text);">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
-          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + date + '</div>' +
+          '<div class="font-semibold">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
+          '<div class="text-xs-muted" style="margin-top:2px">' + date + '</div>' +
         '</div>' +
         '<div style="font-size:18px;font-weight:700;color:' + color + ';">' + scoreStr + '</div>' +
       '</div>';
@@ -1277,7 +1377,7 @@ function renderStreakBoard(subs) {
   if (!el) return;
 
   if (streakers.length === 0) {
-    el.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">Submit consistently to build streaks &#x1F525;</div>';
+    el.innerHTML = '<div class="empty-sm">Submit consistently to build streaks &#x1F525;</div>';
     return;
   }
 
@@ -1290,14 +1390,14 @@ function renderStreakBoard(subs) {
     var subTextColor = am.streak >= 3 ? 'rgba(255,255,255,0.8)' : 'var(--text2)';
     html +=
       '<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:12px;background:' + bgColor + ';margin-bottom:8px;">' +
-        '<div style="display:flex;align-items:center;gap:10px;">' +
-          '<div style="font-size:20px;">' + fires + '</div>' +
+        '<div class="flex-center">' +
+          '<div >' + fires + '</div>' +
           '<div>' +
             '<div style="font-size:14px;font-weight:700;color:' + textColor + ';">' + am.name + '</div>' +
             '<div style="font-size:11px;color:' + subTextColor + ';">' + am.region + '</div>' +
           '</div>' +
         '</div>' +
-        '<div style="text-align:right;">' +
+        '<div class="text-right">' +
           '<div style="font-size:24px;font-weight:700;color:' + textColor + ';">' + am.streak + '</div>' +
           '<div style="font-size:10px;color:' + subTextColor + ';">weeks</div>' +
         '</div>' +
@@ -1306,11 +1406,11 @@ function renderStreakBoard(subs) {
   el.innerHTML = html;
 
   // ── SUBMISSION HISTORY ────────────────────────────────
-  var histHtml = '<div class="section-card fade-up" style="margin-top:12px;">';
-  histHtml += '<div class="section-card-title">&#128221; Submission History <span style="font-size:11px;font-weight:400;color:var(--text2);">' + allSubs.length + ' total</span></div>';
+  var histHtml = '<div class="section-card fade-up" class="mt-12">';
+  histHtml += '<div class="section-card-title">&#128221; Submission History <span class="text-xs-muted">' + allSubs.length + ' total</span></div>';
   
   if (allSubs.length === 0) {
-    histHtml += '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">No submissions yet. Start by filling your daily checklist.</div>';
+    histHtml += '<div class="empty-sm">No submissions yet. Start by filling your daily checklist.</div>';
   } else {
     // Sort by date newest first
     var sortedSubs = allSubs.slice().sort(function(a,b){
@@ -1323,11 +1423,11 @@ function renderStreakBoard(subs) {
       var scoreStr = hasScore ? score + '%' : 'Data';
       var date = s.submittedAt ? s.submittedAt.substring(0,10) : '';
       var dayLabel = (s.day||'').charAt(0).toUpperCase() + (s.day||'').slice(1);
-      var late = s.late ? ' <span style="background:#FF3B30;color:#fff;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700;">LATE</span>' : '';
-      histHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">' +
+      var late = s.late ? ' <span class="pill pill-red">LATE</span>' : '';
+      histHtml += '<div class="row-between-border">' +
         '<div>' +
-          '<div style="font-size:13px;font-weight:600;color:var(--text);">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
-          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + date + '</div>' +
+          '<div class="font-semibold">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
+          '<div class="text-xs-muted" style="margin-top:2px">' + date + '</div>' +
         '</div>' +
         '<div style="font-size:18px;font-weight:700;color:' + color + ';">' + scoreStr + '</div>' +
       '</div>';
@@ -1395,9 +1495,9 @@ function renderCelebrations(subs) {
   var html = '';
   celebrations.slice(0,6).forEach(function(c) {
     html +=
-      '<div style="background:' + c.color + ';border-radius:14px;padding:14px;margin-bottom:10px;border-left:4px solid ' + c.border + ';">' +
+      '<div style="background:' + c.color + ';border-radius:14px;padding:14px;margin-bottom:10px;border:1.5px solid ' + c.border + ';">' +
         '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">' +
-          '<span style="font-size:20px;">' + c.icon + '</span>' +
+          '<span >' + c.icon + '</span>' +
           '<div>' +
             '<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;">' + c.title + '</div>' +
             '<div style="font-size:14px;font-weight:700;color:var(--text);">' + c.name + '</div>' +
@@ -1409,11 +1509,11 @@ function renderCelebrations(subs) {
   el.innerHTML = html;
 
   // ── SUBMISSION HISTORY ────────────────────────────────
-  var histHtml = '<div class="section-card fade-up" style="margin-top:12px;">';
-  histHtml += '<div class="section-card-title">&#128221; Submission History <span style="font-size:11px;font-weight:400;color:var(--text2);">' + allSubs.length + ' total</span></div>';
+  var histHtml = '<div class="section-card fade-up" class="mt-12">';
+  histHtml += '<div class="section-card-title">&#128221; Submission History <span class="text-xs-muted">' + allSubs.length + ' total</span></div>';
   
   if (allSubs.length === 0) {
-    histHtml += '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">No submissions yet. Start by filling your daily checklist.</div>';
+    histHtml += '<div class="empty-sm">No submissions yet. Start by filling your daily checklist.</div>';
   } else {
     // Sort by date newest first
     var sortedSubs = allSubs.slice().sort(function(a,b){
@@ -1426,11 +1526,11 @@ function renderCelebrations(subs) {
       var scoreStr = hasScore ? score + '%' : 'Data';
       var date = s.submittedAt ? s.submittedAt.substring(0,10) : '';
       var dayLabel = (s.day||'').charAt(0).toUpperCase() + (s.day||'').slice(1);
-      var late = s.late ? ' <span style="background:#FF3B30;color:#fff;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700;">LATE</span>' : '';
-      histHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">' +
+      var late = s.late ? ' <span class="pill pill-red">LATE</span>' : '';
+      histHtml += '<div class="row-between-border">' +
         '<div>' +
-          '<div style="font-size:13px;font-weight:600;color:var(--text);">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
-          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + date + '</div>' +
+          '<div class="font-semibold">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
+          '<div class="text-xs-muted" style="margin-top:2px">' + date + '</div>' +
         '</div>' +
         '<div style="font-size:18px;font-weight:700;color:' + color + ';">' + scoreStr + '</div>' +
       '</div>';
@@ -1458,7 +1558,7 @@ function renderConsistencyBoard(subs) {
         '<div style="font-size:11px;color:var(--text2);margin-bottom:6px;">' + am.region + '</div>' +
         '<div style="font-size:22px;font-weight:700;color:' + color + ';line-height:1;">' + am.mtdDays + '</div>' +
         '<div style="font-size:10px;color:var(--text2);margin-bottom:6px;">days submitted</div>' +
-        '<div style="background:#E5E5EA;border-radius:4px;height:5px;overflow:hidden;">' +
+        '<div style="background:var(--border);border-radius:4px;height:5px;overflow:hidden;">' +
           '<div style="height:100%;background:' + color + ';border-radius:4px;width:' + Math.min(pct,100) + '%;"></div>' +
         '</div>' +
       '</div>';
@@ -1467,11 +1567,11 @@ function renderConsistencyBoard(subs) {
   el.innerHTML = html;
 
   // ── SUBMISSION HISTORY ────────────────────────────────
-  var histHtml = '<div class="section-card fade-up" style="margin-top:12px;">';
-  histHtml += '<div class="section-card-title">&#128221; Submission History <span style="font-size:11px;font-weight:400;color:var(--text2);">' + allSubs.length + ' total</span></div>';
+  var histHtml = '<div class="section-card fade-up" class="mt-12">';
+  histHtml += '<div class="section-card-title">&#128221; Submission History <span class="text-xs-muted">' + allSubs.length + ' total</span></div>';
   
   if (allSubs.length === 0) {
-    histHtml += '<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">No submissions yet. Start by filling your daily checklist.</div>';
+    histHtml += '<div class="empty-sm">No submissions yet. Start by filling your daily checklist.</div>';
   } else {
     // Sort by date newest first
     var sortedSubs = allSubs.slice().sort(function(a,b){
@@ -1484,11 +1584,11 @@ function renderConsistencyBoard(subs) {
       var scoreStr = hasScore ? score + '%' : 'Data';
       var date = s.submittedAt ? s.submittedAt.substring(0,10) : '';
       var dayLabel = (s.day||'').charAt(0).toUpperCase() + (s.day||'').slice(1);
-      var late = s.late ? ' <span style="background:#FF3B30;color:#fff;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700;">LATE</span>' : '';
-      histHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">' +
+      var late = s.late ? ' <span class="pill pill-red">LATE</span>' : '';
+      histHtml += '<div class="row-between-border">' +
         '<div>' +
-          '<div style="font-size:13px;font-weight:600;color:var(--text);">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
-          '<div style="font-size:11px;color:var(--text2);margin-top:2px;">' + date + '</div>' +
+          '<div class="font-semibold">' + dayLabel + ' &mdash; ' + s.store + late + '</div>' +
+          '<div class="text-xs-muted" style="margin-top:2px">' + date + '</div>' +
         '</div>' +
         '<div style="font-size:18px;font-weight:700;color:' + color + ';">' + scoreStr + '</div>' +
       '</div>';
@@ -1512,10 +1612,9 @@ document.getElementById('qtdChangeBtn').addEventListener('click', function(){
   var c = document.getElementById('qtdAMCards');
   amList.forEach(function(am) {
     var d = document.createElement('div');
-    d.style.cssText = 'background:#fff;border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.07);cursor:pointer;';
-    d.innerHTML = '<div style="font-size:24px;margin-bottom:4px;">' + am.icon + '</div>' +
-      '<div style="font-size:13px;font-weight:700;color:#1D1D1F;">' + am.name + '</div>' +
-      '<div style="font-size:11px;color:#6E6E73;">' + am.region + '</div>';
+    d.style.cssText = 'background:var(--card);border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.07);cursor:pointer;';
+    d.innerHTML = '<div style="font-size:13px;font-weight:700;color:var(--text);">' + am.name + '</div>' +
+      '<div style="font-size:11px;color:var(--text2);">' + am.region + '</div>';
     d.addEventListener('click', function() {
       document.getElementById('qtdAMPickerWrap').classList.add('hidden');
       document.getElementById('qtdContent').classList.remove('hidden');
@@ -1603,7 +1702,7 @@ function renderQTDDash(amName, subs) {
   var ytdLFL = ytdLYSales > 0 ? ((ytdActual-ytdLYSales)/ytdLYSales*100).toFixed(1) : null;
 
   function progressBar(pct, color) {
-    return '<div style="background:#E5E5EA;border-radius:6px;height:10px;overflow:hidden;margin:8px 0;">' +
+    return '<div style="background:var(--border);border-radius:6px;height:10px;overflow:hidden;margin:8px 0;">' +
       '<div style="height:100%;background:' + color + ';border-radius:6px;width:' + Math.min(pct,100) + '%;transition:width 1.2s ease;"></div></div>';
   }
 
@@ -1655,7 +1754,7 @@ function renderQTDDash(amName, subs) {
   html += '<div style="background:linear-gradient(135deg,var(--red),var(--red-dark));border-radius:16px;padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;">' +
     '<div><div style="font-size:12px;color:rgba(255,255,255,0.7);font-weight:600;text-transform:uppercase;">India Financial Year</div>' +
     '<div style="font-size:20px;font-weight:700;color:#fff;">' + fyLabel + '</div></div>' +
-    '<div style="text-align:right;"><div style="font-size:12px;color:rgba(255,255,255,0.7);">Current Quarter</div>' +
+    '<div class="text-right"><div style="font-size:12px;color:rgba(255,255,255,0.7);">Current Quarter</div>' +
     '<div style="font-size:20px;font-weight:700;color:#fff;">' + qLabels[currentQ] + '</div></div>' +
   '</div>';
 
@@ -1668,7 +1767,7 @@ function renderQTDDash(amName, subs) {
 
   // QTD Metrics Grid
   html += '<div class="section-card"><div class="section-card-title">&#x1F4CA; QTD Breakdown</div>' +
-    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">' +
+    '<div class="grid-2">' +
     metricBlock('QTD Revenue', qtdActual>0?fmt(qtdActual):'--', qtdTueSubs.length+' store-weeks', qtdColor) +
     metricBlock('QTD vs Target', qtdPct>0?qtdPct+'%':'--', qtdTarget>0?'Target: '+fmt(qtdTarget):'No target set', qtdColor) +
     metricBlock('QTD LFL', qtdLFL!==null?(parseFloat(qtdLFL)>=0?'+':'')+qtdLFL+'%':'--', 'vs Same Qtr LY', qtdLFL&&parseFloat(qtdLFL)>=0?'#34C759':'#FF3B30') +
@@ -1684,7 +1783,7 @@ function renderQTDDash(amName, subs) {
 
   // YTD Metrics Grid
   html += '<div class="section-card"><div class="section-card-title">&#x1F4CA; YTD Breakdown</div>' +
-    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">' +
+    '<div class="grid-2">' +
     metricBlock('YTD Revenue', ytdActual>0?fmt(ytdActual):'--', ytdTueSubs.length+' store-weeks', ytdColor) +
     metricBlock('YTD vs Target', ytdPct>0?ytdPct+'%':'--', ytdTarget>0?'Target: '+fmt(ytdTarget):'No target set', ytdColor) +
     metricBlock('YTD LFL', ytdLFL!==null?(parseFloat(ytdLFL)>=0?'+':'')+ytdLFL+'%':'--', 'vs Full FY LY', ytdLFL&&parseFloat(ytdLFL)>=0?'#34C759':'#FF3B30') +
@@ -1715,18 +1814,18 @@ function renderQTDDash(amName, subs) {
     html += '<div style="background:' + (isCurrent?'linear-gradient(135deg,#FFF5F6,#FFE8EC)':'var(--surface)') + ';border-radius:14px;padding:14px;border:2px solid ' + (isCurrent?'var(--red)':'transparent') + ';">' +
       '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">' +
         '<div style="display:flex;align-items:center;gap:8px;">' +
-          (isCurrent?'<span style="font-size:14px;">&#x1F4CD;</span>':'') +
+          (isCurrent?'<span >&#x1F4CD;</span>':'') +
           '<div>' +
             '<div style="font-size:14px;font-weight:700;color:var(--text);">' + qt.label + ' — ' + qt.dates + (isCurrent?' (Current)':'') + '</div>' +
-            '<div style="font-size:11px;color:var(--text2);">' + qSubs.length + ' store-weeks · ' + qScored.length + ' scored</div>' +
+            '<div class="text-xs-muted">' + qSubs.length + ' store-weeks · ' + qScored.length + ' scored</div>' +
           '</div>' +
         '</div>' +
-        '<div style="text-align:right;">' +
+        '<div class="text-right">' +
           '<div style="font-size:20px;font-weight:700;color:' + qColor + ';">' + (qPct>0?qPct+'%':'--') + '</div>' +
-          '<div style="font-size:11px;color:var(--text2);">Ops: ' + (qScore>0?qScore+'%':'--') + '</div>' +
+          '<div class="text-xs-muted">Ops: ' + (qScore>0?qScore+'%':'--') + '</div>' +
         '</div>' +
       '</div>' +
-      (qPct>0?'<div style="background:#E5E5EA;border-radius:4px;height:6px;overflow:hidden;"><div style="height:100%;background:'+qColor+';border-radius:4px;width:'+Math.min(qPct,100)+'%;transition:width 1s ease;"></div></div>':'') +
+      (qPct>0?'<div style="background:var(--border);border-radius:4px;height:6px;overflow:hidden;"><div style="height:100%;background:'+qColor+';border-radius:4px;width:'+Math.min(qPct,100)+'%;transition:width 1s ease;"></div></div>':'') +
     '</div>';
   });
   html += '</div></div>';
@@ -1738,7 +1837,6 @@ renderAMCards();
 </script>
 <script id="pin-wall-js">
 (function(){
-  var PINS={'am':'2026','hod':'2202'};
   var wall=document.getElementById('pin-wall');
   var isHODPage=window.location.pathname.indexOf('hod')>-1;
   var pinOK=localStorage.getItem('th_pin_ok')==='1';
@@ -1751,9 +1849,7 @@ renderAMCards();
     if(entered.length>=4) return;
     entered.push(v);
     render();
-    if(entered.length===4){
-      setTimeout(function(){check();},100);
-    }
+    if(entered.length===4){setTimeout(function(){check();},100);}
   }
   function render(){
     for(var i=0;i<4;i++){
@@ -1762,17 +1858,19 @@ renderAMCards();
   }
   function check(){
     var pin=entered.join('');
-    if(pin===PINS.hod){
+    fetch('/api/verify-pin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pin:pin})})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(!d.success){wrong();return;}
       localStorage.setItem('th_pin_ok','1');
-      localStorage.setItem('th_hod_ok','1');
-      localStorage.setItem('th_is_hod','1');
+      localStorage.setItem('th_am_name',d.am);
+      if(d.role==='hod'||d.role==='ceo'){
+        localStorage.setItem('th_hod_ok','1');
+        localStorage.setItem('th_is_hod','1');
+      }
       wall.style.display='none';
-    }else if(pin===PINS.am&&!isHODPage){
-      localStorage.setItem('th_pin_ok','1');
-      wall.style.display='none';
-    }else{
-      wrong();
-    }
+    })
+    .catch(function(){wrong();});
   }
   function wrong(){
     entered=[];
@@ -1787,5 +1885,6 @@ renderAMCards();
   window.pinPress=pinPress;
 })();
 </script>
-</body>
+<script src="/js/api.js"></script>
+<div id="themeFloating" style="position:fixed;top:12px;right:12px;z-index:150;"><button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode" style="border-radius:50%;width:36px;height:36px;padding:0;display:flex;align-items:center;justify-content:center;background:var(--card);box-shadow:var(--shadow-mid);"><svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div><script src="theme.js"></script><script>applyTheme(getTheme());</script></body>
 </html>
