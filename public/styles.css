@@ -109,6 +109,14 @@
   /* Shadows */
   --shadow-soft: rgba(0,0,0,0.06);
   --shadow-mid: rgba(0,0,0,0.08);
+
+  /* Easing + duration */
+  --ease-out: cubic-bezier(0.25, 0, 0.3, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-short: 120ms;
+  --dur-base: 200ms;
+  --dur-long: 320ms;
 }
 
 /* ── THEME TRANSITION ── */
