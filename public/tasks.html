@@ -79,7 +79,7 @@ body { min-height: 100vh; padding-top:var(--nav-h); }
 /* PATCH SELECTOR */
 .patch-wrap { padding:0 16px 8px; }
 .patch-pills { display:flex; gap:6px; flex-wrap:wrap; }
-.patch-pill { padding:6px 14px; border-radius:20px; font-size:11px; font-weight:600; border:1.5px solid var(--border); background:var(--card); color:var(--text2); cursor:pointer; transition:all 0.15s ease; white-space:nowrap; }
+.patch-pill { padding:6px 14px; border-radius:20px; font-size:11px; font-weight:600; border:1.5px solid var(--border); background:var(--card); color:var(--text2); cursor:pointer; transition:background-color 120ms ease-out, border-color 120ms ease-out, color 120ms ease-out; white-space:nowrap; }
 .patch-pill:hover { border-color:var(--red); color:var(--red); }
 .patch-pill.active { background:var(--red); border-color:var(--red); color:#fff; }
 .patch-pill .pc { font-weight:400; opacity:0.7; margin-left:3px; }
@@ -221,7 +221,7 @@ body { min-height: 100vh; padding-top:var(--nav-h); }
 .ev-input:focus-visible{outline:2px solid var(--red);outline-offset:2px;}
 .ev-toggle-row{display:flex;gap:8px;}
 .ev-toggle-btn{flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--border);background:var(--card);font-size:13px;font-weight:700;cursor:pointer;text-align:center;transition:background-color 120ms ease-out,border-color 120ms ease-out,color 120ms ease-out;}
-.ev-toggle-btn.yes-sel{background:rgba(52,199,89,0.12);border-color:var(--success);color:#1B7A3A;}
+.ev-toggle-btn.yes-sel{background:var(--green-tint);border-color:var(--success);color:var(--green-dk);}
 .ev-toggle-btn.no-sel{background:rgba(255,59,48,0.1);border-color:var(--critical);color:var(--red);}
 .ev-profit-box{background:linear-gradient(135deg,var(--navy-event),var(--navy-event-2));border-radius:12px;padding:14px;margin-bottom:12px;text-align:center;}
 .ev-profit-label{font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
@@ -234,10 +234,10 @@ body { min-height: 100vh; padding-top:var(--nav-h); }
 
 /* ── AI Academy ── */
 .ai-hero{background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:18px;padding:20px;margin-bottom:14px;position:relative;overflow:hidden;}
-.ai-hero-tag{font-size:10px;font-weight:700;color:oklch(78% 0.13 265 / 0.8);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;}
+.ai-hero-tag{font-size:10px;font-weight:700;color:var(--indigo-label);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;}
 .ai-hero-title{font-size:20px;font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:4px;}
 .ai-hero-sub{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.5;}
-.ai-streak-badge{display:inline-flex;align-items:center;gap:5px;background:oklch(55% 0.22 265 / 0.2);border:1px solid oklch(55% 0.22 265 / 0.4);border-radius:20px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--indigo-lt);margin-top:10px;}
+.ai-streak-badge{display:inline-flex;align-items:center;gap:5px;background:var(--indigo-tint-md);border:1px solid var(--indigo-tint-border);border-radius:20px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--indigo-lt);margin-top:10px;}
 .ai-section-label{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin:16px 0 8px;}
 .ai-video-wrap{background:#000;border-radius:14px;overflow:hidden;margin-bottom:12px;position:relative;padding-top:56.25%;}
 .ai-video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
@@ -250,16 +250,16 @@ body { min-height: 100vh; padding-top:var(--nav-h); }
 .ai-tag-gemini{background:var(--tag-gemini-bg);color:var(--tag-gemini-text);}
 .ai-tag-skills{background:var(--tag-skills-bg);color:var(--tag-skills-text);}
 .ai-watch-btn{width:100%;padding:12px;border-radius:12px;border:none;font-size:14px;font-weight:700;cursor:pointer;transition:opacity 150ms ease-out;}
-.ai-watch-btn.unwatched{background:linear-gradient(135deg,var(--indigo),var(--indigo-dk));color:#fff;box-shadow:0 4px 14px oklch(55% 0.22 265 / 0.35);}
+.ai-watch-btn.unwatched{background:linear-gradient(135deg,var(--indigo),var(--indigo-dk));color:var(--white);box-shadow:0 4px 14px var(--indigo-glow);}
 .ai-watch-btn.watched{background:var(--success-bg);color:var(--green-dk);}
 .ai-challenge-card{background:linear-gradient(135deg,var(--navy-3),var(--navy-4));border-radius:16px;padding:18px;margin-bottom:14px;}
-.ai-challenge-label{font-size:10px;font-weight:700;color:oklch(78% 0.13 265 / 0.7);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
+.ai-challenge-label{font-size:10px;font-weight:700;color:var(--indigo-label-dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
 .ai-challenge-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:10px;}
 .ai-challenge-prompt{background:rgba(255,255,255,0.06);border-left:3px solid var(--indigo);border-radius:0 8px 8px 0;padding:12px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6;font-family:inherit;}
-.ai-challenge-done-btn{width:100%;padding:12px;border-radius:12px;border:none;background:oklch(55% 0.22 265 / 0.2);color:var(--indigo-lt);font-size:13px;font-weight:700;cursor:pointer;margin-top:12px;transition:background-color 150ms ease-out,color 150ms ease-out;}
-.ai-challenge-done-btn.done-state{background:oklch(74% 0.16 145 / 0.15);color:var(--success);}
+.ai-challenge-done-btn{width:100%;padding:12px;border-radius:12px;border:none;background:var(--indigo-tint-md);color:var(--indigo-lt);font-size:13px;font-weight:700;cursor:pointer;margin-top:12px;transition:background-color 150ms ease-out,color 150ms ease-out;}
+.ai-challenge-done-btn.done-state{background:var(--green-tint-bg);color:var(--success);}
 .ai-library-card{background:var(--card);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,0.06);cursor:pointer;border:1.5px solid transparent;transition:border-color 120ms ease-out,background-color 120ms ease-out;}
-.ai-library-card.watched-card{border-color:oklch(74% 0.16 145 / 0.4);background:var(--watched-bg);}
+.ai-library-card.watched-card{border-color:var(--green-tint-border);background:var(--watched-bg);}
 .ai-library-thumb{width:60px;height:38px;border-radius:6px;background:var(--navy);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;overflow:hidden;}
 .ai-library-thumb img{width:100%;height:100%;object-fit:cover;border-radius:6px;}
 .ai-library-info{flex:1;min-width:0;}
@@ -578,8 +578,8 @@ body { min-height: 100vh; padding-top:var(--nav-h); }
     <button class="ev-submit-btn" id="evSubmitBtn" onclick="submitEvent()">Submit Event</button>
     <div id="evSuccess" class="ev-success">
       <div style="font-size:24px;margin-bottom:8px;">&#9989;</div>
-      <div style="font-size:15px;font-weight:700;color:#1B7A3A;">Event submitted successfully</div>
-      <div id="evSuccessDetail" style="font-size:12px;color:#5C5753;margin-top:4px;"></div>
+      <div style="font-size:15px;font-weight:700;color:var(--green-dk);">Event submitted successfully</div>
+      <div id="evSuccessDetail" style="font-size:12px;color:var(--text2);margin-top:4px;"></div>
     </div>
   </div>
 </div>
@@ -1766,7 +1766,7 @@ function renderWeekendForm(prefix, store, state) {
     '<div><div class="form-store-name">' + store.name + '</div>' +
     '<div class="form-store-sub">' + dayLabel + ' - Weekend Operations</div></div></div>';
 
-  html += '<div style="background:#E8F8ED;border-radius:12px;padding:10px 16px;margin-bottom:12px;font-size:13px;color:#1B7A3A;">' +
+  html += '<div style="background:var(--pass-bg);border-radius:12px;padding:10px 16px;margin-bottom:12px;font-size:13px;color:var(--green-dk);">' +
     '&#x23F1; Speed benchmark: Dine-in and Take-away under 2:30</div>';
 
   html += '<div class="section-card">';
@@ -1774,7 +1774,7 @@ function renderWeekendForm(prefix, store, state) {
     html += '<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);">' +
       '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">' +
       '<div style="font-size:11px;color:var(--text2);">Item ' + (i+1) + ' of 12</div>' +
-      (item.timed ? '<div style="font-size:11px;background:#FFF3E0;color:#E65100;padding:2px 8px;border-radius:6px;font-weight:600;">TIMED</div>' : '') +
+      (item.timed ? '<div style="font-size:11px;background:var(--warn-bg);color:var(--warn);padding:2px 8px;border-radius:6px;font-weight:600;">TIMED</div>' : '') +
       '</div>' +
       '<div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:10px;">' + item.text + '</div>';
 
@@ -1933,13 +1933,13 @@ selectDay(new Date().getDay());
       var h='<div style="background:rgba(255,149,0,0.08);border:1.5px solid '+uc+';border-radius:14px;padding:12px 14px;">';
       h+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">';
       h+='<div><div style="font-size:9px;font-weight:700;color:'+uc+';text-transform:uppercase;letter-spacing:1px;">Festival Readiness</div>';
-      h+='<div style="font-size:15px;font-weight:700;color:#1C1C1E;">'+FA[i].n+'</div></div>';
-      h+='<div style="background:'+uc+';color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;">'+lbl+'</div></div>';
+      h+='<div style="font-size:15px;font-weight:700;color:var(--text);">'+FA[i].n+'</div></div>';
+      h+='<div style="background:'+uc+';color:var(--white);font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;">'+lbl+'</div></div>';
       for(var j=0;j<FA[i].c.length;j++){
-        h+='<div style="display:flex;gap:8px;padding:4px 0;font-size:12px;color:#1C1C1E;border-bottom:1px solid rgba(0,0,0,0.05);">';
+        h+='<div style="display:flex;gap:8px;padding:4px 0;font-size:12px;color:var(--text);border-bottom:1px solid rgba(0,0,0,0.05);">';
         h+='<span style="min-width:16px;font-size:9px;font-weight:700;color:'+uc+';">'+(j+1)+'.</span>'+FA[i].c[j]+'</div>';
       }
-      if(diff<=0) h+='<div style="margin-top:8px;background:rgba(52,199,89,0.1);border-radius:8px;padding:8px;font-size:11px;color:#1B7A3A;font-weight:600;">Go recognise your team today.</div>';
+      if(diff<=0) h+='<div style="margin-top:8px;background:var(--green-tint);border-radius:8px;padding:8px;font-size:11px;color:var(--green-dk);font-weight:600;">Go recognise your team today.</div>';
       h+='</div>';
       el.innerHTML=h; el.style.display='block'; break;
     }
@@ -2461,7 +2461,7 @@ function showCertModal(label, stats, monthKey) {
   el.id = 'certModal';
   el.style.cssText = 'position:fixed;inset:0;z-index:var(--z-modal);background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn 0.4s ease;';
   el.innerHTML =
-    '<div style="background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:24px;padding:32px 24px;text-align:center;max-width:340px;width:100%;border:1px solid oklch(55% 0.22 265 / 0.4);animation:popIn 0.4s cubic-bezier(0.25,0,0.3,1);">' +
+    '<div style="background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:24px;padding:32px 24px;text-align:center;max-width:340px;width:100%;border:1px solid var(--indigo-tint-border);animation:popIn 0.4s cubic-bezier(0.25,0,0.3,1);">' +
       '<div style="font-size:52px;margin-bottom:12px;">🏆</div>' +
       '<div style="font-size:10px;font-weight:700;color:rgba(165,180,252,0.7);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">TH AI Academy</div>' +
       '<div style="font-size:22px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:4px;">Monthly Excellence<br>Certificate</div>' +
@@ -2618,13 +2618,13 @@ function renderQuiz() {
         '<div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;">' + (i+1) + '. ' + q.q + '</div>' +
         q.opts.map(function(opt, j) {
           var isSel = selected === j;
-          return '<div onclick="selectAnswer(' + i + ',' + j + ')" style="padding:10px 12px;border-radius:10px;margin-bottom:6px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid ' + (isSel ? 'var(--indigo)' : 'var(--border)') + ';background:' + (isSel ? 'oklch(55% 0.22 265 / 0.1)' : 'var(--surface)') + ';color:' + (isSel ? 'var(--indigo-dk)' : 'var(--text)') + ';transition:border-color 120ms ease-out,background-color 120ms ease-out;">' +
+          return '<div onclick="selectAnswer(' + i + ',' + j + ')" style="padding:10px 12px;border-radius:10px;margin-bottom:6px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid ' + (isSel ? 'var(--indigo)' : 'var(--border)') + ';background:' + (isSel ? 'var(--indigo-tint)' : 'var(--surface)') + ';color:' + (isSel ? 'var(--indigo-dk)' : 'var(--text)') + ';transition:border-color 120ms ease-out,background-color 120ms ease-out;">' +
             '<span style="font-size:11px;font-weight:700;color:' + (isSel?'var(--indigo)':'var(--text2)') + ';margin-right:8px;">' + String.fromCharCode(65+j) + '</span>' + opt +
           '</div>';
         }).join('') +
       '</div>';
     }).join('') +
-    '<button onclick="submitQuizAnswers()" ' + (!allAnswered ? 'disabled' : '') + ' style="width:100%;padding:14px;border-radius:12px;border:none;background:' + (allAnswered ? 'linear-gradient(135deg,#6366F1,#4F46E5)' : 'var(--border)') + ';color:' + (allAnswered ? '#fff' : 'var(--disabled-text)') + ';font-size:15px;font-weight:700;cursor:' + (allAnswered ? 'pointer' : 'not-allowed') + ';margin-top:4px;">Submit Quiz</button>';
+    '<button onclick="submitQuizAnswers()" ' + (!allAnswered ? 'disabled' : '') + ' style="width:100%;padding:14px;border-radius:12px;border:none;background:' + (allAnswered ? 'linear-gradient(135deg,var(--indigo),var(--indigo-dk))' : 'var(--border)') + ';color:' + (allAnswered ? 'var(--white)' : 'var(--disabled-text)') + ';font-size:15px;font-weight:700;cursor:' + (allAnswered ? 'pointer' : 'not-allowed') + ';margin-top:4px;">Submit Quiz</button>';
 }
 
 // ── Missed Videos Section ─────────────────────────────────────────────────────
