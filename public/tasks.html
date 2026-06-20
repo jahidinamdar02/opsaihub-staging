@@ -618,7 +618,7 @@ body { min-height: 100vh; padding-top:var(--nav-h); }
     <div class="ai-hero-tag">Every Tuesday</div>
     <div class="ai-hero-title">🤖 TH AI Academy</div>
     <div class="ai-hero-sub">One video. One challenge. Level up every week.</div>
-    <div class="ai-streak-badge" id="aiStreakBadge">🔥 <span id="aiWatchedCount">0</span> of 6 watched</div>
+    <div class="ai-streak-badge" id="aiStreakBadge">🔥 <span id="aiWatchedCount">0</span> of 5 watched</div>
   </div>
 
   <!-- Watch progress -->
@@ -2555,7 +2555,6 @@ function renderAIAcademy() {
   var view = document.getElementById('view-tue');
   if (!view) return;
   if (!document.getElementById('aiProgressFill')) {
-    // View was replaced by quiz — rebuild it
     view.innerHTML = document.getElementById('_aiTplSrc') ? document.getElementById('_aiTplSrc').innerHTML : '';
   }
 
@@ -2566,7 +2565,7 @@ function renderAIAcademy() {
   if (fill) fill.style.width = pct + '%';
   if (label) {
     if (aiState.monthlyAchieved) {
-      label.innerHTML = '<span style="color:var(--success);font-weight:700;">✅ Monthly target achieved! Certificate earned.</span>';
+      label.innerHTML = '<span style="color:var(--success);font-weight:700;">✅ Monthly target achieved!</span>';
     } else {
       label.textContent = watched.length + ' of ' + videoTotal + ' videos watched — ' + pct + '%';
     }
