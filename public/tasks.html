@@ -1823,8 +1823,10 @@ function renderWeekendForm(prefix, store, state) {
   });
 }
 
-function checkSpeed(input, flagId, benchmark) {
+function checkSpeedInput(input) {
   var val = input.value;
+  var flagId = input.getAttribute('data-flag');
+  var benchmark = input.getAttribute('data-bench');
   if (val.length === 5 && val[2] === ':') {
     var parts = val.split(':');
     var mins = parseInt(parts[0]);
@@ -1835,7 +1837,6 @@ function checkSpeed(input, flagId, benchmark) {
     var flag = document.getElementById(flagId);
     if (flag) flag.textContent = total <= benchTotal ? '✅' : '🔴';
   }
-  // Auto-format: insert colon after 2 digits
   if (val.length === 2 && !val.includes(':')) {
     input.value = val + ':';
   }
