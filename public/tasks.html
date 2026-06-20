@@ -9,10 +9,7 @@
 <style>
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-body { min-height: 100vh; padding-bottom: calc(var(--nav-h) + 20px); }
-.page-header { background:linear-gradient(150deg,var(--red) 0%,var(--red-dark) 100%); padding:52px 20px 20px; }
-.page-title { font-size:26px; font-weight:700; color:#fff; letter-spacing:-0.5px; }
-.page-sub { font-size:13px; color:rgba(255,255,255,0.65); margin-top:3px; }
+body { min-height: 100vh; padding-top:var(--nav-h); }
 .day-pills { display:flex; gap:8px; padding:14px 16px 6px; overflow-x:auto; scrollbar-width:none; }
 .day-pills::-webkit-scrollbar { display:none; }
 .day-pill { flex-shrink:0; padding:7px 14px; border-radius:20px; font-size:12px; font-weight:600; background:var(--card); color:var(--text2); box-shadow:0 1px 4px rgba(0,0,0,0.08); cursor:pointer; transition:background-color 120ms ease-out,color 120ms ease-out; border:none; }
@@ -78,6 +75,14 @@ body { min-height: 100vh; padding-bottom: calc(var(--nav-h) + 20px); }
 .size-label { font-size:11px; color:var(--text2); margin-bottom:4px; font-weight:600; }
 .size-input { width:100%; padding:10px 8px; border-radius:10px; border:1.5px solid var(--border); font-size:16px; font-weight:700; text-align:center; background:var(--surface); }
 .size-input:focus { outline:none; border-color:var(--red); }
+
+/* PATCH SELECTOR */
+.patch-wrap { padding:0 16px 8px; }
+.patch-pills { display:flex; gap:6px; flex-wrap:wrap; }
+.patch-pill { padding:6px 14px; border-radius:20px; font-size:11px; font-weight:600; border:1.5px solid var(--border); background:var(--card); color:var(--text2); cursor:pointer; transition:all 0.15s ease; white-space:nowrap; }
+.patch-pill:hover { border-color:var(--red); color:var(--red); }
+.patch-pill.active { background:var(--red); border-color:var(--red); color:#fff; }
+.patch-pill .pc { font-weight:400; opacity:0.7; margin-left:3px; }
 .size-input:focus-visible { outline:2px solid var(--red); outline-offset:2px; }
 .size-hint { font-size:11px; color:var(--text2); margin-top:4px; text-align:center; }
 .modifier-band { background:var(--surface); border-radius:10px; padding:10px 14px; margin-bottom:10px; font-size:13px; color:var(--text2); }
@@ -138,6 +143,33 @@ body { min-height: 100vh; padding-bottom: calc(var(--nav-h) + 20px); }
 .tc-empty{background:var(--card);border-radius:16px;padding:28px 20px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
 .tc-empty-icon{font-size:36px;margin-bottom:8px;}
 .tc-empty-text{font-size:14px;font-weight:600;color:var(--text2);}
+/* Compliance cards */
+.compliance-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.comp-card{background:var(--card);border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,0.06);border:1.5px solid var(--border);cursor:pointer;transition:transform 0.15s;}
+.comp-card:active{transform:scale(0.98);}
+.comp-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.comp-am{font-size:15px;font-weight:700;color:var(--text);}
+.comp-region{font-size:11px;color:var(--text3);font-weight:600;}
+.comp-score{font-size:28px;font-weight:800;line-height:1;}
+.comp-bar-bg{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin:8px 0;}
+.comp-bar-fill{height:100%;border-radius:3px;transition:width 0.4s;}
+.comp-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;}
+.comp-stat{text-align:center;}
+.comp-stat-num{font-size:16px;font-weight:800;color:var(--text);}
+.comp-stat-label{font-size:10px;color:var(--text3);font-weight:600;text-transform:uppercase;}
+.comp-days{display:flex;gap:4px;margin-top:10px;}
+.comp-day{flex:1;text-align:center;border-radius:8px;padding:6px 2px;font-size:10px;font-weight:700;}
+.comp-day.done{background:rgba(52,199,89,0.12);color:var(--success);}
+.comp-day.missed{background:rgba(255,59,48,0.1);color:var(--critical);}
+.comp-day.future{background:var(--surface);color:var(--text3);}
+.comp-day.today{background:rgba(0,122,255,0.1);color:var(--blue);}
+.comp-day-label{font-size:9px;color:var(--text3);margin-bottom:2px;}
+/* Flags */
+.flag-card{background:var(--card);border-radius:16px;padding:14px 16px;box-shadow:0 2px 10px rgba(0,0,0,0.06);border-left:4px solid var(--critical);}
+.flag-card.warning{border-left-color:var(--warning);}
+.flag-am{font-size:13px;font-weight:700;color:var(--text);}
+.flag-msg{font-size:12px;color:var(--text2);margin-top:4px;}
+.flag-time{font-size:10px;color:var(--text3);margin-top:4px;}
 /* HOD toggle */
 .tc-hod-toggle{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
 .tc-hod-label{font-size:12px;font-weight:600;color:var(--text2);}
@@ -256,113 +288,7 @@ body { min-height: 100vh; padding-bottom: calc(var(--nav-h) + 20px); }
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 .pin-dots.shake{animation:shake 0.3s ease;}
 </style>
-<!-- nav-upgrade-v1 -->
-<style>
-/* ═══════════════════════════════════════════════
-   LAPTOP-FIRST NAV — 220 px side rail (desktop)
-   bottom tab bar restored at ≤ 767 px
-   ═══════════════════════════════════════════════ */
-/* ── desktop body canvas ── */
-body{padding-left:var(--nav-w)!important;padding-bottom:0!important;}
 
-/* ── 220 px side rail ── */
-.bottom-nav{
-  position:fixed!important;top:0!important;left:0!important;
-  bottom:auto!important;right:auto!important;
-  width:var(--nav-w)!important;height:100dvh!important;
-  background:rgba(255,255,255,0.95)!important;
-  backdrop-filter:blur(20px)!important;
-  border-right:1px solid var(--border)!important;
-  border-top:none!important;
-  display:flex!important;flex-direction:column!important;
-  justify-content:flex-start!important;align-items:stretch!important;
-  padding:0 10px 20px!important;
-  z-index:50!important;overflow-y:auto!important;gap:2px!important;
-  transform:translateZ(0)!important;
-}
-.bottom-nav::before{
-  content:'☕  Tim\2019s Ops'!important;
-  font-size:15px!important;font-weight:700!important;
-  color:var(--text)!important;letter-spacing:-0.3px!important;
-  display:block!important;
-  padding:20px 10px 16px!important;margin-bottom:6px!important;
-  border-bottom:1px solid var(--border)!important;flex-shrink:0!important;
-}
-.nav-item{
-  display:flex!important;flex-direction:row!important;
-  align-items:center!important;gap:10px!important;
-  text-decoration:none!important;
-  padding:10px 12px!important;border-radius:10px!important;
-  min-width:0!important;
-  transition:background 0.15s ease-out!important;
-}
-.nav-item:hover{background:rgba(200,16,46,0.06)!important;}
-.nav-item.active{background:rgba(200,16,46,0.1)!important;}
-.nav-icon{font-size:18px!important;flex-shrink:0!important;}
-.nav-label{
-  font-size:13px!important;font-weight:500!important;
-  color:var(--text2)!important;white-space:nowrap!important;
-  overflow:hidden!important;text-overflow:ellipsis!important;
-}
-.nav-item.active .nav-label{color:#C8102E!important;font-weight:600!important;}
-.nav-dot{display:none!important;}
-
-/* ── desktop white sticky header ── */
-.hdr{
-  background:var(--card)!important;
-  border-bottom:1px solid var(--border)!important;
-  padding:0 32px!important;height:60px!important;
-  display:flex!important;align-items:center!important;gap:16px!important;
-  position:sticky!important;top:0!important;z-index:89!important;
-}
-.hdr-ttl,.hdr-title{font-size:20px!important;font-weight:700!important;color:var(--text)!important;letter-spacing:-0.3px!important;}
-.hdr-eye{font-size:11px!important;font-weight:700!important;color:var(--text2)!important;text-transform:uppercase!important;letter-spacing:1.5px!important;}
-.hdr-sub{font-size:12px!important;color:var(--text2)!important;margin-left:auto!important;}
-/* neutral content-area padding */
-.content{padding:24px 32px!important;max-width:1400px!important;margin:0 auto!important;}
-
-/* ── semantic token fill-in (for pages that lack them) ── */
-/* ═══════════════════════════════════════════════
-   MOBILE OVERRIDE ≤ 767 px
-   ═══════════════════════════════════════════════ */
-@media (max-width:767px){
-  body{padding-left:0!important;padding-bottom:calc(var(--nav-h,64px) + 16px)!important;}
-
-  .bottom-nav{
-    width:100%!important;height:var(--nav-h,64px)!important;
-    top:auto!important;bottom:0!important;left:0!important;right:0!important;
-    flex-direction:row!important;justify-content:space-around!important;
-    align-items:center!important;
-    padding:0 0 env(safe-area-inset-bottom)!important;
-    border-right:none!important;border-top:1px solid rgba(0,0,0,0.08)!important;
-    overflow-y:visible!important;gap:0!important;
-  }
-  .bottom-nav::before{display:none!important;}
-  .nav-item{
-    flex-direction:column!important;gap:3px!important;
-    padding:8px 12px!important;border-radius:0!important;
-    transition:none!important;
-  }
-  .nav-item:hover,.nav-item.active{background:transparent!important;}
-  .nav-item.active .nav-label{color:#C8102E!important;}
-  .nav-icon{font-size:22px!important;}
-  .nav-label{font-size:10px!important;}
-
-  /* restore mobile gradient header */
-  .hdr{
-    background:linear-gradient(150deg,#1A0508 0%,#C8102E 60%,#9B0D22 100%)!important;
-    padding:calc(env(safe-area-inset-top,0px) + 44px) 16px 18px!important;
-    height:auto!important;position:static!important;
-    flex-direction:column!important;align-items:flex-start!important;gap:4px!important;
-  }
-  .hdr-ttl,.hdr-title{font-size:24px!important;color:#fff!important;}
-  .hdr-eye{color:rgba(255,255,255,0.55)!important;}
-  .hdr-sub{font-size:12px!important;color:rgba(255,255,255,0.6)!important;margin-left:0!important;}
-
-  /* restore mobile content padding */
-  .content{padding:14px 16px!important;max-width:100%!important;}
-}
-</style>
 </head>
 <body>
 <div id="pin-wall">
@@ -396,6 +322,11 @@ body{padding-left:var(--nav-w)!important;padding-bottom:0!important;}
   <div class="page-sub">Command Centre &amp; checklist tracker</div>
 </div>
 
+<div class="patch-wrap" id="patchWrap" style="display:none;">
+  <div style="font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Patch</div>
+  <div class="patch-pills" id="patchPills"></div>
+</div>
+
 <!-- ── TASK COMMAND CENTRE ── -->
 <div class="tc-section" id="tcSection">
   <div class="tc-header">
@@ -423,6 +354,24 @@ body{padding-left:var(--nav-w)!important;padding-bottom:0!important;}
   <div class="tc-list" id="tcList">
     <div class="tc-empty"><div class="tc-empty-icon">⏳</div><div class="tc-empty-text">Loading tasks…</div></div>
   </div>
+</div>
+
+<!-- ── COMPLIANCE DASHBOARD ── -->
+<div class="tc-section" id="complianceSection">
+  <div class="tc-header">
+    <div class="tc-title">📋 Area Manager Compliance</div>
+  </div>
+  <div class="compliance-grid" id="complianceGrid">
+    <div class="tc-empty"><div class="tc-empty-icon">⏳</div><div class="tc-empty-text">Loading compliance…</div></div>
+  </div>
+</div>
+
+<!-- ── COMPLIANCE FLAGS ── -->
+<div class="tc-section" id="flagsSection" style="display:none;">
+  <div class="tc-header">
+    <div class="tc-title">🚨 Compliance Flags</div>
+  </div>
+  <div id="flagsList" class="tc-list"></div>
 </div>
 
 <!-- Create Task Drawer -->
@@ -875,15 +824,31 @@ body{padding-left:var(--nav-w)!important;padding-bottom:0!important;}
 <div style="padding:0 16px 12px;">
   
 </div>
-<nav class="bottom-nav">
-  <a href="index.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="nav-label">Home</span></a>
-  <a href="tasks.html" class="nav-item active"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span class="nav-label">Tasks</span>
-    <div class="nav-dot"></div>
-  </a>
-  <a href="events.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span class="nav-label">Events</span></a>
-  <a href="performance.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">Scores</span></a>
-  <a href="team.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="nav-label">Team</span></a>
-  <a href="audit.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><span class="nav-label">Audits</span></a>
+<nav class="nav">
+  <a href="index.html" class="nav-wordmark">Ops<span>AI</span>Hub</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link ">Home</a>
+    <a href="tasks.html" class="nav-link active">Tasks</a>
+    <a href="events.html" class="nav-link ">Events</a>
+    <a href="performance.html" class="nav-link ">Scores</a>
+    <a href="team.html" class="nav-link ">Team</a>
+    <a href="fdu-dashboard.html" class="nav-link ">FDU</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a href="settings.html" id="settingsLink" class="nav-btn" style="display:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></a>
+    <div class="nav-user" id="navUserBtn" onclick="showIdentitySelector()">
+      <div style="position:relative;width:28px;height:28px;">
+        <div class="nav-avatar" id="navAvatar">?</div>
+        <img id="navPhoto" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;position:absolute;top:0;left:0;" />
+      </div>
+      <span class="nav-user-name" id="navUserName">Select</span>
+    </div>
+    <button id="logoutBtn" onclick="logout()" class="nav-btn" style="display:none;">Logout</button>
+  </div>
 </nav>
 
 <script>
@@ -1141,7 +1106,7 @@ function submitMonStore() {
     var c=document.getElementById('mon-comment-'+item.id);
     if(c&&c.value.trim()) comments[item.id]=c.value.trim();
   });
-  fetch('/api/submissions',{method:'POST',headers:{'Content-Type':'application/json'},
+  fetch('/api/submissions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('th_token')},
     body:JSON.stringify({am:monState.am,store:monState.currentStore.name,region:monState.currentStore.region,day:'monday',answers:monAnswers,comments:comments,score:score})})
   .then(function(r){return r.json();})
   .then(function(d){
@@ -1153,8 +1118,11 @@ function submitMonStore() {
       var rem=monState.stores.length-Object.keys(monState.completed).length;
       document.getElementById('monSuccessMsg').textContent=monState.currentStore.name+' submitted. Score: '+band+' '+score+'%. '+rem+' stores remaining.';
       updateMonProgress(); renderMonStoreList();
+    } else {
+      alert('Submission failed: ' + (d.error || 'Please re-enter your PIN and try again.'));
     }
-  });
+  })
+  .catch(function(){alert('Network error. Please check connection and try again.');});
 }
 document.getElementById('monNextBtn').addEventListener('click', function(){
   document.getElementById('monSuccessWrap').classList.add('hidden');
@@ -1405,7 +1373,7 @@ function submitWedStore() {
 
   fetch('/api/submissions', {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('th_token')},
     body: JSON.stringify(payload)
   })
   .then(function(r){return r.json();})
@@ -1425,9 +1393,11 @@ function submitWedStore() {
         wedState.currentStore.name + ' visit saved. Score: ' + band + ' ' + score + '%. ' +
         (issues>0 ? issues + ' machine issue(s) flagged. ' : 'All machines OK. ') +
         (pestIssues>0 ? pestIssues + ' pest alert(s)!' : 'No pest activity.');
+    } else {
+      alert('Submission failed: ' + (d.error || 'Please re-enter your PIN and try again.'));
     }
   })
-  .catch(function(){alert('Submission failed. Please try again.');});
+  .catch(function(){alert('Submission failed. Please check connection and try again.');});
 }
 
 document.getElementById('wedNewVisitBtn').addEventListener('click', function() {
@@ -1678,7 +1648,7 @@ function submitFriStore() {
 
   fetch('/api/submissions', {
     method:'POST',
-    headers:{'Content-Type':'application/json'},
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('th_token')},
     body:JSON.stringify(payload)
   })
   .then(function(r){return r.json();})
@@ -1693,9 +1663,11 @@ function submitFriStore() {
       document.getElementById('friSuccessMsg').textContent =
         friState.currentStore.name + ' Friday submitted. Weekend readiness: ' +
         (allReady ? '✅ All systems go!' : '⚠️ Some items need attention.');
+    } else {
+      alert('Submission failed: ' + (d.error || 'Please re-enter your PIN and try again.'));
     }
   })
-  .catch(function(){alert('Submission failed. Please try again.');});
+  .catch(function(){alert('Submission failed. Please check connection and try again.');});
 }
 
 document.getElementById('friNewVisitBtn').addEventListener('click', function() {
@@ -1917,7 +1889,7 @@ function submitWeekendStore(prefix, state) {
     visitDate: now.toISOString()
   };
 
-  fetch('/api/submissions',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+  fetch('/api/submissions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('th_token')},body:JSON.stringify(payload)})
   .then(function(r){return r.json();})
   .then(function(d){
     if(d.success){
@@ -1928,9 +1900,11 @@ function submitWeekendStore(prefix, state) {
       var band = score>=90?'🟢':score>=75?'🟡':score>=60?'🟠':'🔴';
       document.getElementById(prefix + 'SuccessMsg').textContent =
         state.currentStore.name + ' submitted. Score: ' + band + ' ' + score + '%';
+    } else {
+      alert('Submission failed: ' + (d.error || 'Please re-enter your PIN and try again.'));
     }
   })
-  .catch(function(){alert('Submission failed. Please try again.');});
+  .catch(function(){alert('Submission failed. Please check connection and try again.');});
 }
 
 setupWeekendDay('sat', 'Saturday', '&#x26A1;');
@@ -2168,12 +2142,13 @@ function submitEvent(){
   }
   function check(){
     var pin=entered.join('');
-    fetch('/api/verify-pin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pin:pin})})
+    fetch('/api/auth/verify-pin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pin:pin})})
     .then(function(r){return r.json();})
     .then(function(d){
       if(!d.success){wrong();return;}
       localStorage.setItem('th_pin_ok','1');
       localStorage.setItem('th_am_name',d.am);
+      localStorage.setItem('th_token',d.token);
       if(d.role==='hod'||d.role==='ceo'){
         localStorage.setItem('th_hod_ok','1');
         localStorage.setItem('th_is_hod','1');
@@ -2970,13 +2945,18 @@ function markVideoWatched(videoKey) {
   window.tcSetFilter = tcSetFilter;
 
   function loadTasks() {
+    var list = document.getElementById('tcList');
+    // Show skeleton while loading
+    if (list && typeof Skeleton !== 'undefined') {
+      list.innerHTML = Skeleton.list(5, { avatar: false, badge: true });
+    }
     var params = [];
     if (_tcAM && _tcView === 'my') params.push('am=' + encodeURIComponent(_tcAM));
     if (_tcIsHOD && _tcView === 'all') params.push('hod=1');
     fetch('/api/tasks' + (params.length ? '?' + params.join('&') : ''))
       .then(function(r){return r.json();})
       .then(function(d){ _tcTasks = d.data || []; renderTasks(); })
-      .catch(function(){ document.getElementById('tcList').innerHTML = '<div class="tc-empty"><div class="tc-empty-icon">⚠️</div><div class="tc-empty-text">Could not load tasks</div></div>'; });
+      .catch(function(){ list.innerHTML = '<div class="tc-empty"><div class="tc-empty-icon">⚠️</div><div class="tc-empty-text">Could not load tasks</div></div>'; });
   }
 
   function renderTasks() {
@@ -3184,6 +3164,398 @@ function markVideoWatched(videoKey) {
   window.addEventListener('load', loadTasks);
 })();
 </script>
+
+<!-- ── COMPLIANCE DASHBOARD JS ── -->
+<script>
+(function() {
+  var _isHOD = localStorage.getItem('th_is_hod') === '1';
+  var _myAM  = localStorage.getItem('th_am_name') || '';
+  var _allStores = [];
+  var _allSubs = [];
+  var _coverage = [];
+  var DAYS = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
+  var DAY_SHORT = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  var SITE_DAYS = ['wednesday','friday','saturday','sunday'];
+
+  function getWeekKey(d) {
+    var dt = new Date(d);
+    var day = dt.getDay();
+    var diff = dt.getDate() - day + (day===0?-6:1);
+    var mon = new Date(dt.setDate(diff));
+    return mon.getFullYear() + '-' + String(mon.getMonth()+1).padStart(2,'0') + '-' + String(mon.getDate()).padStart(2,'0');
+  }
+
+  function getBandColor(s) {
+    if (s >= 90) return '#34C759';
+    if (s >= 75) return '#FF9500';
+    if (s >= 60) return '#FF6B00';
+    return '#FF3B30';
+  }
+
+  function getBandEmoji(s) {
+    if (s >= 90) return '🟢';
+    if (s >= 75) return '🟡';
+    if (s >= 60) return '🟠';
+    return '🔴';
+  }
+
+  function getMonthKey() {
+    var n = new Date();
+    return n.getFullYear() + '-' + String(n.getMonth()+1).padStart(2,'0');
+  }
+
+  function getToday() {
+    return new Date().toISOString().slice(0,10);
+  }
+
+  function getDayOfWeek() {
+    return new Date().getDay();
+  }
+
+  function loadComplianceData() {
+    var monthKey = getMonthKey();
+    Promise.all([
+      fetch('/api/stores').then(function(r){return r.json();}),
+      fetch('/api/submissions').then(function(r){return r.json();}),
+      fetch('/api/coverage?month=' + monthKey).then(function(r){return r.json();})
+    ]).then(function(results) {
+      _allStores = (results[0].data || []);
+      _allSubs = (results[1].data || []);
+      _coverage = (results[2].data || []);
+      renderCompliance();
+      renderFlags();
+    }).catch(function() {
+      document.getElementById('complianceGrid').innerHTML = '<div class="tc-empty"><div class="tc-empty-icon">⚠️</div><div class="tc-empty-text">Could not load compliance data</div></div>';
+    });
+  }
+
+  function calcAMCompliance(amName) {
+    var amStores = _allStores.filter(function(s) { return s.am === amName; });
+    var monthKey = getMonthKey();
+    var now = new Date();
+    var today = getToday();
+    var currentDay = getDayOfWeek();
+    var monthSubs = _allSubs.filter(function(s) {
+      return s.am === amName && s.submittedAt && s.submittedAt.startsWith(monthKey);
+    });
+
+    var covRecord = _coverage.find(function(c) { return c.am === amName && c.month === monthKey; });
+    var covStores = covRecord ? covRecord.stores : [];
+
+    var totalStores = amStores.length;
+    if (totalStores === 0) return null;
+
+    var expectedDays = 0;
+    var doneDays = 0;
+    var dayStatus = [];
+
+    DAYS.forEach(function(day, idx) {
+      var dayIdx = idx;
+      var dayNum = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
+      var daysInMonth = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
+      var todayDate = now.getDate();
+
+      if (dayIdx === 0 || dayIdx === 1) {
+        var subsThisDay = monthSubs.filter(function(s) { return s.day === day; });
+        var thisWeekSubs = subsThisDay.filter(function(s) {
+          var subDate = s.date || (s.submittedAt||'').slice(0,10);
+          return getWeekKey(subDate) === getWeekKey(today);
+        });
+        if (thisWeekSubs.length > 0) {
+          doneDays++;
+          dayStatus.push({ day: DAY_SHORT[idx], status: 'done', count: thisWeekSubs.length });
+        } else {
+          if (idx <= currentDay) {
+            dayStatus.push({ day: DAY_SHORT[idx], status: 'missed', count: 0 });
+          } else {
+            dayStatus.push({ day: DAY_SHORT[idx], status: 'future', count: 0 });
+          }
+        }
+      } else if (SITE_DAYS.indexOf(day) >= 0) {
+        var storesVisited = 0;
+        var storesExpected = 0;
+        covStores.forEach(function(cs) {
+          if (cs[day.slice(0,3)]) {
+            storesExpected++;
+            var hasVisit = monthSubs.some(function(s) { return s.day === day && s.store === cs.store; });
+            if (hasVisit) storesVisited++;
+          }
+        });
+        if (storesExpected === 0 && idx > currentDay) {
+          dayStatus.push({ day: DAY_SHORT[idx], status: 'future', count: 0 });
+        } else if (storesExpected === 0) {
+          dayStatus.push({ day: DAY_SHORT[idx], status: 'future', count: 0 });
+        } else {
+          var pct = Math.round(storesVisited / storesExpected * 100);
+          if (pct >= 100) { doneDays++; dayStatus.push({ day: DAY_SHORT[idx], status: 'done', count: storesVisited + '/' + storesExpected }); }
+          else if (idx > currentDay) { dayStatus.push({ day: DAY_SHORT[idx], status: 'future', count: storesVisited + '/' + storesExpected }); }
+          else { dayStatus.push({ day: DAY_SHORT[idx], status: 'missed', count: storesVisited + '/' + storesExpected }); }
+        }
+      } else {
+        dayStatus.push({ day: DAY_SHORT[idx], status: 'future', count: 0 });
+      }
+    });
+
+    var submissionRate = Math.round(doneDays / 7 * 100);
+
+    var scoredSubs = monthSubs.filter(function(s) { return s.score !== undefined && s.score !== null; });
+    var avgScore = 0;
+    if (scoredSubs.length > 0) {
+      avgScore = Math.round(scoredSubs.reduce(function(a, b) { return a + b.score; }, 0) / scoredSubs.length);
+    }
+
+    var storesVisited = 0;
+    amStores.forEach(function(st) {
+      var hasVisit = monthSubs.some(function(s) { return s.store === st.name; });
+      if (hasVisit) storesVisited++;
+    });
+    var storeCoverage = totalStores > 0 ? Math.round(storesVisited / totalStores * 100) : 0;
+
+    var flags = [];
+    if (scoredSubs.length > 0 && avgScore < 75) {
+      flags.push({ type: 'critical', msg: 'Average score ' + avgScore + '% is below 75% threshold' });
+    }
+    var thisWeekSubs = monthSubs.filter(function(s) {
+      return s.submittedAt && getWeekKey(s.submittedAt) === getWeekKey(today);
+    });
+    if (thisWeekSubs.length === 0 && now.getDay() >= 3) {
+      flags.push({ type: 'warning', msg: 'No submissions this week yet' });
+    }
+    if (storeCoverage < 50 && totalStores > 0) {
+      flags.push({ type: 'warning', msg: 'Only visited ' + storesVisited + '/' + totalStores + ' stores this month' });
+    }
+
+    return {
+      am: amName,
+      region: amStores[0] ? amStores[0].region : '',
+      totalStores: totalStores,
+      submissionRate: submissionRate,
+      avgScore: avgScore,
+      storeCoverage: storeCoverage,
+      storesVisited: storesVisited,
+      totalSubs: monthSubs.length,
+      dayStatus: dayStatus,
+      flags: flags
+    };
+  }
+
+  function renderCompliance() {
+    var grid = document.getElementById('complianceGrid');
+    var ams = [];
+    var seen = {};
+    _allStores.forEach(function(s) {
+      if (s.am && s.am !== 'TBA' && s.am !== 'Unassigned' && !seen[s.am]) {
+        seen[s.am] = true;
+        ams.push(s.am);
+      }
+    });
+
+    var amList = ams;
+    if (!_isHOD && _myAM) {
+      amList = ams.filter(function(a) { return a === _myAM; });
+    }
+
+    if (amList.length === 0) {
+      grid.innerHTML = '<div class="tc-empty"><div class="tc-empty-icon">📋</div><div class="tc-empty-text">No area managers found</div></div>';
+      return;
+    }
+
+    var html = '';
+    amList.forEach(function(amName) {
+      var c = calcAMCompliance(amName);
+      if (!c) return;
+      var scoreColor = getBandColor(c.avgScore);
+      var scoreEmoji = getBandEmoji(c.avgScore);
+      var barColor = c.submissionRate >= 80 ? '#34C759' : c.submissionRate >= 50 ? '#FF9500' : '#FF3B30';
+
+      html += '<div class="comp-card" onclick="toggleAMDetail(this)">';
+      html += '<div class="comp-card-top">';
+      html += '<div><div class="comp-am">' + c.am + '</div>';
+      html += '<div class="comp-region">' + c.region + ' · ' + c.totalStores + ' stores</div></div>';
+      html += '<div class="comp-score" style="color:' + scoreColor + ';">' + (c.avgScore > 0 ? scoreEmoji + ' ' + c.avgScore + '%' : '—')}</div>';
+      html += '</div>';
+
+      html += '<div class="comp-bar-bg"><div class="comp-bar-fill" style="width:' + c.submissionRate + '%;background:' + barColor + ';"></div></div>';
+
+      html += '<div class="comp-stats">';
+      html += '<div class="comp-stat"><div class="comp-stat-num" style="color:' + barColor + ';">' + c.submissionRate + '%</div><div class="comp-stat-label">Compliance</div></div>';
+      html += '<div class="comp-stat"><div class="comp-stat-num">' + c.totalSubs + '</div><div class="comp-stat-label">Submissions</div></div>';
+      html += '<div class="comp-stat"><div class="comp-stat-num">' + c.storesVisited + '/' + c.totalStores + '</div><div class="comp-stat-label">Stores</div></div>';
+      html += '</div>';
+
+      html += '<div class="comp-days">';
+      c.dayStatus.forEach(function(ds) {
+        html += '<div class="comp-day ' + ds.status + '">';
+        html += '<div class="comp-day-label">' + ds.day + '</div>';
+        html += '<div>' + (ds.status === 'done' ? '✓' : ds.status === 'missed' ? '✗' : ds.count || '·') + '</div>';
+        html += '</div>';
+      });
+      html += '</div>';
+
+      if (c.flags.length > 0) {
+        html += '<div style="margin-top:10px;">';
+        c.flags.forEach(function(f) {
+          var fColor = f.type === 'critical' ? '#FF3B30' : '#FF9500';
+          html += '<div style="font-size:11px;color:' + fColor + ';font-weight:600;margin-bottom:2px;">⚠️ ' + f.msg + '</div>';
+        });
+        html += '</div>';
+      }
+
+      html += '</div>';
+    });
+
+    grid.innerHTML = html;
+  }
+
+  function renderFlags() {
+    var flagsSection = document.getElementById('flagsSection');
+    var flagsList = document.getElementById('flagsList');
+    var ams = [];
+    var seen = {};
+    _allStores.forEach(function(s) {
+      if (s.am && s.am !== 'TBA' && s.am !== 'Unassigned' && !seen[s.am]) {
+        seen[s.am] = true;
+        ams.push(s.am);
+      }
+    });
+
+    var allFlags = [];
+    ams.forEach(function(amName) {
+      var c = calcAMCompliance(amName);
+      if (!c) return;
+      c.flags.forEach(function(f) {
+        allFlags.push({ am: c.am, region: c.region, type: f.type, msg: f.msg });
+      });
+    });
+
+    if (allFlags.length === 0) {
+      flagsSection.style.display = 'none';
+      return;
+    }
+
+    flagsSection.style.display = 'block';
+    var html = '';
+    allFlags.forEach(function(f) {
+      var cls = f.type === 'critical' ? '' : ' warning';
+      html += '<div class="flag-card' + cls + '">';
+      html += '<div class="flag-am">' + f.am + ' <span style="font-size:11px;color:var(--text3);font-weight:600;">(' + f.region + ')</span></div>';
+      html += '<div class="flag-msg">' + f.msg + '</div>';
+      html += '</div>';
+    });
+    flagsList.innerHTML = html;
+  }
+
+  window.toggleAMDetail = function(el) {
+    el.style.transform = el.style.transform === 'scale(0.98)' ? '' : 'scale(0.98)';
+  };
+
+  window.addEventListener('load', function() {
+    setTimeout(loadComplianceData, 500);
+  });
+})();
+</script>
+
+<!-- ── PATCH SELECTOR JS ── -->
+<script>
+(function() {
+  var _allStores = [];
+  
+  function renderPatchPills(stores) {
+    var counts = {};
+    stores.forEach(function(s) {
+      var r = s.region || 'Unassigned';
+      counts[r] = (counts[r] || 0) + 1;
+    });
+    var regions = Object.keys(counts).sort();
+    if (regions.length <= 1) {
+      document.getElementById('patchWrap').style.display = 'none';
+      return;
+    }
+    var saved = localStorage.getItem('th_patch') || '';
+    var html = '<button class="patch-pill' + (!saved ? ' active' : '') + '" onclick="window._selectPatch(\'\')">All<span class="pc">' + stores.length + '</span></button>';
+    regions.forEach(function(r) {
+      html += '<button class="patch-pill' + (saved === r ? ' active' : '') + '" onclick="window._selectPatch(\'' + r.replace(/'/g, "\\'") + '\')">' + r + '<span class="pc">' + counts[r] + '</span></button>';
+    });
+    document.getElementById('patchPills').innerHTML = html;
+    document.getElementById('patchWrap').style.display = 'block';
+  }
+  
+  window._selectPatch = function(region) {
+    if (region) localStorage.setItem('th_patch', region);
+    else localStorage.removeItem('th_patch');
+    renderPatchPills(_allStores);
+    // Re-filter all visible store lists
+    document.querySelectorAll('.patch-pill').forEach(function(b) {
+      b.classList.toggle('active', b.textContent.indexOf(region || 'All') === 0);
+    });
+  };
+  
+  // Intercept store loads to cache + filter
+  var origFetch = window.fetch;
+  window.fetch = function(url, opts) {
+    var p = origFetch.apply(this, arguments);
+    if (typeof url === 'string' && url.indexOf('/api/stores/am/') === 0) {
+      p.then(function(r) { return r.clone().json(); }).then(function(d) {
+        _allStores = d.data || [];
+        renderPatchPills(_allStores);
+      }).catch(function(){});
+    }
+    return p;
+  };
+  
+  // Filter stores on page based on patch
+  var patch = localStorage.getItem('th_patch') || '';
+  if (patch) {
+    // Apply filter after stores load
+    var observer = new MutationObserver(function() {
+      document.querySelectorAll('.store-item').forEach(function(el) {
+        var regionEl = el.querySelector('.store-item-region');
+        if (regionEl && regionEl.textContent.indexOf(patch) === -1) {
+          el.style.display = 'none';
+        }
+      });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+})();
+</script>
 <script src="/js/api.js"></script>
-<div id="themeFloating" style="position:fixed;top:12px;right:12px;z-index:150;"><button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode" style="border-radius:50%;width:36px;height:36px;padding:0;display:flex;align-items:center;justify-content:center;background:var(--card);box-shadow:var(--shadow-mid);"><svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div><script src="theme.js"></script><script>applyTheme(getTheme());</script></body>
+<script src="theme.js"></script>
+<script>applyTheme(getTheme());</script>
+<!-- FOOTER -->
+<footer class="site-footer" style="max-width:1200px;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
+  <div class="footer-content">
+    <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
+    <div class="footer-links">
+      <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a>
+      <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-nav">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+      <span class="mobile-nav-label">Home</span>
+    </a>
+    <a href="tasks.html" class="mobile-nav-item active">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span class="mobile-nav-label">Tasks</span>
+    </a>
+    <a href="events.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      <span class="mobile-nav-label">Events</span>
+    </a>
+    <a href="performance.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span class="mobile-nav-label">Scores</span>
+    </a>
+    <a href="team.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="mobile-nav-label">Team</span>
+    </a>
+  </div>
+</nav>
+<script src="skeleton.js"></script>
+</body>
 </html>

@@ -177,6 +177,62 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ═══════════════════════════════════════════
+   PATCH SELECTOR — Region filter
+   ═══════════════════════════════════════════ */
+.patch-selector {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.patch-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.patch-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.patch-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  border: 1.5px solid var(--border);
+  background: var(--card);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.patch-pill:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.patch-pill.active {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--white);
+}
+
+.patch-pill .patch-count {
+  font-weight: 400;
+  opacity: 0.7;
+  margin-left: 3px;
+}
+
+/* ═══════════════════════════════════════════
    BENTO GRID — Dashboard sections
    ═══════════════════════════════════════════ */
 .bento {
@@ -724,6 +780,10 @@ h1, h2, h3, h4, h5, h6 {
   <div class="hero-greeting" id="greeting">Good morning</div>
   <h1 class="hero-name" id="heroName">Welcome to OpsAIHub</h1>
   <div class="hero-date" id="todayDate"></div>
+  <div class="patch-selector" id="patchSelector" style="display:none;">
+    <div class="patch-label">Patch</div>
+    <div class="patch-pills" id="patchPills"></div>
+  </div>
 </section>
 
 <!-- BENTO GRID -->
@@ -1068,6 +1128,71 @@ function getBand(score) {
   return 'low';
 }
 
+// ── Store data cache ──
+var _allStores = [];
+
+// ── Patch selector ──
+function renderPatchSelector(stores) {
+  var regionCounts = {};
+  stores.forEach(function(s) {
+    var r = s.region || 'Unassigned';
+    regionCounts[r] = (regionCounts[r] || 0) + 1;
+  });
+  
+  var regions = Object.keys(regionCounts).sort();
+  if (regions.length <= 1) {
+    document.getElementById('patchSelector').style.display = 'none';
+    return;
+  }
+  
+  var saved = localStorage.getItem('th_patch') || '';
+  var pills = document.getElementById('patchPills');
+  
+  var html = '<button class="patch-pill' + (!saved ? ' active' : '') + '" onclick="selectPatch(\'\')">All<span class="patch-count">' + stores.length + '</span></button>';
+  regions.forEach(function(r) {
+    var active = saved === r ? ' active' : '';
+    html += '<button class="patch-pill' + active + '" onclick="selectPatch(\'' + r.replace(/'/g, "\\'") + '\')">' + r + '<span class="patch-count">' + regionCounts[r] + '</span></button>';
+  });
+  
+  pills.innerHTML = html;
+  document.getElementById('patchSelector').style.display = 'flex';
+}
+
+function selectPatch(region) {
+  if (region) {
+    localStorage.setItem('th_patch', region);
+  } else {
+    localStorage.removeItem('th_patch');
+  }
+  renderPatchSelector(_allStores);
+  renderStores(_allStores);
+}
+
+function renderStores(stores) {
+  var patch = localStorage.getItem('th_patch') || '';
+  var filtered = patch ? stores.filter(function(s) { return s.region === patch; }) : stores;
+  var list = document.getElementById('storeList');
+  
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.store + '</div><div class="empty-text">No stores in this patch</div></div>';
+    document.getElementById('statStores').textContent = '0';
+    return;
+  }
+  
+  list.innerHTML = filtered.map(function(s) {
+    var score = s.score || 0;
+    var band = getBand(score);
+    return '<div class="store-item">'
+      + '<div class="store-info"><div class="store-name">' + s.name + '</div>'
+      + '<div class="store-region">' + (s.region || '') + (s.code ? ' · ' + s.code : '') + '</div></div>'
+      + '<div class="store-score"><div class="score-value ' + band + '">' + (score ? score + '%' : '—') + '</div>'
+      + (score ? '<div class="score-bar"><div class="score-bar-fill ' + band + '" style="width:' + score + '%"></div></div>' : '')
+      + '</div></div>';
+  }).join('');
+  
+  document.getElementById('statStores').textContent = filtered.length;
+}
+
 // ── Load stores (filtered by AM) ──
 async function loadStores() {
   try {
@@ -1076,27 +1201,16 @@ async function loadStores() {
     
     var r = await fetch('/api/stores/am/' + encodeURIComponent(am));
     var d = await r.json();
-    var stores = d.data || [];
-    var list = document.getElementById('storeList');
+    _allStores = d.data || [];
     
-    if (!stores.length) {
-      list.innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.store + '</div><div class="empty-text">No stores assigned to you</div></div>';
+    if (!_allStores.length) {
+      document.getElementById('storeList').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.store + '</div><div class="empty-text">No stores assigned to you</div></div>';
+      document.getElementById('patchSelector').style.display = 'none';
       return;
     }
     
-    list.innerHTML = stores.map(function(s) {
-      var score = s.score || 0;
-      var band = getBand(score);
-      return '<div class="store-item">'
-        + '<div class="store-info"><div class="store-name">' + s.name + '</div>'
-        + '<div class="store-region">' + (s.region || '') + (s.code ? ' · ' + s.code : '') + '</div></div>'
-        + '<div class="store-score"><div class="score-value ' + band + '">' + (score ? score + '%' : '—') + '</div>'
-        + (score ? '<div class="score-bar"><div class="score-bar-fill ' + band + '" style="width:' + score + '%"></div></div>' : '')
-        + '</div></div>';
-    }).join('');
-    
-    // Update stats
-    document.getElementById('statStores').textContent = stores.length;
+    renderPatchSelector(_allStores);
+    renderStores(_allStores);
   } catch(e) {
     document.getElementById('storeList').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.alert + '</div><div class="empty-text">Could not load stores</div></div>';
   }
@@ -1209,6 +1323,11 @@ function verifyPin(pin) {
       localStorage.setItem('th_am_name', _selectedAM);
       localStorage.setItem('th_am_role', d.role);
       localStorage.setItem('th_token', d.token);
+      localStorage.setItem('th_pin_ok', '1');
+      if (d.role === 'hod' || d.role === 'ceo') {
+        localStorage.setItem('th_hod_ok', '1');
+        localStorage.setItem('th_is_hod', '1');
+      }
       document.getElementById('idOverlay').style.display = 'none';
       init();
     } else {
@@ -1267,9 +1386,11 @@ function logout() {
   localStorage.removeItem('th_am_name');
   localStorage.removeItem('th_token');
   localStorage.removeItem('th_am_role');
+  localStorage.removeItem('th_patch');
   document.getElementById('idOverlay').style.display = 'flex';
   document.getElementById('nameStep').style.display = 'block';
   document.getElementById('pinStep').style.display = 'none';
+  document.getElementById('patchSelector').style.display = 'none';
   updateNavUser();
   document.getElementById('storeList').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.store + '</div><div class="empty-text">Select your name to view stores</div></div>';
   document.getElementById('activityFeedCard').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.activity + '</div><div class="empty-text">No recent activity</div></div>';
