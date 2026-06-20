@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Hortons India · Master Ops System FY26-27</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --th-red: #C8102E;      /* Primary Headers, Weekends */
+            --coffee-brown: #4A2C2A; /* Backgrounds, Borders */
+            --warm-cream: #FFF8F0;   /* Cells, Secondary Text */
+            --audit-amber: #FFBF00;  /* Audits, Inventory */
+            --timsy-blue: #0072CE;   /* Training, AI Prompts */
+            --growth-green: #16A34A; /* Wins, Target Met */
+            --th-dark: #0F0806;
+        }
+        body { background: var(--th-dark); color: var(--warm-cream); font-family: 'DM Sans', sans-serif; }
+        .hdr-font { font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; }
+        .glass { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+        .tab-btn.active { border-bottom: 3px solid var(--audit-amber); color: var(--audit-amber); background: rgba(255,191,0,0.05); }
+        .audit-bg { background: var(--audit-amber); color: black; font-weight: bold; }
+        .training-bg { background: var(--timsy-blue); color: white; }
+    </style>
+</head>
+<body class="p-4 md:p-6">
+
+    <header class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mb-8 gap-4 border-b border-white/10 pb-6">
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[var(--th-red)] font-black text-xl shadow-lg">TH</div>
+            <div>
+                <h1 class="hdr-font text-3xl font-black italic tracking-tighter">Tim Hortons <span style="color:var(--th-red)">India</span></h1>
+                <p class="text-[10px] tracking-widest text-gray-500 uppercase font-bold">Area Manager Ops · Mar 2026 – Mar 2027</p>
+            </div>
+        </div>
+        <div class="flex gap-4 items-center">
+            <a href="feed.html" class="flex items-center gap-2 px-4 py-3 rounded-xl font-bold text-sm text-white" style="background:var(--th-red);text-decoration:none;">
+                ☕ Team Feed
+            </a>
+            <div class="glass p-3 rounded-xl border-l-4 border-[var(--audit-amber)] text-right">
+                <p class="text-[9px] text-[var(--audit-amber)] font-bold uppercase">Discipline Logic</p>
+                <p class="text-lg font-black italic">70% SCHED | 30% BUFF</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto mb-6 flex overflow-x-auto border-b border-white/10 scrollbar-hide">
+        <button onclick="showPane('roadmap')" id="tab-roadmap" class="tab-btn active px-6 py-3 hdr-font font-bold text-sm tracking-widest">Roadmap</button>
+        <button onclick="showPane('tracker')" id="tab-tracker" class="tab-btn px-6 py-3 hdr-font font-bold text-sm tracking-widest text-gray-500">Visit Tracker</button>
+        <button onclick="showPane('daily')" id="tab-daily" class="tab-btn px-6 py-3 hdr-font font-bold text-sm tracking-widest text-gray-500">Checklist</button>
+    </div>
+
+    <main class="max-w-7xl mx-auto">
+        <div id="pane-roadmap" class="pane space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="glass p-4 rounded-2xl border-t-4 border-[var(--th-red)]">
+                    <h3 class="hdr-font text-[var(--th-red)] font-bold">Q2 (AMJ '26)</h3>
+                    <img src="https://timhortonsindia.com/wp-content/uploads/2022/08/Double-Double.png" class="h-20 mx-auto my-2">
+                    <p class="text-[10px] text-gray-400 italic">Focus: Summer Beverage Calibration</p>
+                </div>
+                <div class="glass p-4 rounded-2xl border-t-4 border-[var(--audit-amber)]">
+                    <h3 class="hdr-font text-[var(--audit-amber)] font-bold">Q3 (JAS '26)</h3>
+                    <img src="https://timhortonsindia.com/wp-content/uploads/2022/08/French-Vanilla.png" class="h-20 mx-auto my-2">
+                    <p class="text-[10px] text-gray-400 italic">Focus: Monsoon B2B & Delivery</p>
+                </div>
+                <div class="glass p-4 rounded-2xl border-t-4 border-[var(--th-red)]">
+                    <h3 class="hdr-font text-[var(--th-red)] font-bold">Q4 (OND '26)</h3>
+                    <img src="https://timhortonsindia.com/wp-content/uploads/2022/08/Donuts-Box.png" class="h-20 mx-auto my-2">
+                    <p class="text-[10px] text-gray-400 italic">Focus: Festive Gifting & Diwali</p>
+                </div>
+                <div class="glass p-4 rounded-2xl border-t-4 border-[var(--audit-amber)]">
+                    <h3 class="hdr-font text-[var(--audit-amber)] font-bold">Q1 (JFM '27)</h3>
+                    <img src="https://timhortonsindia.com/wp-content/uploads/2022/08/Matcha-Latte.png" class="h-20 mx-auto my-2">
+                    <p class="text-[10px] text-gray-400 italic">Focus: Year-End Discipline Audit</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="pane-tracker" class="pane hidden space-y-6">
+            <div class="glass p-6 rounded-2xl border-l-4 border-[var(--growth-green)]">
+                <h2 class="hdr-font text-xl font-bold mb-4">Store Visit Analytics</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-black/40 p-4 rounded-xl border border-white/5">
+                        <p class="text-[10px] text-gray-500 uppercase font-bold">Cold Zones</p>
+                        <p class="text-sm mt-1 text-[var(--th-red)]">3 Stores > 14 Days No Visit</p>
+                    </div>
+                    <div class="bg-black/40 p-4 rounded-xl border border-white/5">
+                        <p class="text-[10px] text-gray-500 uppercase font-bold">Google Rating Correlation</p>
+                        <p class="text-sm mt-1 text-[var(--growth-green)]">+0.4 Avg improvement on high-freq stores</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pane-daily" class="pane hidden space-y-6">
+            <div class="glass p-6 rounded-2xl border-l-4 border-[var(--timsy-blue)] flex justify-between items-center">
+                <div>
+                    <h2 class="hdr-font text-xl font-bold">Timsy AI Training Focus</h2>
+                    <p class="text-[10px] text-[var(--timsy-blue)] font-bold uppercase tracking-widest">Station Rotation Active: 5pm - 7pm</p>
+                </div>
+                <div class="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center text-[var(--timsy-blue)] font-black italic">TIMSY</div>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="p-3 audit-bg rounded-lg text-sm flex justify-between items-center">
+                    <span>WEEKLY MANDATORY AUDIT (2 STORES/WEEK)</span>
+                    <span class="text-[10px]">AMBER #FFBF00</span>
+                </div>
+                <div class="p-3 training-bg rounded-lg text-sm flex justify-between items-center">
+                    <span>WED/FRI: 2-HOUR TIMSY AI TRAINING</span>
+                    <span class="text-[10px]">BLUE #0072CE</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function showPane(p) {
+            document.querySelectorAll('.pane').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active', 'text-[var(--audit-amber)]'));
+            document.getElementById('pane-'+p).classList.remove('hidden');
+            document.getElementById('tab-'+p).classList.add('active');
+        }
+    </script>
+</body>
+</html>

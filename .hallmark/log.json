@@ -1,0 +1,22 @@
+[
+  {
+    "date": "2026-06-20",
+    "macrostructure": "component (QTD/YTD view)",
+    "theme": "custom (brand-locked: Tim Hortons Red #C8102E)",
+    "enrichment": "none (typography only)",
+    "brief": "OpsAIHub — QTD & YTD section redesign, performance.html",
+    "genre": "modern-minimal",
+    "scope": "component"
+  },
+  {
+    "date": "2026-06-18",
+    "macrostructure": "Bento Grid",
+    "theme": "custom (brand-locked: Tim Hortons Red #C8102E)",
+    "enrichment": "none (typography only)",
+    "brief": "OpsAIHub — Area manager dashboard, luxury Apple Store feel, laptop-first",
+    "genre": "modern-minimal",
+    "nav": "N9 edge-aligned minimal",
+    "footer": "Ft2 inline rule",
+    "fonts": "Geist"
+  }
+]

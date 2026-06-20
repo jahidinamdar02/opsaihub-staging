@@ -22,77 +22,77 @@
       "region": "Delhi NCR",
       "monthly": {
         "2026-04": {
-          "salesTarget": 4500000,
-          "adsTarget": 150000,
-          "adtTarget": 45
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 4500000,
-          "adsTarget": 145161,
-          "adtTarget": 45
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 4600000,
-          "adsTarget": 153333,
-          "adtTarget": 46
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 5000000,
-          "adsTarget": 161290,
-          "adtTarget": 50
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 5500000,
-          "adsTarget": 177419,
-          "adtTarget": 55
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 6000000,
-          "adsTarget": 200000,
-          "adtTarget": 60
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 6000000,
-          "adsTarget": 193548,
-          "adtTarget": 60
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 6000000,
-          "adsTarget": 200000,
-          "adtTarget": 60
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 6600000,
-          "adsTarget": 212903,
-          "adtTarget": 66
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 6600000,
-          "adsTarget": 212903,
-          "adtTarget": 66
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 6000000,
-          "adsTarget": 214286,
-          "adtTarget": 60
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 6900000,
-          "adsTarget": 222581,
-          "adtTarget": 69
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 13600000,
-        "Q2": 16500000,
-        "Q3": 18600000,
-        "Q4": 19500000
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 30100000,
-        "H2": 38100000
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 68200000
+      "annual": 0
     },
     {
       "storeCode": "60001",
@@ -102,77 +102,77 @@
       "region": "Delhi NCR",
       "monthly": {
         "2026-04": {
-          "salesTarget": 5460196,
-          "adsTarget": 182007,
-          "adtTarget": 55
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 5584137,
-          "adsTarget": 180133,
-          "adtTarget": 56
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 5692967,
-          "adsTarget": 189766,
-          "adtTarget": 57
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 5838843,
-          "adsTarget": 188350,
-          "adtTarget": 58
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 5920160,
-          "adsTarget": 190973,
-          "adtTarget": 59
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 5975494,
-          "adsTarget": 199183,
-          "adtTarget": 60
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 5191880,
-          "adsTarget": 167480,
-          "adtTarget": 52
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 6161407,
-          "adsTarget": 205380,
-          "adtTarget": 62
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 6794695,
-          "adsTarget": 219184,
-          "adtTarget": 68
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 6047517,
-          "adsTarget": 195081,
-          "adtTarget": 60
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 5350372,
-          "adsTarget": 191085,
-          "adtTarget": 54
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 5439640,
-          "adsTarget": 175472,
-          "adtTarget": 54
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 16737300,
-        "Q2": 17734497,
-        "Q3": 18147982,
-        "Q4": 16837529
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 34471797,
-        "H2": 34985511
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 69457308
+      "annual": 0
     },
     {
       "storeCode": "70002",
@@ -182,77 +182,77 @@
       "region": "Delhi NCR",
       "monthly": {
         "2026-04": {
-          "salesTarget": 4515580,
-          "adsTarget": 150519,
-          "adtTarget": 45
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 4801641,
-          "adsTarget": 154892,
-          "adtTarget": 48
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 5127450,
-          "adsTarget": 170915,
-          "adtTarget": 51
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 5270603,
-          "adsTarget": 170019,
-          "adtTarget": 53
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 5062446,
-          "adsTarget": 163305,
-          "adtTarget": 51
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 4838306,
-          "adsTarget": 161277,
-          "adtTarget": 48
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 4580907,
-          "adsTarget": 147771,
-          "adtTarget": 46
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 4742179,
-          "adsTarget": 158073,
-          "adtTarget": 47
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 5817744,
-          "adsTarget": 187669,
-          "adtTarget": 58
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 4983073,
-          "adsTarget": 160744,
-          "adtTarget": 50
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 4340456,
-          "adsTarget": 155016,
-          "adtTarget": 43
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 4769156,
-          "adsTarget": 153844,
-          "adtTarget": 48
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 14444671,
-        "Q2": 15171355,
-        "Q3": 15140830,
-        "Q4": 14092685
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 29616026,
-        "H2": 29233515
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 58849541
+      "annual": 0
     },
     {
       "storeCode": "90007",
@@ -262,77 +262,77 @@
       "region": "Delhi NCR",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2589455,
-          "adsTarget": 86315,
-          "adtTarget": 26
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2780732,
-          "adsTarget": 89701,
-          "adtTarget": 28
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2525115,
-          "adsTarget": 84170,
-          "adtTarget": 25
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2771638,
-          "adsTarget": 89408,
-          "adtTarget": 28
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2938147,
-          "adsTarget": 94381,
-          "adtTarget": 29
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2860847,
-          "adsTarget": 95362,
-          "adtTarget": 29
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2452703,
-          "adsTarget": 79119,
-          "adtTarget": 25
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2766967,
-          "adsTarget": 92232,
-          "adtTarget": 28
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 3143545,
-          "adsTarget": 101405,
-          "adtTarget": 31
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 3075789,
-          "adsTarget": 99219,
-          "adtTarget": 31
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2907650,
-          "adsTarget": 103845,
-          "adtTarget": 29
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 3034635,
-          "adsTarget": 97891,
-          "adtTarget": 30
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 7895302,
-        "Q2": 8570632,
-        "Q3": 8363215,
-        "Q4": 9018074
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 16465934,
-        "H2": 17381289
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 33847223
+      "annual": 0
     },
     {
       "storeCode": "70005",
@@ -342,77 +342,77 @@
       "region": "Delhi NCR",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2757400,
-          "adsTarget": 91913,
-          "adtTarget": 28
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 3101866,
-          "adsTarget": 100060,
-          "adtTarget": 31
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 3265429,
-          "adsTarget": 108848,
-          "adtTarget": 33
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 3418320,
-          "adsTarget": 110268,
-          "adtTarget": 34
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 3622483,
-          "adsTarget": 116854,
-          "adtTarget": 36
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 3208865,
-          "adsTarget": 106962,
-          "adtTarget": 32
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 3394563,
-          "adsTarget": 109502,
-          "adtTarget": 34
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 3145726,
-          "adsTarget": 104858,
-          "adtTarget": 31
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 3478328,
-          "adsTarget": 112204,
-          "adtTarget": 35
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 3207751,
-          "adsTarget": 103476,
-          "adtTarget": 32
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2806406,
-          "adsTarget": 100229,
-          "adtTarget": 28
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 3296853,
-          "adsTarget": 106350,
-          "adtTarget": 33
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 9124695,
-        "Q2": 10249668,
-        "Q3": 10018617,
-        "Q4": 9311010
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 19374363,
-        "H2": 19329627
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 38703990
+      "annual": 0
     },
     {
       "storeCode": "70003",
@@ -422,77 +422,77 @@
       "region": "Delhi NCR",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1884712,
-          "adsTarget": 62824,
-          "adtTarget": 19
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2179270,
-          "adsTarget": 70299,
-          "adtTarget": 22
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1937881,
-          "adsTarget": 64596,
-          "adtTarget": 19
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2156644,
-          "adsTarget": 69569,
-          "adtTarget": 22
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2179587,
-          "adsTarget": 70796,
-          "adtTarget": 22
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2233172,
-          "adsTarget": 74439,
-          "adtTarget": 22
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2051621,
-          "adsTarget": 66181,
-          "adtTarget": 21
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2055912,
-          "adsTarget": 68530,
-          "adtTarget": 21
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2318479,
-          "adsTarget": 74790,
-          "adtTarget": 23
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2363009,
-          "adsTarget": 76226,
-          "adtTarget": 24
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2335531,
-          "adsTarget": 83412,
-          "adtTarget": 23
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2326105,
-          "adsTarget": 75036,
-          "adtTarget": 23
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 6001863,
-        "Q2": 6569403,
-        "Q3": 6426012,
-        "Q4": 7024645
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 12571266,
-        "H2": 13450657
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 26021923
+      "annual": 0
     },
     {
       "storeCode": "70010",
@@ -502,77 +502,77 @@
       "region": "Delhi NCR",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1712804,
-          "adsTarget": 57093,
-          "adtTarget": 17
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 1737153,
-          "adsTarget": 56037,
-          "adtTarget": 17
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1690841,
-          "adsTarget": 56361,
-          "adtTarget": 17
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1841783,
-          "adsTarget": 59412,
-          "adtTarget": 18
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 1881581,
-          "adsTarget": 60696,
-          "adtTarget": 19
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1716057,
-          "adsTarget": 57202,
-          "adtTarget": 17
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 1658493,
-          "adsTarget": 53500,
-          "adtTarget": 17
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 1615085,
-          "adsTarget": 53836,
-          "adtTarget": 16
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 1837705,
-          "adsTarget": 59281,
-          "adtTarget": 18
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 1890953,
-          "adsTarget": 60998,
-          "adtTarget": 19
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1586764,
-          "adsTarget": 56670,
-          "adtTarget": 16
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 1818007,
-          "adsTarget": 58645,
-          "adtTarget": 18
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 5140798,
-        "Q2": 5439421,
-        "Q3": 5111283,
-        "Q4": 5295724
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 10580219,
-        "H2": 10407007
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 20987226
+      "annual": 0
     },
     {
       "storeCode": "70017",
@@ -582,77 +582,77 @@
       "region": "Delhi NCR",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1509887,
-          "adsTarget": 50330,
-          "adtTarget": 15
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 1502688,
-          "adsTarget": 48474,
-          "adtTarget": 15
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1319422,
-          "adsTarget": 43981,
-          "adtTarget": 13
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1652433,
-          "adsTarget": 53304,
-          "adtTarget": 17
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 1631698,
-          "adsTarget": 52635,
-          "adtTarget": 16
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1603870,
-          "adsTarget": 53462,
-          "adtTarget": 16
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 1487675,
-          "adsTarget": 47990,
-          "adtTarget": 15
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 1407825,
-          "adsTarget": 46928,
-          "adtTarget": 14
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 1664172,
-          "adsTarget": 53683,
-          "adtTarget": 17
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 1496718,
-          "adsTarget": 48281,
-          "adtTarget": 15
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1396927,
-          "adsTarget": 49890,
-          "adtTarget": 14
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 1540533,
-          "adsTarget": 49695,
-          "adtTarget": 15
+          "salesTarget": 0,
+          "adsTarget": 0,
+          "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 4331997,
-        "Q2": 4888001,
-        "Q3": 4559672,
-        "Q4": 4434178
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 9219998,
-        "H2": 8993850
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 18213848
+      "annual": 0
     },
     {
       "storeCode": "70004",
@@ -662,77 +662,77 @@
       "region": "Delhi NCR",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1171699,
-          "adsTarget": 39057,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 1216931,
-          "adsTarget": 39256,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1244663,
-          "adsTarget": 41489,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1228085,
-          "adsTarget": 39615,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 1263659,
-          "adsTarget": 40763,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1317095,
-          "adsTarget": 43903,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 1257195,
-          "adsTarget": 40554,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 1290571,
-          "adsTarget": 43019,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 1464419,
-          "adsTarget": 47239,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 1310696,
-          "adsTarget": 42280,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1230272,
-          "adsTarget": 43938,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 1354716,
-          "adsTarget": 43701,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 3633293,
-        "Q2": 3808839,
-        "Q3": 4012185,
-        "Q4": 3895684
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 7442132,
-        "H2": 7907869
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 15350001
+      "annual": 0
     },
     {
       "storeCode": "70023",
@@ -742,77 +742,77 @@
       "region": "Delhi NCR",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1674781,
-          "adsTarget": 55826,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 1697615,
-          "adsTarget": 54762,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1538049,
-          "adsTarget": 51268,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1716793,
-          "adsTarget": 55380,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 1690648,
-          "adsTarget": 54537,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1660098,
-          "adsTarget": 55337,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 1581889,
-          "adsTarget": 51028,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 1598117,
-          "adsTarget": 53271,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 1769786,
-          "adsTarget": 57089,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 1593553,
-          "adsTarget": 51405,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1535685,
-          "adsTarget": 54846,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 1733210,
-          "adsTarget": 55910,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 4910445,
-        "Q2": 5067539,
-        "Q3": 4949792,
-        "Q4": 4862448
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 9977984,
-        "H2": 9812240
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 19790224
+      "annual": 0
     },
     {
       "storeCode": "60039",
@@ -822,77 +822,77 @@
       "region": "Delhi NCR",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2581196,
-          "adsTarget": 86040,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2770215,
-          "adsTarget": 89362,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2499500,
-          "adsTarget": 83317,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2804527,
-          "adsTarget": 90469,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2967869,
-          "adsTarget": 95737,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2840752,
-          "adsTarget": 94692,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2690738,
-          "adsTarget": 86798,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2842459,
-          "adsTarget": 94749,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 3202928,
-          "adsTarget": 103320,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 3055985,
-          "adsTarget": 98580,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2870059,
-          "adsTarget": 102502,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 3088613,
-          "adsTarget": 99633,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 7850911,
-        "Q2": 8613148,
-        "Q3": 8736125,
-        "Q4": 9014657
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 16464059,
-        "H2": 17750782
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 34214841
+      "annual": 0
     },
     {
       "storeCode": "70046",
@@ -902,77 +902,77 @@
       "region": "Delhi NCR",
       "monthly": {
         "2026-04": {
-          "salesTarget": 4000000,
-          "adsTarget": 133333,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 4200000,
-          "adsTarget": 135484,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 4000000,
-          "adsTarget": 133333,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 4200000,
-          "adsTarget": 135484,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 4200000,
-          "adsTarget": 135484,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 4000000,
-          "adsTarget": 133333,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 4200000,
-          "adsTarget": 135484,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 4200000,
-          "adsTarget": 140000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 4342857,
-          "adsTarget": 140092,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 4342857,
-          "adsTarget": 140092,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 3600000,
-          "adsTarget": 128571,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 4057143,
-          "adsTarget": 130876,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 12200000,
-        "Q2": 12400000,
-        "Q3": 12742857,
-        "Q4": 12000000
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 24600000,
-        "H2": 24742857
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 49342857
+      "annual": 0
     },
     {
       "storeCode": "70024",
@@ -982,18 +982,18 @@
       "region": "Delhi NCR",
       "monthly": {
         "2026-04": {
-          "salesTarget": 12028484,
-          "adsTarget": 400949,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 13032203,
-          "adsTarget": 420394,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 12813616,
-          "adsTarget": 427121,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
@@ -1043,16 +1043,16 @@
         }
       },
       "quarterly": {
-        "Q1": 37874303,
+        "Q1": 0,
         "Q2": 0,
         "Q3": 0,
         "Q4": 0
       },
       "halfYearly": {
-        "H1": 37874303,
+        "H1": 0,
         "H2": 0
       },
-      "annual": 37874303
+      "annual": 0
     },
     {
       "storeCode": "270032",
@@ -1062,557 +1062,557 @@
       "region": "Maharashtra",
       "monthly": {
         "2026-04": {
-          "salesTarget": 3942502,
-          "adsTarget": 131417,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 4508653,
-          "adsTarget": 145440,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 3990503,
-          "adsTarget": 133017,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 4252217,
-          "adsTarget": 137168,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 4252217,
-          "adsTarget": 137168,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 4000000,
-          "adsTarget": 133333,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 4252217,
-          "adsTarget": 137168,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 4252217,
-          "adsTarget": 141741,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 4252217,
-          "adsTarget": 137168,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 4252217,
-          "adsTarget": 137168,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 3295012,
-          "adsTarget": 117679,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 4295029,
-          "adsTarget": 138549,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 12441658,
-        "Q2": 12504434,
-        "Q3": 12756651,
-        "Q4": 11842258
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 24946092,
-        "H2": 24598909
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 49545001
+      "annual": 0
     },
     {
       "storeCode": "270025",
       "store": "Balewadi",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "rm": "",
       "region": "Maharashtra",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1916218,
-          "adsTarget": 63874,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 1960319,
-          "adsTarget": 63236,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1804967,
-          "adsTarget": 60166,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1975774,
-          "adsTarget": 63735,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2001618,
-          "adsTarget": 64568,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1983706,
-          "adsTarget": 66124,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2074355,
-          "adsTarget": 66914,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2138284,
-          "adsTarget": 71276,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2345803,
-          "adsTarget": 75671,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2287065,
-          "adsTarget": 73776,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2088720,
-          "adsTarget": 74597,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2301578,
-          "adsTarget": 74245,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 5681504,
-        "Q2": 5961098,
-        "Q3": 6558442,
-        "Q4": 6677363
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 11642602,
-        "H2": 13235805
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 24878407
+      "annual": 0
     },
     {
       "storeCode": "270018",
       "store": "Lokhandwala",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "rm": "",
       "region": "Maharashtra",
       "monthly": {
         "2026-04": {
-          "salesTarget": 4253869,
-          "adsTarget": 141796,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 4343325,
-          "adsTarget": 140107,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 3957908,
-          "adsTarget": 131930,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 4191566,
-          "adsTarget": 135212,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 4472267,
-          "adsTarget": 144267,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 4359564,
-          "adsTarget": 145319,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 4359564,
-          "adsTarget": 140631,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 4359564,
-          "adsTarget": 145319,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 4359564,
-          "adsTarget": 140631,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 4359564,
-          "adsTarget": 140631,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 3537960,
-          "adsTarget": 126356,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 4656438,
-          "adsTarget": 150208,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 12555102,
-        "Q2": 13023397,
-        "Q3": 13078692,
-        "Q4": 12553962
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 25578499,
-        "H2": 25632654
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 51211153
+      "annual": 0
     },
     {
       "storeCode": "270020",
       "store": "Supreme",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "rm": "",
       "region": "Maharashtra",
       "monthly": {
         "2026-04": {
-          "salesTarget": 3359981,
-          "adsTarget": 111999,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 3323941,
-          "adsTarget": 107224,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 3353868,
-          "adsTarget": 111796,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 3359270,
-          "adsTarget": 108363,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 3516779,
-          "adsTarget": 113445,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 3526455,
-          "adsTarget": 117549,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 3472826,
-          "adsTarget": 112027,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 3555152,
-          "adsTarget": 118505,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 3881779,
-          "adsTarget": 125218,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 3881779,
-          "adsTarget": 125218,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 3176994,
-          "adsTarget": 113464,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 3901376,
-          "adsTarget": 125850,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 10037790,
-        "Q2": 10402504,
-        "Q3": 10909757,
-        "Q4": 10960149
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 20440294,
-        "H2": 21869906
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 42310200
+      "annual": 0
     },
     {
       "storeCode": "270019",
       "store": "PMC Kurla",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "rm": "",
       "region": "Maharashtra",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2407662,
-          "adsTarget": 80255,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2694512,
-          "adsTarget": 86920,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2589260,
-          "adsTarget": 86309,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2687781,
-          "adsTarget": 86702,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2687781,
-          "adsTarget": 86702,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2550000,
-          "adsTarget": 85000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2687781,
-          "adsTarget": 86702,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2687781,
-          "adsTarget": 89593,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2687781,
-          "adsTarget": 86702,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2687781,
-          "adsTarget": 86702,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2101290,
-          "adsTarget": 75046,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2651330,
-          "adsTarget": 85527,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 7691434,
-        "Q2": 7925562,
-        "Q3": 8063343,
-        "Q4": 7440401
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 15616996,
-        "H2": 15503744
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 31120740
+      "annual": 0
     },
     {
       "storeCode": "270033",
       "store": "Viman Nagar",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "rm": "",
       "region": "Maharashtra",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2383168,
-          "adsTarget": 79439,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2682222,
-          "adsTarget": 86523,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2937230,
-          "adsTarget": 97908,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2961290,
-          "adsTarget": 95525,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2657419,
-          "adsTarget": 85723,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2550000,
-          "adsTarget": 85000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2550000,
-          "adsTarget": 82258,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2550000,
-          "adsTarget": 85000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2800000,
-          "adsTarget": 90323,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2800000,
-          "adsTarget": 90323,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2178571,
-          "adsTarget": 77806,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2900100,
-          "adsTarget": 93552,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 8002620,
-        "Q2": 8168709,
-        "Q3": 7900000,
-        "Q4": 7878671
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 16171329,
-        "H2": 15778671
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 31950000
+      "annual": 0
     },
     {
       "storeCode": "270034",
       "store": "PMC Wakad",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "rm": "",
       "region": "Maharashtra",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1831272,
-          "adsTarget": 61042,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2008927,
-          "adsTarget": 64804,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2222112,
-          "adsTarget": 74070,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2000000,
-          "adsTarget": 64516,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2000000,
-          "adsTarget": 64516,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2000000,
-          "adsTarget": 66667,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2250000,
-          "adsTarget": 72581,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2350000,
-          "adsTarget": 78333,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2500000,
-          "adsTarget": 80645,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2500000,
-          "adsTarget": 80645,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1937500,
-          "adsTarget": 69196,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2400189,
-          "adsTarget": 77426,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 6062311,
-        "Q2": 6000000,
-        "Q3": 7100000,
-        "Q4": 6837689
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 12062311,
-        "H2": 13937689
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 26000000
+      "annual": 0
     },
     {
       "storeCode": "240037",
@@ -1622,77 +1622,77 @@
       "region": "Gujarat",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2728604,
-          "adsTarget": 90953,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2733754,
-          "adsTarget": 88186,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2571759,
-          "adsTarget": 85725,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2714355,
-          "adsTarget": 87560,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2733754,
-          "adsTarget": 88186,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2658868,
-          "adsTarget": 88629,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2733754,
-          "adsTarget": 88186,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2658868,
-          "adsTarget": 88629,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2733754,
-          "adsTarget": 88186,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2733754,
-          "adsTarget": 88186,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2138282,
-          "adsTarget": 76367,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2799494,
-          "adsTarget": 90306,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 8034117,
-        "Q2": 8106977,
-        "Q3": 8126376,
-        "Q4": 7671530
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 16141094,
-        "H2": 15797906
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 31939000
+      "annual": 0
     },
     {
       "storeCode": "240041",
@@ -1702,77 +1702,77 @@
       "region": "Gujarat",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2600000,
-          "adsTarget": 86667,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2600000,
-          "adsTarget": 83871,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2600000,
-          "adsTarget": 86667,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2600000,
-          "adsTarget": 83871,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2600000,
-          "adsTarget": 83871,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2600000,
-          "adsTarget": 86667,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2600000,
-          "adsTarget": 83871,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2600000,
-          "adsTarget": 86667,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2700000,
-          "adsTarget": 87097,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2700000,
-          "adsTarget": 87097,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2142237,
-          "adsTarget": 76508,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2900000,
-          "adsTarget": 93548,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 7800000,
-        "Q2": 7800000,
-        "Q3": 7900000,
-        "Q4": 7742237
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 15600000,
-        "H2": 15642237
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 31242237
+      "annual": 0
     },
     {
       "storeCode": "240042",
@@ -1782,237 +1782,237 @@
       "region": "Gujarat",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1874572,
-          "adsTarget": 62486,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2007822,
-          "adsTarget": 64769,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1902907,
-          "adsTarget": 63430,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1929032,
-          "adsTarget": 62227,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2034935,
-          "adsTarget": 65643,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2040323,
-          "adsTarget": 68011,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 1937957,
-          "adsTarget": 62515,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2001236,
-          "adsTarget": 66708,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2196429,
-          "adsTarget": 70853,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2196429,
-          "adsTarget": 70853,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1710413,
-          "adsTarget": 61086,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2169354,
-          "adsTarget": 69979,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 5785301,
-        "Q2": 6004290,
-        "Q3": 6135622,
-        "Q4": 6076196
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 11789591,
-        "H2": 12211818
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 24001409
+      "annual": 0
     },
     {
       "storeCode": "270045",
       "store": "FC Road",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "rm": "",
       "region": "Maharashtra",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1350000,
-          "adsTarget": 45000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 1400000,
-          "adsTarget": 45161,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1350000,
-          "adsTarget": 45000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1400000,
-          "adsTarget": 45161,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 1500000,
-          "adsTarget": 48387,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1500000,
-          "adsTarget": 50000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 1600000,
-          "adsTarget": 51613,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 1650000,
-          "adsTarget": 55000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 1800000,
-          "adsTarget": 58065,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 1800000,
-          "adsTarget": 58065,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1450000,
-          "adsTarget": 51786,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 1900000,
-          "adsTarget": 61290,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 4100000,
-        "Q2": 4400000,
-        "Q3": 5050000,
-        "Q4": 5150000
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 8500000,
-        "H2": 10200000
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 18700000
+      "annual": 0
     },
     {
       "storeCode": "270031",
       "store": "FIFC",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "rm": "",
       "region": "Maharashtra",
       "monthly": {
         "2026-04": {
-          "salesTarget": 3000000,
-          "adsTarget": 100000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 3100000,
-          "adsTarget": 100000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 3000000,
-          "adsTarget": 100000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 3200000,
-          "adsTarget": 103226,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 3500000,
-          "adsTarget": 112903,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 3500000,
-          "adsTarget": 116667,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 3700000,
-          "adsTarget": 119355,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 3800000,
-          "adsTarget": 126667,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 4120000,
-          "adsTarget": 132903,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 4000000,
-          "adsTarget": 129032,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 3200000,
-          "adsTarget": 114286,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 4800000,
-          "adsTarget": 154839,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 9100000,
-        "Q2": 10200000,
-        "Q3": 11620000,
-        "Q4": 12000000
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 19300000,
-        "H2": 23620000
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 42920000
+      "annual": 0
     },
     {
       "storeCode": "270048",
@@ -2022,77 +2022,77 @@
       "region": "Maharashtra",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2674430,
-          "adsTarget": 89148,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2763576,
-          "adsTarget": 89148,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2853330,
-          "adsTarget": 95111,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2893904,
-          "adsTarget": 93352,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2893904,
-          "adsTarget": 93352,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2893904,
-          "adsTarget": 96463,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2893904,
-          "adsTarget": 93352,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2893904,
-          "adsTarget": 96463,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2893904,
-          "adsTarget": 93352,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2893904,
-          "adsTarget": 93352,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2208475,
-          "adsTarget": 78874,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2906817,
-          "adsTarget": 93769,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 8291336,
-        "Q2": 8681712,
-        "Q3": 8681712,
-        "Q4": 8009196
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 16973048,
-        "H2": 16690908
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 33663956
+      "annual": 0
     },
     {
       "storeCode": "270049",
@@ -2102,77 +2102,77 @@
       "region": "Maharashtra",
       "monthly": {
         "2026-04": {
-          "salesTarget": 935890,
-          "adsTarget": 31196,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 967086,
-          "adsTarget": 31196,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1012562,
-          "adsTarget": 33752,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1046957,
-          "adsTarget": 33773,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 1046957,
-          "adsTarget": 33773,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1024225,
-          "adsTarget": 34141,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 1411868,
-          "adsTarget": 45544,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 1411868,
-          "adsTarget": 47062,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 1411868,
-          "adsTarget": 45544,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 1548956,
-          "adsTarget": 49966,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1228361,
-          "adsTarget": 43870,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 1824932,
-          "adsTarget": 58869,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 2915538,
-        "Q2": 3118139,
-        "Q3": 4235604,
-        "Q4": 4602249
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 6033677,
-        "H2": 8837853
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 14871530
+      "annual": 0
     },
     {
       "storeCode": "270038",
@@ -2182,77 +2182,77 @@
       "region": "Maharashtra",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2417796,
-          "adsTarget": 80593,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2452978,
-          "adsTarget": 79128,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2380172,
-          "adsTarget": 79339,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2396910,
-          "adsTarget": 77319,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2537678,
-          "adsTarget": 81860,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2500000,
-          "adsTarget": 83333,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2500000,
-          "adsTarget": 80645,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2500000,
-          "adsTarget": 83333,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2572581,
-          "adsTarget": 83002,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2572581,
-          "adsTarget": 83002,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2062903,
-          "adsTarget": 73675,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2964641,
-          "adsTarget": 95634,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 7250946,
-        "Q2": 7434588,
-        "Q3": 7572581,
-        "Q4": 7600125
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 14685534,
-        "H2": 15172706
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 29858240
+      "annual": 0
     },
     {
       "storeCode": "30015",
@@ -2262,77 +2262,77 @@
       "region": "Punjab",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1778376,
-          "adsTarget": 59279,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 1826355,
-          "adsTarget": 58915,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2271868,
-          "adsTarget": 75729,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2085726,
-          "adsTarget": 67281,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2085726,
-          "adsTarget": 67281,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1971563,
-          "adsTarget": 65719,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2085726,
-          "adsTarget": 67281,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2085726,
-          "adsTarget": 69524,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2085726,
-          "adsTarget": 67281,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2085726,
-          "adsTarget": 67281,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1636176,
-          "adsTarget": 58435,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2113501,
-          "adsTarget": 68178,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 5876599,
-        "Q2": 6143015,
-        "Q3": 6257178,
-        "Q4": 5835403
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 12019614,
-        "H2": 12092581
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 24112195
+      "annual": 0
     },
     {
       "storeCode": "40006",
@@ -2342,77 +2342,77 @@
       "region": "Punjab",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2256058,
-          "adsTarget": 75202,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2105366,
-          "adsTarget": 67915,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2640020,
-          "adsTarget": 88001,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2408001,
-          "adsTarget": 77677,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2408001,
-          "adsTarget": 77677,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2276872,
-          "adsTarget": 75896,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2408001,
-          "adsTarget": 77677,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2408001,
-          "adsTarget": 80267,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2408001,
-          "adsTarget": 77677,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2408001,
-          "adsTarget": 77677,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1886857,
-          "adsTarget": 67388,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2492821,
-          "adsTarget": 80414,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 7001444,
-        "Q2": 7092874,
-        "Q3": 7224003,
-        "Q4": 6787679
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 14094318,
-        "H2": 14011682
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 28106000
+      "annual": 0
     },
     {
       "storeCode": "30012",
@@ -2422,77 +2422,77 @@
       "region": "Punjab",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1740958,
-          "adsTarget": 58032,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 1660972,
-          "adsTarget": 53580,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1753854,
-          "adsTarget": 58462,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1648168,
-          "adsTarget": 53167,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 1780451,
-          "adsTarget": 57434,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1841046,
-          "adsTarget": 61368,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 1841046,
-          "adsTarget": 59389,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 1841046,
-          "adsTarget": 61368,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2165766,
-          "adsTarget": 69863,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2165766,
-          "adsTarget": 69863,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1763136,
-          "adsTarget": 62969,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 1996645,
-          "adsTarget": 64408,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 5155784,
-        "Q2": 5269665,
-        "Q3": 5847858,
-        "Q4": 5925547
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 10425449,
-        "H2": 11773405
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 22198854
+      "annual": 0
     },
     {
       "storeCode": "40009",
@@ -2502,77 +2502,77 @@
       "region": "Punjab",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1656908,
-          "adsTarget": 55230,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 1590787,
-          "adsTarget": 51316,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1532128,
-          "adsTarget": 51071,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1682839,
-          "adsTarget": 54285,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 1659846,
-          "adsTarget": 53543,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1592659,
-          "adsTarget": 53089,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 1654088,
-          "adsTarget": 53358,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 1654088,
-          "adsTarget": 55136,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 1801961,
-          "adsTarget": 58128,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 1801961,
-          "adsTarget": 58128,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1557467,
-          "adsTarget": 55624,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 1818069,
-          "adsTarget": 58647,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 4779823,
-        "Q2": 4935344,
-        "Q3": 5110137,
-        "Q4": 5177497
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 9715167,
-        "H2": 10287634
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 20002801
+      "annual": 0
     },
     {
       "storeCode": "30014",
@@ -2582,77 +2582,77 @@
       "region": "Punjab",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1334898,
-          "adsTarget": 44497,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 1543160,
-          "adsTarget": 49779,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1386249,
-          "adsTarget": 46208,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1487419,
-          "adsTarget": 47981,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 1487419,
-          "adsTarget": 47981,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1474080,
-          "adsTarget": 49136,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 1487419,
-          "adsTarget": 47981,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 1487419,
-          "adsTarget": 49581,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 1487419,
-          "adsTarget": 47981,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 1487419,
-          "adsTarget": 47981,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1254531,
-          "adsTarget": 44805,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 1487052,
-          "adsTarget": 47969,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 4264307,
-        "Q2": 4448918,
-        "Q3": 4462257,
-        "Q4": 4229002
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 8713225,
-        "H2": 8691259
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 17404484
+      "annual": 0
     },
     {
       "storeCode": "30001",
@@ -2662,77 +2662,77 @@
       "region": "Punjab",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1757192,
-          "adsTarget": 58573,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 1941560,
-          "adsTarget": 62631,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1835767,
-          "adsTarget": 61192,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1971532,
-          "adsTarget": 63598,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 1971532,
-          "adsTarget": 63598,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1870753,
-          "adsTarget": 62358,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2109440,
-          "adsTarget": 68047,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2109440,
-          "adsTarget": 70315,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2109440,
-          "adsTarget": 68047,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2109440,
-          "adsTarget": 68047,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1773422,
-          "adsTarget": 63337,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2321291,
-          "adsTarget": 74880,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 5534519,
-        "Q2": 5813817,
-        "Q3": 6328320,
-        "Q4": 6204153
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 11348336,
-        "H2": 12532473
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 23880809
+      "annual": 0
     },
     {
       "storeCode": "30026",
@@ -2742,77 +2742,77 @@
       "region": "Punjab",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1367858,
-          "adsTarget": 45595,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 1371873,
-          "adsTarget": 44254,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1546151,
-          "adsTarget": 51538,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1491743,
-          "adsTarget": 48121,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 1652225,
-          "adsTarget": 53297,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1544619,
-          "adsTarget": 51487,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 1594505,
-          "adsTarget": 51436,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 1594505,
-          "adsTarget": 53150,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 1594505,
-          "adsTarget": 51436,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 1594505,
-          "adsTarget": 51436,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 1305020,
-          "adsTarget": 46608,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 1360485,
-          "adsTarget": 43887,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 4285882,
-        "Q2": 4688587,
-        "Q3": 4783515,
-        "Q4": 4260010
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 8974469,
-        "H2": 9043525
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 18017994
+      "annual": 0
     },
     {
       "storeCode": "30013",
@@ -2822,77 +2822,77 @@
       "region": "Punjab",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1160107,
-          "adsTarget": 38670,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 1277491,
-          "adsTarget": 41209,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 1332547,
-          "adsTarget": 44418,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 1256323,
-          "adsTarget": 40527,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 1256323,
-          "adsTarget": 40527,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 1187148,
-          "adsTarget": 39572,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 1256323,
-          "adsTarget": 40527,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 1256323,
-          "adsTarget": 41877,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 1256323,
-          "adsTarget": 40527,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 1256323,
-          "adsTarget": 40527,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 958282,
-          "adsTarget": 34224,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 1119381,
-          "adsTarget": 36109,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 3770145,
-        "Q2": 3699794,
-        "Q3": 3768969,
-        "Q4": 3333986
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 7469939,
-        "H2": 7102955
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 14572894
+      "annual": 0
     },
     {
       "storeCode": "290022",
@@ -2902,77 +2902,77 @@
       "region": "Bangalore",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2947567,
-          "adsTarget": 98252,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 3149829,
-          "adsTarget": 101607,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2811751,
-          "adsTarget": 93725,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 3000000,
-          "adsTarget": 96774,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 3000000,
-          "adsTarget": 96774,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 3000000,
-          "adsTarget": 100000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 3000000,
-          "adsTarget": 96774,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 3000000,
-          "adsTarget": 100000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 3000000,
-          "adsTarget": 96774,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 3000000,
-          "adsTarget": 96774,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2400000,
-          "adsTarget": 85714,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2690853,
-          "adsTarget": 86802,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 8909147,
-        "Q2": 9000000,
-        "Q3": 9000000,
-        "Q4": 8090853
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 17909147,
-        "H2": 17090853
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 35000000
+      "annual": 0
     },
     {
       "storeCode": "290016",
@@ -2982,77 +2982,77 @@
       "region": "Bangalore",
       "monthly": {
         "2026-04": {
-          "salesTarget": 3394212,
-          "adsTarget": 113140,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 3404930,
-          "adsTarget": 109836,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 3158165,
-          "adsTarget": 105272,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 3387445,
-          "adsTarget": 109272,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 3726671,
-          "adsTarget": 120215,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 3590800,
-          "adsTarget": 119693,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 3855133,
-          "adsTarget": 124359,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 3855133,
-          "adsTarget": 128504,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 3855133,
-          "adsTarget": 124359,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 3855133,
-          "adsTarget": 124359,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 3115656,
-          "adsTarget": 111273,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 4052899,
-          "adsTarget": 130739,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 9957307,
-        "Q2": 10704916,
-        "Q3": 11565399,
-        "Q4": 11023688
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 20662223,
-        "H2": 22589087
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 43251310
+      "annual": 0
     },
     {
       "storeCode": "290021",
@@ -3062,77 +3062,77 @@
       "region": "Bangalore",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2815482,
-          "adsTarget": 93849,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 3249046,
-          "adsTarget": 104808,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 3198848,
-          "adsTarget": 106628,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 3285950,
-          "adsTarget": 106030,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 3285950,
-          "adsTarget": 106030,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 3193310,
-          "adsTarget": 106444,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 3285950,
-          "adsTarget": 106030,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 3285950,
-          "adsTarget": 109532,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 3285950,
-          "adsTarget": 106030,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 3285950,
-          "adsTarget": 106030,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2587262,
-          "adsTarget": 92402,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 3326183,
-          "adsTarget": 107296,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 9263376,
-        "Q2": 9765210,
-        "Q3": 9857850,
-        "Q4": 9199395
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 19028586,
-        "H2": 19057245
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 38085831
+      "annual": 0
     },
     {
       "storeCode": "360035",
@@ -3142,77 +3142,77 @@
       "region": "Hyderabad",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2268940,
-          "adsTarget": 75631,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2574533,
-          "adsTarget": 83049,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2731153,
-          "adsTarget": 91038,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2763672,
-          "adsTarget": 89151,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2628671,
-          "adsTarget": 84796,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2520000,
-          "adsTarget": 84000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2626866,
-          "adsTarget": 84738,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2626866,
-          "adsTarget": 87562,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2785876,
-          "adsTarget": 89870,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2785876,
-          "adsTarget": 89870,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2196064,
-          "adsTarget": 78431,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2607245,
-          "adsTarget": 84105,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 7574626,
-        "Q2": 7912343,
-        "Q3": 8039608,
-        "Q4": 7589185
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 15486969,
-        "H2": 15628793
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 31115762
+      "annual": 0
     },
     {
       "storeCode": "290044",
@@ -3222,77 +3222,77 @@
       "region": "Bangalore",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2794294,
-          "adsTarget": 93143,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 3199934,
-          "adsTarget": 103224,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 3129965,
-          "adsTarget": 104332,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 3195591,
-          "adsTarget": 103083,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 3195591,
-          "adsTarget": 103083,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 3090000,
-          "adsTarget": 103000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 3195591,
-          "adsTarget": 103083,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 3195591,
-          "adsTarget": 106520,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 3195591,
-          "adsTarget": 103083,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 3195591,
-          "adsTarget": 103083,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2524274,
-          "adsTarget": 90153,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 3287987,
-          "adsTarget": 106064,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 9124193,
-        "Q2": 9481182,
-        "Q3": 9586773,
-        "Q4": 9007852
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 18605375,
-        "H2": 18594625
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 37200000
+      "annual": 0
     },
     {
       "storeCode": "360050",
@@ -3302,77 +3302,77 @@
       "region": "Hyderabad",
       "monthly": {
         "2026-04": {
-          "salesTarget": 2500000,
-          "adsTarget": 83333,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2500000,
-          "adsTarget": 80645,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2500000,
-          "adsTarget": 83333,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2600000,
-          "adsTarget": 83871,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2600000,
-          "adsTarget": 83871,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2600000,
-          "adsTarget": 86667,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2600000,
-          "adsTarget": 83871,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2600000,
-          "adsTarget": 86667,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2700000,
-          "adsTarget": 87097,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2700000,
-          "adsTarget": 87097,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2100000,
-          "adsTarget": 75000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2600000,
-          "adsTarget": 83871,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 7500000,
-        "Q2": 7800000,
-        "Q3": 7900000,
-        "Q4": 7400000
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 15300000,
-        "H2": 15300000
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 30600000
+      "annual": 0
     },
     {
       "storeCode": "360051",
@@ -3382,77 +3382,77 @@
       "region": "Hyderabad",
       "monthly": {
         "2026-04": {
-          "salesTarget": 1800000,
-          "adsTarget": 60000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 2200000,
-          "adsTarget": 70968,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 2400000,
-          "adsTarget": 80000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 2500000,
-          "adsTarget": 80645,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 2500000,
-          "adsTarget": 80645,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 2500000,
-          "adsTarget": 83333,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 2600000,
-          "adsTarget": 83871,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 2600000,
-          "adsTarget": 86667,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 2700000,
-          "adsTarget": 87097,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 2700000,
-          "adsTarget": 87097,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 2100000,
-          "adsTarget": 75000,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 2700000,
-          "adsTarget": 87097,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 6400000,
-        "Q2": 7500000,
-        "Q3": 7900000,
-        "Q4": 7500000
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 13900000,
-        "H2": 15400000
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 29300000
+      "annual": 0
     },
     {
       "storeCode": "360036",
@@ -3462,77 +3462,77 @@
       "region": "Hyderabad",
       "monthly": {
         "2026-04": {
-          "salesTarget": 6795989,
-          "adsTarget": 226533,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-05": {
-          "salesTarget": 7084742,
-          "adsTarget": 228540,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-06": {
-          "salesTarget": 6970578,
-          "adsTarget": 232353,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-07": {
-          "salesTarget": 7419097,
-          "adsTarget": 239326,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-08": {
-          "salesTarget": 7419097,
-          "adsTarget": 239326,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-09": {
-          "salesTarget": 7078000,
-          "adsTarget": 235933,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-10": {
-          "salesTarget": 7300000,
-          "adsTarget": 235484,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-11": {
-          "salesTarget": 7300000,
-          "adsTarget": 243333,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2026-12": {
-          "salesTarget": 7734000,
-          "adsTarget": 249484,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-01": {
-          "salesTarget": 7734000,
-          "adsTarget": 249484,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-02": {
-          "salesTarget": 5985400,
-          "adsTarget": 213764,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         },
         "2027-03": {
-          "salesTarget": 8279097,
-          "adsTarget": 267068,
+          "salesTarget": 0,
+          "adsTarget": 0,
           "adtTarget": 0
         }
       },
       "quarterly": {
-        "Q1": 20851309,
-        "Q2": 21916194,
-        "Q3": 22334000,
-        "Q4": 21998497
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0
       },
       "halfYearly": {
-        "H1": 42767503,
-        "H2": 44332497
+        "H1": 0,
+        "H2": 0
       },
-      "annual": 87100000
+      "annual": 0
     }
   ]
 }

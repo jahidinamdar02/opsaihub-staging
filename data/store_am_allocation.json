@@ -1,0 +1,266 @@
+[
+  {
+    "code": "30001",
+    "name": "TH Malhar Road",
+    "am": "Deepak",
+    "region": "Punjab"
+  },
+  {
+    "code": "30012",
+    "name": "TH Sunview Enclave",
+    "am": "Deepak",
+    "region": "Punjab"
+  },
+  {
+    "code": "30013",
+    "name": "TH Bucho Bathinda",
+    "am": "Deepak",
+    "region": "Punjab"
+  },
+  {
+    "code": "30014",
+    "name": "TH Patiala",
+    "am": "Deepak",
+    "region": "Punjab"
+  },
+  {
+    "code": "30015",
+    "name": "TH Mohali",
+    "am": "Kajal",
+    "region": "Punjab"
+  },
+  {
+    "code": "30026",
+    "name": "TH Sangrur",
+    "am": "Deepak",
+    "region": "Punjab"
+  },
+  {
+    "code": "40006",
+    "name": "TH Elante Mall",
+    "am": "Kajal",
+    "region": "Punjab"
+  },
+  {
+    "code": "40009",
+    "name": "TH Sec 35 Chandigarh",
+    "am": "Kajal",
+    "region": "Punjab"
+  },
+  {
+    "code": "60001",
+    "name": "TH DLF Cyberhub",
+    "am": "Harish",
+    "region": "Delhi"
+  },
+  {
+    "code": "60039",
+    "name": "TH Golf Course AIPL",
+    "am": "Harish",
+    "region": "Delhi"
+  },
+  {
+    "code": "70002",
+    "name": "TH Select City Saket",
+    "am": "Harish",
+    "region": "Delhi"
+  },
+  {
+    "code": "70003",
+    "name": "TH Green Park",
+    "am": "Harish",
+    "region": "Delhi"
+  },
+  {
+    "code": "70004",
+    "name": "TH Punjabi Bagh",
+    "am": "Rohit",
+    "region": "Delhi"
+  },
+  {
+    "code": "70005",
+    "name": "TH Vegas Mall",
+    "am": "Rohit",
+    "region": "Delhi"
+  },
+  {
+    "code": "70008",
+    "name": "TH T3D DIAL",
+    "am": "Raman",
+    "region": "Delhi"
+  },
+  {
+    "code": "70010",
+    "name": "TH NSP Pritampura",
+    "am": "Rohit",
+    "region": "Delhi"
+  },
+  {
+    "code": "70017",
+    "name": "TH Basant Lok",
+    "am": "Harish",
+    "region": "Delhi"
+  },
+  {
+    "code": "70023",
+    "name": "TH Epicuria Nehru Place",
+    "am": "Harish",
+    "region": "Delhi"
+  },
+  {
+    "code": "70024",
+    "name": "TH T1D Dial",
+    "am": "Raman",
+    "region": "Delhi"
+  },
+  {
+    "code": "70046",
+    "name": "TH T3D Food Court",
+    "am": "Raman",
+    "region": "Delhi"
+  },
+  {
+    "code": "90007",
+    "name": "TH Skymark One",
+    "am": "Rohit",
+    "region": "Delhi"
+  },
+  {
+    "code": "240037",
+    "name": "TH T1 Ahmedabad Airport",
+    "am": "TBA",
+    "region": "Gujarat"
+  },
+  {
+    "code": "240041",
+    "name": "TH Sindhu Bhavan",
+    "am": "TBA",
+    "region": "Gujarat"
+  },
+  {
+    "code": "240042",
+    "name": "TH Navrangpura",
+    "am": "TBA",
+    "region": "Gujarat"
+  },
+  {
+    "code": "270018",
+    "name": "TH Lokhandwala",
+    "am": "Akash C",
+    "region": "Mumbai"
+  },
+  {
+    "code": "270019",
+    "name": "TH MC Kurla",
+    "am": "Akash C",
+    "region": "Mumbai"
+  },
+  {
+    "code": "270020",
+    "name": "TH Bandra",
+    "am": "Akash C",
+    "region": "Mumbai"
+  },
+  {
+    "code": "270025",
+    "name": "TH Balewadi Pune",
+    "am": "Akash C",
+    "region": "Pune"
+  },
+  {
+    "code": "270031",
+    "name": "TH FIFC Mumbai",
+    "am": "Akash C",
+    "region": "Mumbai"
+  },
+  {
+    "code": "270032",
+    "name": "TH HPCL Expressway",
+    "am": "Akash R",
+    "region": "Navi Mumbai"
+  },
+  {
+    "code": "270033",
+    "name": "TH Viman Nagar",
+    "am": "Akash C",
+    "region": "Pune"
+  },
+  {
+    "code": "270034",
+    "name": "TH Phoenix Mall Wakad",
+    "am": "Akash C",
+    "region": "Pune"
+  },
+  {
+    "code": "270038",
+    "name": "TH Nexus Seawood",
+    "am": "Akash R",
+    "region": "Navi Mumbai"
+  },
+  {
+    "code": "270045",
+    "name": "TH FC Road",
+    "am": "Akash C",
+    "region": "Mumbai"
+  },
+  {
+    "code": "270048",
+    "name": "TH NMIA Arrival",
+    "am": "Akash R",
+    "region": "Navi Mumbai"
+  },
+  {
+    "code": "270049",
+    "name": "TH NMIA Departure",
+    "am": "Akash R",
+    "region": "Navi Mumbai"
+  },
+  {
+    "code": "290016",
+    "name": "TH BIAL",
+    "am": "Jagadeesha",
+    "region": "Karnataka"
+  },
+  {
+    "code": "290021",
+    "name": "TH Mall of Asia",
+    "am": "Jagadeesha",
+    "region": "Karnataka"
+  },
+  {
+    "code": "290022",
+    "name": "TH Koramangala",
+    "am": "Jagadeesha",
+    "region": "Karnataka"
+  },
+  {
+    "code": "290044",
+    "name": "TH HSR",
+    "am": "Jagadeesha",
+    "region": "Karnataka"
+  },
+  {
+    "code": "360035",
+    "name": "TH Inorbit Mall-Hyderabad",
+    "am": "Shivam",
+    "region": "Telangana"
+  },
+  {
+    "code": "360036",
+    "name": "TH HIAL",
+    "am": "Shivam",
+    "region": "Telangana"
+  },
+  {
+    "code": "360050",
+    "name": "TH HIAL Arrival",
+    "am": "Shivam",
+    "region": "Telangana"
+  },
+  {
+    "code": "360051",
+    "name": "TH Lakeshore",
+    "am": "Shivam",
+    "region": "Telangana"
+  }
+]

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Annual Targets — OpsAIHub</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--red:#C8102E;--dark:#1A1A1A;--surface:#F5F5F7;--card:#fff;--text:#1D1D1F;--text2:#6E6E73;--border:#E5E5EA;--green:#34C759;--nav-h:70px;}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif;background:var(--surface);color:var(--text);padding-bottom:calc(var(--nav-h)+20px);}
+.hero{background:linear-gradient(135deg,#8B0000,var(--red));padding:20px 16px 24px;color:#fff;}
+.hero h1{font-size:26px;font-weight:700;}
+.hero p{font-size:13px;opacity:0.75;margin-top:4px;}
+.pin-wall{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9000;display:flex;align-items:center;justify-content:center;}
+.pin-box{background:#fff;border-radius:20px;padding:32px 24px;width:280px;text-align:center;}
+.pin-box h2{font-size:20px;font-weight:700;margin-bottom:6px;}
+.pin-box p{font-size:13px;color:var(--text2);margin-bottom:20px;}
+.pin-input{width:100%;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:20px;text-align:center;letter-spacing:6px;font-family:inherit;outline:none;}
+.pin-input:focus{border-color:var(--red);}
+.pin-btn{width:100%;margin-top:12px;padding:14px;background:var(--red);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;}
+.tabs{display:flex;gap:0;overflow-x:auto;background:#fff;border-bottom:1px solid var(--border);scrollbar-width:none;position:sticky;top:0;z-index:100;}
+.tab{flex-shrink:0;padding:12px 16px;font-size:13px;font-weight:600;color:var(--text2);border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;}
+.tab.active{color:var(--red);border-bottom-color:var(--red);}
+.month-section{display:none;padding:12px 16px;}
+.month-section.active{display:block;}
+.region-group{margin-bottom:16px;}
+.region-label{font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;padding:8px 0 6px;}
+.store-row{background:var(--card);border-radius:12px;padding:12px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 3px rgba(0,0,0,0.06);}
+.store-name{font-size:13px;font-weight:600;color:var(--text);flex:1;}
+.store-region{font-size:10px;color:var(--text2);margin-top:1px;}
+.target-input{width:100px;padding:8px 10px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;text-align:right;font-family:inherit;color:var(--text);background:var(--surface);}
+.target-input:focus{outline:none;border-color:var(--red);}
+.save-btn{position:fixed;bottom:calc(var(--nav-h) + 16px);left:16px;right:16px;padding:16px;background:var(--red);color:#fff;border:none;border-radius:16px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 4px 20px rgba(200,16,46,0.4);}
+.saved-badge{display:none;position:fixed;bottom:calc(var(--nav-h) + 80px);left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:700;}
+.copy-row{display:flex;gap:8px;padding:8px 16px;background:#fff;border-bottom:1px solid var(--border);}
+.copy-btn{padding:8px 12px;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-weight:600;color:var(--text2);cursor:pointer;font-family:inherit;}
+.copy-btn:active{background:var(--red);color:#fff;border-color:var(--red);}
+.summary-bar{background:linear-gradient(135deg,#0D0D1A,#1A1A1A);margin:12px 16px;border-radius:14px;padding:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.sum-item{text-align:center;}
+.sum-lbl{font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.sum-val{font-size:15px;font-weight:700;color:#fff;}
+/* Bottom nav */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-around;z-index:1000;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:var(--text2);font-size:10px;font-weight:500;padding:6px 12px;}
+.nav-item.active{color:var(--red);}
+.nav-icon{font-size:22px;}
+</style>
+</head>
+<body>
+
+<div class="pin-wall" id="pinWall">
+  <div class="pin-box">
+    <div style="font-size:40px;margin-bottom:12px;">🎯</div>
+    <h2>Annual Targets</h2>
+    <p>Enter PIN to access store targets for FY 2026–27</p>
+    <input class="pin-input" type="password" inputmode="numeric" maxlength="4" id="pinInput" placeholder="••••">
+    <button class="pin-btn" onclick="checkPin()">Unlock</button>
+    <div id="pinError" style="color:#C8102E;font-size:12px;margin-top:8px;display:none;">Incorrect PIN. Try again.</div>
+  </div>
+</div>
+
+<div class="hero">
+  <h1>🎯 Annual Targets</h1>
+  <p>FY 2026–27 · ADS targets per store · All amounts in ₹</p>
+</div>
+
+<div class="tabs" id="monthTabs"></div>
+
+<div class="copy-row">
+  <button class="copy-btn" onclick="copyFromPrev()">↙ Copy from previous month</button>
+  <button class="copy-btn" onclick="fillAllFromIndia()">↓ Fill India avg</button>
+  <button class="copy-btn" onclick="exportJSON()">Export JSON</button>
+</div>
+
+<div id="summaryBar" class="summary-bar">
+  <div class="sum-item"><div class="sum-lbl">Stores Set</div><div class="sum-val" id="sum-stores">0/44</div></div>
+  <div class="sum-item"><div class="sum-lbl">Avg ADS Target</div><div class="sum-val" id="sum-avg">₹0</div></div>
+  <div class="sum-item"><div class="sum-lbl">Monthly Revenue</div><div class="sum-val" id="sum-rev">₹0Cr</div></div>
+</div>
+
+<div id="monthContent"></div>
+
+<button class="save-btn" onclick="saveTargets()">Save Targets</button>
+<div class="saved-badge" id="savedBadge">✓ Targets Saved</div>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span>Home</a>
+  <a href="tasks.html" class="nav-item"><span class="nav-icon">✅</span>Tasks</a>
+  <a href="timsy.html" class="nav-item"><span class="nav-icon">☕</span>Timsy</a>
+  <a href="performance.html" class="nav-item active"><span class="nav-icon">📊</span>Scores</a>
+  <a href="team.html" class="nav-item"><span class="nav-icon">👥</span>Team</a>
+</nav>
+
+<script>
+var CORRECT_PIN = '2026';
+var MONTHS = [
+  {key:'apr26',label:'Apr 2026',days:30},
+  {key:'may26',label:'May 2026',days:31},
+  {key:'jun26',label:'Jun 2026',days:30},
+  {key:'jul26',label:'Jul 2026',days:31},
+  {key:'aug26',label:'Aug 2026',days:31},
+  {key:'sep26',label:'Sep 2026',days:30},
+  {key:'oct26',label:'Oct 2026',days:31},
+  {key:'nov26',label:'Nov 2026',days:30},
+  {key:'dec26',label:'Dec 2026',days:31},
+  {key:'jan27',label:'Jan 2027',days:31},
+  {key:'feb27',label:'Feb 2027',days:28},
+  {key:'mar27',label:'Mar 2027',days:31}
+];
+
+var STORES = [
+  {name:'TH Malhar Road',region:'Punjab',am:'Deepak'},
+  {name:'TH Sunview Enclave',region:'Punjab',am:'Deepak'},
+  {name:'TH Bucho Bathinda',region:'Punjab',am:'Deepak'},
+  {name:'TH Patiala',region:'Punjab',am:'Deepak'},
+  {name:'TH Mohali',region:'Punjab',am:'Deepak'},
+  {name:'TH Sangrur',region:'Punjab',am:'Deepak'},
+  {name:'TH Elante Mall',region:'Punjab',am:'Deepak'},
+  {name:'TH Sec 35 Chandigarh',region:'Punjab',am:'Deepak'},
+  {name:'TH DLF Cyberhub',region:'Delhi NCR',am:'Harish'},
+  {name:'TH Golf Course AIPL',region:'Delhi NCR',am:'Harish'},
+  {name:'TH Select City Saket',region:'Delhi NCR',am:'Harish'},
+  {name:'TH Green Park',region:'Delhi NCR',am:'Harish'},
+  {name:'TH Basant Lok',region:'Delhi NCR',am:'Harish'},
+  {name:'TH Epicuria Nehru Place',region:'Delhi NCR',am:'Harish'},
+  {name:'TH Vegas Mall',region:'Delhi NCR',am:'Rohit'},
+  {name:'TH NSP Pritampura',region:'Delhi NCR',am:'Rohit'},
+  {name:'TH Skymark one',region:'Delhi NCR',am:'Rohit'},
+  {name:'TH Punjabi bagh',region:'Delhi NCR',am:'Rohit'},
+  {name:'TH T3D DIAL',region:'Delhi NCR',am:'Raman'},
+  {name:'TH T3D Food Court',region:'Delhi NCR',am:'Raman'},
+  {name:'TH T1D Dial',region:'Delhi NCR',am:'Raman'},
+  {name:'TH T1 Ahmedabad Airport',region:'Gujarat',am:'Unassigned'},
+  {name:'TH Sindhu Bhavan',region:'Gujarat',am:'Unassigned'},
+  {name:'TH Navrangpura',region:'Gujarat',am:'Unassigned'},
+  {name:'TH Lokhandwala',region:'Maharashtra',am:'Akash Chavan'},
+  {name:'TH MC Kurla',region:'Maharashtra',am:'Akash Chavan'},
+  {name:'TH Bandra',region:'Maharashtra',am:'Akash Chavan'},
+  {name:'TH Balewadi Pune',region:'Maharashtra',am:'Akash Chavan'},
+  {name:'TH FIFC Mumbai',region:'Maharashtra',am:'Akash Chavan'},
+  {name:'TH Phonix Mall Wakad',region:'Maharashtra',am:'Akash Chavan'},
+  {name:'TH Viman Nagar',region:'Maharashtra',am:'Akash Chavan'},
+  {name:'TH FC Road',region:'Maharashtra',am:'Akash Chavan'},
+  {name:'TH HPCL Mumbai Pune Expressway',region:'Maharashtra',am:'Akash Rathod'},
+  {name:'TH NMIA Arrival',region:'Maharashtra',am:'Akash Rathod'},
+  {name:'TH NMiA Departure',region:'Maharashtra',am:'Akash Rathod'},
+  {name:'TH Nexus Seawood',region:'Maharashtra',am:'Akash Rathod'},
+  {name:'TH BIAL',region:'Bangalore',am:'Jagadeesha'},
+  {name:'TH Mall of Asia',region:'Bangalore',am:'Jagadeesha'},
+  {name:'TH Koramangala',region:'Bangalore',am:'Jagadeesha'},
+  {name:'TH HSR',region:'Bangalore',am:'Jagadeesha'},
+  {name:'TH Inorbit Mall-Hyderabad',region:'Hyderabad',am:'Shivam'},
+  {name:'TH HIAL',region:'Hyderabad',am:'Shivam'},
+  {name:'TH HIAL Arrival',region:'Hyderabad',am:'Shivam'},
+  {name:'TH Lakeshore',region:'Hyderabad',am:'Shivam'}
+];
+
+var targets = {};
+var activeMonth = 'apr26';
+
+function checkPin() {
+  var pin = document.getElementById('pinInput').value;
+  if (pin === CORRECT_PIN) {
+    document.getElementById('pinWall').style.display = 'none';
+    init();
+  } else {
+    document.getElementById('pinError').style.display = 'block';
+    document.getElementById('pinInput').value = '';
+  }
+}
+document.getElementById('pinInput').addEventListener('keydown', function(e){ if(e.key==='Enter') checkPin(); });
+
+function init() {
+  // Load saved targets
+  try { targets = JSON.parse(localStorage.getItem('th_annual_targets') || '{}'); } catch(e) { targets = {}; }
+
+  // Build tabs
+  var tabsEl = document.getElementById('monthTabs');
+  MONTHS.forEach(function(m) {
+    var t = document.createElement('div');
+    t.className = 'tab' + (m.key === activeMonth ? ' active' : '');
+    t.textContent = m.label;
+    t.onclick = function() { switchMonth(m.key); };
+    tabsEl.appendChild(t);
+  });
+
+  // Build content
+  renderMonth(activeMonth);
+  updateSummary();
+}
+
+function switchMonth(key) {
+  activeMonth = key;
+  document.querySelectorAll('.tab').forEach(function(t,i){ t.className = 'tab' + (MONTHS[i].key===key?' active':''); });
+  renderMonth(key);
+  updateSummary();
+}
+
+function renderMonth(key) {
+  var contentEl = document.getElementById('monthContent');
+  contentEl.innerHTML = '';
+  if (!targets[key]) targets[key] = {};
+
+  // Group by region
+  var regions = {};
+  STORES.forEach(function(s) {
+    if (!regions[s.region]) regions[s.region] = [];
+    regions[s.region].push(s);
+  });
+
+  Object.keys(regions).forEach(function(region) {
+    var grp = document.createElement('div');
+    grp.className = 'region-group';
+    grp.style.cssText = 'margin:0 16px 16px;';
+
+    var lbl = document.createElement('div');
+    lbl.className = 'region-label';
+    lbl.textContent = region;
+    grp.appendChild(lbl);
+
+    regions[region].forEach(function(store) {
+      var row = document.createElement('div');
+      row.className = 'store-row';
+      var storeKey = store.name.replace(/\s+/g,'_');
+      var val = (targets[key] && targets[key][storeKey]) ? targets[key][storeKey] : '';
+
+      row.innerHTML = '<div><div class="store-name">'+store.name+'</div><div class="store-region">'+store.am+'</div></div>'
+        + '<input class="target-input" type="number" inputmode="numeric" placeholder="ADS ₹"'
+        + ' value="'+val+'" data-store="'+storeKey+'"'
+        + ' onchange="updateTarget(\''+key+'\',\''+storeKey+'\',this.value)">';
+      grp.appendChild(row);
+    });
+    contentEl.appendChild(grp);
+  });
+}
+
+function updateTarget(month, store, val) {
+  if (!targets[month]) targets[month] = {};
+  targets[month][store] = val ? parseInt(val) : '';
+  updateSummary();
+}
+
+function updateSummary() {
+  var t = targets[activeMonth] || {};
+  var vals = Object.values(t).filter(function(v){ return v && v > 0; });
+  var avg = vals.length ? Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length) : 0;
+  var month = MONTHS.find(function(m){return m.key===activeMonth;});
+  var rev = avg * 44 * (month ? month.days : 30);
+  document.getElementById('sum-stores').textContent = vals.length + '/44';
+  document.getElementById('sum-avg').textContent = avg ? '&#8377;' + Math.round(avg/1000) + 'K' : '&#8377;0';
+  document.getElementById('sum-rev').textContent = rev ? '&#8377;' + (rev/10000000).toFixed(1) + 'Cr' : '&#8377;0Cr';
+}
+
+function copyFromPrev() {
+  var idx = MONTHS.findIndex(function(m){return m.key===activeMonth;});
+  if (idx <= 0) { alert('No previous month to copy from.'); return; }
+  var prevKey = MONTHS[idx-1].key;
+  if (!targets[prevKey] || Object.keys(targets[prevKey]).length === 0) {
+    alert('No targets set for ' + MONTHS[idx-1].label + ' yet.'); return;
+  }
+  targets[activeMonth] = JSON.parse(JSON.stringify(targets[prevKey]));
+  renderMonth(activeMonth);
+  updateSummary();
+}
+
+function fillAllFromIndia() {
+  var val = prompt('Enter India average ADS target (₹):');
+  if (!val || isNaN(val)) return;
+  val = parseInt(val);
+  if (!targets[activeMonth]) targets[activeMonth] = {};
+  STORES.forEach(function(s) {
+    targets[activeMonth][s.name.replace(/\s+/g,'_')] = val;
+  });
+  renderMonth(activeMonth);
+  updateSummary();
+}
+
+function saveTargets() {
+  localStorage.setItem('th_annual_targets', JSON.stringify(targets));
+  // Also save to server
+  fetch('/api/targets/annual', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({targets: targets, savedAt: new Date().toISOString()})
+  }).then(function(r){return r.json();})
+  .then(function(d){
+    var badge = document.getElementById('savedBadge');
+    badge.style.display = 'block';
+    setTimeout(function(){badge.style.display='none';},2500);
+  }).catch(function(){
+    // Save to localStorage at minimum
+    var badge = document.getElementById('savedBadge');
+    badge.textContent = '✓ Saved locally';
+    badge.style.display = 'block';
+    setTimeout(function(){badge.style.display='none';},2500);
+  });
+}
+
+function exportJSON() {
+  var data = JSON.stringify({targets: targets, exportedAt: new Date().toISOString()}, null, 2);
+  var blob = new Blob([data], {type:'application/json'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'th_targets_fy2026_27.json';
+  a.click();
+}
+</script>
+</body>
+</html>

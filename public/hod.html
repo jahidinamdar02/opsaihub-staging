@@ -8,7 +8,7 @@
 <style>
 
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{background:var(--surface);padding-bottom:calc(var(--nav-h)+16px);}
+body{background:var(--surface);padding-bottom:calc(var(--nav-h)+16px);padding-top:var(--nav-h);}
 .hdr{background:linear-gradient(160deg,#0D0D1A 0%,#1A0508 60%,#2D0A15 100%);padding:calc(env(safe-area-inset-top,0px)+44px) 18px 18px;position:relative;overflow:hidden;}
 .hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(200,16,46,0.25) 0%,transparent 70%);}
 .hdr-eyebrow{font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;position:relative;}
@@ -60,113 +60,7 @@ body{background:var(--surface);padding-bottom:calc(var(--nav-h)+16px);}
 
 
 </style>
-<!-- nav-upgrade-v1 -->
-<style>
-/* ═══════════════════════════════════════════════
-   LAPTOP-FIRST NAV — 220 px side rail (desktop)
-   bottom tab bar restored at ≤ 767 px
-   ═══════════════════════════════════════════════ */
-/* ── desktop body canvas ── */
-body{padding-left:var(--nav-w)!important;padding-bottom:0!important;}
 
-/* ── 220 px side rail ── */
-.bottom-nav{
-  position:fixed!important;top:0!important;left:0!important;
-  bottom:auto!important;right:auto!important;
-  width:var(--nav-w)!important;height:100dvh!important;
-  background:rgba(255,255,255,0.95)!important;
-  backdrop-filter:blur(20px)!important;
-  border-right:1px solid var(--border)!important;
-  border-top:none!important;
-  display:flex!important;flex-direction:column!important;
-  justify-content:flex-start!important;align-items:stretch!important;
-  padding:0 10px 20px!important;
-  z-index:50!important;overflow-y:auto!important;gap:2px!important;
-  transform:translateZ(0)!important;
-}
-.bottom-nav::before{
-  content:'☕  Tim\2019s Ops'!important;
-  font-size:15px!important;font-weight:700!important;
-  color:var(--text)!important;letter-spacing:-0.3px!important;
-  display:block!important;
-  padding:20px 10px 16px!important;margin-bottom:6px!important;
-  border-bottom:1px solid var(--border)!important;flex-shrink:0!important;
-}
-.nav-item{
-  display:flex!important;flex-direction:row!important;
-  align-items:center!important;gap:10px!important;
-  text-decoration:none!important;
-  padding:10px 12px!important;border-radius:10px!important;
-  min-width:0!important;
-  transition:background 0.15s ease-out!important;
-}
-.nav-item:hover{background:rgba(200,16,46,0.06)!important;}
-.nav-item.active{background:rgba(200,16,46,0.1)!important;}
-.nav-icon{font-size:18px!important;flex-shrink:0!important;}
-.nav-label{
-  font-size:13px!important;font-weight:500!important;
-  color:var(--text2)!important;white-space:nowrap!important;
-  overflow:hidden!important;text-overflow:ellipsis!important;
-}
-.nav-item.active .nav-label{color:#C8102E!important;font-weight:600!important;}
-.nav-dot{display:none!important;}
-
-/* ── desktop white sticky header ── */
-.hdr{
-  background:var(--card)!important;
-  border-bottom:1px solid var(--border)!important;
-  padding:0 32px!important;height:60px!important;
-  display:flex!important;align-items:center!important;gap:16px!important;
-  position:sticky!important;top:0!important;z-index:89!important;
-}
-.hdr-ttl,.hdr-title{font-size:20px!important;font-weight:700!important;color:var(--text)!important;letter-spacing:-0.3px!important;}
-.hdr-eye{font-size:11px!important;font-weight:700!important;color:var(--text2)!important;text-transform:uppercase!important;letter-spacing:1.5px!important;}
-.hdr-sub{font-size:12px!important;color:var(--text2)!important;margin-left:auto!important;}
-/* neutral content-area padding */
-.content{padding:24px 32px!important;max-width:1400px!important;margin:0 auto!important;}
-
-/* ── semantic token fill-in (for pages that lack them) ── */
-/* ═══════════════════════════════════════════════
-   MOBILE OVERRIDE ≤ 767 px
-   ═══════════════════════════════════════════════ */
-@media (max-width:767px){
-  body{padding-left:0!important;padding-bottom:calc(var(--nav-h,64px) + 16px)!important;}
-
-  .bottom-nav{
-    width:100%!important;height:var(--nav-h,64px)!important;
-    top:auto!important;bottom:0!important;left:0!important;right:0!important;
-    flex-direction:row!important;justify-content:space-around!important;
-    align-items:center!important;
-    padding:0 0 env(safe-area-inset-bottom)!important;
-    border-right:none!important;border-top:1px solid rgba(0,0,0,0.08)!important;
-    overflow-y:visible!important;gap:0!important;
-  }
-  .bottom-nav::before{display:none!important;}
-  .nav-item{
-    flex-direction:column!important;gap:3px!important;
-    padding:8px 12px!important;border-radius:0!important;
-    transition:none!important;
-  }
-  .nav-item:hover,.nav-item.active{background:transparent!important;}
-  .nav-item.active .nav-label{color:#C8102E!important;}
-  .nav-icon{font-size:22px!important;}
-  .nav-label{font-size:10px!important;}
-
-  /* restore mobile gradient header */
-  .hdr{
-    background:linear-gradient(150deg,#1A0508 0%,#C8102E 60%,#9B0D22 100%)!important;
-    padding:calc(env(safe-area-inset-top,0px) + 44px) 16px 18px!important;
-    height:auto!important;position:static!important;
-    flex-direction:column!important;align-items:flex-start!important;gap:4px!important;
-  }
-  .hdr-ttl,.hdr-title{font-size:24px!important;color:#fff!important;}
-  .hdr-eye{color:rgba(255,255,255,0.55)!important;}
-  .hdr-sub{font-size:12px!important;color:rgba(255,255,255,0.6)!important;margin-left:0!important;}
-
-  /* restore mobile content padding */
-  .content{padding:14px 16px!important;max-width:100%!important;}
-}
-</style>
 </head>
 <body>
 <div class="hdr">
@@ -193,15 +87,31 @@ body{padding-left:var(--nav-w)!important;padding-bottom:0!important;}
   <div id="v-issues" style="display:none"></div>
   <div id="v-health" style="display:none"></div>
 </div>
-<nav class="bottom-nav">
-  <a href="index.html" class="nav-item active"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="nav-label">Home</span>
-    <div class="nav-dot"></div>
-  </a>
-  <a href="tasks.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span class="nav-label">Tasks</span></a>
-  <a href="events.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span class="nav-label">Events</span></a>
-  <a href="performance.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">Scores</span></a>
-  <a href="team.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="nav-label">Team</span></a>
-  <a href="audit.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><span class="nav-label">Audits</span></a>
+<nav class="nav">
+  <a href="index.html" class="nav-wordmark">Ops<span>AI</span>Hub</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link ">Home</a>
+    <a href="tasks.html" class="nav-link ">Tasks</a>
+    <a href="events.html" class="nav-link ">Events</a>
+    <a href="performance.html" class="nav-link ">Scores</a>
+    <a href="team.html" class="nav-link ">Team</a>
+    <a href="fdu-dashboard.html" class="nav-link ">FDU</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a href="settings.html" id="settingsLink" class="nav-btn" style="display:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></a>
+    <div class="nav-user" id="navUserBtn" onclick="showIdentitySelector()">
+      <div style="position:relative;width:28px;height:28px;">
+        <div class="nav-avatar" id="navAvatar">?</div>
+        <img id="navPhoto" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;position:absolute;top:0;left:0;" />
+      </div>
+      <span class="nav-user-name" id="navUserName">Select</span>
+    </div>
+    <button id="logoutBtn" onclick="logout()" class="nav-btn" style="display:none;">Logout</button>
+  </div>
 </nav>
 <script>
 var AM_AVATAR={
@@ -353,5 +263,41 @@ function renderHealth(){
 </script>
 
 <script src="/js/api.js"></script>
-<div id="themeFloating" style="position:fixed;top:12px;right:12px;z-index:150;"><button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode" style="border-radius:50%;width:36px;height:36px;padding:0;display:flex;align-items:center;justify-content:center;background:var(--card);box-shadow:var(--shadow-mid);"><svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div><script src="theme.js"></script><script>applyTheme(getTheme());</script></body>
+<script src="theme.js"></script>
+<script>applyTheme(getTheme());</script>
+<!-- FOOTER -->
+<footer class="site-footer" style="max-width:1200px;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
+  <div class="footer-content">
+    <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
+    <div class="footer-links">
+      <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a>
+      <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-nav">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+      <span class="mobile-nav-label">Home</span>
+    </a>
+    <a href="tasks.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span class="mobile-nav-label">Tasks</span>
+    </a>
+    <a href="events.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      <span class="mobile-nav-label">Events</span>
+    </a>
+    <a href="performance.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span class="mobile-nav-label">Scores</span>
+    </a>
+    <a href="team.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="mobile-nav-label">Team</span>
+    </a>
+  </div>
+</nav>
+</body>
 </html>

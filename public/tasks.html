@@ -645,11 +645,11 @@ body { min-height: 100vh; padding-top:var(--nav-h); }
   </div>
 
   <!-- Core Library -->
-  <div class="ai-section-label">Core AI Video Library <span style="font-size:10px;color:var(--text2);font-weight:500;text-transform:none;letter-spacing:0;">(watch all 5 to unlock quiz)</span></div>
+  <div class="ai-section-label">Core AI Video Library</div>
   <div id="aiLibrary"></div>
 
   <!-- Bonus Library -->
-  <div class="ai-section-label" class="mt-8">Bonus Videos <span style="font-size:10px;color:var(--text2);font-weight:500;text-transform:none;letter-spacing:0;">Extra learning — no requirement</span></div>
+  <div class="ai-section-label" style="margin-top:20px;">AI Learning Library <span style="font-size:10px;color:var(--text2);font-weight:500;text-transform:none;letter-spacing:0;">Claude · ChatGPT · Gemini — tap to mark watched</span></div>
   <div id="aiLibraryBonus"></div>
 
   <!-- Missed Videos -->
@@ -2200,16 +2200,16 @@ var aiVideos = [
     duration: '20 min'
   },
   {
-    id: 'TgjQNNdqFSo',
-    title: 'ChatGPT vs Gemini vs Claude: Brutal Head-to-Head Test',
-    tags: ['chatgpt','gemini','claude'],
+    id: 'Gaf_jCnA6mc',
+    title: 'ChatGPT Tutorial: How to Use ChatGPT for Beginners (2024)',
+    tags: ['chatgpt'],
     duration: '20 min'
   },
   {
-    id: 'YgvL0dA_2Pg',
-    title: 'ChatGPT vs Claude vs Gemini: Best AI for Each Use Case',
-    tags: ['chatgpt','gemini','claude','skills'],
-    duration: '15 min'
+    id: 'WOYk_UrFR3M',
+    title: 'How to Use Google Gemini AI — Full Tutorial for Beginners',
+    tags: ['gemini'],
+    duration: '18 min'
   }
 ];
 
@@ -2256,32 +2256,41 @@ var aiChallenges = [
   }
 ];
 
-// ── Bonus library (original videos — no quiz requirement, just extra learning) ─
+// ── AI Learning Library — Claude / ChatGPT / Gemini chapters ─────────────────
+// Add videos here with chapter: 'claude' | 'chatgpt' | 'gemini'
+// Calibration auto-removes anything > 30 min. Core 5 quiz-videos are separate.
 var aiVideosBonus = [
-  {
-    id: 'm0x2PUsDLi4',
-    title: 'I Tested Claude, ChatGPT and Gemini for Months — Here\'s the Truth',
-    tags: ['chatgpt','gemini','claude'],
-    duration: '22 min'
-  },
-  {
-    id: '7u9uprgt-oE',
-    title: 'ChatGPT, Claude, Gemini, Grok, Perplexity: Which One Is Actually Worth It?',
-    tags: ['chatgpt','gemini','claude','skills'],
-    duration: '18 min'
-  },
-  {
-    id: 'w21XAsgoQ5o',
-    title: 'ChatGPT Plus vs Claude Pro vs Gemini Pro: The Best $20 AI Plan',
-    tags: ['chatgpt','gemini','claude','skills'],
-    duration: '14 min'
-  },
-  {
-    id: 'uZl0TO8i96g',
-    title: 'ChatGPT vs Claude vs Gemini: Which AI Is Best for Real Work?',
-    tags: ['chatgpt','gemini','claude'],
-    duration: '16 min'
-  }
+  // ── Chapter 1: Claude ─────────────────────────────────────────────────────
+  { chapter:'claude',  id:'wLt5COnGpe0', title:'First Steps to Using Claude AI — Full Beginners Masterclass',           tags:['claude'],          duration:'25 min' },
+  { chapter:'claude',  id:'rRrBbyv3ChM', title:'FULL Claude Tutorial for Beginners in 2026 — Become a PRO',            tags:['claude'],          duration:'28 min' },
+  { chapter:'claude',  id:'dG2iFVKdyhs', title:'Claude AI: Ultimate Guide to Prompt Engineering & Artifacts (2025)',   tags:['claude','skills'], duration:'20 min' },
+  { chapter:'claude',  id:'Yj_ZI8E_wDw', title:'Learn to Prompt Like a PRO with Claude AI in 5 Minutes',              tags:['claude','skills'], duration:'5 min'  },
+  { chapter:'claude',  id:'ysPbXH0LpIE', title:'Prompting 101 — Code with Claude (Anthropic Official)',                tags:['claude','skills'], duration:'15 min' },
+  { chapter:'claude',  id:'fOnKo_Hole8', title:'FULL Claude Projects Guide for Beginners in 2026',                     tags:['claude'],          duration:'22 min' },
+  { chapter:'claude',  id:'ThmGXaamvFw', title:'How to Use Projects in Claude.ai (2026)',                              tags:['claude'],          duration:'10 min' },
+  { chapter:'claude',  id:'P1yJcMV8o90', title:'Claude AI Crash Course — From Beginner to Building AI Tools',         tags:['claude','skills'], duration:'20 min' },
+  { chapter:'claude',  id:'ujHXnlSVheI', title:'Claude Code Tutorial: Beginner to Advanced in 20 Minutes',            tags:['claude'],          duration:'20 min' },
+  { chapter:'claude',  id:'gv0WHhKelSE', title:'Claude Code Best Practices — Code with Claude (Anthropic Official)',  tags:['claude','skills'], duration:'20 min' },
+  // ── Chapter 2: ChatGPT ────────────────────────────────────────────────────
+  { chapter:'chatgpt', id:'gi6o2yYWrzw', title:'ChatGPT Tutorial for Beginners in 9 Minutes — Complete Guide',        tags:['chatgpt'],          duration:'9 min'  },
+  { chapter:'chatgpt', id:'dG3O3ePj-b8', title:'ChatGPT 2025 Tutorial — Become an AI Power User in 30 Minutes',      tags:['chatgpt','skills'], duration:'30 min' },
+  { chapter:'chatgpt', id:'zsg50mC7opk', title:'All New ChatGPT Features Explained in 2026 — Full Guide',             tags:['chatgpt'],          duration:'20 min' },
+  { chapter:'chatgpt', id:'8yqcDL4TmzM', title:'ChatGPT for Beginners: Master Prompting in Minutes (2024)',           tags:['chatgpt','skills'], duration:'15 min' },
+  { chapter:'chatgpt', id:'z9fd6y2OpZg', title:'ChatGPT Deep Research Tutorial 2025 — Tips & Tricks',                 tags:['chatgpt','skills'], duration:'15 min' },
+  { chapter:'chatgpt', id:'ld3XMuXwLcE', title:'How to Use ChatGPT Deep Research to Save Hours on Research',          tags:['chatgpt','skills'], duration:'10 min' },
+  { chapter:'chatgpt', id:'yxrUtbrOAKo', title:'ChatGPT Deep Research Explained',                                     tags:['chatgpt'],          duration:'10 min' },
+  { chapter:'chatgpt', id:'8VtR9s9P7MA', title:'ChatGPT Canvas Explained — How to Use ChatGPT with Canvas',           tags:['chatgpt'],          duration:'12 min' },
+  { chapter:'chatgpt', id:'wyaNWn5NE8Y', title:'ChatGPT Models Explained — 4o, o1 & Canvas',                          tags:['chatgpt'],          duration:'15 min' },
+  { chapter:'chatgpt', id:'KLZLZ9vxgOc', title:'ChatGPT 2025 Update — Agent Mode & o3-Pro Explained',                tags:['chatgpt'],          duration:'10 min' },
+  // ── Chapter 3: Gemini ─────────────────────────────────────────────────────
+  { chapter:'gemini',  id:'jAl9YNnXDKc', title:'Google Gemini Complete Beginners Guide 2026',                         tags:['gemini'],          duration:'20 min' },
+  { chapter:'gemini',  id:'8aRJYpExTfs', title:'Google Gemini: PRO Tutorial for Beginners',                           tags:['gemini'],          duration:'20 min' },
+  { chapter:'gemini',  id:'-_FizlRlfYs', title:'How to Master Google Gemini in 2026 — Free Course',                  tags:['gemini','skills'], duration:'25 min' },
+  { chapter:'gemini',  id:'IBKRyI5m_Rk', title:'Gemini Deep Research Tutorial: Complete Guide (2025)',                tags:['gemini','skills'], duration:'15 min' },
+  { chapter:'gemini',  id:'Ny_GM2nMEa0', title:'Gemini AI Deep Research is Now Inside NotebookLM',                   tags:['gemini'],          duration:'10 min' },
+  { chapter:'gemini',  id:'SWmVeJxzQ2A', title:'NotebookLM + Gemini Deep Research — Mind-Blowing AI Combo',         tags:['gemini','skills'], duration:'12 min' },
+  { chapter:'gemini',  id:'igs5bw5P47s', title:'Ultimate Google Workspace AI Tutorial — Everything with Gemini (2026)', tags:['gemini'],       duration:'20 min' },
+  { chapter:'gemini',  id:'GUQNQnJrabk', title:'Google Gemini Full Tutorial — Gemini for Google Workspace',          tags:['gemini'],          duration:'20 min' }
 ];
 
 // ── Video calibration: enforce 30-min max — runs every time videos are defined ─
@@ -2314,57 +2323,8 @@ var TAG_STYLES = {
   skills:  { cls:'ai-tag-skills', label:'Skills' }
 };
 
-var aiState = { am:'', weekKey:'', watched:[], quizScore:null, quizPassed:false, challengeDone:false,
-  monthlyAchieved:false, watchedCount:0, certPending:false, certMonth:null, certLabel:null, certStats:null,
-  quizOpen:false, quizAnswers:{}, quizSubmitted:false, quizResult:null };
-
-// ── Quiz Question Bank — exactly 2 questions per video (10 total) ──────────────
-// To add a new video: add it to aiVideos[], then append a 2-question array here.
-var quizByVideo = [
-  // Video 1: Ultimate Claude AI Guide 2026 — How to Use Claude for Beginners
-  [
-    {q:'Which company created Claude AI?',
-      a:0, opts:['Anthropic','OpenAI','Google','Meta']},
-    {q:'What makes Claude stand out for working with long documents?',
-      a:2, opts:["It's the cheapest AI tool","It responds the fastest",'Very large context window — processes long content without losing track','It can convert documents into images']}
-  ],
-  // Video 2: Don't Prompt ChatGPT, Gemini or Claude Wrong in 2026
-  [
-    {q:'What is the most common AI prompting mistake?',
-      a:0, opts:['Being too vague — not enough context or detail','Writing prompts that are too long','Using too many examples','Writing in a language other than English']},
-    {q:'Which technique helps AI reason through a problem step by step?',
-      a:3, opts:['Zero-shot prompting','Template prompting','Keyword prompting','Chain-of-thought: asking AI to "think step by step" before answering']}
-  ],
-  // Video 3: Google NotebookLM — How to Master It in 2026
-  [
-    {q:'What is Google NotebookLM primarily designed for?',
-      a:0, opts:['Analysing documents you upload and answering questions from them','Generating images from text','Writing and running code','Creating presentations']},
-    {q:'What makes NotebookLM safer than general AI chatbots for business use?',
-      a:3, opts:['It is owned by Google','It costs more','It uses newer hardware','It only answers from YOUR uploaded sources — greatly reducing hallucination']}
-  ],
-  // Video 4: ChatGPT vs Gemini vs Claude — Brutal Head-to-Head Test
-  [
-    {q:'In the head-to-head test, which AI performed best for long document analysis?',
-      a:2, opts:['ChatGPT','Gemini','Claude','All three tied']},
-    {q:'What is the headline takeaway from the ChatGPT vs Gemini vs Claude comparison?',
-      a:3, opts:['ChatGPT wins everything','Gemini is best overall','Always use Claude','Each AI has unique strengths — match the tool to the task']}
-  ],
-  // Video 5: ChatGPT vs Claude vs Gemini — Best AI for Each Use Case
-  [
-    {q:'For a Tim Hortons Area Manager, which AI use case is most practical?',
-      a:1, opts:['Social media image creation','Drafting communications, summarising reports, and creating checklists','Building store apps','Replacing store visit reports entirely with AI']},
-    {q:'What is the golden rule when choosing which AI to use for a task?',
-      a:0, opts:['Match the AI\'s strengths to your task — no single AI wins everything','Always use ChatGPT','Pick whichever is free','Always use the newest model available']}
-  ]
-];
-
-// Returns all 2 questions per video = 10 total per quiz.
-// To update questions when a new video is added, just add a 2-question array above.
-function getWeekQuestions() {
-  var questions = [];
-  quizByVideo.forEach(function(videoQs) { questions = questions.concat(videoQs); });
-  return questions;
-}
+var aiState = { am:'', weekKey:'', watched:[], challengeDone:false,
+  monthlyAchieved:false, watchedCount:0, certPending:false, certMonth:null, certLabel:null, certStats:null };
 
 // ── Utility ───────────────────────────────────────────────────────────────────
 function buildTags(tags) {
@@ -2408,8 +2368,6 @@ function loadAIProgress(callback) {
       aiState.weekKey = d.weekKey;
       var weekData = (d.data.weeks || {})[d.weekKey] || {};
       aiState.watched = weekData.watched || [];
-      aiState.quizScore = weekData.quizScore || null;
-      aiState.quizPassed = weekData.quizPassed || false;
       aiState.challengeDone = weekData.challengeDone || isChallengesDone(d.weekKey);
       if (weekData.challengeDone) localStorage.setItem('ai_challenge_' + d.weekKey, '1');
       aiState.monthlyAchieved = d.monthlyStatus && d.monthlyStatus.achieved;
@@ -2418,7 +2376,7 @@ function loadAIProgress(callback) {
       aiState.certMonth = d.pendingCertMonth;
       aiState.certLabel = d.pendingCertLabel;
       aiState.certStats = d.pendingCertStats;
-      if (d.hasPendingCert) showCertModal(d.pendingCertLabel, d.pendingCertStats, d.pendingCertMonth);
+      // cert modal suppressed — quiz is for fun, no certificate
       if (callback) callback();
     }).catch(function(){ if(callback) callback(); });
 }
@@ -2438,24 +2396,8 @@ function syncWatch(videoKey) {
       var coreKeys = aiVideos.map(function(_,i){ return 'v'+i; });
       var allWatched = coreKeys.every(function(k){ return aiState.watched.indexOf(k) >= 0; });
       if (allWatched) {
-        launchCelebration('🎬', 'All Videos Watched!', 'Amazing — you\'ve completed all ' + aiVideos.length + ' learning videos this week. Now take the quiz to earn your recognition!');
+        launchCelebration('🎬', 'All Videos Watched!', 'Amazing — you\'ve completed all ' + aiVideos.length + ' learning videos this week!');
       }
-    }
-  });
-}
-
-function submitQuiz(score) {
-  var am = aiState.am;
-  if (!am) return;
-  fetch('/api/ai-academy/quiz', {
-    method:'POST', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({ am:am, score:score })
-  }).then(function(r){return r.json();}).then(function(d){
-    if (d.success) {
-      aiState.quizScore = score;
-      aiState.quizPassed = d.passed;
-      if (d.monthly && d.monthly.achieved) aiState.monthlyAchieved = true;
-      renderAIAcademy();
     }
   });
 }
@@ -2531,116 +2473,13 @@ function launchCelebration(emoji, title, sub) {
   setTimeout(function() { if (overlay.parentNode) overlay.remove(); }, 5000);
 }
 
-// ── Quiz UI ───────────────────────────────────────────────────────────────────
-function openQuiz() {
-  aiState.quizOpen = true;
-  aiState.quizAnswers = {};
-  aiState.quizSubmitted = false;
-  aiState.quizResult = null;
-  renderAIAcademy();
-}
-
-function selectAnswer(qIdx, aIdx) {
-  if (aiState.quizSubmitted) return;
-  aiState.quizAnswers[qIdx] = aIdx;
-  renderQuiz();
-}
-
-function submitQuizAnswers() {
-  var questions = getWeekQuestions();
-  var correct = 0;
-  questions.forEach(function(q, i) {
-    if (aiState.quizAnswers[i] === q.a) correct++;
-  });
-  var score = Math.round(correct / questions.length * 100);
-  aiState.quizSubmitted = true;
-  aiState.quizResult = { score:score, correct:correct, total:questions.length };
-  submitQuiz(score);
-  renderQuiz();
-  if (score >= 80) {
-    launchCelebration('🏆', 'Quiz Passed! ' + score + '%', 'Outstanding! You scored ' + correct + ' out of ' + questions.length + ' correct. Weekly recognition earned — well done!');
-  }
-}
-
-function renderQuiz() {
-  var wrap = document.getElementById('quizWrap');
-  if (!wrap) return;
-  var questions = getWeekQuestions();
-
-  if (aiState.quizSubmitted && aiState.quizResult) {
-    var r = aiState.quizResult;
-    var passed = r.score >= 80;
-    wrap.innerHTML =
-      '<div style="background:' + (passed ? 'linear-gradient(135deg,#0A2E1A,#0F3D22)' : 'linear-gradient(135deg,#2E0A0A,#3D0F0F)') + ';border-radius:16px;padding:24px;text-align:center;margin-bottom:12px;">' +
-        '<div style="font-size:48px;margin-bottom:10px;">' + (passed ? '🏆' : '📚') + '</div>' +
-        '<div style="font-size:28px;font-weight:800;color:' + (passed ? '#34C759' : '#FF6B6B') + ';margin-bottom:4px;">' + r.score + '%</div>' +
-        '<div style="font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:8px;">' + r.correct + ' of ' + r.total + ' correct</div>' +
-        '<div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:12px;">' + (passed ? '🎉 Week Complete! Recognition Earned.' : 'Good effort — try again next week!') + '</div>' +
-        (passed ? '<div style="font-size:12px;color:rgba(255,255,255,0.5);">Weekly recognition will appear in your team feed.</div>' : '') +
-      '</div>' +
-      '<div style="font-size:13px;font-weight:600;color:var(--text2);margin-bottom:10px;">Review your answers:</div>' +
-      questions.map(function(q,i){
-        var yours = aiState.quizAnswers[i];
-        var isRight = yours === q.a;
-        var optionsHtml = q.opts.map(function(opt, j){
-          var isCorrect = j === q.a;
-          var isYours   = j === yours;
-          var bg, border, color, badge = '';
-          if (isCorrect) {
-            bg = 'rgba(52,199,89,0.12)'; border = '#34C759'; color = '#1a7a3a';
-            badge = '<span style="font-size:10px;font-weight:700;color:var(--success);margin-left:6px;">✅ Correct answer</span>';
-          } else if (isYours && !isRight) {
-            bg = 'rgba(255,59,48,0.10)'; border = '#FF3B30'; color = '#c0392b';
-            badge = '<span style="font-size:10px;font-weight:700;color:var(--critical);margin-left:6px;">❌ Your answer</span>';
-          } else {
-            bg = 'transparent'; border = 'var(--border)'; color = 'var(--text2)';
-          }
-          return '<div style="display:flex;align-items:center;padding:8px 10px;border-radius:9px;margin-bottom:5px;border:1.5px solid ' + border + ';background:' + bg + ';">' +
-            '<span style="font-size:11px;font-weight:800;color:' + (isCorrect?'#34C759':(isYours&&!isRight?'#FF3B30':'var(--text2)')) + ';min-width:18px;">' + String.fromCharCode(65+j) + '</span>' +
-            '<span style="font-size:12px;font-weight:600;color:' + color + ';flex:1;">' + opt + '</span>' +
-            badge +
-          '</div>';
-        }).join('');
-        return '<div style="background:var(--card);border-radius:13px;padding:13px;margin-bottom:10px;border-left:3px solid ' + (isRight?'#34C759':'#FF3B30') + ';box-shadow:0 1px 4px rgba(0,0,0,0.06);">' +
-          '<div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;">' + (i+1) + '. ' + q.q + '</div>' +
-          optionsHtml +
-        '</div>';
-      }).join('') +
-      '<button onclick="aiState.quizOpen=false;renderAIAcademy();" style="width:100%;padding:14px;border-radius:12px;border:none;background:var(--red);color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;">Back to AI Academy</button>';
-    return;
-  }
-
-  var answered = Object.keys(aiState.quizAnswers).length;
-  var allAnswered = answered === questions.length;
-
-  wrap.innerHTML =
-    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">' +
-      '<div style="font-size:16px;font-weight:800;color:var(--text);">🧠 Weekly AI Quiz</div>' +
-      '<div style="font-size:13px;font-weight:600;color:var(--text2);">' + answered + '/' + questions.length + ' answered</div>' +
-    '</div>' +
-    '<div style="background:var(--border);border-radius:4px;height:4px;margin-bottom:16px;overflow:hidden;"><div style="height:100%;background:linear-gradient(90deg,#6366F1,#4F46E5);border-radius:4px;width:' + Math.round(answered/questions.length*100) + '%;transition:width 0.3s;"></div></div>' +
-    questions.map(function(q, i) {
-      var selected = aiState.quizAnswers[i];
-      return '<div style="background:var(--card);border-radius:14px;padding:14px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,0.06);">' +
-        '<div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;">' + (i+1) + '. ' + q.q + '</div>' +
-        q.opts.map(function(opt, j) {
-          var isSel = selected === j;
-          return '<div onclick="selectAnswer(' + i + ',' + j + ')" style="padding:10px 12px;border-radius:10px;margin-bottom:6px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid ' + (isSel ? 'var(--indigo)' : 'var(--border)') + ';background:' + (isSel ? 'var(--indigo-tint)' : 'var(--surface)') + ';color:' + (isSel ? 'var(--indigo-dk)' : 'var(--text)') + ';transition:border-color 120ms ease-out,background-color 120ms ease-out;">' +
-            '<span style="font-size:11px;font-weight:700;color:' + (isSel?'var(--indigo)':'var(--text2)') + ';margin-right:8px;">' + String.fromCharCode(65+j) + '</span>' + opt +
-          '</div>';
-        }).join('') +
-      '</div>';
-    }).join('') +
-    '<button onclick="submitQuizAnswers()" ' + (!allAnswered ? 'disabled' : '') + ' style="width:100%;padding:14px;border-radius:12px;border:none;background:' + (allAnswered ? 'linear-gradient(135deg,var(--indigo),var(--indigo-dk))' : 'var(--border)') + ';color:' + (allAnswered ? 'var(--white)' : 'var(--disabled-text)') + ';font-size:15px;font-weight:700;cursor:' + (allAnswered ? 'pointer' : 'not-allowed') + ';margin-top:4px;">Submit Quiz</button>';
-}
-
 // ── Missed Videos Section ─────────────────────────────────────────────────────
 function renderMissedVideos(watched) {
   var section = document.getElementById('missedVideosSection');
   if (!section) return;
   var missed = aiVideos.filter(function(v, i){ return watched.indexOf('v'+i) < 0; });
   if (missed.length === 0) {
-    section.innerHTML = '<div style="background:linear-gradient(135deg,#0A2E1A,#0F3D22);border-radius:14px;padding:14px 16px;text-align:center;margin-bottom:4px;"><div style="font-size:13px;font-weight:700;color:var(--success);">✅ All core videos watched this week! Take the quiz above.</div></div>';
+    section.innerHTML = '<div style="background:linear-gradient(135deg,#0A2E1A,#0F3D22);border-radius:14px;padding:14px 16px;text-align:center;margin-bottom:4px;"><div style="font-size:13px;font-weight:700;color:var(--success);">✅ All core videos watched this week! Keep exploring the library below.</div></div>';
     return;
   }
   section.innerHTML =
@@ -2682,7 +2521,7 @@ function renderLeaderboard() {
             '<div style="font-size:13px;font-weight:700;color:var(--text);">' + entry.am + (isMe ? ' <span style="font-size:10px;color:#6366F1;">(You)</span>' : '') + '</div>' +
             '<div style="display:flex;gap:10px;margin-top:3px;">' +
               '<span class="text-xs-muted">📹 ' + entry.videosWatched + ' videos</span>' +
-              '<span class="text-xs-muted">🧠 ' + entry.weeksPassed + ' quiz' + (entry.weeksPassed!==1?'es':'') + '</span>' +
+              '<span class="text-xs-muted">📹 ' + entry.weeksPassed + ' week' + (entry.weeksPassed!==1?'s':'') + ' active</span>' +
               (entry.certificates > 0 ? '<span style="font-size:11px;color:#a5b4fc;">🏆 ' + entry.certificates + ' cert</span>' : '') +
             '</div>' +
           '</div>' +
@@ -2694,7 +2533,7 @@ function renderLeaderboard() {
       }).join('');
       el.innerHTML =
         '<div style="background:linear-gradient(135deg,#0D0D2B,#1A1040);border-radius:14px;padding:14px;border:1px solid rgba(99,102,241,0.2);">' +
-          '<div style="font-size:10px;color:rgba(165,180,252,0.6);text-align:right;margin-bottom:10px;">Score = quiz passes×30 + videos×5 + best score×0.5 + certs×50</div>' +
+          '<div style="font-size:10px;color:rgba(165,180,252,0.6);text-align:right;margin-bottom:10px;">Score = videos watched × 5 pts</div>' +
           rows +
         '</div>';
     }).catch(function(){
@@ -2712,20 +2551,6 @@ function renderAIAcademy() {
   var watched = aiState.watched || [];
   var videoTotal = aiVideos.length;
   var pct = Math.round(watched.length / videoTotal * 100);
-  var quizUnlocked = watched.length >= aiVideos.length;
-
-  if (aiState.quizOpen) {
-    var view = document.getElementById('view-tue');
-    if (view) {
-      var quizWrap = document.getElementById('quizWrap');
-      if (!quizWrap) {
-        view.innerHTML = '<div id="quizWrap" style="padding-bottom:20px;"></div>';
-      }
-      renderQuiz();
-      return;
-    }
-  }
-
   // Restore full academy view
   var view = document.getElementById('view-tue');
   if (!view) return;
@@ -2743,7 +2568,7 @@ function renderAIAcademy() {
     if (aiState.monthlyAchieved) {
       label.innerHTML = '<span style="color:var(--success);font-weight:700;">✅ Monthly target achieved! Certificate earned.</span>';
     } else {
-      label.textContent = watched.length + ' of ' + videoTotal + ' videos watched — ' + pct + '% (watch all ' + videoTotal + ' to unlock quiz)';
+      label.textContent = watched.length + ' of ' + videoTotal + ' videos watched — ' + pct + '%';
     }
   }
   if (badge) badge.textContent = watched.length;
@@ -2780,39 +2605,6 @@ function renderAIAcademy() {
     fBtn.onclick = function(){ markVideoWatched(fKey); };
   }
 
-  // Quiz unlock section
-  var quizSect = document.getElementById('quizSection');
-  if (quizSect) {
-    if (aiState.quizPassed) {
-      quizSect.innerHTML =
-        '<div style="background:linear-gradient(135deg,#0A2E1A,#0F3D22);border-radius:14px;padding:16px;text-align:center;">' +
-          '<div style="font-size:28px;margin-bottom:6px;">🏆</div>' +
-          '<div style="font-size:15px;font-weight:800;color:var(--success);margin-bottom:4px;">Quiz Passed — ' + aiState.quizScore + '%</div>' +
-          '<div style="font-size:12px;color:rgba(255,255,255,0.6);">Weekly recognition earned. Come back next week!</div>' +
-        '</div>';
-    } else if (aiState.quizScore !== null) {
-      quizSect.innerHTML =
-        '<div style="background:linear-gradient(135deg,#2E0A0A,#3D0F0F);border-radius:14px;padding:16px;text-align:center;">' +
-          '<div style="font-size:15px;font-weight:800;color:#FF6B6B;margin-bottom:6px;">Quiz Score: ' + aiState.quizScore + '% — Need 80% to pass</div>' +
-          '<button onclick="openQuiz()" style="padding:10px 20px;border-radius:10px;border:none;background:#6366F1;color:#fff;font-size:14px;font-weight:700;cursor:pointer;">Retry Quiz</button>' +
-        '</div>';
-    } else if (quizUnlocked) {
-      quizSect.innerHTML =
-        '<div style="background:linear-gradient(135deg,#0F172A,#1E1B4B);border-radius:14px;padding:16px;text-align:center;">' +
-          '<div style="font-size:28px;margin-bottom:8px;">🧠</div>' +
-          '<div style="font-size:15px;font-weight:800;color:#a5b4fc;margin-bottom:4px;">Quiz Unlocked!</div>' +
-          '<div style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:12px;">You\'ve watched all ' + watched.length + ' videos. Take the ' + getWeekQuestions().length + '-question quiz to earn your weekly recognition.</div>' +
-          '<button onclick="openQuiz()" style="width:100%;padding:14px;border-radius:12px;border:none;background:linear-gradient(135deg,#6366F1,#4F46E5);color:#fff;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(99,102,241,0.4);">Start Weekly Quiz →</button>' +
-        '</div>';
-    } else {
-      var remaining = aiVideos.length - watched.length;
-      quizSect.innerHTML =
-        '<div style="background:var(--card);border-radius:14px;padding:14px;text-align:center;border:1.5px dashed var(--border);">' +
-          '<div style="font-size:13px;color:var(--text2);">🔒 Quiz unlocks after watching <strong>' + remaining + ' more video' + (remaining!==1?'s':'') + '</strong> (watch all ' + aiVideos.length + ')</div>' +
-        '</div>';
-    }
-  }
-
   // Core library
   var lib = document.getElementById('aiLibrary');
   if (lib) {
@@ -2833,22 +2625,35 @@ function renderAIAcademy() {
     }).join('');
   }
 
-  // Bonus library (watch-tracked but not required for quiz)
+  // AI Learning Library — grouped by chapter
   var bonus = document.getElementById('aiLibraryBonus');
   if (bonus) {
-    bonus.innerHTML = aiVideosBonus.map(function(v, i) {
-      var vKey = 'b' + i;
-      var isWatched = watched.indexOf(vKey) >= 0;
-      return '<div class="ai-library-card' + (isWatched ? ' watched-card' : '') + '" style="opacity:' + (isWatched?'1':'0.85') + ';" onclick="markVideoWatched(\'' + vKey + '\')">' +
-        '<div class="ai-library-thumb">' +
-          '<img src="https://img.youtube.com/vi/' + v.id + '/mqdefault.jpg" alt="" loading="lazy" onerror="this.parentNode.textContent=\'▶\'">' +
-        '</div>' +
-        '<div class="ai-library-info">' +
-          '<div class="ai-library-title">' + v.title + '</div>' +
-          '<div class="ai-library-tags">' + buildTags(v.tags) + '<span style="font-size:10px;color:var(--text2);padding:3px 4px;">' + v.duration + '</span></div>' +
-        '</div>' +
-        '<div class="ai-library-check">' + (isWatched ? '✅' : '⬜') + '</div>' +
-      '</div>';
+    var chapterDefs = [
+      { key:'claude',  label:'Chapter 1: Claude',  color:'#C8102E' },
+      { key:'chatgpt', label:'Chapter 2: ChatGPT', color:'#10A37F' },
+      { key:'gemini',  label:'Chapter 3: Gemini',  color:'#4285F4' }
+    ];
+    bonus.innerHTML = chapterDefs.map(function(ch) {
+      var chVideos = aiVideosBonus.filter(function(v){ return v.chapter === ch.key; });
+      if (!chVideos.length) return '';
+      var videosHtml = chVideos.map(function(v) {
+        var i = aiVideosBonus.indexOf(v);
+        var vKey = 'b' + i;
+        var isWatched = watched.indexOf(vKey) >= 0;
+        return '<div class="ai-library-card' + (isWatched ? ' watched-card' : '') + '" onclick="markVideoWatched(\'' + vKey + '\')">' +
+          '<div class="ai-library-thumb"><img src="https://img.youtube.com/vi/' + v.id + '/mqdefault.jpg" alt="" loading="lazy" onerror="this.parentNode.textContent=\'▶\'"></div>' +
+          '<div class="ai-library-info">' +
+            '<div class="ai-library-title">' + v.title + '</div>' +
+            '<div class="ai-library-tags">' + buildTags(v.tags) + '<span style="font-size:10px;color:var(--text2);padding:3px 4px;">' + v.duration + '</span></div>' +
+          '</div>' +
+          '<div class="ai-library-check">' + (isWatched ? '✅' : '⬜') + '</div>' +
+        '</div>';
+      }).join('');
+      return '<div style="display:flex;align-items:center;gap:8px;margin:18px 0 8px;">' +
+          '<div style="width:3px;height:14px;border-radius:2px;background:' + ch.color + ';flex-shrink:0;"></div>' +
+          '<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;">' + ch.label + '</div>' +
+          '<div style="flex:1;height:1px;background:var(--border);"></div>' +
+        '</div>' + videosHtml;
     }).join('');
   }
 
@@ -2864,23 +2669,6 @@ function markVideoWatched(videoKey) {
   syncWatch(videoKey);
 }
 
-// ── Quiz section in HTML needs a placeholder ─────────────────────────────────
-// Inject quiz section into view-tue after the featured video meta block
-(function injectQuizSection() {
-  document.addEventListener('DOMContentLoaded', function() {
-    var lib = document.getElementById('aiLibrary');
-    if (lib && !document.getElementById('quizSection')) {
-      var qs = document.createElement('div');
-      qs.id = 'quizSection';
-      qs.style.marginBottom = '14px';
-      lib.parentNode.insertBefore(qs, lib);
-      var lbl = document.createElement('div');
-      lbl.className = 'ai-section-label';
-      lbl.textContent = '🧠 Weekly Knowledge Quiz';
-      lib.parentNode.insertBefore(lbl, qs);
-    }
-  });
-})();
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 (function initAIAcademy() {

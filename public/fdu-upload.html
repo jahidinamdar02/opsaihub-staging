@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1.0">
 <title>Tim Hortons — FDU Daily Check</title>
+<link rel="stylesheet" href="styles.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-:root{--red:#C8102E;}
-body{padding-bottom:calc(72px + 20px);font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#F5F5F7;min-height:100vh;padding-bottom:40px;}
+
+body{padding-bottom:calc(72px + 20px);background:#F5F5F7;min-height:100vh;padding-bottom:40px;padding-top:var(--nav-h);}
 .hdr{background:var(--red);padding:calc(env(safe-area-inset-top,0px)+18px) 20px 18px;text-align:center;}
 .hdr-logo{font-size:12px;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;}
 .hdr-title{font-size:19px;font-weight:700;color:#fff;}
@@ -30,7 +31,7 @@ body{padding-bottom:calc(72px + 20px);font-family:-apple-system,BlinkMacSystemFo
 .card-title{font-size:12px;font-weight:700;color:#1D1D1F;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
 .timer-wrap{background:#FFF5F5;border-radius:10px;padding:9px 12px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
 .timer-count{font-size:13px;font-weight:700;color:var(--red);}
-.upload-box{border:2px dashed #D1D1D6;border-radius:12px;padding:20px 14px;text-align:center;cursor:pointer;background:#FAFAFA;margin-bottom:10px;position:relative;transition:all 0.2s;}
+.upload-box{border:2px dashed #D1D1D6;border-radius:12px;padding:20px 14px;text-align:center;cursor:pointer;background:#FAFAFA;margin-bottom:10px;position:relative;transition:border-color 0.15s ease-out,background 0.15s ease-out;}
 .upload-box.has-photo{border:2px solid var(--red);background:#fff;padding:6px;}
 .upload-input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .preview-img{width:100%;border-radius:8px;display:block;max-height:240px;object-fit:cover;}
@@ -56,13 +57,16 @@ body{padding-bottom:calc(72px + 20px);font-family:-apple-system,BlinkMacSystemFo
 .err{display:none;text-align:center;padding:24px 16px;}
 .try-btn{margin-top:12px;padding:10px 22px;border:none;border-radius:10px;background:var(--red);color:#fff;font-size:13px;font-weight:700;cursor:pointer;}
 
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000;}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000; transform:translateZ(0);-webkit-transform:translateZ(0); }
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;}
 .nav-icon{font-size:22px;}
 .nav-label{font-size:10px;font-weight:500;color:#6E6E73;}
 .nav-item.active .nav-label{color:#C8102E;font-weight:600;}
 .nav-dot{width:4px;height:4px;background:#C8102E;border-radius:50%;}
+
+
 </style>
+
 </head>
 <body>
 <div class="hdr">
@@ -85,7 +89,7 @@ body{padding-bottom:calc(72px + 20px);font-family:-apple-system,BlinkMacSystemFo
   </div>
   <div class="tab-pane on" id="pane-fdu">
     <div class="card" id="fduCard">
-      <div class="timer-wrap"><div style="font-size:17px;">&#9201;</div><div style="flex:1;"><div style="font-size:12px;color:#1D1D1F;">Submit before <b>11:30 AM</b></div><div class="timer-count" id="countdown">Calculating...</div></div></div>
+      <div class="timer-wrap"><div style="font-size:17px;">&#9201;</div><div class="flex-1"><div style="font-size:12px;color:#1D1D1F;">Submit before <b>11:30 AM</b></div><div class="timer-count" id="countdown">Calculating...</div></div></div>
       <div class="card-title">FDU Display Photo</div>
       <div class="upload-box" id="fduBox" onclick="document.getElementById('fduInput').click()">
         <input type="file" accept="image/*" style="display:none;" id="fduInput">
@@ -102,7 +106,44 @@ body{padding-bottom:calc(72px + 20px);font-family:-apple-system,BlinkMacSystemFo
       <div class="prog-bar" id="fduBar"><div class="prog-fill" id="fduFill"></div></div>
       <div class="prog-txt" id="fduTxt">Uploading...</div>
     </div>
-    <div class="suc" id="fduSuc"><div class="suc-icon">&#9989;</div><div class="suc-title">FDU Photo Submitted!</div><div class="suc-sub">Being scored by AI audit system.</div><div class="ts" id="fduTS"></div><div id="fduLate"></div></div>
+    <div class="suc" id="fduSuc">
+      <div class="suc-icon" id="fduIcon">&#9989;</div>
+      <div class="suc-title" id="fduTitle">FDU Photo Submitted!</div>
+      <div class="suc-sub" id="fduSub">AI audit complete.</div>
+      <div id="fduGradeResult" style="display:none;margin-top:12px;width:100%;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+          <div id="fduCard1" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;">
+            <div class="text-xs-9 font-bold text-muted" style="text-transform:uppercase;margin-bottom:3px;">Top Row</div>
+            <div id="fduBadge1" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div>
+            <div id="fduFb1" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div>
+          </div>
+          <div id="fduCard2" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;">
+            <div class="text-xs-9 font-bold text-muted" style="text-transform:uppercase;margin-bottom:3px;">Mid Row</div>
+            <div id="fduBadge2" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div>
+            <div id="fduFb2" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div>
+          </div>
+          <div id="fduCard3" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;">
+            <div class="text-xs-9 font-bold text-muted" style="text-transform:uppercase;margin-bottom:3px;">Timbits</div>
+            <div id="fduBadge3" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div>
+            <div id="fduFb3" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div>
+          </div>
+          <div id="fduCard4" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;">
+            <div class="text-xs-9 font-bold text-muted" style="text-transform:uppercase;margin-bottom:3px;">Water</div>
+            <div id="fduBadge4" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div>
+            <div id="fduFb4" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div>
+          </div>
+        </div>
+        <div id="fduCard5" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;margin-bottom:8px;">
+          <div class="text-xs-9 font-bold text-muted" style="text-transform:uppercase;margin-bottom:3px;">Tags</div>
+          <div id="fduBadge5" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div>
+          <div id="fduFb5" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div>
+        </div>
+        <div style="background:#fff;border-radius:12px;padding:10px;text-align:center;">
+          <div id="fduSummaryText" style="font-size:12px;color:#1D1D1F;font-weight:500;"></div>
+        </div>
+      </div>
+      <div class="ts" id="fduTS"></div><div id="fduLate"></div>
+    </div>
     <div class="err" id="fduErr"><div style="font-size:46px;">&#10060;</div><div style="font-size:17px;font-weight:700;color:#1D1D1F;margin-bottom:5px;">Submission Failed</div><div style="font-size:13px;color:#8E8E93;" id="fduErrMsg">Something went wrong.</div><button class="try-btn" id="fduTry">Try Again</button></div>
   </div>
   <div class="tab-pane" id="pane-donut">
@@ -142,6 +183,10 @@ body{padding-bottom:calc(72px + 20px);font-family:-apple-system,BlinkMacSystemFo
       <div class="suc-title" id="donutGradeTitle">Donut Photos Submitted!</div>
       <div class="suc-sub" id="donutGradeSub">AI is scoring against today's SOP standards...</div>
       <div id="donutGradeResult" style="display:none;margin-top:12px;width:100%;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+          <div style="border-radius:10px;overflow:hidden;"><img id="donutPhoto1" src="" style="width:100%;height:120px;object-fit:cover;display:none;border-radius:10px;"></div>
+          <div style="border-radius:10px;overflow:hidden;"><img id="donutPhoto2" src="" style="width:100%;height:120px;object-fit:cover;display:none;border-radius:10px;"></div>
+        </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
           <div id="grade1Card" style="background:#fff;border-radius:12px;padding:12px;border:2px solid #34C759;">
             <div style="font-size:10px;font-weight:700;color:#8E8E93;text-transform:uppercase;margin-bottom:4px;">Donut 1</div>
@@ -284,6 +329,27 @@ function submitFDU() {
           document.getElementById("fduTS").textContent = "Submitted at " + ts + " IST";
           if (!d.onTime) document.getElementById("fduLate").innerHTML = "<div class=\"late-b\">&#9201; After 11:30 AM — marked Late</div>";
           document.getElementById("fduSuc").style.display = "block";
+          var e = d.entry || {};
+          if (e.topRow && e.topRow !== "Submitted") {
+            document.getElementById("fduGradeResult").style.display = "block";
+            document.getElementById("fduIcon").textContent = e.overallPass ? "✅" : "⚠️";
+            document.getElementById("fduTitle").textContent = e.overallPass ? "FDU Passed!" : "FDU Issues Found";
+            document.getElementById("fduSub").textContent = e.summary || "";
+            function setCard(cardId, badgeId, fbId, grade, feedback) {
+              var pass = grade === "Pass";
+              document.getElementById(cardId).style.borderColor = pass ? "#34C759" : "#FF3B30";
+              document.getElementById(badgeId).textContent = grade;
+              document.getElementById(badgeId).style.background = pass ? "#E8F8ED" : "#FEE8E8";
+              document.getElementById(badgeId).style.color = pass ? "#1B7A3A" : "#C8102E";
+              document.getElementById(fbId).textContent = feedback || "";
+            }
+            setCard("fduCard1","fduBadge1","fduFb1", e.topRow, e.topRowFeedback);
+            setCard("fduCard2","fduBadge2","fduFb2", e.midRow, e.midRowFeedback);
+            setCard("fduCard3","fduBadge3","fduFb3", e.timbits, e.timbitsFeedback);
+            setCard("fduCard4","fduBadge4","fduFb4", e.water, e.waterFeedback);
+            setCard("fduCard5","fduBadge5","fduFb5", e.tags, e.tagsFeedback);
+            document.getElementById("fduSummaryText").textContent = e.summary || "";
+          }
         } else {
           document.getElementById("fduErrMsg").textContent = d.error || "Submission failed.";
           document.getElementById("fduErr").style.display = "block";
@@ -328,6 +394,8 @@ function submitDonut() {
           var entry = d.entry || {};
           if (entry.grade1) {
             document.getElementById("donutGradeResult").style.display = "block";
+            if(entry.photo1){ document.getElementById("donutPhoto1").src=entry.photo1; document.getElementById("donutPhoto1").style.display="block"; }
+            if(entry.photo2){ document.getElementById("donutPhoto2").src=entry.photo2; document.getElementById("donutPhoto2").style.display="block"; }
             document.getElementById("donutGradeSub").textContent = entry.summary || "AI grading complete.";
             document.getElementById("donutGradeIcon").textContent = entry.overallPass ? "\u2705" : "\u26A0\uFE0F";
             document.getElementById("donutGradeTitle").textContent = entry.overallPass ? "Quality Check Passed!" : "Quality Issues Found";
@@ -448,13 +516,68 @@ window.onload = function() {
   });
 };
 </script>
-<nav class="bottom-nav">
-  <a href="index.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Home</span></a>
-  <a href="tasks.html" class="nav-item active"><span class="nav-icon">&#x2705;</span><span class="nav-label">Tasks</span>
-<div class="nav-dot"></div></a>
-  <a href="events.html" class="nav-item"><span class="nav-icon">&#128197;</span><span class="nav-label">Events</span></a>
-  <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Scores</span></a>
-  <a href="team.html" class="nav-item"><span class="nav-icon">&#x1F465;</span><span class="nav-label">Team</span></a>
+<nav class="nav">
+  <a href="index.html" class="nav-wordmark">Ops<span>AI</span>Hub</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link ">Home</a>
+    <a href="tasks.html" class="nav-link ">Tasks</a>
+    <a href="events.html" class="nav-link ">Events</a>
+    <a href="performance.html" class="nav-link ">Scores</a>
+    <a href="team.html" class="nav-link ">Team</a>
+    <a href="fdu-dashboard.html" class="nav-link active">FDU</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a href="settings.html" id="settingsLink" class="nav-btn" style="display:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></a>
+    <div class="nav-user" id="navUserBtn" onclick="showIdentitySelector()">
+      <div style="position:relative;width:28px;height:28px;">
+        <div class="nav-avatar" id="navAvatar">?</div>
+        <img id="navPhoto" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;position:absolute;top:0;left:0;" />
+      </div>
+      <span class="nav-user-name" id="navUserName">Select</span>
+    </div>
+    <button id="logoutBtn" onclick="logout()" class="nav-btn" style="display:none;">Logout</button>
+  </div>
 </nav>
+<script src="/js/api.js"></script>
+<!-- FOOTER -->
+<footer class="site-footer" style="max-width:1200px;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
+  <div class="footer-content">
+    <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
+    <div class="footer-links">
+      <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a>
+      <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-nav">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+      <span class="mobile-nav-label">Home</span>
+    </a>
+    <a href="tasks.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span class="mobile-nav-label">Tasks</span>
+    </a>
+    <a href="events.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      <span class="mobile-nav-label">Events</span>
+    </a>
+    <a href="performance.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span class="mobile-nav-label">Scores</span>
+    </a>
+    <a href="team.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="mobile-nav-label">Team</span>
+    </a>
+  </div>
+</nav>
+<script src="theme.js"></script>
+<script>applyTheme(getTheme());</script>
 </body>
 </html>

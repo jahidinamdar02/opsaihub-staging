@@ -1,15 +1,40 @@
 // ── Theme (shared across all pages) ──
+// Supports: manual toggle, localStorage persistence, system preference detection
+
 (function() {
-  var theme = localStorage.getItem('th_theme') || 'light';
+  var stored = localStorage.getItem('th_theme');
+  var theme;
+
+  if (stored) {
+    theme = stored;
+  } else {
+    theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
+  }
+
   document.documentElement.setAttribute('data-theme', theme);
+  updateIcons(theme);
 })();
 
 function getTheme() {
-  return localStorage.getItem('th_theme') || 'light';
+  var stored = localStorage.getItem('th_theme');
+  if (stored) return stored;
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
+}
+
+function isSystemTheme() {
+  return !localStorage.getItem('th_theme');
 }
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
+  updateIcons(theme);
+}
+
+function updateIcons(theme) {
   var btn = document.getElementById('themeToggle');
   var sun = document.getElementById('themeIconSun');
   var moon = document.getElementById('themeIconMoon');
@@ -17,6 +42,24 @@ function applyTheme(theme) {
   if (sun && moon) {
     sun.style.display = theme === 'dark' ? 'none' : 'block';
     moon.style.display = theme === 'dark' ? 'block' : 'none';
+  }
+  // Update system indicator
+  updateSystemIndicator();
+}
+
+function updateSystemIndicator() {
+  var btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  var indicator = btn.querySelector('.theme-system-dot');
+  if (isSystemTheme()) {
+    if (!indicator) {
+      indicator = document.createElement('span');
+      indicator.className = 'theme-system-dot';
+      indicator.title = 'Following system preference';
+      btn.appendChild(indicator);
+    }
+  } else {
+    if (indicator) indicator.remove();
   }
 }
 
@@ -35,4 +78,21 @@ function toggleTheme() {
     document.body.classList.remove('theme-transitioning');
     if (btn) btn.classList.remove('spin');
   }, 400);
+}
+
+function resetToSystemTheme() {
+  localStorage.removeItem('th_theme');
+  var theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
+  applyTheme(theme);
+}
+
+// Listen for system theme changes (auto-update unless user manually toggled)
+if (window.matchMedia) {
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+    if (!localStorage.getItem('th_theme')) {
+      applyTheme(e.matches ? 'dark' : 'light');
+    }
+  });
 }

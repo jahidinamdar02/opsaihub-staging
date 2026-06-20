@@ -1,0 +1,104 @@
+{
+  "donuts": [
+    {
+      "id": "chocolate-dip",
+      "name": "Chocolate Dip",
+      "type": "Classic Ring",
+      "standards": "Even dark chocolate fondant covering entire top surface. Ring shape intact. No gaps, drips, or pale patches. Glossy finish. Fondant tapped and set properly — no cracks. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    },
+    {
+      "id": "maple-dip",
+      "name": "Maple Dip",
+      "type": "Classic Ring",
+      "standards": "Golden maple fondant evenly applied. Clean ring shape. No cracking. Uniform amber colour. No pale or over-dark patches. Fondant tapped and set properly. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    },
+    {
+      "id": "vanilla-dip",
+      "name": "Vanilla Dip",
+      "type": "Classic Ring",
+      "standards": "White vanilla fondant evenly applied. Rainbow sprinkles uniformly distributed fully covering top surface — no bare patches. Ring shape intact. Sprinkles not clumped. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    },
+    {
+      "id": "maple-salted-caramel",
+      "name": "Maple & Salted Caramel",
+      "type": "Filled Ring",
+      "standards": "Maple fondant base evenly applied and set. 4 caramel fudge cubes on base with 1 stacked on top clearly visible. 6 lines of salted caramel drizzle on top. No dry or cracked surface. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    },
+    {
+      "id": "boston-cream",
+      "name": "Boston Cream",
+      "type": "Filled",
+      "standards": "Smooth chocolate fondant covering entire top surface. Round filled shape — no collapse or holes. Even chocolate coverage with no pale or uncoated patches. Fondant tapped and set properly. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    },
+    {
+      "id": "blueberry-cheesecake",
+      "name": "Blueberry Cheesecake",
+      "type": "Dream",
+      "standards": "Vanilla fondant base smooth and even. Blueberry sauce zigzag drizzle — minimum 6 lines clearly visible. Cookie crumble visible in center. Round filled shape. No dry cracks or uncoated patches. Premium appearance. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    },
+    {
+      "id": "chocolate-brownie",
+      "name": "Chocolate Brownie",
+      "type": "Dream",
+      "standards": "Chocolate fondant evenly applied and set. 4 chocolate brownie cubes on base with 1 stacked on top clearly visible. 6 lines of chocolate filling drizzle on top. No missing brownie pieces. Drizzle pattern complete. Premium appearance. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    },
+    {
+      "id": "chocolate-cookies",
+      "name": "Chocolate Cookies",
+      "type": "Dream",
+      "standards": "Chocolate fondant evenly applied. Cookie powder coating fully covering top surface — no bare patches. 6 lines of chocolate filling drizzle clearly visible on top. Ring shape intact. Premium appearance. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    },
+    {
+      "id": "berry-cream",
+      "name": "Berry Cream",
+      "type": "Dream",
+      "standards": "Vanilla fondant base smooth and even. Blueberry sauce zigzag drizzle — minimum 6 lines clearly visible. Cookie crumble clearly visible in center. Round filled shape. No dry cracks. Premium appearance. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    },
+    {
+      "id": "blueberry-filled",
+      "name": "Blueberry Filled",
+      "type": "Filled",
+      "standards": "White chocolate coating clean and even. Blueberry drizzle visible on top. Round filled shape. No pale or uncoated patches. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    },
+    {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "type": "Dream",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top — minimum 6 lines. Round filled shape. Premium look. No missing drizzle. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    }
+  ],
+  "waterBottleStandard": {
+    "id": "water-bottle",
+    "name": "Tim Hortons Water Bottles",
+    "standards": "Minimum 6 water bottles displayed upright on bottom shelf of FDU. All bottles facing forward with Tim Hortons label clearly visible. No gaps between bottles. Clean and dust-free. Caps aligned uniformly.",
+    "minimumQuantity": 6
+  },
+  "todaysPick": {
+    "date": "2026-04-14",
+    "donut1": {
+      "id": "blueberry-cheesecake",
+      "name": "Blueberry Cheesecake",
+      "type": "Dream",
+      "standards": "Vanilla fondant base smooth and even. Blueberry sauce zigzag drizzle — minimum 6 lines clearly visible. Cookie crumble visible in center. Round filled shape. No dry cracks or uncoated patches. Premium appearance. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    },
+    "donut2": {
+      "id": "chocolate-filled",
+      "name": "Chocolate Filled",
+      "type": "Dream",
+      "standards": "Vanilla fondant base clean and even. Chocolate drizzle clearly visible on top — minimum 6 lines. Round filled shape. Premium look. No missing drizzle. Minimum 3 donuts in basket.",
+      "minimumQuantity": 3
+    }
+  }
+}

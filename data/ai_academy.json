@@ -1,0 +1,22 @@
+{
+  "Deepak": {
+    "weeks": {
+      "2026-W25": {
+        "watched": [
+          "v0",
+          "v1",
+          "b3",
+          "b2",
+          "v2",
+          "v3",
+          "v4",
+          "b0",
+          "b1"
+        ],
+        "quizScore": null,
+        "quizPassed": false
+      }
+    },
+    "certificates": []
+  }
+}

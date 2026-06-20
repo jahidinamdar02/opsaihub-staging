@@ -1,0 +1,113 @@
+{
+  "submissions": [
+    {
+      "id": "1774763999537",
+      "am": "Shivam",
+      "store": "TH Lakeshore",
+      "region": "",
+      "eventDate": "2026-03-28",
+      "venue": "Lakeshore mall",
+      "menuPricing": "store",
+      "customPrice": null,
+      "salesGenerated": 5463,
+      "revenueSharePct": 0,
+      "otherExpenses": 0,
+      "profit": 3332,
+      "compliance": {
+        "manualBillBook": {
+          "answer": "yes",
+          "comment": "Used manual bill book "
+        },
+        "punchedInSystem": {
+          "answer": "yes",
+          "comment": "In eod all items punched in system "
+        },
+        "billsAttached": {
+          "answer": "yes",
+          "comment": "Done "
+        },
+        "managerPresent": "Sami",
+        "score": 100
+      },
+      "images": [
+        "/uploads/events/de6fda74d173d75049df1f6695c8f9a9.jpeg"
+      ],
+      "notes": "It was desert event where we setup a donut dipping session for the guest. Guest can choose there dipping and topping on a chargeble basis. ",
+      "submittedAt": "2026-03-29T05:59:59.537Z"
+    },
+    {
+      "id": "1775811926168",
+      "am": "Deepak",
+      "store": "TH Malhar Road",
+      "region": "",
+      "eventDate": "2026-04-08",
+      "venue": "Malhar Road ",
+      "menuPricing": "store",
+      "customPrice": null,
+      "salesGenerated": 13600,
+      "revenueSharePct": 0,
+      "otherExpenses": 0,
+      "profit": 8296,
+      "compliance": {
+        "manualBillBook": {
+          "answer": "yes",
+          "comment": "punch in system "
+        },
+        "punchedInSystem": {
+          "answer": "yes",
+          "comment": "punch in system"
+        },
+        "billsAttached": {
+          "answer": "no",
+          "comment": "manual book not used \r\n"
+        },
+        "managerPresent": "Harmeet Singh",
+        "score": 67
+      },
+      "images": [
+        "/uploads/events/2455112c67c4ffd7aa5dc3a98a0092ef.jpg",
+        "/uploads/events/24e7ed22c7677c44650aa453e1146a59.jpg"
+      ],
+      "notes": "Vacation event by Trend Club  ",
+      "submittedAt": "2026-04-10T09:05:26.168Z"
+    },
+    {
+      "id": "1777459663676",
+      "am": "Deepak",
+      "store": "TH Malhar Road",
+      "region": "",
+      "eventDate": "2026-04-28",
+      "venue": "Malhar Road ",
+      "menuPricing": "store",
+      "customPrice": null,
+      "salesGenerated": 7022,
+      "revenueSharePct": 0,
+      "otherExpenses": -2,
+      "profit": 4285,
+      "compliance": {
+        "manualBillBook": {
+          "answer": "yes",
+          "comment": "punch in pos "
+        },
+        "punchedInSystem": {
+          "answer": "yes",
+          "comment": "punch in system "
+        },
+        "billsAttached": {
+          "answer": "yes",
+          "comment": "all order punch in POS "
+        },
+        "managerPresent": "Ravinder Singh ",
+        "score": 100
+      },
+      "images": [
+        "/uploads/events/ed9cc476c52812e98fd059c1f77d2491.png",
+        "/uploads/events/09b8f58bc9cc54333978dc2c90fe821f.png",
+        "/uploads/events/3d9698b70254a02b0d95acd5870d4758.png"
+      ],
+      "notes": "AV Vacation company event ",
+      "submittedAt": "2026-04-29T10:47:43.676Z"
+    }
+  ],
+  "lastUpdated": "2026-04-29T10:47:43.676Z"
+}

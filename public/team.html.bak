@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Team — Tim's Ops Connect</title>
+<style>
+:root {
+  --red:#C8102E; --red-dark:#9B0D22;
+  --surface:#F5F5F7; --card:#FFFFFF;
+  --text:#1D1D1F; --text2:#6E6E73;
+  --nav-h:72px; --border:#E5E5EA;
+  --success:#34C759; --warning:#FF9500; --critical:#FF3B30;
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif; background:var(--surface); color:var(--text); min-height:100vh; padding-bottom:calc(var(--nav-h) + 20px); }
+.page-header { background:linear-gradient(150deg,var(--red) 0%,var(--red-dark) 60%,#1A1A1A 100%); padding:52px 20px 16px; }
+.page-title { font-size:26px; font-weight:700; color:#fff; letter-spacing:-0.5px; }
+.page-sub { font-size:13px; color:rgba(255,255,255,0.65); margin-top:3px; }
+.tab-bar { display:flex; background:#fff; border-bottom:1px solid var(--border); overflow-x:auto; scrollbar-width:none; position:sticky; top:0; z-index:100; }
+.tab-bar::-webkit-scrollbar { display:none; }
+.tab-btn { flex-shrink:0; padding:14px 16px; font-size:12px; font-weight:600; color:var(--text2); border:none; background:transparent; cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; }
+.tab-btn.active { color:var(--red); border-bottom-color:var(--red); }
+.tab-content { display:none; padding:14px 16px; }
+.tab-content.active { display:block; }
+.section-card { background:var(--card); border-radius:16px; padding:16px; margin-bottom:12px; box-shadow:0 2px 10px rgba(0,0,0,0.06); }
+.section-title { font-size:12px; font-weight:700; color:var(--text2); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+.bottom-nav { position:fixed; bottom:0; left:0; right:0; height:var(--nav-h); background:rgba(255,255,255,0.88); backdrop-filter:blur(20px) saturate(180%); border-top:1px solid rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:space-around; padding-bottom:env(safe-area-inset-bottom); z-index:1000; }
+.nav-item { display:flex; flex-direction:column; align-items:center; gap:3px; text-decoration:none; padding:8px 12px; min-width:56px; }
+.nav-icon { font-size:22px; }
+.nav-label { font-size:10px; font-weight:500; color:var(--text2); }
+.nav-item.active .nav-label { color:var(--red); font-weight:600; }
+.nav-dot { width:4px; height:4px; background:var(--red); border-radius:50%; margin-top:-2px; }
+.spinner { width:24px; height:24px; border:3px solid var(--border); border-top-color:var(--red); border-radius:50%; animation:spin 0.8s linear infinite; margin:30px auto; display:block; }
+@keyframes spin { to{transform:rotate(360deg)} }
+</style>
+<style id="pin-wall-css">
+#pin-wall{position:fixed;inset:0;z-index:99999;background:#1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
+.pin-logo{font-size:48px;margin-bottom:8px;}
+.pin-title{font-size:24px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.5px;}
+.pin-sub{font-size:13px;color:#6E6E73;margin-bottom:40px;}
+.pin-dots{display:flex;gap:16px;margin-bottom:32px;}
+.pin-dot{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.15);transition:all 0.2s;}
+.pin-dot.filled{background:#C8102E;}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:240px;}
+.pin-btn{height:64px;border-radius:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;font-size:22px;font-weight:600;cursor:pointer;transition:all 0.15s;}
+.pin-btn:active{background:rgba(200,16,46,0.3);transform:scale(0.95);}
+.pin-error{font-size:13px;color:#FF3B30;margin-top:16px;opacity:0;transition:opacity 0.3s;}
+.pin-error.show{opacity:1;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.pin-dots.shake{animation:shake 0.3s ease;}
+</style>
+</head>
+<body>
+<div id="pin-wall">
+  <div class="pin-logo">☕</div>
+  <div class="pin-title">Tim's Ops Connect</div>
+  <div class="pin-sub">Enter your PIN to continue</div>
+  <div class="pin-dots" id="pinDots">
+    <div class="pin-dot" id="d0"></div>
+    <div class="pin-dot" id="d1"></div>
+    <div class="pin-dot" id="d2"></div>
+    <div class="pin-dot" id="d3"></div>
+  </div>
+  <div class="pin-pad">
+    <button class="pin-btn" onclick="pinPress('1')">1</button>
+    <button class="pin-btn" onclick="pinPress('2')">2</button>
+    <button class="pin-btn" onclick="pinPress('3')">3</button>
+    <button class="pin-btn" onclick="pinPress('4')">4</button>
+    <button class="pin-btn" onclick="pinPress('5')">5</button>
+    <button class="pin-btn" onclick="pinPress('6')">6</button>
+    <button class="pin-btn" onclick="pinPress('7')">7</button>
+    <button class="pin-btn" onclick="pinPress('8')">8</button>
+    <button class="pin-btn" onclick="pinPress('9')">9</button>
+    <button class="pin-btn" onclick="pinPress('c')" style="font-size:14px;">Clear</button>
+    <button class="pin-btn" onclick="pinPress('0')">0</button>
+    <button class="pin-btn" onclick="pinPress('x')" style="font-size:20px;">⌫</button>
+  </div>
+  <div class="pin-error" id="pinError">Incorrect PIN. Try again.</div>
+</div>
+
+<div class="page-header">
+  <div class="page-title">&#x1F465; Team</div>
+  <div class="page-sub">Feed · Product</div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" id="btn-feed">&#x1F4AC; Feed</button>
+  
+  <button class="tab-btn" id="btn-product">&#x1F9C1; Product</button>
+</div>
+
+<!-- FEED TAB -->
+<div class="tab-content active" id="tab-feed">
+  <a href="feed.html" style="display:block;text-decoration:none;">
+    <div style="background:linear-gradient(135deg,#000,#1A0508);border-radius:16px;padding:20px;margin-bottom:14px;border:1px solid rgba(200,16,46,0.3);">
+      <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">Tim's Feed &#x2615;</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:14px;">Private Instagram-style feed — photos, wins, celebrations, best practices</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-size:13px;color:rgba(255,255,255,0.5);">Posts · Stories · Reactions · Comments</div>
+        <div style="background:var(--red);color:#fff;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:700;">Open &#x276F;</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+<!-- TRAINING TAB -->
+
+
+<!-- PRODUCT TAB -->
+<div class="tab-content" id="tab-product">
+  <div class="section-card">
+    <div class="section-title">&#x1F9C1; Product Updates</div>
+    <div id="productList"><div class="spinner"></div></div>
+  </div>
+  <button onclick="document.getElementById('productModal').style.display='flex'" style="width:100%;padding:14px;border-radius:12px;border:1.5px dashed var(--border);background:transparent;font-size:14px;font-weight:600;color:var(--text2);cursor:pointer;margin-top:4px;">&#x2B; Add Product Update</button>
+</div>
+
+<!-- OPS EXCELLENCE TAB -->
+<div class="tab-content" id="tab-ops">
+  <div class="section-card">
+    <div class="section-title">&#x1F527; Active Projects</div>
+    <div id="projectsList"><div class="spinner"></div></div>
+  </div>
+  <div class="section-card">
+    <div class="section-title">&#x23F1; Speed of Service — This Week</div>
+    <div id="speedStats"><div class="spinner"></div></div>
+  </div>
+  <div class="section-card">
+    <div class="section-title">&#x1F4A1; Best Practices</div>
+    <div id="bestPractices"></div>
+  </div>
+  <button onclick="document.getElementById('projectModal').style.display='flex'" style="width:100%;padding:14px;border-radius:12px;border:1.5px dashed var(--border);background:transparent;font-size:14px;font-weight:600;color:var(--text2);cursor:pointer;margin-top:4px;">&#x2B; Add Project</button>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div id="productModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;align-items:flex-end;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#fff;border-radius:20px 20px 0 0;width:100%;padding:20px;padding-bottom:calc(20px + env(safe-area-inset-bottom));">
+    <div style="font-size:18px;font-weight:700;margin-bottom:14px;">Add Product Update</div>
+    <select id="pType" style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--border);font-size:14px;margin-bottom:8px;background:var(--surface);">
+      <option value="quality">&#x1F534; Quality Issue</option>
+      <option value="safety">&#x26A0; Food Safety</option>
+      <option value="oos">&#x1F4E6; Out of Stock</option>
+      <option value="lto">&#x1F7E2; LTO Update</option>
+      <option value="launch">&#x1F680; New Launch</option>
+    </select>
+    <input id="pTitle" type="text" placeholder="Title" style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--border);font-size:14px;margin-bottom:8px;background:var(--surface);">
+    <textarea id="pDetail" placeholder="Details..." rows="3" style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--border);font-size:14px;background:var(--surface);font-family:inherit;resize:none;margin-bottom:12px;"></textarea>
+    <button onclick="submitProduct()" style="width:100%;padding:14px;border-radius:12px;border:none;background:var(--red);color:#fff;font-size:15px;font-weight:700;cursor:pointer;">Submit</button>
+  </div>
+</div>
+
+<!-- PROJECT MODAL -->
+<div id="projectModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;align-items:flex-end;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#fff;border-radius:20px 20px 0 0;width:100%;padding:20px;padding-bottom:calc(20px + env(safe-area-inset-bottom));">
+    <div style="font-size:18px;font-weight:700;margin-bottom:14px;">Add Project</div>
+    <input id="projTitle" type="text" placeholder="Project title" style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--border);font-size:14px;margin-bottom:8px;background:var(--surface);">
+    <textarea id="projDesc" placeholder="Description..." rows="3" style="width:100%;padding:10px;border-radius:10px;border:1.5px solid var(--border);font-size:14px;background:var(--surface);font-family:inherit;resize:none;margin-bottom:8px;"></textarea>
+    <div style="display:flex;gap:8px;margin-bottom:12px;">
+      <input id="projProg" type="number" placeholder="Progress %" min="0" max="100" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--border);font-size:14px;background:var(--surface);">
+      <input id="projOwner" type="text" placeholder="Owner" style="flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--border);font-size:14px;background:var(--surface);">
+    </div>
+    <button onclick="submitProject()" style="width:100%;padding:14px;border-radius:12px;border:none;background:var(--red);color:#fff;font-size:15px;font-weight:700;cursor:pointer;">Add Project</button>
+  </div>
+</div>
+
+  </a>
+  <a href="feedback.html" style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:14px;padding:13px 16px;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,0.06);border-left:4px solid #34C759;">
+    <div style="display:flex;align-items:center;gap:10px;"><div style="font-size:20px;">&#x1F4AC;</div>
+    <div><div style="font-size:13px;font-weight:700;color:#1D1D1F;">Platform Feedback</div>
+    <div style="font-size:11px;color:#6E6E73;">Help improve this platform</div></div></div>
+    <div style="font-size:12px;color:#34C759;font-weight:700;">Share &#x276F;</div>
+  </a>
+</div>
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Home</span></a>
+  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#x2705;</span><span class="nav-label">Tasks</span></a>
+  <a href="events.html" class="nav-item"><span class="nav-icon">&#128197;</span><span class="nav-label">Events</span></a>
+  <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Scores</span></a>
+  <a href="team.html" class="nav-item active"><span class="nav-icon">&#x1F465;</span><span class="nav-label">Team</span><div class="nav-dot"></div></a>
+  <a href="audit.html" class="nav-item"><span class="nav-icon">&#128269;</span><span class="nav-label">Audits</span></a>
+</nav>
+
+<script>
+var AM_AVATAR={
+  'Jahid':'/images/am/jahid.svg',
+  'Raman':'/images/am/raman.svg',
+  'Harish':'/images/am/harish.svg',
+  'Rohit':'/images/am/rohit.svg',
+  'Deepak':'/images/am/deepak.svg',
+  'Akash Chavan':'/images/am/akash-chavan.svg',
+  'Akash Rathod':'/images/am/akash-rathod.svg',
+  'Jagadeesha':'/images/am/jagadeesha.svg',
+  'Shivam':'/images/am/shivam.svg'
+};
+function amAv(name,size){size=size||36;var s=size+'px';return AM_AVATAR[name]?'<img src="'+AM_AVATAR[name]+'" style="width:'+s+';height:'+s+';border-radius:50%;object-fit:cover;" alt="'+name+'">':(name?name.substring(0,2).toUpperCase():'AM');}
+
+// TAB SWITCHING
+var tabs = ['feed','product','ops'];
+tabs.forEach(function(t) {
+  document.getElementById('btn-'+t).addEventListener('click', function() {
+    tabs.forEach(function(x) {
+      document.getElementById('btn-'+x).classList.remove('active');
+      document.getElementById('tab-'+x).classList.remove('active');
+    });
+    document.getElementById('btn-'+t).classList.add('active');
+    document.getElementById('tab-'+t).classList.add('active');
+    if(t==='training') loadTraining();
+    if(t==='product') loadProductsTab();
+    if(t==='ops') loadOps();
+  });
+});
+
+// ── TRAINING ─────────────────────────────────────────────
+function tgc(p){ return p>=85?'#34C759':p>=60?'#FF9500':'#FF3B30'; }
+
+function calcH(d) {
+  var s=[];
+  s.push(d.smBudget>0?Math.min(d.smActual/d.smBudget,1)*100:100);
+  s.push(d.shiftBudget>0?Math.min(d.shiftActual/d.shiftBudget,1)*100:100);
+  s.push(Math.min((d.fostac||0)/4,1)*100);
+  s.push(Math.min((d.coffeMasters||0)/1,1)*100);
+  s.push(Math.min((d.donutChampions||0)/3,1)*100);
+  s.push(Math.min((d.bevStation||0)/3,1)*100);
+  s.push(Math.min((d.foodStation||0)/3,1)*100);
+  s.push(Math.min((d.cashierStation||0)/3,1)*100);
+  var ten=(d.t18||0)+(d.t12||0)+(d.t6||0)+(d.t0||0);
+  s.push(ten>0?(((d.t18||0)*100+(d.t12||0)*80+(d.t6||0)*60+(d.t0||0)*30)/ten):50);
+  return Math.round(s.reduce(function(a,b){return a+b;},0)/s.length);
+}
+
+function loadTraining() {
+  fetch('/api/training')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var td=d.data||[];
+      if(td.length===0){
+        document.getElementById('trnScore').textContent='No data';
+        document.getElementById('trnSubtitle').textContent='Enter data via training form';
+        return;
+      }
+      renderTraining(td);
+    })
+    .catch(function(){ document.getElementById('trnScore').textContent='Error'; });
+}
+
+function renderTraining(td) {
+  var scores=td.map(calcH);
+  var overall=Math.round(scores.reduce(function(a,b){return a+b;},0)/scores.length);
+  var smGap=td.reduce(function(a,d){return a+Math.max(0,(d.smBudget||1)-(d.smActual||0));},0);
+  var fostacGap=td.reduce(function(a,d){return a+Math.max(0,4-(d.fostac||0));},0);
+  var pipeline=td.reduce(function(a,d){return a+(d.pSM||0)+(d.pTRM||0)+(d.pStore||0);},0);
+
+  document.getElementById('trnScore').textContent=overall+'%';
+  document.getElementById('trnScore').style.color=tgc(overall);
+  document.getElementById('trnSubtitle').textContent='Overall health across '+td.length+' stores';
+  document.getElementById('trnSMGap').textContent=smGap;
+  document.getElementById('trnFostacGap').textContent=fostacGap;
+  document.getElementById('trnPipeline').textContent=pipeline;
+
+  // Manpower
+  var smA=td.reduce(function(a,d){return a+(d.smActual||0);},0);
+  var smB=td.reduce(function(a,d){return a+(d.smBudget||1);},0);
+  var shA=td.reduce(function(a,d){return a+(d.shiftActual||0);},0);
+  var shB=td.reduce(function(a,d){return a+(d.shiftBudget||2);},0);
+  var tmA=td.reduce(function(a,d){return a+(d.tmActual||0);},0);
+  var tmB=td.reduce(function(a,d){return a+(d.tmBudget||0);},0);
+  document.getElementById('trnManpower').innerHTML=[
+    {icon:'&#x1F451;',n:'Store Managers',a:smA,b:smB},
+    {icon:'&#x1F464;',n:'Shift Managers',a:shA,b:shB},
+    {icon:'&#x1F465;',n:'Team Members',a:tmA,b:tmB}
+  ].map(function(m){
+    var p=m.b>0?Math.round(m.a/m.b*100):0,c=tgc(p),g=m.b-m.a;
+    return '<div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);">'+
+      '<span style="font-size:20px;width:28px;">'+m.icon+'</span>'+
+      '<div style="flex:1;"><div style="font-size:13px;font-weight:600;">'+m.n+'</div>'+
+      '<div style="font-size:11px;color:var(--text2);">'+m.a+' of '+m.b+' budgeted</div>'+
+      '<div style="height:5px;background:var(--border);border-radius:3px;margin-top:5px;overflow:hidden;">'+
+      '<div style="height:100%;background:'+c+';width:'+Math.min(p,100)+'%;border-radius:3px;"></div></div></div>'+
+      '<div style="text-align:right;"><div style="font-size:15px;font-weight:700;color:'+c+';">'+p+'%</div>'+
+      '<div style="font-size:10px;font-weight:700;color:'+(g<=0?'#34C759':'#FF3B30')+'">'+(g<=0?'&#x2705;':'&#x26A0; -'+g)+'</div></div>'+
+    '</div>';
+  }).join('');
+
+  // Tenure
+  var t18=td.reduce(function(a,d){return a+(d.t18||0);},0);
+  var t12=td.reduce(function(a,d){return a+(d.t12||0);},0);
+  var t6=td.reduce(function(a,d){return a+(d.t6||0);},0);
+  var t0=td.reduce(function(a,d){return a+(d.t0||0);},0);
+  var tt=t18+t12+t6+t0;
+  document.getElementById('trnTenure').innerHTML=
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">'+
+    ['18 Months +','12-18 Months','6-12 Months','Under 6 Months'].map(function(l,i){
+      var vals=[t18,t12,t6,t0],cols=['#1B7A3A','#1A5CB8','#8B4500','#C8102E'],bgs=['#E8F8ED','#E8F0FF','#FFF3E0','#FEE8E8'];
+      return '<div style="background:'+bgs[i]+';border-radius:12px;padding:12px;text-align:center;">'+
+        '<div style="font-size:28px;font-weight:700;color:'+cols[i]+';">'+vals[i]+'</div>'+
+        '<div style="font-size:11px;font-weight:700;color:'+cols[i]+';margin-top:4px;">'+l+'</div>'+
+        '<div style="font-size:10px;color:'+cols[i]+';opacity:0.7;margin-top:2px;">'+(tt>0?Math.round(vals[i]/tt*100)+'%':'')+'</div>'+
+      '</div>';
+    }).join('')+
+    '</div>'+
+    '<div style="text-align:center;font-size:12px;color:var(--text2);margin-top:10px;">Total headcount: <strong>'+tt+'</strong></div>';
+
+  // Pipeline
+  var pSM=td.reduce(function(a,d){return a+(d.pSM||0);},0);
+  var pTRM=td.reduce(function(a,d){return a+(d.pTRM||0);},0);
+  var pStore=td.reduce(function(a,d){return a+(d.pStore||0);},0);
+  document.getElementById('trnPipelineDetail').innerHTML=
+    '<div style="display:flex;align-items:center;gap:6px;overflow-x:auto;padding-bottom:6px;">'+
+    [['TM to SM',pSM,'#FEE8E8','#C8102E'],['SM to TRM',pTRM,'#FFF3E0','#8B4500'],['TRM to Store',pStore,'#E8F0FF','#1A5CB8'],['Total',pSM+pTRM+pStore,'#E8F8ED','#1B7A3A']].map(function(s,i){
+      return '<div style="flex-shrink:0;text-align:center;min-width:68px;">'+
+        '<div style="width:48px;height:48px;border-radius:50%;background:'+s[2]+';display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:'+s[3]+';margin:0 auto 5px;">'+s[1]+'</div>'+
+        '<div style="font-size:10px;font-weight:700;color:var(--text2);">'+s[0]+'</div>'+
+      '</div>'+(i<3?'<div style="font-size:14px;color:var(--border);flex-shrink:0;">&#x276F;</div>':'');
+    }).join('')+
+    '</div>';
+
+  // Certs
+  var certs=[
+    ['&#x1F9EA;','FOSTAC',td.reduce(function(a,d){return a+(d.fostac||0);},0),td.length*4],
+    ['&#x2615;','Coffee Master',td.reduce(function(a,d){return a+(d.coffeMasters||0);},0),td.length*1],
+    ['&#x1F369;','Donut Champ',td.reduce(function(a,d){return a+(d.donutChampions||0);},0),td.length*3],
+    ['&#x1F964;','Beverage',td.reduce(function(a,d){return a+(d.bevStation||0);},0),td.length*3],
+    ['&#x1F354;','Food',td.reduce(function(a,d){return a+(d.foodStation||0);},0),td.length*3],
+    ['&#x1F4B3;','Cashier',td.reduce(function(a,d){return a+(d.cashierStation||0);},0),td.length*3]
+  ];
+  document.getElementById('trnCerts').innerHTML=certs.map(function(c){
+    var p=c[3]>0?Math.round(c[2]/c[3]*100):0,col=tgc(p),gap=Math.max(0,c[3]-c[2]);
+    return '<div style="background:var(--surface);border-radius:12px;padding:10px;text-align:center;">'+
+      '<div style="font-size:22px;margin-bottom:4px;">'+c[0]+'</div>'+
+      '<div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px;">'+c[1]+'</div>'+
+      '<div style="font-size:20px;font-weight:700;color:'+col+';">'+c[2]+'</div>'+
+      '<div style="font-size:10px;color:var(--text2);">of '+c[3]+'</div>'+
+      '<div style="height:4px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden;">'+
+      '<div style="height:100%;background:'+col+';width:'+Math.min(p,100)+'%;border-radius:2px;"></div></div>'+
+      (gap>0?'<div style="font-size:10px;font-weight:700;color:var(--critical);margin-top:3px;">-'+gap+'</div>':
+             '<div style="font-size:10px;font-weight:700;color:var(--success);margin-top:3px;">&#x2705;</div>')+
+    '</div>';
+  }).join('');
+
+  // By AM
+  var amList=[
+    {n:'Raman',i:'&#x1F3D9;'},{n:'Harish',i:'&#x1F3D9;'},{n:'Rohit',i:'&#x1F3D9;'},
+    {n:'Deepak',i:'&#x1F33E;'},{n:'Akash Chavan',i:'&#x1F30A;'},{n:'Akash Rathod',i:'&#x1F30A;'},
+    {n:'Jagadeesha',i:'&#x1F333;'},{n:'Shivam',i:'&#x1F48E;'}
+  ];
+  document.getElementById('trnByAM').innerHTML=amList.map(function(am){
+    var st=td.filter(function(d){return d.am===am.n;});
+    if(!st.length) return '';
+    var avg=Math.round(st.map(calcH).reduce(function(a,b){return a+b;},0)/st.length);
+    var c=tgc(avg);
+    var smG=st.reduce(function(a,d){return a+Math.max(0,(d.smBudget||1)-(d.smActual||0));},0);
+    var fG=st.reduce(function(a,d){return a+Math.max(0,4-(d.fostac||0));},0);
+    return '<div style="display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border);">'+
+      '<div style="width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,#C8102E,#9B0D22);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;">'+amAv(am.n,34)+'</div>'+
+      '<div style="flex:1;"><div style="font-size:14px;font-weight:600;">'+am.n+'</div>'+
+      '<div style="font-size:11px;color:var(--text2);">'+st.length+' stores'+
+        (smG>0?' &middot; <span style="color:#FF3B30;">SM -'+smG+'</span>':'')+
+        (fG>0?' &middot; <span style="color:#FF9500;">FOSTAC -'+fG+'</span>':'')+
+      '</div>'+
+      '<div style="height:4px;background:var(--border);border-radius:2px;margin-top:5px;overflow:hidden;">'+
+      '<div style="height:100%;background:'+c+';width:'+avg+'%;border-radius:2px;"></div></div></div>'+
+      '<div style="font-size:20px;font-weight:700;color:'+c+';">'+avg+'%</div>'+
+    '</div>';
+  }).join('');
+}
+
+// ── PRODUCT ───────────────────────────────────────────────
+var productData=[];
+function loadProductsTab() {
+  fetch('/api/products')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      productData=d.data||[];
+      if(!productData.length) productData=[
+        {id:'1',type:'lto',title:'Iced Brown Sugar Oat Latte — Now Live!',detail:'Available at all stores from March 20. Update LTO display and train staff.',store:'All Stores',date:'2026-03-20'},
+        {id:'2',type:'quality',title:'Donut glazing issue — Delhi stores',detail:'Uneven glazing on chocolate donuts. Raised with Snowmen. Under investigation.',store:'Select City',date:'2026-03-21'},
+        {id:'3',type:'oos',title:'Oat milk running low — Maharashtra',detail:'PO raised with Jubilee. ETA 2 days.',store:'Balewadi',date:'2026-03-22'}
+      ];
+      renderProducts();
+    }).catch(function(){renderProducts();});
+}
+
+function renderProducts() {
+  var typeMap={quality:'&#x1F534; Quality',safety:'&#x26A0; Safety',oos:'&#x1F4E6; Out of Stock',lto:'&#x1F7E2; LTO',launch:'&#x1F680; Launch'};
+  var bgMap={quality:'#FEE8E8',safety:'#FFF3E0',oos:'#FFF9E6',lto:'#E8F0FF',launch:'#E8F8ED'};
+  var borderMap={quality:'#FF3B30',safety:'#FF9500',oos:'#FF9500',lto:'#007AFF',launch:'#34C759'};
+  document.getElementById('productList').innerHTML=productData.map(function(p){
+    return '<div style="border-radius:14px;padding:14px;margin-bottom:10px;background:'+bgMap[p.type]+';border-left:4px solid '+borderMap[p.type]+';">'+
+      '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">'+
+        '<span style="font-size:11px;font-weight:700;color:'+borderMap[p.type]+';">'+typeMap[p.type]+'</span>'+
+        '<span style="font-size:11px;color:var(--text2);">'+p.date+'</span>'+
+      '</div>'+
+      '<div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;">'+p.title+'</div>'+
+      '<div style="font-size:13px;color:var(--text2);">'+p.detail+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+function submitProduct() {
+  var item={id:Date.now()+'',type:document.getElementById('pType').value,title:document.getElementById('pTitle').value,detail:document.getElementById('pDetail').value,date:new Date().toISOString().slice(0,10)};
+  productData.unshift(item);
+  renderProducts();
+  fetch('/api/products',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(item)}).catch(function(){});
+  document.getElementById('productModal').style.display='none';
+  document.getElementById('pTitle').value='';
+  document.getElementById('pDetail').value='';
+}
+
+// ── OPS EXCELLENCE ────────────────────────────────────────
+var projectsData=[];
+function loadOps() {
+  fetch('/api/submissions')
+    .then(function(r){return r.json();})
+    .then(function(d){renderSpeedStats(d.data||[]);});
+  fetch('/api/projects')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      projectsData=d.data||[];
+      if(!projectsData.length) projectsData=[
+        {title:'Speed of Service — Sub 2:30 Initiative',desc:'Targeting sub 2:30 across all stores by end of Q1.',progress:65,status:'In Progress',owner:'Jahid Inamdar'},
+        {title:'NPS Improvement Programme',desc:'QR feedback activation at all 44 stores. Target NPS above 70 by June.',progress:40,status:'Active',owner:'All AMs'},
+        {title:'Store Opening SOP Refresh',desc:'Updated opening checklist rollout. New coffee standards included.',progress:90,status:'In Progress',owner:'Timsy Training'}
+      ];
+      renderProjects();
+    }).catch(function(){renderProjects();});
+  document.getElementById('bestPractices').innerHTML=[
+    {a:'Jagadeesha',s:'Koramangala',t:'5-minute huddle before peak hours — everyone knows their station. Speed went from 3:20 to 1:58.',r:'&#x1F4C8; Speed improved 35%'},
+    {a:'Shivam',s:'Hyderabad Airport',t:'Posted daily target transaction count at POS. Cashiers self-motivate to push modifiers.',r:'&#x1F4C8; Modifiers up 22%'}
+  ].map(function(p){
+    return '<div style="background:var(--surface);border-radius:12px;padding:14px;margin-bottom:10px;">'+
+      '<div style="font-size:12px;font-weight:700;color:var(--red);">'+p.a+'</div>'+
+      '<div style="font-size:11px;color:var(--text2);margin-bottom:6px;">'+p.s+'</div>'+
+      '<div style="font-size:13px;color:var(--text);line-height:1.5;">'+p.t+'</div>'+
+      '<div style="font-size:12px;font-weight:600;color:var(--success);margin-top:6px;">'+p.r+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+function renderProjects() {
+  var colors=['var(--red)','#007AFF','var(--success)','#FFD700'];
+  document.getElementById('projectsList').innerHTML=projectsData.map(function(p,i){
+    var c=colors[i%4];
+    return '<div style="border-radius:14px;padding:16px;margin-bottom:10px;background:var(--card);border-top:4px solid '+c+';box-shadow:0 2px 8px rgba(0,0,0,0.06);">'+
+      '<div style="display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;background:#FEE8E8;color:var(--red);margin-bottom:8px;">'+p.status+'</div>'+
+      '<div style="font-size:15px;font-weight:700;margin-bottom:4px;">'+p.title+'</div>'+
+      '<div style="font-size:13px;color:var(--text2);margin-bottom:10px;">'+p.desc+'</div>'+
+      '<div style="background:var(--border);border-radius:4px;height:8px;overflow:hidden;margin-bottom:4px;">'+
+      '<div style="height:100%;background:'+c+';width:'+p.progress+'%;border-radius:4px;"></div></div>'+
+      '<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text2);">'+
+        '<span>'+p.owner+'</span><span style="color:'+c+';font-weight:700;">'+p.progress+'%</span>'+
+      '</div></div>';
+  }).join('');
+}
+
+function renderSpeedStats(subs) {
+  var now=new Date();
+  var wkD=new Date(now);wkD.setDate(wkD.getDate()-wkD.getDay()+(wkD.getDay()===0?-6:1));
+  var wk=wkD.getFullYear()+'-'+String(wkD.getMonth()+1).padStart(2,'0')+'-'+String(wkD.getDate()).padStart(2,'0');
+  var times=[];
+  subs.filter(function(s){return (s.day==='saturday'||s.day==='sunday')&&s.speedTimes;}).forEach(function(s){
+    Object.values(s.speedTimes).forEach(function(t){
+      var p=t.split(':');if(p.length===2){var sec=parseInt(p[0])*60+parseInt(p[1]);if(sec>0)times.push(sec);}
+    });
+  });
+  if(!times.length){document.getElementById('speedStats').innerHTML='<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px;">Speed data from Sat/Sun checklists</div>';return;}
+  var avg=Math.round(times.reduce(function(a,b){return a+b;},0)/times.length);
+  var under=times.filter(function(t){return t<=150;}).length;
+  var pct=Math.round(under/times.length*100);
+  var c=pct>=80?'#34C759':pct>=60?'#FF9500':'#FF3B30';
+  document.getElementById('speedStats').innerHTML=
+    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">'+
+    '<div style="text-align:center;background:var(--surface);border-radius:12px;padding:14px;">'+
+      '<div style="font-size:24px;font-weight:700;color:'+c+';">'+Math.floor(avg/60)+':'+String(avg%60).padStart(2,'0')+'</div>'+
+      '<div style="font-size:11px;color:var(--text2);margin-top:4px;">Avg Time</div></div>'+
+    '<div style="text-align:center;background:var(--surface);border-radius:12px;padding:14px;">'+
+      '<div style="font-size:24px;font-weight:700;color:'+c+';">'+pct+'%</div>'+
+      '<div style="font-size:11px;color:var(--text2);margin-top:4px;">Under 2:30</div></div>'+
+    '<div style="text-align:center;background:var(--surface);border-radius:12px;padding:14px;">'+
+      '<div style="font-size:24px;font-weight:700;">'+times.length+'</div>'+
+      '<div style="font-size:11px;color:var(--text2);margin-top:4px;">Checks</div></div>'+
+    '</div>';
+}
+
+function submitProject() {
+  var p={id:Date.now()+'',title:document.getElementById('projTitle').value,desc:document.getElementById('projDesc').value,progress:parseInt(document.getElementById('projProg').value)||0,status:'Active',owner:document.getElementById('projOwner').value||'Team'};
+  projectsData.push(p);
+  renderProjects();
+  fetch('/api/projects',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)}).catch(function(){});
+  document.getElementById('projectModal').style.display='none';
+}
+</script>
+<script id="pin-wall-js">
+(function(){
+  var PINS={'am':'2026','hod':'2202'};
+  var wall=document.getElementById('pin-wall');
+  var isHODPage=window.location.pathname.indexOf('hod')>-1;
+  var pinOK=localStorage.getItem('th_pin_ok')==='1';
+  var hodOK=localStorage.getItem('th_hod_ok')==='1';
+  if(pinOK&&(!isHODPage||hodOK)){wall.style.display='none';return;}
+  var entered=[];
+  function pinPress(v){
+    if(v==='c'){entered=[];render();return;}
+    if(v==='x'){entered.pop();render();return;}
+    if(entered.length>=4) return;
+    entered.push(v);
+    render();
+    if(entered.length===4){
+      setTimeout(function(){check();},100);
+    }
+  }
+  function render(){
+    for(var i=0;i<4;i++){
+      document.getElementById('d'+i).className='pin-dot'+(i<entered.length?' filled':'');
+    }
+  }
+  function check(){
+    var pin=entered.join('');
+    if(pin===PINS.hod){
+      localStorage.setItem('th_pin_ok','1');
+      localStorage.setItem('th_hod_ok','1');
+      localStorage.setItem('th_is_hod','1');
+      wall.style.display='none';
+    }else if(pin===PINS.am&&!isHODPage){
+      localStorage.setItem('th_pin_ok','1');
+      wall.style.display='none';
+    }else{
+      wrong();
+    }
+  }
+  function wrong(){
+    entered=[];
+    render();
+    var dots=document.getElementById('pinDots');
+    var err=document.getElementById('pinError');
+    dots.classList.add('shake');
+    err.classList.add('show');
+    setTimeout(function(){dots.classList.remove('shake');},400);
+    setTimeout(function(){err.classList.remove('show');},2000);
+  }
+  window.pinPress=pinPress;
+})();
+</script>
+</body>
+</html>

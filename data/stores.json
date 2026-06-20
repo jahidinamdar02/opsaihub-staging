@@ -132,7 +132,7 @@
   {
     "id": "R2-DEE-01",
     "name": "CP67 Mohali",
-    "am": "Deepak",
+    "am": "Kajal",
     "region": "Punjab",
     "regionCode": "R2",
     "type": "mall",
@@ -142,7 +142,7 @@
   {
     "id": "R2-DEE-02",
     "name": "Elante Mall",
-    "am": "Deepak",
+    "am": "Kajal",
     "region": "Punjab",
     "regionCode": "R2",
     "type": "mall",
@@ -162,7 +162,7 @@
   {
     "id": "R2-DEE-04",
     "name": "Sector 35",
-    "am": "Deepak",
+    "am": "Kajal",
     "region": "Punjab",
     "regionCode": "R2",
     "type": "standalone",
@@ -212,7 +212,7 @@
   {
     "id": "R3-ACH-01",
     "name": "Balewadi",
-    "am": "Akash Chavan",
+    "am": "TBA",
     "region": "Maharashtra",
     "regionCode": "R3",
     "type": "standalone",
@@ -222,7 +222,7 @@
   {
     "id": "R3-ACH-02",
     "name": "Lokhandwala",
-    "am": "Akash Chavan",
+    "am": "Sandeep Mukharjee",
     "region": "Maharashtra",
     "regionCode": "R3",
     "type": "standalone",
@@ -232,7 +232,7 @@
   {
     "id": "R3-ACH-03",
     "name": "Supreme",
-    "am": "Akash Chavan",
+    "am": "Sandeep Mukharjee",
     "region": "Maharashtra",
     "regionCode": "R3",
     "type": "mall",
@@ -242,7 +242,7 @@
   {
     "id": "R3-ACH-04",
     "name": "PMC Kurla",
-    "am": "Akash Chavan",
+    "am": "Sandeep Mukharjee",
     "region": "Maharashtra",
     "regionCode": "R3",
     "type": "standalone",
@@ -252,7 +252,7 @@
   {
     "id": "R3-ACH-05",
     "name": "Viman Nagar",
-    "am": "Akash Chavan",
+    "am": "TBA",
     "region": "Maharashtra",
     "regionCode": "R3",
     "type": "standalone",
@@ -262,7 +262,7 @@
   {
     "id": "R3-ACH-06",
     "name": "PMC Wakad",
-    "am": "Akash Chavan",
+    "am": "TBA",
     "region": "Maharashtra",
     "regionCode": "R3",
     "type": "standalone",
@@ -272,7 +272,7 @@
   {
     "id": "R3-ACH-07",
     "name": "FC Road",
-    "am": "Akash Chavan",
+    "am": "TBA",
     "region": "Maharashtra",
     "regionCode": "R3",
     "type": "standalone",
@@ -282,7 +282,7 @@
   {
     "id": "R3-ACH-08",
     "name": "FIFC",
-    "am": "Akash Chavan",
+    "am": "Sandeep Mukharjee",
     "region": "Maharashtra",
     "regionCode": "R3",
     "type": "mall",

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>OpsAIHub — Tim Hortons India</title>
+<style>
+:root {
+  --red: #C8102E;
+  --red-dark: #9B0D22;
+  --white: #FFFFFF;
+  --dark: #1A1A1A;
+  --surface: #F5F5F7;
+  --card: #FFFFFF;
+  --success: #34C759;
+  --warning: #FF9500;
+  --critical: #FF3B30;
+  --text: #1D1D1F;
+  --text2: #6E6E73;
+  --nav-h: 72px;
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { font-size: 16px; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  background: var(--surface);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom));
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(150deg, var(--red) 0%, var(--red-dark) 60%, #1A1A1A 100%);
+  padding: 56px 20px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 160px; height: 160px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+.hero-greeting {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.hero-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.5px;
+  margin-bottom: 2px;
+}
+.hero-date {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 24px;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+.hero-stat {
+  background: rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.hero-stat-num {
+  font-size: 24px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.65);
+  margin-top: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── ANNOUNCEMENT ── */
+.announcement {
+  margin: 16px 16px 0;
+  background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 3px solid var(--red);
+}
+.ann-icon { font-size: 20px; flex-shrink: 0; }
+.ann-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+.ann-text {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.4;
+}
+
+/* ── SECTION HEADER ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 16px 10px;
+}
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+.section-link {
+  font-size: 13px;
+  color: var(--red);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* ── TODAY CHECKLIST CARD ── */
+.today-card {
+  margin: 0 16px;
+  background: var(--card);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+.today-card:active { transform: scale(0.98); }
+.today-card-left { display: flex; align-items: center; gap: 14px; }
+.today-icon {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--red), var(--red-dark));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.today-day {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.today-sub {
+  font-size: 12px;
+  color: var(--text2);
+}
+.today-arrow {
+  font-size: 20px;
+  color: var(--text2);
+}
+
+/* ── STORE SCORE CARDS ── */
+.stores-scroll {
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.store-card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: fadeUp 0.4s ease both;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(12px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+.store-info { flex: 1; }
+.store-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.store-region {
+  font-size: 11px;
+  color: var(--text2);
+}
+.store-score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.score-num {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+.score-bar-wrap {
+  width: 60px;
+  height: 4px;
+  background: #E5E5EA;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.score-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+.band-green  { color: var(--success); }
+.band-yellow { color: var(--warning); }
+.band-orange { color: #FF6B00; }
+.band-red    { color: var(--critical); }
+.bar-green   { background: var(--success); }
+.bar-yellow  { background: var(--warning); }
+.bar-orange  { background: #FF6B00; }
+.bar-red     { background: var(--critical); }
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 1000;
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  min-width: 56px;
+}
+.nav-item:active { transform: scale(0.9); }
+.nav-icon { font-size: 22px; line-height: 1; }
+.nav-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text2);
+  letter-spacing: 0.2px;
+}
+.nav-item.active .nav-label { color: var(--red); font-weight: 600; }
+.nav-item.active .nav-icon { filter: none; }
+.nav-dot {
+  width: 4px; height: 4px;
+  background: var(--red);
+  border-radius: 50%;
+  margin-top: -2px;
+}
+
+/* ── LOADING SPINNER ── */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 12px;
+  color: var(--text2);
+  font-size: 14px;
+}
+.spinner {
+  width: 28px; height: 28px;
+  border: 3px solid #E5E5EA;
+  border-top-color: var(--red);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── EMPTY STATE ── */
+.empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text2);
+  font-size: 14px;
+}
+.empty-icon { font-size: 40px; margin-bottom: 12px; }
+
+.pb-safe { padding-bottom: 20px; }
+
+/* Identity Selector */
+.id-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9000;display:flex;align-items:flex-end;backdrop-filter:blur(4px);}
+.id-sheet{background:#fff;border-radius:24px 24px 0 0;padding:24px 20px 40px;width:100%;max-height:70vh;overflow-y:auto;}
+.id-title{font-size:20px;font-weight:700;color:#1D1D1F;margin-bottom:4px;}
+.id-sub{font-size:13px;color:#8E8E93;margin-bottom:20px;}
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.id-btn{padding:14px 10px;border-radius:14px;border:1.5px solid #E5E5EA;background:#F5F5F7;font-size:14px;font-weight:600;color:#1D1D1F;cursor:pointer;text-align:center;transition:all 0.15s;}
+.id-btn:active{background:#C8102E;color:#fff;border-color:#C8102E;}
+.id-btn.selected{background:#C8102E;color:#fff;border-color:#C8102E;}
+
+</style>
+<style id="pin-wall-css">
+#pin-wall{position:fixed;inset:0;z-index:99999;background:#1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
+.pin-logo{font-size:48px;margin-bottom:8px;}
+.pin-title{font-size:24px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.5px;}
+.pin-sub{font-size:13px;color:#6E6E73;margin-bottom:40px;}
+.pin-dots{display:flex;gap:16px;margin-bottom:32px;}
+.pin-dot{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.15);transition:all 0.2s;}
+.pin-dot.filled{background:#C8102E;}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:240px;}
+.pin-btn{height:64px;border-radius:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;font-size:22px;font-weight:600;cursor:pointer;transition:all 0.15s;}
+.pin-btn:active{background:rgba(200,16,46,0.3);transform:scale(0.95);}
+.pin-error{font-size:13px;color:#FF3B30;margin-top:16px;opacity:0;transition:opacity 0.3s;}
+.pin-error.show{opacity:1;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.pin-dots.shake{animation:shake 0.3s ease;}
+</style>
+</head>
+<body>
+<div id="pin-wall">
+  <div class="pin-logo">☕</div>
+  <div class="pin-title">Tim's Ops Connect</div>
+  <div class="pin-sub">Enter your PIN to continue</div>
+  <div class="pin-dots" id="pinDots">
+    <div class="pin-dot" id="d0"></div>
+    <div class="pin-dot" id="d1"></div>
+    <div class="pin-dot" id="d2"></div>
+    <div class="pin-dot" id="d3"></div>
+  </div>
+  <div class="pin-pad">
+    <button class="pin-btn" onclick="pinPress('1')">1</button>
+    <button class="pin-btn" onclick="pinPress('2')">2</button>
+    <button class="pin-btn" onclick="pinPress('3')">3</button>
+    <button class="pin-btn" onclick="pinPress('4')">4</button>
+    <button class="pin-btn" onclick="pinPress('5')">5</button>
+    <button class="pin-btn" onclick="pinPress('6')">6</button>
+    <button class="pin-btn" onclick="pinPress('7')">7</button>
+    <button class="pin-btn" onclick="pinPress('8')">8</button>
+    <button class="pin-btn" onclick="pinPress('9')">9</button>
+    <button class="pin-btn" onclick="pinPress('c')" style="font-size:14px;">Clear</button>
+    <button class="pin-btn" onclick="pinPress('0')">0</button>
+    <button class="pin-btn" onclick="pinPress('x')" style="font-size:20px;">⌫</button>
+  </div>
+  <div class="pin-error" id="pinError">Incorrect PIN. Try again.</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-greeting" id="greeting">Good morning</div>
+  <div class="hero-name" id="amName">OpsAIHub ☕</div>
+  <div class="hero-date" id="todayDate"></div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="statStores">44</div>
+      <div class="hero-stat-label">Stores</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="statAMs">9</div>
+      <div class="hero-stat-label">Area Mgrs</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="statRegions">6</div>
+      <div class="hero-stat-label">Regions</div>
+    </div>
+  </div>
+</div>
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement">
+  <div class="ann-icon">📢</div>
+  <div>
+    <div class="ann-label">From Jahid</div>
+    <div class="ann-text" id="annText">Welcome to OpsAIHub. Let's build something great together. ☕</div>
+  </div>
+</div>
+
+<!-- TODAY CHECKLIST -->
+<div class="section-header">
+  <div class="section-title">Today's Checklist</div>
+  <a href="tasks.html" class="section-link">View all</a>
+</div>
+<a href="tasks.html" class="today-card">
+  <div class="today-card-left">
+    <div class="today-icon" id="todayIcon">📋</div>
+    <div>
+      <div class="today-day" id="todayDayLabel">Loading...</div>
+      <div class="today-sub" id="todaySub">Tap to open checklist</div>
+    </div>
+  </div>
+  <div class="today-arrow">›</div>
+</a>
+
+
+<!-- TODAY'S PULSE -->
+<div style="padding:0 16px 12px;">
+  <div style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;" id="pulseStrip">
+    <div class="pulse-chip" id="pulse-tasks" onclick="location.href='tasks.html'" style="flex-shrink:0;background:#fff;border:1.5px solid #E5E5EA;border-radius:20px;padding:8px 14px;display:flex;align-items:center;gap:6px;cursor:pointer;">
+      <span style="font-size:14px;">&#9989;</span>
+      <span style="font-size:12px;font-weight:600;color:#1D1D1F;" id="pulse-tasks-txt">Loading...</span>
+    </div>
+    <div class="pulse-chip" id="pulse-flags" onclick="location.href='performance.html'" style="flex-shrink:0;background:#fff;border:1.5px solid #E5E5EA;border-radius:20px;padding:8px 14px;display:flex;align-items:center;gap:6px;cursor:pointer;">
+      <span style="font-size:14px;">&#128681;</span>
+      <span style="font-size:12px;font-weight:600;color:#1D1D1F;" id="pulse-flags-txt">Loading...</span>
+    </div>
+    <div class="pulse-chip" id="pulse-score" onclick="location.href='performance.html'" style="flex-shrink:0;background:#fff;border:1.5px solid #E5E5EA;border-radius:20px;padding:8px 14px;display:flex;align-items:center;gap:6px;cursor:pointer;">
+      <span style="font-size:14px;">&#127881;</span>
+      <span style="font-size:12px;font-weight:600;color:#1D1D1F;" id="pulse-score-txt">Loading...</span>
+    </div>
+  </div>
+</div>
+<!-- QUICK LINKS -->
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:0 16px 12px;">
+  <a href="fdu-dashboard.html" style="display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:14px;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,0.06);">
+    <span style="font-size:28px;">&#x1F369;</span>
+    <div><div style="font-size:13px;font-weight:700;color:#1D1D1F;">FDU</div><div style="font-size:11px;color:#6E6E73;">Compliance</div></div>
+  </a>
+  <a href="hod.html" style="display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:14px;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,0.06);">
+    <span style="font-size:28px;">&#x1F451;</span>
+    <div><div style="font-size:13px;font-weight:700;color:#1D1D1F;">HOD</div><div style="font-size:11px;color:#6E6E73;">Dashboard</div></div>
+  </a>
+</div>
+
+<!-- STORE SCORES -->
+<div class="section-header">
+  <div class="section-title">Store Scores</div>
+  <a href="performance.html" class="section-link">Full view</a>
+</div>
+<div class="stores-scroll" id="storeList">
+  <div class="empty" id="storeListEmpty" style="padding:30px 16px;text-align:center;color:#6E6E73;">
+    <div style="font-size:36px;margin-bottom:8px;">&#x1F3EA;</div>
+    <div style="font-size:14px;font-weight:600;">Select your name above</div>
+    <div style="font-size:12px;margin-top:4px;">Your store scores will appear here</div>
+  </div>
+</div>
+
+<div class="pb-safe"></div>
+
+<!-- BOTTOM NAV -->
+
+
+<!-- Ask Jahid floating button -->
+<a href="ask-jahid.html" style="position:fixed;bottom:calc(var(--nav-h,72px) + 16px);right:16px;z-index:1100;display:flex;align-items:center;gap:8px;background:#C8102E;color:#fff;border-radius:50px;padding:8px 16px 8px 8px;text-decoration:none;box-shadow:0 4px 20px rgba(200,16,46,0.45);font-size:13px;font-weight:700;">
+  <img src="/images/am/jahid.svg" style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.3);">
+  Ask Jahid
+</a>
+
+<!-- AM Identity Selector -->
+<div class="id-overlay" id="idOverlay" style="display:none;">
+  <div class="id-sheet">
+    <div style="width:40px;height:4px;background:#E5E5EA;border-radius:2px;margin:0 auto 20px;"></div>
+    <div class="id-title">Who are you?</div>
+    <div class="id-sub">Select your name. We'll remember it on this device.</div>
+    <div class="id-grid">
+      <button class="id-btn" onclick="selectAM('Raman')">Raman</button>
+      <button class="id-btn" onclick="selectAM('Harish')">Harish</button>
+      <button class="id-btn" onclick="selectAM('Rohit')">Rohit</button>
+      <button class="id-btn" onclick="selectAM('Deepak')">Deepak</button>
+      <button class="id-btn" onclick="selectAM('Akash Chavan')">Akash Chavan</button>
+      <button class="id-btn" onclick="selectAM('Akash Rathod')">Akash Rathod</button>
+      <button class="id-btn" onclick="selectAM('Jagadeesha')">Jagadeesha</button>
+      <button class="id-btn" onclick="selectAM('Shivam')">Shivam</button>
+      <button class="id-btn" onclick="selectAM('Jahid')" style="grid-column:1/-1;background:#1A1A1A;color:#fff;border-color:#1A1A1A;">Jahid (HOD)</button>
+    </div>
+  </div>
+</div>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item active">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">Home</span>
+    <div class="nav-dot"></div>
+  </a>
+  <a href="tasks.html" class="nav-item">
+    <span class="nav-icon">✅</span>
+    <span class="nav-label">Tasks</span>
+  </a>
+  <a href="events.html" class="nav-item"><span class="nav-icon">&#128197;</span><span class="nav-label">Events</span></a>
+  <a href="performance.html" class="nav-item">
+    <span class="nav-icon">📊</span>
+    <span class="nav-label">Scores</span>
+  </a>
+  <a href="team.html" class="nav-item">
+    <span class="nav-icon">👥</span>
+    <span class="nav-label">Team</span>
+  </a>
+  <a href="audit.html" class="nav-item"><span class="nav-icon">&#128269;</span><span class="nav-label">Audits</span></a>
+</nav>
+
+<script>
+// ── Greeting ──
+function setGreeting() {
+  const h = new Date().getHours();
+  const g = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  document.getElementById('greeting').textContent = g;
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const now = new Date();
+  document.getElementById('todayDate').textContent =
+    days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+}
+setGreeting();
+
+// ── Today checklist card ──
+function setTodayCard() {
+  const day = new Date().getDay();
+  const map = {
+    0: { label: 'Sunday Checklist', sub: 'Weekend Operations', icon: '🌅' },
+    1: { label: 'Monday Checklist', sub: 'Financial & Inventory Audit', icon: '💰' },
+    2: { label: 'Tuesday Checklist', sub: 'Sales Intelligence', icon: '📈' },
+    3: { label: 'Wednesday Checklist', sub: 'Maintenance + Cleanliness + Pest', icon: '🔧' },
+    4: { label: 'Thursday — Rest Day', sub: 'Recharge day — see you tomorrow ☕', icon: '😴' },
+    5: { label: 'Friday Checklist', sub: 'People + Readiness + Relationships', icon: '🤝' },
+    6: { label: 'Saturday Checklist', sub: 'Weekend Operations', icon: '⚡' }
+  };
+  const info = map[day];
+  document.getElementById('todayDayLabel').textContent = info.label;
+  document.getElementById('todaySub').textContent = info.sub;
+  document.getElementById('todayIcon').textContent = info.icon;
+}
+setTodayCard();
+
+// ── Score band ──
+function getBand(score) {
+  if (score >= 90) return 'green';
+  if (score >= 75) return 'yellow';
+  if (score >= 60) return 'orange';
+  return 'red';
+}
+
+// ── Load stores ──
+async function loadStores() {
+  try {
+    const r = await fetch('/api/home-scores');
+    const d = await r.json();
+    const stores = d.data || [];
+    const list = document.getElementById('storeList');
+    if (!list) return;
+    if (!stores.length) {
+      list.innerHTML = '<div class="empty"><div class="empty-icon">&#127978;</div>No stores found</div>';
+      return;
+    }
+    list.innerHTML = stores.map(function(s, i) {
+      if (!s.hasData) {
+        return '<div class="store-card" style="animation-delay:'+(i*0.04)+'s;opacity:0.45">'
+          + '<div class="store-info">'
+          + '<div class="store-name">'+s.name+'</div>'
+          + '<div class="store-region">'+(s.region||'')+((s.region&&s.am)?' &middot; ':'')+( s.am||'')+'</div>'
+          + '</div>'
+          + '<div class="store-score">'
+          + '<div class="score-num" style="font-size:11px;font-weight:600;color:var(--text2)">No data</div>'
+          + '<div class="score-bar-wrap"><div class="score-bar" style="width:0%"></div></div>'
+          + '</div>'
+          + '</div>';
+      }
+      var score = s.score || 0;
+      var band = getBand(score);
+      var badges = (s.days||[]).slice(0,3).map(function(dy){
+        return '<span style="font-size:8px;background:rgba(200,16,46,0.08);color:var(--red);padding:1px 5px;border-radius:4px;font-weight:700;margin-right:2px;">'+dy.slice(0,3).toUpperCase()+'</span>';
+      }).join('');
+      return '<div class="store-card" style="animation-delay:'+(i*0.04)+'s">'
+        + '<div class="store-info">'
+        + '<div class="store-name">'+s.name+'</div>'
+        + '<div class="store-region">'+(s.region||'')+((s.region&&s.am)?' &middot; ':'')+( s.am||'')+'</div>'
+        + (badges ? '<div style="margin-top:4px;">'+badges+'</div>' : '')
+        + '</div>'
+        + '<div class="store-score">'
+        + '<div class="score-num band-'+band+'">'+score+'%</div>'
+        + '<div class="score-bar-wrap"><div class="score-bar bar-'+band+'" style="width:'+score+'%"></div></div>'
+        + '</div>'
+        + '</div>';
+    }).join('');
+  } catch(e) {
+    var list = document.getElementById('storeList');
+    if(list) list.innerHTML = '<div class="empty"><div class="empty-icon">&#9888;&#65039;</div>Could not load scores</div>';
+  }
+}
+loadStores();
+
+// ── AM Identity System ──────────────────────────────────
+var currentAM = localStorage.getItem('th_am_name') || '';
+
+function selectAM(name) {
+  localStorage.setItem('th_am_name', name);
+  currentAM = name;
+  document.getElementById('idOverlay').style.display = 'none';
+  // Update greeting
+  var greetEl = document.getElementById('greetName');
+  if(greetEl) greetEl.textContent = name;
+  // Reload to apply
+  location.reload();
+}
+
+function checkIdentity() {
+  var name = localStorage.getItem('th_am_name');
+  if(!name) {
+    document.getElementById('idOverlay').style.display = 'flex';
+  } else {
+    var greetEl = document.getElementById('greetName');
+    if(greetEl) greetEl.textContent = name;
+  }
+}
+
+// Change AM button
+function changeAM() {
+  document.getElementById('idOverlay').style.display = 'flex';
+}
+
+window.addEventListener('load', checkIdentity);
+
+
+// ── Today's Pulse ────────────────────────────────────────
+function loadPulse() {
+  var am = localStorage.getItem('th_am_name') || '';
+  var today = new Date();
+  var days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+  var todayDay = days[today.getDay()];
+
+  // Task chip
+  var taskTxt = document.getElementById('pulse-tasks-txt');
+  if(taskTxt) {
+    if(todayDay === 'thursday') {
+      taskTxt.textContent = 'Day off ☕';
+      document.getElementById('pulse-tasks').style.borderColor = '#34C759';
+    } else {
+      taskTxt.textContent = todayDay.charAt(0).toUpperCase()+todayDay.slice(1)+' checklist due';
+      document.getElementById('pulse-tasks').style.borderColor = '#FF9500';
+    }
+  }
+
+  // Score chip - load from API
+  if(am) {
+    fetch('/api/submissions?am=' + encodeURIComponent(am))
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var subs = d.data || [];
+      var scored = subs.filter(function(s){return s.score!=null&&s.score>0;});
+      var scoreTxt = document.getElementById('pulse-score-txt');
+      if(scoreTxt) {
+        if(scored.length > 0) {
+          var latest = scored[scored.length-1];
+          var color = latest.score>=90?'#34C759':latest.score>=75?'#FF9500':'#FF3B30';
+          scoreTxt.textContent = 'Latest score: ' + latest.score + '%';
+          scoreTxt.style.color = color;
+          document.getElementById('pulse-score').style.borderColor = color;
+        } else {
+          scoreTxt.textContent = 'No scores yet';
+        }
+      }
+    }).catch(function(){});
+  }
+
+  // Flags chip
+  var flagTxt = document.getElementById('pulse-flags-txt');
+  if(flagTxt) flagTxt.textContent = 'View my scores';
+}
+window.addEventListener('load', function(){ loadPulse(); });
+
+
+setInterval(function(){ // Only load stores if AM is selected
+var _am=localStorage.getItem('th_am_name')||'';
+if(_am){ loadStores(); } else {
+  var el=document.getElementById('storeListEmpty');
+  if(el) el.style.display='block';
+} }, 5*60*1000); // auto-refresh scores
+
+setInterval(loadStores, 5*60*1000); // refresh every 5 mins
+</script>
+<script id="pin-wall-js">
+(function(){
+  var PINS={'am':'2026','hod':'2202'};
+  var wall=document.getElementById('pin-wall');
+  var isHODPage=window.location.pathname.indexOf('hod')>-1;
+  var pinOK=localStorage.getItem('th_pin_ok')==='1';
+  var hodOK=localStorage.getItem('th_hod_ok')==='1';
+  if(pinOK&&(!isHODPage||hodOK)){wall.style.display='none';return;}
+  var entered=[];
+  function pinPress(v){
+    if(v==='c'){entered=[];render();return;}
+    if(v==='x'){entered.pop();render();return;}
+    if(entered.length>=4) return;
+    entered.push(v);
+    render();
+    if(entered.length===4){
+      setTimeout(function(){check();},100);
+    }
+  }
+  function render(){
+    for(var i=0;i<4;i++){
+      document.getElementById('d'+i).className='pin-dot'+(i<entered.length?' filled':'');
+    }
+  }
+  function check(){
+    var pin=entered.join('');
+    if(pin===PINS.hod){
+      localStorage.setItem('th_pin_ok','1');
+      localStorage.setItem('th_hod_ok','1');
+      localStorage.setItem('th_is_hod','1');
+      wall.style.display='none';
+    }else if(pin===PINS.am&&!isHODPage){
+      localStorage.setItem('th_pin_ok','1');
+      wall.style.display='none';
+    }else{
+      wrong();
+    }
+  }
+  function wrong(){
+    entered=[];
+    render();
+    var dots=document.getElementById('pinDots');
+    var err=document.getElementById('pinError');
+    dots.classList.add('shake');
+    err.classList.add('show');
+    setTimeout(function(){dots.classList.remove('shake');},400);
+    setTimeout(function(){err.classList.remove('show');},2000);
+  }
+  window.pinPress=pinPress;
+})();
+</script>
+</body>
+</html>

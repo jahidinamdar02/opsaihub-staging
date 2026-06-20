@@ -731,7 +731,8 @@
     "visitDate": "2026-03-25T06:07:00.540Z",
     "submittedAt": "2026-03-25T06:07:00.832Z",
     "date": "2026-03-25",
-    "id": "1774418820832"
+    "id": "1774418820832",
+    "score": 79
   },
   {
     "am": "Raman",
@@ -762,7 +763,8 @@
     "visitDate": "2026-03-27T03:43:12.723Z",
     "submittedAt": "2026-03-27T03:43:12.966Z",
     "date": "2026-03-27",
-    "id": "1774582992966"
+    "id": "1774582992966",
+    "score": 0
   },
   {
     "am": "Rohit",
@@ -793,7 +795,8 @@
     "visitDate": "2026-03-27T05:10:59.971Z",
     "submittedAt": "2026-03-27T05:11:00.253Z",
     "date": "2026-03-27",
-    "id": "1774588260253"
+    "id": "1774588260253",
+    "score": 80
   },
   {
     "am": "Deepak",
@@ -824,7 +827,8 @@
     "visitDate": "2026-03-27T07:07:02.974Z",
     "submittedAt": "2026-03-27T07:07:02.448Z",
     "date": "2026-03-27",
-    "id": "1774595222448"
+    "id": "1774595222448",
+    "score": 60
   },
   {
     "am": "Jagadeesha",
@@ -855,10 +859,11 @@
     "visitDate": "2026-03-27T08:32:38.716Z",
     "submittedAt": "2026-03-27T08:32:38.936Z",
     "date": "2026-03-27",
-    "id": "1774600358936"
+    "id": "1774600358936",
+    "score": 80
   },
   {
-    "am": "Akash Chavan",
+    "am": "Sandeep Mukharjee",
     "store": "PMC Kurla",
     "region": "Maharashtra",
     "day": "friday",
@@ -886,7 +891,8 @@
     "visitDate": "2026-03-27T09:55:24.399Z",
     "submittedAt": "2026-03-27T09:55:24.337Z",
     "date": "2026-03-27",
-    "id": "1774605324337"
+    "id": "1774605324337",
+    "score": 80
   },
   {
     "am": "Harish",
@@ -917,7 +923,8 @@
     "visitDate": "2026-03-27T12:04:37.091Z",
     "submittedAt": "2026-03-27T12:04:37.344Z",
     "date": "2026-03-27",
-    "id": "1774613077344"
+    "id": "1774613077344",
+    "score": 0
   },
   {
     "am": "Akash Rathod",
@@ -948,7 +955,8 @@
     "visitDate": "2026-03-27T12:27:43.317Z",
     "submittedAt": "2026-03-27T12:27:47.042Z",
     "date": "2026-03-27",
-    "id": "1774614467042"
+    "id": "1774614467042",
+    "score": 40
   },
   {
     "am": "Jagadeesha",
@@ -1363,7 +1371,7 @@
     "id": "1775448219802"
   },
   {
-    "am": "Akash Chavan",
+    "am": "Sandeep Mukharjee",
     "store": "Supreme",
     "region": "Maharashtra",
     "day": "monday",
@@ -1624,10 +1632,11 @@
     "visitDate": "2026-04-08T08:42:32.463Z",
     "submittedAt": "2026-04-08T08:42:29.088Z",
     "date": "2026-04-08",
-    "id": "1775637749088"
+    "id": "1775637749088",
+    "score": 100
   },
   {
-    "am": "Akash Chavan",
+    "am": "Sandeep Mukharjee",
     "store": "PMC Kurla",
     "region": "Maharashtra",
     "day": "friday",
@@ -1636,7 +1645,7 @@
     "complaintCategory": "Other",
     "resolution": "resolved",
     "hodSupport": {
-      "operations": "Need Support for RM - (Akash Chavan Aligned)",
+      "operations": "Need Support for RM - (Sandeep Mukharjee Aligned)",
       "training": "Vrunda Aligned for weekly visit and IST check",
       "marketing": "NA ",
       "hr": "Male crews to be planned",
@@ -1655,7 +1664,8 @@
     "visitDate": "2026-04-10T08:42:20.631Z",
     "submittedAt": "2026-04-10T08:42:21.831Z",
     "date": "2026-04-10",
-    "id": "1775810541831"
+    "id": "1775810541831",
+    "score": 80
   },
   {
     "am": "Deepak",
@@ -1686,7 +1696,8 @@
     "visitDate": "2026-04-10T10:07:14.465Z",
     "submittedAt": "2026-04-10T10:07:10.241Z",
     "date": "2026-04-10",
-    "id": "1775815630241"
+    "id": "1775815630241",
+    "score": 80
   },
   {
     "am": "Jagadeesha",
@@ -1717,10 +1728,11 @@
     "visitDate": "2026-04-10T10:54:24.952Z",
     "submittedAt": "2026-04-10T10:54:25.169Z",
     "date": "2026-04-10",
-    "id": "1775818465169"
+    "id": "1775818465169",
+    "score": 80
   },
   {
-    "am": "Akash Chavan",
+    "am": "Sandeep Mukharjee",
     "store": "FIFC",
     "region": "Maharashtra",
     "day": "saturday",
@@ -1808,5 +1820,6470 @@
     "submittedAt": "2026-04-11T10:03:28.737Z",
     "date": "2026-04-11",
     "id": "1775901808737"
+  },
+  {
+    "am": "Rohit",
+    "store": "Punjabi Bagh",
+    "region": "Delhi NCR",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "02:30",
+      "WK-06": "2:45",
+      "WK-07": "2:47"
+    },
+    "score": 100,
+    "visitDate": "2026-04-12T03:53:09.739Z",
+    "submittedAt": "2026-04-12T03:53:09.862Z",
+    "date": "2026-04-12",
+    "id": "1775965989862"
+  },
+  {
+    "am": "Rohit",
+    "store": "Vegas Mall",
+    "region": "Delhi NCR",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-03": "yes",
+      "WK-02": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "3:10",
+      "WK-06": "2:40",
+      "WK-07": "3:10"
+    },
+    "score": 100,
+    "visitDate": "2026-04-12T03:54:26.445Z",
+    "submittedAt": "2026-04-12T03:54:26.558Z",
+    "date": "2026-04-12",
+    "id": "1775966066558"
+  },
+  {
+    "am": "Akash Rathod",
+    "store": "NMIAL Arrival",
+    "region": "Maharashtra",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-08": "na",
+      "WK-09": "na",
+      "WK-10": "na",
+      "WK-11": "na",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "1:45",
+      "WK-06": "3:44",
+      "WK-07": "5:34"
+    },
+    "score": 100,
+    "visitDate": "2026-04-12T04:12:58.805Z",
+    "submittedAt": "2026-04-12T04:12:59.003Z",
+    "date": "2026-04-12",
+    "id": "1775967179003"
+  },
+  {
+    "am": "Harish",
+    "store": "Select City",
+    "region": "Delhi NCR",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:45",
+      "WK-06": "2:50",
+      "WK-07": "2:53"
+    },
+    "score": 100,
+    "visitDate": "2026-04-12T07:15:33.580Z",
+    "submittedAt": "2026-04-12T07:15:33.669Z",
+    "date": "2026-04-12",
+    "id": "1775978133669"
+  },
+  {
+    "am": "Akash Rathod",
+    "store": "NMIAL",
+    "region": "Maharashtra",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-07": "yes",
+      "WK-06": "yes",
+      "WK-08": "na",
+      "WK-09": "na",
+      "WK-10": "na",
+      "WK-11": "na",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "3:21",
+      "WK-06": "2:22",
+      "WK-07": "2:65"
+    },
+    "score": 88,
+    "visitDate": "2026-04-12T07:52:39.023Z",
+    "submittedAt": "2026-04-12T07:52:39.486Z",
+    "date": "2026-04-12",
+    "id": "1775980359486"
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "Mall of Asia",
+    "region": "Bangalore",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "no",
+      "WK-07": "yes",
+      "WK-08": "no",
+      "WK-09": "no",
+      "WK-10": "yes",
+      "WK-11": "no",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "4:25",
+      "WK-06": "3:11",
+      "WK-07": "2:57"
+    },
+    "score": 58,
+    "visitDate": "2026-04-12T13:35:18.940Z",
+    "submittedAt": "2026-04-12T13:35:19.194Z",
+    "date": "2026-04-12",
+    "id": "1776000919195"
+  },
+  {
+    "am": "Harish",
+    "store": "Epicuria",
+    "region": "Delhi NCR",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-01": "Verified okay",
+      "MON-02": "Updated till day Saturday",
+      "MON-03": "Yes updated",
+      "MON-04": "Yes updated",
+      "MON-05": "Yes updated",
+      "MON-06": "Yes updated",
+      "MON-07": "Yes Correct",
+      "MON-08": "Correct",
+      "MON-09": "All counted & matched",
+      "MON-10": "Yes, No discrepancies",
+      "MON-11": "Yes, No discrepancies",
+      "MON-12": "Yes, No discrepancies",
+      "MON-13": "Yes, No discrepancies ( GRAPEFRUIT)",
+      "MON-14": "Mango"
+    },
+    "score": 100,
+    "submittedAt": "2026-04-13T05:58:44.719Z",
+    "date": "2026-04-13",
+    "id": "1776059924719"
+  },
+  {
+    "am": "Akash Rathod",
+    "store": "Seawoods",
+    "region": "Maharashtra",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-03": "yes",
+      "MON-08": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-01": "Yes Petty cash is counted the total expense till 12th was Rs. 5756/- All bills are available against these expenses. Float amt. 8000, Bills to be credited amt. 2276, Happay card balance - 14949, cash available in safe 5526. Total Available Amount is Rs. 30751/- Variance - 00.",
+      "MON-02": "Banking is pending for 4 days Rs. 36880/- reason: Back dated banking done today hence these amount was not merged with old amount. the same will be deposited by tomorrow",
+      "MON-03": "New PO has been raised agaist all pending queries. also the MTD GRN's are closed and updated in the tracker.",
+      "MON-07": "Yes matching with records zero variance.",
+      "MON-08": "Yes Petty cash is counted the total expense till 12th was Rs. 5756/- All bills are available against these expenses. Float amt. 8000, Bills to be credited amt. 2276, Happay card balance - 14949, cash available in safe 5526. Total Available Amount is Rs. 30751/- Variance - 00."
+    },
+    "score": 100,
+    "submittedAt": "2026-04-13T12:17:48.544Z",
+    "date": "2026-04-13",
+    "id": "1776082668544"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-01": "Yes",
+      "MON-02": "Yes",
+      "MON-03": "Verify",
+      "MON-04": "Verify",
+      "MON-05": "Verify",
+      "MON-06": "Yes",
+      "MON-07": "Yes",
+      "MON-08": "Yes",
+      "MON-09": "Yes",
+      "MON-10": "Yes",
+      "MON-11": "Yes",
+      "MON-12": "Yes",
+      "MON-13": "Yes",
+      "MON-14": "Yes"
+    },
+    "score": 100,
+    "submittedAt": "2026-04-13T13:23:42.471Z",
+    "date": "2026-04-13",
+    "id": "1776086622471"
+  },
+  {
+    "am": "Deepak",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "One under repair",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Washrooms",
+        "status": "not-set",
+        "comment": "Not applicable "
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": ""
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": ""
+      }
+    ],
+    "visitDate": "2026-04-15T05:41:17.415Z",
+    "submittedAt": "2026-04-15T05:41:17.599Z",
+    "date": "2026-04-15",
+    "id": "1776231677599",
+    "score": 95
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "BIAL",
+    "region": "Bangalore",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "down",
+        "lastService": "BOH not having AC, Only Fresh air available.",
+        "issue": "No AC Avilable in BOH, Since the opening.",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "not-set",
+        "comment": "Multiple tails are damaged in BOH."
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "NA"
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": ""
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "NO pest issue observed."
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "06-04-2026"
+      }
+    ],
+    "visitDate": "2026-04-15T06:40:56.500Z",
+    "submittedAt": "2026-04-15T06:40:56.112Z",
+    "date": "2026-04-15",
+    "id": "1776235256112",
+    "score": 89
+  },
+  {
+    "am": "Deepak",
+    "store": "Sunview",
+    "region": "Punjab",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "1 merry cheif have megnaton issue ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "1 working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "attention",
+        "comment": "Need to clean the edges "
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "attention",
+        "comment": "BOH walls need to clean "
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "Clean "
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": "Clean "
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": "Clean "
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "No issue "
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "No issue "
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": "Clean "
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "No ossue "
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "4 April "
+      }
+    ],
+    "visitDate": "2026-04-15T09:39:27.699Z",
+    "submittedAt": "2026-04-15T09:39:28.300Z",
+    "date": "2026-04-15",
+    "id": "1776245968300",
+    "score": 89
+  },
+  {
+    "am": "Deepak",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "yes",
+      "WK-07": "no",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "03:59",
+      "WK-06": "2:54",
+      "WK-07": "4:28"
+    },
+    "score": 83,
+    "visitDate": "2026-04-18T06:12:24.021Z",
+    "submittedAt": "2026-04-18T06:12:24.486Z",
+    "date": "2026-04-18",
+    "id": "1776492744486"
+  },
+  {
+    "am": "Sandeep Mukharjee",
+    "store": "FIFC",
+    "region": "Maharashtra",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "no",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "01:40",
+      "WK-06": "03:45",
+      "WK-07": "02:49"
+    },
+    "score": 92,
+    "visitDate": "2026-04-18T08:36:47.048Z",
+    "submittedAt": "2026-04-18T08:36:47.095Z",
+    "date": "2026-04-18",
+    "id": "1776501407095"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sunview",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "no",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "no",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "3:20",
+      "WK-06": "2:50",
+      "WK-07": "1:34"
+    },
+    "score": 75,
+    "visitDate": "2026-04-18T09:00:50.628Z",
+    "submittedAt": "2026-04-18T09:00:51.040Z",
+    "date": "2026-04-18",
+    "id": "1776502851040"
+  },
+  {
+    "am": "Deepak",
+    "store": "Elante Mall",
+    "region": "Punjab",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-05": "no",
+      "WK-08": "yes",
+      "WK-09": "no",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "3:39",
+      "WK-06": "2:10",
+      "WK-07": "02.50"
+    },
+    "score": 75,
+    "visitDate": "2026-04-19T09:22:11.057Z",
+    "submittedAt": "2026-04-19T09:22:11.526Z",
+    "date": "2026-04-19",
+    "id": "1776590531526"
+  },
+  {
+    "am": "Sandeep Mukharjee",
+    "store": "PMC Kurla",
+    "region": "Maharashtra",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "02:58",
+      "WK-06": "01:45",
+      "WK-07": "02:40"
+    },
+    "score": 100,
+    "visitDate": "2026-04-19T15:44:05.347Z",
+    "submittedAt": "2026-04-19T15:44:05.039Z",
+    "date": "2026-04-19",
+    "id": "1776613445039"
+  },
+  {
+    "am": "Harish",
+    "store": "Cyber Hub",
+    "region": "Delhi NCR",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "workinr",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "one AC is under repair",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": "working"
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": "tiles needs to change"
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": "clean"
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": "clean"
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "few flies were  seen"
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "clear"
+      }
+    ],
+    "visitDate": "2026-04-22T09:58:01.636Z",
+    "submittedAt": "2026-04-22T09:58:01.363Z",
+    "date": "2026-04-22",
+    "id": "1776851881363",
+    "score": 100
+  },
+  {
+    "am": "Sandeep Mukharjee",
+    "store": "PMC Wakad",
+    "region": "Maharashtra",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-08": "no",
+      "WK-07": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "02:10",
+      "WK-06": "02:55",
+      "WK-07": "02:45"
+    },
+    "score": 92,
+    "visitDate": "2026-04-25T07:12:59.505Z",
+    "submittedAt": "2026-04-25T07:12:59.002Z",
+    "date": "2026-04-25",
+    "id": "1777101179002"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-08": "yes",
+      "WK-07": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "02:30",
+      "WK-06": "03:05",
+      "WK-07": "03:05"
+    },
+    "score": 92,
+    "visitDate": "2026-04-25T08:16:20.170Z",
+    "submittedAt": "2026-04-25T08:16:20.378Z",
+    "date": "2026-04-25",
+    "id": "1777104980378"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sunview",
+    "region": "Punjab",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "no",
+      "WK-07": "no",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "3:2",
+      "WK-06": "2:55",
+      "WK-07": "4:3"
+    },
+    "score": 67,
+    "visitDate": "2026-04-26T10:33:31.637Z",
+    "submittedAt": "2026-04-26T10:33:32.031Z",
+    "date": "2026-04-26",
+    "id": "1777199612031"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "working fine ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "1 working 1 in Sunview ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "1 working and only 1 jar that same broken from top",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": "clean "
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "attention",
+        "comment": "Floor need to clean "
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "clean "
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": "clean "
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": "clean "
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "not found "
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "no "
+      },
+      {
+        "check": "Drain condition",
+        "status": "found",
+        "comment": "found dirty need to clean with hot water "
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "clean "
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "24.04.26"
+      }
+    ],
+    "visitDate": "2026-04-29T10:16:36.774Z",
+    "submittedAt": "2026-04-29T10:16:29.595Z",
+    "date": "2026-04-29",
+    "id": "1777457789595",
+    "score": 89
+  },
+  {
+    "am": "Deepak",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "no",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "07:20",
+      "WK-06": "05:30",
+      "WK-07": "4:28"
+    },
+    "score": 73,
+    "visitDate": "2026-05-02T10:23:36.150Z",
+    "submittedAt": "2026-05-02T10:23:36.350Z",
+    "date": "2026-05-02",
+    "id": "1777717416350"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "yes",
+      "WK-07": "no",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "03:03",
+      "WK-06": "02:50",
+      "WK-07": "03:01"
+    },
+    "score": 83,
+    "visitDate": "2026-05-02T10:48:35.687Z",
+    "submittedAt": "2026-05-02T10:48:27.570Z",
+    "date": "2026-05-02",
+    "id": "1777718907570"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sunview",
+    "region": "Punjab",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes",
+      "WK-05": "yes",
+      "WK-06": "no",
+      "WK-07": "no"
+    },
+    "speedTimes": {
+      "WK-05": "02:40",
+      "WK-06": "3:09",
+      "WK-07": "04:02"
+    },
+    "score": 75,
+    "visitDate": "2026-05-03T07:59:36.872Z",
+    "submittedAt": "2026-05-03T07:59:37.000Z",
+    "date": "2026-05-03",
+    "id": "1777795177000"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-01": "checked all ok and its post in system till 29th  April",
+      "MON-02": "banking done till 3rd May",
+      "MON-03": "done",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-07": "MTD 6530 RS used Diesel Purchase 5280 Rs, 1000 rs Monthly garbage 1000 fdu Tag Print",
+      "MON-08": "yes",
+      "MON-09": "Card 333rs  excess cash short 333 rs",
+      "MON-10": "yes verified",
+      "MON-11": "telly",
+      "MON-12": "yes",
+      "MON-13": "ok",
+      "MON-14": "ok"
+    },
+    "score": 100,
+    "submittedAt": "2026-05-04T13:11:46.397Z",
+    "date": "2026-05-04",
+    "id": "1777900306397"
+  },
+  {
+    "am": "Sandeep Mukharjee",
+    "store": "PMC Kurla",
+    "region": "Maharashtra",
+    "day": "friday",
+    "ciCall": "no",
+    "complaints": 0,
+    "complaintCategory": "Food Quality",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "NA",
+      "training": "Need Support at Kurla and Bandra",
+      "marketing": "NA",
+      "hr": "Hiring Support",
+      "it": "Lokhandwala and Kurla Internet issue"
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "NA",
+      "nextMeeting": ""
+    },
+    "visitDate": "2026-05-08T07:30:52.898Z",
+    "submittedAt": "2026-05-08T07:30:55.934Z",
+    "date": "2026-05-08",
+    "id": "1778225455934",
+    "score": 80
+  },
+  {
+    "am": "Deepak",
+    "store": "Bucho",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "no",
+      "WK-07": "no",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "02:45",
+      "WK-06": "03:04",
+      "WK-07": "03:20"
+    },
+    "score": 83,
+    "visitDate": "2026-05-09T06:47:28.070Z",
+    "submittedAt": "2026-05-09T06:47:28.437Z",
+    "date": "2026-05-09",
+    "id": "1778309248437"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sangrur",
+    "region": "Punjab",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "no",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "no",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "03:20",
+      "WK-06": "2:90",
+      "WK-07": "02:35"
+    },
+    "score": 75,
+    "visitDate": "2026-05-10T10:34:22.078Z",
+    "submittedAt": "2026-05-10T10:34:22.467Z",
+    "date": "2026-05-10",
+    "id": "1778409262467"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "Only 1 blender working and 1 jar available ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "Only BOH AC not working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "attention",
+        "comment": "Boh donut station need to clean "
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": "Clean "
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "Clean "
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": "Clean "
+      },
+      {
+        "area": "Storage areas",
+        "status": "attention",
+        "comment": "Need to orgnise freezer "
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "No issue "
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "No "
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": "Clean "
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "No "
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "not-set",
+        "comment": "8 May 20026"
+      }
+    ],
+    "visitDate": "2026-05-13T10:03:24.789Z",
+    "submittedAt": "2026-05-13T10:03:24.945Z",
+    "date": "2026-05-13",
+    "id": "1778666604945",
+    "score": 84
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "friday",
+    "ciCall": "no",
+    "complaints": 0,
+    "complaintCategory": "",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "",
+      "training": "Require Hot choco scoop ",
+      "marketing": "Require baked Tag ",
+      "hr": "People strong punch out missed some times ",
+      "it": "Laptop not working "
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "no"
+    },
+    "landlord": {
+      "visited": "no",
+      "notes": "",
+      "nextMeeting": ""
+    },
+    "visitDate": "2026-05-15T07:32:17.231Z",
+    "submittedAt": "2026-05-15T07:32:18.065Z",
+    "date": "2026-05-15",
+    "id": "1778830338065",
+    "score": 40
+  },
+  {
+    "am": "Sandeep Mukharjee",
+    "store": "FIFC",
+    "region": "Maharashtra",
+    "day": "friday",
+    "ciCall": "no",
+    "complaints": 0,
+    "complaintCategory": "Service",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "NA",
+      "training": "FIFC",
+      "marketing": "NA",
+      "hr": "NA",
+      "it": "NA"
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "no",
+      "notes": "",
+      "nextMeeting": ""
+    },
+    "visitDate": "2026-05-15T08:23:30.282Z",
+    "submittedAt": "2026-05-15T08:23:30.375Z",
+    "date": "2026-05-15",
+    "id": "1778833410375",
+    "score": 60
+  },
+  {
+    "am": "Harish",
+    "store": "Cyber Hub",
+    "region": "Delhi NCR",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:45",
+      "WK-06": "2:50",
+      "WK-07": "2:58"
+    },
+    "score": 100,
+    "visitDate": "2026-05-17T11:57:54.017Z",
+    "submittedAt": "2026-05-17T11:57:54.323Z",
+    "date": "2026-05-17",
+    "id": "1779019074323"
+  },
+  {
+    "am": "Deepak",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-08": "yes",
+      "WK-07": "no",
+      "WK-06": "yes",
+      "WK-05": "yes",
+      "WK-09": "no",
+      "WK-10": "no",
+      "WK-11": "no",
+      "WK-12": "no"
+    },
+    "speedTimes": {
+      "WK-05": "3:39",
+      "WK-06": "2:10",
+      "WK-07": "4:54"
+    },
+    "score": 58,
+    "visitDate": "2026-05-17T12:34:43.493Z",
+    "submittedAt": "2026-05-17T12:34:44.169Z",
+    "date": "2026-05-17",
+    "id": "1779021284169"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sunview",
+    "region": "Punjab",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "no",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "no",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:50",
+      "WK-06": "3:10",
+      "WK-07": "2:4"
+    },
+    "score": 67,
+    "visitDate": "2026-05-17T12:45:59.871Z",
+    "submittedAt": "2026-05-17T12:46:01.084Z",
+    "date": "2026-05-17",
+    "id": "1779021961084"
+  },
+  {
+    "am": "Rohit",
+    "store": "Vegas Mall",
+    "region": "Delhi NCR",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:50",
+      "WK-06": "03:05",
+      "WK-07": "2:55"
+    },
+    "score": 100,
+    "visitDate": "2026-05-17T15:56:54.192Z",
+    "submittedAt": "2026-05-17T15:56:54.551Z",
+    "date": "2026-05-17",
+    "id": "1779033414551"
+  },
+  {
+    "am": "Harish",
+    "store": "Select City",
+    "region": "Delhi NCR",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "no",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-01": "ALL CORRECT",
+      "MON-02": "MATCHING WITH SALES & DEPOSITS",
+      "MON-03": "ALL UPDATED & MATCHED",
+      "MON-04": "DONE",
+      "MON-05": "YES UPDATED",
+      "MON-06": "YES DONE",
+      "MON-07": "ACCURATE",
+      "MON-08": "YES",
+      "MON-09": "FOUND CORRECT",
+      "MON-10": "no discrepancies",
+      "MON-12": "NO VARIENCE",
+      "MON-13": "MANGO PULP",
+      "MON-14": "PASSIONFRUIT"
+    },
+    "score": 93,
+    "submittedAt": "2026-05-18T08:10:24.519Z",
+    "date": "2026-05-18",
+    "id": "1779091824519"
+  },
+  {
+    "am": "Deepak",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "no",
+      "MON-10": "na",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {},
+    "score": 92,
+    "submittedAt": "2026-05-18T09:13:56.211Z",
+    "date": "2026-05-18",
+    "id": "1779095636211"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-01": "Yes",
+      "MON-02": "Verify",
+      "MON-03": "Verify",
+      "MON-04": "Verify",
+      "MON-05": "Yes",
+      "MON-06": "Yes",
+      "MON-07": "Yes",
+      "MON-08": "Yes",
+      "MON-09": "Yes",
+      "MON-10": "Yes",
+      "MON-11": "Yes",
+      "MON-12": "Yes",
+      "MON-13": "Yes",
+      "MON-14": "Yes"
+    },
+    "score": 100,
+    "submittedAt": "2026-05-18T14:22:13.125Z",
+    "date": "2026-05-18",
+    "id": "1779114133125"
+  },
+  {
+    "am": "Harish",
+    "store": "Cyber Hub",
+    "region": "Delhi NCR",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "Working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "working but not much effective",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": "clean"
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "attention",
+        "comment": "tiles are cracked at some places"
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "NA"
+      },
+      {
+        "area": "Dining area",
+        "status": "not-set",
+        "comment": ""
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": "Clean"
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "clean"
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "clear"
+      }
+    ],
+    "visitDate": "2026-05-20T05:58:16.793Z",
+    "submittedAt": "2026-05-20T05:58:16.782Z",
+    "date": "2026-05-20",
+    "id": "1779256696782",
+    "score": 89
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes",
+      "WK-03": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:30",
+      "WK-06": "02:45",
+      "WK-07": "02:45"
+    },
+    "score": 92,
+    "visitDate": "2026-05-23T10:21:16.151Z",
+    "submittedAt": "2026-05-23T10:21:16.752Z",
+    "date": "2026-05-23",
+    "id": "1779531676752"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sunview",
+    "region": "Punjab",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "no",
+      "WK-03": "no",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "no",
+      "WK-07": "no",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "03:20",
+      "WK-06": "03:34",
+      "WK-07": "2:80"
+    },
+    "score": 50,
+    "visitDate": "2026-05-24T10:49:48.862Z",
+    "submittedAt": "2026-05-24T10:49:47.135Z",
+    "date": "2026-05-24",
+    "id": "1779619787135"
+  },
+  {
+    "am": "Harish",
+    "store": "Green Park",
+    "region": "Delhi NCR",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-01": "yes correct",
+      "MON-02": "all valid",
+      "MON-03": "all clear",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes matched",
+      "MON-09": "found 1 rs short",
+      "MON-10": "no discrepancies",
+      "MON-11": "correct",
+      "MON-12": "16 oz cups & protein milk",
+      "MON-13": "Mango Pulp",
+      "MON-14": "Craramal"
+    },
+    "score": 100,
+    "submittedAt": "2026-05-25T08:08:37.941Z",
+    "date": "2026-05-25",
+    "id": "1779696517941"
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "Koramangala",
+    "region": "Bangalore",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "no",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "no",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-03": "Ordering in cases, Not matching with ULC. Coached on ULC calculation.",
+      "MON-10": "POS running in manager name, Not present in store.",
+      "MON-11": "Coffee Bean matching with shown SOH.",
+      "MON-13": "Pink Grapefruit.",
+      "MON-14": "Hazelnut"
+    },
+    "score": 86,
+    "submittedAt": "2026-05-25T08:52:39.579Z",
+    "date": "2026-05-25",
+    "id": "1779699159579"
+  },
+  {
+    "am": "Kajal",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-01": "Maintained well",
+      "MON-02": "Banking slips has stamp and pickup time issue",
+      "MON-07": "Matching",
+      "MON-10": "Rs. 2 found excess"
+    },
+    "score": 100,
+    "submittedAt": "2026-05-25T10:10:51.269Z",
+    "date": "2026-05-25",
+    "id": "1779703851269"
+  },
+  {
+    "am": "Rohit",
+    "store": "NSP",
+    "region": "Delhi NCR",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-01": "Updated in system",
+      "MON-02": "Updated",
+      "MON-03": "Updated till date",
+      "MON-04": "Updated till Sunday",
+      "MON-05": "Updated",
+      "MON-06": "Updated",
+      "MON-07": "Updated",
+      "MON-08": "Updated",
+      "MON-09": "Updated",
+      "MON-10": "Updated",
+      "MON-11": "Checked",
+      "MON-12": "Checked",
+      "MON-13": "Checked",
+      "MON-14": "RTE coffee bean milk merch"
+    },
+    "score": 100,
+    "submittedAt": "2026-05-25T10:51:21.971Z",
+    "date": "2026-05-25",
+    "id": "1779706281971"
+  },
+  {
+    "am": "Shivam",
+    "store": "Inorbit Mall Hyd",
+    "region": "Hyderabad",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {},
+    "score": 100,
+    "submittedAt": "2026-05-25T12:57:29.778Z",
+    "date": "2026-05-25",
+    "id": "1779713849778"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "no",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-01": "yes",
+      "MON-02": "yes, Petty cash slips not update in system after 12 May",
+      "MON-07": "Yes"
+    },
+    "score": 93,
+    "submittedAt": "2026-05-25T13:58:28.569Z",
+    "date": "2026-05-25",
+    "id": "1779717508569"
+  },
+  {
+    "am": "Rohit",
+    "store": "Skymark",
+    "region": "Delhi NCR",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "Working fine ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Working fine ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "Working fine ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "Working fine ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "Working fine ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "Working fine ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "Working fine ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "Working fine ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "Working fine",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": "All okay "
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": "Yes cleaned "
+      },
+      {
+        "area": "Washrooms",
+        "status": "not-set",
+        "comment": "NA"
+      },
+      {
+        "area": "Dining area",
+        "status": "not-set",
+        "comment": "Cleaned "
+      },
+      {
+        "area": "Storage areas",
+        "status": "not-set",
+        "comment": "Cleaned "
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "No rodents "
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "No cockroaches "
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": "Drain cleaned "
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "Pest free"
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "24/06/026"
+      }
+    ],
+    "visitDate": "2026-05-27T07:43:55.246Z",
+    "submittedAt": "2026-05-27T07:43:55.399Z",
+    "date": "2026-05-27",
+    "id": "1779867835399",
+    "score": 84
+  },
+  {
+    "am": "Harish",
+    "store": "Select City",
+    "region": "Delhi NCR",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "Working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": "clean"
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": "clean"
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "clean"
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": "clean"
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": "clean"
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "22may"
+      }
+    ],
+    "visitDate": "2026-05-27T10:12:55.697Z",
+    "submittedAt": "2026-05-27T10:12:55.799Z",
+    "date": "2026-05-27",
+    "id": "1779876775799",
+    "score": 100
+  },
+  {
+    "am": "Harish",
+    "store": "Epicuria",
+    "region": "Delhi NCR",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "Working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "down",
+        "lastService": "one chiller is not working",
+        "issue": "COMPRESSOR NEEDS TO BE CHANGED",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": "CLEAN"
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": "CLEAN"
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "CLEAN"
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": "CLEAR"
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": "CLEAN"
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "CLEAR"
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "CLEAR"
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": "CLEAR"
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "CLEAR"
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "CLEAR"
+      }
+    ],
+    "visitDate": "2026-05-27T10:16:04.689Z",
+    "submittedAt": "2026-05-27T10:16:04.704Z",
+    "date": "2026-05-27",
+    "id": "1779876964704",
+    "score": 95
+  },
+  {
+    "am": "Shivam",
+    "store": "Hyderabad Arrivals",
+    "region": "Hyderabad",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "repair",
+        "lastService": "fdu is not attanining temperrature due to excessive heat at arrivals ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": ""
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": ""
+      }
+    ],
+    "visitDate": "2026-05-28T09:11:18.280Z",
+    "submittedAt": "2026-05-28T09:11:10.839Z",
+    "date": "2026-05-28",
+    "id": "1779959470840",
+    "score": 95
+  },
+  {
+    "am": "Raman",
+    "store": "T3DD FC",
+    "region": "Delhi NCR",
+    "day": "friday",
+    "ciCall": "no",
+    "complaints": 0,
+    "complaintCategory": "Other",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "",
+      "training": "",
+      "marketing": "We need to have the Avocado Toastie displayed on the DMB.",
+      "hr": "We need information from HR. When will the appraisals take place",
+      "it": ""
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "no",
+      "notes": "",
+      "nextMeeting": ""
+    },
+    "visitDate": "2026-05-29T01:58:45.559Z",
+    "submittedAt": "2026-05-29T01:58:49.951Z",
+    "date": "2026-05-29",
+    "id": "1780019929951",
+    "score": 60
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "friday",
+    "ciCall": "yes",
+    "complaints": 0,
+    "complaintCategory": "",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "",
+      "training": "",
+      "marketing": "",
+      "hr": "Staff ID Cards ",
+      "it": "Malhar Laptop have charging issue IT team already order the PO "
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "Store have ready all readiness only the cleaning part missing as edges have dust, 1 celling light not working, 2 fly Cather not working ",
+      "nextMeeting": "2026-05-30"
+    },
+    "visitDate": "2026-05-29T12:43:10.086Z",
+    "submittedAt": "2026-05-29T12:43:10.156Z",
+    "date": "2026-05-29",
+    "id": "1780058590156",
+    "score": 100
+  },
+  {
+    "am": "Kajal",
+    "store": "Sector 35",
+    "region": "Punjab",
+    "day": "friday",
+    "ciCall": "yes",
+    "complaints": 0,
+    "complaintCategory": "",
+    "resolution": "",
+    "hodSupport": {
+      "operations": "",
+      "training": "",
+      "marketing": "NPI for delivery orders and Flex for outdoor pillar marketing ",
+      "hr": "",
+      "it": ""
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "no",
+      "notes": "",
+      "nextMeeting": ""
+    },
+    "visitDate": "2026-05-29T16:21:09.891Z",
+    "submittedAt": "2026-05-29T16:21:10.024Z",
+    "date": "2026-05-29",
+    "id": "1780071670024",
+    "score": 80
+  },
+  {
+    "am": "Kajal",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "friday",
+    "ciCall": "yes",
+    "complaints": 1,
+    "complaintCategory": "Other",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "",
+      "training": "",
+      "marketing": "",
+      "hr": "",
+      "it": ""
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "no",
+      "notes": "",
+      "nextMeeting": ""
+    },
+    "visitDate": "2026-05-29T16:22:20.147Z",
+    "submittedAt": "2026-05-29T16:22:20.271Z",
+    "date": "2026-05-29",
+    "id": "1780071740271",
+    "score": 80
+  },
+  {
+    "am": "Kajal",
+    "store": "Sector 35",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "no",
+      "WK-07": "no",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "3:58",
+      "WK-06": "04:55",
+      "WK-07": "05:08"
+    },
+    "score": 67,
+    "visitDate": "2026-05-30T07:37:29.732Z",
+    "submittedAt": "2026-05-30T07:37:30.150Z",
+    "date": "2026-05-30",
+    "id": "1780126650150"
+  },
+  {
+    "am": "Raman",
+    "store": "T1DD",
+    "region": "Delhi NCR",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-08": "na",
+      "WK-09": "na",
+      "WK-10": "na",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "3:25",
+      "WK-06": "1:45",
+      "WK-07": "2:55"
+    },
+    "score": 100,
+    "visitDate": "2026-05-30T08:29:14.857Z",
+    "submittedAt": "2026-05-30T08:29:20.083Z",
+    "date": "2026-05-30",
+    "id": "1780129760083"
+  },
+  {
+    "am": "Raman",
+    "store": "T3DD",
+    "region": "Delhi NCR",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "na",
+      "WK-02": "na",
+      "WK-03": "na",
+      "WK-04": "na",
+      "WK-05": "na",
+      "WK-06": "na",
+      "WK-07": "na",
+      "WK-08": "na",
+      "WK-09": "na",
+      "WK-10": "na",
+      "WK-11": "na",
+      "WK-12": "na"
+    },
+    "speedTimes": {},
+    "score": 0,
+    "visitDate": "2026-05-30T08:34:30.616Z",
+    "submittedAt": "2026-05-30T08:34:35.797Z",
+    "date": "2026-05-30",
+    "id": "1780130075797"
+  },
+  {
+    "am": "Raman",
+    "store": "T3DD FC",
+    "region": "Delhi NCR",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "na",
+      "WK-09": "na",
+      "WK-10": "na",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:32",
+      "WK-06": "3:13",
+      "WK-07": "3:10"
+    },
+    "score": 100,
+    "visitDate": "2026-05-30T08:38:36.586Z",
+    "submittedAt": "2026-05-30T08:38:41.768Z",
+    "date": "2026-05-30",
+    "id": "1780130321768"
+  },
+  {
+    "am": "Rohit",
+    "store": "Vegas Mall",
+    "region": "Delhi NCR",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "03:00",
+      "WK-06": "02;22",
+      "WK-07": "03:05"
+    },
+    "score": 100,
+    "visitDate": "2026-05-30T10:39:50.662Z",
+    "submittedAt": "2026-05-30T10:39:50.513Z",
+    "date": "2026-05-30",
+    "id": "1780137590513"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sunview",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "no",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "03:45",
+      "WK-06": "2:40",
+      "WK-07": "2:67"
+    },
+    "score": 75,
+    "visitDate": "2026-05-30T11:18:11.318Z",
+    "submittedAt": "2026-05-30T11:18:11.116Z",
+    "date": "2026-05-30",
+    "id": "1780139891116"
+  },
+  {
+    "am": "Harish",
+    "store": "Basant Lok",
+    "region": "Delhi NCR",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:45",
+      "WK-06": "2:50",
+      "WK-07": "2:58"
+    },
+    "score": 100,
+    "visitDate": "2026-05-31T09:44:32.754Z",
+    "submittedAt": "2026-05-31T09:44:33.048Z",
+    "date": "2026-05-31",
+    "id": "1780220673048"
+  },
+  {
+    "am": "Harish",
+    "store": "Epicuria",
+    "region": "Delhi NCR",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:45",
+      "WK-06": "2:17",
+      "WK-07": "2:44"
+    },
+    "score": 100,
+    "visitDate": "2026-05-31T09:46:24.398Z",
+    "submittedAt": "2026-05-31T09:46:25.672Z",
+    "date": "2026-05-31",
+    "id": "1780220785672"
+  },
+  {
+    "am": "Harish",
+    "store": "APL Golf Course",
+    "region": "Delhi NCR",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:35",
+      "WK-06": "2:36",
+      "WK-07": "2:28"
+    },
+    "score": 100,
+    "visitDate": "2026-05-31T09:48:19.821Z",
+    "submittedAt": "2026-05-31T09:48:20.664Z",
+    "date": "2026-05-31",
+    "id": "1780220900664"
+  },
+  {
+    "am": "Harish",
+    "store": "Green Park",
+    "region": "Delhi NCR",
+    "day": "friday",
+    "ciCall": "yes",
+    "complaints": 2,
+    "complaintCategory": "",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "No",
+      "training": "Did for MATCHA coolers",
+      "marketing": "NA",
+      "hr": "NA",
+      "it": "NA"
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "YES",
+      "nextMeeting": ""
+    },
+    "visitDate": "2026-05-31T10:30:58.390Z",
+    "submittedAt": "2026-05-31T10:30:58.728Z",
+    "date": "2026-05-31",
+    "id": "1780223458728",
+    "score": 100
+  },
+  {
+    "am": "Deepak",
+    "store": "Sunview",
+    "region": "Punjab",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "3:45",
+      "WK-06": "2:90",
+      "WK-07": "2:70"
+    },
+    "score": 83,
+    "visitDate": "2026-05-31T12:33:44.509Z",
+    "submittedAt": "2026-05-31T12:33:44.816Z",
+    "date": "2026-05-31",
+    "id": "1780230824816"
+  },
+  {
+    "am": "Kajal",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "05:44",
+      "WK-06": "03:10",
+      "WK-07": "02.50"
+    },
+    "score": 100,
+    "visitDate": "2026-05-31T14:26:26.950Z",
+    "submittedAt": "2026-05-31T14:26:27.073Z",
+    "date": "2026-05-31",
+    "id": "1780237587073"
+  },
+  {
+    "am": "Shivam",
+    "store": "Lakeshore",
+    "region": "Hyderabad",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "no",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-10": "till signing process not followed"
+    },
+    "score": 93,
+    "submittedAt": "2026-06-01T07:57:56.890Z",
+    "date": "2026-06-01",
+    "id": "1780300676890"
+  },
+  {
+    "am": "Rohit",
+    "store": "NSP",
+    "region": "Delhi NCR",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-01": "Yes correct",
+      "MON-02": "Updated till date",
+      "MON-03": "Updated",
+      "MON-04": "Yes matched",
+      "MON-05": "GRN updated",
+      "MON-06": "Yes done",
+      "MON-07": "Updated till date",
+      "MON-08": "Proper tally and updated",
+      "MON-09": "Yes updated",
+      "MON-10": "Verified",
+      "MON-11": "Yes not found variance",
+      "MON-12": "Yes",
+      "MON-13": "All okay",
+      "MON-14": "All updated"
+    },
+    "score": 100,
+    "submittedAt": "2026-06-01T09:52:57.180Z",
+    "date": "2026-06-01",
+    "id": "1780307577180"
+  },
+  {
+    "am": "Kajal",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {},
+    "score": 100,
+    "submittedAt": "2026-06-02T09:50:08.562Z",
+    "date": "2026-06-02",
+    "id": "1780393808562"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "Only 1 working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "1 BoH need to install",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": "Clean "
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "attention",
+        "comment": "BOH walls need to clean "
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "Clean need to keep uniral pad in uniral poat"
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": "Clean "
+      },
+      {
+        "area": "Storage areas",
+        "status": "attention",
+        "comment": "Prep station need to clean "
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "Clean "
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "No issue "
+      },
+      {
+        "check": "Drain condition",
+        "status": "found",
+        "comment": "Need to clean "
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "Yes "
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "23/5/26"
+      }
+    ],
+    "visitDate": "2026-06-03T10:57:50.944Z",
+    "submittedAt": "2026-06-03T10:57:50.964Z",
+    "date": "2026-06-03",
+    "id": "1780484270964",
+    "score": 84
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "HSR Layout",
+    "region": "Bangalore",
+    "day": "friday",
+    "ciCall": "no",
+    "complaints": 0,
+    "complaintCategory": "",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "",
+      "training": "",
+      "marketing": "",
+      "hr": "",
+      "it": ""
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "",
+      "nextMeeting": ""
+    },
+    "visitDate": "2026-06-05T13:02:51.117Z",
+    "submittedAt": "2026-06-05T13:02:50.717Z",
+    "date": "2026-06-05",
+    "id": "1780664570717",
+    "score": 80
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "Mall of Asia",
+    "region": "Bangalore",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "no",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-08": "no",
+      "WK-09": "no",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "no",
+      "WK-06": "yes",
+      "WK-07": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "4:55",
+      "WK-06": "2:57",
+      "WK-07": "2:58"
+    },
+    "score": 50,
+    "visitDate": "2026-06-06T07:43:15.000Z",
+    "submittedAt": "2026-06-06T07:43:15.216Z",
+    "date": "2026-06-06",
+    "id": "1780731795216"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sunview",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "no"
+    },
+    "speedTimes": {
+      "WK-05": "2:45",
+      "WK-06": "2:90",
+      "WK-07": "3:30"
+    },
+    "score": 83,
+    "visitDate": "2026-06-06T10:17:07.604Z",
+    "submittedAt": "2026-06-06T10:17:09.733Z",
+    "date": "2026-06-06",
+    "id": "1780741029733"
+  },
+  {
+    "am": "Harish",
+    "store": "Select City",
+    "region": "Delhi NCR",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:35",
+      "WK-06": "2:36",
+      "WK-07": "2:28"
+    },
+    "score": 100,
+    "visitDate": "2026-06-06T10:37:59.320Z",
+    "submittedAt": "2026-06-06T10:37:59.383Z",
+    "date": "2026-06-06",
+    "id": "1780742279383"
+  },
+  {
+    "am": "Harish",
+    "store": "APL Golf Course",
+    "region": "Delhi NCR",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-06": "2:16",
+      "WK-07": "2:45"
+    },
+    "score": 100,
+    "visitDate": "2026-06-06T10:39:53.742Z",
+    "submittedAt": "2026-06-06T10:39:53.768Z",
+    "date": "2026-06-06",
+    "id": "1780742393768"
+  },
+  {
+    "am": "Harish",
+    "store": "Basant Lok",
+    "region": "Delhi NCR",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:35",
+      "WK-06": "2:16",
+      "WK-07": "2:28"
+    },
+    "score": 100,
+    "visitDate": "2026-06-06T12:02:27.038Z",
+    "submittedAt": "2026-06-06T12:02:27.087Z",
+    "date": "2026-06-06",
+    "id": "1780747347087"
+  },
+  {
+    "am": "Harish",
+    "store": "Cyber Hub",
+    "region": "Delhi NCR",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:45",
+      "WK-06": "2:17",
+      "WK-07": "2:53"
+    },
+    "score": 100,
+    "visitDate": "2026-06-07T07:35:20.019Z",
+    "submittedAt": "2026-06-07T07:35:20.140Z",
+    "date": "2026-06-07",
+    "id": "1780817720140"
+  },
+  {
+    "am": "Harish",
+    "store": "APL Golf Course",
+    "region": "Delhi NCR",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:45",
+      "WK-06": "2:33",
+      "WK-07": "2:32"
+    },
+    "score": 100,
+    "visitDate": "2026-06-07T07:36:47.156Z",
+    "submittedAt": "2026-06-07T07:36:47.531Z",
+    "date": "2026-06-07",
+    "id": "1780817807531"
+  },
+  {
+    "am": "Harish",
+    "store": "Epicuria",
+    "region": "Delhi NCR",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:22",
+      "WK-06": "2:48",
+      "WK-07": "2:35"
+    },
+    "score": 100,
+    "visitDate": "2026-06-07T07:42:20.875Z",
+    "submittedAt": "2026-06-07T07:42:22.327Z",
+    "date": "2026-06-07",
+    "id": "1780818142327"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "yes",
+      "WK-07": "no",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:97",
+      "WK-06": "02:45",
+      "WK-07": "3:45"
+    },
+    "score": 75,
+    "visitDate": "2026-06-07T13:44:33.767Z",
+    "submittedAt": "2026-06-07T13:44:33.992Z",
+    "date": "2026-06-07",
+    "id": "1780839873992"
+  },
+  {
+    "am": "Shivam",
+    "store": "Inorbit Mall Hyd",
+    "region": "Hyderabad",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "na",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "no",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-10": "Id mismatch"
+    },
+    "score": 92,
+    "submittedAt": "2026-06-08T07:56:23.709Z",
+    "date": "2026-06-08",
+    "id": "1780905383709"
+  },
+  {
+    "am": "Kajal",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {},
+    "score": 100,
+    "submittedAt": "2026-06-08T12:36:45.645Z",
+    "date": "2026-06-08",
+    "id": "1780922205645"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "no",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-01": "Yes",
+      "MON-02": "Yes",
+      "MON-03": "Yes",
+      "MON-04": "Yes",
+      "MON-05": "Yes",
+      "MON-06": "Yes",
+      "MON-07": "Yes",
+      "MON-08": "Yes",
+      "MON-09": "Yes",
+      "MON-10": "Yes",
+      "MON-11": "Yes",
+      "MON-12": "Yes",
+      "MON-13": "No check",
+      "MON-14": "Yes"
+    },
+    "score": 93,
+    "submittedAt": "2026-06-08T14:16:02.497Z",
+    "date": "2026-06-08",
+    "id": "1780928162497"
+  },
+  {
+    "am": "Kajal",
+    "store": "Sector 35",
+    "region": "Punjab",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {},
+    "score": 100,
+    "submittedAt": "2026-06-09T12:04:45.734Z",
+    "date": "2026-06-09",
+    "id": "1781006685734"
+  },
+  {
+    "am": "Deepak",
+    "store": "Bucho",
+    "region": "Punjab",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Working ( FR part need to change) ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "1 merry chief working and one have pcb issue ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "Working 1 jar broken ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "down",
+        "lastService": "Not working properly ",
+        "issue": "Not able to make ice cube batch only water dripping ",
+        "vendor": "",
+        "fixDate": "2026-06-11"
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": "Clean "
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": "Clean "
+      },
+      {
+        "area": "Washrooms",
+        "status": "attention",
+        "comment": "Celling need to fixing "
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": "Clean "
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": "Clean "
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "No issue "
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "No issue "
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": "Clean "
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "Clean "
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "5/6/26"
+      }
+    ],
+    "visitDate": "2026-06-10T07:46:18.582Z",
+    "submittedAt": "2026-06-10T07:46:22.430Z",
+    "date": "2026-06-10",
+    "id": "1781077582430",
+    "score": 89
+  },
+  {
+    "am": "Harish",
+    "store": "Epicuria",
+    "region": "Delhi NCR",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "Working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": "Clean"
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": "clean"
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "NA"
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": "Clean"
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": "Clean"
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "clear"
+      }
+    ],
+    "visitDate": "2026-06-10T10:28:03.859Z",
+    "submittedAt": "2026-06-10T10:28:03.895Z",
+    "date": "2026-06-10",
+    "id": "1781087283895",
+    "score": 100
+  },
+  {
+    "am": "Harish",
+    "store": "Green Park",
+    "region": "Delhi NCR",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "Working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "working",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": "clean"
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": "clean"
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "clean"
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": "clean"
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": "clean"
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "Clear"
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "clear"
+      }
+    ],
+    "visitDate": "2026-06-10T10:30:08.978Z",
+    "submittedAt": "2026-06-10T10:30:09.016Z",
+    "date": "2026-06-10",
+    "id": "1781087409016",
+    "score": 100
+  },
+  {
+    "am": "Kajal",
+    "store": "Elante Mall",
+    "region": "Punjab",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "1 working 1 not working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": ""
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "found",
+        "comment": "Aligned pest team for flush out activity on weekly basis"
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": ""
+      }
+    ],
+    "visitDate": "2026-06-10T11:10:05.034Z",
+    "submittedAt": "2026-06-10T11:10:06.189Z",
+    "date": "2026-06-10",
+    "id": "1781089806189",
+    "score": 95
+  },
+  {
+    "am": "Kajal",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "friday",
+    "ciCall": "yes",
+    "complaints": 2,
+    "complaintCategory": "Food Quality",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "",
+      "training": "",
+      "marketing": "",
+      "hr": "",
+      "it": ""
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "Discussed with mall management ",
+      "nextMeeting": "2026-06-18"
+    },
+    "visitDate": "2026-06-12T07:25:37.301Z",
+    "submittedAt": "2026-06-12T07:25:38.817Z",
+    "date": "2026-06-12",
+    "id": "1781249138817",
+    "score": 100
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "HSR Layout",
+    "region": "Bangalore",
+    "day": "friday",
+    "ciCall": "no",
+    "complaints": 0,
+    "complaintCategory": "Other",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "NO",
+      "training": "No",
+      "marketing": "Need Poster for Bulk orders promotion ",
+      "hr": "3 Team Members have salary related concerns.",
+      "it": "WiFi- Frequently Disconnecting."
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "Yes",
+      "nextMeeting": "2026-07-02"
+    },
+    "visitDate": "2026-06-12T08:21:26.467Z",
+    "submittedAt": "2026-06-12T08:21:27.478Z",
+    "date": "2026-06-12",
+    "id": "1781252487478",
+    "score": 80
+  },
+  {
+    "am": "Harish",
+    "store": "Cyber Hub",
+    "region": "Delhi NCR",
+    "day": "friday",
+    "ciCall": "yes",
+    "complaints": 0,
+    "complaintCategory": "Food Quality",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "I aligned myself on Cold ",
+      "training": "Done",
+      "marketing": "done",
+      "hr": "done",
+      "it": "Internet is not working"
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "",
+      "nextMeeting": ""
+    },
+    "visitDate": "2026-06-12T08:24:56.054Z",
+    "submittedAt": "2026-06-12T08:24:56.232Z",
+    "date": "2026-06-12",
+    "id": "1781252696232",
+    "score": 100
+  },
+  {
+    "am": "Harish",
+    "store": "APL Golf Course",
+    "region": "Delhi NCR",
+    "day": "friday",
+    "ciCall": "yes",
+    "complaints": 0,
+    "complaintCategory": "Other",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "NO",
+      "training": "DONE",
+      "marketing": "DONE",
+      "hr": "DONE",
+      "it": "DONE"
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "YES",
+      "nextMeeting": ""
+    },
+    "visitDate": "2026-06-12T08:26:26.561Z",
+    "submittedAt": "2026-06-12T08:26:26.728Z",
+    "date": "2026-06-12",
+    "id": "1781252786728",
+    "score": 100
+  },
+  {
+    "am": "Kajal",
+    "store": "Elante Mall",
+    "region": "Punjab",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working"
+      },
+      {
+        "machine": "RO Machine",
+        "status": "repair"
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen",
+        "status": "clean"
+      }
+    ],
+    "pest": [
+      {
+        "check": "Rodents",
+        "status": "clear"
+      }
+    ],
+    "score": 67,
+    "visitDate": "2026-06-12T12:00:00.000Z",
+    "submittedAt": "2026-06-12T16:48:34.270Z",
+    "date": "2026-06-12",
+    "id": "1781282914270"
+  },
+  {
+    "am": "Kajal",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "03:59",
+      "WK-06": "03:08",
+      "WK-07": "2:20"
+    },
+    "score": 100,
+    "visitDate": "2026-06-13T07:28:10.913Z",
+    "submittedAt": "2026-06-13T07:28:12.136Z",
+    "date": "2026-06-13",
+    "id": "1781335692136"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "no",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "03:4",
+      "WK-06": "3:02",
+      "WK-07": "2:40"
+    },
+    "score": 75,
+    "visitDate": "2026-06-13T09:39:11.590Z",
+    "submittedAt": "2026-06-13T09:39:11.950Z",
+    "date": "2026-06-13",
+    "id": "1781343551950"
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "Mall of Asia",
+    "region": "Bangalore",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "no",
+      "WK-08": "no",
+      "WK-09": "no",
+      "WK-10": "yes",
+      "WK-11": "no",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:30",
+      "WK-06": "3:27",
+      "WK-07": "4:01"
+    },
+    "score": 67,
+    "visitDate": "2026-06-13T09:52:57.811Z",
+    "submittedAt": "2026-06-13T09:52:57.713Z",
+    "date": "2026-06-13",
+    "id": "1781344377713"
+  },
+  {
+    "am": "Rohit",
+    "store": "Vegas Mall",
+    "region": "Delhi NCR",
+    "day": "saturday",
+    "answers": {
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "02:55",
+      "WK-06": "03/00",
+      "WK-07": "02:54"
+    },
+    "score": 100,
+    "visitDate": "2026-06-13T11:58:39.287Z",
+    "submittedAt": "2026-06-13T11:58:39.498Z",
+    "date": "2026-06-13",
+    "id": "1781351919498"
+  },
+  {
+    "am": "Akash Rathod",
+    "store": "Seawoods",
+    "region": "Maharashtra",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2:45",
+      "WK-06": "2:25",
+      "WK-07": "3:45"
+    },
+    "score": 89,
+    "visitDate": "2026-06-14T08:11:56.618Z",
+    "submittedAt": "2026-06-14T08:11:59.427Z",
+    "date": "2026-06-14",
+    "id": "1781424719427"
+  },
+  {
+    "am": "Akash Rathod",
+    "store": "NMIAL Arrival",
+    "region": "Maharashtra",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "yes",
+      "WK-07": "no",
+      "WK-08": "na",
+      "WK-09": "na",
+      "WK-10": "na",
+      "WK-11": "na",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "4:14",
+      "WK-06": "2:45",
+      "WK-07": "5:33"
+    },
+    "score": 75,
+    "visitDate": "2026-06-14T08:14:53.675Z",
+    "submittedAt": "2026-06-14T08:14:56.407Z",
+    "date": "2026-06-14",
+    "id": "1781424896407"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sunview",
+    "region": "Punjab",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "no",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "2;:90",
+      "WK-06": "03:34",
+      "WK-07": "2:80"
+    },
+    "score": 83,
+    "visitDate": "2026-06-14T12:25:11.627Z",
+    "submittedAt": "2026-06-14T12:25:11.945Z",
+    "date": "2026-06-14",
+    "id": "1781439911945"
+  },
+  {
+    "am": "Rohit",
+    "store": "Vegas Mall",
+    "region": "Delhi NCR",
+    "day": "sunday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "02:30",
+      "WK-06": "02:55",
+      "WK-07": "03:05"
+    },
+    "score": 100,
+    "visitDate": "2026-06-14T17:51:39.433Z",
+    "submittedAt": "2026-06-14T17:51:39.656Z",
+    "date": "2026-06-14",
+    "id": "1781459499656"
+  },
+  {
+    "am": "Rohit",
+    "store": "Punjabi Bagh",
+    "region": "Delhi NCR",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-01": "All Fine",
+      "MON-02": "updated till date",
+      "MON-03": "yes mentioned in challan",
+      "MON-04": "yes updated",
+      "MON-05": "yes done",
+      "MON-06": "updated",
+      "MON-07": "All fine",
+      "MON-08": "Yes",
+      "MON-09": "short 2 rupess",
+      "MON-10": "Sonia",
+      "MON-11": "zero variance",
+      "MON-12": "dinning cup short",
+      "MON-13": "yes all updated",
+      "MON-14": "done"
+    },
+    "score": 100,
+    "submittedAt": "2026-06-15T05:26:15.187Z",
+    "date": "2026-06-15",
+    "id": "1781501175187"
+  },
+  {
+    "am": "Kajal",
+    "store": "Sector 35",
+    "region": "Punjab",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {},
+    "score": 100,
+    "submittedAt": "2026-06-15T11:39:37.587Z",
+    "date": "2026-06-15",
+    "id": "1781523577587"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "yes",
+      "MON-09": "no",
+      "MON-10": "yes",
+      "MON-11": "yes",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "no"
+    },
+    "comments": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-03": "yes",
+      "MON-04": "yes",
+      "MON-05": "yes",
+      "MON-06": "checked",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-09": "not done",
+      "MON-10": "yes",
+      "MON-11": ".400gms dark roast excess",
+      "MON-12": "checked",
+      "MON-14": "not checked"
+    },
+    "score": 86,
+    "submittedAt": "2026-06-16T10:19:06.895Z",
+    "date": "2026-06-16",
+    "id": "1781605146895"
+  },
+  {
+    "am": "Raman",
+    "store": "T3DD FC",
+    "region": "Delhi NCR",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "The coffee machine is working properly.",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "Leakage Issue",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "Both merry chef are working properly ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "The Oven is working properly.",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "Both Blenders are working properly.",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "The ice machine is working properly, but it has not been cleaned. The maintenance team has been informed.",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "The ice Air Conditioning is working, but it has not been cleaned. The maintenance team has been informed.",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "All are working properly.",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "Nukkad POS working properly",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": "all Ok"
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": "All ok"
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "N/A"
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": "All ok"
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": "All ok"
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "No Issue"
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "No Issue"
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": "Clean"
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "ok"
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "11 June'2026"
+      }
+    ],
+    "score": 100,
+    "visitDate": "2026-06-17T05:55:00.320Z",
+    "submittedAt": "2026-06-17T05:55:01.008Z",
+    "date": "2026-06-17",
+    "id": "1781675701008"
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "Koramangala",
+    "region": "Bangalore",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "repair",
+        "lastService": "Questions shared, aligned vendor to re visit ",
+        "issue": "Compressor issue.",
+        "vendor": "",
+        "fixDate": "2026-06-24"
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "attention",
+        "comment": "Engine are ceiling and lobby Wall repainting to be done."
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "Water scaling observed "
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": ""
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "No evidence "
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "not-set",
+        "comment": "15th June ( Monday)"
+      }
+    ],
+    "score": 84,
+    "visitDate": "2026-06-17T06:44:40.084Z",
+    "submittedAt": "2026-06-17T06:44:40.049Z",
+    "date": "2026-06-17",
+    "id": "1781678680049"
+  },
+  {
+    "am": "Deepak",
+    "store": "Bhupindra Road",
+    "region": "Punjab",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "working, Coffee coming from one side of spot only ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "repair",
+        "lastService": "new Megatron receive need to change ",
+        "issue": "Megatron need to replace ",
+        "vendor": "",
+        "fixDate": "2026-06-18"
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "Working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "both blender working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "repair",
+        "lastService": "BOH AC have leakage issue ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": "2026-06-18"
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": "clean "
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": "clean "
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "its clean change Dustbin as its rusted "
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": "Clean "
+      },
+      {
+        "area": "Storage areas",
+        "status": "attention",
+        "comment": "Dry store need to clean "
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": "no issue "
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": "NO issue "
+      },
+      {
+        "check": "Drain condition",
+        "status": "action",
+        "comment": "Need to clean the drainage "
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": "clear"
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "2/6/26"
+      }
+    ],
+    "score": 79,
+    "visitDate": "2026-06-17T07:54:03.926Z",
+    "submittedAt": "2026-06-17T07:54:05.211Z",
+    "date": "2026-06-17",
+    "id": "1781682845211"
+  },
+  {
+    "am": "Kajal",
+    "store": "Elante Mall",
+    "region": "Punjab",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "1 not working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "attention",
+        "comment": "Cleaning is required"
+      },
+      {
+        "area": "Washrooms",
+        "status": "attention",
+        "comment": "Cleaning required found roaches "
+      },
+      {
+        "area": "Dining area",
+        "status": "attention",
+        "comment": "Was not cleaned properly, Roaches seen "
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": ""
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "action",
+        "comment": "Flush out is happening at store daily"
+      },
+      {
+        "check": "Drain condition",
+        "status": "action",
+        "comment": "Not in clean state"
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "16 june"
+      }
+    ],
+    "score": 74,
+    "visitDate": "2026-06-17T13:04:38.559Z",
+    "submittedAt": "2026-06-17T13:04:39.787Z",
+    "date": "2026-06-17",
+    "id": "1781701479787"
+  },
+  {
+    "am": "Kajal",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "1 working 1 not working ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": "Not applicable "
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Storage areas",
+        "status": "attention",
+        "comment": "Back area storage is in poor condition "
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": ""
+      }
+    ],
+    "score": 95,
+    "visitDate": "2026-06-17T13:05:20.505Z",
+    "submittedAt": "2026-06-17T13:05:21.501Z",
+    "date": "2026-06-17",
+    "id": "1781701521501"
+  },
+  {
+    "am": "Akash Rathod",
+    "store": "Seawoods",
+    "region": "Maharashtra",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "Cooling issue ",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Washrooms",
+        "status": "attention",
+        "comment": "N/A"
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": ""
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "action",
+        "comment": ""
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "action",
+        "comment": ""
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "not-set",
+        "comment": "15-06-2026"
+      }
+    ],
+    "score": 79,
+    "visitDate": "2026-06-17T13:20:03.267Z",
+    "submittedAt": "2026-06-17T13:20:03.608Z",
+    "date": "2026-06-17",
+    "id": "1781702403608"
+  },
+  {
+    "am": "Jagadeesha",
+    "store": "HSR Layout",
+    "region": "Bangalore",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "RO Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "iCombi",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Blenders",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      },
+      {
+        "machine": "Server",
+        "status": "working",
+        "lastService": "",
+        "issue": "",
+        "vendor": "",
+        "fixDate": ""
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": ""
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "action",
+        "comment": "15th June, "
+      }
+    ],
+    "score": 95,
+    "visitDate": "2026-06-17T13:39:05.221Z",
+    "submittedAt": "2026-06-17T13:39:05.170Z",
+    "date": "2026-06-17",
+    "id": "1781703545170"
+  },
+  {
+    "am": "Kajal",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "friday",
+    "ciCall": "yes",
+    "complaints": 0,
+    "complaintCategory": "",
+    "resolution": "",
+    "hodSupport": {
+      "operations": "",
+      "training": "",
+      "marketing": "Corporate offices offers can be emerged to attract office footfall",
+      "hr": "",
+      "it": ""
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "Met with mall management ",
+      "nextMeeting": ""
+    },
+    "score": 100,
+    "visitDate": "2026-06-19T09:36:25.782Z",
+    "submittedAt": "2026-06-19T09:36:27.029Z",
+    "date": "2026-06-19",
+    "id": "1781861787029"
+  },
+  {
+    "am": "Rohit",
+    "store": "Vegas Mall",
+    "region": "Delhi NCR",
+    "day": "friday",
+    "ciCall": "no",
+    "complaints": 0,
+    "complaintCategory": "",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "",
+      "training": "",
+      "marketing": "",
+      "hr": "",
+      "it": ""
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "",
+      "nextMeeting": "2026-06-22"
+    },
+    "score": 80,
+    "visitDate": "2026-06-19T09:46:23.844Z",
+    "submittedAt": "2026-06-19T09:46:23.862Z",
+    "date": "2026-06-19",
+    "id": "1781862383862"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sunview",
+    "region": "Punjab",
+    "day": "friday",
+    "ciCall": "no",
+    "complaints": 0,
+    "complaintCategory": "",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "",
+      "training": "",
+      "marketing": "",
+      "hr": "Staff ID card still not available ",
+      "it": ""
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "no",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "BOH AREA NEED TO ORGNIZED ",
+      "nextMeeting": "2026-06-22"
+    },
+    "score": 60,
+    "visitDate": "2026-06-19T10:45:37.631Z",
+    "submittedAt": "2026-06-19T10:45:37.433Z",
+    "date": "2026-06-19",
+    "id": "1781865937433"
+  },
+  {
+    "am": "Deepak",
+    "store": "Malhar Rd",
+    "region": "Punjab",
+    "day": "friday",
+    "ciCall": "no",
+    "complaints": 0,
+    "complaintCategory": "",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "",
+      "training": "",
+      "marketing": "",
+      "hr": "Staff id card not available ",
+      "it": ""
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "yes"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "no ",
+      "nextMeeting": "2026-06-21"
+    },
+    "score": 80,
+    "visitDate": "2026-06-19T13:47:09.629Z",
+    "submittedAt": "2026-06-19T13:47:09.508Z",
+    "date": "2026-06-19",
+    "id": "1781876829508"
+  },
+  {
+    "am": "Raman",
+    "store": "T3DD FC",
+    "region": "Delhi NCR",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "na",
+      "WK-09": "na",
+      "WK-10": "na",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {},
+    "score": 100,
+    "visitDate": "2026-06-20T05:52:53.781Z",
+    "submittedAt": "2026-06-20T05:52:57.600Z",
+    "date": "2026-06-20",
+    "id": "1781934777600"
+  },
+  {
+    "am": "Rohit",
+    "store": "Vegas Mall",
+    "region": "Delhi NCR",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "yes",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {},
+    "score": 100,
+    "submittedAt": "2026-06-20T09:38:34.025Z",
+    "date": "2026-06-20",
+    "id": "1781948314025"
+  },
+  {
+    "am": "Unassigned",
+    "store": "Ahmedabad Airport",
+    "region": "Gujarat",
+    "day": "saturday",
+    "answers": {},
+    "speedTimes": {},
+    "score": 0,
+    "visitDate": "2026-06-20T09:52:02.955Z",
+    "submittedAt": "2026-06-20T09:52:02.987Z",
+    "date": "2026-06-20",
+    "id": "1781949122987"
+  },
+  {
+    "am": "Deepak",
+    "store": "Sangrur",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "no",
+      "WK-06": "no",
+      "WK-07": "no",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "no",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "3:00",
+      "WK-06": "2:90",
+      "WK-07": "2:90"
+    },
+    "score": 67,
+    "visitDate": "2026-06-20T09:59:34.065Z",
+    "submittedAt": "2026-06-20T09:59:32.842Z",
+    "date": "2026-06-20",
+    "id": "1781949572842"
+  },
+  {
+    "am": "Shivam",
+    "store": "Hyderabad Airport",
+    "region": "Hyderabad",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "no",
+      "WK-07": "yes",
+      "WK-08": "na",
+      "WK-09": "yes",
+      "WK-10": "na",
+      "WK-11": "na",
+      "WK-12": "yes"
+    },
+    "speedTimes": {},
+    "score": 89,
+    "visitDate": "2026-06-20T10:08:40.577Z",
+    "submittedAt": "2026-06-20T10:08:39.234Z",
+    "date": "2026-06-20",
+    "id": "1781950119234"
+  },
+  {
+    "am": "Shivam",
+    "store": "Inorbit Mall Hyd",
+    "region": "Hyderabad",
+    "day": "friday",
+    "ciCall": "no",
+    "complaints": 0,
+    "complaintCategory": "Other",
+    "resolution": "resolved",
+    "hodSupport": {
+      "operations": "",
+      "training": "for new lto launch",
+      "marketing": "creative to promote donuts and timbits ",
+      "hr": "",
+      "it": ""
+    },
+    "weekendReadiness": {
+      "thawing": "yes",
+      "manpower": "yes",
+      "readiness": "partial"
+    },
+    "landlord": {
+      "visited": "yes",
+      "notes": "mall team",
+      "nextMeeting": ""
+    },
+    "score": 60,
+    "visitDate": "2026-06-20T10:10:50.504Z",
+    "submittedAt": "2026-06-20T10:10:48.750Z",
+    "date": "2026-06-20",
+    "id": "1781950248750"
+  },
+  {
+    "am": "Kajal",
+    "store": "CP67 Mohali",
+    "region": "Punjab",
+    "day": "saturday",
+    "answers": {
+      "WK-01": "yes",
+      "WK-02": "yes",
+      "WK-03": "yes",
+      "WK-04": "yes",
+      "WK-05": "yes",
+      "WK-06": "yes",
+      "WK-07": "yes",
+      "WK-08": "yes",
+      "WK-09": "yes",
+      "WK-10": "na",
+      "WK-11": "yes",
+      "WK-12": "yes"
+    },
+    "speedTimes": {
+      "WK-05": "03:59",
+      "WK-06": "2:54",
+      "WK-07": "2:20"
+    },
+    "score": 100,
+    "visitDate": "2026-06-20T10:11:34.007Z",
+    "submittedAt": "2026-06-20T10:11:34.997Z",
+    "date": "2026-06-20",
+    "id": "1781950294997"
+  },
+  {
+    "am": "Shivam",
+    "store": "Hyderabad Arrivals",
+    "region": "Hyderabad",
+    "day": "wednesday",
+    "machines": [
+      {
+        "machine": "Coffee Machine",
+        "status": "working"
+      },
+      {
+        "machine": "RO Machine",
+        "status": "repair"
+      },
+      {
+        "machine": "Mary Chef",
+        "status": "working"
+      },
+      {
+        "machine": "iCombi",
+        "status": "working"
+      },
+      {
+        "machine": "Blenders",
+        "status": "working"
+      },
+      {
+        "machine": "Ice Machine",
+        "status": "working"
+      },
+      {
+        "machine": "Air Conditioning",
+        "status": "working"
+      },
+      {
+        "machine": "Under Counter / Vertical Chillers",
+        "status": "working"
+      },
+      {
+        "machine": "Server",
+        "status": "working"
+      }
+    ],
+    "cleanliness": [
+      {
+        "area": "Kitchen surfaces and equipment exteriors",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Floors, walls, ceiling tiles",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Washrooms",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Dining area",
+        "status": "clean",
+        "comment": ""
+      },
+      {
+        "area": "Storage areas",
+        "status": "clean",
+        "comment": ""
+      }
+    ],
+    "pest": [
+      {
+        "check": "Evidence of rodents",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Evidence of insects / cockroaches",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Drain condition",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Pest control contract status",
+        "status": "clear",
+        "comment": ""
+      },
+      {
+        "check": "Last pest control visit date",
+        "status": "clear",
+        "comment": "weekly"
+      }
+    ],
+    "score": 95,
+    "visitDate": "2026-06-20T10:12:03.957Z",
+    "submittedAt": "2026-06-20T10:12:02.191Z",
+    "date": "2026-06-20",
+    "id": "1781950322191"
+  },
+  {
+    "am": "Shivam",
+    "store": "Inorbit Mall Hyd",
+    "region": "Hyderabad",
+    "day": "monday",
+    "answers": {
+      "MON-01": "yes",
+      "MON-02": "yes",
+      "MON-07": "yes",
+      "MON-08": "yes",
+      "MON-03": "yes",
+      "MON-04": "na",
+      "MON-05": "na",
+      "MON-06": "yes",
+      "MON-09": "yes",
+      "MON-10": "no",
+      "MON-11": "no",
+      "MON-12": "yes",
+      "MON-13": "yes",
+      "MON-14": "yes"
+    },
+    "comments": {
+      "MON-10": "cashiers  id cards not available",
+      "MON-11": "variance observed"
+    },
+    "score": 83,
+    "submittedAt": "2026-06-20T10:13:47.262Z",
+    "date": "2026-06-20",
+    "id": "1781950427262"
   }
 ]

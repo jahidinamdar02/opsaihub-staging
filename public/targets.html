@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Annual Targets — OpsAIHub</title>
+<link rel="stylesheet" href="styles.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{--red:#C8102E;--dark:#1A1A1A;--surface:#F5F5F7;--card:#fff;--text:#1D1D1F;--text2:#6E6E73;--border:#E5E5EA;--green:#34C759;--nav-h:70px;}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif;background:var(--surface);color:var(--text);padding-bottom:calc(var(--nav-h)+20px);}
+
+body{background:var(--surface);color:var(--text);padding-top:var(--nav-h);}
 .hero{background:linear-gradient(135deg,#8B0000,var(--red));padding:20px 16px 24px;color:#fff;}
 .hero h1{font-size:26px;font-weight:700;}
 .hero p{font-size:13px;opacity:0.75;margin-top:4px;}
@@ -40,11 +41,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
 .sum-lbl{font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
 .sum-val{font-size:15px;font-weight:700;color:#fff;}
 /* Bottom nav */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-around;z-index:1000;}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-around;z-index:1000; transform:translateZ(0);-webkit-transform:translateZ(0); }
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:var(--text2);font-size:10px;font-weight:500;padding:6px 12px;}
 .nav-item.active{color:var(--red);}
 .nav-icon{font-size:22px;}
+
+
 </style>
+
 </head>
 <body>
 
@@ -83,12 +87,31 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
 <button class="save-btn" onclick="saveTargets()">Save Targets</button>
 <div class="saved-badge" id="savedBadge">✓ Targets Saved</div>
 
-<nav class="bottom-nav">
-  <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span>Home</a>
-  <a href="tasks.html" class="nav-item"><span class="nav-icon">✅</span>Tasks</a>
-  <a href="timsy.html" class="nav-item"><span class="nav-icon">☕</span>Timsy</a>
-  <a href="performance.html" class="nav-item active"><span class="nav-icon">📊</span>Scores</a>
-  <a href="team.html" class="nav-item"><span class="nav-icon">👥</span>Team</a>
+<nav class="nav">
+  <a href="index.html" class="nav-wordmark">Ops<span>AI</span>Hub</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link ">Home</a>
+    <a href="tasks.html" class="nav-link ">Tasks</a>
+    <a href="events.html" class="nav-link ">Events</a>
+    <a href="performance.html" class="nav-link active">Scores</a>
+    <a href="team.html" class="nav-link ">Team</a>
+    <a href="fdu-dashboard.html" class="nav-link ">FDU</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a href="settings.html" id="settingsLink" class="nav-btn" style="display:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></a>
+    <div class="nav-user" id="navUserBtn" onclick="showIdentitySelector()">
+      <div style="position:relative;width:28px;height:28px;">
+        <div class="nav-avatar" id="navAvatar">?</div>
+        <img id="navPhoto" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;position:absolute;top:0;left:0;" />
+      </div>
+      <span class="nav-user-name" id="navUserName">Select</span>
+    </div>
+    <button id="logoutBtn" onclick="logout()" class="nav-btn" style="display:none;">Logout</button>
+  </div>
 </nav>
 
 <script>
@@ -113,10 +136,10 @@ var STORES = [
   {name:'TH Sunview Enclave',region:'Punjab',am:'Deepak'},
   {name:'TH Bucho Bathinda',region:'Punjab',am:'Deepak'},
   {name:'TH Patiala',region:'Punjab',am:'Deepak'},
-  {name:'TH Mohali',region:'Punjab',am:'Deepak'},
   {name:'TH Sangrur',region:'Punjab',am:'Deepak'},
-  {name:'TH Elante Mall',region:'Punjab',am:'Deepak'},
-  {name:'TH Sec 35 Chandigarh',region:'Punjab',am:'Deepak'},
+  {name:'TH Mohali',region:'Punjab',am:'Kajal'},
+  {name:'TH Elante Mall',region:'Punjab',am:'Kajal'},
+  {name:'TH Sec 35 Chandigarh',region:'Punjab',am:'Kajal'},
   {name:'TH DLF Cyberhub',region:'Delhi NCR',am:'Harish'},
   {name:'TH Golf Course AIPL',region:'Delhi NCR',am:'Harish'},
   {name:'TH Select City Saket',region:'Delhi NCR',am:'Harish'},
@@ -133,14 +156,14 @@ var STORES = [
   {name:'TH T1 Ahmedabad Airport',region:'Gujarat',am:'Unassigned'},
   {name:'TH Sindhu Bhavan',region:'Gujarat',am:'Unassigned'},
   {name:'TH Navrangpura',region:'Gujarat',am:'Unassigned'},
-  {name:'TH Lokhandwala',region:'Maharashtra',am:'Akash Chavan'},
-  {name:'TH MC Kurla',region:'Maharashtra',am:'Akash Chavan'},
-  {name:'TH Bandra',region:'Maharashtra',am:'Akash Chavan'},
-  {name:'TH Balewadi Pune',region:'Maharashtra',am:'Akash Chavan'},
-  {name:'TH FIFC Mumbai',region:'Maharashtra',am:'Akash Chavan'},
-  {name:'TH Phonix Mall Wakad',region:'Maharashtra',am:'Akash Chavan'},
-  {name:'TH Viman Nagar',region:'Maharashtra',am:'Akash Chavan'},
-  {name:'TH FC Road',region:'Maharashtra',am:'Akash Chavan'},
+  {name:'TH Lokhandwala',region:'Maharashtra',am:'Sandeep Mukharjee'},
+  {name:'TH MC Kurla',region:'Maharashtra',am:'Sandeep Mukharjee'},
+  {name:'TH Bandra',region:'Maharashtra',am:'Sandeep Mukharjee'},
+  {name:'TH FIFC Mumbai',region:'Maharashtra',am:'Sandeep Mukharjee'},
+  {name:'TH Balewadi Pune',region:'Pune',am:'TBA'},
+  {name:'TH Phonix Mall Wakad',region:'Pune',am:'TBA'},
+  {name:'TH Viman Nagar',region:'Pune',am:'TBA'},
+  {name:'TH FC Road',region:'Pune',am:'TBA'},
   {name:'TH HPCL Mumbai Pune Expressway',region:'Maharashtra',am:'Akash Rathod'},
   {name:'TH NMIA Arrival',region:'Maharashtra',am:'Akash Rathod'},
   {name:'TH NMiA Departure',region:'Maharashtra',am:'Akash Rathod'},
@@ -305,5 +328,42 @@ function exportJSON() {
   a.click();
 }
 </script>
+<script src="/js/api.js"></script>
+<!-- FOOTER -->
+<footer class="site-footer" style="max-width:1200px;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
+  <div class="footer-content">
+    <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
+    <div class="footer-links">
+      <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a>
+      <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-nav">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+      <span class="mobile-nav-label">Home</span>
+    </a>
+    <a href="tasks.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span class="mobile-nav-label">Tasks</span>
+    </a>
+    <a href="events.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      <span class="mobile-nav-label">Events</span>
+    </a>
+    <a href="performance.html" class="mobile-nav-item active">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span class="mobile-nav-label">Scores</span>
+    </a>
+    <a href="team.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="mobile-nav-label">Team</span>
+    </a>
+  </div>
+</nav>
+<script src="theme.js"></script>
+<script>applyTheme(getTheme());</script>
 </body>
 </html>

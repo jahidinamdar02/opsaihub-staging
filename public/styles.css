@@ -107,8 +107,11 @@
   --z-wall: 500;
 
   /* Shadows */
-  --shadow-soft: rgba(0,0,0,0.06);
-  --shadow-mid: rgba(0,0,0,0.08);
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-lg: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-red: 0 4px 16px rgba(200,16,46,0.3);
+  --shadow-red-hover: 0 6px 28px rgba(200,16,46,0.45);
 
   /* Easing + duration */
   --ease-out: cubic-bezier(0.25, 0, 0.3, 1);

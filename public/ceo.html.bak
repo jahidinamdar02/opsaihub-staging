@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1.0">
+<title>CEO Command Centre</title>
+<style>
+:root{--red:#C8102E;--surface:#F2F2F7;--card:#fff;--border:#E5E5EA;--text:#1C1C1E;--text2:#8E8E93;--green:#34C759;--amber:#FF9500;--critical:#FF3B30;--blue:#007AFF;--nav-h:0px;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--surface);color:var(--text);}
+.hdr{background:linear-gradient(160deg,#0A0A1A,#1A0508,#0A0A1A);padding:calc(env(safe-area-inset-top,0px)+44px) 18px 20px;position:relative;overflow:hidden;}
+.hdr::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(200,16,46,0.2) 0%,transparent 65%);pointer-events:none;}
+.hdr-eye{font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;}
+.hdr-title{font-size:26px;font-weight:700;color:#fff;letter-spacing:-0.5px;}
+.hdr-sub{font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;}
+.hdr-meta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
+.hdr-pill{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;color:rgba(255,255,255,0.7);}
+.hdr-pill.live{background:rgba(52,199,89,0.15);border-color:rgba(52,199,89,0.3);color:#34C759;}
+.content{padding:14px 16px 32px;}
+.sec-lbl{font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin:18px 0 10px;}
+
+/* KPI TILES */
+.kpi-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:8px;}
+.kpi-tile{background:linear-gradient(135deg,#0D0D1A,#1A0508);border-radius:14px;padding:14px;}
+.kpi-tile-lbl{font-size:9px;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.kpi-tile-val{font-size:24px;font-weight:700;color:#fff;line-height:1;}
+.kpi-tile-sub{font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px;}
+.kpi-tile-trend{font-size:11px;font-weight:700;margin-top:4px;}
+.kpi-full{grid-column:1/-1;}
+
+/* OPS PULSE */
+.pulse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.pulse-card{background:var(--card);border-radius:14px;padding:14px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.06);}
+.pulse-num{font-size:28px;font-weight:700;line-height:1;margin-bottom:4px;}
+.pulse-lbl{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;}
+
+/* AM LEADERBOARD */
+.am-row{background:var(--card);border-radius:14px;padding:12px 14px;margin-bottom:6px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,0.05);}
+.am-rank{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.rank-1{background:linear-gradient(135deg,#FFD700,#FFA500);color:#1C1C1E;}
+.rank-2{background:linear-gradient(135deg,#C0C0C0,#A0A0A0);color:#1C1C1E;}
+.rank-3{background:linear-gradient(135deg,#CD7F32,#A05010);color:#fff;}
+.rank-n{background:var(--surface);color:var(--text2);}
+.am-info{flex:1;}
+.am-name{font-size:13px;font-weight:700;color:var(--text);}
+.am-region{font-size:10px;color:var(--text2);margin-top:1px;}
+.am-score-wrap{text-align:right;}
+.am-score{font-size:18px;font-weight:700;}
+.am-sub-count{font-size:10px;color:var(--text2);margin-top:1px;}
+.am-bar-wrap{height:3px;background:var(--surface);border-radius:2px;margin-top:4px;}
+.am-bar{height:100%;border-radius:2px;}
+
+/* REGIONAL */
+.region-row{background:var(--card);border-radius:12px;padding:10px 14px;margin-bottom:6px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 3px rgba(0,0,0,0.05);}
+.region-pos{font-size:18px;font-weight:900;color:var(--text2);min-width:24px;}
+.region-info{flex:1;}
+.region-name{font-size:13px;font-weight:700;}
+.region-ams{font-size:10px;color:var(--text2);margin-top:1px;}
+.region-score{font-size:16px;font-weight:700;text-align:right;}
+
+/* AUDIT BANNER */
+.audit-banner{background:linear-gradient(135deg,#0D0D1A,#1A0508);border-radius:14px;padding:14px;margin-bottom:8px;}
+.audit-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;}
+.audit-box{background:rgba(255,255,255,0.06);border-radius:10px;padding:10px;text-align:center;}
+.audit-box-num{font-size:20px;font-weight:700;color:#fff;line-height:1;}
+.audit-box-lbl{font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:3px;}
+
+/* ALERTS */
+.alert-card{border-radius:12px;padding:12px 14px;margin-bottom:6px;display:flex;gap:10px;align-items:flex-start;}
+.alert-crit{background:rgba(255,59,48,0.08);border:1px solid rgba(255,59,48,0.15);}
+.alert-warn{background:rgba(255,149,0,0.08);border:1px solid rgba(255,149,0,0.15);}
+.alert-ok{background:rgba(52,199,89,0.08);border:1px solid rgba(52,199,89,0.15);}
+.alert-icon{font-size:18px;flex-shrink:0;}
+.alert-title{font-size:13px;font-weight:700;color:var(--text);}
+.alert-sub{font-size:11px;color:var(--text2);margin-top:2px;}
+
+/* SUPPORT */
+.support-card{background:var(--card);border-radius:12px;padding:12px 14px;margin-bottom:6px;box-shadow:0 1px 3px rgba(0,0,0,0.05);}
+.support-dept{font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+.support-item{font-size:12px;color:var(--text);padding:4px 0;border-bottom:1px solid var(--border);line-height:1.4;}
+.support-item:last-child{border-bottom:none;}
+.support-am{font-size:10px;color:var(--text2);}
+
+/* DELIVERY */
+.del-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.del-card{background:var(--card);border-radius:12px;padding:12px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.05);}
+.del-num{font-size:20px;font-weight:700;color:var(--text);}
+.del-lbl{font-size:9px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px;}
+
+/* REFRESH */
+.refresh-bar{background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);border-top:1px solid var(--border);padding:10px 16px;text-align:center;font-size:11px;color:var(--text2);position:sticky;bottom:0;}
+
+.empty{text-align:center;padding:20px;color:var(--text2);font-size:13px;}
+.trend-up{color:var(--green);}
+.trend-down{color:var(--critical);}
+.trend-flat{color:var(--text2);}
+
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(0,0,0,0.9);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;}
+.nav-icon{font-size:22px;}
+.nav-label{font-size:10px;font-weight:500;color:rgba(255,255,255,0.5);}
+.nav-item.active .nav-label{color:#C8102E;font-weight:600;}
+.nav-dot{width:4px;height:4px;background:#C8102E;border-radius:50%;}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="hdr-eye">Tim Hortons India</div>
+  <div class="hdr-title">CEO Command Centre</div>
+  <div class="hdr-sub" id="lastUpdate">Loading...</div>
+  <div class="hdr-meta">
+    <div class="hdr-pill live">&#9679; Live</div>
+    <div class="hdr-pill">44 Stores</div>
+    <div class="hdr-pill">9 AMs</div>
+    <div class="hdr-pill">6 Regions</div>
+    <div class="hdr-pill" id="clockPill">--:--</div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- INDIA KPI -->
+  <div class="sec-lbl">India Business Overview — MTD</div>
+  <div class="kpi-row" id="kpiRow">
+    <div class="kpi-tile"><div class="kpi-tile-lbl">Loading</div><div class="kpi-tile-val">--</div></div>
+    <div class="kpi-tile"><div class="kpi-tile-lbl">Loading</div><div class="kpi-tile-val">--</div></div>
+    <div class="kpi-tile"><div class="kpi-tile-lbl">Loading</div><div class="kpi-tile-val">--</div></div>
+    <div class="kpi-tile"><div class="kpi-tile-lbl">Loading</div><div class="kpi-tile-val">--</div></div>
+  </div>
+
+  <!-- OPS PULSE -->
+  <div class="sec-lbl">Ops Pulse — Today</div>
+  <div class="pulse-grid" id="pulseGrid">
+    <div class="pulse-card"><div class="pulse-num">--</div><div class="pulse-lbl">Submissions</div></div>
+    <div class="pulse-card"><div class="pulse-num">--</div><div class="pulse-lbl">This Week</div></div>
+    <div class="pulse-card"><div class="pulse-num">--</div><div class="pulse-lbl">Alerts</div></div>
+  </div>
+
+  <!-- REV AUDIT -->
+  <div class="sec-lbl">REV Audit — H1 2026</div>
+  <div id="auditBanner"></div>
+
+  <!-- AM LEADERBOARD -->
+  <div class="sec-lbl">Area Manager Leaderboard</div>
+  <div id="leaderboard"></div>
+
+  <!-- REGIONAL -->
+  <div class="sec-lbl">Regional Battle</div>
+  <div id="regional"></div>
+
+  <!-- DELIVERY -->
+  <div class="sec-lbl">Delivery Performance — MTD</div>
+  <div class="del-grid" id="delivery"></div>
+
+  <!-- SUPPORT REQUESTS -->
+  <div class="sec-lbl">HOD Support Requested</div>
+  <div id="support"></div>
+
+  <!-- ALERTS -->
+  <div class="sec-lbl">Active Alerts</div>
+  <div id="alerts"></div>
+
+</div>
+
+<div class="refresh-bar" id="refreshBar">&#8635; Auto-refreshes every 5 min &middot; <span id="refreshTime">Just now</span></div>
+
+<script>
+// PIN check
+(function(){
+  var p = new URLSearchParams(window.location.search).get('pin');
+  if(p !== '2611'){
+    document.body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:#0A0A1A;color:#fff;font-family:-apple-system,sans-serif;text-align:center;padding:32px;">' +
+      '<div style="font-size:48px;margin-bottom:16px;">&#128274;</div>' +
+      '<div style="font-size:20px;font-weight:700;margin-bottom:8px;">CEO Access Only</div>' +
+      '<div style="font-size:14px;color:rgba(255,255,255,0.4);">This dashboard requires CEO authorisation.</div></div>';
+  }
+})();
+
+var AM_LIST = [
+  {name:'Raman', region:'Delhi NCR', stores:['TH T3D DIAL','TH T3D Food Court','TH T1D Dial']},
+  {name:'Harish', region:'Delhi NCR', stores:['TH DLF Cyberhub','TH Golf Course AIPL','TH Select City Saket','TH Green Park','TH Basant Lok','TH Epicuria Nehru Place']},
+  {name:'Rohit', region:'Delhi NCR', stores:['TH Skymark one','TH Vegas Mall','TH NSP Pritampura','TH Punjabi bagh']},
+  {name:'Deepak', region:'Punjab', stores:['TH Malhar Road','TH Sunview Enclave','TH Bucho Bathinda','TH Patiala','TH Mohali','TH Sangrur','TH Elante Mall','TH Sec 35 Chandigarh']},
+  {name:'Akash Chavan', region:'Maharashtra', stores:['TH Balewadi Pune','TH Lokhandwala','TH MC Kurla','TH Viman Nagar','TH Phonix Mall Wakad','TH FC Road','TH FIFC Mumbai']},
+  {name:'Akash Rathod', region:'Maharashtra', stores:['TH HPCL Mumbai Pune Expressway','TH NMIA Arrival','TH NMiA Departure','TH Nexus Seawood']},
+  {name:'Jagadeesha', region:'Karnataka', stores:['TH Koramangala','TH BIAL','TH Mall of Asia','TH HSR']},
+  {name:'Shivam', region:'Telangana', stores:['TH Inorbit Mall-Hyderabad','TH HIAL','TH HIAL Arrival','TH Lakeshore']}
+];
+
+var REGION_AMS = {
+  'Delhi NCR': ['Raman','Harish','Rohit'],
+  'Punjab': ['Deepak'],
+  'Maharashtra': ['Akash Chavan','Akash Rathod'],
+  'Karnataka': ['Jagadeesha'],
+  'Telangana': ['Shivam'],
+  'Gujarat': ['(No AM yet)']
+};
+
+function gc(s){return s>=90?'#34C759':s>=75?'#FF9500':s>=60?'#FF6B00':'#FF3B30';}
+function fmt(n){if(!n&&n!==0)return '--';if(n>=10000000)return '\u20B9'+(n/10000000).toFixed(2)+'Cr';if(n>=100000)return '\u20B9'+(n/100000).toFixed(1)+'L';return '\u20B9'+parseInt(n).toLocaleString('en-IN');}
+function fmtK(n){if(!n&&n!==0)return '--';return '\u20B9'+parseInt(n).toLocaleString('en-IN');}
+function trendHtml(v){
+  if(!v&&v!==0)return '';
+  var arrow=v>0?'\u25b2':v<0?'\u25bc':'\u2192';
+  var cl=v>0?'trend-up':v<0?'trend-down':'trend-flat';
+  return '<span class="'+cl+'">'+arrow+' '+Math.abs(v)+'% vs LY</span>';
+}
+
+function startClock(){
+  setInterval(function(){
+    var t=new Date();
+    var h=t.getHours(),m=t.getMinutes();
+    var ampm=h>=12?'PM':'AM';
+    h=h%12||12;
+    document.getElementById('clockPill').textContent=(h+':'+(m<10?'0':'')+m+' '+ampm+' IST');
+  },1000);
+}
+
+function renderKPI(kpi){
+  var m = kpi.march || {};
+  var html = '';
+  html += '<div class="kpi-tile"><div class="kpi-tile-lbl">MTD Revenue</div>' +
+    '<div class="kpi-tile-val">'+fmt(m.total_mtd)+'</div>' +
+    '<div class="kpi-tile-sub">'+((m.days||0)+' days &middot; March 2026')+'</div>' +
+    '<div class="kpi-tile-trend">'+trendHtml(m.vs_ly)+'</div></div>';
+  html += '<div class="kpi-tile"><div class="kpi-tile-lbl">Avg Daily Sales</div>' +
+    '<div class="kpi-tile-val">'+fmtK(m.ads)+'</div>' +
+    '<div class="kpi-tile-sub">Per store per day</div>' +
+    '<div class="kpi-tile-trend">'+trendHtml(m.vs_lm)+'</div></div>';
+  html += '<div class="kpi-tile"><div class="kpi-tile-lbl">Avg Daily Transactions</div>' +
+    '<div class="kpi-tile-val">'+(m.adt||'--')+'</div>' +
+    '<div class="kpi-tile-sub">Guests per store per day</div></div>';
+  html += '<div class="kpi-tile"><div class="kpi-tile-lbl">Avg Per Check</div>' +
+    '<div class="kpi-tile-val">'+fmtK(m.apc)+'</div>' +
+    '<div class="kpi-tile-sub">Per transaction value</div></div>';
+  document.getElementById('kpiRow').innerHTML = html;
+}
+
+function renderDelivery(kpi){
+  var m = kpi.march || {};
+  var delPct = m.total_mtd ? Math.round(m.del_mtd/m.total_mtd*100) : 0;
+  var html = '';
+  html += '<div class="del-card"><div class="del-num">'+fmt(m.del_mtd)+'</div><div class="del-lbl">Delivery MTD</div></div>';
+  html += '<div class="del-card"><div class="del-num">'+delPct+'%</div><div class="del-lbl">of Total Revenue</div></div>';
+  html += '<div class="del-card"><div class="del-num">'+fmtK(m.del_apc)+'</div><div class="del-lbl">Delivery APC</div></div>';
+  document.getElementById('delivery').innerHTML = html;
+}
+
+function renderPulse(subs){
+  var today = new Date().toDateString();
+  var todaySubs = subs.filter(function(s){return new Date(s.submittedAt||s.timestamp||0).toDateString()===today;});
+  var weekStart = new Date(); weekStart.setDate(weekStart.getDate()-weekStart.getDay()+1); weekStart.setHours(0,0,0,0);
+  var weekSubs = subs.filter(function(s){return new Date(s.submittedAt||s.timestamp||0)>=weekStart;});
+  var alerts = subs.filter(function(s){
+    var hasAlert = false;
+    if(s.machines) s.machines.forEach(function(m){if(m.status==='not_working')hasAlert=true;});
+    if(s.pest) s.pest.forEach(function(p){if(p.status==='found')hasAlert=true;});
+    return hasAlert;
+  });
+  var html = '';
+  html += '<div class="pulse-card"><div class="pulse-num" style="color:var(--blue);">'+todaySubs.length+'</div><div class="pulse-lbl">Today</div></div>';
+  html += '<div class="pulse-card"><div class="pulse-num" style="color:var(--amber);">'+weekSubs.length+'</div><div class="pulse-lbl">This Week</div></div>';
+  html += '<div class="pulse-card"><div class="pulse-num" style="color:'+(alerts.length?'var(--critical)':'var(--green)')+';">'+alerts.length+'</div><div class="pulse-lbl">Alerts</div></div>';
+  document.getElementById('pulseGrid').innerHTML = html;
+}
+
+function renderAudit(auditData){
+  var audits = (auditData.audits||[]).filter(function(a){return a.cycle==='H1'&&a.rev_score!==null&&a.rev_score!==undefined;});
+  if(!audits.length){document.getElementById('auditBanner').innerHTML='<div class="empty">No REV audit data yet</div>';return;}
+  var avg = Math.round(audits.reduce(function(t,a){return t+a.rev_score;},0)/audits.length*10)/10;
+  var passed = audits.filter(function(a){return a.rev_score>=77;}).length;
+  var excellent = audits.filter(function(a){return a.rev_score>=86;}).length;
+  var failed = audits.filter(function(a){return a.rev_score<77;}).length;
+  var ac = gc(avg);
+  var gap = avg>=86?'Above target':'Gap: '+(86-avg).toFixed(1)+'% to 86%';
+  var html = '<div class="audit-banner">';
+  html += '<div style="display:flex;justify-content:space-between;align-items:center;">';
+  html += '<div><div style="font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1px;">India REV Average &middot; Target 86%</div>';
+  html += '<div style="font-size:36px;font-weight:700;color:'+ac+';line-height:1;margin-top:4px;">'+avg+'%</div></div>';
+  html += '<div style="text-align:right"><div style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;background:'+(avg>=86?'rgba(52,199,89,0.2)':'rgba(255,149,0,0.2)')+';color:'+ac+';">'+(avg>=86?'AT TARGET':'BELOW TARGET')+'</div>';
+  html += '<div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:4px;">'+gap+'</div></div></div>';
+  html += '<div class="audit-grid">';
+  html += '<div class="audit-box"><div class="audit-box-num" style="color:#34C759;">'+excellent+'</div><div class="audit-box-lbl">Excellent 86%+</div></div>';
+  html += '<div class="audit-box"><div class="audit-box-num" style="color:#FF9500;">'+(passed-excellent)+'</div><div class="audit-box-lbl">Pass 77-85%</div></div>';
+  html += '<div class="audit-box"><div class="audit-box-num" style="color:#FF3B30;">'+failed+'</div><div class="audit-box-lbl">Fail Below 77%</div></div>';
+  html += '</div></div>';
+  document.getElementById('auditBanner').innerHTML = html;
+}
+
+function renderLeaderboard(subs, auditData){
+  var weekStart = new Date(); weekStart.setDate(weekStart.getDate()-weekStart.getDay()+1); weekStart.setHours(0,0,0,0);
+  var stats = {};
+  AM_LIST.forEach(function(a){ stats[a.name]={name:a.name,region:a.region,scores:[],subCount:0,revScore:null}; });
+  subs.filter(function(s){return new Date(s.submittedAt||s.timestamp||0)>=weekStart;}).forEach(function(s){
+    if(stats[s.am]&&s.score!=null&&s.score>0){ stats[s.am].scores.push(s.score); stats[s.am].subCount++; }
+  });
+  // Add REV audit scores
+  var audits = (auditData.audits||[]).filter(function(a){return a.cycle==='H1'&&a.rev_score!==null;});
+  Object.keys(stats).forEach(function(am){
+    var amAudits = audits.filter(function(a){return a.am===am;});
+    if(amAudits.length) stats[am].revScore = Math.round(amAudits.reduce(function(t,a){return t+a.rev_score;},0)/amAudits.length*10)/10;
+  });
+  var ranked = Object.values(stats).sort(function(a,b){
+    var as = a.scores.length>0?a.scores.reduce(function(t,v){return t+v;},0)/a.scores.length:0;
+    var bs = b.scores.length>0?b.scores.reduce(function(t,v){return t+v;},0)/b.scores.length:0;
+    return bs-as;
+  });
+  var html = '';
+  ranked.forEach(function(a,i){
+    var avg = a.scores.length>0?Math.round(a.scores.reduce(function(t,v){return t+v;},0)/a.scores.length):0;
+    var rankCls = i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-n';
+    var rankTxt = i===0?'&#127947;':i===1?'&#129352;':i===2?'&#129353;':(i+1);
+    var sc = avg>0?gc(avg):'#8E8E93';
+    html += '<div class="am-row">';
+    html += '<div class="am-rank '+rankCls+'">'+rankTxt+'</div>';
+    html += '<div class="am-info"><div class="am-name">'+a.name+'</div><div class="am-region">'+a.region+'</div></div>';
+    html += '<div class="am-score-wrap">';
+    html += '<div class="am-score" style="color:'+sc+';">'+(avg>0?avg+'%':'--')+'</div>';
+    html += '<div class="am-sub-count">'+a.subCount+' subs this week'+(a.revScore?'<br>REV: '+a.revScore+'%':'')+'</div></div>';
+    html += '</div>';
+    if(avg>0){
+      html = html.slice(0,-6)+'<div class="am-bar-wrap"><div class="am-bar" style="width:'+avg+'%;background:'+sc+';"></div></div></div>';
+    }
+  });
+  document.getElementById('leaderboard').innerHTML = html || '<div class="empty">No scores this week yet</div>';
+}
+
+function renderRegional(subs){
+  var weekStart = new Date(); weekStart.setDate(weekStart.getDate()-weekStart.getDay()+1); weekStart.setHours(0,0,0,0);
+  var regions = {};
+  Object.keys(REGION_AMS).forEach(function(r){ regions[r]={name:r,scores:[],ams:REGION_AMS[r]}; });
+  subs.filter(function(s){return new Date(s.submittedAt||s.timestamp||0)>=weekStart;}).forEach(function(s){
+    if(!s.score||!s.am) return;
+    var am = AM_LIST.find(function(a){return a.name===s.am;});
+    if(am&&regions[am.region]) regions[am.region].scores.push(s.score);
+  });
+  var ranked = Object.values(regions).map(function(r){
+    return {name:r.name, avg:r.scores.length>0?Math.round(r.scores.reduce(function(t,v){return t+v;},0)/r.scores.length):0, count:r.scores.length, ams:r.ams};
+  }).sort(function(a,b){return b.avg-a.avg;});
+  var html = '';
+  ranked.forEach(function(r,i){
+    var sc = r.avg>0?gc(r.avg):'#8E8E93';
+    html += '<div class="region-row">';
+    html += '<div class="region-pos">'+(i+1)+'</div>';
+    html += '<div class="region-info"><div class="region-name">'+r.name+'</div><div class="region-ams">'+r.ams.join(' &middot; ')+'</div></div>';
+    html += '<div class="region-score" style="color:'+sc+';">'+(r.avg>0?r.avg+'%':'No data')+'</div>';
+    html += '</div>';
+  });
+  document.getElementById('regional').innerHTML = html;
+}
+
+function renderSupport(subs){
+  var depts = {Operations:[],Training:[],Marketing:[],HR:[],IT:[]};
+  subs.forEach(function(s){
+    if(!s.hodSupport) return;
+    Object.keys(depts).forEach(function(d){
+      var k=d.toLowerCase();
+      if(s.hodSupport[k]&&s.hodSupport[k].trim()){
+        depts[d].push({store:s.store||'',text:s.hodSupport[k],am:s.am||''});
+      }
+    });
+  });
+  var html = '';
+  var found = false;
+  Object.keys(depts).forEach(function(d){
+    if(!depts[d].length) return;
+    found = true;
+    html += '<div class="support-card"><div class="support-dept">'+d+'</div>';
+    depts[d].forEach(function(item){
+      html += '<div class="support-item">'+item.text+'<div class="support-am">'+item.am+(item.store?' &middot; '+item.store:'')+'</div></div>';
+    });
+    html += '</div>';
+  });
+  document.getElementById('support').innerHTML = found?html:'<div class="alert-card alert-ok"><div class="alert-icon">&#9989;</div><div><div class="alert-title">No support requests</div><div class="alert-sub">No HOD support needed this period</div></div></div>';
+}
+
+function renderAlerts(subs){
+  var alerts = [];
+  subs.forEach(function(s){
+    if(s.machines) s.machines.forEach(function(m){
+      if(m.status==='not_working') alerts.push({type:'crit',icon:'&#128268;',title:(s.store||'Store')+' &mdash; '+m.name+' Down',sub:s.am+' &middot; '+(s.submittedAt||'').substring(0,10)});
+      else if(m.status==='under_repair') alerts.push({type:'warn',icon:'&#128295;',title:(s.store||'Store')+' &mdash; '+m.name+' Under Repair',sub:(m.vendor||'')+(m.eta?' &middot; ETA: '+m.eta:'')});
+    });
+    if(s.pest) s.pest.forEach(function(p){
+      if(p.status==='found') alerts.push({type:'crit',icon:'&#128030;',title:(s.store||'Store')+' &mdash; Pest Activity',sub:p.check+' &middot; '+s.am});
+    });
+    if(s.cleanliness) s.cleanliness.forEach(function(c){
+      if(c.status==='critical') alerts.push({type:'crit',icon:'&#128680;',title:(s.store||'Store')+' &mdash; Cleanliness Critical',sub:c.area+' &middot; '+s.am});
+    });
+  });
+  if(!alerts.length){
+    document.getElementById('alerts').innerHTML='<div class="alert-card alert-ok"><div class="alert-icon">&#9989;</div><div><div class="alert-title">All Clear</div><div class="alert-sub">No active alerts across 44 stores</div></div></div>';
+    return;
+  }
+  var html = '';
+  alerts.forEach(function(a){
+    html += '<div class="alert-card alert-'+a.type+'"><div class="alert-icon">'+a.icon+'</div><div><div class="alert-title">'+a.title+'</div><div class="alert-sub">'+a.sub+'</div></div></div>';
+  });
+  document.getElementById('alerts').innerHTML = html;
+}
+
+function safeFetch(url){
+  return fetch(url).then(function(r){
+    return r.text().then(function(t){
+      try{ return JSON.parse(t); }
+      catch(e){ console.log('Parse error for '+url+':',t.slice(0,50)); return {success:false,data:null}; }
+    });
+  }).catch(function(e){ console.log('Fetch error '+url+':',e.message); return {success:false,data:null}; });
+}
+
+function load(){
+  var now = new Date();
+  document.getElementById('lastUpdate').textContent = 'Last updated: '+now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+  document.getElementById('refreshTime').textContent = 'Just now';
+
+  // Load independently - one failure won't break the rest
+  safeFetch('/api/submissions').then(function(d){
+    var subs = d.data || [];
+    renderPulse(subs);
+    renderLeaderboard(subs, window._auditData||{audits:[]});
+    renderRegional(subs);
+    renderSupport(subs);
+    renderAlerts(subs);
+    window._subs = subs;
+  });
+
+  safeFetch('/api/sales-summary').then(function(d){
+    var kpi = d.data || {};
+    if(kpi.march){ renderKPI(kpi); renderDelivery(kpi); }
+    else { document.getElementById('kpiRow').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:20px;color:rgba(255,255,255,0.4);font-size:13px;">KPI data loading...</div>'; }
+    window._kpi = kpi;
+  });
+
+  safeFetch('/api/audits').then(function(d){
+    var auditData = d.data || {audits:[]};
+    renderAudit(auditData);
+    window._auditData = auditData;
+    // Re-render leaderboard with audit data if subs already loaded
+    if(window._subs) renderLeaderboard(window._subs, auditData);
+  });
+}
+
+startClock();
+load();
+setInterval(load, 300000);
+setInterval(function(){
+  var el = document.getElementById('refreshTime');
+  if(el) el.textContent = 'Refreshing in 5 min';
+}, 60000);
+</script>
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Home</span></a>
+  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#x2705;</span><span class="nav-label">Tasks</span></a>
+  <a href="timsy.html" class="nav-item"><span class="nav-icon">&#x2615;</span><span class="nav-label">Timsy</span></a>
+  <a href="performance.html" class="nav-item active"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Scores</span>
+<div class="nav-dot"></div></a>
+  <a href="team.html" class="nav-item"><span class="nav-icon">&#x1F465;</span><span class="nav-label">Team</span></a>
+</nav>
+</body>
+</html>

@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0">
+<title>Team Feed — Tim's Ops Connect</title>
+<style>
+:root {
+  --red:#C8102E; --red-dark:#9B0D22;
+  --bg:#F5F5F7; --card:#FFFFFF; --card2:#F0F0F0;
+  --text:#1D1D1F; --text2:#6E6E73;
+  --border:#E5E5EA;
+  --nav-h:56px;
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { background:#fff; color:#1D1D1F; font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif; height:100%; overflow-x:hidden; }
+body { padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom)); }
+
+/* TOP BAR */
+.topbar { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.92); backdrop-filter:blur(20px); border-bottom:1px solid #E5E5EA; padding:calc(env(safe-area-inset-top) + 10px) 16px 10px; display:flex; align-items:center; justify-content:space-between; }
+.topbar-logo { font-size:20px; font-weight:800; background:linear-gradient(135deg,#C8102E,#FF6B6B); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.5px; }
+.topbar-right { display:flex; gap:16px; align-items:center; }
+.topbar-icon { font-size:22px; cursor:pointer; }
+
+/* STORIES */
+.stories-wrap { display:flex; gap:12px; padding:12px 16px; overflow-x:auto; scrollbar-width:none; border-bottom:1px solid #E5E5EA; }
+.stories-wrap::-webkit-scrollbar { display:none; }
+.story-item { flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:5px; cursor:pointer; }
+.story-ring { width:64px; height:64px; border-radius:50%; padding:2px; background:linear-gradient(135deg,#C8102E,#FF6B6B,#FFD700); }
+.story-ring.seen { background:rgba(255,255,255,0.2); }
+.story-inner { width:100%; height:100%; border-radius:50%; background:#F5F5F7; border:2px solid #F5F5F7; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:24px; }
+.story-inner img { width:100%; height:100%; object-fit:cover; }
+.story-name { font-size:11px; color:#6E6E73; text-align:center; max-width:64px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.story-add { background:linear-gradient(135deg,#C8102E,#9B0D22); display:flex; align-items:center; justify-content:center; font-size:24px; border-radius:50%; }
+
+/* POST CARDS */
+.post-card { border-bottom:1px solid #E5E5EA; margin-bottom:0; }
+.post-header { display:flex; align-items:center; gap:10px; padding:12px 16px; }
+.post-avatar { width:38px; height:38px; border-radius:50%; overflow:hidden; flex-shrink:0; background:linear-gradient(135deg,var(--red),var(--red-dark)); display:flex; align-items:center; justify-content:center; font-size:16px; }
+.post-avatar img { width:100%; height:100%; object-fit:cover; }
+.post-author-wrap { flex:1; }
+.post-author { font-size:13px; font-weight:700; color:#1D1D1F; }
+.post-location { font-size:11px; color:#6E6E73; margin-top:1px; }
+.post-category-badge { font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px; margin-left:auto; flex-shrink:0; }
+.cat-recognition { background:rgba(255,215,0,0.2); color:#FFD700; }
+.cat-celebration { background:rgba(255,107,107,0.2); color:#FF6B6B; }
+.cat-bestpractice { background:rgba(52,199,89,0.2); color:#34C759; }
+.cat-coffee { background:rgba(200,16,46,0.2); color:#C8102E; }
+.cat-teamwin { background:rgba(0,122,255,0.2); color:#007AFF; }
+.cat-other { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.6); }
+
+/* POST IMAGE */
+.post-image-wrap { position:relative; width:100%; background:#F5F5F7; }
+.post-image-wrap img { width:100%; max-height:500px; object-fit:cover; display:block; }
+.post-no-image { width:100%; min-height:160px; background:linear-gradient(135deg,rgba(200,16,46,0.08),rgba(26,26,46,0.15)); display:flex; align-items:center; justify-content:center; font-size:64px; border-radius:0; }
+.double-tap-heart { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); font-size:80px; pointer-events:none; transition:transform 0.1s,opacity 0.3s; opacity:0; }
+.double-tap-heart.show { transform:translate(-50%,-50%) scale(1); opacity:1; }
+
+/* ACTIONS */
+.post-actions { display:flex; align-items:center; gap:14px; padding:10px 16px 6px; }
+.action-btn { background:none; border:none; color:#1D1D1F; font-size:24px; cursor:pointer; display:flex; align-items:center; gap:4px; padding:4px; }
+.action-btn.liked { color:#FF3B30; }
+.action-count { font-size:13px; font-weight:600; color:#6E6E73; }
+.bookmark-btn { margin-left:auto; }
+
+/* REACTIONS */
+.reactions-bar { display:flex; gap:6px; padding:0 16px 8px; overflow-x:auto; scrollbar-width:none; }
+.reactions-bar::-webkit-scrollbar { display:none; }
+.reaction-pill { display:flex; align-items:center; gap:4px; background:#F5F5F7; border-radius:20px; padding:5px 10px; font-size:13px; cursor:pointer; border:1px solid transparent; transition:all 0.2s; flex-shrink:0; }
+.reaction-pill.active { border-color:var(--red); background:rgba(200,16,46,0.15); }
+.reaction-count { font-size:12px; font-weight:700; color:#6E6E73; }
+
+/* CAPTION */
+.post-caption { padding:0 16px 8px; font-size:14px; line-height:1.5; }
+.post-caption .author-name { font-weight:700; color:#1D1D1F; margin-right:6px; }
+.post-tag { color:#007AFF; font-weight:600; }
+.post-hashtag { color:#C8102E; font-weight:600; }
+
+/* COMMENTS */
+.post-comments-count { padding:2px 16px 6px; font-size:13px; color:#6E6E73; cursor:pointer; }
+.comments-section { padding:0 16px; }
+.comment-item { display:flex; gap:8px; margin-bottom:10px; }
+.comment-avatar { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--red),var(--red-dark)); display:flex; align-items:center; justify-content:center; font-size:12px; flex-shrink:0; overflow:hidden; }
+.comment-avatar img { width:100%; height:100%; object-fit:cover; }
+.comment-body { flex:1; }
+.comment-author { font-size:12px; font-weight:700; color:#1D1D1F; }
+.comment-text { font-size:13px; color:#1D1D1F; line-height:1.4; }
+.comment-time { font-size:10px; color:#6E6E73; margin-top:2px; }
+.add-comment-wrap { display:flex; align-items:center; gap:10px; padding:8px 16px 12px; }
+.add-comment-avatar { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--red),var(--red-dark)); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:12px; }
+.add-comment-input { flex:1; background:transparent; border:none; color:#1D1D1F; font-size:13px; font-family:inherit; outline:none; }
+.add-comment-input::placeholder { color:#6E6E73; }
+.comment-post-btn { font-size:13px; font-weight:700; color:var(--red); background:none; border:none; cursor:pointer; }
+
+.post-time { padding:2px 16px 12px; font-size:11px; color:#6E6E73; }
+
+/* NEW POST */
+.new-post-btn { position:fixed; bottom:calc(var(--nav-h) + 16px); right:16px; width:54px; height:54px; border-radius:50%; background:linear-gradient(135deg,var(--red),var(--red-dark)); border:none; color:#fff; font-size:26px; cursor:pointer; box-shadow:0 4px 20px rgba(200,16,46,0.5); z-index:200; display:flex; align-items:center; justify-content:center; }
+
+/* POST MODAL */
+.modal { position:fixed; inset:0; background:#fff; z-index:999; display:none; flex-direction:column; overflow-y:auto; }
+.modal.open { display:flex; }
+.modal-header { display:flex; align-items:center; justify-content:space-between; padding:calc(env(safe-area-inset-top) + 14px) 16px 14px; border-bottom:1px solid #E5E5EA; position:sticky; top:0; background:#fff; z-index:10; }
+.modal-title { font-size:16px; font-weight:700; }
+.modal-close { font-size:24px; color:#6E6E73; background:none; border:none; cursor:pointer; }
+.modal-share { font-size:14px; font-weight:700; color:var(--red); background:none; border:none; cursor:pointer; }
+.modal-body { padding:16px; flex:1; background:#fff; }
+
+/* IMAGE UPLOAD */
+.upload-area { width:100%; aspect-ratio:1; background:#F5F5F7; border-radius:16px; border:2px dashed rgba(255,255,255,0.2); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; cursor:pointer; overflow:hidden; position:relative; }
+.upload-area img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.upload-icon { font-size:36px; }
+.upload-label { font-size:13px; color:#6E6E73; }
+.upload-input { display:none; }
+
+/* CATEGORY SELECT */
+.cat-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin:14px 0; }
+.cat-opt { padding:10px 6px; border-radius:12px; border:1.5px solid var(--border); font-size:12px; font-weight:600; color:#6E6E73; background:#F5F5F7; cursor:pointer; text-align:center; transition:all 0.2s; }
+.cat-opt.selected { border-color:var(--red); background:rgba(200,16,46,0.15); color:#fff; }
+
+/* FIELDS */
+.field-label { font-size:12px; font-weight:600; color:#6E6E73; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px; margin-top:14px; }
+.field-input { width:100%; background:#F5F5F7; border:1.5px solid var(--border); border-radius:12px; padding:12px 14px; font-size:14px; color:#1D1D1F; font-family:inherit; outline:none; }
+.field-input:focus { border-color:var(--red); }
+.field-textarea { width:100%; background:#F5F5F7; border:1.5px solid var(--border); border-radius:12px; padding:12px 14px; font-size:14px; color:#1D1D1F; font-family:inherit; outline:none; resize:none; min-height:80px; }
+.field-textarea:focus { border-color:var(--red); }
+.field-select { width:100%; background:#F5F5F7; border:1.5px solid var(--border); border-radius:12px; padding:12px 14px; font-size:14px; color:#1D1D1F; font-family:inherit; outline:none; appearance:none; }
+
+/* EMOJI PICKER */
+.emoji-row { display:flex; gap:8px; flex-wrap:wrap; padding:8px 0; }
+.emoji-opt { font-size:22px; cursor:pointer; padding:6px; border-radius:8px; background:#F5F5F7; }
+
+/* BOTTOM NAV */
+.bottom-nav { position:fixed; bottom:0; left:0; right:0; height:var(--nav-h); background:rgba(255,255,255,0.92); backdrop-filter:blur(20px); border-top:1px solid #E5E5EA; display:flex; align-items:center; justify-content:space-around; padding-bottom:env(safe-area-inset-bottom); z-index:1000; }
+.nav-item { display:flex; flex-direction:column; align-items:center; gap:2px; text-decoration:none; padding:6px 12px; }
+.nav-icon { font-size:22px; }
+.nav-label { font-size:10px; font-weight:500; color:#6E6E73; }
+.nav-item.active .nav-label { color:var(--red); font-weight:700; }
+.nav-dot { width:4px; height:4px; background:var(--red); border-radius:50%; }
+
+.spinner { width:24px; height:24px; border:2px solid #E5E5EA; border-top-color:var(--red); border-radius:50%; animation:spin 0.8s linear infinite; margin:40px auto; display:block; }
+@keyframes spin { to{transform:rotate(360deg)} }
+@keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+.fade-in { animation:fadeIn 0.3s ease; }
+@keyframes heartBeat { 0%{transform:translate(-50%,-50%) scale(0);opacity:1} 50%{transform:translate(-50%,-50%) scale(1.2);opacity:1} 100%{transform:translate(-50%,-50%) scale(1);opacity:0} }
+</style>
+<style id="pin-wall-css">
+#pin-wall{position:fixed;inset:0;z-index:99999;background:#1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
+.pin-logo{font-size:48px;margin-bottom:8px;}
+.pin-title{font-size:24px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.5px;}
+.pin-sub{font-size:13px;color:#6E6E73;margin-bottom:40px;}
+.pin-dots{display:flex;gap:16px;margin-bottom:32px;}
+.pin-dot{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.15);transition:all 0.2s;}
+.pin-dot.filled{background:#C8102E;}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:240px;}
+.pin-btn{height:64px;border-radius:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;font-size:22px;font-weight:600;cursor:pointer;transition:all 0.15s;}
+.pin-btn:active{background:rgba(200,16,46,0.3);transform:scale(0.95);}
+.pin-error{font-size:13px;color:#FF3B30;margin-top:16px;opacity:0;transition:opacity 0.3s;}
+.pin-error.show{opacity:1;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.pin-dots.shake{animation:shake 0.3s ease;}
+</style>
+</head>
+<body>
+<div id="pin-wall">
+  <div class="pin-logo">☕</div>
+  <div class="pin-title">Tim's Ops Connect</div>
+  <div class="pin-sub">Enter your PIN to continue</div>
+  <div class="pin-dots" id="pinDots">
+    <div class="pin-dot" id="d0"></div>
+    <div class="pin-dot" id="d1"></div>
+    <div class="pin-dot" id="d2"></div>
+    <div class="pin-dot" id="d3"></div>
+  </div>
+  <div class="pin-pad">
+    <button class="pin-btn" onclick="pinPress('1')">1</button>
+    <button class="pin-btn" onclick="pinPress('2')">2</button>
+    <button class="pin-btn" onclick="pinPress('3')">3</button>
+    <button class="pin-btn" onclick="pinPress('4')">4</button>
+    <button class="pin-btn" onclick="pinPress('5')">5</button>
+    <button class="pin-btn" onclick="pinPress('6')">6</button>
+    <button class="pin-btn" onclick="pinPress('7')">7</button>
+    <button class="pin-btn" onclick="pinPress('8')">8</button>
+    <button class="pin-btn" onclick="pinPress('9')">9</button>
+    <button class="pin-btn" onclick="pinPress('c')" style="font-size:14px;">Clear</button>
+    <button class="pin-btn" onclick="pinPress('0')">0</button>
+    <button class="pin-btn" onclick="pinPress('x')" style="font-size:20px;">⌫</button>
+  </div>
+  <div class="pin-error" id="pinError">Incorrect PIN. Try again.</div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-logo">Tim's Feed ☕</div>
+  <div class="topbar-right">
+    <span class="topbar-icon" onclick="openNewPost()">&#x2B;</span>
+    <span class="topbar-icon">&#x1F50D;</span>
+  </div>
+</div>
+
+<!-- STORIES -->
+<div class="stories-wrap" id="storiesWrap">
+  <div class="story-item" onclick="openNewPost()">
+    <div class="story-ring"><div class="story-inner story-add">&#x2B;</div></div>
+    <div class="story-name">Your Story</div>
+  </div>
+</div>
+
+<!-- FEED -->
+<div id="feedWrap"><div class="spinner"></div></div>
+
+<!-- NEW POST BUTTON -->
+<button class="new-post-btn" onclick="openNewPost()">&#x2B;</button>
+
+<!-- NEW POST MODAL -->
+<div class="modal" id="newPostModal">
+  <div class="modal-header">
+    <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    <div class="modal-title">New Post</div>
+    <button class="modal-share" onclick="submitPost()">Share</button>
+  </div>
+  <div class="modal-body">
+
+    <!-- Image Upload -->
+    <div class="upload-area" id="uploadArea" onclick="document.getElementById('photoInput').click()">
+      <div class="upload-icon">&#x1F4F7;</div>
+      <div class="upload-label">Tap to add photo from gallery</div>
+      <img id="previewImg" style="display:none;">
+    </div>
+    <input type="file" class="upload-input" id="photoInput" accept="image/*" onchange="previewPhoto(this)">
+
+    <!-- Category -->
+    <div class="field-label">Category</div>
+    <div class="cat-grid" id="catGrid">
+      <div class="cat-opt selected" data-cat="recognition">&#x1F3C6; Recognition</div>
+      <div class="cat-opt" data-cat="celebration">&#x1F389; Celebration</div>
+      <div class="cat-opt" data-cat="bestpractice">&#x1F4A1; Best Practice</div>
+      <div class="cat-opt" data-cat="coffee">&#x2615; Coffee Moment</div>
+      <div class="cat-opt" data-cat="teamwin">&#x1F4AA; Team Win</div>
+      <div class="cat-opt" data-cat="other">&#x1F4AC; Other</div>
+    </div>
+
+    <!-- Who are you -->
+    <div class="field-label">Posted by</div>
+    <select class="field-select" id="postAuthor">
+      <option value="">Select your name</option>
+      <option>Jahid</option>
+      <option>Raman</option><option>Harish</option><option>Rohit</option>
+      <option>Deepak</option><option>Akash Chavan</option><option>Akash Rathod</option>
+      <option>Jagadeesha</option><option>Shivam</option>
+    </select>
+
+    <!-- Store -->
+    <div class="field-label">Store / Location</div>
+    <select class="field-select" id="postStore">
+      <option value="">Tag a store (optional)</option>
+      <option>T3DD</option><option>T3DD FC</option><option>T1DD</option>
+      <option>Cyber Hub</option><option>Select City</option><option>Green Park</option>
+      <option>Basant Lok</option><option>Epicuria</option><option>APL Golf Course</option>
+      <option>Skymark</option><option>Vegas Mall</option><option>NSP</option><option>Punjabi Bagh</option>
+      <option>CP67 Mohali</option><option>Elante Mall</option><option>Sunview</option>
+      <option>Sector 35</option><option>Bhupindra Road</option><option>Malhar Rd</option>
+      <option>Sangrur</option><option>Bucho</option>
+      <option>Balewadi</option><option>Lokhandwala</option><option>Supreme</option>
+      <option>PMC Kurla</option><option>Viman Nagar</option><option>PMC Wakad</option>
+      <option>FC Road</option><option>FIFC</option>
+      <option>HPCL-MPE</option><option>NMIAL</option><option>NMIAL Arrival</option><option>Seawoods</option>
+      <option>Koramangala</option><option>BIAL</option><option>Mall of Asia</option><option>HSR Layout</option>
+      <option>Inorbit Mall Hyd</option><option>Hyderabad Arrivals</option><option>Lakeshore</option><option>Hyderabad Airport</option>
+      <option>All Stores</option><option>Tim Hortons India</option>
+    </select>
+
+    <!-- Tag person -->
+    <div class="field-label">Tag a Person (optional)</div>
+    <input type="text" class="field-input" id="postTag" placeholder="e.g. @Jagadeesha or team member name">
+
+    <!-- Caption -->
+    <div class="field-label">Caption</div>
+    <textarea class="field-textarea" id="postCaption" placeholder="Share your story... use #hashtags and @mentions"></textarea>
+
+    <!-- Emoji add-ons -->
+    <div class="field-label">Add Emoji</div>
+    <div class="emoji-row">
+      <span class="emoji-opt" onclick="addEmoji('&#x1F525;')">&#x1F525;</span>
+      <span class="emoji-opt" onclick="addEmoji('&#x1F3C6;')">&#x1F3C6;</span>
+      <span class="emoji-opt" onclick="addEmoji('&#x2615;')">&#x2615;</span>
+      <span class="emoji-opt" onclick="addEmoji('&#x1F44F;')">&#x1F44F;</span>
+      <span class="emoji-opt" onclick="addEmoji('&#x2B50;')">&#x2B50;</span>
+      <span class="emoji-opt" onclick="addEmoji('&#x1F389;')">&#x1F389;</span>
+      <span class="emoji-opt" onclick="addEmoji('&#x1F4AA;')">&#x1F4AA;</span>
+      <span class="emoji-opt" onclick="addEmoji('&#x2764;')">&#x2764;</span>
+      <span class="emoji-opt" onclick="addEmoji('&#x1F369;')">&#x1F369;</span>
+      <span class="emoji-opt" onclick="addEmoji('&#x1F3D9;')">&#x1F3D9;</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Home</span></a>
+  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#x2705;</span><span class="nav-label">Tasks</span></a>
+  <a href="timsy.html" class="nav-item"><span class="nav-icon">&#x2615;</span><span class="nav-label">Timsy</span></a>
+  <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Scores</span></a>
+  <a href="team.html" class="nav-item active"><span class="nav-icon">&#x1F465;</span><span class="nav-label">Team</span><div class="nav-dot"></div></a>
+</nav>
+
+<script>
+var allPosts = [];
+var currentCat = 'recognition';
+var selectedPhoto = null;
+
+var amAvatarMap = {
+  'Jahid':'/images/am/jahid.svg',
+  'Raman':'/images/am/raman.svg',
+  'Harish':'/images/am/harish.svg',
+  'Rohit':'/images/am/rohit.svg',
+  'Deepak':'/images/am/deepak.svg',
+  'Akash Chavan':'/images/am/akash-chavan.svg',
+  'Akash Rathod':'/images/am/akash-rathod.svg',
+  'Jagadeesha':'/images/am/jagadeesha.svg',
+  'Shivam':'/images/am/shivam.svg'
+};
+var amIcons = {
+  'Jahid':'&#x1F451;','Raman':'&#x1F3D9;','Harish':'&#x1F3D9;','Rohit':'&#x1F3D9;',
+  'Deepak':'&#x1F33E;','Akash Chavan':'&#x1F30A;','Akash Rathod':'&#x1F30A;',
+  'Jagadeesha':'&#x1F333;','Shivam':'&#x1F48E;'
+};
+
+var catConfig = {
+  recognition:{label:'&#x1F3C6; Recognition',cls:'cat-recognition'},
+  celebration:{label:'&#x1F389; Celebration',cls:'cat-celebration'},
+  bestpractice:{label:'&#x1F4A1; Best Practice',cls:'cat-bestpractice'},
+  coffee:{label:'&#x2615; Coffee Moment',cls:'cat-coffee'},
+  teamwin:{label:'&#x1F4AA; Team Win',cls:'cat-teamwin'},
+  other:{label:'&#x1F4AC; Share',cls:'cat-other'}
+};
+
+var reactionEmojis = ['&#x2764;','&#x1F525;','&#x1F44F;','&#x2B50;','&#x2615;'];
+
+// ── CATEGORY SELECT ──────────────────────────────────────
+document.getElementById('catGrid').addEventListener('click', function(e) {
+  var opt = e.target.closest('.cat-opt');
+  if(!opt) return;
+  document.querySelectorAll('.cat-opt').forEach(function(o){ o.classList.remove('selected'); });
+  opt.classList.add('selected');
+  currentCat = opt.getAttribute('data-cat');
+});
+
+// ── PHOTO PREVIEW ────────────────────────────────────────
+function previewPhoto(input) {
+  if(!input.files||!input.files[0]) return;
+  var file = input.files[0];
+  selectedPhoto = file;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = document.getElementById('previewImg');
+    img.src = e.target.result;
+    img.style.display = 'block';
+    document.querySelector('#uploadArea .upload-icon').style.display='none';
+    document.querySelector('#uploadArea .upload-label').style.display='none';
+  };
+  reader.readAsDataURL(file);
+}
+
+function addEmoji(emoji) {
+  var ta = document.getElementById('postCaption');
+  ta.value += emoji;
+  ta.focus();
+}
+
+// ── MODAL ────────────────────────────────────────────────
+function openNewPost() {
+  document.getElementById('newPostModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal() {
+  document.getElementById('newPostModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// ── SUBMIT POST ──────────────────────────────────────────
+function submitPost() {
+  var author = document.getElementById('postAuthor').value;
+  var caption = document.getElementById('postCaption').value.trim();
+  if(!author) { alert('Please select your name'); return; }
+  if(!caption) { alert('Please write a caption'); return; }
+
+  var now = new Date();
+  var post = {
+    id: Date.now().toString(),
+    author: author,
+    category: currentCat,
+    store: document.getElementById('postStore').value.replace(/\b\w/g,function(c){return c.toUpperCase();}),
+    taggedPerson: document.getElementById('postTag').value,
+    caption: caption,
+    photo: document.getElementById('previewImg').src || '',
+    reactions: {'&#x2764;':0,'&#x1F525;':0,'&#x1F44F;':0,'&#x2B50;':0,'&#x2615;':0},
+    comments: [],
+    timestamp: now.toISOString(),
+    timeAgo: 'Just now'
+  };
+
+  // If photo selected, upload it
+  if(selectedPhoto) {
+    var formData = new FormData();
+    formData.append('photo', selectedPhoto);
+    formData.append('postId', post.id);
+    fetch('/api/feed/upload', {method:'POST', body:formData})
+      .then(function(r){return r.json();})
+      .then(function(d){ post.photo = d.url || post.photo; savePost(post); })
+      .catch(function(){ savePost(post); });
+  } else {
+    savePost(post);
+  }
+}
+
+function savePost(post) {
+  fetch('/api/posts', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(post)
+  })
+  .then(function(r){return r.json();})
+  .then(function(){
+    allPosts.unshift(post);
+    renderFeed();
+    closeModal();
+    resetForm();
+    window.scrollTo({top:0, behavior:'smooth'});
+  })
+  .catch(function(){
+    allPosts.unshift(post);
+    renderFeed();
+    closeModal();
+    resetForm();
+  });
+}
+
+function resetForm() {
+  document.getElementById('postAuthor').value='';
+  document.getElementById('postStore').value='';
+  document.getElementById('postTag').value='';
+  document.getElementById('postCaption').value='';
+  document.getElementById('previewImg').src='';
+  document.getElementById('previewImg').style.display='none';
+  document.querySelector('#uploadArea .upload-icon').style.display='block';
+  document.querySelector('#uploadArea .upload-label').style.display='block';
+  document.getElementById('photoInput').value='';
+  selectedPhoto=null;
+  document.querySelectorAll('.cat-opt').forEach(function(o){o.classList.remove('selected');});
+  document.querySelector('.cat-opt[data-cat="recognition"]').classList.add('selected');
+  currentCat='recognition';
+}
+
+// ── LOAD FEED ────────────────────────────────────────────
+function loadFeed() {
+  fetch('/api/posts')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      allPosts = d.data || [];
+      if(allPosts.length===0) seedDemoPosts();
+      renderFeed();
+      renderStories();
+    })
+    .catch(function(){ seedDemoPosts(); renderFeed(); renderStories(); });
+}
+
+function seedDemoPosts() {
+  allPosts = [
+    {id:'1',author:'Jahid',category:'recognition',store:'Koramangala',taggedPerson:'Jagadeesha',
+     caption:'Koramangala delivered a perfect weekend — 98% ops score, speed of service under 2 minutes all day. This is what excellence looks like. &#x1F3C6;&#x1F525; @Jagadeesha and the entire team — you should be proud. #TimHortonsIndia #Excellence',
+     photo:'',reactions:{'&#x2764;':12,'&#x1F525;':8,'&#x1F44F;':6,'&#x2B50;':5,'&#x2615;':3},
+     comments:[{author:'Jagadeesha',text:'Thank you Jahid! The team has been working incredibly hard. &#x1F64F;',time:'2h ago'},{author:'Shivam',text:'Inspiring! Setting the benchmark for all of us &#x1F525;',time:'1h ago'}],
+     timestamp:'2026-03-22T10:00:00Z',timeAgo:'2h ago'},
+    {id:'2',author:'Shivam',category:'coffee',store:'Hyderabad Airport',taggedPerson:'',
+     caption:'The perfect pour at Hyderabad Airport this morning &#x2615;&#x2728; Started the day right. Our barista Priya nailed the latte art today — customers were clicking pictures! #CoffeeMoment #TimHortons',
+     photo:'',reactions:{'&#x2764;':9,'&#x1F525;':4,'&#x1F44F;':7,'&#x2B50;':3,'&#x2615;':11},
+     comments:[{author:'Harish',text:'Looks amazing! &#x2615; Send Priya to train our team haha',time:'3h ago'}],
+     timestamp:'2026-03-22T08:00:00Z',timeAgo:'4h ago'},
+    {id:'3',author:'Jagadeesha',category:'bestpractice',store:'BIAL',taggedPerson:'',
+     caption:'BIAL discovery: We put the day\'s transaction target on a small whiteboard near the POS. Team checks it every hour and self-motivates. Modifiers went up 22% in one week &#x1F4C8; Try it at your store! #BestPractice #Operations',
+     photo:'',reactions:{'&#x2764;':15,'&#x1F525;':10,'&#x1F44F;':8,'&#x2B50;':7,'&#x2615;':2},
+     comments:[{author:'Deepak',text:'Genius! Implementing this at Elante Mall tomorrow',time:'5h ago'},{author:'Akash Chavan',text:'Already done at Balewadi — it works! &#x1F525;',time:'4h ago'},{author:'Jahid',text:'This is exactly the kind of sharing I want to see on this feed. &#x1F3C6;',time:'3h ago'}],
+     timestamp:'2026-03-21T15:00:00Z',timeAgo:'Yesterday'},
+    {id:'4',author:'Deepak',category:'teamwin',store:'Elante Mall',taggedPerson:'',
+     caption:'Elante Mall just hit its highest ever Saturday sales! &#x1F4AA;&#x1F389; The team was incredible — full house all day, zero complaints, all machines running. This is what a great team looks like. #TeamWin #ElanteMall',
+     photo:'',reactions:{'&#x2764;':18,'&#x1F525;':14,'&#x1F44F;':12,'&#x2B50;':9,'&#x2615;':5},
+     comments:[{author:'Jahid',text:'This is OUTSTANDING Deepak. Record noted. &#x1F3C6;',time:'1d ago'}],
+     timestamp:'2026-03-21T20:00:00Z',timeAgo:'Yesterday'},
+    {id:'5',author:'Akash Chavan',category:'celebration',store:'Balewadi',taggedPerson:'',
+     caption:'Happy birthday to our Balewadi Store Manager Rahul! &#x1F382;&#x1F3C6; 3 years with Tim Hortons India — a true champion. The store would not be what it is without you. #TeamFamily #TimHortonsIndia',
+     photo:'',reactions:{'&#x2764;':22,'&#x1F525;':6,'&#x1F44F;':15,'&#x2B50;':11,'&#x2615;':8},
+     comments:[{author:'Raman',text:'Happy birthday! &#x1F382;',time:'2d ago'},{author:'Shivam',text:'Many more years of coffee and success! &#x2615;&#x1F389;',time:'2d ago'}],
+     timestamp:'2026-03-20T12:00:00Z',timeAgo:'2 days ago'}
+  ];
+}
+
+// ── RENDER STORIES ───────────────────────────────────────
+function renderStories() {
+  var wrap = document.getElementById('storiesWrap');
+  var allAMs = ['Jahid','Raman','Harish','Rohit','Deepak','Akash Chavan','Akash Rathod','Jagadeesha','Shivam'];
+  var hasPost = new Set();
+  allPosts.forEach(function(p){ hasPost.add(p.author); });
+  var storyHtml = '<div class="story-item" onclick="openNewPost()">' +
+    '<div class="story-ring"><div class="story-inner story-add">&#x2B;</div></div>' +
+    '<div class="story-name">Your Story</div></div>';
+  allAMs.forEach(function(author){
+    var ring = hasPost.has(author) ? 'story-ring' : 'story-ring seen';
+    storyHtml += '<div class="story-item">' +
+      '<div class="'+ring+'"><div class="story-inner">' + (amAvatarMap[author]?'<img src="'+amAvatarMap[author]+'" alt="'+author+'">': (amIcons[author]||'&#x1F464;')) + '</div></div>' +
+      '<div class="story-name">' + author.split(' ')[0] + '</div></div>';
+  });
+  wrap.innerHTML = storyHtml;
+}
+
+// ── RENDER FEED ──────────────────────────────────────────
+function renderFeed() {
+  var wrap = document.getElementById('feedWrap');
+  if(allPosts.length===0){
+    wrap.innerHTML='<div style="text-align:center;padding:60px 20px;color:rgba(255,255,255,0.4);"><div style="font-size:48px;margin-bottom:16px;">&#x2615;</div><div style="font-size:18px;font-weight:700;margin-bottom:8px;">No posts yet</div><div style="font-size:14px;">Be the first to share something with the team</div></div>';
+    return;
+  }
+  wrap.innerHTML = allPosts.map(function(post, idx){ return renderPost(post, idx); }).join('');
+  bindPostEvents();
+}
+
+function parseCaption(text) {
+  return text
+    .replace(/@(\w+)/g, '<span class="post-tag">@$1</span>')
+    .replace(/#(\w+)/g, '<span class="post-hashtag">#$1</span>');
+}
+
+function renderPost(post, idx) {
+  var cat = catConfig[post.category] || catConfig.other;
+  var totalReactions = Object.values(post.reactions||{}).reduce(function(a,b){return a+b;},0);
+  var topReaction = Object.entries(post.reactions||{}).sort(function(a,b){return b[1]-a[1];})[0];
+
+  var reactionsHtml = reactionEmojis.map(function(e){
+    var count = (post.reactions||{})[e] || 0;
+    return '<div class="reaction-pill" data-post-id="'+post.id+'" data-emoji="'+e+'">' +
+      '<span>'+e+'</span>' +
+      (count>0?'<span class="reaction-count">'+count+'</span>':'') +
+    '</div>';
+  }).join('');
+
+  var commentsHtml = (post.comments||[]).slice(0,2).map(function(c){
+    return '<div class="comment-item">' +
+      '<div class="comment-avatar">'+(amIcons[c.author]||'&#x1F464;')+'</div>' +
+      '<div class="comment-body">' +
+        '<span class="comment-author">'+c.author+'</span> ' +
+        '<span class="comment-text">'+c.text+'</span>' +
+        '<div class="comment-time">'+c.time+'</div>' +
+      '</div></div>';
+  }).join('');
+
+  var moreComments = (post.comments||[]).length > 2 ?
+    '<div class="post-comments-count">View all '+(post.comments.length)+' comments</div>' : '';
+
+  return '<div class="post-card fade-in" data-post-idx="'+idx+'">' +
+    // Header
+    '<div class="post-header">' +
+      '<div class="post-avatar">'+(amAvatarMap[post.author]?'<img src="'+amAvatarMap[post.author]+'" alt="'+post.author+'">':'<span style="font-size:16px">'+(amIcons[post.author]||'&#x1F464;')+'</span>')+'</div>' +
+      '<div class="post-author-wrap">' +
+        '<div class="post-author">' + (amIcons[post.author]?amIcons[post.author]+' ':'')+post.author+
+          (post.taggedPerson?' <span style="color:#6E6E73;font-weight:400;">with</span> <span style="color:#007AFF;font-weight:700;">'+post.taggedPerson+'</span>':'') +
+        '</div>' +
+        '<div class="post-location">' + (post.store?'&#x1F4CD; '+post.store:'Tim Hortons India') + '</div>' +
+      '</div>' +
+      '<span class="post-category-badge '+cat.cls+'">'+cat.label+'</span>' +
+    '</div>' +
+    // Image
+    (post.photo && post.photo.length > 5 ?
+      '<div class="post-image-wrap" data-post-idx="'+idx+'">' +
+        '<img src="'+post.photo+'" loading="lazy">' +
+        '<div class="double-tap-heart" id="heart-'+idx+'">&#x2764;</div>' +
+      '</div>' :
+      '<div class="post-no-image">'+getPostEmoji(post.category)+'</div>'
+    ) +
+    // Actions
+    '<div class="post-actions">' +
+      '<button class="action-btn like-btn" data-post-id="'+post.id+'">&#x2665;</button>' +
+      '<span class="action-count">'+(totalReactions>0?totalReactions:'')+'</span>' +
+      '<button class="action-btn comment-btn" data-post-idx="'+idx+'">&#x1F4AC;</button>' +
+      '<span class="action-count">'+(post.comments&&post.comments.length>0?post.comments.length:'')+'</span>' +
+      '<button class="action-btn" onclick="sharePost(\''+post.id+'\')">&#x1F4E4;</button>' +
+      '<button class="action-btn bookmark-btn">&#x1F516;</button>' +
+    '</div>' +
+    // Reactions
+    '<div class="reactions-bar">'+reactionsHtml+'</div>' +
+    // Caption
+    '<div class="post-caption"><span class="author-name">'+(amIcons[post.author]?amIcons[post.author]+' ':'')+post.author+'</span>' + parseCaption(post.caption) + '</div>' +
+    // Comments
+    (moreComments) +
+    '<div class="comments-section">'+commentsHtml+'</div>' +
+    // Add comment
+    '<div class="add-comment-wrap">' +
+      '<div class="add-comment-avatar">'+(amIcons['Jahid']||'&#x1F464;')+'</div>' +
+      '<input class="add-comment-input" placeholder="Add a comment..." data-post-idx="'+idx+'">' +
+      '<button class="comment-post-btn" data-post-idx="'+idx+'">Post</button>' +
+    '</div>' +
+    '<div class="post-time">'+post.timeAgo+'</div>' +
+  '</div>';
+}
+
+function getPostEmoji(cat) {
+  var map = {recognition:'&#x1F3C6;',celebration:'&#x1F389;',bestpractice:'&#x1F4A1;',coffee:'&#x2615;',teamwin:'&#x1F4AA;',other:'&#x1F4AC;'};
+  return map[cat]||'&#x2615;';
+}
+
+function bindPostEvents() {
+  // Reaction pills
+  document.querySelectorAll('.reaction-pill').forEach(function(pill){
+    pill.addEventListener('click', function(){
+      var postId = pill.getAttribute('data-post-id');
+      var emoji = pill.getAttribute('data-emoji');
+      var post = allPosts.find(function(p){return p.id===postId;});
+      if(!post) return;
+      if(!post.reactions) post.reactions={};
+      post.reactions[emoji] = (post.reactions[emoji]||0) + 1;
+      pill.classList.toggle('active');
+      var countEl = pill.querySelector('.reaction-count');
+      if(countEl) countEl.textContent = post.reactions[emoji];
+      else { var span=document.createElement('span'); span.className='reaction-count'; span.textContent=post.reactions[emoji]; pill.appendChild(span); }
+      saveReaction(postId, emoji, post.reactions[emoji]);
+    });
+  });
+
+  // Like button
+  document.querySelectorAll('.like-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('liked');
+      btn.style.transform='scale(1.3)';
+      setTimeout(function(){ btn.style.transform='scale(1)'; },200);
+    });
+  });
+
+  // Comment post
+  document.querySelectorAll('.comment-post-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var idx = parseInt(btn.getAttribute('data-post-idx'));
+      var input = document.querySelector('.add-comment-input[data-post-idx="'+idx+'"]');
+      if(!input||!input.value.trim()) return;
+      var post = allPosts[idx];
+      if(!post.comments) post.comments=[];
+      var comment = {author:'You', text:input.value.trim(), time:'Just now'};
+      post.comments.push(comment);
+      input.value='';
+      renderFeed();
+      saveComment(post.id, comment);
+    });
+  });
+
+  // Double tap image to like
+  document.querySelectorAll('.post-image-wrap').forEach(function(wrap){
+    var lastTap=0;
+    wrap.addEventListener('click', function(){
+      var now=Date.now();
+      if(now-lastTap<300){
+        var idx=wrap.getAttribute('data-post-idx');
+        var heart=document.getElementById('heart-'+idx);
+        if(heart){ heart.classList.add('show'); setTimeout(function(){heart.classList.remove('show');},800); }
+      }
+      lastTap=now;
+    });
+  });
+}
+
+function saveReaction(postId, emoji, count) {
+  fetch('/api/posts/react', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({postId:postId, emoji:emoji, count:count})
+  }).catch(function(){});
+}
+
+function saveComment(postId, comment) {
+  fetch('/api/posts/comment', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({postId:postId, comment:comment})
+  }).catch(function(){});
+}
+
+function sharePost(postId) {
+  if(navigator.share) {
+    navigator.share({title:"Tim's Ops Connect", text:"Check this out on Tim's Feed!", url:window.location.href});
+  }
+}
+
+loadFeed();
+</script>
+<script id="pin-wall-js">
+(function(){
+  var PINS={'am':'2026','hod':'2202'};
+  var wall=document.getElementById('pin-wall');
+  var isHODPage=window.location.pathname.indexOf('hod')>-1;
+  var pinOK=localStorage.getItem('th_pin_ok')==='1';
+  var hodOK=localStorage.getItem('th_hod_ok')==='1';
+  if(pinOK&&(!isHODPage||hodOK)){wall.style.display='none';return;}
+  var entered=[];
+  function pinPress(v){
+    if(v==='c'){entered=[];render();return;}
+    if(v==='x'){entered.pop();render();return;}
+    if(entered.length>=4) return;
+    entered.push(v);
+    render();
+    if(entered.length===4){
+      setTimeout(function(){check();},100);
+    }
+  }
+  function render(){
+    for(var i=0;i<4;i++){
+      document.getElementById('d'+i).className='pin-dot'+(i<entered.length?' filled':'');
+    }
+  }
+  function check(){
+    var pin=entered.join('');
+    if(pin===PINS.hod){
+      localStorage.setItem('th_pin_ok','1');
+      localStorage.setItem('th_hod_ok','1');
+      localStorage.setItem('th_is_hod','1');
+      wall.style.display='none';
+    }else if(pin===PINS.am&&!isHODPage){
+      localStorage.setItem('th_pin_ok','1');
+      wall.style.display='none';
+    }else{
+      wrong();
+    }
+  }
+  function wrong(){
+    entered=[];
+    render();
+    var dots=document.getElementById('pinDots');
+    var err=document.getElementById('pinError');
+    dots.classList.add('shake');
+    err.classList.add('show');
+    setTimeout(function(){dots.classList.remove('shake');},400);
+    setTimeout(function(){err.classList.remove('show');},2000);
+  }
+  window.pinPress=pinPress;
+})();
+</script>
+</body>
+</html>

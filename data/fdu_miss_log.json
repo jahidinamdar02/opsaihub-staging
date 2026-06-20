@@ -1,0 +1,330 @@
+{
+  "t3dd": {
+    "storeName": "T3DD",
+    "am": "Raman",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "t3dd-fc": {
+    "storeName": "T3DD FC",
+    "am": "Raman",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "t1dd": {
+    "storeName": "T1DD",
+    "am": "Raman",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "cyber-hub": {
+    "storeName": "Cyber Hub",
+    "am": "Harish",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "select-city": {
+    "storeName": "Select City",
+    "am": "Harish",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "green-park": {
+    "storeName": "Green Park",
+    "am": "Harish",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "basant-lok": {
+    "storeName": "Basant Lok",
+    "am": "Harish",
+    "consecutiveMisses": 0,
+    "lastMissDate": null,
+    "lastCompliantDate": "2026-06-18",
+    "l1SentDates": []
+  },
+  "epicuria": {
+    "storeName": "Epicuria",
+    "am": "Harish",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "apl-golf": {
+    "storeName": "APL Golf Course",
+    "am": "Harish",
+    "consecutiveMisses": 0,
+    "lastMissDate": null,
+    "lastCompliantDate": "2026-06-18",
+    "l1SentDates": []
+  },
+  "skymark": {
+    "storeName": "Skymark",
+    "am": "Rohit",
+    "consecutiveMisses": 0,
+    "lastMissDate": null,
+    "lastCompliantDate": "2026-06-18",
+    "l1SentDates": []
+  },
+  "vegas-mall": {
+    "storeName": "Vegas Mall",
+    "am": "Rohit",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "nsp": {
+    "storeName": "NSP",
+    "am": "Rohit",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "punjabi-bagh": {
+    "storeName": "Punjabi Bagh",
+    "am": "Rohit",
+    "consecutiveMisses": 0,
+    "lastMissDate": null,
+    "lastCompliantDate": "2026-06-18",
+    "l1SentDates": []
+  },
+  "cp67-mohali": {
+    "storeName": "CP67 Mohali",
+    "am": "Deepak",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "elante-mall": {
+    "storeName": "Elante Mall",
+    "am": "Deepak",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "sunview": {
+    "storeName": "Sunview",
+    "am": "Deepak",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "sector-35": {
+    "storeName": "Sector 35",
+    "am": "Deepak",
+    "consecutiveMisses": 0,
+    "lastMissDate": null,
+    "lastCompliantDate": "2026-06-18",
+    "l1SentDates": []
+  },
+  "bhupindra-road": {
+    "storeName": "Bhupindra Road",
+    "am": "Deepak",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "malhar-rd": {
+    "storeName": "Malhar Rd",
+    "am": "Deepak",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "sangrur": {
+    "storeName": "Sangrur",
+    "am": "Deepak",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "bucho": {
+    "storeName": "Bucho",
+    "am": "Deepak",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "balewadi": {
+    "storeName": "Balewadi",
+    "am": "Sandeep Mukharjee",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "lokhandwala": {
+    "storeName": "Lokhandwala",
+    "am": "Sandeep Mukharjee",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "supreme": {
+    "storeName": "Supreme",
+    "am": "Sandeep Mukharjee",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "pmc-kurla": {
+    "storeName": "PMC Kurla",
+    "am": "Sandeep Mukharjee",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "viman-nagar": {
+    "storeName": "Viman Nagar",
+    "am": "Sandeep Mukharjee",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "pmc-wakad": {
+    "storeName": "PMC Wakad",
+    "am": "Sandeep Mukharjee",
+    "consecutiveMisses": 0,
+    "lastMissDate": null,
+    "lastCompliantDate": "2026-06-18",
+    "l1SentDates": []
+  },
+  "fc-road": {
+    "storeName": "FC Road",
+    "am": "Sandeep Mukharjee",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "fifc": {
+    "storeName": "FIFC",
+    "am": "Sandeep Mukharjee",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "hpcl-mpe": {
+    "storeName": "HPCL-MPE",
+    "am": "Akash Rathod",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "nmial": {
+    "storeName": "NMIAL",
+    "am": "Akash Rathod",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "nmial-arrival": {
+    "storeName": "NMIAL Arrival",
+    "am": "Akash Rathod",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "seawoods": {
+    "storeName": "Seawoods",
+    "am": "Akash Rathod",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "koramangala": {
+    "storeName": "Koramangala",
+    "am": "Jagadeesha",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "bial": {
+    "storeName": "BIAL",
+    "am": "Jagadeesha",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "mall-of-asia": {
+    "storeName": "Mall of Asia",
+    "am": "Jagadeesha",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "hsr-layout": {
+    "storeName": "HSR Layout",
+    "am": "Jagadeesha",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "inorbit-hyd": {
+    "storeName": "Inorbit Mall Hyd",
+    "am": "Shivam",
+    "consecutiveMisses": 1,
+    "lastMissDate": "2026-06-18",
+    "lastCompliantDate": null,
+    "l1SentDates": []
+  },
+  "hyd-arrivals": {
+    "storeName": "Hyderabad Arrivals",
+    "am": "Shivam",
+    "consecutiveMisses": 0,
+    "lastMissDate": null,
+    "lastCompliantDate": "2026-06-18",
+    "l1SentDates": []
+  },
+  "lakeshore": {
+    "storeName": "Lakeshore",
+    "am": "Shivam",
+    "consecutiveMisses": 0,
+    "lastMissDate": null,
+    "lastCompliantDate": "2026-06-18",
+    "l1SentDates": []
+  },
+  "hyd-airport": {
+    "storeName": "Hyderabad Airport",
+    "am": "Shivam",
+    "consecutiveMisses": 0,
+    "lastMissDate": null,
+    "lastCompliantDate": "2026-06-18",
+    "l1SentDates": []
+  }
+}

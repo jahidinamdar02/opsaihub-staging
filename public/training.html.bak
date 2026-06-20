@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Training Health — Tim's Ops Connect</title>
+<style>
+:root {
+  --red:#C8102E; --red-dark:#9B0D22;
+  --surface:#F5F5F7; --card:#FFFFFF;
+  --text:#1D1D1F; --text2:#6E6E73;
+  --nav-h:72px; --border:#E5E5EA;
+  --green:#34C759; --orange:#FF9500; --critical:#FF3B30;
+  --blue:#007AFF; --purple:#AF52DE; --gold:#FFD700;
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif; background:var(--surface); color:var(--text); min-height:100vh; padding-bottom:40px; }
+
+/* HEADER */
+.hdr { background:linear-gradient(150deg,#1A1A2E 0%,#16213E 60%,#0F3460 100%); padding:52px 16px 20px; }
+.back { color:rgba(255,255,255,0.7); text-decoration:none; font-size:13px; display:inline-flex; align-items:center; gap:6px; margin-bottom:10px; }
+.hdr-title { font-size:26px; font-weight:700; color:#fff; letter-spacing:-0.5px; }
+.hdr-sub { font-size:13px; color:rgba(255,255,255,0.6); margin-top:3px; }
+
+/* TABS */
+.tab-bar { display:flex; background:#fff; border-bottom:1px solid var(--border); overflow-x:auto; scrollbar-width:none; position:sticky; top:0; z-index:100; }
+.tab-bar::-webkit-scrollbar { display:none; }
+.tab-btn { flex-shrink:0; padding:14px 16px; font-size:12px; font-weight:600; color:var(--text2); border:none; background:transparent; cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; }
+.tab-btn.active { color:var(--red); border-bottom-color:var(--red); }
+
+.tab-content { display:none; padding:14px 16px; }
+.tab-content.active { display:block; }
+
+/* HEALTH SCORE HERO */
+.health-hero { background:linear-gradient(135deg,#1A1A2E,#0F3460); border-radius:20px; padding:20px; margin-bottom:12px; }
+.health-score-wrap { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.health-score-big { font-size:72px; font-weight:700; line-height:1; letter-spacing:-3px; }
+.health-label { font-size:12px; color:rgba(255,255,255,0.6); font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
+.health-status { font-size:14px; font-weight:700; padding:4px 14px; border-radius:20px; display:inline-block; margin-top:6px; }
+.ring-wrap { position:relative; width:90px; height:90px; }
+.ring-wrap svg { transform:rotate(-90deg); }
+.ring-bg { fill:none; stroke:rgba(255,255,255,0.1); stroke-width:8; }
+.ring-fill { fill:none; stroke-width:8; stroke-linecap:round; transition:stroke-dashoffset 1.5s ease; }
+.ring-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; }
+.ring-pct { font-size:18px; font-weight:700; color:#fff; line-height:1; }
+.ring-sub { font-size:9px; color:rgba(255,255,255,0.5); margin-top:1px; }
+.health-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.hm { background:rgba(255,255,255,0.08); border-radius:12px; padding:10px; text-align:center; }
+.hm-num { font-size:20px; font-weight:700; color:#fff; line-height:1; }
+.hm-label { font-size:10px; color:rgba(255,255,255,0.5); margin-top:3px; text-transform:uppercase; letter-spacing:0.3px; }
+
+/* SECTION CARDS */
+.section-card { background:var(--card); border-radius:16px; padding:16px; margin-bottom:12px; box-shadow:0 2px 10px rgba(0,0,0,0.06); }
+.section-title { font-size:12px; font-weight:700; color:var(--text2); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+
+/* METRIC ROWS */
+.metric-row { display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--border); }
+.metric-row:last-child { border-bottom:none; }
+.metric-icon { font-size:20px; width:32px; text-align:center; flex-shrink:0; }
+.metric-info { flex:1; }
+.metric-name { font-size:13px; font-weight:600; color:var(--text); }
+.metric-sub { font-size:11px; color:var(--text2); margin-top:2px; }
+.metric-bar-wrap { width:80px; }
+.metric-bar-bg { height:6px; background:var(--border); border-radius:3px; overflow:hidden; }
+.metric-bar-fill { height:100%; border-radius:3px; transition:width 1s ease; }
+.metric-pct { font-size:13px; font-weight:700; width:36px; text-align:right; }
+.metric-gap { font-size:11px; font-weight:700; padding:2px 8px; border-radius:8px; }
+.gap-0 { background:#E8F8ED; color:#1B7A3A; }
+.gap-low { background:#FFF3E0; color:#8B4500; }
+.gap-high { background:#FEE8E8; color:#C8102E; }
+
+/* TENURE BANDS */
+.tenure-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px; }
+.tenure-band { border-radius:12px; padding:12px; text-align:center; }
+.tenure-18 { background:linear-gradient(135deg,#E8F8ED,#D4F0DF); border:1px solid rgba(52,199,89,0.3); }
+.tenure-12 { background:linear-gradient(135deg,#E8F0FF,#D4E4FF); border:1px solid rgba(0,122,255,0.3); }
+.tenure-6 { background:linear-gradient(135deg,#FFF3E0,#FFE8C8); border:1px solid rgba(255,149,0,0.3); }
+.tenure-new { background:linear-gradient(135deg,#FEE8E8,#FFD4D4); border:1px solid rgba(255,59,48,0.3); }
+.tenure-num { font-size:28px; font-weight:700; line-height:1; }
+.tenure-label { font-size:11px; font-weight:600; margin-top:4px; }
+.tenure-sub { font-size:10px; margin-top:2px; opacity:0.7; }
+
+/* PIPELINE */
+.pipeline-wrap { display:flex; align-items:center; gap:0; overflow-x:auto; padding-bottom:8px; scrollbar-width:none; }
+.pipeline-wrap::-webkit-scrollbar { display:none; }
+.pipeline-stage { flex-shrink:0; text-align:center; min-width:80px; }
+.pipeline-num { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; margin:0 auto 6px; }
+.pipeline-label { font-size:10px; font-weight:700; color:var(--text2); text-transform:uppercase; letter-spacing:0.3px; line-height:1.3; }
+.pipeline-target { font-size:10px; color:var(--text2); margin-top:2px; }
+.pipeline-arrow { font-size:18px; color:var(--border); flex-shrink:0; padding:0 4px; margin-top:-16px; }
+
+/* REGION GRID */
+.region-card { background:var(--card); border-radius:16px; padding:14px; margin-bottom:10px; box-shadow:0 2px 8px rgba(0,0,0,0.06); border-left:4px solid var(--border); cursor:pointer; transition:all 0.2s; }
+.region-card.green { border-left-color:var(--green); }
+.region-card.orange { border-left-color:var(--orange); }
+.region-card.red { border-left-color:var(--critical); }
+.region-card:active { transform:scale(0.98); }
+.region-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.region-name { font-size:15px; font-weight:700; }
+.region-score { font-size:24px; font-weight:700; }
+.region-bar-bg { height:8px; background:var(--border); border-radius:4px; overflow:hidden; margin-bottom:6px; }
+.region-bar-fill { height:100%; border-radius:4px; transition:width 1s ease; }
+.region-meta { font-size:12px; color:var(--text2); display:flex; justify-content:space-between; }
+
+/* AM CARDS */
+.am-card { background:var(--surface); border-radius:12px; padding:12px; margin-bottom:8px; cursor:pointer; }
+.am-card-header { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.am-icon { width:36px; height:36px; background:linear-gradient(135deg,var(--red),var(--red-dark)); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.am-card-name { font-size:14px; font-weight:700; }
+.am-card-region { font-size:11px; color:var(--text2); }
+.am-score-big { font-size:22px; font-weight:700; margin-left:auto; }
+.mini-metrics { display:flex; gap:6px; flex-wrap:wrap; }
+.mini-badge { font-size:10px; font-weight:700; padding:3px 8px; border-radius:8px; }
+.mb-green { background:#E8F8ED; color:#1B7A3A; }
+.mb-orange { background:#FFF3E0; color:#8B4500; }
+.mb-red { background:#FEE8E8; color:#C8102E; }
+
+/* ENTRY FORM */
+.form-section { background:var(--card); border-radius:16px; padding:16px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+.form-section-title { font-size:14px; font-weight:700; color:var(--text); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.field-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; }
+.field-label { font-size:11px; font-weight:600; color:var(--text2); margin-bottom:5px; text-transform:uppercase; letter-spacing:0.3px; }
+.field-input { width:100%; padding:10px 12px; border-radius:10px; border:1.5px solid var(--border); font-size:15px; font-weight:600; color:var(--text); background:var(--surface); font-family:inherit; outline:none; }
+.field-input:focus { border-color:var(--red); background:#fff; }
+.store-selector { width:100%; padding:12px; border-radius:10px; border:1.5px solid var(--border); font-size:14px; font-weight:600; color:var(--text); background:var(--surface); margin-bottom:12px; outline:none; }
+.submit-btn { width:100%; padding:14px; border-radius:12px; border:none; background:linear-gradient(135deg,var(--red),var(--red-dark)); color:#fff; font-size:15px; font-weight:700; cursor:pointer; margin-top:8px; }
+.success-msg { background:#E8F8ED; border-radius:12px; padding:14px; text-align:center; font-size:14px; font-weight:600; color:#1B7A3A; display:none; margin-top:10px; }
+
+/* DRILL SHEET */
+.overlay { position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:999; display:none; align-items:flex-end; }
+.overlay.open { display:flex; }
+.sheet { background:var(--card); border-radius:20px 20px 0 0; width:100%; max-height:82vh; overflow-y:auto; padding:20px; }
+.handle { width:36px; height:4px; background:var(--border); border-radius:2px; margin:0 auto 14px; }
+.sheet-title { font-size:18px; font-weight:700; margin-bottom:4px; }
+.sheet-sub { font-size:13px; color:var(--text2); margin-bottom:16px; }
+
+/* CERT BADGES */
+.cert-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.cert-card { background:var(--surface); border-radius:12px; padding:12px; text-align:center; }
+.cert-icon { font-size:24px; margin-bottom:6px; }
+.cert-name { font-size:11px; font-weight:700; color:var(--text); margin-bottom:4px; }
+.cert-actual { font-size:22px; font-weight:700; }
+.cert-target { font-size:11px; color:var(--text2); margin-top:2px; }
+.cert-bar { height:5px; background:var(--border); border-radius:3px; margin-top:6px; overflow:hidden; }
+.cert-bar-fill { height:100%; border-radius:3px; }
+
+.spinner { width:24px; height:24px; border:3px solid var(--border); border-top-color:var(--red); border-radius:50%; animation:spin 0.8s linear infinite; margin:30px auto; display:block; }
+@keyframes spin { to{transform:rotate(360deg)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.fade-up { animation:fadeUp 0.4s ease; }
+
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;}
+.nav-icon{font-size:22px;}
+.nav-label{font-size:10px;font-weight:500;color:#6E6E73;}
+.nav-item.active .nav-label{color:#C8102E;font-weight:600;}
+.nav-dot{width:4px;height:4px;background:#C8102E;border-radius:50%;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <a href="team.html" class="back">&#x2190; Team</a>
+  <div class="hdr-title">&#x1F393; Training Health</div>
+  <div class="hdr-sub">People Capability Dashboard — Tim Hortons India</div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="overview">&#x1F4CA; Overview</button>
+  <button class="tab-btn" data-tab="regions">&#x1F5FA; Regions</button>
+  <button class="tab-btn" data-tab="entry">&#x270F; Update Data</button>
+</div>
+
+<!-- OVERVIEW TAB -->
+<div class="tab-content active" id="tab-overview">
+
+  <!-- Health Score Hero -->
+  <div class="health-hero fade-up" id="healthHero">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Manpower -->
+  <div class="section-card fade-up">
+    <div class="section-title">&#x1F465; Manpower vs Budget <span id="manpowerGap" style="font-size:12px;"></span></div>
+    <div id="manpowerSection"></div>
+  </div>
+
+  <!-- Tenure -->
+  <div class="section-card fade-up">
+    <div class="section-title">&#x23F0; Tenure Distribution</div>
+    <div id="tenureSection"></div>
+  </div>
+
+  <!-- Pipeline -->
+  <div class="section-card fade-up">
+    <div class="section-title">&#x1F4C8; Internal Development Pipeline</div>
+    <div id="pipelineSection"></div>
+  </div>
+
+  <!-- Certifications -->
+  <div class="section-card fade-up">
+    <div class="section-title">&#x1F3C5; Certifications Health <span id="certGap" style="font-size:12px;"></span></div>
+    <div class="cert-grid" id="certSection"></div>
+  </div>
+
+</div>
+
+<!-- REGIONS TAB -->
+<div class="tab-content" id="tab-regions">
+  <div id="regionsContent"><div class="spinner"></div></div>
+</div>
+
+<!-- ENTRY TAB -->
+<div class="tab-content" id="tab-entry">
+  <div style="background:#FFF9E6;border-radius:12px;padding:12px 16px;margin-bottom:14px;font-size:13px;color:#8B4500;font-weight:500;">
+    &#x1F512; Training team access. Update store data here monthly.
+  </div>
+
+  <div class="form-section">
+    <div class="form-section-title">&#x1F3EA; Select Store</div>
+    <select class="store-selector" id="entryAM" onchange="loadEntryStores()">
+      <option value="">Select Area Manager</option>
+      <option>Raman</option><option>Harish</option><option>Rohit</option><option>Deepak</option>
+      <option>Akash Chavan</option><option>Akash Rathod</option><option>Jagadeesha</option><option>Shivam</option>
+    </select>
+    <select class="store-selector" id="entryStore">
+      <option value="">Select Store</option>
+    </select>
+  </div>
+
+  <!-- Manpower Entry -->
+  <div class="form-section">
+    <div class="form-section-title">&#x1F465; Manpower</div>
+    <div class="field-row">
+      <div><div class="field-label">Store Managers (Actual)</div><input type="number" class="field-input" id="f-sm-actual" placeholder="0" min="0" max="5"></div>
+      <div><div class="field-label">Store Managers (Budget)</div><input type="number" class="field-input" id="f-sm-budget" placeholder="1" min="0" max="5"></div>
+    </div>
+    <div class="field-row">
+      <div><div class="field-label">Shift Managers (Actual)</div><input type="number" class="field-input" id="f-shift-actual" placeholder="0" min="0" max="10"></div>
+      <div><div class="field-label">Shift Managers (Budget)</div><input type="number" class="field-input" id="f-shift-budget" placeholder="2" min="0" max="10"></div>
+    </div>
+    <div class="field-row">
+      <div><div class="field-label">Team Members (Actual)</div><input type="number" class="field-input" id="f-tm-actual" placeholder="0" min="0"></div>
+      <div><div class="field-label">Team Members (Budget)</div><input type="number" class="field-input" id="f-tm-budget" placeholder="0" min="0"></div>
+    </div>
+  </div>
+
+  <!-- Tenure Entry -->
+  <div class="form-section">
+    <div class="form-section-title">&#x23F0; Tenure Distribution (Total headcount in each band)</div>
+    <div class="field-row">
+      <div><div class="field-label">18 Months + &#x1F7E2;</div><input type="number" class="field-input" id="f-t18" placeholder="0" min="0"></div>
+      <div><div class="field-label">12 - 18 Months &#x1F535;</div><input type="number" class="field-input" id="f-t12" placeholder="0" min="0"></div>
+    </div>
+    <div class="field-row">
+      <div><div class="field-label">6 - 12 Months &#x1F7E1;</div><input type="number" class="field-input" id="f-t6" placeholder="0" min="0"></div>
+      <div><div class="field-label">Less than 6 Months &#x1F534;</div><input type="number" class="field-input" id="f-t0" placeholder="0" min="0"></div>
+    </div>
+  </div>
+
+  <!-- Pipeline Entry -->
+  <div class="form-section">
+    <div class="form-section-title">&#x1F4C8; Development Pipeline</div>
+    <div class="field-row">
+      <div><div class="field-label">Ready for Shift Manager</div><input type="number" class="field-input" id="f-p-sm" placeholder="0" min="0"></div>
+      <div><div class="field-label">Ready for TRM</div><input type="number" class="field-input" id="f-p-trm" placeholder="0" min="0"></div>
+    </div>
+    <div class="field-row">
+      <div><div class="field-label">Ready for Store Manager</div><input type="number" class="field-input" id="f-p-store" placeholder="0" min="0"></div>
+      <div><div class="field-label">Total in Pipeline</div><input type="number" class="field-input" id="f-p-total" placeholder="0" min="0" readonly style="opacity:0.6;"></div>
+    </div>
+  </div>
+
+  <!-- Certifications Entry -->
+  <div class="form-section">
+    <div class="form-section-title">&#x1F3C5; Certifications</div>
+    <div class="field-row">
+      <div><div class="field-label">FOSTAC Certified</div><input type="number" class="field-input" id="f-fostac" placeholder="0" min="0"></div>
+      <div><div class="field-label">FOSTAC Target (4)</div><input type="number" class="field-input" value="4" readonly style="opacity:0.6;"></div>
+    </div>
+    <div class="field-row">
+      <div><div class="field-label">Coffee Masters</div><input type="number" class="field-input" id="f-coffee" placeholder="0" min="0"></div>
+      <div><div class="field-label">Donut Champions</div><input type="number" class="field-input" id="f-donut" placeholder="0" min="0"></div>
+    </div>
+    <div class="field-row">
+      <div><div class="field-label">Beverage Station ✓</div><input type="number" class="field-input" id="f-bev" placeholder="0" min="0"></div>
+      <div><div class="field-label">Food Station ✓</div><input type="number" class="field-input" id="f-food" placeholder="0" min="0"></div>
+    </div>
+    <div class="field-row">
+      <div><div class="field-label">Cashier Station ✓</div><input type="number" class="field-input" id="f-cashier" placeholder="0" min="0"></div>
+      <div></div>
+    </div>
+  </div>
+
+  <button class="submit-btn" onclick="submitTraining()">&#x1F4BE; Save Training Data</button>
+  <div class="success-msg" id="saveSuccess">&#x2705; Training data saved successfully!</div>
+</div>
+
+<!-- DRILL SHEET -->
+<div class="overlay" id="drillOverlay" onclick="closeDrill(event)">
+  <div class="sheet" id="drillSheet">
+    <div class="handle"></div>
+    <div class="sheet-title" id="drillTitle"></div>
+    <div class="sheet-sub" id="drillSub"></div>
+    <div id="drillContent"></div>
+  </div>
+</div>
+
+<script>
+var allTraining = [];
+var amList = [
+  {name:'Raman', region:'Delhi NCR', icon:'&#x1F3D9;', stores:['T3DD','T3DD FC','T1DD']},
+  {name:'Harish', region:'Delhi NCR', icon:'&#x1F3D9;', stores:['Cyber Hub','Select City','Green Park','Basant Lok','Epicuria','APL Golf Course']},
+  {name:'Rohit', region:'Delhi NCR', icon:'&#x1F3D9;', stores:['Skymark','Vegas Mall','NSP','Punjabi Bagh']},
+  {name:'Deepak', region:'Punjab', icon:'&#x1F33E;', stores:['CP67 Mohali','Elante Mall','Sunview','Sector 35','Bhupindra Road','Malhar Rd','Sangrur','Bucho']},
+  {name:'Akash Chavan', region:'Maharashtra', icon:'&#x1F30A;', stores:['Balewadi','Lokhandwala','Supreme','PMC Kurla','Viman Nagar','PMC Wakad','FC Road','FIFC']},
+  {name:'Akash Rathod', region:'Maharashtra', icon:'&#x1F30A;', stores:['HPCL-MPE','NMIAL','NMIAL Arrival','Seawoods']},
+  {name:'Jagadeesha', region:'Bangalore', icon:'&#x1F333;', stores:['Koramangala','BIAL','Mall of Asia','HSR Layout']},
+  {name:'Shivam', region:'Hyderabad', icon:'&#x1F48E;', stores:['Inorbit Mall Hyd','Hyderabad Arrivals','Lakeshore','Hyderabad Airport']}
+];
+
+var storeMap = {};
+amList.forEach(function(am){ am.stores.forEach(function(s){ storeMap[s]=am.name; }); });
+
+// TAB SWITCHING
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+    document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active');});
+    btn.classList.add('active');
+    var tab = btn.getAttribute('data-tab');
+    document.getElementById('tab-'+tab).classList.add('active');
+    if(tab==='regions') renderRegions();
+  });
+});
+
+// Auto-update pipeline total
+['f-p-sm','f-p-trm','f-p-store'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', function(){
+    var total = ['f-p-sm','f-p-trm','f-p-store'].reduce(function(a,i){ return a+(parseInt(document.getElementById(i).value)||0); },0);
+    document.getElementById('f-p-total').value = total;
+  });
+});
+
+function loadEntryStores() {
+  var am = document.getElementById('entryAM').value;
+  var sel = document.getElementById('entryStore');
+  sel.innerHTML = '<option value="">Select Store</option>';
+  var found = amList.find(function(a){return a.name===am;});
+  if(found) found.stores.forEach(function(s){ var o=document.createElement('option'); o.value=s; o.textContent=s; sel.appendChild(o); });
+}
+
+function gc(pct){ return pct>=85?'var(--green)':pct>=60?'var(--orange)':'var(--critical)'; }
+function gapClass(gap){ return gap===0?'gap-0':gap<=2?'gap-low':'gap-high'; }
+function gapLabel(gap){ return gap===0?'&#x2705; Full':gap>0?'&#x26A0; -'+gap:'&#x2B50; +'+Math.abs(gap); }
+
+function calcStoreHealth(d) {
+  var scores = [];
+  // Manpower
+  var smScore = d.smBudget>0 ? Math.min(d.smActual/d.smBudget,1)*100 : 100;
+  var shiftScore = d.shiftBudget>0 ? Math.min(d.shiftActual/d.shiftBudget,1)*100 : 100;
+  scores.push(smScore, shiftScore);
+  // Certifications
+  scores.push(Math.min(d.fostac/4,1)*100);
+  scores.push(Math.min(d.coffeMasters/1,1)*100);
+  scores.push(Math.min(d.donutChampions/3,1)*100);
+  scores.push(Math.min(d.bevStation/3,1)*100);
+  scores.push(Math.min(d.foodStation/3,1)*100);
+  scores.push(Math.min(d.cashierStation/3,1)*100);
+  // Tenure bonus
+  var tenureTotal = d.t18+d.t12+d.t6+d.t0;
+  var tenureScore = tenureTotal>0 ? ((d.t18*100+d.t12*80+d.t6*60+d.t0*30)/tenureTotal) : 50;
+  scores.push(tenureScore);
+  return Math.round(scores.reduce(function(a,b){return a+b;},0)/scores.length);
+}
+
+function calcAMHealth(am) {
+  var amStores = allTraining.filter(function(d){return storeMap[d.store]===am.name;});
+  if(amStores.length===0) return {score:0, stores:0, gaps:{sm:0,shift:0,fostac:0,donut:0,coffee:0}};
+  var scores = amStores.map(calcStoreHealth);
+  var avg = Math.round(scores.reduce(function(a,b){return a+b;},0)/scores.length);
+  var gaps = {
+    sm: amStores.reduce(function(a,d){return a+(d.smBudget-Math.min(d.smActual,d.smBudget));},0),
+    shift: amStores.reduce(function(a,d){return a+(d.shiftBudget-Math.min(d.shiftActual,d.shiftBudget));},0),
+    fostac: amStores.reduce(function(a,d){return a+Math.max(0,4-d.fostac);},0),
+    donut: amStores.reduce(function(a,d){return a+Math.max(0,3-d.donutChampions);},0),
+    coffee: amStores.reduce(function(a,d){return a+Math.max(0,1-d.coffeMasters);},0)
+  };
+  return {score:avg, stores:amStores.length, gaps:gaps};
+}
+
+function loadData() {
+  fetch('/api/training')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      allTraining = d.data || [];
+      if(allTraining.length===0) seedDemoData();
+      renderOverview();
+    })
+    .catch(function(){ seedDemoData(); renderOverview(); });
+}
+
+function seedDemoData() {
+  var stores = Object.keys(storeMap);
+  allTraining = stores.map(function(store){
+    return {
+      store:store, am:storeMap[store],
+      smActual:Math.random()>0.2?1:0, smBudget:1,
+      shiftActual:Math.floor(Math.random()*3)+1, shiftBudget:2,
+      tmActual:Math.floor(Math.random()*8)+4, tmBudget:8,
+      t18:Math.floor(Math.random()*4)+1,
+      t12:Math.floor(Math.random()*3)+1,
+      t6:Math.floor(Math.random()*3),
+      t0:Math.floor(Math.random()*2),
+      pSM:Math.floor(Math.random()*2),
+      pTRM:Math.floor(Math.random()*2),
+      pStore:Math.random()>0.7?1:0,
+      fostac:Math.floor(Math.random()*5),
+      coffeMasters:Math.floor(Math.random()*2)+1,
+      donutChampions:Math.floor(Math.random()*4),
+      bevStation:Math.floor(Math.random()*4)+1,
+      foodStation:Math.floor(Math.random()*4)+1,
+      cashierStation:Math.floor(Math.random()*4)+1,
+      updatedAt:new Date().toISOString()
+    };
+  });
+}
+
+function renderOverview() {
+  var scores = allTraining.map(calcStoreHealth);
+  var overall = scores.length>0?Math.round(scores.reduce(function(a,b){return a+b;},0)/scores.length):0;
+  var color = gc(overall);
+  var statusLabel = overall>=85?'Healthy &#x1F7E2;':overall>=65?'Needs Attention &#x1F7E1;':'Critical &#x1F534;';
+  var statusBg = overall>=85?'rgba(52,199,89,0.2)':overall>=65?'rgba(255,149,0,0.2)':'rgba(255,59,48,0.2)';
+
+  // Totals
+  var totalStores = allTraining.length;
+  var smGap = allTraining.reduce(function(a,d){return a+Math.max(0,d.smBudget-d.smActual);},0);
+  var shiftGap = allTraining.reduce(function(a,d){return a+Math.max(0,d.shiftBudget-d.shiftActual);},0);
+  var fostacGap = allTraining.reduce(function(a,d){return a+Math.max(0,4-d.fostac);},0);
+
+  // Ring
+  var circ = 2*Math.PI*36;
+  var offset = circ - (overall/100*circ);
+
+  document.getElementById('healthHero').innerHTML =
+    '<div class="health-score-wrap">' +
+      '<div>' +
+        '<div class="health-label">Overall Training Health</div>' +
+        '<div class="health-score-big" style="color:'+color+';">'+overall+'<span style="font-size:24px;">%</span></div>' +
+        '<span class="health-status" style="background:'+statusBg+';color:'+color+';">'+statusLabel+'</span>' +
+      '</div>' +
+      '<div class="ring-wrap">' +
+        '<svg width="90" height="90" viewBox="0 0 90 90">' +
+          '<circle class="ring-bg" cx="45" cy="45" r="36"/>' +
+          '<circle class="ring-fill" cx="45" cy="45" r="36" stroke="'+color+'" stroke-dasharray="'+circ+'" stroke-dashoffset="'+offset+'"/>' +
+        '</svg>' +
+        '<div class="ring-center"><div class="ring-pct">'+overall+'%</div><div class="ring-sub">HEALTH</div></div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="health-metrics">' +
+      '<div class="hm"><div class="hm-num">'+totalStores+'</div><div class="hm-label">Stores</div></div>' +
+      '<div class="hm"><div class="hm-num" style="color:'+(smGap===0?'#34C759':'#FF3B30')+';">'+smGap+'</div><div class="hm-label">SM Gaps</div></div>' +
+      '<div class="hm"><div class="hm-num" style="color:'+(fostacGap===0?'#34C759':'#FF9500')+';">'+fostacGap+'</div><div class="hm-label">FOSTAC Gaps</div></div>' +
+    '</div>';
+
+  // Manpower
+  var smActualTotal = allTraining.reduce(function(a,d){return a+d.smActual;},0);
+  var smBudgetTotal = allTraining.reduce(function(a,d){return a+d.smBudget;},0);
+  var shiftActualTotal = allTraining.reduce(function(a,d){return a+d.shiftActual;},0);
+  var shiftBudgetTotal = allTraining.reduce(function(a,d){return a+d.shiftBudget;},0);
+  var tmActualTotal = allTraining.reduce(function(a,d){return a+d.tmActual;},0);
+  var tmBudgetTotal = allTraining.reduce(function(a,d){return a+d.tmBudget;},0);
+  var smPct = smBudgetTotal>0?Math.round(smActualTotal/smBudgetTotal*100):0;
+  var shiftPct = shiftBudgetTotal>0?Math.round(shiftActualTotal/shiftBudgetTotal*100):0;
+  var tmPct = tmBudgetTotal>0?Math.round(tmActualTotal/tmBudgetTotal*100):0;
+
+  document.getElementById('manpowerGap').innerHTML = '<span class="metric-gap '+(smGap+shiftGap===0?'gap-0':smGap+shiftGap<=5?'gap-low':'gap-high')+'">'+(smGap+shiftGap===0?'&#x2705; Fully staffed':'&#x26A0; '+(smGap+shiftGap)+' gaps')+'</span>';
+
+  document.getElementById('manpowerSection').innerHTML = [
+    {icon:'&#x1F451;',name:'Store Managers',actual:smActualTotal,budget:smBudgetTotal,pct:smPct,gap:smBudgetTotal-smActualTotal},
+    {icon:'&#x1F464;',name:'Shift Managers',actual:shiftActualTotal,budget:shiftBudgetTotal,pct:shiftPct,gap:shiftBudgetTotal-shiftActualTotal},
+    {icon:'&#x1F465;',name:'Team Members',actual:tmActualTotal,budget:tmBudgetTotal,pct:tmPct,gap:tmBudgetTotal-tmActualTotal}
+  ].map(function(m){
+    var c = gc(m.pct);
+    return '<div class="metric-row">' +
+      '<div class="metric-icon">'+m.icon+'</div>' +
+      '<div class="metric-info"><div class="metric-name">'+m.name+'</div>' +
+      '<div class="metric-sub">'+m.actual+' of '+m.budget+' budgeted</div></div>' +
+      '<div class="metric-bar-wrap"><div class="metric-bar-bg"><div class="metric-bar-fill" style="width:'+Math.min(m.pct,100)+'%;background:'+c+';"></div></div></div>' +
+      '<div class="metric-pct" style="color:'+c+';">'+m.pct+'%</div>' +
+      '<span class="metric-gap '+gapClass(m.gap)+'">'+gapLabel(m.gap)+'</span>' +
+    '</div>';
+  }).join('');
+
+  // Tenure
+  var t18=allTraining.reduce(function(a,d){return a+d.t18;},0);
+  var t12=allTraining.reduce(function(a,d){return a+d.t12;},0);
+  var t6=allTraining.reduce(function(a,d){return a+d.t6;},0);
+  var t0=allTraining.reduce(function(a,d){return a+d.t0;},0);
+  var tTotal=t18+t12+t6+t0;
+  document.getElementById('tenureSection').innerHTML =
+    '<div class="tenure-grid">' +
+      '<div class="tenure-band tenure-18"><div class="tenure-num" style="color:#1B7A3A;">'+t18+'</div><div class="tenure-label" style="color:#1B7A3A;">18 Months +</div><div class="tenure-sub">Most Desired</div><div style="font-size:12px;color:#1B7A3A;margin-top:4px;">'+(tTotal>0?Math.round(t18/tTotal*100)+'%':'--')+'</div></div>' +
+      '<div class="tenure-band tenure-12"><div class="tenure-num" style="color:#1A5CB8;">'+t12+'</div><div class="tenure-label" style="color:#1A5CB8;">12–18 Months</div><div class="tenure-sub">Experienced</div><div style="font-size:12px;color:#1A5CB8;margin-top:4px;">'+(tTotal>0?Math.round(t12/tTotal*100)+'%':'--')+'</div></div>' +
+      '<div class="tenure-band tenure-6"><div class="tenure-num" style="color:#8B4500;">'+t6+'</div><div class="tenure-label" style="color:#8B4500;">6–12 Months</div><div class="tenure-sub">Developing</div><div style="font-size:12px;color:#8B4500;margin-top:4px;">'+(tTotal>0?Math.round(t6/tTotal*100)+'%':'--')+'</div></div>' +
+      '<div class="tenure-band tenure-new"><div class="tenure-num" style="color:#C8102E;">'+t0+'</div><div class="tenure-label" style="color:#C8102E;">Under 6 Months</div><div class="tenure-sub">New Joiners</div><div style="font-size:12px;color:#C8102E;margin-top:4px;">'+(tTotal>0?Math.round(t0/tTotal*100)+'%':'--')+'</div></div>' +
+    '</div>' +
+    '<div style="font-size:12px;color:var(--text2);text-align:center;margin-top:8px;">Total headcount: <strong>'+tTotal+'</strong> across '+allTraining.length+' stores</div>';
+
+  // Pipeline
+  var pSM=allTraining.reduce(function(a,d){return a+(d.pSM||0);},0);
+  var pTRM=allTraining.reduce(function(a,d){return a+(d.pTRM||0);},0);
+  var pStore=allTraining.reduce(function(a,d){return a+(d.pStore||0);},0);
+  document.getElementById('pipelineSection').innerHTML =
+    '<div class="pipeline-wrap">' +
+      '<div class="pipeline-stage"><div class="pipeline-num" style="background:#FEE8E8;color:var(--red);">'+pSM+'</div><div class="pipeline-label">Ready for<br>Shift Mgr</div><div class="pipeline-target">TM → SM</div></div>' +
+      '<div class="pipeline-arrow">&#x276F;</div>' +
+      '<div class="pipeline-stage"><div class="pipeline-num" style="background:#FFF3E0;color:#8B4500;">'+pTRM+'</div><div class="pipeline-label">Ready for<br>TRM</div><div class="pipeline-target">SM → TRM</div></div>' +
+      '<div class="pipeline-arrow">&#x276F;</div>' +
+      '<div class="pipeline-stage"><div class="pipeline-num" style="background:#E8F0FF;color:#1A5CB8;">'+pStore+'</div><div class="pipeline-label">Ready for<br>Store Mgr</div><div class="pipeline-target">TRM → SM</div></div>' +
+      '<div class="pipeline-arrow">&#x276F;</div>' +
+      '<div class="pipeline-stage"><div class="pipeline-num" style="background:#E8F8ED;color:#1B7A3A;">'+(pSM+pTRM+pStore)+'</div><div class="pipeline-label">Total<br>Pipeline</div><div class="pipeline-target">All levels</div></div>' +
+    '</div>' +
+    '<div style="background:var(--surface);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:12px;color:var(--text2);">&#x1F4A1; Strong pipeline ratio: '+(allTraining.length>0?((pSM+pTRM+pStore)/allTraining.length).toFixed(1):'--')+' pipeline members per store</div>';
+
+  // Certifications
+  var fostacTotal=allTraining.reduce(function(a,d){return a+d.fostac;},0);
+  var coffeeTotal=allTraining.reduce(function(a,d){return a+(d.coffeMasters||0);},0);
+  var donutTotal=allTraining.reduce(function(a,d){return a+(d.donutChampions||0);},0);
+  var bevTotal=allTraining.reduce(function(a,d){return a+(d.bevStation||0);},0);
+  var foodTotal=allTraining.reduce(function(a,d){return a+(d.foodStation||0);},0);
+  var cashierTotal=allTraining.reduce(function(a,d){return a+(d.cashierStation||0);},0);
+  var n=allTraining.length||1;
+
+  document.getElementById('certGap').innerHTML = '<span class="metric-gap '+(fostacGap===0?'gap-0':fostacGap<=10?'gap-low':'gap-high')+'">'+(fostacGap===0?'&#x2705; All complete':'&#x26A0; '+fostacGap+' FOSTAC gaps')+'</span>';
+
+  document.getElementById('certSection').innerHTML = [
+    {icon:'&#x1F9EA;',name:'FOSTAC',actual:fostacTotal,target:n*4,perStore:4},
+    {icon:'&#x2615;',name:'Coffee Masters',actual:coffeeTotal,target:n*1,perStore:1},
+    {icon:'&#x1F369;',name:'Donut Champions',actual:donutTotal,target:n*3,perStore:3},
+    {icon:'&#x1F964;',name:'Beverage Station',actual:bevTotal,target:n*3,perStore:3},
+    {icon:'&#x1F354;',name:'Food Station',actual:foodTotal,target:n*3,perStore:3},
+    {icon:'&#x1F4B3;',name:'Cashier Station',actual:cashierTotal,target:n*3,perStore:3}
+  ].map(function(c){
+    var pct=c.target>0?Math.round(c.actual/c.target*100):0;
+    var col=gc(pct);
+    var gap=Math.max(0,c.target-c.actual);
+    return '<div class="cert-card" onclick="showCertDrill(\''+c.name+'\','+c.actual+','+c.target+','+c.perStore+')">' +
+      '<div class="cert-icon">'+c.icon+'</div>' +
+      '<div class="cert-name">'+c.name+'</div>' +
+      '<div class="cert-actual" style="color:'+col+';">'+c.actual+'</div>' +
+      '<div class="cert-target">Target: '+c.target+' ('+c.perStore+'/store)</div>' +
+      '<div class="cert-bar"><div class="cert-bar-fill" style="width:'+Math.min(pct,100)+'%;background:'+col+';"></div></div>' +
+      (gap>0?'<div style="font-size:10px;font-weight:700;color:var(--critical);margin-top:4px;">-'+gap+' gap</div>':'<div style="font-size:10px;font-weight:700;color:var(--green);margin-top:4px;">&#x2705; Met</div>') +
+    '</div>';
+  }).join('');
+}
+
+function renderRegions() {
+  var regionMap = {};
+  amList.forEach(function(am){
+    if(!regionMap[am.region]) regionMap[am.region]={name:am.region,ams:[],stores:[]};
+    regionMap[am.region].ams.push(am);
+    am.stores.forEach(function(s){ regionMap[am.region].stores.push(s); });
+  });
+
+  var html = '';
+  Object.values(regionMap).forEach(function(region){
+    var regionStores = allTraining.filter(function(d){ return region.stores.indexOf(d.store)>=0; });
+    var scores = regionStores.map(calcStoreHealth);
+    var avgScore = scores.length>0?Math.round(scores.reduce(function(a,b){return a+b;},0)/scores.length):0;
+    var color = gc(avgScore);
+    var cls = avgScore>=85?'green':avgScore>=65?'orange':'red';
+
+    var smGap = regionStores.reduce(function(a,d){return a+Math.max(0,d.smBudget-d.smActual);},0);
+    var fostacGap = regionStores.reduce(function(a,d){return a+Math.max(0,4-d.fostac);},0);
+
+    html += '<div class="region-card '+cls+'" onclick="drillRegion(\''+region.name+'\')">' +
+      '<div class="region-header">' +
+        '<div class="region-name">'+region.name+'</div>' +
+        '<div class="region-score" style="color:'+color+';">'+(avgScore>0?avgScore+'%':'--')+'</div>' +
+      '</div>' +
+      '<div class="region-bar-bg"><div class="region-bar-fill" style="width:'+avgScore+'%;background:'+color+';"></div></div>' +
+      '<div class="region-meta">' +
+        '<span>'+regionStores.length+' of '+region.stores.length+' stores updated</span>' +
+        '<span style="color:'+(smGap===0?'var(--green)':'var(--critical)')+';">'+(smGap===0?'&#x2705; Fully staffed':'&#x26A0; '+smGap+' SM gaps')+'</span>' +
+      '</div>' +
+      '<div style="margin-top:10px;">' +
+        region.ams.map(function(am){
+          var h = calcAMHealth(am);
+          var c = gc(h.score);
+          return '<div class="am-card">' +
+            '<div class="am-card-header">' +
+              '<div class="am-icon">'+am.icon+'</div>' +
+              '<div><div class="am-card-name">'+am.name+'</div><div class="am-card-region">'+h.stores+' stores updated</div></div>' +
+              '<div class="am-score-big" style="color:'+c+';">'+(h.score>0?h.score+'%':'--')+'</div>' +
+            '</div>' +
+            '<div class="mini-metrics">' +
+              (h.gaps.sm>0?'<span class="mini-badge mb-red">SM -'+h.gaps.sm+'</span>':'') +
+              (h.gaps.shift>0?'<span class="mini-badge mb-orange">Shift -'+h.gaps.shift+'</span>':'') +
+              (h.gaps.fostac>0?'<span class="mini-badge mb-orange">FOSTAC -'+h.gaps.fostac+'</span>':'') +
+              (h.gaps.donut>0?'<span class="mini-badge mb-orange">Donut -'+h.gaps.donut+'</span>':'') +
+              (h.gaps.sm===0&&h.gaps.shift===0&&h.gaps.fostac===0&&h.gaps.donut===0?'<span class="mini-badge mb-green">&#x2705; No gaps</span>':'') +
+            '</div>' +
+          '</div>';
+        }).join('') +
+      '</div>' +
+    '</div>';
+  });
+  document.getElementById('regionsContent').innerHTML = html;
+}
+
+function showCertDrill(name, actual, target, perStore) {
+  var gap = Math.max(0,target-actual);
+  document.getElementById('drillTitle').textContent = name + ' — Detail';
+  document.getElementById('drillSub').textContent = 'Target: '+perStore+' per store across '+allTraining.length+' stores';
+  var pct = target>0?Math.round(actual/target*100):0;
+  var color = gc(pct);
+  document.getElementById('drillContent').innerHTML =
+    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;">' +
+      '<div style="text-align:center;background:var(--surface);border-radius:12px;padding:14px;">' +
+        '<div style="font-size:28px;font-weight:700;color:'+color+';">'+actual+'</div><div style="font-size:12px;color:var(--text2);">Current</div></div>' +
+      '<div style="text-align:center;background:var(--surface);border-radius:12px;padding:14px;">' +
+        '<div style="font-size:28px;font-weight:700;">'+target+'</div><div style="font-size:12px;color:var(--text2);">Target</div></div>' +
+      '<div style="text-align:center;background:'+(gap===0?'#E8F8ED':'#FEE8E8')+';border-radius:12px;padding:14px;">' +
+        '<div style="font-size:28px;font-weight:700;color:'+(gap===0?'var(--green)':'var(--critical)')+';">'+(gap===0?'&#x2705;':'-'+gap)+'</div><div style="font-size:12px;color:var(--text2);">Gap</div></div>' +
+    '</div>' +
+    '<div style="background:var(--surface);border-radius:10px;padding:12px;font-size:13px;color:var(--text2);">' +
+      'At <strong>'+pct+'%</strong> achievement. ' +
+      (gap>0?'Need <strong>'+gap+'</strong> more certifications across the business to hit target.':'All stores are meeting the '+name+' target. &#x1F3C6;') +
+    '</div>';
+  document.getElementById('drillOverlay').classList.add('open');
+}
+
+function drillRegion(name) {
+  document.getElementById('drillTitle').textContent = name;
+  document.getElementById('drillSub').textContent = 'Store-by-store training health';
+  var regionStores = allTraining.filter(function(d){
+    var am = amList.find(function(a){return a.name===storeMap[d.store];});
+    return am && am.region===name;
+  });
+  var html = regionStores.sort(function(a,b){return calcStoreHealth(b)-calcStoreHealth(a);}).map(function(d){
+    var score = calcStoreHealth(d);
+    var color = gc(score);
+    return '<div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);">' +
+      '<div style="flex:1;"><div style="font-size:13px;font-weight:600;">'+d.store+'</div>' +
+      '<div style="font-size:11px;color:var(--text2);">SM: '+d.smActual+'/'+d.smBudget+' &nbsp;·&nbsp; FOSTAC: '+d.fostac+'/4 &nbsp;·&nbsp; Donut: '+d.donutChampions+'/3</div></div>' +
+      '<div style="font-size:20px;font-weight:700;color:'+color+';">'+score+'%</div>' +
+    '</div>';
+  }).join('');
+  document.getElementById('drillContent').innerHTML = html || '<div style="padding:20px;text-align:center;color:var(--text2);">No data for this region yet</div>';
+  document.getElementById('drillOverlay').classList.add('open');
+}
+
+function closeDrill(e) {
+  if(e.target===document.getElementById('drillOverlay')) document.getElementById('drillOverlay').classList.remove('open');
+}
+
+function submitTraining() {
+  var am = document.getElementById('entryAM').value;
+  var store = document.getElementById('entryStore').value;
+  if(!am||!store){ alert('Please select AM and Store'); return; }
+
+  function n(id){ return parseInt(document.getElementById(id).value)||0; }
+  var payload = {
+    store:store, am:am,
+    smActual:n('f-sm-actual'), smBudget:n('f-sm-budget')||1,
+    shiftActual:n('f-shift-actual'), shiftBudget:n('f-shift-budget')||2,
+    tmActual:n('f-tm-actual'), tmBudget:n('f-tm-budget'),
+    t18:n('f-t18'), t12:n('f-t12'), t6:n('f-t6'), t0:n('f-t0'),
+    pSM:n('f-p-sm'), pTRM:n('f-p-trm'), pStore:n('f-p-store'),
+    fostac:n('f-fostac'), coffeMasters:n('f-coffee'), donutChampions:n('f-donut'),
+    bevStation:n('f-bev'), foodStation:n('f-food'), cashierStation:n('f-cashier'),
+    updatedAt:new Date().toISOString()
+  };
+
+  fetch('/api/training',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+  .then(function(r){return r.json();})
+  .then(function(){
+    // Update local data
+    var idx = allTraining.findIndex(function(d){return d.store===store;});
+    if(idx>=0) allTraining[idx]=payload; else allTraining.push(payload);
+    document.getElementById('saveSuccess').style.display='block';
+    setTimeout(function(){ document.getElementById('saveSuccess').style.display='none'; },3000);
+    renderOverview();
+  })
+  .catch(function(){
+    var idx = allTraining.findIndex(function(d){return d.store===store;});
+    if(idx>=0) allTraining[idx]=payload; else allTraining.push(payload);
+    document.getElementById('saveSuccess').style.display='block';
+    setTimeout(function(){ document.getElementById('saveSuccess').style.display='none'; },3000);
+    renderOverview();
+  });
+}
+
+loadData();
+</script>
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Home</span></a>
+  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#x2705;</span><span class="nav-label">Tasks</span></a>
+  <a href="timsy.html" class="nav-item"><span class="nav-icon">&#x2615;</span><span class="nav-label">Timsy</span></a>
+  <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Scores</span></a>
+  <a href="team.html" class="nav-item active"><span class="nav-icon">&#x1F465;</span><span class="nav-label">Team</span>
+<div class="nav-dot"></div></a>
+</nav>
+</body>
+</html>

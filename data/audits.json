@@ -35,18 +35,11 @@
       "TH Sunview Enclave",
       "TH Bucho Bathinda",
       "TH Patiala",
-      "TH Mohali",
-      "TH Sangrur",
-      "TH Elante Mall",
-      "TH Sec 35 Chandigarh"
+      "TH Sangrur"
     ],
-    "Akash Chavan": [
-      "TH Balewadi Pune",
+    "Sandeep Mukharjee": [
       "TH Lokhandwala",
       "TH MC Kurla",
-      "TH Viman Nagar",
-      "TH Phonix Mall Wakad",
-      "TH FC Road",
       "TH FIFC Mumbai"
     ],
     "Akash Rathod": [
@@ -66,13 +59,24 @@
       "TH HIAL",
       "TH HIAL Arrival",
       "TH Lakeshore"
+    ],
+    "Someshekhar": [
+      "TH Balewadi Pune",
+      "TH Viman Nagar",
+      "TH Phonix Mall Wakad",
+      "TH FC Road"
+    ],
+    "Kajal": [
+      "TH Elante Mall",
+      "TH Sec 35 Chandigarh",
+      "TH Mohali"
     ]
   },
   "audits": [
     {
       "id": "1",
       "store": "TH Lokhandwala",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "cycle": "H1",
       "type": "rev_fs",
       "rev_score": 74,
@@ -85,7 +89,7 @@
     {
       "id": "2",
       "store": "TH Bandra",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "cycle": "H1",
       "type": "rev_fs",
       "rev_score": 88,
@@ -98,7 +102,7 @@
     {
       "id": "3",
       "store": "TH FIFC Mumbai",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "cycle": "H1",
       "type": "rev_fs",
       "rev_score": 89,
@@ -137,7 +141,7 @@
     {
       "id": "6",
       "store": "TH Viman Nagar",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "cycle": "H1",
       "type": "fs",
       "rev_score": null,
@@ -150,7 +154,7 @@
     {
       "id": "7",
       "store": "TH Phonix Mall Wakad",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "cycle": "H1",
       "type": "fs",
       "rev_score": null,
@@ -163,7 +167,7 @@
     {
       "id": "8",
       "store": "TH Balewadi Pune",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "cycle": "H1",
       "type": "fs",
       "rev_score": null,
@@ -254,7 +258,7 @@
     {
       "id": "15",
       "store": "TH FC Road",
-      "am": "Akash Chavan",
+      "am": "Sandeep Mukharjee",
       "cycle": "H1",
       "type": "fs",
       "rev_score": null,

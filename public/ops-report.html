@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ops Report — Tim Hortons India</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--surface);color:var(--text);min-height:100vh;padding-top:var(--nav-h);}
+.hdr{background:linear-gradient(135deg,#C8102E,#8B0B1F);padding:20px 20px 16px;position:sticky;top:0;z-index:100;}
+.hdr-logo{color:#fff;font-size:18px;font-weight:700;}
+.hdr-sub{color:rgba(255,255,255,0.7);font-size:12px;margin-top:2px;}
+.period-bar{background:#fff;border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:60px;z-index:99;}
+.period-bar::-webkit-scrollbar{display:none;}
+.pb-btn{flex-shrink:0;padding:11px 16px;font-size:13px;font-weight:600;color:var(--text2);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;}
+.pb-btn.active{color:var(--red);border-bottom-color:var(--red);}
+.content{padding:16px;max-width:720px;margin:0 auto;}
+.kpi-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.kpi{flex:1;min-width:130px;background:var(--card);border-radius:12px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+.kpi-num{font-size:28px;font-weight:800;line-height:1;}
+.kpi-label{font-size:11px;color:var(--text2);margin-top:4px;}
+.section{background:var(--card);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+.section-title{font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;}
+.am-card{border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;cursor:pointer;transition:box-shadow 0.2s;}
+.am-card:hover{box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+.am-header{display:flex;align-items:center;gap:10px;padding:12px 14px;}
+.am-rank{font-size:20px;width:28px;text-align:center;flex-shrink:0;}
+.am-info{flex:1;}
+.am-name{font-size:14px;font-weight:700;}
+.am-meta{font-size:11px;color:var(--text2);margin-top:2px;}
+.am-score{font-size:18px;font-weight:800;}
+.am-chevron{font-size:12px;color:var(--text2);transition:transform 0.25s;margin-left:6px;}
+.am-card.open .am-chevron{transform:rotate(90deg);}
+.am-detail{display:none;padding:0 14px 14px;}
+.am-card.open .am-detail{display:block;}
+.detail-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.detail-row:last-child{border-bottom:none;}
+.detail-label{color:var(--text);}
+.detail-val{font-weight:700;}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;}
+.badge-green{background:#D1F2D9;color:var(--green);}
+.badge-amber{background:#FFF3CD;color:var(--amber);}
+.badge-red{background:#FFE5E5;color:var(--red);}
+.badge-grey{background:#E5E5EA;color:var(--text2);}
+.fdu-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.fdu-row:last-child{border-bottom:none;}
+.progress-bar{height:6px;background:#E5E5EA;border-radius:3px;margin-top:3px;}
+.progress-fill{height:100%;border-radius:3px;transition:width 0.4s;}
+.alert{border-radius:8px;padding:11px 14px;font-size:13px;margin-bottom:12px;}
+.alert-warn{background:#FFF8E1;border:1.5px solid #F59E0B;color:#78350F;}
+.alert-good{background:#F0FFF4;border:1.5px solid #22C55E;color:#14532D;}
+.visits-list{margin-top:6px;}
+.visit-item{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #F0F0F0;font-size:12px;}
+.visit-item:last-child{border-bottom:none;}
+.spinner{text-align:center;padding:40px;color:var(--text2);font-size:14px;}
+.empty{text-align:center;padding:30px 16px;color:var(--text2);font-size:13px;}
+.print-btn{position:fixed;bottom:20px;right:20px;background:var(--red);color:#fff;border:none;padding:12px 18px;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(200,16,46,0.4);}
+@media print{.print-btn,.period-bar,.hdr{display:none;}.am-detail{display:block!important;}.content{padding:0;}}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="hdr-logo">Tim's Ops Connect ☕</div>
+  <div class="hdr-sub" id="hdrSub">Operations Report</div>
+</div>
+<div class="period-bar">
+  <button class="pb-btn active" data-period="week">This Week</button>
+  <button class="pb-btn" data-period="lastweek">Last Week</button>
+  <button class="pb-btn" data-period="month">This Month</button>
+  <button class="pb-btn" data-period="lastmonth">Last Month</button>
+  <button class="pb-btn" data-period="all">All Time</button>
+</div>
+<div class="content" id="content"><div class="spinner">Loading…</div></div>
+<button class="print-btn" onclick="window.print()">🖨️ Print / PDF</button>
+
+<script>
+var allSubs=[],allFdu=[],allDonut=[],allStores=[];
+var currentPeriod='week';
+
+var AM_STORES={
+  'Raman':['T3DD','T3DD FC','T1DD'],
+  'Harish':['Cyber Hub','Select City','Green Park','Basant Lok','Epicuria','APL Golf Course'],
+  'Rohit':['Skymark','Vegas Mall','NSP','Punjabi Bagh'],
+  'Deepak':['Sunview','Bhupindra Road','Malhar Rd','Sangrur','Bucho'],
+  'Kajal':['CP67 Mohali','Elante Mall','Sector 35'],
+  'Sandeep Mukharjee':['Lokhandwala','PMC Kurla','FIFC'],
+  'TBA':['Balewadi','Viman Nagar','PMC Wakad','FC Road'],
+  'Akash Rathod':['HPCL-MPE','NMIAL','NMIAL Arrival','Seawoods'],
+  'Jagadeesha':['Koramangala','BIAL','Mall of Asia','HSR Layout'],
+  'Shivam':['Inorbit Mall Hyd','Hyderabad Arrivals','Lakeshore','Hyderabad Airport']
+};
+
+function periodDates() {
+  var now=new Date(), today=new Date(now); today.setHours(23,59,59,999);
+  var d0=new Date(now); d0.setHours(0,0,0,0);
+  var dow=now.getDay();
+  if(currentPeriod==='week'){
+    var s=new Date(d0); s.setDate(d0.getDate()-((dow+6)%7));
+    return {start:s,end:today,label:'This Week'};
+  }
+  if(currentPeriod==='lastweek'){
+    var ls=new Date(d0); ls.setDate(d0.getDate()-((dow+6)%7)-7);
+    var le=new Date(ls); le.setDate(ls.getDate()+6); le.setHours(23,59,59,999);
+    var opts={day:'numeric',month:'short'};
+    return {start:ls,end:le,label:ls.toLocaleDateString('en-IN',opts)+' – '+le.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})};
+  }
+  if(currentPeriod==='month'){
+    var ms=new Date(now.getFullYear(),now.getMonth(),1);
+    return {start:ms,end:today,label:now.toLocaleDateString('en-IN',{month:'long',year:'numeric'})};
+  }
+  if(currentPeriod==='lastmonth'){
+    var lms=new Date(now.getFullYear(),now.getMonth()-1,1);
+    var lme=new Date(now.getFullYear(),now.getMonth(),0,23,59,59,999);
+    return {start:lms,end:lme,label:lms.toLocaleDateString('en-IN',{month:'long',year:'numeric'})};
+  }
+  return {start:new Date(0),end:today,label:'All Time'};
+}
+
+function inPeriod(dateStr,pd){
+  var d=new Date(dateStr||0);
+  return d>=pd.start && d<=pd.end;
+}
+
+function sc(v){return v===null?'var(--text2)':v>=85?'var(--green)':v>=60?'var(--amber)':'var(--red)';}
+function badgeClass(v){if(v===null)return 'badge-grey';if(v>=85)return 'badge-green';if(v>=60)return 'badge-amber';return 'badge-red';}
+function medal(i){return i===0?'🥇':i===1?'🥈':i===2?'🥉':'#'+(i+1);}
+function pct(n,total){return total>0?Math.round(n/total*100):0;}
+
+function render(){
+  var pd=periodDates();
+  document.getElementById('hdrSub').textContent='Operations Report — '+pd.label;
+
+  var subs  = allSubs.filter(function(s){return inPeriod(s.submittedAt||s.date,pd);});
+  var fdu   = allFdu.filter(function(s){return inPeriod(s.submittedAt,pd);});
+  var donut = allDonut.filter(function(s){return inPeriod(s.submittedAt,pd);});
+  var totalStores = allStores.length||44;
+
+  // per-AM stats
+  var amStats={};
+  Object.keys(AM_STORES).forEach(function(am){
+    amStats[am]={am:am,visits:0,scores:[],storesCovered:{},fduSubmissions:0,totalStores:AM_STORES[am].length,entries:[]};
+  });
+  subs.forEach(function(s){
+    if(!amStats[s.am])return;
+    amStats[s.am].visits++;
+    amStats[s.am].scores.push(s.score||0);
+    amStats[s.am].storesCovered[s.store]=true;
+    amStats[s.am].entries.push(s);
+  });
+  fdu.forEach(function(s){if(amStats[s.am])amStats[s.am].fduSubmissions++;});
+
+  var ranked=Object.values(amStats).map(function(a){
+    a.avgScore=a.visits>0?Math.round(a.scores.reduce(function(x,y){return x+y;},0)/a.visits):null;
+    a.covered=Object.keys(a.storesCovered).length;
+    a.coveragePct=pct(a.covered,a.totalStores);
+    return a;
+  }).sort(function(a,b){
+    if(a.avgScore===null&&b.avgScore===null)return 0;
+    if(a.avgScore===null)return 1;if(b.avgScore===null)return -1;
+    return b.avgScore-a.avgScore;
+  });
+
+  // FDU
+  var fduStoreSet={};fdu.forEach(function(s){fduStoreSet[s.store]=true;});
+  var fduCount=Object.keys(fduStoreSet).length;
+  var fduPct=pct(fduCount,totalStores);
+  var donutTotal=donut.length;
+  var donutPass=donut.filter(function(s){return s.overallPass===true;}).length;
+  var donutFail=donut.filter(function(s){return s.overallPass===false;}).length;
+  var donutPct=pct(donutPass,donutTotal);
+  var submittedAms=ranked.filter(function(a){return a.avgScore!==null;});
+  var teamAvg=submittedAms.length>0?Math.round(submittedAms.reduce(function(s,a){return s+a.avgScore;},0)/submittedAms.length):0;
+  var totalVisits=subs.length;
+  var inactive=ranked.filter(function(a){return a.visits===0&&a.fduSubmissions===0;});
+
+  var html='';
+
+  // KPI headline
+  html+='<div class="kpi-row">'
+    +'<div class="kpi"><div class="kpi-num" style="color:'+sc(teamAvg)+'">'+teamAvg+'%</div><div class="kpi-label">Team Avg Checklist</div></div>'
+    +'<div class="kpi"><div class="kpi-num" style="color:var(--blue)">'+totalVisits+'</div><div class="kpi-label">Store Visits</div></div>'
+    +'<div class="kpi"><div class="kpi-num" style="color:'+sc(fduPct)+'">'+fduPct+'%</div><div class="kpi-label">FDU Coverage</div></div>'
+    +'<div class="kpi"><div class="kpi-num" style="color:'+sc(donutPct)+'">'+(donutTotal>0?donutPct+'%':'—')+'</div><div class="kpi-label">Donut Pass Rate</div></div>'
+    +'</div>';
+
+  // Alert
+  if(inactive.length>0){
+    html+='<div class="alert alert-warn">⚠️ <strong>No activity:</strong> '+inactive.map(function(a){return a.am;}).join(', ')+'</div>';
+  } else {
+    html+='<div class="alert alert-good">✅ All AMs recorded activity this period.</div>';
+  }
+
+  // AM performance section
+  html+='<div class="section"><div class="section-title">📋 Area Manager Checklist Performance</div>';
+  ranked.forEach(function(a,i){
+    var scoreStr=a.avgScore!==null?a.avgScore+'%':'—';
+    var bClass=badgeClass(a.avgScore);
+    var minScore=a.scores.length>0?Math.min.apply(null,a.scores):null;
+    var maxScore=a.scores.length>0?Math.max.apply(null,a.scores):null;
+
+    html+='<div class="am-card" id="am-'+i+'" onclick="toggleAM('+i+')">'
+      +'<div class="am-header">'
+        +'<div class="am-rank">'+medal(i)+'</div>'
+        +'<div class="am-info">'
+          +'<div class="am-name">'+a.am+'</div>'
+          +'<div class="am-meta">'+a.visits+' visit'+(a.visits!==1?'s':'')+' &nbsp;·&nbsp; '+a.covered+'/'+a.totalStores+' stores &nbsp;·&nbsp; FDU: '+a.fduSubmissions+' submissions</div>'
+        +'</div>'
+        +'<div class="am-score" style="color:'+sc(a.avgScore)+'">'+scoreStr+'</div>'
+        +'<div class="am-chevron">›</div>'
+      +'</div>'
+      +'<div class="am-detail">'
+        +'<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">'
+          +'<div style="flex:1;min-width:90px;background:var(--surface);border-radius:8px;padding:10px;text-align:center">'
+            +'<div style="font-size:22px;font-weight:800;color:'+sc(a.avgScore)+'">'+scoreStr+'</div>'
+            +'<div style="font-size:10px;color:var(--text2);margin-top:2px">Avg Score</div>'
+          +'</div>'
+          +'<div style="flex:1;min-width:90px;background:var(--surface);border-radius:8px;padding:10px;text-align:center">'
+            +'<div style="font-size:22px;font-weight:800;color:var(--blue)">'+a.visits+'</div>'
+            +'<div style="font-size:10px;color:var(--text2);margin-top:2px">Visits</div>'
+          +'</div>'
+          +'<div style="flex:1;min-width:90px;background:var(--surface);border-radius:8px;padding:10px;text-align:center">'
+            +'<div style="font-size:22px;font-weight:800;color:'+(a.coveragePct>=80?'var(--green)':a.coveragePct>=50?'var(--amber)':'var(--red)')+'">'+a.coveragePct+'%</div>'
+            +'<div style="font-size:10px;color:var(--text2);margin-top:2px">Store Coverage</div>'
+          +'</div>'
+        +'</div>'
+        +(a.visits>0?'<div style="margin-bottom:8px"><div style="font-size:11px;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px">Visit Breakdown</div>'
+          +'<div class="visits-list">'
+          +a.entries.map(function(e){
+            var dt=(e.date||(e.submittedAt||'').slice(0,10));
+            var day=(e.day||'').charAt(0).toUpperCase()+(e.day||'').slice(1);
+            return '<div class="visit-item"><span><strong>'+e.store+'</strong> <span style="color:var(--text2)">'+day+' · '+dt+'</span></span>'
+              +'<span class="badge '+badgeClass(e.score||0)+'">'+e.score+'%</span></div>';
+          }).join('')
+          +'</div></div>'
+        :'<div style="font-size:12px;color:var(--text2);margin-bottom:8px">No store visits recorded for this period.</div>')
+        +(a.entries.length>0&&minScore!==null?'<div style="display:flex;gap:8px;flex-wrap:wrap;">'
+          +'<div style="flex:1;background:var(--surface);border-radius:8px;padding:8px;text-align:center"><div style="font-size:14px;font-weight:700;color:var(--green)">'+maxScore+'%</div><div style="font-size:10px;color:var(--text2)">Best visit</div></div>'
+          +'<div style="flex:1;background:var(--surface);border-radius:8px;padding:8px;text-align:center"><div style="font-size:14px;font-weight:700;color:var(--red)">'+minScore+'%</div><div style="font-size:10px;color:var(--text2)">Lowest visit</div></div>'
+          +'</div>':'')
+      +'</div>'
+    +'</div>';
+  });
+  html+='</div>';
+
+  // FDU section
+  html+='<div class="section"><div class="section-title">🖼️ FDU Display Discipline</div>';
+  html+='<div class="fdu-row"><span>Stores submitted FDU photos</span><span style="font-weight:700;color:'+sc(fduPct)+'">'+fduCount+' / '+totalStores+'</span></div>';
+  html+='<div style="margin:6px 0 12px"><div class="progress-bar"><div class="progress-fill" style="width:'+fduPct+'%;background:'+(fduPct>=80?'var(--green)':fduPct>=50?'var(--amber)':'var(--red)')+'"></div></div></div>';
+  html+='<div class="fdu-row"><span>Total FDU submissions</span><span style="font-weight:700;color:var(--blue)">'+fdu.length+'</span></div>';
+  html+='<div style="margin-top:12px;font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px">By Area Manager</div>';
+  ranked.forEach(function(a){
+    var n=a.fduSubmissions;
+    html+='<div class="fdu-row"><span>'+a.am+'</span><span style="font-weight:700;color:'+(n>0?'var(--green)':'var(--red)')+'">'+( n>0?n+' submissions':'— None')+'</span></div>';
+  });
+  html+='</div>';
+
+  // Donut section
+  html+='<div class="section"><div class="section-title">🍩 Donut Quality Checks</div>';
+  if(donutTotal===0){
+    html+='<div class="empty">No donut quality check submissions for this period.</div>';
+  } else {
+    html+='<div class="fdu-row"><span>Total checks</span><span style="font-weight:700;color:var(--blue)">'+donutTotal+'</span></div>';
+    html+='<div class="fdu-row"><span>Passed</span><span style="font-weight:700;color:var(--green)">'+donutPass+'</span></div>';
+    html+='<div class="fdu-row"><span>Failed</span><span style="font-weight:700;color:var(--red)">'+donutFail+'</span></div>';
+    html+='<div class="fdu-row"><span>Pass rate</span><span style="font-weight:700;color:'+sc(donutPct)+'">'+donutPct+'%</span></div>';
+    html+='<div style="margin-top:8px"><div class="progress-bar"><div class="progress-fill" style="width:'+donutPct+'%;background:'+(donutPct>=80?'var(--green)':donutPct>=50?'var(--amber)':'var(--red)')+'"></div></div></div>';
+  }
+  html+='</div>';
+
+  document.getElementById('content').innerHTML=html;
+}
+
+function toggleAM(i){
+  var card=document.getElementById('am-'+i);
+  card.classList.toggle('open');
+}
+
+document.querySelector('.period-bar').addEventListener('click',function(e){
+  var btn=e.target.closest('.pb-btn');if(!btn)return;
+  document.querySelectorAll('.pb-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  currentPeriod=btn.getAttribute('data-period');
+  render();
+});
+
+// load data
+Promise.all([
+  fetch('/api/fdu/submissions').then(function(r){return r.json();}),
+  fetch('/api/fdu/donut-results').then(function(r){return r.json();}),
+  fetch('/api/submissions').then(function(r){return r.json();}).catch(function(){return [];}),
+]).then(function(results){
+  allFdu    = (results[0].data||[]);
+  allDonut  = (results[1].data||[]);
+  var raw2=results[2]; allSubs=Array.isArray(raw2)?raw2:(raw2.data||[]);
+  render();
+}).catch(function(e){
+  document.getElementById('content').innerHTML='<div class="empty">Failed to load data.<br>'+e.message+'</div>';
+});
+</script>
+<script src="/js/api.js"></script>
+<script src="theme.js"></script>
+<script>applyTheme(getTheme());</script>
+<!-- FOOTER -->
+<footer class="site-footer" style="max-width:1200px;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
+  <div class="footer-content">
+    <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
+    <div class="footer-links">
+      <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a>
+      <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

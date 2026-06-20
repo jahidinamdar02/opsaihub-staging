@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Delivery Dashboard — Tim's Ops Connect</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif; background:#0A0A0A; color:#fff; padding-bottom:40px; }
+.hdr { background:linear-gradient(135deg,#1A0A08,#0A0A0A); padding:52px 16px 20px; border-bottom:1px solid rgba(255,255,255,0.08); }
+.back { color:rgba(255,255,255,0.7); text-decoration:none; font-size:14px; display:inline-flex; align-items:center; gap:6px; margin-bottom:12px; }
+.hdr-title { font-size:28px; font-weight:700; letter-spacing:-0.5px; }
+.hdr-sub { font-size:13px; color:rgba(255,255,255,0.4); margin-top:4px; }
+
+.toggle-bar { display:flex; gap:0; margin:16px 16px 0; background:#1A1A1A; border-radius:12px; padding:3px; }
+.toggle-btn { flex:1; padding:10px; border-radius:10px; border:none; font-size:13px; font-weight:600; background:transparent; color:rgba(255,255,255,0.4); cursor:pointer; transition:all 0.2s; }
+.toggle-btn.active { background:#1C1C1E; color:#fff; box-shadow:0 1px 4px rgba(0,0,0,0.4); }
+
+.content { padding:16px; }
+.hidden { display:none !important; }
+
+.sec-title { font-size:11px; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.06); }
+
+/* PLATFORM CARDS */
+.platform-card { border-radius:18px; padding:18px; margin-bottom:12px; }
+.platform-card.swiggy { background:linear-gradient(135deg,#1A0C06,#1A1A1A); border:1px solid rgba(255,107,53,0.3); }
+.platform-card.zomato { background:linear-gradient(135deg,#1A0608,#1A1A1A); border:1px solid rgba(226,55,68,0.3); }
+.platform-header { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.platform-icon { font-size:24px; }
+.platform-name { font-size:16px; font-weight:700; }
+.platform-name.sw { color:#FF6B35; }
+.platform-name.zm { color:#E23744; }
+
+.metric-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }
+.metric-box { background:rgba(255,255,255,0.05); border-radius:12px; padding:12px; }
+.metric-box-label { font-size:10px; color:rgba(255,255,255,0.4); font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px; }
+.metric-box-num { font-size:22px; font-weight:700; line-height:1; }
+.metric-box-sub { font-size:11px; color:rgba(255,255,255,0.4); margin-top:3px; }
+
+.progress-bg { background:rgba(255,255,255,0.1); border-radius:4px; height:8px; margin:10px 0 4px; overflow:hidden; }
+.progress-fill { height:100%; border-radius:4px; transition:width 1s ease; }
+.progress-label { font-size:12px; font-weight:700; }
+
+/* COMBINED VIEW */
+.combined-card { background:#141414; border-radius:18px; padding:18px; margin-bottom:12px; border:1px solid rgba(255,255,255,0.06); }
+.combined-title { font-size:14px; font-weight:700; margin-bottom:4px; }
+.combined-num { font-size:36px; font-weight:700; letter-spacing:-1px; color:#fff; }
+.split-bar { display:flex; height:14px; border-radius:7px; overflow:hidden; margin:12px 0 6px; }
+.split-dinein { background:#C8102E; }
+.split-delivery { background:#FF9500; }
+.split-legend { display:flex; justify-content:space-between; }
+.legend-item { font-size:12px; font-weight:600; display:flex; align-items:center; gap:5px; }
+.legend-dot { width:8px; height:8px; border-radius:50%; }
+
+/* ENTRY FORM */
+.form-card { background:#141414; border-radius:18px; padding:18px; margin-bottom:12px; border:1px solid rgba(255,255,255,0.08); }
+.form-platform-hdr { display:flex; align-items:center; gap:8px; padding:10px 14px; border-radius:10px; margin-bottom:14px; }
+.form-platform-hdr.sw { background:rgba(255,107,53,0.15); }
+.form-platform-hdr.zm { background:rgba(226,55,68,0.15); }
+.field-group { margin-bottom:14px; }
+.field-label { font-size:12px; font-weight:600; color:rgba(255,255,255,0.5); margin-bottom:6px; }
+.field-input { width:100%; padding:12px 14px; border-radius:10px; border:1.5px solid rgba(255,255,255,0.1); background:#1C1C1E; font-size:16px; font-weight:600; color:#fff; font-family:inherit; outline:none; }
+.field-input:focus { border-color:#FF6B35; }
+.field-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+
+.am-selector { background:#141414; border-radius:14px; padding:14px 16px; margin:0 0 12px; border:1px solid rgba(255,255,255,0.08); }
+.am-label-sm { font-size:11px; color:rgba(255,255,255,0.4); font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
+.am-select { width:100%; padding:12px; border-radius:10px; border:1.5px solid rgba(255,255,255,0.1); background:#1C1C1E; color:#fff; font-size:14px; font-weight:600; outline:none; }
+.store-select { width:100%; padding:12px; border-radius:10px; border:1.5px solid rgba(255,255,255,0.1); background:#1C1C1E; color:#fff; font-size:14px; font-weight:600; outline:none; margin-top:8px; }
+
+.split-inputs { display:flex; gap:10px; align-items:center; }
+.split-input { flex:1; padding:12px; border-radius:10px; border:1.5px solid rgba(255,255,255,0.1); background:#1C1C1E; font-size:18px; font-weight:700; color:#fff; text-align:center; font-family:inherit; outline:none; }
+.split-equals { font-size:20px; color:rgba(255,255,255,0.3); padding:0 4px; }
+.split-result { background:#1C1C1E; border-radius:10px; padding:12px; font-size:18px; font-weight:700; text-align:center; min-width:60px; }
+
+.submit-btn { width:100%; padding:16px; border-radius:14px; border:none; background:linear-gradient(135deg,#C8102E,#9B0D22); color:#fff; font-size:16px; font-weight:700; cursor:pointer; box-shadow:0 4px 16px rgba(200,16,46,0.3); margin-top:8px; }
+
+.success-card { background:#141414; border-radius:18px; padding:32px 20px; text-align:center; border:1px solid rgba(52,199,89,0.3); margin-top:16px; }
+.success-icon { font-size:48px; margin-bottom:12px; }
+.success-title { font-size:20px; font-weight:700; margin-bottom:6px; }
+.success-sub { font-size:13px; color:rgba(255,255,255,0.5); }
+.success-new-btn { margin-top:16px; padding:12px 24px; border-radius:12px; border:none; background:rgba(255,255,255,0.1); color:#fff; font-size:14px; font-weight:600; cursor:pointer; }
+
+.up { color:#34C759; } .down { color:#FF3B30; } .flat { color:#FF9500; }
+.spinner { width:24px; height:24px; border:3px solid rgba(255,255,255,0.1); border-top-color:#FF6B35; border-radius:50%; animation:spin 0.8s linear infinite; margin:40px auto; display:block; }
+@keyframes spin { to{transform:rotate(360deg)} }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.fade-in { animation:fadeIn 0.4s ease; }
+
+.month-bar { display:flex; align-items:center; gap:10px; padding:0 16px 12px; }
+.month-select { flex:1; padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); background:#141414; color:#fff; font-size:14px; font-weight:600; outline:none; }
+
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(0,0,0,0.9);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;}
+.nav-icon{font-size:22px;}
+.nav-label{font-size:10px;font-weight:500;color:rgba(255,255,255,0.5);}
+.nav-item.active .nav-label{color:#C8102E;font-weight:600;}
+.nav-dot{width:4px;height:4px;background:#C8102E;border-radius:50%;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <a href="ceo.html" class="back">&#8592; CEO Dashboard</a>
+  <div class="hdr-title">&#x1F6F5; Delivery Dashboard</div>
+  <div class="hdr-sub">Swiggy + Zomato — All 44 Stores</div>
+</div>
+
+<div class="toggle-bar">
+  <button class="toggle-btn active" id="btnView">&#x1F4CA; Overview</button>
+  <button class="toggle-btn" id="btnEntry">&#x270F; Enter Data</button>
+</div>
+
+<!-- OVERVIEW -->
+<div id="viewWrap">
+  <div class="month-bar" style="margin-top:14px;">
+    <select class="month-select" id="monthSel" onchange="loadDeliveryData()"></select>
+  </div>
+  <div class="content" id="overviewContent">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<!-- ENTRY FORM -->
+<div id="entryWrap" class="hidden">
+  <div class="content">
+
+    <div class="am-selector">
+      <div class="am-label-sm">Area Manager</div>
+      <select class="am-select" id="amSel" onchange="loadStores()">
+        <option value="">Select AM</option>
+        <option>Raman</option><option>Harish</option><option>Rohit</option>
+        <option>Deepak</option><option>Akash Chavan</option><option>Akash Rathod</option>
+        <option>Jagadeesha</option><option>Shivam</option>
+      </select>
+      <select class="store-select" id="storeSel">
+        <option value="">Select Store</option>
+      </select>
+    </div>
+
+    <!-- Swiggy -->
+    <div class="form-card">
+      <div class="form-platform-hdr sw">
+        <span style="font-size:20px;">&#x1F6F5;</span>
+        <span style="font-size:14px;font-weight:700;color:#FF6B35;">Swiggy — This Month</span>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <div class="field-label">MTD Revenue (Rs)</div>
+          <input type="number" class="field-input" id="sw-rev" placeholder="0">
+        </div>
+        <div class="field-group">
+          <div class="field-label">MTD Target (Rs)</div>
+          <input type="number" class="field-input" id="sw-tgt" placeholder="0">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <div class="field-label">Orders Per Day</div>
+          <input type="number" class="field-input" id="sw-orders" placeholder="0">
+        </div>
+        <div class="field-group">
+          <div class="field-label">Avg Order Value (Rs)</div>
+          <input type="number" class="field-input" id="sw-aov" placeholder="0">
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field-label">LY Same Month Revenue (Rs)</div>
+        <input type="number" class="field-input" id="sw-ly" placeholder="0">
+      </div>
+    </div>
+
+    <!-- Zomato -->
+    <div class="form-card">
+      <div class="form-platform-hdr zm">
+        <span style="font-size:20px;">&#x1F374;</span>
+        <span style="font-size:14px;font-weight:700;color:#E23744;">Zomato — This Month</span>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <div class="field-label">MTD Revenue (Rs)</div>
+          <input type="number" class="field-input" id="zm-rev" placeholder="0">
+        </div>
+        <div class="field-group">
+          <div class="field-label">MTD Target (Rs)</div>
+          <input type="number" class="field-input" id="zm-tgt" placeholder="0">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <div class="field-label">Orders Per Day</div>
+          <input type="number" class="field-input" id="zm-orders" placeholder="0">
+        </div>
+        <div class="field-group">
+          <div class="field-label">Avg Order Value (Rs)</div>
+          <input type="number" class="field-input" id="zm-aov" placeholder="0">
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field-label">LY Same Month Revenue (Rs)</div>
+        <input type="number" class="field-input" id="zm-ly" placeholder="0">
+      </div>
+    </div>
+
+    <!-- Revenue Split -->
+    <div class="form-card">
+      <div class="field-label" style="margin-bottom:10px;">Dine-in vs Delivery Split (must = 100%)</div>
+      <div class="split-inputs">
+        <div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:4px;text-align:center;">Dine-in %</div>
+          <input type="number" class="split-input" id="split-dinein" placeholder="70" min="0" max="100" oninput="updateSplit()">
+        </div>
+        <div class="split-equals">+</div>
+        <div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:4px;text-align:center;">Delivery %</div>
+          <input type="number" class="split-input" id="split-delivery" placeholder="30" min="0" max="100" oninput="updateSplit()">
+        </div>
+        <div class="split-equals">=</div>
+        <div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:4px;text-align:center;">Total</div>
+          <div class="split-result" id="split-total" style="color:rgba(255,255,255,0.4);">--</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="submit-btn" id="submitBtn" onclick="submitDelivery()">Submit Delivery Data</button>
+    <div id="successWrap" class="hidden">
+      <div class="success-card fade-in">
+        <div class="success-icon">&#x1F4E6;</div>
+        <div class="success-title">Delivery Data Saved!</div>
+        <div class="success-sub" id="successMsg">Data saved successfully.</div>
+        <button class="success-new-btn" onclick="resetForm()">Enter Another Store</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+var deliveryData = [];
+var storeMap = {
+  'Raman':['T3DD','T3DD FC','T1DD'],
+  'Harish':['Cyber Hub','Select City','Green Park','Basant Lok','Epicuria','APL Golf Course'],
+  'Rohit':['Skymark','Vegas Mall','NSP','Punjabi Bagh'],
+  'Deepak':['CP67 Mohali','Elante Mall','Sunview','Sector 35','Bhupindra Road','Malhar Rd','Sangrur','Bucho'],
+  'Akash Chavan':['Balewadi','Lokhandwala','Supreme','PMC Kurla','Viman Nagar','PMC Wakad','FC Road','FIFC'],
+  'Akash Rathod':['HPCL-MPE','NMIAL','NMIAL Arrival','Seawoods'],
+  'Jagadeesha':['Koramangala','BIAL','Mall of Asia','HSR Layout'],
+  'Shivam':['Inorbit Mall Hyd','Hyderabad Arrivals','Lakeshore','Hyderabad Airport']
+};
+
+// Toggle
+document.getElementById('btnView').addEventListener('click', function(){
+  document.getElementById('btnView').classList.add('active');
+  document.getElementById('btnEntry').classList.remove('active');
+  document.getElementById('viewWrap').classList.remove('hidden');
+  document.getElementById('entryWrap').classList.add('hidden');
+});
+document.getElementById('btnEntry').addEventListener('click', function(){
+  document.getElementById('btnEntry').classList.add('active');
+  document.getElementById('btnView').classList.remove('active');
+  document.getElementById('entryWrap').classList.remove('hidden');
+  document.getElementById('viewWrap').classList.add('hidden');
+});
+
+// Month selector
+function populateMonths() {
+  var sel = document.getElementById('monthSel');
+  var now = new Date();
+  for(var i=2;i>=-1;i--){
+    var d = new Date(now.getFullYear(), now.getMonth()-i, 1);
+    var val = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+    var label = d.toLocaleString('en-IN',{month:'long',year:'numeric'});
+    var opt = document.createElement('option');
+    opt.value = val; opt.textContent = label;
+    if(i===0) opt.selected = true;
+    sel.appendChild(opt);
+  }
+}
+
+function loadStores() {
+  var am = document.getElementById('amSel').value;
+  var sel = document.getElementById('storeSel');
+  sel.innerHTML = '<option value="">Select Store</option>';
+  if(storeMap[am]) {
+    storeMap[am].forEach(function(s){
+      var opt = document.createElement('option');
+      opt.value = s; opt.textContent = s;
+      sel.appendChild(opt);
+    });
+  }
+}
+
+function updateSplit() {
+  var d = parseInt(document.getElementById('split-dinein').value)||0;
+  var dl = parseInt(document.getElementById('split-delivery').value)||0;
+  var tot = d+dl;
+  var el = document.getElementById('split-total');
+  el.textContent = tot+'%';
+  el.style.color = tot===100?'#34C759':'#FF3B30';
+}
+
+function n(id){ return parseFloat(document.getElementById(id).value)||0; }
+function fmt(v){ if(!v||v===0)return '--'; if(v>=10000000)return '&#x20B9;'+(v/10000000).toFixed(1)+'Cr'; if(v>=100000)return '&#x20B9;'+(v/100000).toFixed(1)+'L'; return '&#x20B9;'+parseInt(v).toLocaleString('en-IN'); }
+function arrow(v){ return v>0?'<span class="up">&#x25B2; +'+(v.toFixed(1))+'%</span>':v<0?'<span class="down">&#x25BC; '+(v.toFixed(1))+'%</span>':'<span class="flat">&#x2192; 0%</span>'; }
+function gc(s){ return s>=100?'#34C759':s>=90?'#FF9500':'#FF3B30'; }
+
+function submitDelivery() {
+  var am = document.getElementById('amSel').value;
+  var store = document.getElementById('storeSel').value;
+  if(!am||!store){ alert('Please select AM and Store'); return; }
+  var now = new Date();
+  var month = document.getElementById('monthSel') ?
+    (document.getElementById('monthSel').value || now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')) :
+    now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  var payload = {
+    am:am, store:store, month:month,
+    submittedAt: now.toISOString(),
+    swiggy:{ revenue:n('sw-rev'), target:n('sw-tgt'), ordersPerDay:n('sw-orders'), aov:n('sw-aov'), lyRevenue:n('sw-ly') },
+    zomato:{ revenue:n('zm-rev'), target:n('zm-tgt'), ordersPerDay:n('zm-orders'), aov:n('zm-aov'), lyRevenue:n('zm-ly') },
+    dineinPct:n('split-dinein'), deliveryPct:n('split-delivery')
+  };
+  fetch('/api/delivery', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.success){
+      document.getElementById('submitBtn').style.display='none';
+      document.getElementById('successWrap').classList.remove('hidden');
+      var swPct = payload.swiggy.target>0?Math.round(payload.swiggy.revenue/payload.swiggy.target*100):0;
+      var zmPct = payload.zomato.target>0?Math.round(payload.zomato.revenue/payload.zomato.target*100):0;
+      document.getElementById('successMsg').innerHTML =
+        store+' saved.<br>Swiggy: '+fmt(payload.swiggy.revenue)+' ('+swPct+'%) &nbsp;·&nbsp; Zomato: '+fmt(payload.zomato.revenue)+' ('+zmPct+'%)';
+    }
+  })
+  .catch(function(){ alert('Save failed. Try again.'); });
+}
+
+function resetForm() {
+  ['sw-rev','sw-tgt','sw-orders','sw-aov','sw-ly','zm-rev','zm-tgt','zm-orders','zm-aov','zm-ly','split-dinein','split-delivery'].forEach(function(id){
+    document.getElementById(id).value='';
+  });
+  document.getElementById('split-total').textContent='--';
+  document.getElementById('split-total').style.color='rgba(255,255,255,0.4)';
+  document.getElementById('submitBtn').style.display='block';
+  document.getElementById('successWrap').classList.add('hidden');
+  document.getElementById('storeSel').value='';
+}
+
+function loadDeliveryData() {
+  var month = document.getElementById('monthSel').value;
+  fetch('/api/delivery?month='+month)
+    .then(function(r){return r.json();})
+    .then(function(d){
+      deliveryData = d.data || [];
+      renderOverview();
+    })
+    .catch(function(){ renderOverview(); });
+}
+
+function renderOverview() {
+  var month = document.getElementById('monthSel').value;
+  var data = deliveryData;
+  var sw={rev:0,tgt:0,orders:0,aov:[],ly:0};
+  var zm={rev:0,tgt:0,orders:0,aov:[],ly:0};
+  var dinePct=[],delPct=[];
+
+  data.forEach(function(d){
+    if(d.swiggy){sw.rev+=d.swiggy.revenue||0;sw.tgt+=d.swiggy.target||0;sw.orders+=d.swiggy.ordersPerDay||0;if(d.swiggy.aov)sw.aov.push(d.swiggy.aov);sw.ly+=d.swiggy.lyRevenue||0;}
+    if(d.zomato){zm.rev+=d.zomato.revenue||0;zm.tgt+=d.zomato.target||0;zm.orders+=d.zomato.ordersPerDay||0;if(d.zomato.aov)zm.aov.push(d.zomato.aov);zm.ly+=d.zomato.lyRevenue||0;}
+    if(d.dineinPct)dinePct.push(d.dineinPct);
+    if(d.deliveryPct)delPct.push(d.deliveryPct);
+  });
+
+  var swPct=sw.tgt>0?Math.round(sw.rev/sw.tgt*100):0;
+  var zmPct=zm.tgt>0?Math.round(zm.rev/zm.tgt*100):0;
+  var swLFL=sw.ly>0?((sw.rev-sw.ly)/sw.ly*100):0;
+  var zmLFL=zm.ly>0?((zm.rev-zm.ly)/zm.ly*100):0;
+  var swAOV=sw.aov.length>0?sw.aov.reduce(function(a,b){return a+b;},0)/sw.aov.length:0;
+  var zmAOV=zm.aov.length>0?zm.aov.reduce(function(a,b){return a+b;},0)/zm.aov.length:0;
+  var avgDine=dinePct.length>0?Math.round(dinePct.reduce(function(a,b){return a+b;},0)/dinePct.length):70;
+  var avgDel=delPct.length>0?Math.round(delPct.reduce(function(a,b){return a+b;},0)/delPct.length):30;
+  var totalDel=sw.rev+zm.rev;
+  var storeCount=data.length;
+
+  if(data.length===0){
+    document.getElementById('overviewContent').innerHTML =
+      '<div style="text-align:center;padding:48px 20px;">' +
+      '<div style="font-size:48px;margin-bottom:16px;">&#x1F4E6;</div>' +
+      '<div style="font-size:18px;font-weight:700;margin-bottom:8px;">No delivery data yet</div>' +
+      '<div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:24px;">Area Managers enter Swiggy and Zomato numbers using the Enter Data tab</div>' +
+      '<button onclick="document.getElementById(\'btnEntry\').click()" style="padding:12px 24px;border-radius:12px;border:none;background:#C8102E;color:#fff;font-size:14px;font-weight:700;cursor:pointer;">Enter First Store &#x2192;</button>' +
+      '</div>';
+    return;
+  }
+
+  var html =
+  // Total Delivery Card
+  '<div class="combined-card fade-in">' +
+    '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">' +
+      '<div><div style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">Total Delivery Revenue</div>' +
+      '<div class="combined-num">'+fmt(totalDel)+'</div>' +
+      '<div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px;">'+storeCount+' stores reporting</div></div>' +
+      '<div style="text-align:right;"><div style="font-size:11px;color:rgba(255,255,255,0.4);">Delivery Mix</div>' +
+      '<div style="font-size:32px;font-weight:700;color:#FF9500;">'+avgDel+'%</div></div>' +
+    '</div>' +
+    '<div class="split-bar">' +
+      '<div class="split-dinein" style="flex:'+avgDine+';"></div>' +
+      '<div class="split-delivery" style="flex:'+avgDel+';"></div>' +
+    '</div>' +
+    '<div class="split-legend">' +
+      '<div class="legend-item"><div class="legend-dot" style="background:#C8102E;"></div>Dine-in '+avgDine+'%</div>' +
+      '<div class="legend-item"><div class="legend-dot" style="background:#FF9500;"></div>Delivery '+avgDel+'%</div>' +
+    '</div>' +
+  '</div>' +
+
+  // Swiggy Card
+  '<div class="platform-card swiggy fade-in">' +
+    '<div class="platform-header"><div class="platform-icon">&#x1F6F5;</div><div class="platform-name sw">Swiggy</div></div>' +
+    '<div class="metric-grid">' +
+      '<div class="metric-box"><div class="metric-box-label">MTD Revenue</div><div class="metric-box-num">'+fmt(sw.rev)+'</div><div class="metric-box-sub">Target: '+fmt(sw.tgt)+'</div></div>' +
+      '<div class="metric-box"><div class="metric-box-label">vs Target</div><div class="metric-box-num" style="color:'+gc(swPct)+'">'+(swPct>0?swPct+'%':'--')+'</div><div class="metric-box-sub">'+arrow(swLFL)+' LFL</div></div>' +
+      '<div class="metric-box"><div class="metric-box-label">Orders/Day</div><div class="metric-box-num">'+(sw.orders>0?Math.round(sw.orders/Math.max(storeCount,1)):'--')+'</div><div class="metric-box-sub">per store avg</div></div>' +
+      '<div class="metric-box"><div class="metric-box-label">Avg Order Value</div><div class="metric-box-num">&#x20B9;'+(swAOV>0?Math.round(swAOV):'--')+'</div><div class="metric-box-sub">per order</div></div>' +
+    '</div>' +
+    '<div class="progress-bg"><div class="progress-fill" style="width:'+Math.min(swPct,100)+'%;background:#FF6B35;"></div></div>' +
+    '<div class="progress-label" style="color:#FF6B35;">'+(swPct>0?swPct+'% to target':'Set targets to track progress')+'</div>' +
+  '</div>' +
+
+  // Zomato Card
+  '<div class="platform-card zomato fade-in">' +
+    '<div class="platform-header"><div class="platform-icon">&#x1F374;</div><div class="platform-name zm">Zomato</div></div>' +
+    '<div class="metric-grid">' +
+      '<div class="metric-box"><div class="metric-box-label">MTD Revenue</div><div class="metric-box-num">'+fmt(zm.rev)+'</div><div class="metric-box-sub">Target: '+fmt(zm.tgt)+'</div></div>' +
+      '<div class="metric-box"><div class="metric-box-label">vs Target</div><div class="metric-box-num" style="color:'+gc(zmPct)+'">'+(zmPct>0?zmPct+'%':'--')+'</div><div class="metric-box-sub">'+arrow(zmLFL)+' LFL</div></div>' +
+      '<div class="metric-box"><div class="metric-box-label">Orders/Day</div><div class="metric-box-num">'+(zm.orders>0?Math.round(zm.orders/Math.max(storeCount,1)):'--')+'</div><div class="metric-box-sub">per store avg</div></div>' +
+      '<div class="metric-box"><div class="metric-box-label">Avg Order Value</div><div class="metric-box-num">&#x20B9;'+(zmAOV>0?Math.round(zmAOV):'--')+'</div><div class="metric-box-sub">per order</div></div>' +
+    '</div>' +
+    '<div class="progress-bg"><div class="progress-fill" style="width:'+Math.min(zmPct,100)+'%;background:#E23744;"></div></div>' +
+    '<div class="progress-label" style="color:#E23744;">'+(zmPct>0?zmPct+'% to target':'Set targets to track progress')+'</div>' +
+  '</div>' +
+
+  // Store breakdown
+  '<div style="margin-top:4px;">' +
+    '<div class="sec-title">Store Breakdown</div>' +
+    data.sort(function(a,b){return ((b.swiggy&&b.swiggy.revenue||0)+(b.zomato&&b.zomato.revenue||0))-((a.swiggy&&a.swiggy.revenue||0)+(a.zomato&&a.zomato.revenue||0));}).map(function(d){
+      var total=(d.swiggy&&d.swiggy.revenue||0)+(d.zomato&&d.zomato.revenue||0);
+      return '<div style="background:#141414;border-radius:12px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;">' +
+        '<div><div style="font-size:13px;font-weight:600;">'+d.store+'</div>' +
+        '<div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;">'+d.am+' &nbsp;·&nbsp; &#x1F6F5; '+fmt(d.swiggy&&d.swiggy.revenue||0)+' &nbsp; &#x1F374; '+fmt(d.zomato&&d.zomato.revenue||0)+'</div></div>' +
+        '<div style="font-size:18px;font-weight:700;color:#FF9500;">'+fmt(total)+'</div>' +
+        '</div>';
+    }).join('') +
+  '</div>';
+
+  document.getElementById('overviewContent').innerHTML = html;
+}
+
+// Init
+populateMonths();
+loadDeliveryData();
+</script>
+<nav class="bottom-nav">
+  <a href="index.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Home</span></a>
+  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#x2705;</span><span class="nav-label">Tasks</span></a>
+  <a href="timsy.html" class="nav-item"><span class="nav-icon">&#x2615;</span><span class="nav-label">Timsy</span></a>
+  <a href="performance.html" class="nav-item active"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Scores</span>
+<div class="nav-dot"></div></a>
+  <a href="team.html" class="nav-item"><span class="nav-icon">&#x1F465;</span><span class="nav-label">Team</span></a>
+</nav>
+</body>
+</html>

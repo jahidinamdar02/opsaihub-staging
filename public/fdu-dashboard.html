@@ -4,113 +4,280 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>FDU Compliance — Tim's Ops Connect</title>
+<link rel="stylesheet" href="styles.css">
 <style>
-:root{--red:#C8102E;--red-dark:#9B0D22;--surface:#F5F5F7;--card:#fff;--text:#1D1D1F;--text2:#6E6E73;--border:#E5E5EA;--nav-h:72px;--green:#34C759;--orange:#FF9500;--critical:#FF3B30;}
+/* =============================================
+   LAPTOP / DESKTOP FIRST — base styles
+   Mobile override at bottom via max-width:767px
+   ============================================= */
+
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;background:var(--surface);color:var(--text);padding-bottom:calc(var(--nav-h)+20px);}
-.hdr{background:linear-gradient(150deg,#1A0508 0%,#C8102E 60%,#9B0D22 100%);padding:52px 16px 20px;}
-.back{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-bottom:10px;}
-.hdr-title{font-size:26px;font-weight:700;color:#fff;letter-spacing:-0.5px;}
-.hdr-sub{font-size:13px;color:rgba(255,255,255,0.7);margin-top:3px;}
-.period-bar{display:flex;background:#fff;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:100;}
+body{background:var(--surface);color:var(--text);padding-top:var(--nav-h);padding-bottom:0;}
+
+/* ── SIDE NAV (desktop primary) ── */
+.bottom-nav{position:fixed;top:0;left:0;width:var(--nav-w);height:100dvh;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;padding:0 10px 20px;z-index:var(--z-nav);overflow-y:auto;gap:2px;transform:translateZ(0);}
+.bottom-nav::before{content:'☕  Tim\2019s Ops';font-size:15px;font-weight:700;color:var(--text);letter-spacing:-0.3px;display:block;padding:20px 10px 16px;margin-bottom:6px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.nav-item{display:flex;flex-direction:row;align-items:center;gap:10px;text-decoration:none;padding:10px 12px;border-radius:10px;transition:background 0.15s ease-out;}
+.nav-item:hover{background:rgba(200,16,46,0.06);}
+.nav-item.active{background:rgba(200,16,46,0.1);}
+.nav-icon{font-size:18px;flex-shrink:0;}
+.nav-label{font-size:13px;font-weight:500;color:var(--text2);}
+.nav-item.active .nav-label{color:var(--red);font-weight:600;}
+.nav-dot{display:none;}
+
+/* ── HEADER — slim white top bar ── */
+.hdr{background:#fff;border-bottom:1px solid var(--border);padding:22px 32px 18px;display:flex;flex-direction:column;align-items:flex-start;gap:4px;position:sticky;top:0;z-index:89;}
+.back{color:var(--text2);text-decoration:none;font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;transition:color 0.15s ease-out;margin-bottom:4px;}
+.back:hover{color:var(--red);}
+.hdr-title{font-size:26px;font-weight:700;color:var(--text);letter-spacing:-0.5px;}
+.hdr-sep{display:none;}
+.hdr-sub{font-size:12px;color:var(--text2);margin-left:0;}
+
+/* ── PERIOD TAB BAR ── */
+.period-bar{display:flex;background:#fff;border-bottom:1px solid var(--border);padding:0 32px;position:sticky;top:60px;z-index:88;}
 .period-bar::-webkit-scrollbar{display:none;}
-.period-btn{flex-shrink:0;padding:12px 18px;font-size:13px;font-weight:600;color:var(--text2);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;}
+.period-btn{flex-shrink:0;padding:14px 26px;font-size:14px;font-weight:600;color:var(--text2);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:color 0.15s ease-out,border-color 0.15s ease-out;}
 .period-btn.active{color:var(--red);border-bottom-color:var(--red);}
-.content{padding:14px 16px;}
-.hero{background:linear-gradient(135deg,#1A0508,#C8102E);border-radius:20px;padding:20px;margin-bottom:12px;}
-.hero-label{font-size:11px;color:rgba(255,255,255,0.6);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
-.hero-num{font-size:52px;font-weight:700;color:#fff;letter-spacing:-2px;line-height:1;}
-.hero-sub{font-size:13px;color:rgba(255,255,255,0.6);margin-top:6px;}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;}
-.hg{background:rgba(255,255,255,0.15);border-radius:12px;padding:10px;text-align:center;}
-.hg-num{font-size:20px;font-weight:700;color:#fff;}
-.hg-label{font-size:10px;color:rgba(255,255,255,0.6);margin-top:2px;text-transform:uppercase;letter-spacing:0.3px;}
-.section-card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 2px 10px rgba(0,0,0,0.06);}
-.section-title{font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
-.compliance-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
-.compliance-card{border-radius:14px;padding:14px;text-align:center;}
+.period-btn:hover:not(.active){color:var(--text);}
+
+/* ── CONTENT CANVAS ── */
+.content{padding:24px 32px;max-width:1400px;margin:0 auto;}
+
+/* ── HERO CARD ── */
+.hero{background:linear-gradient(135deg,#1A0508,#C8102E);border-radius:20px;padding:24px 28px;margin-bottom:16px;}
+.hero-label{font-size:12px;color:rgba(255,255,255,0.6);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+.hero-num{font-size:64px;font-weight:700;color:#fff;letter-spacing:-2px;line-height:1;font-variant-numeric:tabular-nums;}
+.hero-sub{font-size:14px;color:rgba(255,255,255,0.6);margin-top:8px;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px;}
+.hg{background:rgba(255,255,255,0.15);border-radius:12px;padding:12px;text-align:center;}
+.hg-num{font-size:22px;font-weight:700;color:#fff;line-height:1;font-variant-numeric:tabular-nums;}
+.hg-label{font-size:11px;color:rgba(255,255,255,0.6);margin-top:2px;text-transform:uppercase;letter-spacing:0.3px;}
+
+/* ── SECTION CARDS ── */
+.section-card{background:var(--card);border-radius:16px;padding:20px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,0.06);}
+.section-title{font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+
+/* ── COMPLIANCE STATS (4 cols desktop) ── */
+.compliance-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:14px;}
+.compliance-card{border-radius:14px;padding:16px;text-align:center;}
 .cc-green{background:linear-gradient(135deg,#E8F8ED,#D4F0DF);border:1px solid rgba(52,199,89,0.3);}
 .cc-red{background:linear-gradient(135deg,#FEE8E8,#FFD4D4);border:1px solid rgba(255,59,48,0.3);}
-.cc-num{font-size:32px;font-weight:700;line-height:1;}
-.cc-label{font-size:11px;font-weight:700;margin-top:4px;}
-.cc-sub{font-size:10px;opacity:0.7;margin-top:2px;}
-.store-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+.cc-num{font-size:36px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;}
+.cc-label{font-size:12px;font-weight:700;margin-top:5px;}
+.cc-sub{font-size:11px;opacity:0.7;margin-top:2px;}
+
+/* ── TODAY: 2-PANEL LAYOUT ── */
+.today-grid{display:grid;grid-template-columns:3fr 2fr;gap:14px;margin-bottom:14px;}
+.today-grid .section-card{margin-bottom:0;}
+
+/* ── STORE ROWS ── */
+.store-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--border);}
 .store-row:last-child{border-bottom:none;}
 .store-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 .store-info{flex:1;}
-.store-name{font-size:13px;font-weight:600;}
-.store-meta{font-size:11px;color:var(--text2);margin-top:1px;}
+.store-name{font-size:14px;font-weight:600;}
+.store-meta{font-size:12px;color:var(--text2);margin-top:1px;}
 .store-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:8px;flex-shrink:0;}
-.badge-pass{background:#E8F8ED;color:#1B7A3A;}
+.badge-pass{background:var(--pass-bg);color:var(--pass);}
 .badge-fail{background:#FEE8E8;color:#C8102E;}
 .badge-pending{background:#F5F5F7;color:var(--text2);}
-.am-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border);}
+
+/* ── AM ROWS ── */
+.am-row{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--border);}
 .am-row:last-child{border-bottom:none;}
-.am-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--red),var(--red-dark));display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.am-icon{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--red),var(--red-dark));display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
 .am-info{flex:1;}
-.am-name{font-size:14px;font-weight:600;}
-.am-meta{font-size:11px;color:var(--text2);margin-top:1px;}
+.am-name{font-size:15px;font-weight:600;}
+.am-meta{font-size:12px;color:var(--text2);margin-top:2px;}
 .am-score{text-align:right;}
-.am-pct{font-size:20px;font-weight:700;}
-.am-sub{font-size:10px;color:var(--text2);margin-top:2px;}
-.progress-bg{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:4px;}
+.am-pct{font-size:22px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;}
+.am-sub{font-size:11px;color:var(--text2);margin-top:2px;}
+.progress-bg{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:5px;}
 .progress-fill{height:100%;border-radius:3px;transition:width 1s ease;}
-/* COMBINED STORE CARD */
-.store-card{background:var(--surface);border-radius:16px;padding:14px;margin-bottom:10px;border:1px solid var(--border);}
-.sc-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;}
+
+/* ── PHOTO STORE CARDS (Today) ── */
+.today-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.store-card{background:var(--surface);border-radius:16px;padding:16px;border:1px solid var(--border);}
+.sc-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;}
 .sc-store{font-size:15px;font-weight:700;color:var(--text);}
-.sc-meta{font-size:11px;color:var(--text2);margin-top:2px;}
+.sc-meta{font-size:12px;color:var(--text2);margin-top:2px;}
 .sc-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;}
-.sc-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;}
-.sc-badge.pass{background:#E8F8ED;color:#1B7A3A;}
+.sc-badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;}
+.sc-badge.pass{background:var(--pass-bg);color:var(--pass);}
 .sc-badge.fail{background:#FEE8E8;color:#C8102E;}
-.sc-badge.pending{background:#FFF3E0;color:#8B4500;}
 .sc-badge.none{background:#F5F5F7;color:var(--text2);}
-/* PHOTO STRIP — 3 photos in a row */
-.photo-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;}
+.photo-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;}
 .photo-cell{position:relative;border-radius:10px;overflow:hidden;background:#1A1A1A;aspect-ratio:1;}
 .photo-cell img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;}
-.photo-cell-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.8));padding:5px 6px;}
-.pcl-name{font-size:9px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.3px;}
-.pcl-grade{font-size:11px;font-weight:700;margin-top:1px;}
-.photo-empty{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:rgba(255,255,255,0.25);font-size:10px;min-height:90px;}
-.photo-empty span{font-size:24px;}
-.sc-summary{font-size:11px;color:var(--text2);padding:8px;background:var(--card);border-radius:8px;line-height:1.5;margin-top:4px;}
-.empty-state{text-align:center;padding:40px 20px;color:var(--text2);}
-.empty-state span{font-size:40px;display:block;margin-bottom:10px;}
-.empty-state p{font-size:14px;line-height:1.6;}
-.spinner{width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin 0.8s linear infinite;margin:30px auto;display:block;}
+.photo-cell-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.8));padding:6px 8px;}
+.pcl-name{font-size:10px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.3px;}
+.pcl-grade{font-size:12px;font-weight:700;margin-top:1px;}
+.photo-empty{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:rgba(255,255,255,0.25);font-size:11px;min-height:100px;}
+.photo-empty span{font-size:28px;}
+.sc-summary{font-size:12px;color:var(--text2);padding:10px 12px;background:var(--card);border-radius:8px;line-height:1.5;margin-top:6px;}
+
+/* ── HISTORY: AM TABLE CARDS ── */
+.am-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;}
+.am-section{background:var(--card);border-radius:16px;box-shadow:0 2px 10px rgba(0,0,0,0.06);overflow:hidden;}
+.am-section-hdr{padding:16px 18px 12px;border-bottom:1px solid var(--border);}
+.am-section-name{font-size:15px;font-weight:700;color:var(--text);}
+.am-section-meta{font-size:12px;color:var(--text2);margin-top:2px;}
+.htbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.htbl{width:100%;border-collapse:collapse;font-size:13px;}
+.htbl th{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;padding:10px 14px;text-align:left;background:var(--surface);border-bottom:1px solid var(--border);white-space:nowrap;}
+.htbl th.r{text-align:center;}
+.htbl td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.htbl tbody tr:last-child td{border-bottom:none;}
+.htbl tbody tr:hover{background:rgba(200,16,46,0.025);}
+.htbl-store{font-size:14px;font-weight:600;color:var(--text);}
+.htbl-num{text-align:center;font-size:14px;font-weight:500;color:var(--text);font-variant-numeric:tabular-nums;}
+.htbl-date{font-size:12px;color:var(--text2);white-space:nowrap;}
+.hst{font-size:11px;font-weight:700;padding:4px 10px;border-radius:7px;white-space:nowrap;}
+.hst-active{background:var(--pass-bg);color:var(--pass);}
+.hst-stale{background:var(--warn-bg);color:var(--warn);}
+.hst-none{background:#FEE8E8;color:#C8102E;}
+
+/* ── STORE FILTER PILLS ── */
+.sfilter{display:flex;gap:6px;margin:10px 0 14px;}
+.sfbtn{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;border:1.5px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;transition:background 0.15s ease-out,border-color 0.15s ease-out,color 0.15s ease-out;white-space:nowrap;}
+.sfbtn.active{background:var(--red);border-color:var(--red);color:#fff;}
+.sfbtn:hover:not(.active){border-color:var(--text2);color:var(--text);}
+/* submitted row gets a faint green wash */
+.store-row.submitted{background:rgba(52,199,89,0.04);}
+/* timestamp chip */
+.refresh-chip{font-size:11px;color:var(--text2);display:inline-flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:3px 10px;margin-left:auto;cursor:pointer;transition:background 0.15s ease-out;user-select:none;}
+.refresh-chip:hover{background:var(--border);}
+
+/* ── MISC ── */
+.empty-state{text-align:center;padding:48px 20px;color:var(--text2);}
+.empty-state span{font-size:48px;display:block;margin-bottom:12px;}
+.empty-state p{font-size:15px;line-height:1.6;}
+.spinner{width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin 0.8s linear infinite;margin:40px auto;display:block;}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .fade-in{animation:fadeIn 0.3s ease;}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(255,255,255,0.88);backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000;}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;}
-.nav-icon{font-size:22px;}
-.nav-label{font-size:10px;font-weight:500;color:var(--text2);}
-.nav-item.active .nav-label{color:var(--red);font-weight:600;}
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;}
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:var(--z-modal);align-items:center;justify-content:center;}
 .lightbox.open{display:flex;}
 .lightbox img{max-width:95vw;max-height:90vh;border-radius:12px;object-fit:contain;}
 .lightbox-close{position:absolute;top:20px;right:20px;color:#fff;font-size:28px;cursor:pointer;background:rgba(255,255,255,0.15);border:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+
+/* =============================================
+   MOBILE OVERRIDE — phones ≤ 767px
+   ============================================= */
+@media (max-width:767px){
+  body{padding-left:0;padding-bottom:calc(var(--nav-h)+20px);}
+
+  /* bottom tab bar */
+  .bottom-nav{width:100%;height:var(--nav-h);top:auto;bottom:0;left:0;right:0;flex-direction:row;justify-content:space-around;align-items:center;padding:0 0 env(safe-area-inset-bottom);border-right:none;border-top:1px solid rgba(0,0,0,0.08);overflow-y:visible;gap:0;}
+  .bottom-nav::before{display:none;}
+  .nav-item{flex-direction:column;gap:3px;padding:8px 12px;border-radius:0;transition:none;}
+  .nav-item:hover,.nav-item.active{background:transparent;}
+  .nav-item.active .nav-label{color:var(--red);font-weight:600;}
+  .nav-icon{font-size:22px;}
+  .nav-label{font-size:10px;}
+
+  /* mobile header */
+  .hdr{background:var(--surface);border-bottom:1px solid var(--border);padding:calc(env(safe-area-inset-top,0px) + 14px) 20px 24px;height:auto;position:static;flex-direction:column;align-items:flex-start;gap:4px;}
+  .back{color:var(--text2);margin-bottom:10px;}
+  .back:hover{color:var(--red);}
+  .hdr-sep{display:none;}
+  .hdr-title{font-size:26px;color:var(--text);}
+  .hdr-sub{font-size:13px;color:var(--text2);margin-top:3px;margin-left:0;}
+
+  /* period bar */
+  .period-bar{padding:0;top:0;overflow-x:auto;scrollbar-width:none;}
+  .period-btn{padding:12px 18px;font-size:13px;}
+
+  /* content */
+  .content{padding:14px 16px;}
+  .hero{padding:20px;margin-bottom:12px;}
+  .hero-num{font-size:52px;}
+  .hero-grid{gap:8px;margin-top:14px;}
+  .hg{padding:10px;}
+  .hg-num{font-size:20px;}
+  .hg-label{font-size:10px;}
+  .section-card{padding:16px;margin-bottom:12px;}
+  .compliance-grid{grid-template-columns:1fr 1fr;gap:8px;}
+  .cc-num{font-size:32px;}
+  .cc-label{font-size:11px;}
+  .cc-sub{font-size:10px;}
+
+  /* today: single column */
+  .today-grid{display:block;}
+  .today-grid .section-card{margin-bottom:12px;}
+  .today-photos{grid-template-columns:1fr;}
+
+  /* store & AM rows */
+  .store-name{font-size:13px;}
+  .store-meta{font-size:11px;}
+  .am-name{font-size:14px;}
+  .am-meta{font-size:11px;}
+  .am-pct{font-size:20px;}
+  .am-sub{font-size:10px;}
+
+  /* photo cards */
+  .sc-store{font-size:15px;}
+  .sc-meta{font-size:11px;}
+  .photo-empty{min-height:90px;font-size:10px;}
+  .photo-empty span{font-size:24px;}
+
+  /* history: single column */
+  .am-grid{display:block;}
+  .am-section{margin-bottom:12px;}
+  .am-section-hdr{padding:14px 16px 10px;}
+  .am-section-name{font-size:14px;}
+  .am-section-meta{font-size:11px;}
+  .htbl{font-size:12px;}
+  .htbl th{font-size:10px;padding:8px 8px;}
+  .htbl td{padding:9px 8px;}
+  .htbl-store{font-size:13px;}
+  .htbl-num{font-size:13px;}
+  .htbl-date{font-size:11px;}
+  .hst{font-size:10px;padding:3px 8px;}
+}
 </style>
 <style id="pin-wall-css">
-#pin-wall{position:fixed;inset:0;z-index:99999;background:#1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
+#pin-wall{position:fixed;inset:0;z-index:var(--z-wall);background:#1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
 .pin-logo{font-size:48px;margin-bottom:8px;}
 .pin-title{font-size:24px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.5px;}
 .pin-sub{font-size:13px;color:#6E6E73;margin-bottom:40px;}
 .pin-dots{display:flex;gap:16px;margin-bottom:32px;}
-.pin-dot{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.15);transition:all 0.2s;}
+.pin-dot{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.15);transition:background-color 120ms ease-out;}
 .pin-dot.filled{background:#C8102E;}
 .pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:240px;}
-.pin-btn{height:64px;border-radius:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;font-size:22px;font-weight:600;cursor:pointer;transition:all 0.15s;}
+.pin-btn{height:64px;border-radius:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;font-size:22px;font-weight:600;cursor:pointer;transition:background-color 120ms ease-out,color 120ms ease-out;}
 .pin-btn:active{background:rgba(200,16,46,0.3);transform:scale(0.95);}
-.pin-error{font-size:13px;color:#FF3B30;margin-top:16px;opacity:0;transition:opacity 0.3s;}
+.pin-error{font-size:13px;color:#FF3B30;margin-top:16px;opacity:0;transition:opacity 120ms ease-out;}
 .pin-error.show{opacity:1;}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 .pin-dots.shake{animation:shake 0.3s ease;}
 </style>
 </head>
 <body>
+<nav class="nav">
+  <a href="index.html" class="nav-wordmark">Ops<span>AI</span>Hub</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link ">Home</a>
+    <a href="tasks.html" class="nav-link ">Tasks</a>
+    <a href="events.html" class="nav-link ">Events</a>
+    <a href="performance.html" class="nav-link ">Scores</a>
+    <a href="team.html" class="nav-link ">Team</a>
+    <a href="fdu-dashboard.html" class="nav-link active">FDU</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="nav-user" id="navUserBtn" onclick="showIdentitySelector()">
+      <div style="position:relative;width:28px;height:28px;">
+        <div class="nav-avatar" id="navAvatar">?</div>
+        <img id="navPhoto" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;position:absolute;top:0;left:0;" />
+      </div>
+      <span class="nav-user-name" id="navUserName">Select</span>
+    </div>
+  </div>
+</nav>
 <div id="pin-wall">
   <div class="pin-logo">☕</div>
   <div class="pin-title">Tim's Ops Connect</div>
@@ -131,47 +298,43 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;ba
     <button class="pin-btn" onclick="pinPress('7')">7</button>
     <button class="pin-btn" onclick="pinPress('8')">8</button>
     <button class="pin-btn" onclick="pinPress('9')">9</button>
-    <button class="pin-btn" onclick="pinPress('c')" style="font-size:14px;">Clear</button>
+    <button class="pin-btn" onclick="pinPress('c')" >Clear</button>
     <button class="pin-btn" onclick="pinPress('0')">0</button>
-    <button class="pin-btn" onclick="pinPress('x')" style="font-size:20px;">⌫</button>
+    <button class="pin-btn" onclick="pinPress('x')" >⌫</button>
   </div>
   <div class="pin-error" id="pinError">Incorrect PIN. Try again.</div>
 </div>
 <div class="hdr">
   <a href="index.html" class="back">&#x2190; Home</a>
+  <span class="hdr-sep">/</span>
   <div class="hdr-title">&#x1F369; FDU Compliance</div>
-  <div class="hdr-sub">Display + Donut Quality — All Stores</div>
+  <div class="hdr-sub">Display + Donut Quality &mdash; All Stores</div>
 </div>
 <div class="period-bar">
   <button class="period-btn active" data-period="today">Today</button>
-  <button class="period-btn" data-period="week">This Week</button>
-  <button class="period-btn" data-period="month">This Month</button>
+  <button class="period-btn" data-period="history">History</button>
 </div>
 <div class="content" id="mainContent"><div class="spinner"></div></div>
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
   <img id="lightboxImg" src="" alt="Photo">
 </div>
-<nav class="bottom-nav">
-  <a href="index.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Home</span></a>
-  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#x2705;</span><span class="nav-label">Tasks</span></a>
-  <a href="events.html" class="nav-item"><span class="nav-icon">&#128197;</span><span class="nav-label">Events</span></a>
-  <a href="performance.html" class="nav-item"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Scores</span></a>
-  <a href="team.html" class="nav-item"><span class="nav-icon">&#x1F465;</span><span class="nav-label">Team</span></a>
-</nav>
+
 <script>
-var fduData=[],donutData=[],currentPeriod='today';
+var fduData=[],donutData=[],currentPeriod='today',storeFilter='all',lastRefreshTime=null;
+function setStoreFilter(f){storeFilter=f;render();}
+function _refreshChipLabel(){if(!lastRefreshTime)return'Now';var diff=Math.round((Date.now()-lastRefreshTime)/60000);return diff<1?'Just now':diff+'m ago';}
+function _startAutoRefresh(){if(window._fduTimer)clearInterval(window._fduTimer);window._fduTimer=setInterval(function(){loadData(true);},5*60*1000);}
 var allStores=[
   {store:'T3DD',am:'Raman'},{store:'T3DD FC',am:'Raman'},{store:'T1DD',am:'Raman'},
   {store:'Cyber Hub',am:'Harish'},{store:'Select City',am:'Harish'},{store:'Green Park',am:'Harish'},
   {store:'Basant Lok',am:'Harish'},{store:'Epicuria',am:'Harish'},{store:'APL Golf Course',am:'Harish'},
   {store:'Skymark',am:'Rohit'},{store:'Vegas Mall',am:'Rohit'},{store:'NSP',am:'Rohit'},{store:'Punjabi Bagh',am:'Rohit'},
-  {store:'CP67 Mohali',am:'Deepak'},{store:'Elante Mall',am:'Deepak'},{store:'Sunview',am:'Deepak'},
-  {store:'Sector 35',am:'Deepak'},{store:'Bhupindra Road',am:'Deepak'},{store:'Malhar Rd',am:'Deepak'},
+  {store:'CP67 Mohali',am:'Kajal'},{store:'Elante Mall',am:'Kajal'},{store:'Sector 35',am:'Kajal'},
+  {store:'Sunview',am:'Deepak'},{store:'Bhupindra Road',am:'Deepak'},{store:'Malhar Rd',am:'Deepak'},
   {store:'Sangrur',am:'Deepak'},{store:'Bucho',am:'Deepak'},
-  {store:'Balewadi',am:'Akash Chavan'},{store:'Lokhandwala',am:'Akash Chavan'},{store:'Supreme',am:'Akash Chavan'},
-  {store:'PMC Kurla',am:'Akash Chavan'},{store:'Viman Nagar',am:'Akash Chavan'},{store:'PMC Wakad',am:'Akash Chavan'},
-  {store:'FC Road',am:'Akash Chavan'},{store:'FIFC',am:'Akash Chavan'},
+  {store:'Lokhandwala',am:'Sandeep Mukharjee'},{store:'Supreme',am:'Sandeep Mukharjee'},{store:'PMC Kurla',am:'Sandeep Mukharjee'},{store:'FIFC',am:'Sandeep Mukharjee'},
+  {store:'Balewadi',am:'TBA'},{store:'Viman Nagar',am:'TBA'},{store:'PMC Wakad',am:'TBA'},{store:'FC Road',am:'TBA'},
   {store:'HPCL-MPE',am:'Akash Rathod'},{store:'NMIAL',am:'Akash Rathod'},
   {store:'NMIAL Arrival',am:'Akash Rathod'},{store:'Seawoods',am:'Akash Rathod'},
   {store:'Koramangala',am:'Jagadeesha'},{store:'BIAL',am:'Jagadeesha'},
@@ -181,7 +344,7 @@ var allStores=[
   {store:'Ahmedabad Airport',am:'Unassigned'},{store:'Sindhu Bhavan',am:'Unassigned'},{store:'Navrangpura',am:'Unassigned'}
 ];
 var amIcons={'Raman':'&#x1F3D9;','Harish':'&#x1F3D9;','Rohit':'&#x1F3D9;','Deepak':'&#x1F33E;',
-  'Akash Chavan':'&#x1F30A;','Akash Rathod':'&#x1F30A;','Jagadeesha':'&#x1F333;','Shivam':'&#x1F48E;','Unassigned':'&#x2753;'};
+  'Kajal':'&#x1F33E;','Sandeep Mukharjee':'&#x1F30A;','Akash Rathod':'&#x1F30A;','Vrunda':'&#x1F966;','Jagadeesha':'&#x1F333;','Shivam':'&#x1F48E;','Unassigned':'&#x2753;'};
 function openLightbox(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
 document.querySelector('.period-bar').addEventListener('click',function(e){
@@ -189,27 +352,22 @@ document.querySelector('.period-bar').addEventListener('click',function(e){
   document.querySelectorAll('.period-btn').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');currentPeriod=btn.getAttribute('data-period');render();
 });
-function loadData(){
+function loadData(silent){
+  if(!silent)document.getElementById('mainContent').innerHTML='<div class="spinner"></div>';
   Promise.all([
     fetch('/api/fdu/submissions').then(function(r){return r.json();}),
     fetch('/api/fdu/donut-results').then(function(r){return r.json();})
   ]).then(function(results){
     fduData=results[0].data||[];
     donutData=results[1].data||[];
+    lastRefreshTime=Date.now();
+    _startAutoRefresh();
     render();
   }).catch(function(){render();});
 }
 function filterByPeriod(data){
-  var now=new Date();
-  var today=now.toISOString().substring(0,10);
-  var weekAgo=new Date(now-7*24*60*60*1000).toISOString().substring(0,10);
-  var monthStart=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-01';
-  return data.filter(function(d){
-    var dt=(d.submittedAt||d.date||'').substring(0,10);
-    if(currentPeriod==='today') return dt===today;
-    if(currentPeriod==='week') return dt>=weekAgo;
-    return dt>=monthStart;
-  });
+  var today=new Date().toISOString().substring(0,10);
+  return data.filter(function(d){return (d.submittedAt||d.date||'').substring(0,10)===today;});
 }
 function gc(pct){return pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--critical)';}
 function gradeColor(g){if(!g)return'var(--orange)';var v=g.toLowerCase();if(v==='pass'||v==='a'||v==='b')return'var(--green)';if(v==='fail'||v==='c'||v==='d')return'var(--critical)';return'var(--orange)';}
@@ -225,6 +383,7 @@ function photoCell(src,label,grade,feedback){
   return '<div class="photo-cell">'+inner+'</div>';
 }
 function render(){
+  if(currentPeriod==='history'){renderHistory();return;}
   var fduFiltered=filterByPeriod(fduData);
   var donutFiltered=filterByPeriod(donutData);
   var totalStores=allStores.length;
@@ -236,9 +395,8 @@ function render(){
   var donutTotal=donutFiltered.length;
   var donutPct=donutTotal>0?Math.round(donutPass/donutTotal*100):0;
   var overallPct=Math.round((fduPct+donutPct)/2);
-  var periodLabel=currentPeriod==='today'?'Today':currentPeriod==='week'?'This Week':'This Month';
   var html='<div class="hero fade-in">'
-    +'<div class="hero-label">Overall FDU Compliance — '+periodLabel+'</div>'
+    +'<div class="hero-label">Overall FDU Compliance — Today</div>'
     +'<div class="hero-num" style="color:'+(overallPct>=80?'#34C759':overallPct>=50?'#FFD700':'#FF6B6B')+'">'+overallPct+'%</div>'
     +'<div class="hero-sub">'+fduCompliant+' of '+totalStores+' stores submitted FDU checks</div>'
     +'<div class="hero-grid">'
@@ -247,16 +405,50 @@ function render(){
       +'<div class="hg"><div class="hg-num">'+donutTotal+'</div><div class="hg-label">Checks Done</div></div>'
     +'</div></div>'
   +'<div class="compliance-grid fade-in">'
-    +'<div class="compliance-card cc-green"><div class="cc-num" style="color:#1B7A3A;">'+fduCompliant+'</div><div class="cc-label" style="color:#1B7A3A;">FDU Submitted</div><div class="cc-sub">stores with display photos</div></div>'
-    +'<div class="compliance-card cc-red"><div class="cc-num" style="color:#C8102E;">'+(totalStores-fduCompliant)+'</div><div class="cc-label" style="color:#C8102E;">Not Submitted</div><div class="cc-sub">stores pending</div></div>'
-    +'<div class="compliance-card cc-green"><div class="cc-num" style="color:#1B7A3A;">'+donutPass+'</div><div class="cc-label" style="color:#1B7A3A;">Donuts Passed</div><div class="cc-sub">quality checks passed</div></div>'
-    +'<div class="compliance-card cc-red"><div class="cc-num" style="color:#C8102E;">'+donutFail+'</div><div class="cc-label" style="color:#C8102E;">Donuts Failed</div><div class="cc-sub">quality issues found</div></div>'
+    +'<div class="compliance-card cc-green"><div class="cc-num" style="color:var(--pass);">'+fduCompliant+'</div><div class="cc-label" style="color:var(--pass);">FDU Submitted</div><div class="cc-sub">stores with display photos</div></div>'
+    +'<div class="compliance-card cc-red"><div class="cc-num" class="text-red">'+(totalStores-fduCompliant)+'</div><div class="cc-label" class="text-red">Not Submitted</div><div class="cc-sub">stores pending</div></div>'
+    +'<div class="compliance-card cc-green"><div class="cc-num" style="color:var(--pass);">'+donutPass+'</div><div class="cc-label" style="color:var(--pass);">Donuts Passed</div><div class="cc-sub">quality checks passed</div></div>'
+    +'<div class="compliance-card cc-red"><div class="cc-num" class="text-red">'+donutFail+'</div><div class="cc-label" class="text-red">Donuts Failed</div><div class="cc-sub">quality issues found</div></div>'
   +'</div>';
+  /* Build AM + store maps for the 2-panel layout */
   var amMap={};
   allStores.forEach(function(s){if(!amMap[s.am])amMap[s.am]={name:s.am,total:0,fduDone:0,donutDone:0,donutPass:0};amMap[s.am].total++;});
   fduFiltered.forEach(function(d){var am=d.am||getAM(d.store);if(am&&amMap[am])amMap[am].fduDone=Math.min(amMap[am].fduDone+1,amMap[am].total);});
   donutFiltered.forEach(function(d){var am=d.am||getAM(d.store);if(am&&amMap[am]){amMap[am].donutDone++;if(d.overallPass)amMap[am].donutPass++;}});
-  html+='<div class="section-card fade-in"><div class="section-title">&#x1F464; AM Compliance Summary</div>';
+  /* 2-panel grid: store list (left 3fr) + AM summary (right 2fr) */
+  html+='<div class="today-grid fade-in">';
+  /* LEFT — store status */
+  var submittedStores=allStores.filter(function(s){return fduFiltered.some(function(d){return matchStore(d.store,s.store);});});
+  var pendingStores=allStores.filter(function(s){return !fduFiltered.some(function(d){return matchStore(d.store,s.store);});});
+  var displayStores=storeFilter==='ok'?submittedStores:storeFilter==='pending'?pendingStores:allStores;
+  var subCount=submittedStores.length;
+  html+='<div class="section-card" style="margin-bottom:0;overflow-y:auto;max-height:520px;">'
+    +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:2px;">'
+    +'<div class="section-title" style="margin-bottom:0;">&#x1F3EA; Store FDU Status</div>'
+    +'<span class="refresh-chip" onclick="loadData(false)" title="Refresh now">&#x21BB; '+_refreshChipLabel()+'</span>'
+    +'</div>'
+    +'<div style="font-size:12px;color:'+(subCount===allStores.length?'var(--pass)':'var(--warn)')+';" >'
+    +subCount+' / '+allStores.length+' stores submitted today'
+    +'</div>'
+    +'<div class="sfilter">'
+    +'<button class="sfbtn'+(storeFilter==='all'?' active':'')+'" onclick="setStoreFilter(\'all\')">All ('+allStores.length+')</button>'
+    +'<button class="sfbtn'+(storeFilter==='ok'?' active':'')+'" onclick="setStoreFilter(\'ok\')">&#x2705; Submitted ('+subCount+')</button>'
+    +'<button class="sfbtn'+(storeFilter==='pending'?' active':'')+'" onclick="setStoreFilter(\'pending\')">&#x23F3; Pending ('+pendingStores.length+')</button>'
+    +'</div>';
+  displayStores.forEach(function(s){
+    var hasFDU=fduFiltered.some(function(d){return matchStore(d.store,s.store);});
+    var donutEntry=donutFiltered.filter(function(d){return matchStore(d.store,s.store);}).pop();
+    var dotColor=hasFDU?'var(--green)':'var(--critical)';
+    var badge=hasFDU?'<span class="store-badge badge-pass">&#x2705; FDU OK</span>':'<span class="store-badge badge-pending">&#x23F3; Pending</span>';
+    var donutBadge=donutEntry?(donutEntry.overallPass?'<span class="store-badge badge-pass" style="margin-left:4px;">&#x1F369; Pass</span>':'<span class="store-badge badge-fail" style="margin-left:4px;background:#FEE8E8;color:#C8102E;">&#x274C; Fail</span>'):'<span class="store-badge badge-pending" style="margin-left:4px;">&#x1F369; &mdash;</span>';
+    html+='<div class="store-row'+(hasFDU?' submitted':'')+'">'
+      +'<div class="store-dot" style="background:'+dotColor+'"></div>'
+      +'<div class="store-info"><div class="store-name">'+s.store+'</div><div class="store-meta">'+s.am+'</div></div>'
+      +'<div style="display:flex;align-items:center;gap:4px;">'+badge+donutBadge+'</div></div>';
+  });
+  html+='</div>';
+  /* RIGHT — AM compliance */
+  html+='<div class="section-card" style="margin-bottom:0;"><div class="section-title">&#x1F464; AM Compliance</div>';
   Object.values(amMap).sort(function(a,b){return(b.fduDone/b.total)-(a.fduDone/a.total);}).forEach(function(am){
     var fPct=am.total>0?Math.round(am.fduDone/am.total*100):0;
     var dPct=am.donutDone>0?Math.round(am.donutPass/am.donutDone*100):0;
@@ -264,50 +456,33 @@ function render(){
     html+='<div class="am-row">'
       +'<div class="am-icon">'+(amIcons[am.name]||'&#x1F464;')+'</div>'
       +'<div class="am-info"><div class="am-name">'+am.name+'</div>'
-      +'<div class="am-meta">FDU: '+am.fduDone+'/'+am.total+' &nbsp;·&nbsp; Donuts: '+am.donutDone+' &nbsp;·&nbsp; Pass: '+dPct+'%</div>'
+      +'<div class="am-meta">FDU: '+am.fduDone+'/'+am.total+' &nbsp;·&nbsp; Pass: '+dPct+'%</div>'
       +'<div class="progress-bg"><div class="progress-fill" style="width:'+fPct+'%;background:'+c+';"></div></div></div>'
       +'<div class="am-score"><div class="am-pct" style="color:'+c+';">'+fPct+'%</div><div class="am-sub">FDU rate</div></div>'
     +'</div>';
   });
   html+='</div>';
-  html+='<div class="section-card fade-in"><div class="section-title">&#x1F3EA; Store FDU Status <span style="font-size:11px;color:var(--text2);">'+periodLabel+'</span></div>';
-  allStores.forEach(function(s){
-    var hasFDU=fduFiltered.some(function(d){return matchStore(d.store,s.store);});
-    var donutEntry=donutFiltered.filter(function(d){return matchStore(d.store,s.store);}).pop();
-    var dotColor=hasFDU?'var(--green)':'var(--critical)';
-    var badge=hasFDU?'<span class="store-badge badge-pass">&#x2705; Display OK</span>':'<span class="store-badge badge-pending">&#x23F3; Pending</span>';
-    var donutBadge=donutEntry?(donutEntry.overallPass?'<span class="store-badge badge-pass" style="margin-left:4px;">&#x1F369; Pass</span>':'<span class="store-badge badge-fail" style="margin-left:4px;">&#x274C; Fail</span>'):'<span class="store-badge badge-pending" style="margin-left:4px;">&#x1F369; --</span>';
-    html+='<div class="store-row"><div class="store-dot" style="background:'+dotColor+'"></div>'
-      +'<div class="store-info"><div class="store-name">'+s.store+'</div><div class="store-meta">'+s.am+'</div></div>'
-      +'<div style="display:flex;align-items:center;gap:4px;">'+badge+donutBadge+'</div></div>';
-  });
-  html+='</div>';
+  html+='</div>'; /* end today-grid */
   var allEntries=[];
   fduFiltered.forEach(function(d){
-    var key=(d.store||'unknown')+'_'+(d.submittedAt||'').substring(0,10);
-    allEntries.push({key:key,store:d.store||'',am:d.am||getAM(d.store)||'',time:d.submittedAt||'',fduPhotos:Array.isArray(d.photos)&&d.photos.length>0?d.photos:(d.photo?[d.photo]:[]),donut:null,fduTime:d.submittedAt||''});
+    allEntries.push({store:d.store||'',am:d.am||getAM(d.store)||'',time:d.submittedAt||'',fduPhotos:Array.isArray(d.photos)&&d.photos.length>0?d.photos:(d.photo?[d.photo]:[]),donut:null});
   });
   donutFiltered.forEach(function(d){
-    var key=(d.store||'unknown')+'_'+(d.submittedAt||'').substring(0,10);
     var existing=allEntries.find(function(e){return matchStore(e.store,d.store)&&e.donut===null;});
     if(existing){existing.donut=d;}
-    else{allEntries.push({key:key,store:d.store||'',am:d.am||getAM(d.store)||'',time:d.submittedAt||'',fduPhotos:[],donut:d});}
+    else{allEntries.push({store:d.store||'',am:d.am||getAM(d.store)||'',time:d.submittedAt||'',fduPhotos:[],donut:d});}
   });
   allEntries.sort(function(a,b){return(b.time>a.time?1:-1);});
   if(allEntries.length>0){
-    html+='<div class="section-card fade-in"><div class="section-title">&#x1F4F8; FDU + Donut Photos <span style="font-size:11px;color:var(--text2);">'+allEntries.length+' entries</span></div>';
-    allEntries.slice(0,30).forEach(function(e){
+    html+='<div class="section-title fade-in" style="margin-bottom:12px;">&#x1F4F8; Today\'s FDU + Donut Photos <span class="text-xs-muted">'+allEntries.length+' entries</span></div>';
+    html+='<div class="today-photos fade-in">';
+    allEntries.forEach(function(e){
       var storeName=e.store||'Unknown Store';
       var amName=e.am||'';
       var timeStr=e.time?new Date(e.time).toLocaleString('en-IN',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'';
-      var d=e.donut||{};
-      var d1=d.donut1||{};
-      var d2=d.donut2||{};
+      var d=e.donut||{};var d1=d.donut1||{};var d2=d.donut2||{};
       var fduBadge=e.fduPhotos.length>0?'<span class="sc-badge pass">&#x1F4F8; FDU OK</span>':'<span class="sc-badge none">&#x1F4F8; No Display</span>';
-      var donutBadge=e.donut?(e.donut.overallPass?'<span class="sc-badge pass">&#x1F369; Passed</span>':'<span class="sc-badge fail">&#x1F369; Failed</span>'):'<span class="sc-badge none">&#x1F369; No Check</span>';
-      var fduSrc=e.fduPhotos[0]||'';
-      var d1src=d.photo1||'';
-      var d2src=d.photo2||'';
+      var donutBadge=e.donut?(e.donut.overallPass?'<span class="sc-badge pass">&#x1F369; Passed</span>':'<span class="sc-badge fail" style="background:#FEE8E8;color:#C8102E;">&#x1F369; Failed</span>'):'<span class="sc-badge none">&#x1F369; No Check</span>';
       html+='<div class="store-card">'
         +'<div class="sc-header"><div>'
           +'<div class="sc-store">'+storeName+'</div>'
@@ -315,9 +490,9 @@ function render(){
           +'<div class="sc-badges">'+fduBadge+donutBadge+'</div>'
         +'</div></div>'
         +'<div class="photo-strip">'
-          +photoCell(fduSrc,'FDU Display','','')
-          +photoCell(d1src,d1.name||'Donut 1',d.grade1||'',d.feedback1||'')
-          +photoCell(d2src,d2.name||'Donut 2',d.grade2||'',d.feedback2||'')
+          +photoCell(e.fduPhotos[0]||'','FDU Display','','')
+          +photoCell(d.photo1||'',d1.name||'Donut 1',d.grade1||'',d.feedback1||'')
+          +photoCell(d.photo2||'',d2.name||'Donut 2',d.grade2||'',d.feedback2||'')
         +'</div>'
         +(d.summary?'<div class="sc-summary">&#x1F916; '+d.summary+'</div>':'')
       +'</div>';
@@ -325,15 +500,110 @@ function render(){
     html+='</div>';
   } else {
     html+='<div class="section-card fade-in"><div class="section-title">&#x1F4F8; FDU + Donut Photos</div>'
-      +'<div class="empty-state"><span>&#x1F4F8;</span><p>No submissions for '+periodLabel.toLowerCase()+'.<br>Try "This Week" or "This Month".</p></div></div>';
+      +'<div class="empty-state"><span>&#x1F4F8;</span><p>No submissions today yet.<br>Switch to History to browse past records.</p></div></div>';
   }
+  document.getElementById('mainContent').innerHTML=html;
+}
+function renderHistory(){
+  var START='2026-06-01';
+  var today=new Date().toISOString().substring(0,10);
+  var sevenAgo=new Date(Date.now()-7*24*60*60*1000).toISOString().substring(0,10);
+  var fduFiltered=fduData.filter(function(d){var dt=(d.submittedAt||d.date||'').substring(0,10);return dt>=START&&dt<=today;});
+  var donutFiltered=donutData.filter(function(d){var dt=(d.submittedAt||d.date||'').substring(0,10);return dt>=START&&dt<=today;});
+  /* Build per-store stats */
+  var stats={};
+  allStores.forEach(function(s){stats[s.store]={store:s.store,am:s.am,fduCount:0,donutCount:0,donutPass:0,lastFDU:'',lastDonut:''};});
+  fduFiltered.forEach(function(d){
+    var matched=allStores.find(function(s){return matchStore(s.store,d.store);});
+    if(!matched)return;
+    var st=stats[matched.store];
+    st.fduCount++;
+    var dt=(d.submittedAt||'').substring(0,10);
+    if(dt>st.lastFDU)st.lastFDU=dt;
+  });
+  donutFiltered.forEach(function(d){
+    var matched=allStores.find(function(s){return matchStore(s.store,d.store);});
+    if(!matched)return;
+    var st=stats[matched.store];
+    st.donutCount++;
+    if(d.overallPass)st.donutPass++;
+    var dt=(d.submittedAt||'').substring(0,10);
+    if(dt>st.lastDonut)st.lastDonut=dt;
+  });
+  /* Hero numbers */
+  var allStats=Object.values(stats);
+  var storesSub=allStats.filter(function(s){return s.fduCount>0;}).length;
+  var totalFDU=fduFiltered.length;
+  var totalDonut=donutFiltered.length;
+  var totalPass=donutFiltered.filter(function(d){return d.overallPass;}).length;
+  var overallPct=Math.round(storesSub/allStores.length*100);
+  function fmtDate(dt){if(!dt)return'&mdash;';var d=new Date(dt+'T00:00:00');return d.toLocaleDateString('en-IN',{day:'numeric',month:'short'});}
+  var html='<div class="hero fade-in">'
+    +'<div class="hero-label">FDU Compliance — Jun 2026 to Mar 2027</div>'
+    +'<div class="hero-num" style="color:'+(overallPct>=80?'#34C759':overallPct>=50?'#FFD700':'#FF6B6B')+'">'+overallPct+'%</div>'
+    +'<div class="hero-sub">'+storesSub+' of '+allStores.length+' stores submitted since Jun 1</div>'
+    +'<div class="hero-grid">'
+      +'<div class="hg"><div class="hg-num">'+totalFDU+'</div><div class="hg-label">FDU Subs</div></div>'
+      +'<div class="hg"><div class="hg-num">'+totalDonut+'</div><div class="hg-label">Donut Checks</div></div>'
+      +'<div class="hg"><div class="hg-num">'+(totalDonut>0?Math.round(totalPass/totalDonut*100):0)+'%</div><div class="hg-label">Pass Rate</div></div>'
+    +'</div></div>';
+  /* Group stores by AM */
+  var amGroups={};
+  allStores.forEach(function(s){if(!amGroups[s.am])amGroups[s.am]=[];amGroups[s.am].push(stats[s.store]);});
+  html+='<div class="am-grid">';
+  Object.keys(amGroups).forEach(function(amName){
+    var stores=amGroups[amName];
+    var amFDU=stores.reduce(function(a,s){return a+s.fduCount;},0);
+    var amDonut=stores.reduce(function(a,s){return a+s.donutCount;},0);
+    var amPass=stores.reduce(function(a,s){return a+s.donutPass;},0);
+    var amSub=stores.filter(function(s){return s.fduCount>0;}).length;
+    var amActive=stores.filter(function(s){return s.lastFDU>=sevenAgo;}).length;
+    html+='<div class="am-section fade-in">'
+      +'<div class="am-section-hdr">'
+        +'<div class="am-section-name">'+(amIcons[amName]||'&#x1F464;')+' '+amName+'</div>'
+        +'<div class="am-section-meta">'
+          +amSub+'/'+stores.length+' stores submitted'
+          +' &nbsp;&middot;&nbsp; '+amActive+' active this week'
+          +(amDonut>0?' &nbsp;&middot;&nbsp; '+Math.round(amPass/amDonut*100)+'% donut pass':'')
+          +' &nbsp;&middot;&nbsp; '+amFDU+' total FDU submissions'
+        +'</div>'
+      +'</div>'
+      +'<div class="htbl-wrap"><table class="htbl">'
+        +'<thead><tr>'
+          +'<th>Store</th>'
+          +'<th class="r">FDU Subs</th>'
+          +'<th class="r">Donut Checks</th>'
+          +'<th class="r">Pass Rate</th>'
+          +'<th>Last FDU</th>'
+          +'<th>Last Donut</th>'
+          +'<th>Status</th>'
+        +'</tr></thead><tbody>';
+    stores.forEach(function(s){
+      var passRate=s.donutCount>0?Math.round(s.donutPass/s.donutCount*100):null;
+      var passCell=passRate!==null?'<span style="font-weight:700;font-variant-numeric:tabular-nums;color:'+(passRate>=80?'var(--pass)':passRate>=50?'var(--warn)':'var(--red)')+';">'+passRate+'%</span>':'&mdash;';
+      var status,cls;
+      if(s.fduCount===0){status='&#x2717; None';cls='hst-none';}
+      else if(s.lastFDU>=sevenAgo){status='&#x2713; Active';cls='hst-active';}
+      else{status='&#x26A0; Stale';cls='hst-stale';}
+      html+='<tr>'
+        +'<td class="htbl-store">'+s.store+'</td>'
+        +'<td class="htbl-num">'+(s.fduCount||'&mdash;')+'</td>'
+        +'<td class="htbl-num">'+(s.donutCount||'&mdash;')+'</td>'
+        +'<td class="htbl-num">'+passCell+'</td>'
+        +'<td class="htbl-date">'+fmtDate(s.lastFDU)+'</td>'
+        +'<td class="htbl-date">'+fmtDate(s.lastDonut)+'</td>'
+        +'<td><span class="hst '+cls+'">'+status+'</span></td>'
+        +'</tr>';
+    });
+    html+='</tbody></table></div></div>';
+  });
+  html+='</div>';
   document.getElementById('mainContent').innerHTML=html;
 }
 loadData();
 </script>
 <script id="pin-wall-js">
 (function(){
-  var PINS={'am':'2026','hod':'2202'};
   var wall=document.getElementById('pin-wall');
   var isHODPage=window.location.pathname.indexOf('hod')>-1;
   var pinOK=localStorage.getItem('th_pin_ok')==='1';
@@ -346,9 +616,7 @@ loadData();
     if(entered.length>=4) return;
     entered.push(v);
     render();
-    if(entered.length===4){
-      setTimeout(function(){check();},100);
-    }
+    if(entered.length===4){setTimeout(function(){check();},100);}
   }
   function render(){
     for(var i=0;i<4;i++){
@@ -357,17 +625,19 @@ loadData();
   }
   function check(){
     var pin=entered.join('');
-    if(pin===PINS.hod){
+    fetch('/api/verify-pin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pin:pin})})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(!d.success){wrong();return;}
       localStorage.setItem('th_pin_ok','1');
-      localStorage.setItem('th_hod_ok','1');
-      localStorage.setItem('th_is_hod','1');
+      localStorage.setItem('th_am_name',d.am);
+      if(d.role==='hod'||d.role==='ceo'){
+        localStorage.setItem('th_hod_ok','1');
+        localStorage.setItem('th_is_hod','1');
+      }
       wall.style.display='none';
-    }else if(pin===PINS.am&&!isHODPage){
-      localStorage.setItem('th_pin_ok','1');
-      wall.style.display='none';
-    }else{
-      wrong();
-    }
+    })
+    .catch(function(){wrong();});
   }
   function wrong(){
     entered=[];
@@ -382,5 +652,42 @@ loadData();
   window.pinPress=pinPress;
 })();
 </script>
+<script src="/js/api.js"></script>
+<!-- FOOTER -->
+<footer class="site-footer" style="max-width:1200px;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
+  <div class="footer-content">
+    <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
+    <div class="footer-links">
+      <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a>
+      <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-nav">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+      <span class="mobile-nav-label">Home</span>
+    </a>
+    <a href="tasks.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span class="mobile-nav-label">Tasks</span>
+    </a>
+    <a href="events.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      <span class="mobile-nav-label">Events</span>
+    </a>
+    <a href="performance.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span class="mobile-nav-label">Scores</span>
+    </a>
+    <a href="team.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="mobile-nav-label">Team</span>
+    </a>
+  </div>
+</nav>
+<script src="theme.js"></script>
+<script>applyTheme(getTheme());</script>
 </body>
 </html>

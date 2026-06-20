@@ -1,0 +1,105 @@
+{
+  "2026-05-25": {
+    "Harish": {
+      "postedAt": "2026-05-27T19:35:13.249Z",
+      "rank": 1,
+      "pct": 23,
+      "product": "French Vanilla"
+    },
+    "Rohit": {
+      "postedAt": "2026-05-27T19:35:13.250Z",
+      "rank": 2,
+      "pct": 22,
+      "product": "Brownie Donut"
+    },
+    "Kajal": {
+      "postedAt": "2026-05-27T19:35:13.250Z",
+      "rank": 3,
+      "pct": 14,
+      "product": "Kadak Chai"
+    },
+    "Shivam": {
+      "postedAt": "2026-05-28T09:11:10.858Z",
+      "rank": 3,
+      "pct": 22,
+      "product": "Almond Croissant"
+    },
+    "Raman": {
+      "postedAt": "2026-05-30T08:29:20.109Z",
+      "rank": 2,
+      "pct": 22,
+      "product": "Boston Cream Donut"
+    }
+  },
+  "2026-06-01": {
+    "Shivam": {
+      "postedAt": "2026-06-01T07:57:56.914Z",
+      "rank": 1,
+      "pct": 25,
+      "product": "Triple Choc Cookie"
+    },
+    "Rohit": {
+      "postedAt": "2026-06-01T09:52:57.189Z",
+      "rank": 1,
+      "pct": 25,
+      "product": "Kadak Chai"
+    },
+    "Kajal": {
+      "postedAt": "2026-06-02T09:50:08.581Z",
+      "rank": 1,
+      "pct": 17,
+      "product": "Almond Croissant"
+    },
+    "Jagadeesha": {
+      "postedAt": "2026-06-05T13:02:50.741Z",
+      "rank": 3,
+      "pct": 10,
+      "product": "Java Chip Iced Capp"
+    },
+    "Deepak": {
+      "postedAt": "2026-06-06T10:17:09.751Z",
+      "rank": 2,
+      "pct": 15,
+      "product": "French Vanilla"
+    },
+    "Harish": {
+      "postedAt": "2026-06-06T10:39:53.781Z",
+      "rank": 3,
+      "pct": 13,
+      "product": "Blueberry Donut"
+    }
+  },
+  "2026-06-08": {
+    "Shivam": {
+      "postedAt": "2026-06-08T07:56:23.727Z",
+      "rank": 1,
+      "pct": 25,
+      "product": "Chocolate Dip Donut"
+    },
+    "Kajal": {
+      "postedAt": "2026-06-08T12:36:45.675Z",
+      "rank": 1,
+      "pct": 33,
+      "product": "French Vanilla"
+    },
+    "Deepak": {
+      "postedAt": "2026-06-08T14:16:02.509Z",
+      "rank": 3,
+      "pct": 20,
+      "product": "Chocolate Dip Donut"
+    },
+    "Harish": {
+      "postedAt": "2026-06-10T10:30:09.024Z",
+      "rank": 3,
+      "pct": 15,
+      "product": "French Vanilla"
+    }
+  },
+  "2026-06-15": {
+    "_fired": true,
+    "am": "Kajal",
+    "postedAt": "2026-06-17T13:39:05.198Z",
+    "pct": 43,
+    "product": "Vanilla Dip Donut"
+  }
+}

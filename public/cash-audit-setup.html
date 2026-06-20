@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Cash Audit Setup — Upload Excel Format</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{background:var(--surface);color:var(--text);padding-top:var(--nav-h);min-height:100vh;}
+@media(max-width:767px){body{padding-left:0;padding-bottom:80px;}}
+
+/* ── side nav ── */
+
+
+
+
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;text-decoration:none;font-size:13px;font-weight:500;color:rgba(255,255,255,0.6);border-radius:0;transition:background 0.15s,color 0.15s;}
+.nav-item:hover,.nav-item.active{background:rgba(255,255,255,0.08);color:#fff;}
+.nav-item.active{border-left:3px solid var(--red);padding-left:17px;}
+.nav-icon{font-size:16px;width:20px;text-align:center;}
+@media(max-width:767px){}
+
+/* ── bottom nav mobile ── */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);z-index:200;justify-content:space-around;align-items:center;padding-bottom:env(safe-area-inset-bottom);}
+@media(max-width:767px){.bottom-nav{display:flex;}}
+.bnav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;}
+.bnav-icon{font-size:20px;}
+.bnav-lbl{font-size:10px;color:var(--sub);}
+.bnav-item.active .bnav-lbl{color:var(--red);font-weight:600;}
+
+/* ── page ── */
+.page{max-width:720px;margin:0 auto;padding:32px 24px;}
+.page-title{font-size:26px;font-weight:700;letter-spacing:-0.5px;margin-bottom:4px;}
+.page-sub{font-size:13px;color:var(--sub);margin-bottom:28px;}
+
+.step{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+.step-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-title{font-size:15px;font-weight:700;}
+.step-sub{font-size:12px;color:var(--sub);margin-top:2px;}
+
+.upload-zone{border:2px dashed var(--border);border-radius:12px;padding:36px 20px;text-align:center;cursor:pointer;background:#FAFAFA;position:relative;transition:border-color 0.15s,background 0.15s;}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--red);background:#FFF5F7;}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upload-icon{font-size:36px;margin-bottom:8px;}
+.upload-txt{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.upload-hint{font-size:12px;color:var(--sub);}
+
+.spinner{display:none;text-align:center;padding:20px;}
+.spinner-ring{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 8px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.result{display:none;}
+.result-ok{background:#F0FFF4;border:1px solid #BBF7D0;border-radius:10px;padding:14px 16px;margin-bottom:14px;}
+.result-ok-title{font-size:13px;font-weight:700;color:#1B7A3A;margin-bottom:2px;}
+.result-ok-sub{font-size:12px;color:#166534;}
+
+.cols-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.col-chip{background:#F2F2F7;border-radius:20px;padding:5px 12px;font-size:12px;font-weight:500;color:var(--text);border:1px solid var(--border);}
+.col-chip.key{background:#FFF0F3;border-color:#FECDD3;color:var(--red);}
+
+.preview-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px;overflow:auto;}
+.preview-table th{background:#F2F2F7;padding:7px 10px;text-align:left;font-weight:600;border-bottom:2px solid var(--border);white-space:nowrap;}
+.preview-table td{padding:6px 10px;border-bottom:1px solid var(--border);color:var(--sub);white-space:nowrap;}
+.tbl-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--border);}
+
+.info-box{background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:12px 14px;font-size:12px;color:#1E40AF;line-height:1.6;}
+.info-box b{color:#1E3A8A;}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:opacity 0.15s;}
+.btn-primary{background:var(--red);color:#fff;}
+.btn-primary:hover{opacity:0.88;}
+.btn-primary:disabled{background:var(--border);color:var(--sub);cursor:not-allowed;}
+.btn-ghost{background:var(--surface);color:var(--text);border:1.5px solid var(--border);}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+
+.err-box{background:#FFF5F5;border:1px solid #FECACA;border-radius:10px;padding:12px 14px;font-size:13px;color:#DC2626;display:none;margin-top:10px;}
+</style>
+</head>
+<body>
+
+<!-- Side Nav -->
+<nav class="nav">
+  <a href="index.html" class="nav-wordmark">Ops<span>AI</span>Hub</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link ">Home</a>
+    <a href="tasks.html" class="nav-link ">Tasks</a>
+    <a href="events.html" class="nav-link ">Events</a>
+    <a href="performance.html" class="nav-link active">Scores</a>
+    <a href="team.html" class="nav-link ">Team</a>
+    <a href="fdu-dashboard.html" class="nav-link ">FDU</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a href="settings.html" id="settingsLink" class="nav-btn" style="display:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></a>
+    <div class="nav-user" id="navUserBtn" onclick="showIdentitySelector()">
+      <div style="position:relative;width:28px;height:28px;">
+        <div class="nav-avatar" id="navAvatar">?</div>
+        <img id="navPhoto" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;position:absolute;top:0;left:0;" />
+      </div>
+      <span class="nav-user-name" id="navUserName">Select</span>
+    </div>
+    <button id="logoutBtn" onclick="logout()" class="nav-btn" style="display:none;">Logout</button>
+  </div>
+</nav>
+
+<!-- Bottom Nav Mobile -->
+
+
+<div class="page">
+  <div class="page-title">Cash Audit Setup</div>
+  <div class="page-sub">Upload your Area Manager monthly audit Excel to set up the form fields</div>
+
+  <!-- Step 1: Upload -->
+  <div class="step">
+    <div class="step-head">
+      <div class="step-num">1</div>
+      <div>
+        <div class="step-title">Upload the AM Monthly Audit Excel</div>
+        <div class="step-sub">We'll read the column headers from Row 1 and build the form automatically</div>
+      </div>
+    </div>
+
+    <div class="upload-zone" id="uploadZone">
+      <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
+      <div class="upload-icon">📊</div>
+      <div class="upload-txt">Click to choose or drag & drop your Excel file</div>
+      <div class="upload-hint">.xlsx, .xls or .csv — max 10MB</div>
+    </div>
+    <div class="err-box" id="errBox"></div>
+
+    <div class="spinner" id="spinner">
+      <div class="spinner-ring"></div>
+      <div style="font-size:13px;color:var(--sub);">Reading your Excel...</div>
+    </div>
+  </div>
+
+  <!-- Step 2: Column preview (shown after upload) -->
+  <div class="step result" id="resultStep">
+    <div class="step-head">
+      <div class="step-num">2</div>
+      <div>
+        <div class="step-title">Columns Detected</div>
+        <div class="step-sub" id="resultSub">—</div>
+      </div>
+    </div>
+
+    <div class="result-ok" id="resultOk">
+      <div class="result-ok-title" id="resultOkTitle">✓ Excel read successfully</div>
+      <div class="result-ok-sub" id="resultOkSub"></div>
+    </div>
+
+    <div class="mb-10">
+      <div style="font-size:12px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Detected Columns</div>
+      <div class="cols-grid" id="colsGrid"></div>
+    </div>
+
+    <div style="margin-top:14px;">
+      <div style="font-size:12px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Sample Data (first 3 rows)</div>
+      <div class="tbl-wrap">
+        <table class="preview-table" id="previewTable"></table>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:14px;" id="nextStepBox">
+      <b>Next step:</b> Share a screenshot or copy the column names above in the chat —
+      confirm which columns are required, and the cash audit form for Area Managers will be built automatically.
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="reset()">↩ Upload Different File</button>
+      <button class="btn btn-primary" onclick="copyColumns()">📋 Copy Column Names</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var detectedHeaders = [];
+
+var zone = document.getElementById('uploadZone');
+var input = document.getElementById('fileInput');
+var spinner = document.getElementById('spinner');
+var resultStep = document.getElementById('resultStep');
+var errBox = document.getElementById('errBox');
+
+zone.addEventListener('dragover', function(e){ e.preventDefault(); zone.classList.add('drag'); });
+zone.addEventListener('dragleave', function(){ zone.classList.remove('drag'); });
+zone.addEventListener('drop', function(e){
+  e.preventDefault(); zone.classList.remove('drag');
+  var f = e.dataTransfer.files[0];
+  if (f) handleFile(f);
+});
+input.addEventListener('change', function(){
+  if (this.files[0]) handleFile(this.files[0]);
+});
+
+function handleFile(file) {
+  errBox.style.display = 'none';
+  zone.style.display = 'none';
+  spinner.style.display = 'block';
+  resultStep.style.display = 'none';
+
+  var fd = new FormData();
+  fd.append('file', file);
+
+  fetch('/api/cash-audit/read-excel', { method: 'POST', body: fd })
+    .then(function(r){ return r.json(); })
+    .then(function(data) {
+      spinner.style.display = 'none';
+      if (!data.success) { showErr(data.error || 'Could not read file'); return; }
+      showResult(data, file.name);
+    })
+    .catch(function(e){ spinner.style.display='none'; showErr('Upload failed: ' + e.message); });
+}
+
+function showResult(data, fileName) {
+  detectedHeaders = data.headers;
+  document.getElementById('resultSub').textContent = fileName + ' · Sheet: ' + data.sheetName;
+  document.getElementById('resultOkSub').textContent = data.totalRows + ' data rows · ' + data.headers.length + ' columns detected';
+
+  var grid = document.getElementById('colsGrid');
+  grid.innerHTML = '';
+  data.headers.forEach(function(h, i) {
+    var chip = document.createElement('span');
+    chip.className = 'col-chip' + (i < 3 ? ' key' : '');
+    chip.textContent = h;
+    grid.appendChild(chip);
+  });
+
+  var tbl = document.getElementById('previewTable');
+  var thead = '<thead><tr>' + data.headers.map(function(h){ return '<th>' + esc(h) + '</th>'; }).join('') + '</tr></thead>';
+  var tbody = '<tbody>' + data.preview.map(function(row){
+    return '<tr>' + data.headers.map(function(h){ return '<td>' + esc(row[h] || '—') + '</td>'; }).join('') + '</tr>';
+  }).join('') + '</tbody>';
+  tbl.innerHTML = thead + tbody;
+
+  resultStep.style.display = 'block';
+}
+
+function showErr(msg) {
+  zone.style.display = 'block';
+  errBox.textContent = '⚠ ' + msg;
+  errBox.style.display = 'block';
+}
+
+function reset() {
+  zone.style.display = 'block';
+  resultStep.style.display = 'none';
+  errBox.style.display = 'none';
+  input.value = '';
+  detectedHeaders = [];
+}
+
+function copyColumns() {
+  var txt = detectedHeaders.join(', ');
+  navigator.clipboard.writeText(txt).then(function(){
+    var btn = event.target;
+    btn.textContent = '✓ Copied!';
+    setTimeout(function(){ btn.textContent = '📋 Copy Column Names'; }, 2000);
+  });
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+<script src="/js/api.js"></script>
+<!-- FOOTER -->
+<footer class="site-footer" style="max-width:1200px;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
+  <div class="footer-content">
+    <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
+    <div class="footer-links">
+      <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a>
+      <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-nav">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+      <span class="mobile-nav-label">Home</span>
+    </a>
+    <a href="tasks.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span class="mobile-nav-label">Tasks</span>
+    </a>
+    <a href="events.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      <span class="mobile-nav-label">Events</span>
+    </a>
+    <a href="performance.html" class="mobile-nav-item active">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span class="mobile-nav-label">Scores</span>
+    </a>
+    <a href="team.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="mobile-nav-label">Team</span>
+    </a>
+  </div>
+</nav>
+<script src="theme.js"></script>
+<script>applyTheme(getTheme());</script>
+</body>
+</html>

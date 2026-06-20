@@ -4,16 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>FY27 Performance — Tim's Ops Connect</title>
+<link rel="stylesheet" href="styles.css">
 <style>
-:root {
-  --red:#C8102E; --red-dark:#9B0D22;
-  --surface:#F5F5F7; --card:#fff;
-  --text:#1D1D1F; --text2:#6E6E73;
-  --border:#E5E5EA; --nav-h:72px;
-  --green:#34C759; --orange:#FF9500; --critical:#FF3B30;
-}
+
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;background:var(--surface);color:var(--text);padding-bottom:calc(var(--nav-h)+20px);}
+body{background:var(--surface);color:var(--text);padding-top:var(--nav-h);}
 
 .hdr{background:linear-gradient(150deg,#1A1A2E 0%,#16213E 60%,#0F3460 100%);padding:52px 16px 20px;}
 .back{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-bottom:10px;}
@@ -109,7 +104,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;ba
 .half-sub{font-size:11px;margin-top:4px;opacity:0.7;}
 
 /* METHODOLOGY NOTE */
-.note-card{background:#FFF9E6;border-radius:12px;padding:14px;margin-bottom:12px;border-left:3px solid var(--orange);}
+.note-card{background:#FFF9E6;border-radius:12px;padding:14px;margin-bottom:12px;border:1.5px solid var(--orange);}
 .note-title{font-size:12px;font-weight:700;color:#8B4500;margin-bottom:4px;}
 .note-text{font-size:12px;color:#6B4200;line-height:1.5;}
 
@@ -130,12 +125,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;ba
 .fade-in{animation:fadeIn 0.3s ease;}
 
 /* NAV */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(255,255,255,0.88);backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000;}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(255,255,255,0.88);backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000; transform:translateZ(0);-webkit-transform:translateZ(0); }
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;}
 .nav-icon{font-size:22px;}
 .nav-label{font-size:10px;font-weight:500;color:var(--text2);}
 .nav-item.active .nav-label{color:var(--red);font-weight:600;}
+
+
 </style>
+
 </head>
 <body>
 
@@ -167,12 +165,31 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;ba
   <div class="spinner"></div>
 </div>
 
-<nav class="bottom-nav">
-  <a href="index.html" class="nav-item"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Home</span></a>
-  <a href="tasks.html" class="nav-item"><span class="nav-icon">&#x2705;</span><span class="nav-label">Tasks</span></a>
-  <a href="events.html" class="nav-item"><span class="nav-icon">&#128197;</span><span class="nav-label">Events</span></a>
-  <a href="performance.html" class="nav-item active"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Scores</span></a>
-  <a href="team.html" class="nav-item"><span class="nav-icon">&#x1F465;</span><span class="nav-label">Team</span></a>
+<nav class="nav">
+  <a href="index.html" class="nav-wordmark">Ops<span>AI</span>Hub</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link ">Home</a>
+    <a href="tasks.html" class="nav-link ">Tasks</a>
+    <a href="events.html" class="nav-link ">Events</a>
+    <a href="performance.html" class="nav-link active">Scores</a>
+    <a href="team.html" class="nav-link ">Team</a>
+    <a href="fdu-dashboard.html" class="nav-link ">FDU</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a href="settings.html" id="settingsLink" class="nav-btn" style="display:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></a>
+    <div class="nav-user" id="navUserBtn" onclick="showIdentitySelector()">
+      <div style="position:relative;width:28px;height:28px;">
+        <div class="nav-avatar" id="navAvatar">?</div>
+        <img id="navPhoto" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;position:absolute;top:0;left:0;" />
+      </div>
+      <span class="nav-user-name" id="navUserName">Select</span>
+    </div>
+    <button id="logoutBtn" onclick="logout()" class="nav-btn" style="display:none;">Logout</button>
+  </div>
 </nav>
 
 <script>
@@ -183,7 +200,7 @@ var currentMonth = '2026-04';
 
 var months = ['2026-04','2026-05','2026-06','2026-07','2026-08','2026-09','2026-10','2026-11','2026-12','2027-01','2027-02','2027-03'];
 var monthLabels = {'2026-04':'Apr 26','2026-05':'May 26','2026-06':'Jun 26','2026-07':'Jul 26','2026-08':'Aug 26','2026-09':'Sep 26','2026-10':'Oct 26','2026-11':'Nov 26','2026-12':'Dec 26','2027-01':'Jan 27','2027-02':'Feb 27','2027-03':'Mar 27'};
-var amIcons = {'Raman':'&#x1F3D9;','Harish':'&#x1F3D9;','Rohit':'&#x1F3D9;','Deepak':'&#x1F33E;','Akash Chavan':'&#x1F30A;','Akash Rathod':'&#x1F30A;','Jagadeesha':'&#x1F333;','Shivam':'&#x1F48E;','Unassigned':'&#x2753;'};
+var amIcons = {'Raman':'&#x1F3D9;','Harish':'&#x1F3D9;','Rohit':'&#x1F3D9;','Deepak':'&#x1F33E;','Kajal':'&#x1F33E;','Sandeep Mukharjee':'&#x1F30A;','Akash Rathod':'&#x1F30A;','Vrunda':'&#x1F966;','Jagadeesha':'&#x1F333;','Shivam':'&#x1F48E;','Unassigned':'&#x2753;'};
 
 function fmt(v){
   if(!v||v===0) return '--';
@@ -269,11 +286,6 @@ function renderIndia(stores) {
   var curQ = mo>=4&&mo<=6?'Q1':mo>=7&&mo<=9?'Q2':mo>=10&&mo<=12?'Q3':'Q4';
 
   var html =
-  // Methodology note
-  '<div class="note-card">' +
-    '<div class="note-title">&#x1F4CB; FY27 AOP Methodology</div>' +
-    '<div class="note-text">'+targets.methodology+'</div>' +
-  '</div>' +
 
   // Hero
   '<div class="hero fade-in">' +
@@ -330,7 +342,7 @@ function renderIndia(stores) {
       var isCurMonth = m===currentMonth;
       return '<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">' +
         '<div style="font-size:12px;font-weight:700;width:48px;color:'+(isCurMonth?'var(--red)':'var(--text2)');+'">' +monthLabels[m]+'</div>' +
-        '<div style="flex:1;"><div style="height:6px;background:var(--border);border-radius:3px;overflow:hidden;"><div style="height:100%;background:'+(isCurMonth?'var(--red)':'#007AFF')+';border-radius:3px;width:'+Math.min(pct*5,100)+'%;"></div></div></div>' +
+        '<div class="flex-1"><div style="height:6px;background:var(--border);border-radius:3px;overflow:hidden;"><div style="height:100%;background:'+(isCurMonth?'var(--red)':'#007AFF')+';border-radius:3px;width:'+Math.min(pct*5,100)+'%;"></div></div></div>' +
         '<div style="font-size:13px;font-weight:700;text-align:right;min-width:80px;">'+fmt(mTarget)+'</div>' +
       '</div>';
     }).join('') +
@@ -338,7 +350,7 @@ function renderIndia(stores) {
 
   // Sandeep RM Card
   '<div class="rm-card fade-in">' +
-    '<div style="display:flex;align-items:center;gap:10px;">' +
+    '<div class="flex-center">' +
       '<div style="font-size:28px;">&#x1F451;</div>' +
       '<div><div class="rm-name">Sandeep</div><div class="rm-role">Regional Manager — North India (Delhi NCR + Punjab)</div></div>' +
     '</div>' +
@@ -480,5 +492,42 @@ function renderStore(stores) {
 
 loadData();
 </script>
+<script src="/js/api.js"></script>
+<!-- FOOTER -->
+<footer class="site-footer" style="max-width:1200px;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
+  <div class="footer-content">
+    <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
+    <div class="footer-links">
+      <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a>
+      <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-nav">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+      <span class="mobile-nav-label">Home</span>
+    </a>
+    <a href="tasks.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <span class="mobile-nav-label">Tasks</span>
+    </a>
+    <a href="events.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      <span class="mobile-nav-label">Events</span>
+    </a>
+    <a href="performance.html" class="mobile-nav-item active">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span class="mobile-nav-label">Scores</span>
+    </a>
+    <a href="team.html" class="mobile-nav-item ">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="mobile-nav-label">Team</span>
+    </a>
+  </div>
+</nav>
+<script src="theme.js"></script>
+<script>applyTheme(getTheme());</script>
 </body>
 </html>
