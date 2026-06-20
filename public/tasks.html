@@ -2127,7 +2127,12 @@ function submitEvent(){
   var isHODPage=window.location.pathname.indexOf('hod')>-1;
   var pinOK=localStorage.getItem('th_pin_ok')==='1';
   var hodOK=localStorage.getItem('th_hod_ok')==='1';
-  if(pinOK&&(!isHODPage||hodOK)){wall.style.display='none';return;}
+  function tokenValid(){
+    var t=localStorage.getItem('th_token');
+    if(!t)return false;
+    try{var p=JSON.parse(atob(t.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));return p.exp&&p.exp*1000>Date.now();}catch(e){return false;}
+  }
+  if(pinOK&&(!isHODPage||hodOK)&&tokenValid()){wall.style.display='none';return;}
   var entered=[];
   function pinPress(v){
     if(v==='c'){entered=[];render();return;}
