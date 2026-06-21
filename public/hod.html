@@ -3,99 +3,255 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1.0">
-<title>HOD Dashboard</title>
+<title>HOD Command Centre</title>
 <link rel="stylesheet" href="styles.css">
 <style>
+/* Hallmark · macrostructure: Command-Centre (HOD exception — dark header + tabbed views)
+ * genre: modern-minimal · theme: custom (brand-locked) · nav: N9 · footer: Ft2
+ * exception: bento grid is the platform shape (index.html); this page is an
+ *   approved HOD-specific exception documented here in the design system.
+ * pre-emit critique: P4 H4 E4 S4 R4 V3 */
+
+/* ── HOD TOKEN EXTENSIONS ──────────────────────────────────── */
+:root {
+  /* Dark header palette */
+  --hod-bg-deep:          #060610;
+  --hod-bg-mid:           #0D0A1A;          /* matches --navy-event */
+  --hod-bg-warm:          #1A0308;          /* matches --navy-event-2 */
+  /* On-dark text */
+  --hod-on-dark-60:       rgba(255,255,255,0.60);
+  --hod-on-dark-38:       rgba(255,255,255,0.38);
+  --hod-on-dark-35:       rgba(255,255,255,0.35);
+  /* Subtle surfaces on dark */
+  --hod-surface-6:        rgba(255,255,255,0.06);
+  --hod-border-8:         rgba(255,255,255,0.08);
+  --hod-border-10:        rgba(255,255,255,0.10);
+  --hod-pill-bg:          rgba(255,255,255,0.07);
+  /* Status pills */
+  --hod-live-bg:          rgba(52,199,89,0.15);
+  --hod-live-border:      rgba(52,199,89,0.30);
+  --hod-alert-bg:         rgba(255,59,48,0.15);
+  --hod-alert-border:     rgba(255,59,48,0.30);
+  /* Heatmap */
+  --hod-tile-today-bg:    #1A3A1A;
+  --hod-amber-border:     rgba(255,149,0,0.35);
+  /* Flag cards */
+  --hod-flag-bg:          rgba(255,59,48,0.05);
+  --hod-flag-border:      rgba(255,59,48,0.20);
+  --hod-flag-amber-bg:    rgba(255,149,0,0.05);
+  --hod-flag-amber-border:rgba(255,149,0,0.30);
+  /* Rank badge gradients */
+  --hod-rank-gold:        linear-gradient(135deg,#FFD700,#FFA500);
+  --hod-rank-silver:      linear-gradient(135deg,#C8C8CC,#9A9AA0);
+  --hod-rank-bronze:      linear-gradient(135deg,#CD7F32,#9A5D1A);
+  --hod-rank-ink:         #1C1C1E;
+  /* Score colour ramp (between warning and critical) */
+  --score-warn:           #FF6B00;
+  /* Layout */
+  --hod-content-max:      1200px;
+}
+
+/* ── SCORE UTILITY CLASSES ─────────────────────────────────── */
+/* Apply to a wrapper; --_sc cascades into .lb-score and .lb-bar */
+.score-exc { --_sc: var(--success);    color: var(--success);    }
+.score-gd  { --_sc: var(--warning);   color: var(--warning);    }
+.score-wrn { --_sc: var(--score-warn); color: var(--score-warn); }
+.score-crt { --_sc: var(--critical);  color: var(--critical);   }
+.score-na  { --_sc: var(--text3);     color: var(--text3);      }
 
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{background:var(--surface);padding-bottom:calc(var(--nav-h)+16px);padding-top:var(--nav-h);}
-.hdr{background:linear-gradient(160deg,#0D0D1A 0%,#1A0508 60%,#2D0A15 100%);padding:calc(env(safe-area-inset-top,0px)+44px) 18px 18px;position:relative;overflow:hidden;}
-.hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(200,16,46,0.25) 0%,transparent 70%);}
-.hdr-eyebrow{font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;position:relative;}
-.hdr-title{font-size:26px;font-weight:700;color:#fff;letter-spacing:-0.5px;position:relative;}
-.hdr-sub{font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;position:relative;}
-.hdr-stats{display:flex;gap:10px;margin-top:14px;position:relative;}
-.hstat{background:rgba(255,255,255,0.08);border-radius:12px;padding:10px;flex:1;text-align:center;}
-.hstat-num{font-size:22px;font-weight:700;color:#fff;}
-.hstat-lbl{font-size:9px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
-.content{padding:12px 16px;}
-.sec-hdr{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin:14px 0 8px;}
-.tog-row{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;scrollbar-width:none;}
+body{background:var(--surface);padding-bottom:calc(var(--nav-h,60px)+56px);padding-top:var(--nav-h,60px);}
+
+/* ── HEADER ─────────────────────────────────────────────────── */
+.hod-hdr{
+  background:linear-gradient(160deg,var(--hod-bg-deep) 0%,var(--hod-bg-mid) 40%,var(--hod-bg-warm) 100%);
+  padding:calc(env(safe-area-inset-top,0px) + 44px) 18px 20px;
+  position:relative;overflow:hidden;
+}
+.hdr-eyebrow{font-size:9px;font-weight:700;color:var(--hod-on-dark-60);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:6px;}
+.hdr-title{font-size:28px;font-weight:800;color:var(--white);letter-spacing:-0.8px;line-height:1.1;}
+.hdr-title span{color:var(--red);}
+.hdr-pills{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+.hdr-pill{background:var(--hod-pill-bg);border:1px solid var(--hod-border-10);border-radius:20px;padding:4px 10px;font-size:10px;font-weight:600;color:var(--hod-on-dark-60);}
+.hdr-pill.live{background:var(--hod-live-bg);border-color:var(--hod-live-border);color:var(--success);}
+.hdr-pill.alert{background:var(--hod-alert-bg);border-color:var(--hod-alert-border);color:var(--critical);}
+
+/* STAT RIBBON */
+.stat-ribbon{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:14px;}
+.srib{background:var(--hod-surface-6);border:1px solid var(--hod-border-8);border-radius:12px;padding:10px 8px;text-align:center;}
+.srib-val{font-size:20px;font-weight:800;color:var(--white);line-height:1;font-variant-numeric:tabular-nums;}
+.srib-lbl{font-size:8px;color:var(--hod-on-dark-38);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px;}
+
+/* ── SECTION LABELS ──────────────────────────────────────────── */
+.sec-lbl{font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin:16px 0 8px;display:flex;align-items:center;justify-content:space-between;}
+
+/* ── TAB TOGGLES ─────────────────────────────────────────────── */
+.tog-row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
 .tog-row::-webkit-scrollbar{display:none;}
-.tog-btn{flex-shrink:0;padding:8px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--card);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;white-space:nowrap;}
-.tog-btn.active{background:var(--red);color:#fff;border-color:var(--red);}
-.kpi-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
-.kc{background:var(--card);border-radius:12px;padding:10px;text-align:center;border:1px solid var(--border);}
-.kc-val{font-size:17px;font-weight:700;color:var(--text);}
-.kc-lbl{font-size:9px;color:var(--text2);text-transform:uppercase;letter-spacing:0.3px;margin-top:2px;}
-.am-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
-.am-card{background:var(--card);border-radius:16px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,0.06);border:1px solid var(--border);}
-.am-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
-.am-name{font-size:14px;font-weight:700;color:var(--text);}
-.am-region{font-size:10px;color:var(--text2);margin-top:2px;}
-.am-score{font-size:20px;font-weight:700;}
-.am-bar-bg{height:4px;background:var(--border);border-radius:2px;margin-top:6px;}
-.am-bar{height:100%;border-radius:2px;}
-.am-meta{font-size:10px;color:var(--text2);margin-top:5px;}
-.badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:9px;font-weight:700;margin-top:4px;}
-.badge-ok{background:rgba(52,199,89,0.12);color:#1B7A3A;}
-.badge-miss{background:rgba(255,59,48,0.12);color:var(--red);}
-.sub-table{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:14px;}
-.sub-row{display:flex;align-items:center;padding:9px 12px;border-bottom:1px solid var(--border);gap:8px;}
-.sub-row:last-child{border-bottom:none;}
-.sub-hdr-row{background:#1C1C1E;padding:7px 12px;}
-.sub-hc{font-size:9px;font-weight:700;color:rgba(255,255,255,0.55);text-transform:uppercase;}
-.flag-card{background:linear-gradient(135deg,#FFF5F5,#FFEEEE);border-radius:12px;padding:11px 13px;margin-bottom:8px;border:1px solid rgba(200,16,46,0.15);}
-.flag-title{font-size:12px;font-weight:700;color:var(--critical);margin-bottom:3px;}
+.tog-btn{
+  flex-shrink:0;padding:7px 14px;border-radius:10px;
+  border:1.5px solid var(--border);background:var(--card);
+  font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;
+  transition:background-color var(--dur-short,120ms) var(--ease-out,ease),
+             border-color    var(--dur-short,120ms) var(--ease-out,ease),
+             color           var(--dur-short,120ms) var(--ease-out,ease);
+}
+.tog-btn.active{background:var(--red);color:var(--white);border-color:var(--red);}
+
+/* ── STORE HEATMAP ───────────────────────────────────────────── */
+.heatmap-wrap{background:var(--card);border-radius:16px;border:1px solid var(--border);overflow:hidden;margin-bottom:12px;}
+.heatmap-region-hdr{display:flex;justify-content:space-between;align-items:center;padding:9px 13px;border-bottom:1px solid var(--border);}
+.hm-region-name{font-size:12px;font-weight:700;color:var(--text);}
+.hm-region-pct{font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;}
+.hm-region-body{padding:10px 13px;}
+.hm-am-group{margin-bottom:10px;}
+.hm-am-group:last-child{margin-bottom:0;}
+.hm-am-name{font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;}
+.hm-am-cov{font-size:10px;color:var(--text2);font-weight:600;text-transform:none;letter-spacing:0;font-variant-numeric:tabular-nums;}
+.hm-stores{display:flex;flex-wrap:wrap;gap:5px;}
+.hm-tile{padding:4px 8px;border-radius:7px;font-size:10px;font-weight:700;white-space:nowrap;cursor:default;transition:transform var(--dur-short,120ms) var(--ease-out,ease);}
+.hm-tile:active{transform:scale(0.95);}
+.hm-today{background:var(--hod-tile-today-bg);border:1.5px solid var(--success);color:var(--success);}
+.hm-mtd{background:var(--amber-tint);border:1.5px solid var(--hod-amber-border);color:var(--warning);}
+.hm-none{background:var(--surface);border:1.5px solid var(--border);color:var(--text2);opacity:0.6;}
+
+/* ── LEGEND ──────────────────────────────────────────────────── */
+.legend{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:10px;}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:var(--text2);}
+.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.leg-today{background:var(--hod-tile-today-bg);border:1.5px solid var(--success);}
+.leg-mtd{background:var(--amber-tint);border:1.5px solid var(--hod-amber-border);}
+.leg-none{background:var(--surface);border:1.5px solid var(--border);}
+
+/* ── LEADERBOARD ─────────────────────────────────────────────── */
+.lb-card{background:var(--card);border-radius:14px;padding:12px 14px;margin-bottom:6px;display:flex;align-items:center;gap:12px;border:1px solid var(--border);}
+.lb-rank{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;}
+.rank-1{background:var(--hod-rank-gold);color:var(--hod-rank-ink);}
+.rank-2{background:var(--hod-rank-silver);color:var(--hod-rank-ink);}
+.rank-3{background:var(--hod-rank-bronze);color:var(--white);}
+.rank-n{background:var(--surface);color:var(--text2);font-size:11px;}
+.lb-info{flex:1;min-width:0;}
+.lb-name{font-size:13px;font-weight:700;color:var(--text);}
+.lb-region{font-size:10px;color:var(--text2);margin-top:1px;}
+.lb-right{text-align:right;flex-shrink:0;}
+.lb-score{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--_sc,var(--text));}
+.lb-count{font-size:10px;color:var(--text2);margin-top:1px;}
+.lb-bar-wrap{height:3px;background:var(--surface);border-radius:2px;margin-top:5px;}
+.lb-bar{height:100%;border-radius:2px;background:var(--_sc,var(--border));}
+
+/* ── RED FLAGS ───────────────────────────────────────────────── */
+.flag-card{background:var(--hod-flag-bg);border-radius:12px;padding:11px 13px;margin-bottom:6px;border:1.5px solid var(--hod-flag-border);}
+.flag-card.amber{background:var(--hod-flag-amber-bg);border-color:var(--hod-flag-amber-border);}
+.flag-title{font-size:12px;font-weight:700;color:var(--red);margin-bottom:3px;display:flex;align-items:center;gap:5px;}
+.flag-title svg{flex-shrink:0;}
+.flag-card.amber .flag-title{color:var(--warning);}
 .flag-detail{font-size:11px;color:var(--text2);}
-.issue-card{background:var(--card);border-radius:12px;padding:12px;margin-bottom:8px;border:1.5px solid var(--critical);box-shadow:0 1px 4px rgba(0,0,0,0.06);}
-.empty{text-align:center;padding:24px;color:var(--text2);font-size:13px;}
-.spinner{width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin 0.8s linear infinite;margin:30px auto;}
+
+/* ── SUMMARY STRIP ───────────────────────────────────────────── */
+.summary-strip{
+  background:linear-gradient(135deg,var(--hod-bg-mid),var(--hod-bg-warm));
+  border-radius:14px;padding:14px;margin-bottom:8px;
+}
+.ss-lbl{font-size:9px;font-weight:700;color:var(--hod-on-dark-35);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.ss-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.ss-box{background:var(--hod-surface-6);border-radius:10px;padding:9px;text-align:center;}
+.ss-num{font-size:20px;font-weight:800;color:var(--white);line-height:1;font-variant-numeric:tabular-nums;}
+.ss-sub{font-size:9px;color:var(--hod-on-dark-35);text-transform:uppercase;margin-top:3px;}
+
+/* ── MISC ────────────────────────────────────────────────────── */
+.content{padding:12px 16px;}
+.empty{text-align:center;padding:28px;color:var(--text2);font-size:13px;}
+.spinner{width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin 0.8s linear infinite;margin:32px auto;}
 @keyframes spin{to{transform:rotate(360deg)}}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(255,255,255,0.9);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:var(--z-nav); transform:translateZ(0);-webkit-transform:translateZ(0); }
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;min-width:56px;}
-.nav-icon{font-size:22px;}
-.nav-label{font-size:10px;font-weight:500;color:var(--text2);}
-.nav-item.active .nav-label{color:var(--red);font-weight:700;}
+.refresh-note{text-align:center;font-size:10px;color:var(--text2);padding:8px;margin-top:4px;}
 
-
+/* ── FOOTER ──────────────────────────────────────────────────── */
+.hod-footer{
+  max-width:var(--hod-content-max);
+  margin:48px auto 0;
+  padding:32px 24px;
+  border-top:1px solid var(--border);
+}
+.footer-content{display:flex;align-items:center;justify-content:space-between;font-size:0.8rem;color:var(--text3);}
+.footer-brand{font-weight:500;}
+.footer-links{display:flex;gap:24px;}
+.footer-link{color:var(--text3);text-decoration:none;transition:color var(--dur-short,120ms) var(--ease-out,ease);}
+.footer-link:hover{color:var(--text);}
 </style>
-
 </head>
 <body>
-<div class="hdr">
-  <div class="hdr-eyebrow">Head of Operations</div>
-  <div class="hdr-title">Command Centre</div>
-  <div class="hdr-sub" id="hodDate">Loading...</div>
-  <div class="hdr-stats">
-    <div class="hstat"><div class="hstat-num" id="hTot">--</div><div class="hstat-lbl">Submissions</div></div>
-    <div class="hstat"><div class="hstat-num" id="hAvg">--</div><div class="hstat-lbl">Avg Score</div></div>
-    <div class="hstat"><div class="hstat-num" id="hFlg">--</div><div class="hstat-lbl">Red Flags</div></div>
+
+<!-- ── HEADER ── -->
+<div class="hod-hdr">
+  <div class="hdr-eyebrow">Head of Department &mdash; Operations</div>
+  <div class="hdr-title">Command <span>Centre</span></div>
+  <div class="hdr-pills">
+    <div class="hdr-pill live">&#9679; Live</div>
+    <div class="hdr-pill" id="hodClock">--:--</div>
+    <div class="hdr-pill alert" id="alertPill" style="display:none"></div>
+  </div>
+  <div class="stat-ribbon">
+    <div class="srib"><div class="srib-val" id="rTodaySubs">--</div><div class="srib-lbl">Today Subs</div></div>
+    <div class="srib"><div class="srib-val" id="rMtdCov">--</div><div class="srib-lbl">MTD Stores</div></div>
+    <div class="srib"><div class="srib-val" id="rAvg">--</div><div class="srib-lbl">Avg Score</div></div>
+    <div class="srib"><div class="srib-val score-crt" id="rFlg">--</div><div class="srib-lbl">Red Flags</div></div>
   </div>
 </div>
+
 <div class="content">
-  <div class="tog-row">
-    <button class="tog-btn active" onclick="sv('overview')">Overview</button>
-    <button class="tog-btn" onclick="sv('submissions')">Submissions</button>
-    <button class="tog-btn" onclick="sv('coverage')">Coverage</button>
-    <button class="tog-btn" onclick="sv('issues')">Issues</button>
-    <button class="tog-btn" onclick="sv('health')">&#127973; Health</button>
+
+  <!-- VIEW TABS -->
+  <div class="tog-row" style="margin-bottom:14px;">
+    <button class="tog-btn active" onclick="sv('heatmap')">Store Heatmap</button>
+    <button class="tog-btn" onclick="sv('leaderboard')">Leaderboard</button>
+    <button class="tog-btn" onclick="sv('flags')">Red Flags</button>
+    <button class="tog-btn" onclick="sv('health')">Health</button>
   </div>
-  <div id="v-overview"></div>
-  <div id="v-submissions" style="display:none"></div>
-  <div id="v-coverage" style="display:none"></div>
-  <div id="v-issues" style="display:none"></div>
-  <div id="v-health" style="display:none"></div>
+
+  <!-- ══ HEATMAP VIEW ══ -->
+  <div id="v-heatmap">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+      <div class="legend">
+        <div class="leg-item"><div class="leg-dot leg-today"></div>Visited Today</div>
+        <div class="leg-item"><div class="leg-dot leg-mtd"></div>MTD Only</div>
+        <div class="leg-item"><div class="leg-dot leg-none"></div>Not Yet</div>
+      </div>
+    </div>
+    <div id="heatmapBody"><div class="spinner"></div></div>
+  </div>
+
+  <!-- ══ LEADERBOARD VIEW ══ -->
+  <div id="v-leaderboard" style="display:none">
+    <div class="tog-row" style="margin-bottom:10px;">
+      <button class="tog-btn active" onclick="setLbPeriod('today')">Today</button>
+      <button class="tog-btn" onclick="setLbPeriod('mtd')">MTD</button>
+      <button class="tog-btn" onclick="setLbPeriod('all')">All Time</button>
+    </div>
+    <div id="leaderboardBody"><div class="spinner"></div></div>
+  </div>
+
+  <!-- ══ RED FLAGS VIEW ══ -->
+  <div id="v-flags" style="display:none">
+    <div id="flagsBody"><div class="spinner"></div></div>
+  </div>
+
+  <!-- ══ HEALTH VIEW ══ -->
+  <div id="v-health" style="display:none">
+    <div id="healthBody"><div class="empty">Loading health scores...</div></div>
+  </div>
+
 </div>
+
+<!-- TOP NAV -->
 <nav class="nav">
   <a href="index.html" class="nav-wordmark">Ops<span>AI</span>Hub</a>
   <div class="nav-links">
-    <a href="index.html" class="nav-link ">Home</a>
-    <a href="tasks.html" class="nav-link ">Tasks</a>
-    <a href="events.html" class="nav-link ">Events</a>
-    <a href="performance.html" class="nav-link ">Scores</a>
-    <a href="team.html" class="nav-link ">Team</a>
-    <a href="fdu-dashboard.html" class="nav-link ">FDU</a>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="tasks.html" class="nav-link">Tasks</a>
+    <a href="events.html" class="nav-link">Events</a>
+    <a href="performance.html" class="nav-link">Scores</a>
+    <a href="team.html" class="nav-link">Team</a>
+    <a href="fdu-dashboard.html" class="nav-link">FDU</a>
   </div>
   <div style="display:flex;align-items:center;gap:8px;">
     <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
@@ -113,160 +269,398 @@ body{background:var(--surface);padding-bottom:calc(var(--nav-h)+16px);padding-to
     <button id="logoutBtn" onclick="logout()" class="nav-btn" style="display:none;">Logout</button>
   </div>
 </nav>
-<script>
-var AM_AVATAR={
-  'Jahid':'/images/am/jahid.svg',
-  'Raman':'/images/am/raman.svg',
-  'Harish':'/images/am/harish.svg',
-  'Rohit':'/images/am/rohit.svg',
-  'Deepak':'/images/am/deepak.svg',
-  'Sandeep Mukharjee':'/images/am/akash-chavan.svg',
-  'Akash Rathod':'/images/am/akash-rathod.svg',
-  'Jagadeesha':'/images/am/jagadeesha.svg',
-  'Shivam':'/images/am/shivam.svg',
-  'Vrunda':'/images/am/vrunda.svg',
-  'Kajal':'/images/am/kajal.svg'
-};
-function amAv(name,size){size=size||36;var s=size+'px';return AM_AVATAR[name]?'<img src="'+AM_AVATAR[name]+'" style="width:'+s+';height:'+s+';border-radius:50%;object-fit:cover;" alt="'+name+'">':(name?name.substring(0,2).toUpperCase():'AM');}
 
-var subs=[],issues=[];
-var AMS=[
-  {n:'Raman',r:'Delhi NCR',s:3},{n:'Harish',r:'Delhi NCR',s:6},
-  {n:'Rohit',r:'Delhi NCR',s:4},{n:'Deepak',r:'Punjab',s:7},
-  {n:'Kajal',r:'Punjab',s:3},
-  {n:'Sandeep Mukharjee',r:'Maharashtra',s:7},{n:'Akash Rathod',r:'Maharashtra',s:4},
-  {n:'TBA',r:'Pune',s:4},
-  {n:'Jagadeesha',r:'Karnataka',s:4},{n:'Shivam',r:'Telangana',s:4}
+<script>
+/* ═══════════════════════════════
+   DATA
+═══════════════════════════════ */
+var AM_LIST = [
+  {n:'Raman',              r:'Delhi NCR',   s:3},
+  {n:'Harish',             r:'Delhi NCR',   s:6},
+  {n:'Rohit',              r:'Delhi NCR',   s:4},
+  {n:'Deepak',             r:'Punjab',      s:5},
+  {n:'Kajal',              r:'Punjab',      s:3},
+  {n:'Sandeep Mukharjee',  r:'Maharashtra', s:3},
+  {n:'Akash Rathod',       r:'Maharashtra', s:4},
+  {n:'TBA',                r:'Pune',        s:4},
+  {n:'Jagadeesha',         r:'Karnataka',   s:4},
+  {n:'Shivam',             r:'Telangana',   s:4}
 ];
-function bc(s){if(s===null||s===undefined)return'#8E8E93';if(s>=90)return'#34C759';if(s>=60)return'#FF9500';return'#FF3B30';}
+
+/* Data-viz colours for region border stripes — not brand colours */
+var REGION_COLOR = {
+  'Delhi NCR':   '#007AFF',
+  'Punjab':      '#FF9500',
+  'Maharashtra': '#AF52DE',
+  'Pune':        '#FF2D55',
+  'Karnataka':   '#34C759',
+  'Telangana':   '#FF3B30'
+};
+
+var ALL_SUBS = [];
+var LB_PERIOD = 'today';
+
+/* ═══════════════════════════════
+   UTILITIES
+═══════════════════════════════ */
+/* Returns a CSS class name for a score value */
+function gClass(s){
+  if(s===null||s===undefined)return'score-na';
+  if(s>=90)return'score-exc';
+  if(s>=75)return'score-gd';
+  if(s>=60)return'score-wrn';
+  return'score-crt';
+}
+
 function ta(iso){if(!iso)return'';var d=new Date(iso),now=new Date(),diff=Math.floor((now-d)/60000);if(diff<60)return diff+'m ago';if(diff<1440)return Math.floor(diff/60)+'h ago';return Math.floor(diff/1440)+'d ago';}
+function todayStart(){var d=new Date();d.setHours(0,0,0,0);return d;}
+function mtdStart(){var d=new Date();return new Date(d.getFullYear(),d.getMonth(),1);}
+function subsInPeriod(from){return ALL_SUBS.filter(function(s){return new Date(s.submittedAt||0)>=from;});}
+function todaySubs(){return subsInPeriod(todayStart());}
+function mtdSubs(){return subsInPeriod(mtdStart());}
+function amAvg(amName,subsList){
+  var scored=subsList.filter(function(s){return s.am===amName&&s.score!==null&&s.score!==undefined&&s.score>0;});
+  return scored.length?Math.round(scored.reduce(function(a,s){return a+s.score;},0)/scored.length):null;
+}
+
+/* ── SVG ICON STRINGS ── */
+var ICON_FLAG   = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>';
+var ICON_WRENCH = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>';
+var ICON_BUG    = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2l1.88 1.88"/><path d="M14.12 3.88L16 2"/><path d="M9 7.13v-1a3.003 3.003 0 1 1 6 0v1"/><path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6z"/><path d="M12 20v-9"/><path d="M6.53 9C4.6 8.8 3 7.1 3 5"/><path d="M6 13H2"/><path d="M3 21c0-2.1 1.7-3.9 3.8-4"/><path d="M20.97 5c0 2.1-1.6 3.8-3.5 4"/><path d="M22 13h-4"/><path d="M17.2 17c2.1.1 3.8 1.9 3.8 4"/></svg>';
+var ICON_WARN   = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+var ICON_CHECK  = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+
+/* ═══════════════════════════════
+   CLOCK
+═══════════════════════════════ */
+function startClock(){
+  function tick(){
+    var t=new Date(),h=t.getHours(),m=t.getMinutes(),ap=h>=12?'PM':'AM';
+    h=h%12||12;
+    document.getElementById('hodClock').textContent=h+':'+(m<10?'0':'')+m+' '+ap;
+  }
+  tick();setInterval(tick,15000);
+}
+
+/* ═══════════════════════════════
+   VIEW SWITCH
+═══════════════════════════════ */
+var VIEWS=['heatmap','leaderboard','flags','health'];
 function sv(v){
-  ['overview','submissions','coverage','issues','health'].forEach(function(id){document.getElementById('v-'+id).style.display=id===v?'block':'none';});
-  document.querySelectorAll('.tog-btn').forEach(function(b,i){b.classList.toggle('active',['overview','submissions','coverage','issues','health'][i]===v);});
-}
-function load(){
-  var now=new Date();
-  document.getElementById('hodDate').textContent=now.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  document.getElementById('v-overview').innerHTML='<div class="spinner"></div>';
-  fetch('/api/submissions').then(function(r){return r.json();}).then(function(d){
-    subs=d.data||[];
-    renderOverview();renderSubmissions();
-  }).catch(function(){subs=[];renderOverview();renderSubmissions();});
-  fetch('/api/issues').then(function(r){return r.json();}).then(function(d){
-    issues=d.data||[];renderIssues();
-  }).catch(function(){issues=[];renderIssues();});
-  renderCoverage();
-}
-function renderOverview(){
-  var scored=subs.filter(function(s){return s.score!==null&&s.score!==undefined;});
-  var avg=scored.length>0?Math.round(scored.reduce(function(a,s){return a+s.score;},0)/scored.length):0;
-  var flags=subs.filter(function(s){return s.score!==null&&s.score!==undefined&&s.score<60;}).length;
-  document.getElementById('hTot').textContent=subs.length;
-  document.getElementById('hAvg').textContent=avg?avg+'%':'--';
-  document.getElementById('hFlg').textContent=flags;
-  var html='<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin:0 0 8px;">Area Manager Scores</div>';
-  html+='<div class="am-grid">';
-  AMS.forEach(function(am){
-    var amSubs=subs.filter(function(s){return s.am===am.n;});
-    var amScored=amSubs.filter(function(s){return s.score!==null&&s.score!==undefined&&s.score>0;});
-    var amAvg=amScored.length>0?Math.round(amScored.reduce(function(a,s){return a+s.score;},0)/amScored.length):null;
-    var color=bc(amAvg);
-    var bw=amAvg||0;
-    var badge=amSubs.length>0?'<span class="badge badge-ok">'+amSubs.length+' submitted</span>':'<span class="badge badge-miss">No data</span>';
-    html+='<div class="am-card"><div class="am-top"><div><div class="am-name">'+am.n+'</div><div class="am-region">'+am.r+'</div></div><div class="am-score" style="color:'+color+'">'+(amAvg!==null?amAvg+'%':'--')+'</div></div>';
-    html+='<div class="am-bar-bg"><div class="am-bar" style="width:'+bw+'%;background:'+color+';"></div></div>';
-    html+='<div class="am-meta">'+am.s+' stores</div>'+badge+'</div>';
+  VIEWS.forEach(function(id){document.getElementById('v-'+id).style.display=id===v?'block':'none';});
+  document.querySelectorAll('.tog-btn').forEach(function(b){
+    var map={'heatmap':'Store Heatmap','leaderboard':'Leaderboard','flags':'Red Flags','health':'Health'};
+    b.classList.toggle('active',map[v]===b.textContent);
   });
-  html+='</div>';
-  html+='<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin:14px 0 8px;">Red Flags</div>';
-  var lowSubs=subs.filter(function(s){return s.score!==null&&s.score!==undefined&&s.score<60;});
-  var wedSubs=subs.filter(function(s){return s.day==='wednesday';});
-  var hasFlags=false;
-  lowSubs.forEach(function(s){
-    hasFlags=true;
-    html+='<div class="flag-card"><div class="flag-title">&#128681; '+s.store+' &mdash; '+s.score+'%</div><div class="flag-detail">'+s.am+' &middot; '+s.day+' &middot; '+ta(s.submittedAt)+'</div></div>';
+  if(v==='health')renderHealth();
+}
+
+/* ═══════════════════════════════
+   HEADER STATS
+═══════════════════════════════ */
+function renderHeader(){
+  var ts=todaySubs(),ms=mtdSubs();
+  var mtdStores=new Set(ms.map(function(s){return s.store;}));
+  var scored=ms.filter(function(s){return s.score!==null&&s.score!==undefined&&s.score>0;});
+  var avg=scored.length?Math.round(scored.reduce(function(a,s){return a+s.score;},0)/scored.length):null;
+  var flags=ms.filter(function(s){return s.score!==null&&s.score!==undefined&&s.score<60;}).length;
+
+  document.getElementById('rTodaySubs').textContent=ts.length||'0';
+  document.getElementById('rMtdCov').textContent=mtdStores.size||'0';
+  document.getElementById('rAvg').textContent=avg?avg+'%':'--';
+  document.getElementById('rFlg').textContent=flags||'0';
+
+  var ap=document.getElementById('alertPill');
+  if(flags>0){ap.textContent=flags+' alert'+(flags>1?'s':'');ap.style.display='';}
+  else{ap.style.display='none';}
+}
+
+/* ═══════════════════════════════
+   STORE HEATMAP
+═══════════════════════════════ */
+function renderHeatmap(){
+  var ts=todaySubs(),ms=mtdSubs();
+  var todayStores=new Set(ts.map(function(s){return s.store;}));
+  var mtdStoreSet=new Set(ms.map(function(s){return s.store;}));
+  var totalMtdStores=mtdStoreSet.size;
+  var totalTodayStores=todayStores.size;
+  var mtdScored=ms.filter(function(s){return s.score!==null&&s.score!==undefined&&s.score>0;});
+  var overallAvg=mtdScored.length?Math.round(mtdScored.reduce(function(a,s){return a+s.score;},0)/mtdScored.length):0;
+
+  var html='';
+
+  html+='<div class="summary-strip">';
+  html+='<div class="ss-lbl">MTD Coverage &mdash; '+new Date().toLocaleString("en-IN",{month:"long",year:"numeric"})+'</div>';
+  html+='<div class="ss-grid">';
+  html+='<div class="ss-box"><div class="ss-num score-exc">'+totalTodayStores+'</div><div class="ss-sub">Stores Today</div></div>';
+  html+='<div class="ss-box"><div class="ss-num score-gd">'+totalMtdStores+'</div><div class="ss-sub">Stores MTD</div></div>';
+  html+='<div class="ss-box"><div class="ss-num">'+overallAvg+'%</div><div class="ss-sub">MTD Avg Score</div></div>';
+  html+='</div></div>';
+
+  var regionMap={};
+  AM_LIST.forEach(function(am){if(!regionMap[am.r])regionMap[am.r]=[];regionMap[am.r].push(am);});
+
+  Object.keys(regionMap).forEach(function(rname){
+    var ams=regionMap[rname];
+    var rColor=REGION_COLOR[rname]||'var(--text3)';
+    var rMtdStores=new Set(),rTodayStores=new Set(),rTotalSub=0;
+    ams.forEach(function(am){
+      mtdSubs().filter(function(s){return s.am===am.n;}).forEach(function(s){rMtdStores.add(s.store);});
+      todaySubs().filter(function(s){return s.am===am.n;}).forEach(function(s){rTodayStores.add(s.store);});
+      rTotalSub+=am.s;
+    });
+    var rMtdPct=rTotalSub?Math.round(rMtdStores.size/rTotalSub*100):0;
+
+    html+='<div class="heatmap-wrap">';
+    html+='<div class="heatmap-region-hdr" style="border-left:3px solid '+rColor+';">';
+    html+='<div class="hm-region-name">'+rname+'</div>';
+    html+='<div style="display:flex;align-items:center;gap:8px;">';
+    html+='<div style="font-size:10px;color:var(--text2)">'+rMtdStores.size+'/'+rTotalSub+'</div>';
+    html+='<div class="hm-region-pct '+gClass(rMtdPct)+'">'+rMtdPct+'% MTD</div>';
+    html+='</div></div>';
+    html+='<div class="hm-region-body">';
+
+    ams.forEach(function(am){
+      var amTodaySet=new Set(todaySubs().filter(function(s){return s.am===am.n;}).map(function(s){return s.store;}));
+      var amMtdSet=new Set(mtdSubs().filter(function(s){return s.am===am.n;}).map(function(s){return s.store;}));
+      var allKnown=Array.from(amMtdSet);
+      allKnown.sort(function(a,b){var aT=amTodaySet.has(a)?2:1;var bT=amTodaySet.has(b)?2:1;return bT-aT;});
+      var amMtdPct=am.s?Math.round(amMtdSet.size/am.s*100):0;
+      var todayCount=amTodaySet.size;
+
+      html+='<div class="hm-am-group">';
+      html+='<div class="hm-am-name">';
+      html+=am.n+'<span style="font-size:9px;color:var(--text2);font-weight:400;text-transform:none"> &middot; '+am.s+' stores patch</span>';
+      html+='<div class="hm-am-cov">';
+      if(todayCount>0)html+='<span class="score-exc" style="margin-right:6px;">'+todayCount+' today</span>';
+      html+='<span class="'+gClass(amMtdPct)+'">'+amMtdSet.size+'/'+am.s+' MTD</span>';
+      html+='</div></div>';
+      html+='<div class="hm-stores">';
+
+      allKnown.forEach(function(store){
+        var isToday=amTodaySet.has(store);
+        var cls=isToday?'hm-today':'hm-mtd';
+        var label=store.replace(/^TH\s+/i,'').replace(/^Tim Hortons\s+/i,'');
+        html+='<div class="hm-tile '+cls+'" title="'+(isToday?'Visited today':'Visited MTD &mdash; '+store)+'">'+label+'</div>';
+      });
+
+      var gap=am.s-amMtdSet.size;
+      if(gap>0){html+='<div class="hm-tile hm-none" style="opacity:0.5;">+'+gap+' not yet</div>';}
+
+      html+='</div></div>';
+    });
+
+    html+='</div></div>';
   });
-  wedSubs.forEach(function(s){
-    (s.machines||[]).filter(function(m){return m.status==='down'||m.status==='repair';}).forEach(function(m){
-      hasFlags=true;
-      html+='<div class="flag-card"><div class="flag-title">&#128295; '+m.machine+' &mdash; '+m.status.toUpperCase()+'</div><div class="flag-detail">'+s.store+' &middot; '+s.am+(m.issue?' &middot; '+m.issue:'')+'</div></div>';
+
+  html+='<div class="refresh-note">Auto-refreshes every 90s &middot; Last: <span id="lastRefreshTime">--:--</span></div>';
+  document.getElementById('heatmapBody').innerHTML=html;
+}
+
+/* ═══════════════════════════════
+   LEADERBOARD
+═══════════════════════════════ */
+var LB_SUBS_FN={
+  'today':todaySubs,
+  'mtd':mtdSubs,
+  'all':function(){return ALL_SUBS;}
+};
+function setLbPeriod(p){
+  LB_PERIOD=p;
+  document.querySelectorAll('#v-leaderboard .tog-btn').forEach(function(b){
+    b.classList.toggle('active',b.textContent.toLowerCase().replace('all time','all')===p||b.textContent==='All Time'&&p==='all');
+  });
+  renderLeaderboard();
+}
+function renderLeaderboard(){
+  var subsFn=LB_SUBS_FN[LB_PERIOD]||mtdSubs;
+  var subsList=subsFn();
+  var ranked=AM_LIST.map(function(am){
+    var avg2=amAvg(am.n,subsList);
+    var ct=subsList.filter(function(s){return s.am===am.n;}).length;
+    return{am:am,avg:avg2,ct:ct};
+  }).sort(function(a,b){
+    if(a.avg===null&&b.avg===null)return b.ct-a.ct;
+    if(a.avg===null)return 1;
+    if(b.avg===null)return -1;
+    return b.avg-a.avg;
+  });
+
+  var html='';
+  ranked.forEach(function(item,i){
+    var rank=i+1;
+    var rankCls=rank===1?'rank-1':rank===2?'rank-2':rank===3?'rank-3':'rank-n';
+    var sc=gClass(item.avg);
+    var barW=item.avg||0;
+    html+='<div class="lb-card '+sc+'">';
+    html+='<div class="lb-rank '+rankCls+'">'+rank+'</div>';
+    html+='<div class="lb-info"><div class="lb-name">'+item.am.n+'</div>';
+    html+='<div class="lb-region">'+item.am.r+' &middot; '+item.am.s+' stores</div>';
+    html+='<div class="lb-bar-wrap"><div class="lb-bar" style="width:'+barW+'%;"></div></div>';
+    html+='</div>';
+    html+='<div class="lb-right"><div class="lb-score">'+(item.avg!==null?item.avg+'%':'--')+'</div>';
+    html+='<div class="lb-count">'+item.ct+' sub'+(item.ct!==1?'s':'')+'</div></div>';
+    html+='</div>';
+  });
+  document.getElementById('leaderboardBody').innerHTML=html||'<div class="empty">No data</div>';
+}
+
+/* ═══════════════════════════════
+   RED FLAGS
+═══════════════════════════════ */
+function renderFlags(){
+  var ms=mtdSubs(),ts=todaySubs();
+  var html='';
+
+  var todayLow=ts.filter(function(s){return s.score!==null&&s.score!==undefined&&s.score<60;});
+  var mtdLow=ms.filter(function(s){
+    return s.score!==null&&s.score!==undefined&&s.score<60&&
+      !ts.some(function(t){return t.store===s.store&&t.am===s.am;});
+  });
+
+  if(todayLow.length){
+    html+='<div class="sec-lbl" style="margin-top:0;">Today &mdash; '+todayLow.length+' below 60%</div>';
+    todayLow.forEach(function(s){
+      html+='<div class="flag-card"><div class="flag-title">'+ICON_FLAG+' '+s.store+' &mdash; '+s.score+'%</div>';
+      html+='<div class="flag-detail">'+s.am+' &middot; '+(s.day||'').toUpperCase()+' &middot; '+ta(s.submittedAt)+'</div></div>';
+    });
+  }
+
+  var equipment=[];
+  ms.forEach(function(s){
+    (s.machines||[]).filter(function(m){return m.status==='down'||m.status==='repair'||m.status==='not_working';}).forEach(function(m){
+      equipment.push({title:m.machine+' &mdash; '+m.status.replace('_',' ').toUpperCase(),detail:s.store+' &middot; '+s.am+(m.issue?' &middot; '+m.issue:''),isPest:false});
     });
     (s.pest||[]).filter(function(p){return p.status==='found';}).forEach(function(p){
-      hasFlags=true;
-      html+='<div class="flag-card" style="border-left-color:var(--amber)"><div class="flag-title" style="color:var(--amber)">&#128027; Pest &mdash; '+p.check+'</div><div class="flag-detail">'+s.store+' &middot; '+s.am+'</div></div>';
+      equipment.push({title:'Pest &mdash; '+p.check,detail:s.store+' &middot; '+s.am,isPest:true});
     });
   });
-  if(!hasFlags) html+='<div class="empty" style="color:var(--green)">&#10003; No red flags today</div>';
-  document.getElementById('v-overview').innerHTML=html;
-}
-function renderSubmissions(){
-  if(subs.length===0){document.getElementById('v-submissions').innerHTML='<div class="empty">No submissions yet</div>';return;}
-  var sorted=subs.slice().sort(function(a,b){return new Date(b.submittedAt||0)-new Date(a.submittedAt||0);});
-  var html='<div class="sub-table"><div class="sub-row sub-hdr-row"><div class="sub-hc" style="min-width:30px">Day</div><div class="sub-hc" class="flex-1">Store</div><div class="sub-hc" style="min-width:55px">AM</div><div class="sub-hc" style="min-width:36px;text-align:right">Score</div><div class="sub-hc" style="min-width:44px;text-align:right">When</div></div>';
-  sorted.forEach(function(s){
-    var c=bc(s.score);
-    var sc=s.score!==null&&s.score!==undefined?s.score+'%':'Data';
-    html+='<div class="sub-row"><div style="min-width:30px;font-size:11px;font-weight:700;color:var(--red)">'+(s.day||'').slice(0,3).toUpperCase()+'</div><div style="flex:1;font-size:12px;font-weight:600">'+s.store+'</div><div style="min-width:55px;font-size:11px;color:var(--text2)">'+s.am+'</div><div style="min-width:36px;text-align:right;font-size:13px;font-weight:700;color:'+c+'">'+sc+'</div><div style="min-width:44px;text-align:right;font-size:10px;color:var(--text2)">'+ta(s.submittedAt)+'</div></div>';
-  });
-  html+='</div>';
-  document.getElementById('v-submissions').innerHTML=html;
-}
-function renderCoverage(){
-  var html='<div class="sub-table">';
-  AMS.forEach(function(am){
-    var amSubs=subs.filter(function(s){return s.am===am.n;});
-    var stores=new Set(amSubs.map(function(s){return s.store;}));
-    var pct=am.s>0?Math.round(stores.size/am.s*100):0;
-    var c=pct===100?'var(--green)':pct>=50?'var(--amber)':'var(--critical)';
-    html+='<div class="sub-row" style="padding:10px 12px;"><div class="flex-1"><div style="font-size:13px;font-weight:600">'+am.n+'</div><div style="font-size:10px;color:var(--text2)">'+stores.size+'/'+am.s+' stores have submissions &middot; '+am.r+'</div></div><div style="font-size:14px;font-weight:700;color:'+c+'">'+pct+'%</div></div>';
-  });
-  html+='</div>';
-  document.getElementById('v-coverage').innerHTML=html;
-}
-function renderIssues(){
-  if(issues.length===0){document.getElementById('v-issues').innerHTML='<div class="empty" style="color:var(--green)">&#10003; No issues reported yet</div>';return;}
-  var sorted=issues.slice().sort(function(a,b){return new Date(b.timestamp||0)-new Date(a.timestamp||0);});
-  var html='';
-  sorted.forEach(function(issue){
-    html+='<div class="issue-card"><div style="font-size:13px;font-weight:700;color:var(--text)">'+(issue.name||'AM')+(issue.store?' &mdash; '+issue.store:'')+'</div><div style="font-size:12px;color:var(--text);margin:4px 0">'+(issue.description||'')+'</div><div style="font-size:11px;color:var(--text2)">'+ta(issue.timestamp)+'</div></div>';
-  });
-  document.getElementById('v-issues').innerHTML=html;
-}
-load();
-setInterval(load,60000);
 
+  if(equipment.length){
+    html+='<div class="sec-lbl">Equipment &amp; Pest Alerts &mdash; MTD</div>';
+    equipment.slice(0,20).forEach(function(e){
+      html+='<div class="flag-card amber">';
+      html+='<div class="flag-title">'+(e.isPest?ICON_BUG:ICON_WRENCH)+' '+e.title+'</div>';
+      html+='<div class="flag-detail">'+e.detail+'</div></div>';
+    });
+  }
+
+  if(mtdLow.length){
+    html+='<div class="sec-lbl">MTD Low Scores (not today) &mdash; '+mtdLow.length+'</div>';
+    mtdLow.slice(0,15).forEach(function(s){
+      html+='<div class="flag-card" style="opacity:0.75;"><div class="flag-title">'+ICON_WARN+' '+s.store+' &mdash; '+s.score+'%</div>';
+      html+='<div class="flag-detail">'+s.am+' &middot; '+ta(s.submittedAt)+'</div></div>';
+    });
+  }
+
+  if(!html)html='<div class="empty" style="display:flex;align-items:center;justify-content:center;gap:6px;color:var(--success);">'+ICON_CHECK+' No red flags this month</div>';
+  document.getElementById('flagsBody').innerHTML=html;
+}
+
+/* ═══════════════════════════════
+   HEALTH
+═══════════════════════════════ */
+var BAND_CLASS={excellent:'score-exc',good:'score-gd',attention:'score-wrn',critical:'score-crt'};
 function renderHealth(){
   fetch('/api/health-scores').then(function(r){return r.json();}).then(function(d){
     var scores=d.data||[];
-    if(scores.length===0){document.getElementById('v-health').innerHTML='<div class="empty">Health scores calculating... Check back after AMs start submitting.</div>';return;}
-    var html='<div style="background:linear-gradient(135deg,#0D0D1A,#1A0508);border-radius:16px;padding:14px;margin-bottom:12px;">';
-    html+='<div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Store Health Scores &mdash; '+scores.length+' stores</div>';
-    html+='<div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:10px;">Scores go live to AMs on 7 April 2026. Baseline period in progress.</div>';
+    if(!scores.length){document.getElementById('healthBody').innerHTML='<div class="empty">Health scores calculating...</div>';return;}
     var bands={excellent:0,good:0,attention:0,critical:0};
     scores.forEach(function(s){bands[s.band]=(bands[s.band]||0)+1;});
-    html+='<div style="display:flex;gap:8px;margin-bottom:10px;">';
-    html+='<div style="background:rgba(52,199,89,0.2);border-radius:8px;padding:6px 10px;flex:1;text-align:center"><div style="font-size:18px;font-weight:700;color:#34C759">'+bands.excellent+'</div><div style="font-size:9px;color:rgba(255,255,255,0.4)">EXCELLENT</div></div>';
-    html+='<div style="background:rgba(255,149,0,0.2);border-radius:8px;padding:6px 10px;flex:1;text-align:center"><div style="font-size:18px;font-weight:700;color:#FF9500">'+(bands.good+bands.attention)+'</div><div style="font-size:9px;color:rgba(255,255,255,0.4)">ATTENTION</div></div>';
-    html+='<div style="background:rgba(255,59,48,0.2);border-radius:8px;padding:6px 10px;flex:1;text-align:center"><div style="font-size:18px;font-weight:700;color:#FF3B30">'+bands.critical+'</div><div style="font-size:9px;color:rgba(255,255,255,0.4)">CRITICAL</div></div>';
+
+    var html='<div class="summary-strip"><div class="ss-lbl">Store Health Distribution</div>';
+    html+='<div class="ss-grid">';
+    html+='<div class="ss-box"><div class="ss-num score-exc">'+bands.excellent+'</div><div class="ss-sub">Excellent</div></div>';
+    html+='<div class="ss-box"><div class="ss-num score-gd">'+(bands.good+bands.attention)+'</div><div class="ss-sub">Attention</div></div>';
+    html+='<div class="ss-box"><div class="ss-num score-crt">'+bands.critical+'</div><div class="ss-sub">Critical</div></div>';
     html+='</div></div>';
-    html+='<div class="sub-table"><div class="sub-row sub-hdr-row"><div class="sub-hc" style="min-width:20px">#</div><div class="sub-hc" class="flex-1">Store</div><div class="sub-hc" style="min-width:50px;text-align:right">Score</div><div class="sub-hc" style="min-width:60px;text-align:right">Band</div></div>';
-    scores.forEach(function(s,i){
-      var c2=s.color||'#8E8E93';
-      html+='<div class="sub-row"><div style="min-width:20px;font-size:10px;color:var(--text2)">'+(i+1)+'</div><div style="flex:1;font-size:12px;font-weight:600">'+s.store.replace('TH ','')+'</div><div style="min-width:50px;text-align:right;font-size:14px;font-weight:700;color:'+c2+'">'+s.score+'</div><div style="min-width:60px;text-align:right;font-size:9px;font-weight:700;color:'+c2+'">'+s.band.toUpperCase()+'</div></div>';
+
+    html+='<div style="font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">All Stores Ranked</div>';
+    html+='<div style="background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--border);">';
+    html+='<div style="display:grid;grid-template-columns:1fr auto auto;padding:7px 13px;background:var(--surface);border-bottom:1px solid var(--border);">';
+    html+='<div style="font-size:9px;font-weight:700;color:var(--text2);text-transform:uppercase;">Store</div>';
+    html+='<div style="font-size:9px;font-weight:700;color:var(--text2);text-transform:uppercase;">Score</div>';
+    html+='<div style="font-size:9px;font-weight:700;color:var(--text2);text-transform:uppercase;padding-left:8px;">Band</div>';
+    html+='</div>';
+    scores.sort(function(a,b){return a.score-b.score;}).forEach(function(s){
+      var bc=BAND_CLASS[s.band]||'score-na';
+      html+='<div style="display:grid;grid-template-columns:1fr auto auto;padding:8px 13px;border-bottom:1px solid var(--border);align-items:center;">';
+      html+='<div style="font-size:12px;font-weight:600;color:var(--text);">'+s.store.replace('TH ','')+'</div>';
+      html+='<div class="'+bc+'" style="font-size:14px;font-weight:700;padding-right:10px;font-variant-numeric:tabular-nums;">'+s.score+'</div>';
+      html+='<div class="'+bc+'" style="font-size:9px;font-weight:700;">'+s.band.toUpperCase()+'</div>';
+      html+='</div>';
     });
     html+='</div>';
-    document.getElementById('v-health').innerHTML=html;
+
+    document.getElementById('healthBody').innerHTML=html;
   }).catch(function(){
-    document.getElementById('v-health').innerHTML='<div class="empty">Health scores not available yet</div>';
+    document.getElementById('healthBody').innerHTML='<div class="empty">Health scores not available</div>';
   });
 }
+
+/* ═══════════════════════════════
+   LOAD & REFRESH
+═══════════════════════════════ */
+function renderAll(){renderHeader();renderHeatmap();renderLeaderboard();renderFlags();}
+
+function load(){
+  fetch('/api/submissions').then(function(r){return r.json();}).then(function(d){
+    ALL_SUBS=d.data||[];
+    renderAll();
+    var el=document.getElementById('lastRefreshTime');
+    if(el)el.textContent=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+  }).catch(function(){ALL_SUBS=[];renderAll();});
+}
+
+/* ═══════════════════════════════
+   AUTH GUARD
+═══════════════════════════════ */
+(function(){
+  var role=localStorage.getItem('th_am_role');
+  var token=localStorage.getItem('th_token');
+  if(!token||(role!=='hod'&&role!=='ceo')){window.location.href='index.html';}
+})();
+
+/* ═══════════════════════════════
+   NAV / AUTH HELPERS
+═══════════════════════════════ */
+function updateNavUser(){
+  var name=localStorage.getItem('th_am_name')||'HOD';
+  var avatar=document.getElementById('navAvatar');
+  var userName=document.getElementById('navUserName');
+  var logoutBtn=document.getElementById('logoutBtn');
+  var settingsLink=document.getElementById('settingsLink');
+  if(avatar)avatar.textContent=name.charAt(0);
+  if(userName)userName.textContent=name;
+  if(logoutBtn)logoutBtn.style.display='block';
+  if(settingsLink)settingsLink.style.display='inline-block';
+  fetch('/api/profile/photo/'+encodeURIComponent(name))
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var photo=document.getElementById('navPhoto');
+      if(d.url&&photo){photo.src=d.url;photo.style.display='block';if(avatar)avatar.style.opacity='0';}
+    }).catch(function(){});
+}
+
+function showIdentitySelector(){}
+
+function logout(){
+  ['th_am_name','th_token','th_am_role','th_pin_ok','th_hod_ok','th_is_hod','th_patch'].forEach(function(k){localStorage.removeItem(k);});
+  window.location.href='index.html';
+}
+
+updateNavUser();
+startClock();
+load();
+setInterval(load,90000);
 </script>
 
 <script src="/js/api.js"></script>
 <script src="theme.js"></script>
 <script>applyTheme(getTheme());</script>
+
 <!-- FOOTER -->
-<footer class="site-footer" style="max-width:1200px;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
+<footer class="hod-footer">
   <div class="footer-content">
     <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
     <div class="footer-links">
@@ -275,25 +669,26 @@ function renderHealth(){
     </div>
   </div>
 </footer>
+
 <nav class="mobile-nav">
   <div class="mobile-nav-items">
-    <a href="index.html" class="mobile-nav-item ">
+    <a href="index.html" class="mobile-nav-item">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
       <span class="mobile-nav-label">Home</span>
     </a>
-    <a href="tasks.html" class="mobile-nav-item ">
+    <a href="tasks.html" class="mobile-nav-item">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
       <span class="mobile-nav-label">Tasks</span>
     </a>
-    <a href="events.html" class="mobile-nav-item ">
+    <a href="events.html" class="mobile-nav-item">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
       <span class="mobile-nav-label">Events</span>
     </a>
-    <a href="performance.html" class="mobile-nav-item ">
+    <a href="performance.html" class="mobile-nav-item">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
       <span class="mobile-nav-label">Scores</span>
     </a>
-    <a href="team.html" class="mobile-nav-item ">
+    <a href="team.html" class="mobile-nav-item">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
       <span class="mobile-nav-label">Team</span>
     </a>
