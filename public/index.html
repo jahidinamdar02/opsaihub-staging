@@ -41,6 +41,7 @@
   --on-brand: rgba(255,255,255,0.7);
   --on-brand-divider: rgba(255,255,255,0.2);
   --overlay-bg: rgba(0,0,0,0.5);
+  --dur-score: 600ms;
 }
 
 body {
@@ -62,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ═══════════════════════════════════════════
-   NAVIGATION — N9 Edge-aligned minimal
+   NAVIGATION — N1b Three-section
    ═══════════════════════════════════════════ */
 .nav {
   position: fixed;
@@ -125,7 +126,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 100px;
   border: 1px solid var(--border);
   cursor: pointer;
-  transition: background-color 120ms ease-out, border-color 120ms ease-out, color 120ms ease-out;
+  transition: background-color 120ms var(--ease-out), border-color 120ms var(--ease-out), color 120ms var(--ease-out);
 }
 
 .nav-user:hover {
@@ -203,7 +204,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .patch-pills {
   display: flex;
-  gap: 6px;
+  gap: var(--space-sm);
   flex-wrap: wrap;
 }
 
@@ -216,7 +217,7 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--card);
   color: var(--text2);
   cursor: pointer;
-  transition: background-color 120ms ease-out, border-color 120ms ease-out, color 120ms ease-out;
+  transition: background-color 120ms var(--ease-out), border-color 120ms var(--ease-out), color 120ms var(--ease-out);
   white-space: nowrap;
 }
 
@@ -410,8 +411,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .checklist-arrow {
-  font-size: var(--text-lg);
   color: var(--text3);
+  display: flex;
+  align-items: center;
 }
 
 /* Store scores */
@@ -472,7 +474,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 2px;
   transform-origin: left;
   transform: scaleX(0);
-  transition: transform 0.6s var(--ease-out);
+  transition: transform var(--dur-score) var(--ease-out);
 }
 
 .score-bar-fill.high { background: var(--success); }
@@ -498,6 +500,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text3);
   width: 24px;
   text-align: center;
+  font-variant-numeric: tabular-nums;
 }
 
 .leaderboard-rank.top { color: var(--red); }
@@ -512,6 +515,7 @@ h1, h2, h3, h4, h5, h6 {
 .leaderboard-visits {
   font-size: var(--text-xs);
   color: var(--text3);
+  font-variant-numeric: tabular-nums;
 }
 
 /* Quick links */
@@ -680,7 +684,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .mobile-nav-label {
-  font-size: 10px;
+  font-size: var(--text-xs);
   font-weight: 500;
   color: var(--text3);
 }
@@ -745,7 +749,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
   background: var(--success);
   margin-right: var(--space-xs);
-  animation: pulse 2s ease-in-out infinite;
+  animation: pulse 2s var(--ease-in-out) infinite;
 }
 
 @keyframes pulse {
@@ -836,7 +840,7 @@ h1, h2, h3, h4, h5, h6 {
             <div class="checklist-sub" id="todaySub">Tap to open checklist</div>
           </div>
         </div>
-        <div class="checklist-arrow">›</div>
+        <div class="checklist-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
       </a>
     </article>
     
@@ -946,11 +950,11 @@ h1, h2, h3, h4, h5, h6 {
 </nav>
 
 <!-- IDENTITY SELECTOR -->
-<div class="id-overlay" id="idOverlay" style="display:none;position:fixed;inset:0;background:var(--overlay-bg);z-index:var(--z-overlay);align-items:center;justify-content:center;backdrop-filter:blur(4px);">
+<div class="id-overlay" id="idOverlay" role="dialog" aria-modal="true" aria-labelledby="overlayTitle" style="display:none;position:fixed;inset:0;background:var(--overlay-bg);z-index:var(--z-overlay);align-items:center;justify-content:center;backdrop-filter:blur(4px);">
   <div style="background:var(--card);border-radius:var(--border-radius);padding:var(--space-xl);max-width:400px;width:90%;box-shadow:var(--shadow-lg);">
     <!-- Step 1: Name selection -->
     <div id="nameStep">
-      <h3 style="font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-sm);">Who are you?</h3>
+      <h3 id="overlayTitle" style="font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-sm);">Who are you?</h3>
       <p style="font-size:var(--text-sm);color:var(--text2);margin-bottom:var(--space-lg);">Select your name to continue.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-sm);" id="idGrid">
         <button class="id-btn" onclick="selectAM('Raman')">Raman</button>

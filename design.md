@@ -73,7 +73,7 @@ Locked design system for Tim Hortons India OpsAIHub platform.
 ## Macrostructure
 
 - **Primary:** Bento Grid (dashboard sections)
-- **Nav:** N9 edge-aligned minimal
+- **Nav:** N1b three-section
 - **Footer:** Ft2 inline rule single line
 
 ## Genre
