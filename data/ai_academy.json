@@ -1,22 +1,13 @@
 {
-  "Deepak": {
+  "Raman": {
     "weeks": {
-      "2026-W25": {
+      "2026-W26": {
         "watched": [
-          "v0",
-          "v1",
-          "b3",
-          "b2",
-          "v2",
-          "v3",
-          "v4",
-          "b0",
-          "b1"
+          "v0"
         ],
-        "quizScore": null,
-        "quizPassed": false
+        "challengeDone": false
       }
     },
-    "certificates": []
+    "certs": {}
   }
 }

@@ -1618,7 +1618,7 @@ function selectDay(d) {
     document.getElementById('view-mon').classList.remove('hidden');
   } else if (d === 2) {
     document.getElementById('view-tue').classList.remove('hidden');
-    renderAIAcademy();
+    loadAIProgress(renderAIAcademy);
   } else if (d === 3) {
     document.getElementById('view-wed').classList.remove('hidden');
   } else if (d === 5) {
@@ -3404,12 +3404,13 @@ function markVideoWatched(videoKey) {
       return now.getFullYear() + '-W' + String(week).padStart(2,'0');
     })();
     aiState.challengeDone = isChallengesDone(aiState.weekKey);
-    // Load from server if AI tab is open today
-    if (new Date().getDay() === 2) {
-      loadAIProgress(renderAIAcademy);
-    }
   });
 })();
+
+function toggleWatch(key) {
+  var weekIdx = getWeekOfYear() % aiVideos.length;
+  markVideoWatched(key === 'featured' ? 'v' + weekIdx : key);
+}
 </script>
 
 <!-- ── TASK COMMAND CENTRE JS ── -->

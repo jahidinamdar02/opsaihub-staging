@@ -70,6 +70,28 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Web push crons — IST timezone
+const { sendToAll: pushAll } = require('./routes/push');
+
+// 9:00 AM IST — morning briefing
+cron.schedule('0 9 * * *', function() {
+  var subs = readJSON('push_subscriptions.json', []);
+  if (!subs.length) return;
+  var day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][new Date().getDay()];
+  pushAll(subs, { title: 'Good morning! ☀️', body: 'Your ' + day + ' briefing is ready. Check today\'s checklist and store targets.', tag: 'briefing', url: '/' }, function(r) {
+    console.log('[PUSH] Morning briefing sent:', r);
+  });
+}, { timezone: 'Asia/Kolkata' });
+
+// 3:00 PM IST — afternoon checklist reminder
+cron.schedule('0 15 * * *', function() {
+  var subs = readJSON('push_subscriptions.json', []);
+  if (!subs.length) return;
+  pushAll(subs, { title: 'Afternoon check-in 📋', body: 'Don\'t forget to submit your afternoon checklist before end of day.', tag: 'checklist', url: '/index.html', requireInteraction: true }, function(r) {
+    console.log('[PUSH] Checklist reminder sent:', r);
+  });
+}, { timezone: 'Asia/Kolkata' });
+
 app.get('/api/fy27-targets', function(req, res) {
   try { var data = readJSON('fy27_targets.json', {}); res.json(data); }
   catch(err) { res.status(500).json({ error: err.message }); }
@@ -253,6 +275,7 @@ app.use('/api/events', require('./routes/events'));
 app.use('/api/audits', require('./routes/audits'));
 app.use('/api/cash-audit', require('./routes/cash-audit'));
 app.use('/api/news', require('./routes/news'));
+app.use('/api/push', require('./routes/push').router);
 
 // Profile picture upload
 const multer = require('multer');
@@ -302,6 +325,8 @@ app.post('/api/test-email', strictLimiter, function(req, res) {
     function(err) { res.json({ success: !err, error: err ? err.message : null }); }
   );
 });
+
+app.use('/api/ai-academy', require('./routes/ai-academy'));
 
 // 404 handler for unknown API routes
 app.use('/api', function(req, res) {
