@@ -1,0 +1,62 @@
+[
+  {
+    "am": "Raman",
+    "role": "am",
+    "hash": "$2b$10$ZzH0hOrz5x9sWVR8Z0kxl.zpJX5mNV70o2RfKR5qNH/SRvWYajnbK"
+  },
+  {
+    "am": "Harish",
+    "role": "am",
+    "hash": "$2b$10$T4dnKs./tYVgj8k3iy.vaeflmc0zZJquHqrn6F6fwD5hLlcGDdmlK"
+  },
+  {
+    "am": "Rohit",
+    "role": "am",
+    "hash": "$2b$10$QD5pCfKZamWO7hUtiYYTD.8EhDZhl9AExnpOo64FJm0XbURXGdDpm"
+  },
+  {
+    "am": "Deepak",
+    "role": "am",
+    "hash": "$2b$10$z7Uwu9LjTJmE2lSgwS2iBOK9iblBcbdpQZhqW822MGHRgK7PRZq6O"
+  },
+  {
+    "am": "Sandeep Mukharjee",
+    "role": "am",
+    "hash": "$2b$10$OE/la8jnjHcyMBesfFuqCOqtQeeNE35zrdqgHjWGNGoTbfuHKU0TO"
+  },
+  {
+    "am": "Akash Rathod",
+    "role": "am",
+    "hash": "$2b$10$dqqb.xAhnlVSlqydo2.3.e6fKLgmqf7yJMUPD3/Wa32k3aY5t8AMe"
+  },
+  {
+    "am": "Jagadeesha",
+    "role": "am",
+    "hash": "$2b$10$UU5biK7ruhQTFWf2cUENY.iiPFC8mMLVuVsVu1MKOMRmHXOgARdRW"
+  },
+  {
+    "am": "Shivam",
+    "role": "am",
+    "hash": "$2b$10$UL8Wy/W3vlXxMSkTjqLfkOC/y53arfeHp.I2OKb5iRlXpmFQj8dZG"
+  },
+  {
+    "am": "Kajal",
+    "role": "am",
+    "hash": "$2b$10$6GXK/PEQvq9FOoynJcwYHu5GhLz.ErNIh60QWskZsj0mmQBm6Otz6"
+  },
+  {
+    "am": "Vrunda",
+    "role": "am",
+    "hash": "$2b$10$c/AY6Wqy8GGvE1x7uB3cKOtpyDSE3xH9oZjCQ7PliciH5hcZZKd6O"
+  },
+  {
+    "am": "Jahid",
+    "role": "hod",
+    "hash": "$2b$10$8ZzKMYE/gYCG0ocYi7gXqORWJ/T1nxe5rQWTz/CQiNJNIDlOr3cxu"
+  },
+  {
+    "am": "Tarun",
+    "role": "ceo",
+    "hash": "$2b$10$PE5NCw4rtcJ4fPytoEbC2OW.6452romFT4M.IUP/FS4nAIKYhTE9i"
+  }
+]
