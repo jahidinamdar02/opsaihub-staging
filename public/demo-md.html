@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>OpsAIHub — MD Demo | Tim Hortons India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="timsy.css">
+<style>
+:root {
+  --red: #C8102E;
+  --red-dark: #A00D24;
+  --red-tint: rgba(200,16,46,0.08);
+  --green: #34C759;
+  --green-tint: rgba(52,199,89,0.1);
+  --amber: #FF9F0A;
+  --amber-tint: rgba(255,159,10,0.1);
+  --blue: #007AFF;
+  --blue-tint: rgba(0,122,255,0.1);
+  --purple: #AF52DE;
+  --purple-tint: rgba(175,82,222,0.1);
+  --text: #1D1D1F;
+  --text2: #6E6E73;
+  --text3: #AEAEB2;
+  --surface: #F5F5F7;
+  --card: #FFFFFF;
+  --border: #E5E5EA;
+  --white: #FFFFFF;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--surface); color: var(--text); line-height: 1.5; }
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 60px;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border); z-index: 100;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+}
+.nav-brand { font-weight: 800; font-size: 18px; letter-spacing: -0.5px; }
+.nav-brand span { color: var(--red); }
+.nav-badge { font-size: 11px; font-weight: 600; background: var(--red); color: white; padding: 3px 10px; border-radius: 20px; margin-left: 10px; }
+.nav-links { display: flex; gap: 8px; }
+.nav-link { font-size: 12px; font-weight: 500; color: var(--text2); text-decoration: none; padding: 6px 12px; border-radius: 20px; transition: background-color 120ms ease-out, color 120ms ease-out; }
+.nav-link:hover { background: var(--red-tint); color: var(--red); }
+.nav-link.active { background: var(--red); color: white; }
+
+/* ── HERO ── */
+.hero {
+  padding: 100px 24px 60px; text-align: center;
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--surface) 100%);
+}
+.hero-tag { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+.hero-title { font-size: clamp(32px, 5vw, 56px); font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px; }
+.hero-title span { color: var(--red); }
+.hero-sub { font-size: 18px; color: var(--text2); max-width: 640px; margin: 0 auto 32px; font-weight: 400; }
+.hero-stats { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
+.hero-stat { text-align: center; }
+.hero-stat-num { font-size: 42px; font-weight: 900; color: var(--red); line-height: 1; letter-spacing: -2px; }
+.hero-stat-label { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+/* ── SECTIONS ── */
+.section { padding: 60px 24px; max-width: 1200px; margin: 0 auto; }
+.section-tag { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+.section-title { font-size: clamp(24px, 3vw, 36px); font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+.section-desc { font-size: 15px; color: var(--text2); max-width: 640px; margin-bottom: 32px; }
+
+/* ── CARDS ── */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.card {
+  background: var(--card); border-radius: var(--radius); padding: 24px;
+  box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.card-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px; }
+.card-icon.red { background: var(--red-tint); color: var(--red); }
+.card-icon.green { background: var(--green-tint); color: var(--green); }
+.card-icon.blue { background: var(--blue-tint); color: var(--blue); }
+.card-icon.purple { background: var(--purple-tint); color: var(--purple); }
+.card-icon.amber { background: var(--amber-tint); color: var(--amber); }
+.card-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.card-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+/* ── STRATEGY BLOCKS ── */
+.strategy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+.strategy-card {
+  background: var(--card); border-radius: var(--radius); padding: 28px;
+  border-left: 4px solid var(--red); box-shadow: var(--shadow-sm);
+}
+.strategy-num { font-size: 48px; font-weight: 900; color: var(--red-tint); line-height: 1; margin-bottom: 8px; }
+.strategy-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.strategy-text { font-size: 13px; color: var(--text2); line-height: 1.7; }
+.strategy-metrics { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+.strategy-metric { background: var(--surface); padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; }
+.strategy-metric strong { color: var(--red); }
+
+/* ── DASHBOARD PREVIEW ── */
+.dashboard-preview {
+  background: var(--card); border-radius: 20px; padding: 32px;
+  box-shadow: var(--shadow-lg); border: 1px solid var(--border); overflow: hidden;
+}
+.dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.dash-title { font-size: 20px; font-weight: 700; }
+.dash-live { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--green); }
+.dash-live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+.dash-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.kpi-card { text-align: center; padding: 20px 12px; border-radius: 12px; background: var(--surface); }
+.kpi-value { font-size: 32px; font-weight: 900; line-height: 1; letter-spacing: -1px; }
+.kpi-value.red { color: var(--red); }
+.kpi-value.green { color: var(--green); }
+.kpi-value.blue { color: var(--blue); }
+.kpi-value.amber { color: var(--amber); }
+.kpi-label { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 6px; }
+
+/* ── PARAM TABLE ── */
+.param-table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+.param-table th { background: var(--red); color: white; padding: 14px 16px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-align: left; }
+.param-table td { padding: 14px 16px; font-size: 13px; border-bottom: 1px solid var(--border); }
+.param-table tr:last-child td { border-bottom: none; }
+.param-table tr:hover td { background: var(--red-tint); }
+.param-category { font-weight: 700; color: var(--text); }
+.param-name { color: var(--text2); }
+.param-status { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.status-live { background: var(--green-tint); color: var(--green); }
+.status-wip { background: var(--amber-tint); color: var(--amber); }
+.status-planned { background: var(--blue-tint); color: var(--blue); }
+
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 40px; }
+.timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: 32px; }
+.timeline-dot { position: absolute; left: -32px; top: 4px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--red); background: white; }
+.timeline-dot.done { background: var(--red); }
+.timeline-date { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.timeline-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.timeline-text { font-size: 13px; color: var(--text2); }
+
+/* ── TECH STACK ── */
+.tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.tech-card {
+  background: var(--card); border-radius: var(--radius-sm); padding: 20px; text-align: center;
+  border: 1px solid var(--border); transition: border-color 0.15s;
+}
+.tech-card:hover { border-color: var(--red); }
+.tech-icon { font-size: 32px; margin-bottom: 12px; }
+.tech-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.tech-desc { font-size: 12px; color: var(--text2); }
+
+/* ── FOOTER ── */
+.footer {
+  padding: 40px 24px; border-top: 1px solid var(--border); text-align: center;
+  font-size: 12px; color: var(--text3);
+}
+.footer-brand { font-weight: 700; color: var(--text2); margin-bottom: 4px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero-stats { gap: 24px; }
+  .hero-stat-num { font-size: 32px; }
+  .dash-kpis { grid-template-columns: repeat(2, 1fr); }
+  .strategy-grid { grid-template-columns: 1fr; }
+  .section { padding: 40px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div style="display:flex;align-items:center;">
+    <div class="nav-brand">Ops<span>AI</span>Hub</div>
+    <span class="nav-badge">MD Demo</span>
+  </div>
+  <div class="nav-links">
+    <a href="#strategy" class="nav-link">Strategy</a>
+    <a href="#features" class="nav-link">Features</a>
+    <a href="#dashboard" class="nav-link">Dashboard</a>
+    <a href="#parameters" class="nav-link">Parameters</a>
+    <a href="#execution" class="nav-link">Execution</a>
+    <a href="#tech" class="nav-link">Tech</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Operational Intelligence Platform</div>
+  <h1 class="hero-title">The World's Top 1%<br><span>Operational Tool</span><br>for Area Managers</h1>
+  <p class="hero-sub">A unified platform powering daily operations across 44 Tim Hortons stores in India — from store visits and compliance to training and real-time analytics.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">44</div>
+      <div class="hero-stat-label">Stores</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">11</div>
+      <div class="hero-stat-label">Area Managers</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">6</div>
+      <div class="hero-stat-label">Regions</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">41</div>
+      <div class="hero-stat-label">Pages</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGY -->
+<section class="section" id="strategy">
+  <div class="section-tag">Strategic Vision</div>
+  <h2 class="section-title">Why OpsAIHub Exists</h2>
+  <p class="section-desc">Three strategic pillars driving operational excellence across every Tim Hortons café in India.</p>
+  <div class="strategy-grid">
+    <div class="strategy-card">
+      <div class="strategy-num">01</div>
+      <div class="strategy-title">Centralized Visibility</div>
+      <div class="strategy-text">Replace fragmented spreadsheets and WhatsApp groups with a single source of truth. Every store visit, checklist submission, and compliance photo flows into one real-time dashboard — accessible to Area Managers, HOD, and leadership.</div>
+      <div class="strategy-metrics">
+        <div class="strategy-metric">Stores: <strong>44</strong></div>
+        <div class="strategy-metric">Regions: <strong>6</strong></div>
+        <div class="strategy-metric">Pages: <strong>41</strong></div>
+      </div>
+    </div>
+    <div class="strategy-card">
+      <div class="strategy-num">02</div>
+      <div class="strategy-title">AI-Powered Operations</div>
+      <div class="strategy-text">Leverage Google Gemini for donut compliance photo analysis, Timsy 2.0 AI assistant for contextual insights, and Tuesday AI Learning quizzes — reducing manual oversight and accelerating decision-making.</div>
+      <div class="strategy-metrics">
+        <div class="strategy-metric">Gemini API: <strong>Live</strong></div>
+        <div class="strategy-metric">Timsy 2.0: <strong>Live</strong></div>
+        <div class="strategy-metric">AI Learning: <strong>Live</strong></div>
+      </div>
+    </div>
+    <div class="strategy-card">
+      <div class="strategy-num">03</div>
+      <div class="strategy-title">Accountability at Scale</div>
+      <div class="strategy-text">Day-wise checklists, compliance scoring, FDU photo verification, and cash audit trails create a culture of accountability — where every AM's performance is transparent and every store's health is measurable.</div>
+      <div class="strategy-metrics">
+        <div class="strategy-metric">Checklist Days: <strong>7</strong></div>
+        <div class="strategy-metric">Score Params: <strong>12+</strong></div>
+        <div class="strategy-metric">Audit Types: <strong>3</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-tag">Platform Capabilities</div>
+  <h2 class="section-title">Everything an Area Manager Needs</h2>
+  <p class="section-desc">12 integrated modules covering every aspect of café operations — from daily tasks to long-term performance tracking.</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon red">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <div class="card-title">Daily Checklists</div>
+      <div class="card-text">Day-wise operational checklists (Mon–Sun) with specific parameters for each day — store visits, compliance, coverage, and more.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon green">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <div class="card-title">Performance Scores</div>
+      <div class="card-text">12+ scoring parameters including sales compliance, store visits, FDU compliance, training completion, donut champions, and FOSTAC certification.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon blue">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
+      </div>
+      <div class="card-title">Events & Calendar</div>
+      <div class="card-text">Company events, training schedules, IPL match days, and critical operational dates — all visible in one calendar view with category filters.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon purple">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div class="card-title">FDU Compliance</div>
+      <div class="card-text">Daily Food Display Unit photo submissions with AI-powered analysis. History tracking by area manager and store, compliance percentages, and gap identification.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon amber">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+      </div>
+      <div class="card-title">Training & People Health</div>
+      <div class="card-text">Training completion tracking, tenure analysis, FOSTAC certification pipeline, Tuesday AI Learning quizzes, and people health scores by region.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon red">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="card-title">HOD Dashboard</div>
+      <div class="card-text">Head of Department view with heatmap of all 44 stores, region-wise compliance, and drill-down capability into individual AM performance.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon green">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <div class="card-title">Cash Handling Audit</div>
+      <div class="card-text">Weekly audits for store managers, monthly for area managers. Excel-based with automated email triggers to finance team and HOD.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon blue">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </div>
+      <div class="card-title">Settings & Profile</div>
+      <div class="card-text">User profile management, photo uploads, dark mode toggle, and personal preferences — all persisted via JWT authentication.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon purple">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="card-title">Live Activity Feed</div>
+      <div class="card-text">Real-time feed of store visits, checklist submissions, and compliance updates — Instagram-style with reactions, comments, and auto-posted content.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon green">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="card-title">Store Allocation</div>
+      <div class="card-text">Complete store-to-AM mapping across 42+ stores, region-wise allocation, and TBA (To Be Assigned) tracking for open positions.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon amber">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </div>
+      <div class="card-title">Push Notifications</div>
+      <div class="card-text">Web push notifications for critical updates, task reminders, and compliance deadlines — ensuring AMs never miss important actions.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD PREVIEW -->
+<section class="section" id="dashboard">
+  <div class="section-tag">Live Platform</div>
+  <h2 class="section-title">Dashboard at a Glance</h2>
+  <p class="section-desc">Real-time operational metrics visible to leadership — updated continuously as AMs submit data.</p>
+  <div class="dashboard-preview">
+    <div class="dash-header">
+      <div class="dash-title">OpsAIHub — Home Dashboard</div>
+      <div class="dash-live"><div class="dash-live-dot"></div>Live Data</div>
+    </div>
+    <div class="dash-kpis">
+      <div class="kpi-card">
+        <div class="kpi-value red">44</div>
+        <div class="kpi-label">Total Stores</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value green">87%</div>
+        <div class="kpi-label">FDU Compliance</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value blue">156</div>
+        <div class="kpi-label">Visits This Week</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value amber">92%</div>
+        <div class="kpi-label">Training Completion</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="background:var(--surface);border-radius:12px;padding:20px;">
+        <div style="font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Top Performers This Week</div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--red);color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">1</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Raman</div><div style="font-size:11px;color:var(--text2);">Delhi NCR Airports</div></div>
+          <div style="font-size:18px;font-weight:700;color:var(--green);">94%</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--red);color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">2</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Harish</div><div style="font-size:11px;color:var(--text2);">Delhi NCR</div></div>
+          <div style="font-size:18px;font-weight:700;color:var(--green);">91%</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--red);color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">3</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Deepak</div><div style="font-size:11px;color:var(--text2);">Punjab</div></div>
+          <div style="font-size:18px;font-weight:700;color:var(--green);">89%</div>
+        </div>
+      </div>
+      <div style="background:var(--surface);border-radius:12px;padding:20px;">
+        <div style="font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Region Compliance</div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Delhi NCR</div></div>
+          <div style="width:100px;height:6px;background:var(--border);border-radius:3px;overflow:hidden;"><div style="width:95%;height:100%;background:var(--green);border-radius:3px;"></div></div>
+          <div style="font-size:13px;font-weight:700;color:var(--green);">95%</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Maharashtra</div></div>
+          <div style="width:100px;height:6px;background:var(--border);border-radius:3px;overflow:hidden;"><div style="width:88%;height:100%;background:var(--green);border-radius:3px;"></div></div>
+          <div style="font-size:13px;font-weight:700;color:var(--green);">88%</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Punjab</div></div>
+          <div style="width:100px;height:6px;background:var(--border);border-radius:3px;overflow:hidden;"><div style="width:85%;height:100%;background:var(--amber);border-radius:3px;"></div></div>
+          <div style="font-size:13px;font-weight:700;color:var(--amber);">85%</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;">
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Karnataka</div></div>
+          <div style="width:100px;height:6px;background:var(--border);border-radius:3px;overflow:hidden;"><div style="width:82%;height:100%;background:var(--amber);border-radius:3px;"></div></div>
+          <div style="font-size:13px;font-weight:700;color:var(--amber);">82%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARAMETERS -->
+<section class="section" id="parameters">
+  <div class="section-tag">Tracked Parameters</div>
+  <h2 class="section-title">Every Parameter That Matters</h2>
+  <p class="section-desc">Comprehensive tracking across 50+ operational parameters — from daily tasks to quarterly performance metrics.</p>
+  <div style="overflow-x:auto;">
+    <table class="param-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Parameter</th>
+          <th>Frequency</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="param-category" rowspan="6">Store Visits</td><td class="param-name">Daily store visit logging</td><td>Daily</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Visit photos & evidence</td><td>Daily</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Store health scoring</td><td>Daily</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Visit frequency tracking</td><td>Weekly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Coverage analysis</td><td>Weekly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Visit leaderboard</td><td>Weekly</td><td><span class="param-status status-live">Live</span></td></tr>
+
+        <tr><td class="param-category" rowspan="5">FDU Compliance</td><td class="param-name">Daily FDU photo submission</td><td>Daily</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">AI photo analysis (Gemini)</td><td>Daily</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Compliance percentage</td><td>Daily</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">History by AM & store</td><td>Monthly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Gap identification</td><td>Weekly</td><td><span class="param-status status-live">Live</span></td></tr>
+
+        <tr><td class="param-category" rowspan="5">Training</td><td class="param-name">Training completion rate</td><td>Monthly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">FOSTAC certification</td><td>Quarterly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Donut champions (target: 3/store)</td><td>Monthly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Tuesday AI Learning quizzes</td><td>Weekly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Tenure band analysis</td><td>Quarterly</td><td><span class="param-status status-live">Live</span></td></tr>
+
+        <tr><td class="param-category" rowspan="5">Performance Scoring</td><td class="param-name">Sales compliance score</td><td>Weekly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Store visit score</td><td>Weekly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">FDU compliance score</td><td>Weekly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Training completion score</td><td>Monthly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Overall health score</td><td>Weekly</td><td><span class="param-status status-live">Live</span></td></tr>
+
+        <tr><td class="param-category" rowspan="5">Audits</td><td class="param-name">Cash handling audit (weekly - SM)</td><td>Weekly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Cash handling audit (monthly - AM)</td><td>Monthly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Excel-based reporting</td><td>Weekly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Email triggers to finance</td><td>Weekly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Audit trail & history</td><td>Monthly</td><td><span class="param-status status-live">Live</span></td></tr>
+
+        <tr><td class="param-category" rowspan="5">AI Features</td><td class="param-name">Timsy 2.0 AI assistant</td><td>Real-time</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Gemini donut analysis</td><td>Daily</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Anomaly detection</td><td>Daily</td><td><span class="param-status status-wip">WIP</span></td></tr>
+        <tr><td class="param-name">Store sparklines</td><td>Weekly</td><td><span class="param-status status-planned">Planned</span></td></tr>
+        <tr><td class="param-name">Predictive analytics</td><td>Monthly</td><td><span class="param-status status-planned">Planned</span></td></tr>
+
+        <tr><td class="param-category" rowspan="4">Events</td><td class="param-name">Company events calendar</td><td>Monthly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Training schedules</td><td>Monthly</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">IPL match days</td><td>Seasonal</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Quick event logging</td><td>Daily</td><td><span class="param-status status-live">Live</span></td></tr>
+
+        <tr><td class="param-category" rowspan="4">Communication</td><td class="param-name">Team feed (Instagram-style)</td><td>Real-time</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Auto-posted content (6h cadence)</td><td>6 hours</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Reactions & comments</td><td>Real-time</td><td><span class="param-status status-live">Live</span></td></tr>
+        <tr><td class="param-name">Web push notifications</td><td>Real-time</td><td><span class="param-status status-live">Live</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- EXECUTION -->
+<section class="section" id="execution">
+  <div class="section-tag">Execution Timeline</div>
+  <h2 class="section-title">Build & Rollout Plan</h2>
+  <p class="section-desc">From initial MVP to full operational platform — the journey of OpsAIHub.</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot done"></div>
+      <div class="timeline-date">Phase 1 — April 2026</div>
+      <div class="timeline-title">MVP Launch</div>
+      <div class="timeline-text">Core platform with PIN-based auth, daily checklists, store visit logging, basic performance scores, and single-file server architecture (1,670 lines).</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot done"></div>
+      <div class="timeline-date">Phase 2 — May 2026</div>
+      <div class="timeline-title">Feature Expansion</div>
+      <div class="timeline-text">Events calendar, FDU compliance tracking, training health module, cash audit system, and Instagram-style team feed.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot done"></div>
+      <div class="timeline-date">Phase 3 — June 2026</div>
+      <div class="timeline-title">AI Integration & Scale</div>
+      <div class="timeline-text">Gemini AI for donut analysis, Timsy 2.0 assistant, server modularization (4393 → 250 lines + 10 routes), JWT auth, Jest test suite (56 tests), Hallmark design system.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Phase 4 — June 18–24, 2026</div>
+      <div class="timeline-title">7-Day Build Sprint</div>
+      <div class="timeline-text">Timsy 2.0 enhancements → Anomaly Detection → Store Sparklines → Web Push Notifications → Task Command → Polish & Launch.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Phase 5 — July 2026</div>
+      <div class="timeline-title">Full Rollout & Optimization</div>
+      <div class="timeline-text">Production deployment, performance monitoring, user feedback iteration, and advanced analytics dashboard for leadership.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="section" id="tech">
+  <div class="section-tag">Technical Foundation</div>
+  <h2 class="section-title">Built for Scale</h2>
+  <p class="section-desc">Modern, modular architecture designed for reliability, maintainability, and rapid iteration.</p>
+  <div class="tech-grid">
+    <div class="tech-card">
+      <div class="tech-icon">⚡</div>
+      <div class="tech-name">Node.js + Express</div>
+      <div class="tech-desc">Modular routes, middleware architecture, JWT auth</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon">🎨</div>
+      <div class="tech-name">Vanilla JS + CSS</div>
+      <div class="tech-desc">Zero framework dependency, instant load, Geist font</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon">🤖</div>
+      <div class="tech-name">Google Gemini AI</div>
+      <div class="tech-desc">Donut compliance photo analysis, Timsy 2.0 assistant</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon">🔒</div>
+      <div class="tech-name">JWT Authentication</div>
+      <div class="tech-desc">PIN-based login, secure API access, session management</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon">✅</div>
+      <div class="tech-name">Jest Test Suite</div>
+      <div class="tech-desc">56 tests, 6 suites, automated CI/CD validation</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon">📊</div>
+      <div class="tech-name">Joi Validation</div>
+      <div class="tech-desc">15 schemas, input sanitization, error handling</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon">🌙</div>
+      <div class="tech-name">Dark Mode</div>
+      <div class="tech-desc">System-wide toggle, localStorage persistence</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon">📱</div>
+      <div class="tech-name">Mobile-First</div>
+      <div class="tech-desc">Responsive design, bottom nav, touch-optimized</div>
+    </div>
+  </div>
+</section>
+
+<!-- USER ROLES -->
+<section class="section">
+  <div class="section-tag">User Roles</div>
+  <h2 class="section-title">Access by Role</h2>
+  <p class="section-desc">Role-based access ensures each user sees exactly what they need — no more, no less.</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon red">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="card-title">Area Manager (11 users)</div>
+      <div class="card-text">Daily checklists, store visits, FDU submissions, training tracking, event logging, team feed participation. Region-filtered view of assigned stores.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon purple">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="card-title">HOD — Jahid</div>
+      <div class="card-text">Full dashboard with heatmap of all 44 stores, region-wise compliance, AM performance comparison, and drill-down capability into individual metrics.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon green">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="card-title">CEO — Tarun</div>
+      <div class="card-text">Executive view with high-level KPIs, cross-region comparison, and strategic metrics for board-level reporting.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon blue">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4"/></svg>
+      </div>
+      <div class="card-title">Store Manager</div>
+      <div class="card-text">FDU photo submissions, weekly cash handling audits, store-specific performance view, and compliance tracking.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
+  <div>Built for operational excellence. Powered by AI.</div>
+  <div style="margin-top:8px;">Contact: jahid@timhortonsindia.com</div>
+</footer>
+
+
+<!-- TIMSY BOT -->
+
+
+<!-- TIMSY BOT -->
+<div id="timsy-launcher" onclick="toggleTimsy()">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+<div style="position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:#34C759;border-radius:50%;border:2px solid #000;"></div>
+</div>
+<div id="timsy-chat">
+<div style="background:linear-gradient(135deg,#c8102e,#a00d24);padding:16px 20px;display:flex;align-items:center;gap:12px;">
+<div style="width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">&#9749;</div>
+<div style="flex:1;"><div style="font-weight:800;font-size:1em;color:#fff;">Timsy</div><div style="font-size:0.7em;color:rgba(255,255,255,0.7);">Ops Assistant &#8226; Online</div></div>
+<div id="timsy-voice-btn" onclick="toggleVoice()" style="cursor:pointer;color:rgba(255,255,255,0.7);font-size:0.7em;padding:4px 8px;border:1px solid rgba(255,255,255,0.3);border-radius:12px;" title="Toggle voice">&#128266;</div>
+<div class="timsy-close-btn" onclick="toggleTimsy()">&#10005;</div>
+</div>
+<div id="timsy-messages">
+<div style="display:flex;gap:8px;align-items:flex-start;">
+<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">&#9749;</div>
+<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">Hey there! I am <b style="color:#c8102e;">Timsy</b>, your ops assistant. Ask me about stores, ratings, FDU compliance, donuts, tasks, or anything on OpsAIHub!</div>
+</div>
+</div>
+<div style="padding:12px 16px;border-top:1px solid #222;display:flex;gap:10px;align-items:center;">
+<input id="timsy-input" type="text" placeholder="Ask Timsy..." onkeydown="if(event.key==='Enter')sendTimsy()">
+<div onclick="sendTimsy()" style="width:38px;height:38px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
+</div>
+</div>
+
+<script>
+var timsyOpen = false;
+var voiceEnabled = false;
+function toggleTimsy() {
+  timsyOpen = !timsyOpen;
+  document.getElementById("timsy-chat").style.display = timsyOpen ? "flex" : "none";
+  if (timsyOpen) document.getElementById("timsy-input").focus();
+}
+function toggleVoice() {
+  voiceEnabled = !voiceEnabled;
+  var b = document.getElementById("timsy-voice-btn");
+  if (voiceEnabled) {
+    b.style.background = "#c8102e";
+    b.style.color = "#fff";
+    b.textContent = "ON";
+  } else {
+    b.style.background = "transparent";
+    b.style.color = "rgba(255,255,255,0.7)";
+    b.textContent = "\uD83D\uDD0A";
+    window.speechSynthesis.cancel();
+  }
+}
+function addTimsyMsg(text, isBot) {
+  var m = document.getElementById("timsy-messages");
+  var w = document.createElement("div");
+  w.style.display = "flex";
+  w.style.gap = "8px";
+  w.style.alignItems = "flex-start";
+  w.style.flexDirection = isBot ? "row" : "row-reverse";
+  var f = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>").replace(/\n/g, "<br>");
+  var avatar = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div>';
+  var botBubble = '<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">' + f + '</div>';
+  var userBubble = '<div style="background:#c8102e;border-radius:16px;border-top-right-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#fff;max-width:85%;">' + f + '</div>';
+  w.innerHTML = isBot ? avatar + botBubble : userBubble;
+  m.appendChild(w);
+  m.scrollTop = m.scrollHeight;
+}
+function addTyping() {
+  var m = document.getElementById("timsy-messages");
+  var w = document.createElement("div");
+  w.id = "timsy-typing";
+  w.style.display = "flex";
+  w.style.gap = "8px";
+  w.innerHTML = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div><div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;">Typing...</div>';
+  m.appendChild(w);
+  m.scrollTop = m.scrollHeight;
+}
+function removeTyping() {
+  var e = document.getElementById("timsy-typing");
+  if (e) e.remove();
+}
+async function sendTimsy() {
+  var i = document.getElementById("timsy-input");
+  var q = i.value.trim();
+  if (!q) return;
+  addTimsyMsg(q, false);
+  i.value = "";
+  addTyping();
+  try {
+    var r = await fetch("/timsy_api.php", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({q: q})
+    });
+    var d = await r.json();
+    removeTyping();
+    addTimsyMsg(d.reply, true);
+    if (voiceEnabled) {
+      var p = d.reply.replace(/<[^>]*>/g, "").replace(/\*\*/g, "").replace(/\n+/g, ". ").trim();
+      var u = new SpeechSynthesisUtterance(p);
+      u.rate = 1;
+      u.pitch = 1;
+      window.speechSynthesis.speak(u);
+    }
+  } catch(e) {
+    removeTyping();
+    addTimsyMsg("Sorry, I hit a snag. Try again!", true);
+  }
+}
+</script>
+</html>

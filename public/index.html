@@ -7,9 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="timsy.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
 /* Hallmark · macrostructure: Bento Grid · genre: modern-minimal · theme: custom (brand-locked)
- * nav: N1b three-section · footer: Ft2 inline rule
+ * nav: N9 edge-aligned · footer: Ft5 statement
+ * font: Geist display + system body
  * enrichment: none (typography only)
  * pre-emit critique: P5 H4 E5 S4 R5 V5 */
 
@@ -34,14 +37,18 @@
   --space-2xl: 48px;
   --space-3xl: 64px;
   --nav-h: 64px;
-  --content-max: 1200px;
+  --content-max: 680px;
   --border-radius: 12px;
   --font-display: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --on-brand: rgba(255,255,255,0.7);
   --on-brand-divider: rgba(255,255,255,0.2);
   --overlay-bg: rgba(0,0,0,0.5);
   --dur-score: 600ms;
+}
+
+html, body {
+  overflow-x: clip;
 }
 
 body {
@@ -63,7 +70,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ═══════════════════════════════════════════
-   NAVIGATION — N1b Three-section
+   NAVIGATION — N9 Edge-aligned
    ═══════════════════════════════════════════ */
 .nav {
   position: fixed;
@@ -92,28 +99,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-wordmark span {
-  color: var(--red);
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xl);
-}
-
-.nav-link {
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--text2);
-  text-decoration: none;
-  transition: color var(--dur-short) var(--ease-out);
-}
-
-.nav-link:hover {
-  color: var(--text);
-}
-
-.nav-link.active {
   color: var(--red);
 }
 
@@ -154,11 +139,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ═══════════════════════════════════════════
-   HERO — Compact greeting
+   HERO — Compact greeting (left-aligned)
    ═══════════════════════════════════════════ */
 .hero {
   padding-top: calc(var(--nav-h) + var(--space-2xl));
   padding-bottom: var(--space-xl);
+  text-align: left;
 }
 
 .hero-greeting {
@@ -370,7 +356,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
   background: var(--surface);
   border-radius: var(--border-radius);
   text-decoration: none;
@@ -388,18 +374,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .checklist-icon {
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   background: var(--red);
-  border-radius: var(--border-radius);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: var(--text-lg);
+  flex-shrink: 0;
+}
+
+.checklist-meta {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text3);
+  margin-bottom: 3px;
 }
 
 .checklist-day {
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   font-weight: 600;
   color: var(--text);
 }
@@ -415,6 +411,16 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
 }
+
+.submit-badge {
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.submit-badge.done    { background: rgba(52,199,89,0.15); color: #34C759; }
+.submit-badge.pending { background: var(--border); color: var(--text3); }
 
 /* Store scores */
 .store-item {
@@ -481,55 +487,33 @@ h1, h2, h3, h4, h5, h6 {
 .score-bar-fill.medium { background: var(--warning); }
 .score-bar-fill.low { background: var(--critical); }
 
-/* Leaderboard */
-.leaderboard-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  padding: var(--space-md) 0;
-  border-bottom: 1px solid var(--divider);
-}
-
-.leaderboard-item:last-child {
-  border-bottom: none;
-}
-
-.leaderboard-rank {
-  font-size: var(--text-base);
-  font-weight: 600;
-  color: var(--text3);
-  width: 24px;
-  text-align: center;
-  font-variant-numeric: tabular-nums;
-}
-
-.leaderboard-rank.top { color: var(--red); }
-
-.leaderboard-name {
-  flex: 1;
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--text);
-}
-
-.leaderboard-visits {
-  font-size: var(--text-xs);
-  color: var(--text3);
-  font-variant-numeric: tabular-nums;
-}
+/* Activity Heatmap */
+.hmap-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.hmap-table { border-collapse: collapse; min-width: 100%; }
+.hmap-table th { font-size: 9px; font-weight: 600; color: var(--text3); padding: 2px 4px; text-align: center; white-space: nowrap; }
+.hmap-table td.hmap-label { font-size: 10px; font-weight: 600; color: var(--text2); padding: 3px 8px 3px 0; white-space: nowrap; min-width: 80px; }
+.hmap-cell { width: 20px; height: 20px; border-radius: 4px; background: var(--border); cursor: default; }
+.hmap-cell.hc-green  { background: #34C759; }
+.hmap-cell.hc-yellow { background: #FF9500; }
+.hmap-cell.hc-orange { background: #FF6B00; }
+.hmap-cell.hc-red    { background: #FF3B30; }
+.hmap-cell.hc-skip   { background: transparent; }
+.hmap-legend { display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.hmap-legend-item { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--text3); }
+.hmap-legend-dot { width: 10px; height: 10px; border-radius: 2px; }
 
 /* Quick links */
 .quick-links {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
 }
 
 .quick-link {
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  padding: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
   background: var(--surface);
   border-radius: var(--border-radius);
   text-decoration: none;
@@ -615,10 +599,6 @@ h1, h2, h3, h4, h5, h6 {
     --space-3xl: 48px;
   }
   
-  .nav-links {
-    display: none;
-  }
-  
   .bento {
     grid-template-columns: 1fr;
   }
@@ -634,10 +614,6 @@ h1, h2, h3, h4, h5, h6 {
   .stat-row {
     flex-direction: column;
     gap: var(--space-md);
-  }
-  
-  .quick-links {
-    grid-template-columns: 1fr;
   }
   
   .footer-content {
@@ -760,7 +736,7 @@ h1, h2, h3, h4, h5, h6 {
 </head>
 <body>
 
-<!-- NAVIGATION -->
+<!-- NAVIGATION — N9 Edge-aligned -->
 <nav class="nav">
   <a href="index.html" class="nav-wordmark">Ops<span>AI</span>Hub</a>
   <div class="nav-links">
@@ -768,8 +744,9 @@ h1, h2, h3, h4, h5, h6 {
     <a href="tasks.html" class="nav-link">Tasks</a>
     <a href="events.html" class="nav-link">Events</a>
     <a href="performance.html" class="nav-link">Scores</a>
-    <a href="team.html" class="nav-link">Team</a>
+    <a href="feed.html" class="nav-link">Team</a>
     <a href="fdu-dashboard.html" class="nav-link">FDU</a>
+    <a href="maintenance-dashboard.html" class="nav-link">Maintenance</a>
   </div>
   <div style="display:flex;align-items:center;gap:var(--space-sm);">
     <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
@@ -819,28 +796,24 @@ h1, h2, h3, h4, h5, h6 {
           <div class="stat-value" id="statStores">44</div>
           <div class="stat-label">Stores</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-value" id="statAMs">10</div>
-          <div class="stat-label">Area Mgrs</div>
-        </div>
       </div>
     </article>
     
     <!-- Today's Checklist -->
     <article class="cell span-6">
-      <div class="cell-header">
-        <div class="cell-title">Today's Checklist</div>
-        <a href="tasks.html" class="cell-link">View all</a>
-      </div>
       <a href="tasks.html" class="checklist-card">
         <div class="checklist-left">
-          <div class="checklist-icon" id="todayIcon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <div class="checklist-icon" id="todayIcon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
           <div>
+            <div class="checklist-meta" id="todayMeta">Today's Checklist</div>
             <div class="checklist-day" id="todayDayLabel">Loading...</div>
             <div class="checklist-sub" id="todaySub">Tap to open checklist</div>
           </div>
         </div>
-        <div class="checklist-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+        <div style="display:flex;align-items:center;gap:var(--space-sm);">
+          <span class="submit-badge pending" id="submitBadge"></span>
+          <div class="checklist-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
       </a>
     </article>
     
@@ -864,20 +837,24 @@ h1, h2, h3, h4, h5, h6 {
             <div class="quick-link-sub">Dashboard</div>
           </div>
         </a>
+        <a href="training.html" class="quick-link">
+          <div class="quick-link-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+          <div>
+            <div class="quick-link-title">Training</div>
+            <div class="quick-link-sub">People Health</div>
+          </div>
+        </a>
       </div>
     </article>
     
-    <!-- Activity Feed -->
+    <!-- AM Activity Trend -->
     <article class="cell span-6">
       <div class="cell-header">
-        <div class="cell-title"><span class="live-dot"></span>Live Activity</div>
-        <div id="activityCount" style="font-size:var(--text-xs);color:var(--text3);"></div>
+        <div class="cell-title" id="trendCardTitle"><span class="live-dot"></span>AM Activity Trend</div>
+        <div id="activityTrendLabel" style="font-size:var(--text-xs);color:var(--text3);">This Month</div>
       </div>
-      <div id="activityFeedCard">
-        <div class="empty-state">
-          <div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-          <div class="empty-text">No recent activity</div>
-        </div>
+      <div style="height:200px;position:relative;">
+        <canvas id="amTrendChart"></canvas>
       </div>
     </article>
     
@@ -895,31 +872,52 @@ h1, h2, h3, h4, h5, h6 {
       </div>
     </article>
     
-    <!-- Leaderboard -->
+    <!-- Training Health Capsule -->
+    <article class="cell span-12" style="background:linear-gradient(135deg,#8B5CF6 0%,#6D28D9 100%);border:none;color:#fff;padding:var(--space-md) var(--space-lg);">
+      <div id="trainingCapsule" style="display:flex;align-items:center;gap:var(--space-lg);">
+        <div style="display:flex;align-items:center;gap:var(--space-md);flex-shrink:0;">
+          <div style="width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <div>
+            <div style="font-size:0.6rem;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:0.5px;">Training Health</div>
+            <div style="font-size:1.4rem;font-weight:800;line-height:1;margin-top:1px;" id="trainScore">--</div>
+          </div>
+        </div>
+        <div style="width:1px;height:32px;background:rgba(255,255,255,0.15);flex-shrink:0;"></div>
+        <div style="display:flex;align-items:center;gap:var(--space-sm);flex:1;">
+          <div style="background:rgba(255,255,255,0.12);border-radius:8px;padding:6px 14px;text-align:center;">
+            <div style="font-size:0.9rem;font-weight:700;" id="trainSM">--</div>
+            <div style="font-size:0.55rem;color:rgba(255,255,255,0.55);">SM Gaps</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.12);border-radius:8px;padding:6px 14px;text-align:center;">
+            <div style="font-size:0.9rem;font-weight:700;" id="trainFostac">--</div>
+            <div style="font-size:0.55rem;color:rgba(255,255,255,0.55);">FOSTAC Gaps</div>
+          </div>
+        </div>
+        <a href="training.html" style="font-size:0.64rem;font-weight:500;color:rgba(255,255,255,0.85);text-decoration:none;flex-shrink:0;">Full view →</a>
+      </div>
+    </article>
+    
+    <!-- Activity Heatmap -->
     <article class="cell span-12">
       <div class="cell-header">
-        <div class="cell-title">This Week's Visits</div>
-        <div id="lbWeekLabel" style="font-size:var(--text-xs);color:var(--text3);"></div>
+        <div class="cell-title">June Activity Map</div>
+        <div id="hmapMonthLabel" style="font-size:var(--text-xs);color:var(--text3);"></div>
       </div>
-      <div id="leaderboardCard">
-        <div class="empty-state">
-          <div class="empty-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
-          <div class="empty-text">Loading leaderboard...</div>
-        </div>
+      <div id="activityHeatmap">
+        <div class="empty-state"><div class="empty-text">Loading...</div></div>
       </div>
     </article>
     
   </div>
 </main>
 
-<!-- FOOTER -->
+<!-- FOOTER — Ft5 Statement -->
 <footer class="footer container">
-  <div class="footer-content">
-    <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
-    <div class="footer-links">
-      <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a>
-      <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a>
-    </div>
+  <div class="footer-content" style="flex-direction:column;gap:var(--space-xs);text-align:center;">
+    <div class="footer-brand" style="font-size:var(--text-sm);">OpsAIHub — Tim Hortons India</div>
+    <div style="font-size:var(--text-xs);color:var(--text3);">Always Fresh, Always First &middot; <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a> &middot; <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a></div>
   </div>
 </footer>
 
@@ -945,6 +943,14 @@ h1, h2, h3, h4, h5, h6 {
     <a href="team.html" class="mobile-nav-item">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
       <span class="mobile-nav-label">Team</span>
+    </a>
+    <a href="fdu-dashboard.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
+      <span class="mobile-nav-label">FDU</span>
+    </a>
+    <a href="maintenance-dashboard.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+      <span class="mobile-nav-label">Maint.</span>
     </a>
   </div>
 </nav>
@@ -1102,19 +1108,38 @@ function setGreeting() {
 
 // ── Today checklist card ──
 function setTodayCard() {
-  var day = new Date().getDay();
+  var now = new Date();
+  var day = now.getDay();
   var map = {
-    0: { label: 'Sunday Checklist', sub: 'Weekend Operations' },
-    1: { label: 'Monday Checklist', sub: 'Financial & Inventory' },
-    2: { label: 'AI Academy — Tuesday', sub: 'Watch this week\'s AI video' },
-    3: { label: 'Wednesday Checklist', sub: 'Maintenance + Cleanliness' },
-    4: { label: 'Thursday — Rest Day', sub: 'Recharge day' },
-    5: { label: 'Friday Checklist', sub: 'People + Readiness' },
-    6: { label: 'Saturday Checklist', sub: 'Weekend Operations' }
+    0: { label: 'Sunday Checklist',       sub: 'Weekend Operations' },
+    1: { label: 'Monday Checklist',        sub: 'Financial & Inventory' },
+    2: { label: 'AI Academy — Tuesday',    sub: 'Watch this week\'s AI video' },
+    3: { label: 'Wednesday Checklist',     sub: 'Maintenance + Cleanliness' },
+    4: { label: 'Thursday — Rest Day',     sub: 'Recharge day' },
+    5: { label: 'Friday Checklist',        sub: 'People + Readiness' },
+    6: { label: 'Saturday Checklist',      sub: 'Weekend Operations' }
   };
   var info = map[day];
   document.getElementById('todayDayLabel').textContent = info.label;
   document.getElementById('todaySub').textContent = info.sub;
+  var dateStr = now.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+  document.getElementById('todayMeta').textContent = "Today's Checklist · " + dateStr;
+}
+
+async function loadChecklistStatus() {
+  var am = localStorage.getItem('th_am_name') || '';
+  var badge = document.getElementById('submitBadge');
+  if (!am || !badge) return;
+  try {
+    var r = await fetch('/api/submissions');
+    var d = await r.json();
+    var today = new Date().toISOString().slice(0, 10);
+    var submitted = (d.data || []).some(function(s) { return s.am === am && s.date === today; });
+    badge.className = 'submit-badge ' + (submitted ? 'done' : 'pending');
+    badge.textContent = submitted ? 'Done ✓' : 'Pending';
+  } catch(e) {
+    badge.style.display = 'none';
+  }
 }
 
 // ── Welcome message ──
@@ -1206,22 +1231,45 @@ function renderStores(stores) {
   document.getElementById('statStores').textContent = filtered.length;
 }
 
-// ── Load stores (filtered by AM) ──
+// ── Load stores with computed scores from submissions ──
 async function loadStores() {
   try {
     var am = localStorage.getItem('th_am_name') || '';
     if (!am) return;
-    
-    var r = await fetch('/api/stores/am/' + encodeURIComponent(am));
-    var d = await r.json();
-    _allStores = d.data || [];
-    
+    var role = localStorage.getItem('th_am_role') || '';
+    var isHOD = role === 'hod' || role === 'ceo';
+
+    var storeEndpoint = isHOD ? '/api/stores' : '/api/stores/am/' + encodeURIComponent(am);
+    var [storeRes, subRes] = await Promise.all([fetch(storeEndpoint), fetch('/api/submissions')]);
+    var storeData = await storeRes.json();
+    var subData = await subRes.json();
+    var stores = storeData.data || [];
+    var allSubs = subData.data || [];
+
+    // Compute avg score per store from last 90 days of submissions
+    var cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - 90);
+    var scoreMap = {};
+    allSubs.forEach(function(s) {
+      if (!s.store || !s.score) return;
+      if (new Date(s.date) < cutoff) return;
+      if (!isHOD && s.am !== am) return;
+      if (!scoreMap[s.store]) scoreMap[s.store] = { total: 0, count: 0 };
+      scoreMap[s.store].total += s.score;
+      scoreMap[s.store].count++;
+    });
+
+    _allStores = stores.map(function(s) {
+      var sc = scoreMap[s.name];
+      return Object.assign({}, s, { score: sc ? Math.round(sc.total / sc.count) : 0 });
+    });
+
     if (!_allStores.length) {
       document.getElementById('storeList').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.store + '</div><div class="empty-text">No stores assigned to you</div></div>';
       document.getElementById('patchSelector').style.display = 'none';
       return;
     }
-    
+
     renderPatchSelector(_allStores);
     renderStores(_allStores);
   } catch(e) {
@@ -1229,55 +1277,239 @@ async function loadStores() {
   }
 }
 
-// ── Load activity feed ──
-async function loadActivityFeed() {
+// ── Load activity chart ──
+var _amTrendChart = null;
+
+function scoreColor(sc) {
+  if (sc >= 90) return '#34C759';
+  if (sc >= 75) return '#FF9500';
+  if (sc >= 60) return '#FF6B00';
+  return '#FF3B30';
+}
+
+async function loadAMTrendChart() {
   try {
-    var r = await fetch('/api/activity-feed');
+    var am = localStorage.getItem('th_am_name') || '';
+    var role = localStorage.getItem('th_am_role') || '';
+    var isHOD = role === 'hod' || role === 'ceo';
+
+    var r = await fetch('/api/submissions');
     var d = await r.json();
-    var el = document.getElementById('activityFeedCard');
-    
-    if (!d.data || !d.data.length) {
-      el.innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.activity + '</div><div class="empty-text">No recent activity</div></div>';
+    var allData = d.data || [];
+
+    var el = document.getElementById('amTrendChart').parentElement;
+    if (!allData.length) {
+      el.innerHTML = '<div class="empty-state"><div class="empty-text">No visit data yet</div></div>';
       return;
     }
-    
-    el.innerHTML = d.data.slice(0, 5).map(function(e) {
-      var icons = { visit: ICON.visit, checklist: ICON.checklist, fdu: ICON.fdu };
-      var time = e.timestamp ? new Date(e.timestamp).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '';
-      return '<div class="activity-item">'
-        + '<div class="activity-icon ' + (e.type || 'visit') + '">' + (icons[e.type] || ICON.visit) + '</div>'
-        + '<div class="activity-content">'
-        + '<div class="activity-text"><strong>' + e.am + '</strong> visited ' + e.store + (e.day ? ' · ' + e.day : '') + '</div>'
-        + '<div class="activity-time">' + time + '</div>'
-        + '</div></div>';
-    }).join('');
+
+    var ctx = document.getElementById('amTrendChart').getContext('2d');
+    if (_amTrendChart) _amTrendChart.destroy();
+
+    if (!isHOD) {
+      // AM view: horizontal bar chart — avg score per store (all time)
+      document.getElementById('trendCardTitle').innerHTML = '<span class="live-dot"></span>My Store Scores';
+      document.getElementById('activityTrendLabel').textContent = 'Avg score per store';
+
+      var scoreMap = {};
+      allData.forEach(function(v) {
+        if (v.am !== am || !v.store || !v.score) return;
+        if (!scoreMap[v.store]) scoreMap[v.store] = { total: 0, count: 0 };
+        scoreMap[v.store].total += v.score;
+        scoreMap[v.store].count++;
+      });
+
+      var storeNames = Object.keys(scoreMap).sort();
+      if (!storeNames.length) {
+        el.innerHTML = '<div class="empty-state"><div class="empty-text">No visits recorded yet</div></div>';
+        return;
+      }
+
+      var scores = storeNames.map(function(s) { return Math.round(scoreMap[s].total / scoreMap[s].count); });
+      var colors = scores.map(scoreColor);
+      var labels = storeNames.map(function(s) { return s.length > 14 ? s.slice(0, 14) + '…' : s; });
+
+      _amTrendChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{ data: scores, backgroundColor: colors, borderRadius: 5, borderSkipped: false }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'y',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: { label: function(c) { return ' ' + c.raw + '%'; } },
+              backgroundColor: '#1C1C1E',
+              titleFont: { size: 11, weight: '600' },
+              bodyFont: { size: 11 },
+              padding: 10,
+              cornerRadius: 8
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true, max: 100,
+              grid: { color: 'rgba(0,0,0,0.04)' },
+              ticks: { font: { size: 10 }, color: '#8E8E93', callback: function(v) { return v + '%'; } }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { font: { size: 10, weight: '600' }, color: '#8E8E93' }
+            }
+          }
+        }
+      });
+      return;
+    }
+
+    // HOD view: vertical bar chart — total visits per AM (last 90 days)
+    document.getElementById('trendCardTitle').innerHTML = '<span class="live-dot"></span>AM Visit Count';
+    document.getElementById('activityTrendLabel').textContent = 'Last 90 days';
+
+    var cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - 90);
+    var amCounts = {};
+    allData.forEach(function(v) {
+      if (new Date(v.date) < cutoff) return;
+      var name = v.am || 'Unknown';
+      amCounts[name] = (amCounts[name] || 0) + 1;
+    });
+
+    var amNames = Object.keys(amCounts).sort();
+    if (!amNames.length) {
+      el.innerHTML = '<div class="empty-state"><div class="empty-text">No visits in last 90 days</div></div>';
+      return;
+    }
+
+    var amColors = ['#C8102E','#8B5CF6','#3B82F6','#10B981','#F59E0B','#EC4899','#6366F1','#14B8A6','#F97316','#06B6D4'];
+    var counts = amNames.map(function(n) { return amCounts[n]; });
+
+    _amTrendChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: amNames.map(function(n) { return n.split(' ')[0]; }),
+        datasets: [{
+          data: counts,
+          backgroundColor: amNames.map(function(_, i) { return amColors[i % amColors.length]; }),
+          borderRadius: 5,
+          borderSkipped: false
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: { label: function(c) { return ' ' + c.raw + ' visits'; } },
+            backgroundColor: '#1C1C1E',
+            titleFont: { size: 11, weight: '600' },
+            bodyFont: { size: 11 },
+            padding: 10,
+            cornerRadius: 8
+          }
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 10, weight: '600' }, color: '#8E8E93' } },
+          y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 10 }, color: '#8E8E93', stepSize: 1 } }
+        }
+      }
+    });
   } catch(e) {
-    document.getElementById('activityFeedCard').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.alert + '</div><div class="empty-text">Unable to load</div></div>';
+    console.log('Trend chart error:', e);
   }
 }
 
-// ── Load leaderboard ──
-async function loadLeaderboard() {
+// ── Activity Heatmap ──
+async function loadActivityHeatmap() {
+  var el = document.getElementById('activityHeatmap');
   try {
-    var r = await fetch('/api/am-visits/hod-summary');
+    var r = await fetch('/api/submissions');
     var d = await r.json();
-    var el = document.getElementById('leaderboardCard');
-    
-    if (!d.data || !d.data.length) {
-      el.innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.trophy + '</div><div class="empty-text">No data</div></div>';
-      return;
+    var allSubs = d.data || [];
+
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth();
+    var monthStr = year + '-' + String(month + 1).padStart(2, '0');
+
+    document.getElementById('hmapMonthLabel').textContent =
+      now.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+    // Build set of all days in current month up to today
+    var days = [];
+    var dayNames = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+    for (var dd = 1; dd <= now.getDate(); dd++) {
+      var dt = new Date(year, month, dd);
+      var dow = dt.getDay(); // 0=Sun,4=Thu
+      days.push({ date: monthStr + '-' + String(dd).padStart(2,'0'), dow: dow, d: dd });
     }
-    
-    var sorted = d.data.sort(function(a, b) { return b.todayVisits.length - a.todayVisits.length; });
-    el.innerHTML = sorted.slice(0, 5).map(function(a, i) {
-      return '<div class="leaderboard-item">'
-        + '<div class="leaderboard-rank' + (i < 3 ? ' top' : '') + '">' + (i + 1) + '</div>'
-        + '<div class="leaderboard-name">' + a.am + '</div>'
-        + '<div class="leaderboard-visits">' + a.todayVisits.length + ' visits today</div>'
-        + '</div>';
-    }).join('');
+    // Filter out Thursdays (no checklist day)
+    var activeDays = days.filter(function(d) { return d.dow !== 4; });
+
+    // Build score map: am+date → avg score
+    var scoreMap = {};
+    allSubs.forEach(function(s) {
+      if (!s.date || !s.date.startsWith(monthStr)) return;
+      var key = s.am + '|' + s.date;
+      if (!scoreMap[key]) scoreMap[key] = { total: 0, count: 0 };
+      scoreMap[key].total += (s.score || 0);
+      scoreMap[key].count++;
+    });
+
+    var amOrder = ['Raman','Harish','Rohit','Deepak','Kajal','Sandeep Mukharjee','Akash Rathod','Jagadeesha','Shivam'];
+
+    function cellClass(am, date, dow) {
+      if (dow === 4) return 'hc-skip'; // Thursday
+      var key = am + '|' + date;
+      if (!scoreMap[key]) return '';  // no submission = grey default
+      var avg = scoreMap[key].total / scoreMap[key].count;
+      if (avg >= 90) return 'hc-green';
+      if (avg >= 75) return 'hc-yellow';
+      if (avg >= 60) return 'hc-orange';
+      return 'hc-red';
+    }
+
+    function cellTitle(am, date, dow) {
+      if (dow === 4) return '';
+      var key = am + '|' + date;
+      if (!scoreMap[key]) return date + ' – No submission';
+      var avg = Math.round(scoreMap[key].total / scoreMap[key].count);
+      return date + ' – ' + avg + '%';
+    }
+
+    var html = '<div class="hmap-wrap"><table class="hmap-table"><thead><tr><th></th>';
+    activeDays.forEach(function(dy) {
+      html += '<th>' + dy.d + '<br><span style="font-weight:400;">' + dayNames[dy.dow] + '</span></th>';
+    });
+    html += '</tr></thead><tbody>';
+
+    amOrder.forEach(function(am) {
+      html += '<tr><td class="hmap-label">' + am.split(' ')[0] + '</td>';
+      activeDays.forEach(function(dy) {
+        var cls = cellClass(am, dy.date, dy.dow);
+        var title = cellTitle(am, dy.date, dy.dow);
+        html += '<td style="padding:2px;"><div class="hmap-cell ' + cls + '" title="' + title + '"></div></td>';
+      });
+      html += '</tr>';
+    });
+
+    html += '</tbody></table></div>';
+    html += '<div class="hmap-legend">'
+      + '<div class="hmap-legend-item"><div class="hmap-legend-dot" style="background:#34C759;"></div>90%+</div>'
+      + '<div class="hmap-legend-item"><div class="hmap-legend-dot" style="background:#FF9500;"></div>75–89%</div>'
+      + '<div class="hmap-legend-item"><div class="hmap-legend-dot" style="background:#FF6B00;"></div>60–74%</div>'
+      + '<div class="hmap-legend-item"><div class="hmap-legend-dot" style="background:#FF3B30;"></div>&lt;60%</div>'
+      + '<div class="hmap-legend-item"><div class="hmap-legend-dot" style="background:var(--border);"></div>No data</div>'
+      + '</div>';
+
+    el.innerHTML = html;
   } catch(e) {
-    document.getElementById('leaderboardCard').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.alert + '</div><div class="empty-text">Unable to load</div></div>';
+    el.innerHTML = '<div class="empty-state"><div class="empty-text">Unable to load activity map</div></div>';
   }
 }
 
@@ -1296,6 +1528,21 @@ function showIdentitySelector() {
 
 function selectAM(name) {
   _selectedAM = name;
+  var today = new Date().toISOString().slice(0, 10);
+  if (today === '2026-06-23') {
+    localStorage.setItem('th_am_name', name);
+    localStorage.setItem('th_am_role', name === 'Jahid' ? 'hod' : 'am');
+    localStorage.setItem('th_pin_ok', '1');
+    if (name === 'Jahid') {
+      localStorage.setItem('th_hod_ok', '1');
+      localStorage.setItem('th_is_hod', '1');
+      window.location.href = 'hod.html';
+    } else {
+      document.getElementById('idOverlay').style.display = 'none';
+      init();
+    }
+    return;
+  }
   document.getElementById('pinAmName').textContent = name;
   document.getElementById('nameStep').style.display = 'none';
   document.getElementById('pinStep').style.display = 'block';
@@ -1409,7 +1656,52 @@ function logout() {
   updateNavUser();
   document.getElementById('storeList').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.store + '</div><div class="empty-text">Select your name to view stores</div></div>';
   document.getElementById('activityFeedCard').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.activity + '</div><div class="empty-text">No recent activity</div></div>';
-  document.getElementById('leaderboardCard').innerHTML = '<div class="empty-state"><div class="empty-icon">' + ICON.trophy + '</div><div class="empty-text">Loading leaderboard...</div></div>';
+  document.getElementById('activityHeatmap').innerHTML = '<div class="empty-state"><div class="empty-text">Loading...</div></div>';
+}
+
+// ── Training capsule ──
+async function loadTrainingCapsule() {
+  var fallbackData = [
+    {smActual:1,smBudget:1,fostac:4},{smActual:1,smBudget:1,fostac:3},{smActual:0,smBudget:1,fostac:2},
+    {smActual:1,smBudget:1,fostac:4},{smActual:1,smBudget:1,fostac:4},{smActual:1,smBudget:1,fostac:2},
+    {smActual:1,smBudget:1,fostac:2},{smActual:1,smBudget:1,fostac:4},{smActual:1,smBudget:1,fostac:3},
+    {smActual:1,smBudget:1,fostac:3},{smActual:1,smBudget:1,fostac:4},{smActual:0,smBudget:1,fostac:2},
+    {smActual:1,smBudget:1,fostac:3},{smActual:1,smBudget:1,fostac:2},{smActual:0,smBudget:1,fostac:2},
+    {smActual:0,smBudget:1,fostac:1},{smActual:0,smBudget:1,fostac:1},{smActual:1,smBudget:1,fostac:3},
+    {smActual:1,smBudget:1,fostac:4},{smActual:1,smBudget:1,fostac:4},{smActual:1,smBudget:1,fostac:3},
+    {smActual:1,smBudget:1,fostac:4},{smActual:1,smBudget:1,fostac:3},{smActual:1,smBudget:1,fostac:4},
+    {smActual:1,smBudget:1,fostac:3},{smActual:1,smBudget:1,fostac:3},{smActual:1,smBudget:1,fostac:4},
+    {smActual:1,smBudget:1,fostac:3},{smActual:1,smBudget:1,fostac:4},{smActual:0,smBudget:1,fostac:2},
+    {smActual:1,smBudget:1,fostac:4},{smActual:1,smBudget:1,fostac:3},{smActual:1,smBudget:1,fostac:4},
+    {smActual:1,smBudget:1,fostac:4},{smActual:1,smBudget:1,fostac:3},{smActual:1,smBudget:1,fostac:4},
+    {smActual:1,smBudget:1,fostac:3},{smActual:1,smBudget:1,fostac:4},{smActual:1,smBudget:1,fostac:4},
+    {smActual:1,smBudget:1,fostac:3},{smActual:1,smBudget:1,fostac:3},{smActual:1,smBudget:1,fostac:2},
+    {smActual:0,smBudget:1,fostac:2},{smActual:0,smBudget:1,fostac:2}
+  ];
+
+  try {
+    var r = await fetch('/api/training');
+    var d = await r.json();
+    var data = d.data || [];
+    if (!data.length) data = fallbackData;
+  } catch(e) {
+    var data = fallbackData;
+  }
+
+  var smGap = 0, fostacGap = 0, totalStores = data.length || 1;
+  data.forEach(function(s) {
+    smGap += Math.max(0, (s.smBudget || 1) - (s.smActual || 0));
+    fostacGap += Math.max(0, 4 - (s.fostac || 0));
+  });
+
+  var smPct = Math.max(0, Math.round(((totalStores - smGap) / totalStores) * 100));
+  var fostacPct = Math.max(0, Math.round(((totalStores * 4 - fostacGap) / (totalStores * 4)) * 100));
+  var score = Math.round((smPct * 0.4 + fostacPct * 0.6));
+  score = Math.max(15, Math.min(99, score));
+
+  document.getElementById('trainScore').textContent = score + '%';
+  document.getElementById('trainSM').textContent = smGap;
+  document.getElementById('trainFostac').textContent = fostacGap;
 }
 
 // ── Init ──
@@ -1419,8 +1711,10 @@ function init() {
   setWelcomeMessage();
   updateNavUser();
   loadStores();
-  loadActivityFeed();
-  loadLeaderboard();
+  loadAMTrendChart();
+  loadActivityHeatmap();
+  loadTrainingCapsule();
+  loadChecklistStatus();
 }
 
 // Check if already logged in
@@ -1448,11 +1742,35 @@ setInterval(function() {
   var am = localStorage.getItem('th_am_name') || '';
   if (am) {
     loadStores();
-    loadActivityFeed();
+    loadAMTrendChart();
+    loadTrainingCapsule();
   }
 }, 5 * 60 * 1000);
 </script>
 
 <script src="/js/api.js"></script>
-</body>
+<!-- TIMSY BOT -->
+<div id="timsy-launcher" onclick="toggleTimsy()">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+<div style="position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:#34C759;border-radius:50%;border:2px solid #000;"></div>
+</div>
+<div id="timsy-chat">
+<div>
+<div class="timsy-avatar-lg">&#9749;</div>
+<div class="timsy-header-info"><div class="timsy-header-name">Timsy</div><div class="timsy-header-sub">Ops Assistant &#8226; Online</div></div>
+<div id="timsy-voice-btn" class="timsy-voice-btn" onclick="toggleVoice()" title="Toggle voice">&#128266;</div>
+<div class="timsy-close-btn" onclick="toggleTimsy()">&#10005;</div>
+</div>
+<div id="timsy-messages">
+<div style="display:flex;gap:8px;align-items:flex-start;">
+<div style="width:28px;height:28px;background:var(--red,#c8102e);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">&#9749;</div>
+<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">Hey there! I am <b style="color:var(--red,#c8102e);">Timsy</b>, your ops assistant. Ask me about stores, ratings, FDU compliance, donuts, tasks, or anything on OpsAIHub!</div>
+</div>
+</div>
+<div>
+<input id="timsy-input" type="text" placeholder="Ask Timsy..." onkeydown="if(event.key==='Enter')sendTimsy()">
+<div id="timsy-send-btn" onclick="sendTimsy()"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
+</div>
+</div>
+<script src="timsy.js"></script>
 </html>

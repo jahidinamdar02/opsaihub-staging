@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Training Health — Tim's Ops Connect</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="timsy.css">
 <style>
 body{padding-top:var(--nav-h);}
 
@@ -29,7 +30,7 @@ body { background:var(--surface); color:var(--text); min-height:100vh; padding-b
 /* HEALTH SCORE HERO */
 .health-hero { background:linear-gradient(135deg,#1A1A2E,#0F3460); border-radius:20px; padding:20px; margin-bottom:12px; }
 .health-score-wrap { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
-.health-score-big { font-size:72px; font-weight:700; line-height:1; letter-spacing:-3px; }
+.health-score-big { font-size:48px; font-weight:700; line-height:1; letter-spacing:-2px; }
 .health-label { font-size:12px; color:rgba(255,255,255,0.6); font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
 .health-status { font-size:14px; font-weight:700; padding:4px 14px; border-radius:20px; display:inline-block; margin-top:6px; }
 .ring-wrap { position:relative; width:90px; height:90px; }
@@ -151,7 +152,7 @@ body { background:var(--surface); color:var(--text); min-height:100vh; padding-b
 .sheet-sub { font-size:13px; color:var(--text2); margin-bottom:16px; }
 
 /* CERT BADGES */
-.cert-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.cert-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
 .cert-card { background:var(--surface); border-radius:12px; padding:12px; text-align:center; }
 .cert-icon { font-size:24px; margin-bottom:6px; }
 .cert-name { font-size:11px; font-weight:700; color:var(--text); margin-bottom:4px; }
@@ -172,21 +173,52 @@ body { background:var(--surface); color:var(--text); min-height:100vh; padding-b
 .nav-item.active .nav-label{color:#C8102E;font-weight:600;}
 .nav-dot{width:4px;height:4px;background:#C8102E;border-radius:50%;}
 
+/* TH AI ACADEMY */
+.academy-banner { background:linear-gradient(135deg,#003087 0%,#0050B3 60%,#007AFF 100%); border-radius:20px; padding:20px; margin-bottom:12px; display:flex; align-items:center; gap:14px; color:#fff; }
+.academy-logo { font-size:36px; flex-shrink:0; }
+.academy-title { font-size:22px; font-weight:800; letter-spacing:-0.5px; }
+.academy-sub { font-size:13px; color:rgba(255,255,255,0.75); margin-top:2px; }
+.academy-badge { margin-left:auto; background:#FF3B30; color:#fff; font-size:10px; font-weight:800; padding:4px 10px; border-radius:20px; letter-spacing:1px; flex-shrink:0; }
+.academy-prompt { background:linear-gradient(135deg,#E8F0FF,#D4E4FF); border-radius:14px; padding:16px; }
+.prompt-week { font-size:10px; font-weight:700; color:#0050B3; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px; }
+.prompt-question { font-size:17px; font-weight:700; color:#1A1A2E; line-height:1.4; margin-bottom:12px; }
+.prompt-context { font-size:13px; color:#333; line-height:1.6; }
+.prompt-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+.prompt-tag { font-size:11px; font-weight:600; padding:4px 10px; border-radius:10px; background:#007AFF; color:#fff; }
+.video-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.video-card { border-radius:14px; overflow:hidden; background:var(--surface); border:1px solid var(--border); cursor:pointer; }
+.video-thumb { width:100%; aspect-ratio:16/9; object-fit:cover; background:#1A1A2E; display:flex; align-items:center; justify-content:center; font-size:32px; }
+.video-info { padding:10px; }
+.video-title { font-size:12px; font-weight:700; color:var(--text); line-height:1.3; margin-bottom:4px; }
+.video-meta { font-size:10px; color:var(--text2); }
+.video-play-btn { display:flex; align-items:center; justify-content:center; height:100%; min-height:80px; font-size:40px; background:linear-gradient(135deg,#1A1A2E,#0F3460); }
+.lb-academy-row { display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--border); }
+.lb-academy-row:last-child { border-bottom:none; }
+.lb-rank { font-size:22px; width:36px; text-align:center; flex-shrink:0; }
+.lb-am-name { font-size:14px; font-weight:700; color:var(--text); }
+.lb-am-region { font-size:11px; color:var(--text2); margin-top:1px; }
+.lb-score-pill { margin-left:auto; font-size:13px; font-weight:700; padding:4px 12px; border-radius:20px; flex-shrink:0; }
 
 </style>
 
 </head>
 <body>
 
+<div class="page-content">
 <div class="hdr">
   <a href="team.html" class="back">&#x2190; Team</a>
   <div class="hdr-title">&#x1F393; Training Health</div>
   <div class="hdr-sub">People Capability Dashboard — Tim Hortons India</div>
 </div>
 
+<div id="demoBanner" style="background:linear-gradient(135deg,#FF6B00,#FF9500);color:#fff;padding:10px 16px;text-align:center;font-size:13px;font-weight:700;letter-spacing:0.5px;display:none;">
+  &#x26A0; DEMO DATA — Sample data for preview. Not from live systems.
+</div>
+
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="overview">&#x1F4CA; Overview</button>
   <button class="tab-btn" data-tab="regions">&#x1F5FA; Regions</button>
+  <button class="tab-btn" data-tab="academy" id="academyTabBtn">&#x1F393; TH AI Academy</button>
   <button class="tab-btn" data-tab="entry">&#x270F; Update Data</button>
 </div>
 
@@ -229,6 +261,37 @@ body { background:var(--surface); color:var(--text); min-height:100vh; padding-b
   <div id="regionsContent"><div class="spinner"></div></div>
 </div>
 
+<!-- TH AI ACADEMY TAB -->
+<div class="tab-content" id="tab-academy">
+  <!-- Academy Banner -->
+  <div class="academy-banner fade-up">
+    <div class="academy-logo">&#x1F393;</div>
+    <div>
+      <div class="academy-title">TH AI Academy</div>
+      <div class="academy-sub">Tuesday Learning &mdash; Tim Hortons India</div>
+    </div>
+    <div class="academy-badge">LIVE</div>
+  </div>
+
+  <!-- Tuesday Prompt — auto-visible -->
+  <div class="section-card fade-up" style="border-left:4px solid #007AFF;">
+    <div class="section-title" style="color:#007AFF;">&#x1F4A1; This Week's Learning Prompt</div>
+    <div class="academy-prompt" id="tuesdayPrompt"></div>
+  </div>
+
+  <!-- Learning Videos — auto-visible grid -->
+  <div class="section-card fade-up">
+    <div class="section-title">&#x1F3AC; Learning Videos</div>
+    <div class="video-grid" id="videoGrid"></div>
+  </div>
+
+  <!-- Tuesday Leaderboard -->
+  <div class="section-card fade-up">
+    <div class="section-title">&#x1F3C6; Tuesday Learning Leaderboard <span style="font-size:11px;font-weight:400;color:var(--text2);">Ranked by training health score</span></div>
+    <div id="academyLeaderboard"></div>
+  </div>
+</div>
+
 <!-- ENTRY TAB -->
 <div class="tab-content" id="tab-entry">
   <div style="background:#FFF9E6;border-radius:12px;padding:12px 16px;margin-bottom:14px;font-size:13px;color:#8B4500;font-weight:500;">
@@ -240,7 +303,7 @@ body { background:var(--surface); color:var(--text); min-height:100vh; padding-b
     <select class="store-selector" id="entryAM" onchange="loadEntryStores()">
       <option value="">Select Area Manager</option>
       <option>Raman</option><option>Harish</option><option>Rohit</option><option>Deepak</option><option>Kajal</option>
-      <option>Sandeep Mukharjee</option><option>Akash Rathod</option><option>TBA</option><option>Jagadeesha</option><option>Shivam</option>
+      <option>Sandeep Mukharjee</option><option>Akash Rathod</option><option>TBA</option><option>Jagadeesha</option><option>Shivam</option><option>Unassigned</option>
     </select>
     <select class="store-selector" id="entryStore">
       <option value="">Select Store</option>
@@ -340,19 +403,21 @@ body { background:var(--surface); color:var(--text); min-height:100vh; padding-b
   </div>
 </div>
 
+<script src="/js/api.js"></script>
 <script>
 var allTraining = [];
 var amList = [
-  {name:'Raman', region:'Delhi NCR', icon:'&#x1F3D9;', stores:['T3DD','T3DD FC','T1DD']},
-  {name:'Harish', region:'Delhi NCR', icon:'&#x1F3D9;', stores:['Cyber Hub','Select City','Green Park','Basant Lok','Epicuria','APL Golf Course']},
-  {name:'Rohit', region:'Delhi NCR', icon:'&#x1F3D9;', stores:['Skymark','Vegas Mall','NSP','Punjabi Bagh']},
-  {name:'Deepak', region:'Punjab', icon:'&#x1F33E;', stores:['Sunview','Bhupindra Road','Malhar Rd','Sangrur','Bucho']},
-  {name:'Kajal', region:'Punjab', icon:'&#x1F33E;', stores:['CP67 Mohali','Elante Mall','Sector 35']},
-  {name:'Sandeep Mukharjee', region:'Maharashtra', icon:'&#x1F30A;', stores:['Lokhandwala','PMC Kurla','FIFC']},
-  {name:'TBA', region:'Pune', icon:'&#x1F966;', stores:['Balewadi','Viman Nagar','PMC Wakad','FC Road']},
-  {name:'Akash Rathod', region:'Maharashtra', icon:'&#x1F30A;', stores:['HPCL-MPE','NMIAL','NMIAL Arrival','Seawoods']},
-  {name:'Jagadeesha', region:'Bangalore', icon:'&#x1F333;', stores:['Koramangala','BIAL','Mall of Asia','HSR Layout']},
-  {name:'Shivam', region:'Hyderabad', icon:'&#x1F48E;', stores:['Inorbit Mall Hyd','Hyderabad Arrivals','Lakeshore','Hyderabad Airport']}
+  {name:'Raman', region:'Delhi NCR', icon:'&#x1F3D9;', stores:['TH T3D DIAL','TH T3D Food Court','TH T1D Dial']},
+  {name:'Harish', region:'Delhi NCR', icon:'&#x1F3D9;', stores:['TH DLF Cyberhub','TH Select City Saket','TH Green Park','TH Basant Lok','TH Epicuria Nehru Place','TH Golf Course AIPL']},
+  {name:'Rohit', region:'Delhi NCR', icon:'&#x1F3D9;', stores:['TH Skymark One','TH Vegas Mall','TH NSP Pritampura','TH Punjabi Bagh']},
+  {name:'Deepak', region:'Punjab', icon:'&#x1F33E;', stores:['TH Sunview Enclave','TH Malhar Road','TH Sangrur','TH Bucho Bathinda','TH Patiala']},
+  {name:'Kajal', region:'Punjab', icon:'&#x1F33E;', stores:['TH Mohali','TH Elante Mall','TH Sec 35 Chandigarh']},
+  {name:'Sandeep Mukharjee', region:'Maharashtra', icon:'&#x1F30A;', stores:['TH Lokhandwala','TH MC Kurla','TH Bandra','TH FIFC Mumbai','TH FC Road']},
+  {name:'Akash Rathod', region:'Maharashtra', icon:'&#x1F30A;', stores:['TH HPCL Expressway','TH NMIA Departure','TH NMIA Arrival','TH Nexus Seawood']},
+  {name:'TBA', region:'Pune', icon:'&#x1F966;', stores:['TH Balewadi Pune','TH Viman Nagar','TH Phoenix Mall Wakad']},
+  {name:'Jagadeesha', region:'Karnataka', icon:'&#x1F333;', stores:['TH Koramangala','TH BIAL','TH Mall of Asia','TH HSR']},
+  {name:'Shivam', region:'Telangana', icon:'&#x1F48E;', stores:['TH Inorbit Mall-Hyderabad','TH HIAL','TH HIAL Arrival','TH Lakeshore']},
+  {name:'Unassigned', region:'Gujarat', icon:'&#x1F3ED;', stores:['TH T1 Ahmedabad Airport','TH Sindhu Bhavan','TH Navrangpura']}
 ];
 
 var storeMap = {};
@@ -367,6 +432,7 @@ document.querySelectorAll('.tab-btn').forEach(function(btn){
     var tab = btn.getAttribute('data-tab');
     document.getElementById('tab-'+tab).classList.add('active');
     if(tab==='regions') renderRegions();
+    if(tab==='academy') renderAcademy();
   });
 });
 
@@ -429,33 +495,35 @@ function loadData() {
   API.fetch('/api/training')
     .then(function(d){
       allTraining = d.data || [];
-      if(allTraining.length===0) seedDemoData();
+      var isDemo = allTraining.length===0;
+      if(isDemo) seedDemoData();
+      showDemoBanner(isDemo);
       renderOverview();
     })
-    .catch(function(){ seedDemoData(); renderOverview(); });
+    .catch(function(){ seedDemoData(); showDemoBanner(true); renderOverview(); });
+}
+
+function showDemoBanner(show) {
+  var el = document.getElementById('demoBanner');
+  if(el) el.style.display = show ? 'block' : 'none';
 }
 
 function seedDemoData() {
   var stores = Object.keys(storeMap);
   allTraining = stores.map(function(store){
+    // Seed values that produce health scores in the 50–88% range
+    var r = function(min,max){ return Math.floor(Math.random()*(max-min+1))+min; };
     return {
       store:store, am:storeMap[store],
-      smActual:Math.random()>0.2?1:0, smBudget:1,
-      shiftActual:Math.floor(Math.random()*3)+1, shiftBudget:2,
-      tmActual:Math.floor(Math.random()*8)+4, tmBudget:8,
-      t18:Math.floor(Math.random()*4)+1,
-      t12:Math.floor(Math.random()*3)+1,
-      t6:Math.floor(Math.random()*3),
-      t0:Math.floor(Math.random()*2),
-      pSM:Math.floor(Math.random()*2),
-      pTRM:Math.floor(Math.random()*2),
-      pStore:Math.random()>0.7?1:0,
-      fostac:Math.floor(Math.random()*5),
-      coffeMasters:Math.floor(Math.random()*2)+1,
-      donutChampions:Math.floor(Math.random()*4),
-      bevStation:Math.floor(Math.random()*4)+1,
-      foodStation:Math.floor(Math.random()*4)+1,
-      cashierStation:Math.floor(Math.random()*4)+1,
+      smActual:1, smBudget:1,
+      shiftActual:r(1,2), shiftBudget:2,
+      tmActual:r(5,8), tmBudget:8,
+      t18:r(2,5), t12:r(1,3), t6:r(1,2), t0:r(0,1),
+      pSM:r(1,2), pTRM:r(0,1), pStore:Math.random()>0.5?1:0,
+      fostac:r(2,4),
+      coffeMasters:1,
+      donutChampions:r(2,3),
+      bevStation:r(2,4), foodStation:r(2,4), cashierStation:r(2,4),
       updatedAt:new Date().toISOString()
     };
   });
@@ -653,7 +721,7 @@ function showCertDrill(name, actual, target, perStore) {
   var pct = target>0?Math.round(actual/target*100):0;
   var color = gc(pct);
   document.getElementById('drillContent').innerHTML =
-    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;">' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">' +
       '<div style="text-align:center;background:var(--surface);border-radius:12px;padding:14px;">' +
         '<div style="font-size:28px;font-weight:700;color:'+color+';">'+actual+'</div><div style="font-size:12px;color:var(--text2);">Current</div></div>' +
       '<div style="text-align:center;background:var(--surface);border-radius:12px;padding:14px;">' +
@@ -802,6 +870,73 @@ function resetBtn() {
   btn.innerHTML = '\uD83D\uDCBE Save Training Data';
 }
 
+var tuesdayPrompts = [
+  {
+    week: 'Week of June 23, 2026',
+    question: 'How do you turn a negative customer moment into a loyalty-building experience?',
+    context: 'In QSR, service recovery done right creates customers for life. Think about the last time a guest came to you with a complaint — what did you do? What could you have done differently? This week, share one real recovery story from your store and what you learned from it.',
+    tags: ['Service Recovery', 'Customer Loyalty', 'Leadership']
+  },
+  {
+    week: 'Next Tuesday',
+    question: 'What does "upselling with purpose" mean to your team?',
+    context: 'Modifiers and add-ons aren\'t just revenue — they\'re personalisation. Guests who feel understood become regulars. How does your team currently handle suggestive selling? Share a technique that works at your store.',
+    tags: ['Revenue Growth', 'Team Coaching', 'Guest Experience']
+  }
+];
+
+var learningVideos = [
+  { title: 'Service Recovery Masterclass', duration: '8 min', topic: 'Guest Experience', icon: '&#x1F3AC;', color: '#007AFF', url: '#' },
+  { title: 'Coaching Your Team Daily', duration: '12 min', topic: 'Leadership', icon: '&#x1F3AC;', color: '#34C759', url: '#' },
+  { title: 'FDU Display Standards 2026', duration: '6 min', topic: 'Operations', icon: '&#x1F3AC;', color: '#FF9500', url: '#' },
+  { title: 'Driving Modifier Attachment', duration: '9 min', topic: 'Revenue', icon: '&#x1F3AC;', color: '#AF52DE', url: '#' }
+];
+
+function renderAcademy() {
+  // Prompt
+  var p = tuesdayPrompts[0];
+  document.getElementById('tuesdayPrompt').innerHTML =
+    '<div class="prompt-week">&#x1F4C5; ' + p.week + '</div>' +
+    '<div class="prompt-question">' + p.question + '</div>' +
+    '<div class="prompt-context">' + p.context + '</div>' +
+    '<div class="prompt-tags">' + p.tags.map(function(t){ return '<span class="prompt-tag">'+t+'</span>'; }).join('') + '</div>';
+
+  // Videos
+  document.getElementById('videoGrid').innerHTML = learningVideos.map(function(v){
+    return '<div class="video-card" onclick="window.open(\''+v.url+'\',\'_blank\')">' +
+      '<div class="video-play-btn" style="background:linear-gradient(135deg,'+v.color+'22,'+v.color+'44);">' +
+        '<span style="font-size:36px;">&#x25B6;&#xFE0F;</span>' +
+      '</div>' +
+      '<div class="video-info">' +
+        '<div class="video-title">' + v.title + '</div>' +
+        '<div class="video-meta">' + v.topic + ' &nbsp;&middot;&nbsp; ' + v.duration + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  // Leaderboard — rank AMs by training health score
+  var ranked = amList.map(function(am){
+    var h = calcAMHealth(am);
+    return { am: am, score: h.score, stores: h.stores };
+  }).filter(function(x){ return x.score > 0; });
+  ranked.sort(function(a,b){ return b.score - a.score; });
+
+  var medals = ['&#x1F947;','&#x1F948;','&#x1F949;'];
+  document.getElementById('academyLeaderboard').innerHTML = ranked.map(function(r, i){
+    var medal = medals[i] || (i+1+'.');
+    var col = r.score>=80?'#34C759':r.score>=60?'#FF9500':'#FF3B30';
+    var bg = r.score>=80?'#E8F8ED':r.score>=60?'#FFF3E0':'#FEE8E8';
+    return '<div class="lb-academy-row">' +
+      '<div class="lb-rank">' + medal + '</div>' +
+      '<div>' +
+        '<div class="lb-am-name">' + r.am.icon + ' ' + r.am.name + '</div>' +
+        '<div class="lb-am-region">' + r.am.region + ' &nbsp;&middot;&nbsp; ' + r.stores + ' stores tracked</div>' +
+      '</div>' +
+      '<div class="lb-score-pill" style="background:'+bg+';color:'+col+';">' + (r.score>0?r.score+'%':'--') + '</div>' +
+    '</div>';
+  }).join('') || '<div style="text-align:center;padding:24px;color:var(--text2);">Load the overview tab first to populate scores.</div>';
+}
+
 loadData();
 </script>
 <nav class="nav">
@@ -813,6 +948,7 @@ loadData();
     <a href="performance.html" class="nav-link ">Scores</a>
     <a href="team.html" class="nav-link active">Team</a>
     <a href="fdu-dashboard.html" class="nav-link ">FDU</a>
+    <a href="maintenance-dashboard.html" class="nav-link ">Maintenance</a>
   </div>
   <div style="display:flex;align-items:center;gap:8px;">
     <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
@@ -830,9 +966,8 @@ loadData();
     <button id="logoutBtn" onclick="logout()" class="nav-btn" style="display:none;">Logout</button>
   </div>
 </nav>
-<script src="/js/api.js"></script>
 <!-- FOOTER -->
-<footer class="site-footer" style="max-width:1200px;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
+<footer class="site-footer" style="max-width:100%;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
   <div class="footer-content">
     <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
     <div class="footer-links">
@@ -841,6 +976,7 @@ loadData();
     </div>
   </div>
 </footer>
+</div><!-- /page-content -->
 <nav class="mobile-nav">
   <div class="mobile-nav-items">
     <a href="index.html" class="mobile-nav-item ">
@@ -863,9 +999,124 @@ loadData();
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
       <span class="mobile-nav-label">Team</span>
     </a>
+    <a href="fdu-dashboard.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
+      <span class="mobile-nav-label">FDU</span>
+    </a>
+    <a href="maintenance-dashboard.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+      <span class="mobile-nav-label">Maint.</span>
+    </a>
   </div>
 </nav>
 <script src="theme.js"></script>
 <script>applyTheme(getTheme());</script>
-</body>
+
+<!-- TIMSY BOT -->
+
+
+<!-- TIMSY BOT -->
+<div id="timsy-launcher" onclick="toggleTimsy()">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+<div style="position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:#34C759;border-radius:50%;border:2px solid #000;"></div>
+</div>
+<div id="timsy-chat">
+<div style="background:linear-gradient(135deg,#c8102e,#a00d24);padding:16px 20px;display:flex;align-items:center;gap:12px;">
+<div style="width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">&#9749;</div>
+<div style="flex:1;"><div style="font-weight:800;font-size:1em;color:#fff;">Timsy</div><div style="font-size:0.7em;color:rgba(255,255,255,0.7);">Ops Assistant &#8226; Online</div></div>
+<div id="timsy-voice-btn" onclick="toggleVoice()" style="cursor:pointer;color:rgba(255,255,255,0.7);font-size:0.7em;padding:4px 8px;border:1px solid rgba(255,255,255,0.3);border-radius:12px;" title="Toggle voice">&#128266;</div>
+<div class="timsy-close-btn" onclick="toggleTimsy()">&#10005;</div>
+</div>
+<div id="timsy-messages">
+<div style="display:flex;gap:8px;align-items:flex-start;">
+<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">&#9749;</div>
+<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">Hey there! I am <b style="color:#c8102e;">Timsy</b>, your ops assistant. Ask me about stores, ratings, FDU compliance, donuts, tasks, or anything on OpsAIHub!</div>
+</div>
+</div>
+<div style="padding:12px 16px;border-top:1px solid #222;display:flex;gap:10px;align-items:center;">
+<input id="timsy-input" type="text" placeholder="Ask Timsy..." onkeydown="if(event.key==='Enter')sendTimsy()">
+<div onclick="sendTimsy()" style="width:38px;height:38px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
+</div>
+</div>
+
+<script>
+var timsyOpen = false;
+var voiceEnabled = false;
+function toggleTimsy() {
+  timsyOpen = !timsyOpen;
+  document.getElementById("timsy-chat").style.display = timsyOpen ? "flex" : "none";
+  if (timsyOpen) document.getElementById("timsy-input").focus();
+}
+function toggleVoice() {
+  voiceEnabled = !voiceEnabled;
+  var b = document.getElementById("timsy-voice-btn");
+  if (voiceEnabled) {
+    b.style.background = "#c8102e";
+    b.style.color = "#fff";
+    b.textContent = "ON";
+  } else {
+    b.style.background = "transparent";
+    b.style.color = "rgba(255,255,255,0.7)";
+    b.textContent = "\uD83D\uDD0A";
+    window.speechSynthesis.cancel();
+  }
+}
+function addTimsyMsg(text, isBot) {
+  var m = document.getElementById("timsy-messages");
+  var w = document.createElement("div");
+  w.style.display = "flex";
+  w.style.gap = "8px";
+  w.style.alignItems = "flex-start";
+  w.style.flexDirection = isBot ? "row" : "row-reverse";
+  var f = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>").replace(/\n/g, "<br>");
+  var avatar = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div>';
+  var botBubble = '<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">' + f + '</div>';
+  var userBubble = '<div style="background:#c8102e;border-radius:16px;border-top-right-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#fff;max-width:85%;">' + f + '</div>';
+  w.innerHTML = isBot ? avatar + botBubble : userBubble;
+  m.appendChild(w);
+  m.scrollTop = m.scrollHeight;
+}
+function addTyping() {
+  var m = document.getElementById("timsy-messages");
+  var w = document.createElement("div");
+  w.id = "timsy-typing";
+  w.style.display = "flex";
+  w.style.gap = "8px";
+  w.innerHTML = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div><div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;">Typing...</div>';
+  m.appendChild(w);
+  m.scrollTop = m.scrollHeight;
+}
+function removeTyping() {
+  var e = document.getElementById("timsy-typing");
+  if (e) e.remove();
+}
+async function sendTimsy() {
+  var i = document.getElementById("timsy-input");
+  var q = i.value.trim();
+  if (!q) return;
+  addTimsyMsg(q, false);
+  i.value = "";
+  addTyping();
+  try {
+    var r = await fetch("/timsy_api.php", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({q: q})
+    });
+    var d = await r.json();
+    removeTyping();
+    addTimsyMsg(d.reply, true);
+    if (voiceEnabled) {
+      var p = d.reply.replace(/<[^>]*>/g, "").replace(/\*\*/g, "").replace(/\n+/g, ". ").trim();
+      var u = new SpeechSynthesisUtterance(p);
+      u.rate = 1;
+      u.pitch = 1;
+      window.speechSynthesis.speak(u);
+    }
+  } catch(e) {
+    removeTyping();
+    addTimsyMsg("Sorry, I hit a snag. Try again!", true);
+  }
+}
+</script>
 </html>

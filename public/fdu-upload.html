@@ -5,74 +5,74 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1.0">
 <title>Tim Hortons — FDU Daily Check</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="timsy.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-
-body{padding-bottom:calc(72px + 20px);background:#F5F5F7;min-height:100vh;padding-bottom:40px;padding-top:var(--nav-h);}
+body{background:#F5F5F7;min-height:100vh;padding-bottom:60px;padding-top:var(--nav-h);}
 .hdr{background:var(--red);padding:calc(env(safe-area-inset-top,0px)+18px) 20px 18px;text-align:center;}
 .hdr-logo{font-size:12px;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;}
 .hdr-title{font-size:19px;font-weight:700;color:#fff;}
 .hdr-sub{font-size:11px;color:rgba(255,255,255,0.6);margin-top:2px;}
 .wrap{max-width:480px;margin:0 auto;padding:0 16px;}
+/* store selector */
 .sel-wrap{background:#fff;border-radius:14px;padding:14px;margin:14px 0 0;box-shadow:0 1px 4px rgba(0,0,0,0.07);}
 .sel-lbl{font-size:11px;font-weight:700;color:#1D1D1F;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:7px;}
 .store-sel{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid #D1D1D6;font-size:14px;font-family:inherit;color:#1D1D1F;background:#fff;outline:none;}
 .badge{background:#1A0A00;border-radius:12px;padding:11px 16px;margin:10px 0 0;display:none;align-items:center;justify-content:space-between;}
 .badge-name{font-size:14px;font-weight:700;color:#fff;}
 .badge-am{font-size:10px;color:rgba(255,255,255,0.45);margin-top:2px;}
-.cutoff{background:rgba(255,255,255,0.1);border-radius:8px;padding:4px 10px;font-size:10px;font-weight:700;color:rgba(255,255,255,0.6);text-align:right;}
-.cutoff-t{font-size:13px;color:#FF9500;display:block;font-weight:700;}
-.tab-row{display:none;gap:8px;margin:10px 0 0;}
-.tab-btn{flex:1;padding:10px;border-radius:12px;border:1.5px solid #E5E5EA;background:#fff;font-size:13px;font-weight:600;color:#8E8E93;cursor:pointer;text-align:center;font-family:inherit;}
-.tab-btn.on{background:var(--red);color:#fff;border-color:var(--red);}
-.tab-pane{display:none;}
-.tab-pane.on{display:block;}
-.card{background:#fff;border-radius:14px;padding:14px;margin-top:10px;box-shadow:0 1px 4px rgba(0,0,0,0.07);}
-.card-title{font-size:12px;font-weight:700;color:#1D1D1F;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
-.timer-wrap{background:#FFF5F5;border-radius:10px;padding:9px 12px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
-.timer-count{font-size:13px;font-weight:700;color:var(--red);}
-.upload-box{border:2px dashed #D1D1D6;border-radius:12px;padding:20px 14px;text-align:center;cursor:pointer;background:#FAFAFA;margin-bottom:10px;position:relative;transition:border-color 0.15s ease-out,background 0.15s ease-out;}
+/* step sections */
+.sections{display:none;margin-top:4px;}
+.step-hdr{display:flex;align-items:center;gap:10px;padding:14px 0 8px;}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-title{font-size:14px;font-weight:700;color:#1D1D1F;}
+.step-done{font-size:18px;display:none;}
+.card{background:#fff;border-radius:14px;padding:14px;margin-bottom:4px;box-shadow:0 1px 4px rgba(0,0,0,0.07);}
+.card-title{font-size:11px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
+.upload-box{border:2px dashed #D1D1D6;border-radius:12px;padding:20px 14px;text-align:center;cursor:pointer;background:#FAFAFA;margin-bottom:8px;position:relative;transition:border-color 0.15s,background 0.15s;}
 .upload-box.has-photo{border:2px solid var(--red);background:#fff;padding:6px;}
-.upload-input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
-.preview-img{width:100%;border-radius:8px;display:block;max-height:240px;object-fit:cover;}
+.preview-img{width:100%;border-radius:8px;display:block;max-height:220px;object-fit:cover;}
 .chg-lbl{display:block;text-align:center;font-size:12px;font-weight:600;color:var(--red);margin-top:6px;cursor:pointer;}
-.chk-list{background:#F9F9F9;border-radius:10px;padding:10px 12px;margin-bottom:10px;}
+.chk-list{background:#F9F9F9;border-radius:10px;padding:10px 12px;margin-bottom:4px;}
 .chk-item{display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-bottom:1px solid #F2F2F7;}
 .chk-item:last-child{border-bottom:none;}
 .chk-dot{width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:5px;}
 .chk-txt{font-size:12px;color:#3A3A3C;line-height:1.4;}
-.donut-card{background:#F9F9F9;border-radius:12px;padding:12px;margin-bottom:10px;}
-.donut-std{font-size:11px;color:#3A3A3C;line-height:1.4;background:#fff;border-radius:8px;padding:7px 10px;margin-bottom:8px;border-left:3px solid var(--red);}
-.submit-btn{width:100%;padding:14px;border:none;border-radius:12px;background:var(--red);color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:10px;}
-.submit-btn:disabled{background:#D1D1D6;cursor:not-allowed;}
-.prog-bar{width:100%;height:4px;background:#F2F2F7;border-radius:2px;overflow:hidden;margin-top:8px;display:none;}
-.prog-fill{height:100%;background:var(--red);border-radius:2px;width:0%;transition:width 0.3s;}
-.prog-txt{font-size:11px;color:#8E8E93;margin-top:4px;text-align:center;display:none;}
-.suc{display:none;text-align:center;padding:28px 16px;}
-.suc-icon{font-size:52px;margin-bottom:10px;}
-.suc-title{font-size:19px;font-weight:700;color:#1D1D1F;margin-bottom:5px;}
+.donut-std{font-size:11px;color:#3A3A3C;line-height:1.4;background:#F9F9F9;border-radius:8px;padding:7px 10px;margin-bottom:8px;border-left:3px solid var(--red);}
+/* divider between sections */
+.step-divider{height:1px;background:#E5E5EA;margin:6px 0;}
+/* submit */
+.submit-wrap{margin-top:10px;padding-bottom:20px;}
+.submit-btn{width:100%;padding:16px;border:none;border-radius:14px;background:var(--red);color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity 0.15s;}
+.submit-btn:disabled{opacity:0.35;cursor:not-allowed;}
+.prog-bar{width:100%;height:5px;background:#F2F2F7;border-radius:3px;overflow:hidden;margin-top:10px;display:none;}
+.prog-fill{height:100%;background:var(--red);border-radius:3px;width:0%;transition:width 0.4s;}
+.prog-txt{font-size:12px;color:#8E8E93;margin-top:6px;text-align:center;display:none;}
+/* success */
+.suc{display:none;text-align:center;padding:32px 16px 24px;}
+.suc-icon{font-size:56px;margin-bottom:12px;}
+.suc-title{font-size:20px;font-weight:700;color:#1D1D1F;margin-bottom:6px;}
 .suc-sub{font-size:13px;color:#8E8E93;line-height:1.5;}
-.ts{font-size:11px;color:#8E8E93;margin-top:5px;}
-.late-b{background:rgba(255,149,0,0.12);color:#B36200;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;display:inline-block;margin-top:5px;}
+.ts{font-size:11px;color:#8E8E93;margin-top:6px;}
+.grade-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px;text-align:left;}
+.grade-card{background:#fff;border-radius:12px;padding:11px;border:2px solid #34C759;}
+.grade-lbl{font-size:9px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;}
+.grade-name{font-size:12px;font-weight:700;color:#1D1D1F;margin-bottom:4px;}
+.grade-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;}
+.grade-fb{font-size:10px;color:#6E6E73;margin-top:5px;line-height:1.4;}
+.grade-summary{background:#fff;border-radius:12px;padding:11px;text-align:center;margin-top:8px;font-size:12px;color:#1D1D1F;font-weight:500;}
+/* error */
 .err{display:none;text-align:center;padding:24px 16px;}
 .try-btn{margin-top:12px;padding:10px 22px;border:none;border-radius:10px;background:var(--red);color:#fff;font-size:13px;font-weight:700;cursor:pointer;}
-
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:72px;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:1000; transform:translateZ(0);-webkit-transform:translateZ(0); }
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;padding:8px 12px;}
-.nav-icon{font-size:22px;}
-.nav-label{font-size:10px;font-weight:500;color:#6E6E73;}
-.nav-item.active .nav-label{color:#C8102E;font-weight:600;}
-.nav-dot{width:4px;height:4px;background:#C8102E;border-radius:50%;}
-
-
 </style>
 
 </head>
 <body>
+<div class="page-content">
 <div class="hdr">
   <div class="hdr-logo">&#9749; Tim Hortons India</div>
   <div class="hdr-title">Daily FDU Check</div>
-  <div class="hdr-sub">Food Display &middot; Donut Quality &middot; Submit by 11:30 AM</div>
+  <div class="hdr-sub">Food Display &middot; Donut Quality &middot; Upload anytime</div>
 </div>
 <div class="wrap">
   <div class="sel-wrap">
@@ -81,20 +81,21 @@ body{padding-bottom:calc(72px + 20px);background:#F5F5F7;min-height:100vh;paddin
   </div>
   <div class="badge" id="storeBadge">
     <div><div class="badge-name" id="storeName"></div><div class="badge-am" id="storeAM"></div></div>
-    <div class="cutoff">Cutoff<span class="cutoff-t">11:30 AM</span></div>
   </div>
-  <div class="tab-row" id="tabRow">
-    <button class="tab-btn on" id="tabFDU">&#127849; FDU Display</button>
-    <button class="tab-btn" id="tabDonut">&#127849; Donut Quality</button>
-  </div>
-  <div class="tab-pane on" id="pane-fdu">
-    <div class="card" id="fduCard">
-      <div class="timer-wrap"><div style="font-size:17px;">&#9201;</div><div class="flex-1"><div style="font-size:12px;color:#1D1D1F;">Submit before <b>11:30 AM</b></div><div class="timer-count" id="countdown">Calculating...</div></div></div>
-      <div class="card-title">FDU Display Photo</div>
+  <!-- seamless linear flow -->
+  <div class="sections" id="sections">
+
+    <!-- Step 1: FDU Display -->
+    <div class="step-hdr">
+      <div class="step-num" id="sn1">1</div>
+      <div class="step-title">FDU Display Photo</div>
+      <div class="step-done" id="sd1">&#10003;</div>
+    </div>
+    <div class="card">
       <div class="upload-box" id="fduBox" onclick="document.getElementById('fduInput').click()">
-        <input type="file" accept="image/*" style="display:none;" id="fduInput">
+        <input type="file" accept="image/*" capture="environment" style="display:none;" id="fduInput">
         <div id="fduPH"><div style="font-size:36px;margin-bottom:7px;">&#128247;</div><div style="font-size:13px;font-weight:700;color:#1D1D1F;margin-bottom:3px;">Take or Upload Photo</div><div style="font-size:12px;color:#8E8E93;">Full view of the FDU display</div></div>
-        <div id="fduPrev" style="display:none;"><img id="fduImg" class="preview-img" src="" alt=""><label class="chg-lbl">&#128247; Change Photo<input type="file" accept="image/*"  style="display:none;" id="fduChg"></label></div>
+        <div id="fduPrev" style="display:none;"><img id="fduImg" class="preview-img" src="" alt=""><label class="chg-lbl" onclick="event.stopPropagation()">&#128247; Change Photo<input type="file" accept="image/*" capture="environment" style="display:none;" id="fduChg"></label></div>
       </div>
       <div class="chk-list">
         <div class="chk-item"><div class="chk-dot"></div><div class="chk-txt">FDU fully stocked &mdash; no empty trays</div></div>
@@ -102,112 +103,96 @@ body{padding-bottom:calc(72px + 20px);background:#F5F5F7;min-height:100vh;paddin
         <div class="chk-item"><div class="chk-dot"></div><div class="chk-txt">Glass and trays clean &mdash; no crumbs</div></div>
         <div class="chk-item"><div class="chk-dot"></div><div class="chk-txt">Photo shows full display, well-lit</div></div>
       </div>
-      <button class="submit-btn" id="fduBtn" disabled>Upload FDU Photo</button>
-      <div class="prog-bar" id="fduBar"><div class="prog-fill" id="fduFill"></div></div>
-      <div class="prog-txt" id="fduTxt">Uploading...</div>
     </div>
-    <div class="suc" id="fduSuc">
-      <div class="suc-icon" id="fduIcon">&#9989;</div>
-      <div class="suc-title" id="fduTitle">FDU Photo Submitted!</div>
-      <div class="suc-sub" id="fduSub">AI audit complete.</div>
-      <div id="fduGradeResult" style="display:none;margin-top:12px;width:100%;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
-          <div id="fduCard1" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;">
-            <div class="text-xs-9 font-bold text-muted" style="text-transform:uppercase;margin-bottom:3px;">Top Row</div>
-            <div id="fduBadge1" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div>
-            <div id="fduFb1" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div>
-          </div>
-          <div id="fduCard2" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;">
-            <div class="text-xs-9 font-bold text-muted" style="text-transform:uppercase;margin-bottom:3px;">Mid Row</div>
-            <div id="fduBadge2" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div>
-            <div id="fduFb2" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div>
-          </div>
-          <div id="fduCard3" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;">
-            <div class="text-xs-9 font-bold text-muted" style="text-transform:uppercase;margin-bottom:3px;">Timbits</div>
-            <div id="fduBadge3" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div>
-            <div id="fduFb3" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div>
-          </div>
-          <div id="fduCard4" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;">
-            <div class="text-xs-9 font-bold text-muted" style="text-transform:uppercase;margin-bottom:3px;">Water</div>
-            <div id="fduBadge4" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div>
-            <div id="fduFb4" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div>
-          </div>
-        </div>
-        <div id="fduCard5" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;margin-bottom:8px;">
-          <div class="text-xs-9 font-bold text-muted" style="text-transform:uppercase;margin-bottom:3px;">Tags</div>
-          <div id="fduBadge5" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div>
-          <div id="fduFb5" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div>
-        </div>
-        <div style="background:#fff;border-radius:12px;padding:10px;text-align:center;">
-          <div id="fduSummaryText" style="font-size:12px;color:#1D1D1F;font-weight:500;"></div>
+
+    <div class="step-divider"></div>
+
+    <!-- Step 2: Donut 1 -->
+    <div class="step-hdr">
+      <div class="step-num" id="sn2">2</div>
+      <div class="step-title" id="d1title">Donut 1 Photo</div>
+      <div class="step-done" id="sd2">&#10003;</div>
+    </div>
+    <div class="card" id="d1card">
+      <div id="d1loading" style="text-align:center;padding:16px;color:#8E8E93;font-size:13px;">Loading today's donut...</div>
+      <div id="d1wrap" style="display:none;">
+        <div style="font-size:15px;font-weight:700;color:#1D1D1F;margin-bottom:2px;" id="d1name"></div>
+        <div style="font-size:11px;color:#8E8E93;margin-bottom:8px;" id="d1type"></div>
+        <div class="donut-std" id="d1std"></div>
+        <div class="upload-box" id="d1box" onclick="document.getElementById('d1input').click()">
+          <input type="file" accept="image/*" capture="environment" style="display:none;" id="d1input">
+          <div id="d1ph"><div style="font-size:30px;margin-bottom:5px;">&#128247;</div><div style="font-size:13px;font-weight:700;color:#1D1D1F;margin-bottom:2px;">Photo of this donut</div><div style="font-size:11px;color:#8E8E93;">Close-up, clear, shows glaze</div></div>
+          <div id="d1prev" style="display:none;"><img id="d1img" class="preview-img" src="" alt=""><label class="chg-lbl" onclick="event.stopPropagation()">&#128247; Change<input type="file" accept="image/*" capture="environment" style="display:none;" id="d1chg"></label></div>
         </div>
       </div>
-      <div class="ts" id="fduTS"></div><div id="fduLate"></div>
     </div>
-    <div class="err" id="fduErr"><div style="font-size:46px;">&#10060;</div><div style="font-size:17px;font-weight:700;color:#1D1D1F;margin-bottom:5px;">Submission Failed</div><div style="font-size:13px;color:#8E8E93;" id="fduErrMsg">Something went wrong.</div><button class="try-btn" id="fduTry">Try Again</button></div>
+
+    <div class="step-divider"></div>
+
+    <!-- Step 3: Donut 2 -->
+    <div class="step-hdr">
+      <div class="step-num" id="sn3">3</div>
+      <div class="step-title" id="d2title">Donut 2 Photo</div>
+      <div class="step-done" id="sd3">&#10003;</div>
+    </div>
+    <div class="card" id="d2card">
+      <div id="d2loading" style="text-align:center;padding:16px;color:#8E8E93;font-size:13px;">Loading today's donut...</div>
+      <div id="d2wrap" style="display:none;">
+        <div style="font-size:15px;font-weight:700;color:#1D1D1F;margin-bottom:2px;" id="d2name"></div>
+        <div style="font-size:11px;color:#8E8E93;margin-bottom:8px;" id="d2type"></div>
+        <div class="donut-std" id="d2std"></div>
+        <div class="upload-box" id="d2box" onclick="document.getElementById('d2input').click()">
+          <input type="file" accept="image/*" capture="environment" style="display:none;" id="d2input">
+          <div id="d2ph"><div style="font-size:30px;margin-bottom:5px;">&#128247;</div><div style="font-size:13px;font-weight:700;color:#1D1D1F;margin-bottom:2px;">Photo of this donut</div><div style="font-size:11px;color:#8E8E93;">Close-up, clear, shows glaze</div></div>
+          <div id="d2prev" style="display:none;"><img id="d2img" class="preview-img" src="" alt=""><label class="chg-lbl" onclick="event.stopPropagation()">&#128247; Change<input type="file" accept="image/*" capture="environment" style="display:none;" id="d2chg"></label></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Single submit -->
+    <div class="submit-wrap">
+      <button class="submit-btn" id="submitBtn" disabled>Submit Daily Check</button>
+      <div class="prog-bar" id="progBar"><div class="prog-fill" id="progFill"></div></div>
+      <div class="prog-txt" id="progTxt">Submitting...</div>
+    </div>
   </div>
-  <div class="tab-pane" id="pane-donut">
-    <div class="card" id="donutCard">
-      <div class="card-title">Today's Donut Quality Check</div>
-      <div id="donutLoading" style="text-align:center;padding:20px;color:#8E8E93;font-size:13px;">Loading today's donuts...</div>
-      <div id="donutContent" style="display:none;">
-        <div class="donut-card">
-          <div style="font-size:10px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Donut 1 of 2</div>
-          <div style="font-size:15px;font-weight:700;color:#1D1D1F;margin-bottom:2px;" id="d1name"></div>
-          <div style="font-size:11px;color:#8E8E93;margin-bottom:8px;" id="d1type"></div>
-          <div class="donut-std" id="d1std"></div>
-          <div class="upload-box" id="d1box" onclick="document.getElementById('d1input').click()">
-            <input type="file" accept="image/*" style="display:none;" id="d1input">
-            <div id="d1ph"><div style="font-size:30px;margin-bottom:5px;">&#128247;</div><div style="font-size:13px;font-weight:700;color:#1D1D1F;margin-bottom:2px;">Photo of this donut</div><div style="font-size:11px;color:#8E8E93;">Close-up, clear, shows glaze</div></div>
-            <div id="d1prev" style="display:none;"><img id="d1img" class="preview-img" src="" alt=""><label class="chg-lbl">&#128247; Change<input type="file" accept="image/*"  style="display:none;" id="d1chg"></label></div>
-          </div>
-        </div>
-        <div class="donut-card">
-          <div style="font-size:10px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Donut 2 of 2</div>
-          <div style="font-size:15px;font-weight:700;color:#1D1D1F;margin-bottom:2px;" id="d2name"></div>
-          <div style="font-size:11px;color:#8E8E93;margin-bottom:8px;" id="d2type"></div>
-          <div class="donut-std" id="d2std"></div>
-          <div class="upload-box" id="d2box" onclick="document.getElementById('d2input').click()">
-            <input type="file" accept="image/*" style="display:none;" id="d2input">
-            <div id="d2ph"><div style="font-size:30px;margin-bottom:5px;">&#128247;</div><div style="font-size:13px;font-weight:700;color:#1D1D1F;margin-bottom:2px;">Photo of this donut</div><div style="font-size:11px;color:#8E8E93;">Close-up, clear, shows glaze</div></div>
-            <div id="d2prev" style="display:none;"><img id="d2img" class="preview-img" src="" alt=""><label class="chg-lbl">&#128247; Change<input type="file" accept="image/*"  style="display:none;" id="d2chg"></label></div>
-          </div>
-        </div>
-        <button class="submit-btn" id="donutBtn" disabled>Submit Donut Photos</button>
-        <div class="prog-bar" id="donutBar"><div class="prog-fill" id="donutFill"></div></div>
-        <div class="prog-txt" id="donutTxt">Uploading...</div>
+
+  <!-- Combined success -->
+  <div class="suc" id="sucScreen">
+    <div class="suc-icon" id="sucIcon">&#9989;</div>
+    <div class="suc-title" id="sucTitle">Daily Check Submitted!</div>
+    <div class="suc-sub" id="sucSub">AI grading your photos...</div>
+    <div id="gradeArea" style="display:none;margin-top:12px;width:100%;">
+      <!-- FDU grades -->
+      <div style="font-size:11px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;text-align:left;">FDU Display</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <div id="fduCard1" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;"><div style="font-size:9px;font-weight:700;color:#8E8E93;text-transform:uppercase;margin-bottom:3px;">Top Row</div><div id="fduBadge1" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div><div id="fduFb1" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div></div>
+        <div id="fduCard2" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;"><div style="font-size:9px;font-weight:700;color:#8E8E93;text-transform:uppercase;margin-bottom:3px;">Mid Row</div><div id="fduBadge2" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div><div id="fduFb2" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div></div>
+        <div id="fduCard3" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;"><div style="font-size:9px;font-weight:700;color:#8E8E93;text-transform:uppercase;margin-bottom:3px;">Timbits</div><div id="fduBadge3" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div><div id="fduFb3" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div></div>
+        <div id="fduCard5" style="background:#fff;border-radius:12px;padding:10px;border:2px solid #34C759;"><div style="font-size:9px;font-weight:700;color:#8E8E93;text-transform:uppercase;margin-bottom:3px;">Tags</div><div id="fduBadge5" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-block;background:#E8F8ED;color:#1B7A3A;">Pass</div><div id="fduFb5" style="font-size:10px;color:#6E6E73;margin-top:4px;line-height:1.4;"></div></div>
       </div>
-    </div>
-    <div class="suc" id="donutSuc">
-      <div class="suc-icon" id="donutGradeIcon">&#127849;</div>
-      <div class="suc-title" id="donutGradeTitle">Donut Photos Submitted!</div>
-      <div class="suc-sub" id="donutGradeSub">AI is scoring against today's SOP standards...</div>
-      <div id="donutGradeResult" style="display:none;margin-top:12px;width:100%;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
-          <div style="border-radius:10px;overflow:hidden;"><img id="donutPhoto1" src="" style="width:100%;height:120px;object-fit:cover;display:none;border-radius:10px;"></div>
-          <div style="border-radius:10px;overflow:hidden;"><img id="donutPhoto2" src="" style="width:100%;height:120px;object-fit:cover;display:none;border-radius:10px;"></div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
-          <div id="grade1Card" style="background:#fff;border-radius:12px;padding:12px;border:2px solid #34C759;">
-            <div style="font-size:10px;font-weight:700;color:#8E8E93;text-transform:uppercase;margin-bottom:4px;">Donut 1</div>
-            <div id="grade1Name" style="font-size:12px;font-weight:700;color:#1D1D1F;margin-bottom:4px;"></div>
-            <div id="grade1Badge" style="font-size:12px;font-weight:700;padding:3px 10px;border-radius:8px;display:inline-block;background:#E8F8ED;color:#1B7A3A;"></div>
-            <div id="grade1Feedback" style="font-size:11px;color:#6E6E73;margin-top:6px;line-height:1.4;"></div>
-          </div>
-          <div id="grade2Card" style="background:#fff;border-radius:12px;padding:12px;border:2px solid #34C759;">
-            <div style="font-size:10px;font-weight:700;color:#8E8E93;text-transform:uppercase;margin-bottom:4px;">Donut 2</div>
-            <div id="grade2Name" style="font-size:12px;font-weight:700;color:#1D1D1F;margin-bottom:4px;"></div>
-            <div id="grade2Badge" style="font-size:12px;font-weight:700;padding:3px 10px;border-radius:8px;display:inline-block;background:#E8F8ED;color:#1B7A3A;"></div>
-            <div id="grade2Feedback" style="font-size:11px;color:#6E6E73;margin-top:6px;line-height:1.4;"></div>
-          </div>
-        </div>
-        <div style="background:#fff;border-radius:12px;padding:12px;text-align:center;">
-          <div id="gradeSummaryText" style="font-size:13px;color:#1D1D1F;font-weight:500;"></div>
-        </div>
+      <!-- Donut grades -->
+      <div style="font-size:11px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;text-align:left;margin-top:12px;">Donut Quality</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <div style="border-radius:10px;overflow:hidden;"><img id="donutPhoto1" src="" style="width:100%;height:110px;object-fit:cover;display:none;border-radius:10px;"></div>
+        <div style="border-radius:10px;overflow:hidden;"><img id="donutPhoto2" src="" style="width:100%;height:110px;object-fit:cover;display:none;border-radius:10px;"></div>
       </div>
-      <div class="ts" id="donutTS"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <div id="grade1Card" style="background:#fff;border-radius:12px;padding:12px;border:2px solid #34C759;"><div style="font-size:9px;font-weight:700;color:#8E8E93;text-transform:uppercase;margin-bottom:4px;">Donut 1</div><div id="grade1Name" style="font-size:12px;font-weight:700;color:#1D1D1F;margin-bottom:4px;"></div><div id="grade1Badge" style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:8px;display:inline-block;background:#E8F8ED;color:#1B7A3A;"></div><div id="grade1Feedback" style="font-size:11px;color:#6E6E73;margin-top:6px;line-height:1.4;"></div></div>
+        <div id="grade2Card" style="background:#fff;border-radius:12px;padding:12px;border:2px solid #34C759;"><div style="font-size:9px;font-weight:700;color:#8E8E93;text-transform:uppercase;margin-bottom:4px;">Donut 2</div><div id="grade2Name" style="font-size:12px;font-weight:700;color:#1D1D1F;margin-bottom:4px;"></div><div id="grade2Badge" style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:8px;display:inline-block;background:#E8F8ED;color:#1B7A3A;"></div><div id="grade2Feedback" style="font-size:11px;color:#6E6E73;margin-top:6px;line-height:1.4;"></div></div>
+      </div>
+      <div id="overallSummary" style="background:#fff;border-radius:12px;padding:12px;text-align:center;font-size:12px;color:#1D1D1F;font-weight:500;"></div>
     </div>
-    <div class="err" id="donutErr"><div style="font-size:46px;">&#10060;</div><div style="font-size:17px;font-weight:700;color:#1D1D1F;margin-bottom:5px;">Submission Failed</div><div style="font-size:13px;color:#8E8E93;" id="donutErrMsg">Something went wrong.</div><button class="try-btn" id="donutTry">Try Again</button></div>
+    <div class="ts" id="sucTS"></div>
+    <button class="try-btn" style="margin-top:16px;" onclick="resetForm()">Submit Another</button>
+  </div>
+
+  <!-- Error -->
+  <div class="err" id="errScreen">
+    <div style="font-size:46px;">&#10060;</div>
+    <div style="font-size:17px;font-weight:700;color:#1D1D1F;margin-bottom:5px;">Submission Failed</div>
+    <div style="font-size:13px;color:#8E8E93;" id="errMsg">Something went wrong.</div>
+    <button class="try-btn" onclick="retrySubmit()">Try Again</button>
   </div>
 </div>
 <script>
@@ -219,236 +204,221 @@ var d2File = null;
 
 function getParam(n) { return new URLSearchParams(window.location.search).get(n) || ""; }
 
-function updateCountdown() {
-  var now = new Date();
-  var ist = new Date(now.getTime() + 5.5 * 60 * 60 * 1000);
-  var cut = new Date(ist); cut.setHours(11, 30, 0, 0);
-  var el = document.getElementById("countdown");
-  if (!el) return;
-  if (ist >= cut) { el.textContent = "Cutoff passed — will be marked late"; el.style.color = "#FF9500"; return; }
-  var diff = cut - ist;
-  var h = Math.floor(diff / 3600000);
-  var m = Math.floor((diff % 3600000) / 60000);
-  var s = Math.floor((diff % 60000) / 1000);
-  el.textContent = (h > 0 ? h + "h " : "") + String(m).padStart(2, "0") + "m " + String(s).padStart(2, "0") + "s remaining";
+function istNow() {
+  var ist = new Date(Date.now() + 5.5 * 60 * 60 * 1000);
+  return ist.getUTCHours().toString().padStart(2,"0") + ":" + ist.getUTCMinutes().toString().padStart(2,"0") + " IST";
 }
 
-function switchTab(name) {
-  document.getElementById("tabFDU").classList.toggle("on", name === "fdu");
-  document.getElementById("tabDonut").classList.toggle("on", name === "donut");
-  document.getElementById("pane-fdu").classList.toggle("on", name === "fdu");
-  document.getElementById("pane-donut").classList.toggle("on", name === "donut");
-  if (name === "donut") loadDonuts();
+function checkReady() {
+  document.getElementById("submitBtn").disabled = !(fduFile && d1File && d2File);
+}
+
+function markStep(n) {
+  document.getElementById("sd" + n).style.display = "inline";
+  document.getElementById("sn" + n).style.background = "#34C759";
 }
 
 function onStoreSelected() {
   TOKEN = document.getElementById("storeSel").value;
   var badge = document.getElementById("storeBadge");
-  var tabRow = document.getElementById("tabRow");
-  if (!TOKEN) { badge.style.display = "none"; tabRow.style.display = "none"; return; }
+  var sections = document.getElementById("sections");
+  if (!TOKEN) { badge.style.display = "none"; sections.style.display = "none"; return; }
   var link = allLinks.find(function(l) { return l.token === TOKEN; });
   if (link) {
     document.getElementById("storeName").textContent = link.store.replace("TH ", "");
     document.getElementById("storeAM").textContent = "Area Manager: " + link.am;
     badge.style.display = "flex";
-    tabRow.style.display = "flex";
+    sections.style.display = "block";
   }
 }
 
 function handleFDU(file) {
   if (!file) return;
   fduFile = file;
-  var reader = new FileReader();
-  reader.onload = function(e) {
+  var r = new FileReader();
+  r.onload = function(e) {
     document.getElementById("fduImg").src = e.target.result;
     document.getElementById("fduPH").style.display = "none";
     document.getElementById("fduPrev").style.display = "block";
     document.getElementById("fduBox").classList.add("has-photo");
-    document.getElementById("fduBtn").disabled = false;
-    document.getElementById("fduBtn").textContent = "Submit FDU Photo";
+    markStep(1); checkReady();
   };
-  reader.readAsDataURL(file);
+  r.readAsDataURL(file);
 }
 
 function handleD1(file) {
   if (!file) return;
   d1File = file;
-  var reader = new FileReader();
-  reader.onload = function(e) {
+  var r = new FileReader();
+  r.onload = function(e) {
     document.getElementById("d1img").src = e.target.result;
     document.getElementById("d1ph").style.display = "none";
     document.getElementById("d1prev").style.display = "block";
     document.getElementById("d1box").classList.add("has-photo");
-    checkDonutReady();
+    markStep(2); checkReady();
   };
-  reader.readAsDataURL(file);
+  r.readAsDataURL(file);
 }
 
 function handleD2(file) {
   if (!file) return;
   d2File = file;
-  var reader = new FileReader();
-  reader.onload = function(e) {
+  var r = new FileReader();
+  r.onload = function(e) {
     document.getElementById("d2img").src = e.target.result;
     document.getElementById("d2ph").style.display = "none";
     document.getElementById("d2prev").style.display = "block";
     document.getElementById("d2box").classList.add("has-photo");
-    checkDonutReady();
+    markStep(3); checkReady();
   };
-  reader.readAsDataURL(file);
+  r.readAsDataURL(file);
 }
 
-function checkDonutReady() {
-  var btn = document.getElementById("donutBtn");
-  if (btn) btn.disabled = !(d1File && d2File);
+function setProgress(pct, txt) {
+  document.getElementById("progFill").style.width = pct + "%";
+  document.getElementById("progTxt").textContent = txt;
 }
 
-function submitFDU() {
-  if (!fduFile || !TOKEN) return;
-  var btn = document.getElementById("fduBtn");
+function setGradeCard(cardId, badgeId, fbId, grade, feedback) {
+  var pass = grade === "Pass";
+  document.getElementById(cardId).style.borderColor = pass ? "#34C759" : "#FF3B30";
+  document.getElementById(badgeId).textContent = grade;
+  document.getElementById(badgeId).style.background = pass ? "#E8F8ED" : "#FEE8E8";
+  document.getElementById(badgeId).style.color = pass ? "#1B7A3A" : "#C8102E";
+  document.getElementById(fbId).textContent = feedback || "";
+}
+
+function showSuccess(fduEntry, donutEntry) {
+  document.getElementById("sections").style.display = "none";
+  document.getElementById("sucScreen").style.display = "block";
+  document.getElementById("sucTS").textContent = "Submitted at " + istNow();
+  var fduOk = fduEntry && fduEntry.topRow && fduEntry.topRow !== "Submitted";
+  var donutOk = donutEntry && donutEntry.grade1;
+  var allGood = (!fduOk || fduEntry.overallPass) && (!donutOk || donutEntry.overallPass);
+  document.getElementById("sucIcon").textContent = allGood ? "✅" : "⚠️";
+  document.getElementById("sucTitle").textContent = allGood ? "Daily Check Submitted!" : "Submitted — Issues Found";
+  document.getElementById("sucSub").textContent = "Both FDU and donut photos saved.";
+  if (fduOk || donutOk) {
+    document.getElementById("gradeArea").style.display = "block";
+    if (fduOk) {
+      setGradeCard("fduCard1","fduBadge1","fduFb1", fduEntry.topRow, fduEntry.topRowFeedback);
+      setGradeCard("fduCard2","fduBadge2","fduFb2", fduEntry.midRow, fduEntry.midRowFeedback);
+      setGradeCard("fduCard3","fduBadge3","fduFb3", fduEntry.timbits, fduEntry.timbitsFeedback);
+      setGradeCard("fduCard5","fduBadge5","fduFb5", fduEntry.tags, fduEntry.tagsFeedback);
+    }
+    if (donutOk) {
+      if (donutEntry.photo1) { document.getElementById("donutPhoto1").src = donutEntry.photo1; document.getElementById("donutPhoto1").style.display = "block"; }
+      if (donutEntry.photo2) { document.getElementById("donutPhoto2").src = donutEntry.photo2; document.getElementById("donutPhoto2").style.display = "block"; }
+      document.getElementById("grade1Name").textContent = donutEntry.donut1 ? donutEntry.donut1.name : "";
+      setGradeCard("grade1Card","grade1Badge","grade1Feedback", donutEntry.grade1 || "Reviewed", donutEntry.feedback1);
+      document.getElementById("grade2Name").textContent = donutEntry.donut2 ? donutEntry.donut2.name : "";
+      setGradeCard("grade2Card","grade2Badge","grade2Feedback", donutEntry.grade2 || "Reviewed", donutEntry.feedback2);
+      document.getElementById("overallSummary").textContent = donutEntry.summary || fduEntry.summary || "";
+    }
+  }
+}
+
+function showError(msg) {
+  document.getElementById("sections").style.display = "none";
+  document.getElementById("errMsg").textContent = msg || "Something went wrong.";
+  document.getElementById("errScreen").style.display = "block";
+}
+
+function retrySubmit() {
+  document.getElementById("errScreen").style.display = "none";
+  document.getElementById("sections").style.display = "block";
+  document.getElementById("progBar").style.display = "none";
+  document.getElementById("progFill").style.width = "0%";
+  document.getElementById("progTxt").style.display = "none";
+  document.getElementById("submitBtn").disabled = !(fduFile && d1File && d2File);
+}
+
+function resetForm() {
+  fduFile = null; d1File = null; d2File = null;
+  document.getElementById("sucScreen").style.display = "none";
+  document.getElementById("sections").style.display = "block";
+  ["fduPH","d1ph","d2ph"].forEach(function(id){ document.getElementById(id).style.display = "block"; });
+  ["fduPrev","d1prev","d2prev"].forEach(function(id){ document.getElementById(id).style.display = "none"; });
+  ["fduBox","d1box","d2box"].forEach(function(id){ document.getElementById(id).classList.remove("has-photo"); });
+  [1,2,3].forEach(function(n){
+    document.getElementById("sd"+n).style.display = "none";
+    document.getElementById("sn"+n).style.background = "var(--red)";
+  });
+  document.getElementById("progBar").style.display = "none";
+  document.getElementById("progFill").style.width = "0%";
+  document.getElementById("submitBtn").disabled = true;
+}
+
+async function submitAll() {
+  if (!fduFile || !d1File || !d2File || !TOKEN) return;
+  var btn = document.getElementById("submitBtn");
   btn.disabled = true; btn.textContent = "Submitting...";
-  document.getElementById("fduBar").style.display = "block";
-  document.getElementById("fduTxt").style.display = "block";
-  var fd = new FormData();
-  fd.append("token", TOKEN);
-  fd.append("photo", fduFile);
-  fd.append("store", document.getElementById("storeName").textContent||"");
-  fd.append("am", (document.getElementById("storeAM").textContent||"").replace("Area Manager: ","").trim());
-  var prog = 0;
-  var pi = setInterval(function() { prog = Math.min(prog + 5, 85); document.getElementById("fduFill").style.width = prog + "%"; }, 150);
-  fetch("/api/fdu/submit", { method: "POST", body: fd })
-    .then(function(r) { return r.json(); })
-    .then(function(d) {
-      clearInterval(pi);
-      document.getElementById("fduFill").style.width = "100%";
-      setTimeout(function() {
-        document.getElementById("fduCard").style.display = "none";
-        if (d.success) {
-          var now = new Date(); var ist = new Date(now.getTime() + 5.5 * 60 * 60 * 1000);
-          var ts = ist.getUTCHours().toString().padStart(2, "0") + ":" + ist.getUTCMinutes().toString().padStart(2, "0") + ":" + ist.getUTCSeconds().toString().padStart(2, "0");
-          document.getElementById("fduTS").textContent = "Submitted at " + ts + " IST";
-          if (!d.onTime) document.getElementById("fduLate").innerHTML = "<div class=\"late-b\">&#9201; After 11:30 AM — marked Late</div>";
-          document.getElementById("fduSuc").style.display = "block";
-          var e = d.entry || {};
-          if (e.topRow && e.topRow !== "Submitted") {
-            document.getElementById("fduGradeResult").style.display = "block";
-            document.getElementById("fduIcon").textContent = e.overallPass ? "✅" : "⚠️";
-            document.getElementById("fduTitle").textContent = e.overallPass ? "FDU Passed!" : "FDU Issues Found";
-            document.getElementById("fduSub").textContent = e.summary || "";
-            function setCard(cardId, badgeId, fbId, grade, feedback) {
-              var pass = grade === "Pass";
-              document.getElementById(cardId).style.borderColor = pass ? "#34C759" : "#FF3B30";
-              document.getElementById(badgeId).textContent = grade;
-              document.getElementById(badgeId).style.background = pass ? "#E8F8ED" : "#FEE8E8";
-              document.getElementById(badgeId).style.color = pass ? "#1B7A3A" : "#C8102E";
-              document.getElementById(fbId).textContent = feedback || "";
-            }
-            setCard("fduCard1","fduBadge1","fduFb1", e.topRow, e.topRowFeedback);
-            setCard("fduCard2","fduBadge2","fduFb2", e.midRow, e.midRowFeedback);
-            setCard("fduCard3","fduBadge3","fduFb3", e.timbits, e.timbitsFeedback);
-            setCard("fduCard4","fduBadge4","fduFb4", e.water, e.waterFeedback);
-            setCard("fduCard5","fduBadge5","fduFb5", e.tags, e.tagsFeedback);
-            document.getElementById("fduSummaryText").textContent = e.summary || "";
-          }
-        } else {
-          document.getElementById("fduErrMsg").textContent = d.error || "Submission failed.";
-          document.getElementById("fduErr").style.display = "block";
-        }
-      }, 400);
-    })
-    .catch(function() {
-      clearInterval(pi); btn.disabled = false; btn.textContent = "Submit FDU Photo";
-      document.getElementById("fduBar").style.display = "none";
-      document.getElementById("fduTxt").style.display = "none";
-      alert("Connection error. Try again.");
-    });
-}
+  document.getElementById("progBar").style.display = "block";
+  document.getElementById("progTxt").style.display = "block";
+  var storeName = document.getElementById("storeName").textContent || "";
+  var amName = (document.getElementById("storeAM").textContent || "").replace("Area Manager: ", "").trim();
 
-function submitDonut() {
-  if (!d1File || !d2File || !TOKEN) return;
-  var btn = document.getElementById("donutBtn");
-  btn.disabled = true; btn.textContent = "Submitting...";
-  document.getElementById("donutBar").style.display = "block";
-  document.getElementById("donutTxt").style.display = "block";
-  var fd = new FormData();
-  fd.append("token", TOKEN);
-  fd.append("photo1", d1File);
-  fd.append("photo2", d2File);
-  fd.append("store", document.getElementById("storeSel").value || "");
-  fd.append("am", (document.getElementById("storeAM").textContent||"").replace("Area Manager: ","").trim());
-  var prog = 0;
-  var pi = setInterval(function() { prog = Math.min(prog + 4, 85); document.getElementById("donutFill").style.width = prog + "%"; }, 150);
-  fetch("/api/fdu/donut-submit", { method: "POST", body: fd })
-    .then(function(r) { return r.json(); })
-    .then(function(d) {
-      clearInterval(pi);
-      document.getElementById("donutFill").style.width = "100%";
-      setTimeout(function() {
-        document.getElementById("donutCard").style.display = "none";
-        if (d.success) {
-          var now = new Date(); var ist = new Date(now.getTime() + 5.5 * 60 * 60 * 1000);
-          var ts = ist.getUTCHours().toString().padStart(2, "0") + ":" + ist.getUTCMinutes().toString().padStart(2, "0") + ":" + ist.getUTCSeconds().toString().padStart(2, "0");
-          document.getElementById("donutTS").textContent = "Submitted at " + ts + " IST";
-          document.getElementById("donutSuc").style.display = "block";
-          // Show AI grading result
-          var entry = d.entry || {};
-          if (entry.grade1) {
-            document.getElementById("donutGradeResult").style.display = "block";
-            if(entry.photo1){ document.getElementById("donutPhoto1").src=entry.photo1; document.getElementById("donutPhoto1").style.display="block"; }
-            if(entry.photo2){ document.getElementById("donutPhoto2").src=entry.photo2; document.getElementById("donutPhoto2").style.display="block"; }
-            document.getElementById("donutGradeSub").textContent = entry.summary || "AI grading complete.";
-            document.getElementById("donutGradeIcon").textContent = entry.overallPass ? "\u2705" : "\u26A0\uFE0F";
-            document.getElementById("donutGradeTitle").textContent = entry.overallPass ? "Quality Check Passed!" : "Quality Issues Found";
-            document.getElementById("grade1Name").textContent = entry.donut1 ? entry.donut1.name : "";
-            var g1 = entry.grade1 === "Pass";
-            document.getElementById("grade1Badge").textContent = entry.grade1 || "Reviewed";
-            document.getElementById("grade1Badge").style.background = g1 ? "#E8F8ED" : "#FEE8E8";
-            document.getElementById("grade1Badge").style.color = g1 ? "#1B7A3A" : "#C8102E";
-            document.getElementById("grade1Card").style.borderColor = g1 ? "#34C759" : "#FF3B30";
-            document.getElementById("grade1Feedback").textContent = entry.feedback1 || "";
-            document.getElementById("grade2Name").textContent = entry.donut2 ? entry.donut2.name : "";
-            var g2 = entry.grade2 === "Pass";
-            document.getElementById("grade2Badge").textContent = entry.grade2 || "Reviewed";
-            document.getElementById("grade2Badge").style.background = g2 ? "#E8F8ED" : "#FEE8E8";
-            document.getElementById("grade2Badge").style.color = g2 ? "#1B7A3A" : "#C8102E";
-            document.getElementById("grade2Card").style.borderColor = g2 ? "#34C759" : "#FF3B30";
-            document.getElementById("grade2Feedback").textContent = entry.feedback2 || "";
-            document.getElementById("gradeSummaryText").textContent = entry.summary || "";
-          }
-        } else {
-          document.getElementById("donutErrMsg").textContent = d.error || "Submission failed.";
-          document.getElementById("donutErr").style.display = "block";
-        }
-      }, 400);
-    })
-    .catch(function() {
-      clearInterval(pi); btn.disabled = false; btn.textContent = "Submit Donut Photos";
-      document.getElementById("donutBar").style.display = "none";
-      document.getElementById("donutTxt").style.display = "none";
-      alert("Connection error. Try again.");
-    });
+  setProgress(10, "Uploading FDU photo...");
+  var fduFd = new FormData();
+  fduFd.append("token", TOKEN);
+  fduFd.append("photo", fduFile);
+  fduFd.append("store", storeName);
+  fduFd.append("am", amName);
+  var fduResult, donutResult;
+  try {
+    setProgress(30, "Grading FDU display...");
+    var fduResp = await fetch("/api/fdu/submit", { method: "POST", body: fduFd });
+    var fduData = await fduResp.json();
+    if (!fduData.success) { showError(fduData.error || "FDU submission failed."); return; }
+    fduResult = fduData.entry || {};
+    setProgress(50, "FDU done. Uploading donut photos...");
+  } catch(e) { showError("Connection error during FDU upload."); return; }
+
+  var donutFd = new FormData();
+  donutFd.append("token", TOKEN);
+  donutFd.append("photo1", d1File);
+  donutFd.append("photo2", d2File);
+  donutFd.append("store", TOKEN);
+  donutFd.append("am", amName);
+  try {
+    setProgress(70, "Grading donut quality...");
+    var dResp = await fetch("/api/fdu/donut-submit", { method: "POST", body: donutFd });
+    var dData = await dResp.json();
+    if (!dData.success) { showError(dData.error || "Donut submission failed."); return; }
+    donutResult = dData.entry || {};
+    setProgress(100, "Done!");
+  } catch(e) { showError("Connection error during donut upload."); return; }
+
+  setTimeout(function() { showSuccess(fduResult, donutResult); }, 400);
 }
 
 function loadDonuts() {
   fetch("/api/fdu/donut-sop")
     .then(function(r) { return r.json(); })
     .then(function(d) {
+      var err = "Could not load donuts. Please refresh.";
       if (!d.success || !d.donut1) {
-        document.getElementById("donutLoading").textContent = "Could not load today's donuts. Please refresh.";
+        document.getElementById("d1loading").textContent = err;
+        document.getElementById("d2loading").textContent = err;
         return;
       }
       var d1 = d.donut1; var d2 = d.donut2;
       document.getElementById("d1name").textContent = d1.name;
       document.getElementById("d1type").textContent = d1.type;
       document.getElementById("d1std").textContent = d1.standards;
+      document.getElementById("d1title").textContent = d1.name + " Photo";
+      document.getElementById("d1loading").style.display = "none";
+      document.getElementById("d1wrap").style.display = "block";
       document.getElementById("d2name").textContent = d2.name;
       document.getElementById("d2type").textContent = d2.type;
       document.getElementById("d2std").textContent = d2.standards;
-      document.getElementById("donutLoading").style.display = "none";
-      document.getElementById("donutContent").style.display = "block";
+      document.getElementById("d2title").textContent = d2.name + " Photo";
+      document.getElementById("d2loading").style.display = "none";
+      document.getElementById("d2wrap").style.display = "block";
     })
     .catch(function() {
-      document.getElementById("donutLoading").textContent = "Could not load today's donuts. Please refresh.";
+      document.getElementById("d1loading").textContent = "Could not load donuts.";
+      document.getElementById("d2loading").textContent = "Could not load donuts.";
     });
 }
 
@@ -463,121 +433,25 @@ window.onload = function() {
       var html = "<option value=\"\">-- Select your store --</option>";
       Object.keys(byAM).sort().forEach(function(am) {
         html += "<optgroup label=\"" + am + "\">";
-        byAM[am].forEach(function(l) { html += "<option value=\"" + l.token + "\"" + ((l.token === preToken || l.token.replace(/-/g,"") === preToken.replace(/-/g,"")) ? " selected" : "") + ">" + l.store.replace("TH ", "") + "</option>"; });
+        byAM[am].forEach(function(l) {
+          var sel = (l.token === preToken || l.token.replace(/-/g,"") === preToken.replace(/-/g,"")) ? " selected" : "";
+          html += "<option value=\"" + l.token + "\"" + sel + ">" + l.store.replace("TH ", "") + "</option>";
+        });
         html += "</optgroup>";
       });
       document.getElementById("storeSel").innerHTML = html;
       if (preToken) { TOKEN = preToken; onStoreSelected(); }
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
     })
     .catch(function() { document.getElementById("storeSel").innerHTML = "<option value=\"\">Could not load stores</option>"; });
 
+  loadDonuts();
   document.getElementById("storeSel").addEventListener("change", onStoreSelected);
-  // Auto-select if URL token matches
-  if(preToken && document.getElementById("storeSel").value) {
-    onStoreSelected();
-  } else if(preToken) {
-    // Try fuzzy match
-    var opts = document.getElementById("storeSel").options;
-    for(var i=0;i<opts.length;i++){
-      if(opts[i].value.replace(/-/g,'')===preToken.replace(/-/g,'')){
-        document.getElementById("storeSel").value=opts[i].value;
-        onStoreSelected();
-        break;
-      }
-    }
-  }
-  document.getElementById("tabFDU").addEventListener("click", function() { switchTab("fdu"); });
-  document.getElementById("tabDonut").addEventListener("click", function() { switchTab("donut"); });
   document.getElementById("fduInput").addEventListener("change", function() { handleFDU(this.files[0]); });
   document.getElementById("fduChg").addEventListener("change", function() { handleFDU(this.files[0]); });
   document.getElementById("d1input").addEventListener("change", function() { handleD1(this.files[0]); });
   document.getElementById("d1chg").addEventListener("change", function() { handleD1(this.files[0]); });
   document.getElementById("d2input").addEventListener("change", function() { handleD2(this.files[0]); });
   document.getElementById("d2chg").addEventListener("change", function() { handleD2(this.files[0]); });
-  document.getElementById("fduBtn").addEventListener("click", submitFDU);
-  document.getElementById("donutBtn").addEventListener("click", submitDonut);
-  document.getElementById("fduTry").addEventListener("click", function() {
-    document.getElementById("fduErr").style.display = "none";
-    document.getElementById("fduCard").style.display = "block";
-    document.getElementById("fduBar").style.display = "none";
-    document.getElementById("fduFill").style.width = "0%";
-    document.getElementById("fduTxt").style.display = "none";
-    document.getElementById("fduBtn").disabled = !fduFile;
-  });
-  document.getElementById("donutTry").addEventListener("click", function() {
-    document.getElementById("donutErr").style.display = "none";
-    document.getElementById("donutCard").style.display = "block";
-    document.getElementById("donutBar").style.display = "none";
-    document.getElementById("donutFill").style.width = "0%";
-    document.getElementById("donutTxt").style.display = "none";
-    document.getElementById("donutBtn").disabled = !(d1File && d2File);
-  });
-};
+  document.getElementById("submitBtn").addEventListener("click", submitAll);
+};;
 </script>
-<nav class="nav">
-  <a href="index.html" class="nav-wordmark">Ops<span>AI</span>Hub</a>
-  <div class="nav-links">
-    <a href="index.html" class="nav-link ">Home</a>
-    <a href="tasks.html" class="nav-link ">Tasks</a>
-    <a href="events.html" class="nav-link ">Events</a>
-    <a href="performance.html" class="nav-link ">Scores</a>
-    <a href="team.html" class="nav-link ">Team</a>
-    <a href="fdu-dashboard.html" class="nav-link active">FDU</a>
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;">
-    <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
-      <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      <svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-    <a href="settings.html" id="settingsLink" class="nav-btn" style="display:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></a>
-    <div class="nav-user" id="navUserBtn" onclick="showIdentitySelector()">
-      <div style="position:relative;width:28px;height:28px;">
-        <div class="nav-avatar" id="navAvatar">?</div>
-        <img id="navPhoto" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;position:absolute;top:0;left:0;" />
-      </div>
-      <span class="nav-user-name" id="navUserName">Select</span>
-    </div>
-    <button id="logoutBtn" onclick="logout()" class="nav-btn" style="display:none;">Logout</button>
-  </div>
-</nav>
-<script src="/js/api.js"></script>
-<!-- FOOTER -->
-<footer class="site-footer" style="max-width:1200px;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
-  <div class="footer-content">
-    <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
-    <div class="footer-links">
-      <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a>
-      <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a>
-    </div>
-  </div>
-</footer>
-<nav class="mobile-nav">
-  <div class="mobile-nav-items">
-    <a href="index.html" class="mobile-nav-item ">
-      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
-      <span class="mobile-nav-label">Home</span>
-    </a>
-    <a href="tasks.html" class="mobile-nav-item ">
-      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
-      <span class="mobile-nav-label">Tasks</span>
-    </a>
-    <a href="events.html" class="mobile-nav-item ">
-      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-      <span class="mobile-nav-label">Events</span>
-    </a>
-    <a href="performance.html" class="mobile-nav-item ">
-      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-      <span class="mobile-nav-label">Scores</span>
-    </a>
-    <a href="team.html" class="mobile-nav-item ">
-      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-      <span class="mobile-nav-label">Team</span>
-    </a>
-  </div>
-</nav>
-<script src="theme.js"></script>
-<script>applyTheme(getTheme());</script>
-</body>
-</html>

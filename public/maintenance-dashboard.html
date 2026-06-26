@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Maintenance — Tim's Ops Connect</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="timsy.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+.hdr{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 20px 14px;display:flex;flex-direction:column;align-items:flex-start;gap:3px;position:sticky;top:var(--nav-h);z-index:89;}
+.back{color:var(--text2);text-decoration:none;font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-bottom:3px;}
+.back:hover{color:var(--red);}
+.hdr-title{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-0.4px;}
+.hdr-sub{font-size:12px;color:var(--text2);}
+.period-bar{display:flex;background:var(--surface);border-bottom:1px solid var(--border);padding:0 20px;position:sticky;top:calc(var(--nav-h) + 84px);z-index:88;overflow-x:auto;scrollbar-width:none;}
+.period-bar::-webkit-scrollbar{display:none;}
+.period-btn{flex-shrink:0;padding:11px 20px;font-size:13px;font-weight:600;color:var(--text2);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:color 0.15s,border-color 0.15s;}
+.period-btn.active{color:var(--red);border-bottom-color:var(--red);}
+.period-btn:hover:not(.active){color:var(--text);}
+.content{padding:16px 20px 40px;}
+/* hero */
+.hero{background:linear-gradient(135deg,#1A0508,#C8102E);border-radius:18px;padding:20px;margin-bottom:14px;}
+.hero-label{font-size:11px;color:rgba(255,255,255,0.6);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;}
+.hero-num{font-size:48px;font-weight:700;color:#fff;letter-spacing:-1.5px;line-height:1;font-variant-numeric:tabular-nums;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.6);margin-top:6px;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-top:14px;}
+.hg{background:rgba(255,255,255,0.14);border-radius:10px;padding:10px;text-align:center;}
+.hg-num{font-size:18px;font-weight:700;color:#fff;line-height:1;font-variant-numeric:tabular-nums;}
+.hg-label{font-size:10px;color:rgba(255,255,255,0.6);margin-top:2px;text-transform:uppercase;letter-spacing:0.3px;}
+/* status filter */
+.sfilter{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap;}
+.sfbtn{padding:5px 14px;border-radius:18px;font-size:11px;font-weight:600;border:1.5px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;transition:all 0.15s;white-space:nowrap;}
+.sfbtn.active{background:var(--red);border-color:var(--red);color:#fff;}
+/* ticket card */
+.ticket{background:var(--card);border-radius:14px;padding:16px;margin-bottom:10px;box-shadow:0 1px 6px rgba(0,0,0,0.05);border-left:4px solid transparent;}
+.ticket.urgent{border-left-color:#C8102E;}
+.ticket.normal{border-left-color:#34C759;}
+.ticket-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.ticket-id{font-size:10px;font-weight:700;color:var(--red);background:rgba(200,16,46,0.08);padding:2px 7px;border-radius:5px;flex-shrink:0;margin-top:1px;}
+.ticket-main{flex:1;min-width:0;}
+.ticket-store{font-size:15px;font-weight:700;color:var(--text);}
+.ticket-meta{font-size:11px;color:var(--text2);margin-top:2px;}
+.ticket-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;}
+.badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;white-space:nowrap;}
+.badge-open{background:#FFF3CD;color:#856404;}
+.badge-resolved{background:#D1ECF1;color:#0C5460;}
+.badge-closed{background:#D4EDDA;color:#1B7A3A;}
+.badge-urgent{background:#FEE8E8;color:#C8102E;}
+@keyframes p1glow{0%,100%{box-shadow:0 0 4px 2px rgba(200,16,46,0.7),0 0 0 0 rgba(200,16,46,0.4);}50%{box-shadow:0 0 10px 4px rgba(200,16,46,0.9),0 0 18px 8px rgba(200,16,46,0.25);}}
+@keyframes btnpulse{0%,100%{opacity:1;}50%{opacity:0.7;}}
+.badge-p1{background:#C8102E;color:#fff;animation:p1glow 1.4s ease-in-out infinite;border:none;}
+.sfbtn-pulse{animation:p1glow 1.6s ease-in-out infinite;background:#FEE8E8 !important;color:#C8102E !important;border-color:#C8102E !important;}
+.btn-escalate{width:100%;padding:11px;margin-top:8px;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+.btn-esc-team{background:#C8102E;color:#fff;animation:p1glow 1.6s ease-in-out infinite;}
+.btn-esc-remind{background:#FF9500;color:#fff;}
+.btn-esc-ceo{background:linear-gradient(135deg,#6B0000,#C8102E);color:#fff;font-size:14px;letter-spacing:0.3px;}
+.btn-esc-ceo:disabled{background:#ccc;color:#888;animation:none;cursor:not-allowed;}
+.esc-status{font-size:11px;color:#8E8E93;margin-top:6px;text-align:center;}
+.badge-normal{background:var(--pass-bg);color:var(--pass);}
+.badge-cat{background:var(--surface);color:var(--text2);border:1px solid var(--border);}
+.ticket-desc{font-size:13px;color:var(--text);line-height:1.5;margin-bottom:10px;padding:10px;background:var(--surface);border-radius:8px;}
+.ticket-photos{display:flex;gap:6px;margin-bottom:10px;}
+.ticket-photo{width:70px;height:70px;border-radius:8px;overflow:hidden;background:#1A1A1A;flex-shrink:0;}
+.ticket-photo img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;}
+.ticket-notes{font-size:12px;color:var(--text2);background:rgba(200,16,46,0.04);border:1px solid rgba(200,16,46,0.15);border-radius:8px;padding:8px 10px;margin-bottom:10px;line-height:1.5;}
+.ticket-notes strong{color:var(--text);display:block;margin-bottom:3px;}
+.ticket-footer{display:flex;gap:8px;flex-wrap:wrap;}
+/* action area */
+.resolve-area{margin-top:8px;padding-top:10px;border-top:1px solid var(--border);}
+.resolve-area textarea{width:100%;padding:10px 12px;border-radius:9px;border:1.5px solid var(--border);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;resize:vertical;min-height:70px;margin-bottom:8px;}
+.resolve-area textarea:focus{border-color:var(--red);}
+.btn-resolve{padding:9px 18px;border:none;border-radius:9px;background:#C8102E;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+.btn-verify{padding:9px 18px;border:none;border-radius:9px;background:#34C759;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+.btn-resolve:disabled,.btn-verify:disabled{opacity:0.5;cursor:not-allowed;}
+/* cost form */
+.cost-form{background:var(--surface);border-radius:9px;padding:12px;margin-bottom:10px;border:1px solid var(--border);}
+.cost-form-title{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;}
+.team-toggle{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
+.team-btn{padding:9px 6px;border-radius:9px;border:1.5px solid var(--border);background:transparent;font-size:11px;font-weight:600;color:var(--text2);cursor:pointer;text-align:center;transition:all 0.15s;line-height:1.4;}
+.team-btn.sel-internal{border-color:#34C759;background:rgba(52,199,89,0.1);color:#1B7A3A;}
+.team-btn.sel-external{border-color:#FF9500;background:rgba(255,149,0,0.1);color:#7A4500;}
+.cost-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.cost-field label{font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.4px;display:block;margin-bottom:4px;}
+.cost-field input{width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid var(--border);font-size:13px;font-family:inherit;background:var(--card);color:var(--text);outline:none;}
+.cost-field input:focus{border-color:var(--red);}
+.cost-field input:disabled{opacity:0.35;}
+.cost-total-row{font-size:13px;font-weight:700;color:var(--text);padding:7px 10px;background:rgba(200,16,46,0.06);border-radius:7px;margin-top:8px;text-align:center;}
+/* cost summary on resolved/closed tickets */
+.cost-summary{display:flex;gap:10px;flex-wrap:wrap;padding:7px 10px;background:var(--surface);border-radius:8px;border:1px solid var(--border);margin-bottom:10px;font-size:11px;color:var(--text2);}
+.cost-summary span{font-weight:700;color:var(--text);}
+.cost-summary .cost-total-val{color:var(--red);}
+/* empty */
+.empty{text-align:center;padding:48px 20px;color:var(--text2);}
+.empty span{font-size:40px;display:block;margin-bottom:10px;}
+/* spinner */
+.spinner{width:24px;height:24px;border:2.5px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin 0.8s linear infinite;margin:40px auto;display:block;}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeIn 0.3s ease;}
+/* lightbox */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:var(--z-modal);align-items:center;justify-content:center;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:95vw;max-height:90vh;border-radius:12px;object-fit:contain;}
+.lightbox-close{position:absolute;top:20px;right:20px;color:#fff;font-size:28px;cursor:pointer;background:rgba(255,255,255,0.15);border:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+/* PIN wall */
+#pin-wall{position:fixed;inset:0;z-index:var(--z-wall);background:#1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
+.pin-logo{font-size:48px;margin-bottom:8px;}
+.pin-title{font-size:24px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.5px;}
+.pin-sub{font-size:13px;color:#6E6E73;margin-bottom:40px;}
+.pin-dots{display:flex;gap:16px;margin-bottom:32px;}
+.pin-dot{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.15);transition:background-color 120ms ease-out;}
+.pin-dot.filled{background:#C8102E;}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:240px;}
+.pin-btn{height:64px;border-radius:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;font-size:22px;font-weight:600;cursor:pointer;transition:background-color 120ms ease-out;}
+.pin-btn:active{background:rgba(200,16,46,0.3);}
+.pin-error{font-size:13px;color:#FF3B30;margin-top:16px;opacity:0;transition:opacity 120ms ease-out;}
+.pin-error.show{opacity:1;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.pin-dots.shake{animation:shake 0.3s ease;}
+@media(max-width:480px){.hero-grid{grid-template-columns:1fr 1fr;}.hg-num{font-size:16px;}.content{padding:12px 14px 32px;}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="index.html" class="nav-wordmark">Ops<span>AI</span>Hub</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="tasks.html" class="nav-link">Tasks</a>
+    <a href="events.html" class="nav-link">Events</a>
+    <a href="performance.html" class="nav-link">Scores</a>
+    <a href="team.html" class="nav-link">Team</a>
+    <a href="fdu-dashboard.html" class="nav-link">FDU</a>
+    <a href="maintenance-dashboard.html" class="nav-link active">Maintenance</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="nav-user" id="navUserBtn" onclick="showIdentitySelector()">
+      <div style="position:relative;width:28px;height:28px;">
+        <div class="nav-avatar" id="navAvatar">?</div>
+        <img id="navPhoto" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;position:absolute;top:0;left:0;" />
+      </div>
+      <span class="nav-user-name" id="navUserName">Select</span>
+    </div>
+  </div>
+</nav>
+
+<div id="pin-wall">
+  <div class="pin-logo">&#x1F527;</div>
+  <div class="pin-title">Maintenance Portal</div>
+  <div class="pin-sub">Enter your PIN to continue</div>
+  <div class="pin-dots" id="pinDots">
+    <div class="pin-dot" id="d0"></div><div class="pin-dot" id="d1"></div>
+    <div class="pin-dot" id="d2"></div><div class="pin-dot" id="d3"></div>
+  </div>
+  <div class="pin-pad">
+    <button class="pin-btn" onclick="pinPress('1')">1</button>
+    <button class="pin-btn" onclick="pinPress('2')">2</button>
+    <button class="pin-btn" onclick="pinPress('3')">3</button>
+    <button class="pin-btn" onclick="pinPress('4')">4</button>
+    <button class="pin-btn" onclick="pinPress('5')">5</button>
+    <button class="pin-btn" onclick="pinPress('6')">6</button>
+    <button class="pin-btn" onclick="pinPress('7')">7</button>
+    <button class="pin-btn" onclick="pinPress('8')">8</button>
+    <button class="pin-btn" onclick="pinPress('9')">9</button>
+    <button class="pin-btn" onclick="pinPress('c')">Clear</button>
+    <button class="pin-btn" onclick="pinPress('0')">0</button>
+    <button class="pin-btn" onclick="pinPress('x')">&#x232B;</button>
+  </div>
+  <div class="pin-error" id="pinError">Incorrect PIN. Try again.</div>
+</div>
+
+<div class="page-content">
+  <div class="hdr">
+    <a href="index.html" class="back">&#x2190; Home</a>
+    <div style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:8px;">
+      <div>
+        <div class="hdr-title">&#x1F527; Maintenance</div>
+        <div class="hdr-sub">Store Complaint Tracker &mdash; All Regions</div>
+      </div>
+      <a href="maintenance-submit.html" target="_blank" style="flex-shrink:0;display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--red);background:var(--red-tint);border:1px solid rgba(200,16,46,0.18);border-radius:8px;padding:5px 10px;text-decoration:none;white-space:nowrap;">&#x2B;  New Ticket</a>
+    </div>
+  </div>
+  <div class="period-bar">
+    <button class="period-btn active" data-period="7">This Week</button>
+    <button class="period-btn" data-period="30">This Month</button>
+    <button class="period-btn" data-period="90">Last 3 Months</button>
+    <button class="period-btn" data-period="0">All Time</button>
+  </div>
+  <div class="content" id="mainContent"><div class="spinner"></div></div>
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+    <img id="lightboxImg" src="" alt="Photo">
+  </div>
+</div>
+
+<script>
+var tickets = [], currentDays = 7, statusFilter = 'all', userRole = '', userAM = '', authToken = '';
+
+document.querySelector('.period-bar').addEventListener('click', function(e) {
+  var btn = e.target.closest('.period-btn'); if (!btn) return;
+  document.querySelectorAll('.period-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  currentDays = parseInt(btn.getAttribute('data-period'));
+  loadTickets();
+});
+
+function openLightbox(src) { document.getElementById('lightboxImg').src = src; document.getElementById('lightbox').classList.add('open'); }
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+
+function loadTickets() {
+  document.getElementById('mainContent').innerHTML = '<div class="spinner"></div>';
+  var url = '/api/maintenance/tickets' + (currentDays > 0 ? '?days=' + currentDays : '');
+  fetch(url, { headers: { 'Authorization': 'Bearer ' + authToken } })
+    .then(function(r) { return r.json(); })
+    .then(function(d) { tickets = d.data || []; render(); })
+    .catch(function() { document.getElementById('mainContent').innerHTML = '<div class="empty"><span>&#x26A0;</span><p>Failed to load tickets.</p></div>'; });
+}
+
+function render() {
+  var p1Open = tickets.filter(function(t) { return t.priority === 'p1' && t.status !== 'closed'; }).length;
+  var filtered = statusFilter === 'p1'
+    ? tickets.filter(function(t) { return t.priority === 'p1'; })
+    : statusFilter === 'all' ? tickets : tickets.filter(function(t) { return t.status === statusFilter; });
+  var open = tickets.filter(function(t) { return t.status === 'open'; }).length;
+  var resolved = tickets.filter(function(t) { return t.status === 'resolved'; }).length;
+  var closed = tickets.filter(function(t) { return t.status === 'closed'; }).length;
+  var urgent = tickets.filter(function(t) { return (t.priority === 'urgent' || t.priority === 'p1') && t.status !== 'closed'; }).length;
+
+  var totalCostIncurred = tickets.reduce(function(s, t) { return s + (t.totalCost || 0); }, 0);
+  var html = '<div class="hero fade-in">'
+    + '<div class="hero-label">Maintenance Tickets</div>'
+    + '<div class="hero-num">' + tickets.length + '</div>'
+    + '<div class="hero-sub">' + (currentDays > 0 ? 'Last ' + currentDays + ' days' : 'All time') + (totalCostIncurred > 0 ? ' &nbsp;·&nbsp; Cost incurred: &#x20B9; ' + totalCostIncurred.toLocaleString('en-IN') : '') + '</div>'
+    + '<div class="hero-grid">'
+    + '<div class="hg"><div class="hg-num">' + open + '</div><div class="hg-label">Open</div></div>'
+    + '<div class="hg"><div class="hg-num">' + resolved + '</div><div class="hg-label">Resolved</div></div>'
+    + '<div class="hg"><div class="hg-num">' + closed + '</div><div class="hg-label">Closed</div></div>'
+    + '<div class="hg"><div class="hg-num" style="color:#FFD60A;">' + urgent + '</div><div class="hg-label">Urgent Open</div></div>'
+    + '</div></div>';
+
+  html += '<div class="sfilter fade-in">'
+    + sfBtn('all', 'All (' + tickets.length + ')')
+    + sfBtn('open', '&#x1F7E1; Open (' + open + ')')
+    + sfBtn('resolved', '&#x1F535; Resolved (' + resolved + ')')
+    + sfBtn('closed', '&#x2705; Closed (' + closed + ')')
+    + (userRole === 'maintenance' || userRole === 'hod' || userRole === 'ceo'
+        ? sfBtn('p1', '&#x26A1; P1 Critical (' + p1Open + ')', p1Open > 0)
+        : '')
+    + '</div>';
+
+  if (filtered.length === 0) {
+    html += '<div class="empty fade-in"><span>&#x1F527;</span><p>No tickets in this view.</p></div>';
+  } else {
+    filtered.forEach(function(t) { html += renderTicket(t); });
+  }
+  document.getElementById('mainContent').innerHTML = html;
+}
+
+function sfBtn(val, label, pulse) {
+  var cls = 'sfbtn' + (statusFilter === val ? ' active' : '') + (pulse ? ' sfbtn-pulse' : '');
+  return '<button class="' + cls + '" onclick="setFilter(\'' + val + '\')">' + label + '</button>';
+}
+function setFilter(f) { statusFilter = f; render(); }
+
+function fmtDate(iso) {
+  if (!iso) return '—';
+  return new Date(iso).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+}
+
+function renderTicket(t) {
+  var statusLabel = { open: '&#x1F7E1; Open', resolved: '&#x1F535; Resolved', closed: '&#x2705; Closed' }[t.status] || t.status;
+  var statusClass = { open: 'badge-open', resolved: 'badge-resolved', closed: 'badge-closed' }[t.status] || '';
+
+  var photosHtml = '';
+  if (t.photos && t.photos.length) {
+    photosHtml = '<div class="ticket-photos">';
+    t.photos.forEach(function(p) {
+      photosHtml += '<div class="ticket-photo"><img src="' + p + '" loading="lazy" onclick="openLightbox(\'' + p + '\')"></div>';
+    });
+    photosHtml += '</div>';
+  }
+
+  var notesHtml = t.maintenanceNotes
+    ? '<div class="ticket-notes"><strong>&#x1F4DD; Maintenance Notes:</strong>' + t.maintenanceNotes + '</div>'
+    : '';
+
+  var verifiedHtml = t.amVerifiedBy
+    ? '<div class="ticket-notes"><strong>&#x2713; Verified by ' + t.amVerifiedBy + '</strong>' + fmtDate(t.amVerifiedAt) + '</div>'
+    : '';
+
+  var costHtml = '';
+  if (t.teamType) {
+    var teamLabel = t.teamType === 'external' ? '&#x1F477; External Contractor' : '&#x1F527; Internal Team';
+    costHtml = '<div class="cost-summary">'
+      + '<div>Team: <span>' + teamLabel + '</span></div>'
+      + (t.partsCost > 0 ? '<div>Parts: <span>&#x20B9; ' + Number(t.partsCost).toLocaleString('en-IN') + '</span></div>' : '<div>Parts: <span>&#x20B9; 0</span></div>')
+      + (t.laborCost > 0 ? '<div>Labor: <span>&#x20B9; ' + Number(t.laborCost).toLocaleString('en-IN') + '</span></div>' : '')
+      + '<div>Total Cost: <span class="cost-total-val">&#x20B9; ' + Number(t.totalCost || 0).toLocaleString('en-IN') + '</span></div>'
+      + '</div>';
+  }
+
+  var actionHtml = '';
+  if (t.status === 'open' && (userRole === 'maintenance' || userRole === 'hod' || userRole === 'ceo')) {
+    actionHtml = '<div class="resolve-area">'
+      + '<div class="cost-form">'
+      + '<div class="cost-form-title">&#x1F4B0; Cost & Resolution Details</div>'
+      + '<div class="team-toggle">'
+      + '<button type="button" class="team-btn sel-internal" id="team_' + t.id + '_int" onclick="setTeam(\'' + t.id + '\',\'internal\')">&#x1F527; Internal Team<br><small style="font-weight:400;font-size:10px;">Zero labor cost</small></button>'
+      + '<button type="button" class="team-btn" id="team_' + t.id + '_ext" onclick="setTeam(\'' + t.id + '\',\'external\')">&#x1F477; External Contractor<br><small style="font-weight:400;font-size:10px;">Add labor cost</small></button>'
+      + '</div>'
+      + '<div class="cost-row">'
+      + '<div class="cost-field"><label>Parts / Spare Cost (&#x20B9;)</label><input type="number" id="parts_' + t.id + '" min="0" step="1" placeholder="0" oninput="calcTotal(\'' + t.id + '\')"></div>'
+      + '<div class="cost-field"><label>Labor Cost (&#x20B9;)</label><input type="number" id="labor_' + t.id + '" min="0" step="1" placeholder="0" disabled oninput="calcTotal(\'' + t.id + '\')"></div>'
+      + '</div>'
+      + '<div class="cost-total-row" id="total_' + t.id + '">Total Cost: &#x20B9; 0</div>'
+      + '</div>'
+      + '<textarea id="notes_' + t.id + '" placeholder="What was done? Who fixed it? Any follow-up needed?"></textarea>'
+      + '<button class="btn-resolve" onclick="resolveTicket(\'' + t.id + '\')">&#x2713; Mark Resolved</button>'
+      + '</div>';
+  }
+  if (t.status === 'resolved' && (userRole === 'am' || userRole === 'hod' || userRole === 'ceo')) {
+    actionHtml = '<div class="resolve-area">'
+      + '<button class="btn-verify" onclick="verifyTicket(\'' + t.id + '\')">&#x2713; Verify &amp; Close</button>'
+      + '</div>';
+  }
+
+  // P1 escalation panel — maintenance/hod only, open tickets
+  if (t.priority === 'p1' && t.status !== 'closed' && (userRole === 'maintenance' || userRole === 'hod')) {
+    var ec = t.escalationCount || 0;
+    var ceoDone = !!t.ceoEscalatedAt;
+    var escHtml = '<div class="resolve-area" style="border-top:2px solid #C8102E;">'
+      + '<div style="font-size:11px;font-weight:700;color:#C8102E;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:8px;">&#x26A1; P1 Escalation Panel</div>';
+
+    if (!ceoDone) {
+      if (ec === 0) {
+        escHtml += '<button class="btn-escalate btn-esc-team" onclick="escalateP1(\'' + t.id + '\')">&#x26A1; Escalate to Jeenal &amp; Vivek</button>'
+          + '<div class="esc-status">No escalations sent yet</div>';
+      } else if (ec === 1) {
+        escHtml += '<button class="btn-escalate btn-esc-remind" onclick="escalateP1(\'' + t.id + '\')">&#x1F504; Send Reminder (1 sent)</button>'
+          + '<button class="btn-escalate btn-esc-ceo" onclick="escalateCEO(\'' + t.id + '\')" disabled style="margin-top:6px;opacity:0.45;cursor:not-allowed;">&#x1F6A8; Escalate to CEO — Need 1 more reminder</button>';
+      } else {
+        escHtml += '<button class="btn-escalate btn-esc-remind" onclick="escalateP1(\'' + t.id + '\')">&#x1F504; Send Reminder (' + ec + ' sent)</button>'
+          + '<button class="btn-escalate btn-esc-ceo" onclick="escalateCEO(\'' + t.id + '\')" style="margin-top:6px;">&#x1F6A8; Escalate to CEO Now</button>';
+      }
+    } else {
+      escHtml += '<div style="font-size:13px;color:#C8102E;font-weight:700;text-align:center;padding:8px 0;">&#x2705; CEO Escalated — ' + fmtDate(t.ceoEscalatedAt) + '</div>'
+        + '<div class="esc-status">' + ec + ' reminder' + (ec !== 1 ? 's' : '') + ' sent before CEO escalation</div>';
+    }
+    escHtml += '</div>';
+    actionHtml += escHtml;
+  }
+
+  return '<div class="ticket ' + t.priority + ' fade-in">'
+    + '<div class="ticket-top">'
+    + '<div class="ticket-id">' + t.id + '</div>'
+    + '<div class="ticket-main">'
+    + '<div class="ticket-store">' + t.store + '</div>'
+    + '<div class="ticket-meta">' + (t.am || 'Unassigned AM') + ' &nbsp;·&nbsp; ' + t.submittedBy + (t.phone ? ' &nbsp;·&nbsp; ' + t.phone : '') + ' &nbsp;·&nbsp; ' + fmtDate(t.submittedAt) + '</div>'
+    + '<div class="ticket-badges">'
+    + '<span class="badge ' + statusClass + '">' + statusLabel + '</span>'
+    + '<span class="badge badge-' + t.priority + '">' + (t.priority === 'p1' ? '&#x26A1; P1 Critical' : t.priority === 'urgent' ? '&#x1F534; Urgent' : '&#x1F7E2; Normal') + '</span>'
+    + '<span class="badge badge-cat">' + t.category + '</span>'
+    + '</div>'
+    + '</div></div>'
+    + '<div class="ticket-desc">' + t.description + '</div>'
+    + photosHtml + notesHtml + costHtml + verifiedHtml + actionHtml
+    + '</div>';
+}
+
+var teamTypes = {};
+
+function setTeam(id, type) {
+  teamTypes[id] = type;
+  var intBtn = document.getElementById('team_' + id + '_int');
+  var extBtn = document.getElementById('team_' + id + '_ext');
+  var laborInput = document.getElementById('labor_' + id);
+  intBtn.className = 'team-btn' + (type === 'internal' ? ' sel-internal' : '');
+  extBtn.className = 'team-btn' + (type === 'external' ? ' sel-external' : '');
+  laborInput.disabled = (type === 'internal');
+  if (type === 'internal') { laborInput.value = ''; }
+  calcTotal(id);
+}
+
+function calcTotal(id) {
+  var parts = parseFloat((document.getElementById('parts_' + id) || {}).value) || 0;
+  var labor = parseFloat((document.getElementById('labor_' + id) || {}).value) || 0;
+  var el = document.getElementById('total_' + id);
+  if (el) el.textContent = 'Total Cost: ₹ ' + (parts + labor).toLocaleString('en-IN');
+}
+
+function resolveTicket(id) {
+  var notes = (document.getElementById('notes_' + id) || {}).value || '';
+  var teamType = teamTypes[id] || 'internal';
+  var partsCost = parseFloat((document.getElementById('parts_' + id) || {}).value) || 0;
+  var laborCost = teamType === 'internal' ? 0 : (parseFloat((document.getElementById('labor_' + id) || {}).value) || 0);
+  var btn = event.target; btn.disabled = true; btn.textContent = 'Saving...';
+  fetch('/api/maintenance/tickets/' + id + '/resolve', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ notes: notes, teamType: teamType, partsCost: partsCost, laborCost: laborCost, totalCost: partsCost + laborCost })
+  }).then(function(r) { return r.json(); }).then(function(d) {
+    if (d.success) { loadTickets(); } else { btn.disabled = false; btn.textContent = '✓ Mark Resolved'; alert(d.error || 'Failed'); }
+  });
+}
+
+function verifyTicket(id) {
+  var btn = event.target; btn.disabled = true; btn.textContent = 'Closing...';
+  fetch('/api/maintenance/tickets/' + id + '/verify', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' }
+  }).then(function(r) { return r.json(); }).then(function(d) {
+    if (d.success) { loadTickets(); } else { btn.disabled = false; btn.textContent = '✓ Verify & Close'; alert(d.error || 'Failed'); }
+  });
+}
+
+function escalateP1(id) {
+  var btn = event.target; btn.disabled = true; btn.textContent = 'Sending...';
+  fetch('/api/maintenance/tickets/' + id + '/escalate', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' }
+  }).then(function(r) { return r.json(); }).then(function(d) {
+    if (d.success) { loadTickets(); } else { btn.disabled = false; alert(d.error || 'Failed'); }
+  });
+}
+
+function escalateCEO(id) {
+  if (!confirm('Escalate this P1 ticket directly to CEO? This should only be done after multiple unresolved reminders.')) return;
+  var btn = event.target; btn.disabled = true; btn.textContent = 'Escalating...';
+  fetch('/api/maintenance/tickets/' + id + '/escalate-ceo', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' }
+  }).then(function(r) { return r.json(); }).then(function(d) {
+    if (d.success) { loadTickets(); } else { btn.disabled = false; alert(d.error || 'Failed'); }
+  });
+}
+</script>
+
+<script>
+(function() {
+  var wall = document.getElementById('pin-wall');
+  var stored = localStorage.getItem('th_maint_token');
+  if (stored) {
+    authToken = stored;
+    userRole = localStorage.getItem('th_maint_role') || '';
+    userAM = localStorage.getItem('th_maint_am') || '';
+    wall.style.display = 'none';
+    loadTickets();
+    return;
+  }
+  var entered = [];
+  function pinPress(v) {
+    if (v === 'c') { entered = []; renderDots(); return; }
+    if (v === 'x') { entered.pop(); renderDots(); return; }
+    if (entered.length >= 4) return;
+    entered.push(v); renderDots();
+    if (entered.length === 4) setTimeout(check, 100);
+  }
+  function renderDots() {
+    for (var i = 0; i < 4; i++) {
+      document.getElementById('d' + i).className = 'pin-dot' + (i < entered.length ? ' filled' : '');
+    }
+  }
+  function check() {
+    var pin = entered.join('');
+    fetch('/api/auth/verify-pin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pin: pin }) })
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (!d.success || (d.role !== 'maintenance' && d.role !== 'am' && d.role !== 'hod' && d.role !== 'ceo')) {
+          wrong(); return;
+        }
+        authToken = d.token;
+        userRole = d.role;
+        userAM = d.am;
+        localStorage.setItem('th_maint_token', d.token);
+        localStorage.setItem('th_maint_role', d.role);
+        localStorage.setItem('th_maint_am', d.am);
+        wall.style.display = 'none';
+        loadTickets();
+      }).catch(function() { wrong(); });
+  }
+  function wrong() {
+    entered = []; renderDots();
+    var dots = document.getElementById('pinDots');
+    var err = document.getElementById('pinError');
+    dots.classList.add('shake'); err.classList.add('show');
+    setTimeout(function() { dots.classList.remove('shake'); }, 400);
+    setTimeout(function() { err.classList.remove('show'); }, 2000);
+  }
+  window.pinPress = pinPress;
+})();
+</script>
+
+<script src="/js/api.js"></script>
+<footer class="site-footer" style="max-width:100%;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
+  <div class="footer-content">
+    <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
+    <div class="footer-links">
+      <a href="https://www.timhortonsindia.com" target="_blank" class="footer-link">timhortonsindia.com</a>
+      <a href="mailto:jahid@timhortonsindia.com" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-nav">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="mobile-nav-label">Home</span></a>
+    <a href="tasks.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span class="mobile-nav-label">Tasks</span></a>
+    <a href="events.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span class="mobile-nav-label">Events</span></a>
+    <a href="performance.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="mobile-nav-label">Scores</span></a>
+    <a href="team.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="mobile-nav-label">Team</span></a>
+    <a href="maintenance-dashboard.html" class="mobile-nav-item active"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span class="mobile-nav-label">Maint.</span></a>
+  </div>
+</nav>
+<script src="theme.js"></script>
+<script>applyTheme(getTheme());</script>
+</body>
+</html>

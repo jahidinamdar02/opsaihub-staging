@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1.0">
 <title>HOD Command Centre</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="timsy.css">
 <style>
 /* Hallmark · macrostructure: Command-Centre (HOD exception — dark header + tabbed views)
  * genre: modern-minimal · theme: custom (brand-locked) · nav: N9 · footer: Ft2
@@ -48,7 +49,7 @@
   /* Score colour ramp (between warning and critical) */
   --score-warn:           #FF6B00;
   /* Layout */
-  --hod-content-max:      1200px;
+  --hod-content-max:      100%;
 }
 
 /* ── SCORE UTILITY CLASSES ─────────────────────────────────── */
@@ -153,7 +154,7 @@ body{background:var(--surface);padding-bottom:calc(var(--nav-h,60px)+56px);paddi
   border-radius:14px;padding:14px;margin-bottom:8px;
 }
 .ss-lbl{font-size:9px;font-weight:700;color:var(--hod-on-dark-35);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
-.ss-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.ss-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
 .ss-box{background:var(--hod-surface-6);border-radius:10px;padding:9px;text-align:center;}
 .ss-num{font-size:20px;font-weight:800;color:var(--white);line-height:1;font-variant-numeric:tabular-nums;}
 .ss-sub{font-size:9px;color:var(--hod-on-dark-35);text-transform:uppercase;margin-top:3px;}
@@ -180,7 +181,7 @@ body{background:var(--surface);padding-bottom:calc(var(--nav-h,60px)+56px);paddi
 </style>
 </head>
 <body>
-
+<div class="page-content">
 <!-- ── HEADER ── -->
 <div class="hod-hdr">
   <div class="hdr-eyebrow">Head of Department &mdash; Operations</div>
@@ -252,6 +253,7 @@ body{background:var(--surface);padding-bottom:calc(var(--nav-h,60px)+56px);paddi
     <a href="performance.html" class="nav-link">Scores</a>
     <a href="team.html" class="nav-link">Team</a>
     <a href="fdu-dashboard.html" class="nav-link">FDU</a>
+    <a href="maintenance-dashboard.html" class="nav-link">Maintenance</a>
   </div>
   <div style="display:flex;align-items:center;gap:8px;">
     <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
@@ -280,12 +282,27 @@ var AM_LIST = [
   {n:'Rohit',              r:'Delhi NCR',   s:4},
   {n:'Deepak',             r:'Punjab',      s:5},
   {n:'Kajal',              r:'Punjab',      s:3},
-  {n:'Sandeep Mukharjee',  r:'Maharashtra', s:3},
+  {n:'Sandeep Mukharjee',  r:'Maharashtra', s:5},
   {n:'Akash Rathod',       r:'Maharashtra', s:4},
-  {n:'TBA',                r:'Pune',        s:4},
+  {n:'TBA',                r:'Pune',        s:3},
   {n:'Jagadeesha',         r:'Karnataka',   s:4},
-  {n:'Shivam',             r:'Telangana',   s:4}
+  {n:'Shivam',             r:'Telangana',   s:4},
+  {n:'Unassigned',         r:'Gujarat',     s:3}
 ];
+
+var AM_STORES = {
+  'Raman':             ['TH T3D DIAL','TH T3D Food Court','TH T1D Dial'],
+  'Harish':            ['TH DLF Cyberhub','TH Select City Saket','TH Green Park','TH Basant Lok','TH Epicuria Nehru Place','TH Golf Course AIPL'],
+  'Rohit':             ['TH Skymark One','TH Vegas Mall','TH NSP Pritampura','TH Punjabi Bagh'],
+  'Deepak':            ['TH Sunview Enclave','TH Malhar Road','TH Sangrur','TH Bucho Bathinda','TH Patiala'],
+  'Kajal':             ['TH Mohali','TH Elante Mall','TH Sec 35 Chandigarh'],
+  'Sandeep Mukharjee': ['TH Lokhandwala','TH MC Kurla','TH Bandra','TH FIFC Mumbai','TH FC Road'],
+  'Akash Rathod':      ['TH HPCL Expressway','TH NMIA Departure','TH NMIA Arrival','TH Nexus Seawood'],
+  'TBA':               ['TH Balewadi Pune','TH Viman Nagar','TH Phoenix Mall Wakad'],
+  'Jagadeesha':        ['TH Koramangala','TH BIAL','TH Mall of Asia','TH HSR'],
+  'Shivam':            ['TH Inorbit Mall-Hyderabad','TH HIAL','TH HIAL Arrival','TH Lakeshore'],
+  'Unassigned':        ['TH T1 Ahmedabad Airport','TH Sindhu Bhavan','TH Navrangpura']
+};
 
 /* Data-viz colours for region border stripes — not brand colours */
 var REGION_COLOR = {
@@ -294,7 +311,8 @@ var REGION_COLOR = {
   'Maharashtra': '#AF52DE',
   'Pune':        '#FF2D55',
   'Karnataka':   '#34C759',
-  'Telangana':   '#FF3B30'
+  'Telangana':   '#FF3B30',
+  'Gujarat':     '#5856D6'
 };
 
 var ALL_SUBS = [];
@@ -423,29 +441,29 @@ function renderHeatmap(){
     ams.forEach(function(am){
       var amTodaySet=new Set(todaySubs().filter(function(s){return s.am===am.n;}).map(function(s){return s.store;}));
       var amMtdSet=new Set(mtdSubs().filter(function(s){return s.am===am.n;}).map(function(s){return s.store;}));
-      var allKnown=Array.from(amMtdSet);
-      allKnown.sort(function(a,b){var aT=amTodaySet.has(a)?2:1;var bT=amTodaySet.has(b)?2:1;return bT-aT;});
+      var allStores=AM_STORES[am.n]||[];
+      var allKnown=allStores.slice();
+      allKnown.sort(function(a,b){var aT=amTodaySet.has(a)?2:amMtdSet.has(a)?1:0;var bT=amTodaySet.has(b)?2:amMtdSet.has(b)?1:0;return bT-aT;});
       var amMtdPct=am.s?Math.round(amMtdSet.size/am.s*100):0;
       var todayCount=amTodaySet.size;
 
       html+='<div class="hm-am-group">';
       html+='<div class="hm-am-name">';
-      html+=am.n+'<span style="font-size:9px;color:var(--text2);font-weight:400;text-transform:none"> &middot; '+am.s+' stores patch</span>';
+      html+=am.n+'<span style="font-size:9px;color:var(--text2);font-weight:400;text-transform:none"> &middot; '+allStores.length+' stores</span>';
       html+='<div class="hm-am-cov">';
       if(todayCount>0)html+='<span class="score-exc" style="margin-right:6px;">'+todayCount+' today</span>';
-      html+='<span class="'+gClass(amMtdPct)+'">'+amMtdSet.size+'/'+am.s+' MTD</span>';
+      html+='<span class="'+gClass(amMtdPct)+'">'+amMtdSet.size+'/'+allStores.length+' MTD</span>';
       html+='</div></div>';
       html+='<div class="hm-stores">';
 
       allKnown.forEach(function(store){
         var isToday=amTodaySet.has(store);
-        var cls=isToday?'hm-today':'hm-mtd';
+        var isMtd=amMtdSet.has(store);
+        var cls=isToday?'hm-today':isMtd?'hm-mtd':'hm-none';
         var label=store.replace(/^TH\s+/i,'').replace(/^Tim Hortons\s+/i,'');
-        html+='<div class="hm-tile '+cls+'" title="'+(isToday?'Visited today':'Visited MTD &mdash; '+store)+'">'+label+'</div>';
+        var title=isToday?'Visited today — '+store:isMtd?'Visited MTD — '+store:'Not yet visited — '+store;
+        html+='<div class="hm-tile '+cls+'" title="'+title+'">'+label+'</div>';
       });
-
-      var gap=am.s-amMtdSet.size;
-      if(gap>0){html+='<div class="hm-tile hm-none" style="opacity:0.5;">+'+gap+' not yet</div>';}
 
       html+='</div></div>';
     });
@@ -669,7 +687,7 @@ setInterval(load,90000);
     </div>
   </div>
 </footer>
-
+</div><!-- /page-content -->
 <nav class="mobile-nav">
   <div class="mobile-nav-items">
     <a href="index.html" class="mobile-nav-item">
@@ -692,7 +710,122 @@ setInterval(load,90000);
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
       <span class="mobile-nav-label">Team</span>
     </a>
+    <a href="fdu-dashboard.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
+      <span class="mobile-nav-label">FDU</span>
+    </a>
+    <a href="maintenance-dashboard.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+      <span class="mobile-nav-label">Maint.</span>
+    </a>
   </div>
 </nav>
-</body>
+
+<!-- TIMSY BOT -->
+
+
+<!-- TIMSY BOT -->
+<div id="timsy-launcher" onclick="toggleTimsy()">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+<div style="position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:#34C759;border-radius:50%;border:2px solid #000;"></div>
+</div>
+<div id="timsy-chat">
+<div style="background:linear-gradient(135deg,#c8102e,#a00d24);padding:16px 20px;display:flex;align-items:center;gap:12px;">
+<div style="width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">&#9749;</div>
+<div style="flex:1;"><div style="font-weight:800;font-size:1em;color:#fff;">Timsy</div><div style="font-size:0.7em;color:rgba(255,255,255,0.7);">Ops Assistant &#8226; Online</div></div>
+<div id="timsy-voice-btn" onclick="toggleVoice()" style="cursor:pointer;color:rgba(255,255,255,0.7);font-size:0.7em;padding:4px 8px;border:1px solid rgba(255,255,255,0.3);border-radius:12px;" title="Toggle voice">&#128266;</div>
+<div class="timsy-close-btn" onclick="toggleTimsy()">&#10005;</div>
+</div>
+<div id="timsy-messages">
+<div style="display:flex;gap:8px;align-items:flex-start;">
+<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">&#9749;</div>
+<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">Hey there! I am <b style="color:#c8102e;">Timsy</b>, your ops assistant. Ask me about stores, ratings, FDU compliance, donuts, tasks, or anything on OpsAIHub!</div>
+</div>
+</div>
+<div style="padding:12px 16px;border-top:1px solid #222;display:flex;gap:10px;align-items:center;">
+<input id="timsy-input" type="text" placeholder="Ask Timsy..." onkeydown="if(event.key==='Enter')sendTimsy()">
+<div onclick="sendTimsy()" style="width:38px;height:38px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
+</div>
+</div>
+
+<script>
+var timsyOpen = false;
+var voiceEnabled = false;
+function toggleTimsy() {
+  timsyOpen = !timsyOpen;
+  document.getElementById("timsy-chat").style.display = timsyOpen ? "flex" : "none";
+  if (timsyOpen) document.getElementById("timsy-input").focus();
+}
+function toggleVoice() {
+  voiceEnabled = !voiceEnabled;
+  var b = document.getElementById("timsy-voice-btn");
+  if (voiceEnabled) {
+    b.style.background = "#c8102e";
+    b.style.color = "#fff";
+    b.textContent = "ON";
+  } else {
+    b.style.background = "transparent";
+    b.style.color = "rgba(255,255,255,0.7)";
+    b.textContent = "\uD83D\uDD0A";
+    window.speechSynthesis.cancel();
+  }
+}
+function addTimsyMsg(text, isBot) {
+  var m = document.getElementById("timsy-messages");
+  var w = document.createElement("div");
+  w.style.display = "flex";
+  w.style.gap = "8px";
+  w.style.alignItems = "flex-start";
+  w.style.flexDirection = isBot ? "row" : "row-reverse";
+  var f = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>").replace(/\n/g, "<br>");
+  var avatar = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div>';
+  var botBubble = '<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">' + f + '</div>';
+  var userBubble = '<div style="background:#c8102e;border-radius:16px;border-top-right-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#fff;max-width:85%;">' + f + '</div>';
+  w.innerHTML = isBot ? avatar + botBubble : userBubble;
+  m.appendChild(w);
+  m.scrollTop = m.scrollHeight;
+}
+function addTyping() {
+  var m = document.getElementById("timsy-messages");
+  var w = document.createElement("div");
+  w.id = "timsy-typing";
+  w.style.display = "flex";
+  w.style.gap = "8px";
+  w.innerHTML = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div><div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;">Typing...</div>';
+  m.appendChild(w);
+  m.scrollTop = m.scrollHeight;
+}
+function removeTyping() {
+  var e = document.getElementById("timsy-typing");
+  if (e) e.remove();
+}
+async function sendTimsy() {
+  var i = document.getElementById("timsy-input");
+  var q = i.value.trim();
+  if (!q) return;
+  addTimsyMsg(q, false);
+  i.value = "";
+  addTyping();
+  try {
+    var r = await fetch("/timsy_api.php", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({q: q})
+    });
+    var d = await r.json();
+    removeTyping();
+    addTimsyMsg(d.reply, true);
+    if (voiceEnabled) {
+      var p = d.reply.replace(/<[^>]*>/g, "").replace(/\*\*/g, "").replace(/\n+/g, ". ").trim();
+      var u = new SpeechSynthesisUtterance(p);
+      u.rate = 1;
+      u.pitch = 1;
+      window.speechSynthesis.speak(u);
+    }
+  } catch(e) {
+    removeTyping();
+    addTimsyMsg("Sorry, I hit a snag. Try again!", true);
+  }
+}
+</script>
 </html>
