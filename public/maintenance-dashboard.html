@@ -337,7 +337,7 @@ function renderTicket(t) {
 
     if (!ceoDone) {
       if (ec === 0) {
-        escHtml += '<button class="btn-escalate btn-esc-team" onclick="escalateP1(\'' + t.id + '\')">&#x26A1; Escalate to Jeenal &amp; Vivek</button>'
+        escHtml += '<button class="btn-escalate btn-esc-team" onclick="escalateP1(\'' + t.id + '\')">&#x26A1; Escalate to Stakeholder</button>'
           + '<div class="esc-status">No escalations sent yet</div>';
       } else if (ec === 1) {
         escHtml += '<button class="btn-escalate btn-esc-remind" onclick="escalateP1(\'' + t.id + '\')">&#x1F504; Send Reminder (1 sent)</button>'
@@ -418,12 +418,18 @@ function verifyTicket(id) {
 }
 
 function escalateP1(id) {
+  var defaults = 'jeenal.kapasi@timhortonsindia.com, vivek.agarwal@timhortonsindia.com';
+  var emails = prompt('Escalate to (comma-separated emails):', defaults);
+  if (emails === null) return;
+  emails = emails.trim();
+  if (!emails) return;
   var btn = event.target; btn.disabled = true; btn.textContent = 'Sending...';
   fetch('/api/maintenance/tickets/' + id + '/escalate', {
     method: 'POST',
-    headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' }
+    headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ escalateTo: emails })
   }).then(function(r) { return r.json(); }).then(function(d) {
-    if (d.success) { loadTickets(); } else { btn.disabled = false; alert(d.error || 'Failed'); }
+    if (d.success) { loadTickets(); } else { btn.disabled = false; btn.textContent = 'Escalate'; alert(d.error || 'Failed'); }
   });
 }
 

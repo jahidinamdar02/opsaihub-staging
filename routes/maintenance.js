@@ -274,7 +274,11 @@ router.post('/tickets/:id/escalate', authMiddleware, function(req, res) {
     '<p style="font-size:13px;color:#3A3A3C;margin:0 0 12px;">Store: <strong>' + ticket.store + '</strong> &nbsp;|&nbsp; AM: <strong>' + (ticket.am || 'Unassigned') + '</strong></p>'
   );
 
-  P1_ESCALATION_EMAILS.forEach(function(e) { sendEmail(e, subject, html, ccList); });
+  var toEmails = (req.body.escalateTo || '').split(',').map(function(e) { return e.trim(); }).filter(Boolean);
+  if (!toEmails.length) toEmails = P1_ESCALATION_EMAILS;
+  ticket.escalations[ticket.escalations.length - 1].sentTo = toEmails;
+  writeJSON('maintenance_tickets.json', tickets);
+  toEmails.forEach(function(e) { sendEmail(e, subject, html, ccList); });
   res.json({ success: true, escalationCount: ticket.escalationCount });
 });
 
