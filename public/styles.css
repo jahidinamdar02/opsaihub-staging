@@ -248,7 +248,11 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--text); }
 .uppercase { text-transform: uppercase; letter-spacing: 0.5px; }
 
 /* ── LAYOUT ── */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.container { max-width: 680px; margin: 0 auto; padding: 0 16px; }
+.page-content { width: 100%; box-sizing: border-box; }
+@media (min-width: 769px) {
+  .page-content { max-width: 680px; margin: 0 auto; padding: 0 24px 40px; }
+}
 .flex { display: flex; }
 .flex-col { flex-direction: column; }
 .flex-wrap { flex-wrap: wrap; }
@@ -590,19 +594,24 @@ body {
   align-items: center;
   gap: 2px;
   text-decoration: none;
-  padding: 8px;
+  padding: 4px 2px;
 }
-.mobile-nav-icon { font-size: 20px; }
+.mobile-nav-icon { font-size: 18px; }
 .mobile-nav-label {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 500;
   color: var(--text3);
 }
 .mobile-nav-item.active .mobile-nav-label { color: var(--red); }
 @media (max-width: 768px) {
-  .nav { display: none !important; }
+  /* Slim mobile topbar — hide wordmark/links, keep right-side actions */
+  .nav { height: 48px !important; padding: 0 14px !important; }
+  .nav-links { display: none !important; }
+  .nav-wordmark { display: none !important; }
   .mobile-nav { display: block !important; }
-  body { padding-top: 0 !important; padding-bottom: var(--nav-h) !important; }
+  body { padding-top: 48px !important; padding-bottom: var(--nav-h) !important; }
+  /* Override hdr top-padding since body already clears the slim nav */
+  .hdr, .hod-hdr, .page-hdr { padding-top: 14px !important; }
 }
 
 /* ── PAGE HEADER ── */
@@ -622,15 +631,19 @@ body {
   color: var(--text2);
   margin-top: 4px;
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .page-header {
-    padding: 22px 32px 18px;
+    padding: 18px 24px 16px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     position: sticky;
     top: 0;
     z-index: 89;
+    max-width: 680px;
+    margin: 0 auto;
+    border-left: none;
+    border-right: none;
   }
 }
 
