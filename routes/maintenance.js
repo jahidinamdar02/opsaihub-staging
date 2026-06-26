@@ -336,7 +336,8 @@ router.post('/tickets/:id/escalate-ceo', authMiddleware, function(req, res) {
     escalationTimeline(ticket)
   );
 
-  sendEmail(CEO_EMAIL, subject, html, ccList);
+  // ponytail: CEO email paused by request — re-enable when ready
+  // sendEmail(CEO_EMAIL, subject, html, ccList);
   res.json({ success: true });
 });
 
