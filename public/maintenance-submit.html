@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1.0">
+<title>Tim Hortons — Maintenance Request</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{background:#F5F5F7;min-height:100vh;padding-bottom:60px;}
+.hdr{background:linear-gradient(135deg,#1A0508,#C8102E);padding:calc(env(safe-area-inset-top,0px)+20px) 20px 20px;text-align:center;}
+.hdr-logo{font-size:11px;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.hdr-title{font-size:20px;font-weight:700;color:#fff;}
+.hdr-sub{font-size:12px;color:rgba(255,255,255,0.6);margin-top:3px;}
+.wrap{max-width:480px;margin:0 auto;padding:16px 16px 0;}
+.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.07);}
+.field-lbl{font-size:11px;font-weight:700;color:#1D1D1F;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:7px;}
+.field-lbl span{color:#C8102E;}
+input,select,textarea{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid #D1D1D6;font-size:14px;font-family:inherit;color:#1D1D1F;background:#fff;outline:none;-webkit-appearance:none;appearance:none;}
+input:focus,select:focus,textarea:focus{border-color:#C8102E;}
+textarea{resize:vertical;min-height:90px;line-height:1.5;}
+.field{margin-bottom:14px;}
+.field:last-child{margin-bottom:0;}
+/* priority toggle */
+.priority-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.prio-btn{padding:11px;border-radius:10px;border:1.5px solid #D1D1D6;background:#fff;font-size:13px;font-weight:600;color:#8E8E93;cursor:pointer;text-align:center;transition:all 0.15s;}
+.prio-btn.active-normal{border-color:#34C759;background:#E8F8ED;color:#1B7A3A;}
+.prio-btn.active-urgent{border-color:#C8102E;background:#FEE8E8;color:#C8102E;}
+.prio-btn.active-p1{border-color:#C8102E;background:#FEE8E8;color:#C8102E;font-weight:700;}
+.p1-note{display:none;font-size:11px;color:#C8102E;background:#FEE8E8;border-radius:8px;padding:8px 10px;margin-top:6px;line-height:1.5;}
+/* photo upload */
+.photo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.photo-slot{aspect-ratio:1;border-radius:10px;border:2px dashed #D1D1D6;background:#FAFAFA;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;transition:border-color 0.15s;}
+.photo-slot.has-photo{border:2px solid #C8102E;background:#fff;}
+.photo-slot img{width:100%;height:100%;object-fit:cover;display:block;}
+.photo-slot input{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.photo-slot-icon{font-size:22px;color:#C0C0C8;}
+.photo-slot-lbl{font-size:10px;color:#8E8E93;margin-top:3px;}
+.submit-btn{width:100%;padding:16px;border:none;border-radius:14px;background:#C8102E;color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity 0.15s;margin-top:4px;}
+.submit-btn:disabled{opacity:0.35;cursor:not-allowed;}
+.prog{display:none;margin-top:10px;}
+.prog-bar{width:100%;height:5px;background:#F2F2F7;border-radius:3px;overflow:hidden;}
+.prog-fill{height:100%;background:#C8102E;border-radius:3px;width:0%;transition:width 0.4s;}
+.prog-txt{font-size:12px;color:#8E8E93;margin-top:6px;text-align:center;}
+/* success */
+.suc{display:none;text-align:center;padding:40px 20px;}
+.suc-icon{font-size:60px;margin-bottom:12px;}
+.suc-title{font-size:22px;font-weight:700;color:#1D1D1F;margin-bottom:6px;}
+.suc-id{font-size:18px;font-weight:700;color:#C8102E;background:#FEE8E8;border-radius:10px;padding:10px 20px;display:inline-block;margin:10px 0 8px;}
+.suc-sub{font-size:13px;color:#8E8E93;line-height:1.6;}
+.new-btn{margin-top:20px;padding:12px 28px;border:none;border-radius:12px;background:#C8102E;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+.notice{font-size:11px;color:#8E8E93;line-height:1.5;text-align:center;padding:0 10px 20px;}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="hdr-logo">&#9749; Tim Hortons India</div>
+  <div class="hdr-title">&#x1F527; Maintenance Request</div>
+  <div class="hdr-sub">Report an issue &middot; We'll get it fixed</div>
+</div>
+
+<div class="wrap" id="formWrap">
+  <div class="card" style="margin-top:16px;">
+    <div class="field">
+      <div class="field-lbl">Store <span>*</span></div>
+      <select id="storeSel"><option value="">Select your store...</option></select>
+    </div>
+    <div class="field">
+      <div class="field-lbl">Your Name <span>*</span></div>
+      <input type="text" id="submittedBy" placeholder="Store Manager / Team Member" autocomplete="name">
+    </div>
+    <div class="field">
+      <div class="field-lbl">Phone Number</div>
+      <input type="tel" id="phone" placeholder="For follow-up" autocomplete="tel">
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="field">
+      <div class="field-lbl">Priority <span>*</span></div>
+      <div class="priority-row">
+        <button type="button" class="prio-btn active-normal" id="prioNormal" onclick="setPrio('normal')">&#x1F7E2; Normal</button>
+        <button type="button" class="prio-btn" id="prioUrgent" onclick="setPrio('urgent')">&#x1F534; Urgent</button>
+        <button type="button" class="prio-btn" id="prioP1" onclick="setPrio('p1')">&#x26A1; P1 Critical</button>
+      </div>
+      <div class="p1-note" id="p1Note">
+        &#x26A1; <strong>P1 Critical</strong> — Equipment down, directly affecting operations. Immediate response required.
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-lbl">Issue Category <span>*</span></div>
+      <!-- Standard categories (Normal / Urgent) -->
+      <select id="category" style="display:block;">
+        <option value="">Select category...</option>
+        <option value="Equipment Breakdown">Equipment Breakdown</option>
+        <option value="Plumbing">Plumbing</option>
+        <option value="Electrical">Electrical</option>
+        <option value="HVAC / AC">HVAC / AC</option>
+        <option value="Furniture &amp; Fixtures">Furniture &amp; Fixtures</option>
+        <option value="IT / POS">IT / POS</option>
+        <option value="Pest Control">Pest Control</option>
+        <option value="Structural / Civil">Structural / Civil</option>
+        <option value="Other">Other</option>
+      </select>
+      <!-- P1 Critical Equipment (shown only for P1) -->
+      <select id="categoryP1" style="display:none;">
+        <option value="">Select equipment...</option>
+        <option value="P1 — Merry Chef">Merry Chef</option>
+        <option value="P1 — RO">RO (Water Purifier)</option>
+        <option value="P1 — Coffee Machine">Coffee Machine</option>
+        <option value="P1 — FDU">FDU (Front Display Unit)</option>
+        <option value="P1 — Ice Machine">Ice Machine</option>
+        <option value="P1 — AC">AC (Air Conditioning)</option>
+        <option value="P1 — Rational Oven">Rational Oven</option>
+        <option value="P1 — Chiller">Chiller</option>
+        <option value="P1 — Freezer">Freezer</option>
+      </select>
+    </div>
+    <div class="field" style="margin-bottom:0;">
+      <div class="field-lbl">Describe the Issue <span>*</span></div>
+      <textarea id="description" placeholder="What is the problem? When did it start? Has it happened before?"></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="field-lbl" style="margin-bottom:10px;">Photos (up to 3)</div>
+    <div class="photo-grid">
+      <div class="photo-slot" id="slot1" onclick="document.getElementById('file1').click()">
+        <div class="photo-slot-icon">&#x1F4F7;</div>
+        <div class="photo-slot-lbl">Photo 1</div>
+        <input type="file" id="file1" accept="image/*" onchange="previewPhoto(this,'slot1')" style="position:absolute;inset:0;opacity:0;cursor:pointer;">
+      </div>
+      <div class="photo-slot" id="slot2" onclick="document.getElementById('file2').click()">
+        <div class="photo-slot-icon">&#x1F4F7;</div>
+        <div class="photo-slot-lbl">Photo 2</div>
+        <input type="file" id="file2" accept="image/*" onchange="previewPhoto(this,'slot2')" style="position:absolute;inset:0;opacity:0;cursor:pointer;">
+      </div>
+      <div class="photo-slot" id="slot3" onclick="document.getElementById('file3').click()">
+        <div class="photo-slot-icon">&#x1F4F7;</div>
+        <div class="photo-slot-lbl">Photo 3</div>
+        <input type="file" id="file3" accept="image/*" onchange="previewPhoto(this,'slot3')" style="position:absolute;inset:0;opacity:0;cursor:pointer;">
+      </div>
+    </div>
+  </div>
+
+  <button class="submit-btn" id="submitBtn" onclick="submitForm()">Submit Maintenance Request</button>
+  <div class="prog" id="progWrap">
+    <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+    <div class="prog-txt" id="progTxt">Uploading...</div>
+  </div>
+  <p class="notice" style="margin-top:14px;">Your request will be sent to the maintenance team immediately. Urgent issues are escalated by email.</p>
+</div>
+
+<div class="suc" id="sucWrap">
+  <div class="suc-icon">&#x2705;</div>
+  <div class="suc-title">Request Submitted!</div>
+  <div class="suc-id" id="sucId"></div>
+  <div class="suc-sub">Your ticket has been raised and the maintenance team has been notified.<br>Your Area Manager has also been informed.</div>
+  <button class="new-btn" onclick="resetForm()">Submit Another</button>
+</div>
+
+<script>
+var priority = 'normal';
+function setPrio(p) {
+  priority = p;
+  document.getElementById('prioNormal').className = 'prio-btn' + (p === 'normal' ? ' active-normal' : '');
+  document.getElementById('prioUrgent').className = 'prio-btn' + (p === 'urgent' ? ' active-urgent' : '');
+  document.getElementById('prioP1').className    = 'prio-btn' + (p === 'p1'     ? ' active-p1'     : '');
+  var isP1 = p === 'p1';
+  document.getElementById('category').style.display    = isP1 ? 'none'  : 'block';
+  document.getElementById('categoryP1').style.display  = isP1 ? 'block' : 'none';
+  document.getElementById('p1Note').style.display      = isP1 ? 'block' : 'none';
+  // clear whichever is hidden so it doesn't get validated as empty wrongly
+  if (isP1) document.getElementById('category').value    = '';
+  else       document.getElementById('categoryP1').value = '';
+}
+function previewPhoto(inp, slotId) {
+  var slot = document.getElementById(slotId);
+  if (!inp.files || !inp.files[0]) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = slot.querySelector('img');
+    if (!img) {
+      img = document.createElement('img');
+      img.alt = 'photo';
+      // ponytail: absolute overlay so the input (position:absolute;inset:0) stays intact for submitForm
+      img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+      slot.insertBefore(img, slot.firstChild);
+    }
+    img.src = e.target.result;
+    slot.classList.add('has-photo');
+  };
+  reader.readAsDataURL(inp.files[0]);
+}
+fetch('/api/maintenance/stores').then(function(r){return r.json();}).then(function(d){
+  var sel = document.getElementById('storeSel');
+  (d.data||[]).forEach(function(s){
+    var o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o);
+  });
+});
+function submitForm() {
+  var store = document.getElementById('storeSel').value;
+  var submittedBy = document.getElementById('submittedBy').value.trim();
+  var category = priority === 'p1'
+    ? document.getElementById('categoryP1').value
+    : document.getElementById('category').value;
+  var description = document.getElementById('description').value.trim();
+  if (!store) { alert('Please select your store.'); return; }
+  if (!submittedBy) { alert('Please enter your name.'); return; }
+  if (!category) { alert('Please select a category.'); return; }
+  if (!description) { alert('Please describe the issue.'); return; }
+
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  var prog = document.getElementById('progWrap');
+  prog.style.display = 'block';
+  document.getElementById('progTxt').textContent = 'Submitting...';
+
+  var fd = new FormData();
+  fd.append('store', store);
+  fd.append('submittedBy', submittedBy);
+  fd.append('phone', document.getElementById('phone').value.trim());
+  fd.append('category', category);
+  fd.append('priority', priority);
+  fd.append('description', description);
+  var f1 = document.getElementById('file1').files[0];
+  var f2 = document.getElementById('file2').files[0];
+  var f3 = document.getElementById('file3').files[0];
+  if (f1) fd.append('photo1', f1);
+  if (f2) fd.append('photo2', f2);
+  if (f3) fd.append('photo3', f3);
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/api/maintenance/submit');
+  xhr.upload.onprogress = function(e) {
+    if (e.lengthComputable) {
+      var pct = Math.round(e.loaded / e.total * 100);
+      document.getElementById('progFill').style.width = pct + '%';
+      document.getElementById('progTxt').textContent = pct < 100 ? 'Uploading photos... ' + pct + '%' : 'Processing...';
+    }
+  };
+  xhr.onload = function() {
+    var d = JSON.parse(xhr.responseText);
+    if (d.success) {
+      document.getElementById('sucId').textContent = d.id;
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('sucWrap').style.display = 'block';
+    } else {
+      btn.disabled = false;
+      prog.style.display = 'none';
+      alert('Error: ' + (d.error || 'Please try again.'));
+    }
+  };
+  xhr.onerror = function() {
+    btn.disabled = false;
+    prog.style.display = 'none';
+    alert('Network error. Please try again.');
+  };
+  xhr.send(fd);
+}
+function resetForm() {
+  document.getElementById('storeSel').value = '';
+  document.getElementById('submittedBy').value = '';
+  document.getElementById('phone').value = '';
+  document.getElementById('category').value = '';
+  document.getElementById('categoryP1').value = '';
+  document.getElementById('description').value = '';
+  setPrio('normal');
+  ['slot1','slot2','slot3'].forEach(function(s,i){
+    var slot = document.getElementById(s);
+    slot.innerHTML = '<div class="photo-slot-icon">&#x1F4F7;</div><div class="photo-slot-lbl">Photo '+(i+1)+'</div><input type="file" id="file'+(i+1)+'" accept="image/*" onchange="previewPhoto(this,\''+s+'\')" style="position:absolute;inset:0;opacity:0;cursor:pointer;">';
+    slot.classList.remove('has-photo');
+  });
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('progWrap').style.display = 'none';
+  document.getElementById('progFill').style.width = '0%';
+  document.getElementById('sucWrap').style.display = 'none';
+  document.getElementById('formWrap').style.display = 'block';
+}
+</script>
+<script src="theme.js"></script>
+<script>applyTheme(getTheme());</script>
+</body>
+</html>
