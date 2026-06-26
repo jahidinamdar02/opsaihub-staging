@@ -278,8 +278,7 @@ router.post('/tickets/:id/escalate', authMiddleware, function(req, res) {
   if (!toEmails.length) toEmails = P1_ESCALATION_EMAILS;
   ticket.escalations[ticket.escalations.length - 1].sentTo = toEmails;
   writeJSON('maintenance_tickets.json', tickets);
-  // ponytail: escalation emails paused — re-enable when ready
-  // toEmails.forEach(function(e) { sendEmail(e, subject, html, ccList); });
+  toEmails.forEach(function(e) { sendEmail(e, subject, html, ccList); });
   res.json({ success: true, escalationCount: ticket.escalationCount });
 });
 
@@ -337,8 +336,7 @@ router.post('/tickets/:id/escalate-ceo', authMiddleware, function(req, res) {
     escalationTimeline(ticket)
   );
 
-  // ponytail: CEO email paused by request — re-enable when ready
-  // sendEmail(CEO_EMAIL, subject, html, ccList);
+  sendEmail(CEO_EMAIL, subject, html, ccList);
   res.json({ success: true });
 });
 
