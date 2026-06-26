@@ -282,11 +282,36 @@ router.post('/tickets/:id/escalate', authMiddleware, function(req, res) {
   res.json({ success: true, escalationCount: ticket.escalationCount });
 });
 
-// POST /api/maintenance/tickets/:id/escalate-ceo — only after 2 escalations
+function msToHuman(ms) {
+  var h = Math.floor(ms / 3600000);
+  var m = Math.floor((ms % 3600000) / 60000);
+  return h > 0 ? h + 'h ' + m + 'm' : m + 'm';
+}
+
+function escalationTimeline(ticket) {
+  var fmt = function(iso) {
+    return new Date(iso).toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  };
+  var events = [{ label: 'Ticket Raised', at: ticket.submittedAt }];
+  (ticket.escalations || []).forEach(function(e, i) {
+    var to = e.sentTo ? e.sentTo.join(', ') : 'team';
+    events.push({ label: (e.level === 'ceo' ? 'CEO Escalation' : 'Escalation ' + i + ' → ' + to), at: e.sentAt });
+  });
+  var rows = events.map(function(ev, i) {
+    var delay = i > 0 ? ' &nbsp;<span style="color:#C8102E;font-weight:700;">(+' + msToHuman(new Date(ev.at) - new Date(events[i - 1].at)) + ')</span>' : '';
+    return eRow(ev.label + delay, fmt(ev.at));
+  }).join('');
+  return eCard('Escalation Timeline', rows);
+}
+
+// POST /api/maintenance/tickets/:id/escalate-ceo — only after 2 escalations, requires reason
 router.post('/tickets/:id/escalate-ceo', authMiddleware, function(req, res) {
   if (req.user.role !== 'maintenance' && req.user.role !== 'hod') {
     return res.status(403).json({ success: false, error: 'Maintenance access required' });
   }
+  var reason = (req.body.reason || '').trim();
+  if (!reason) return res.status(400).json({ success: false, error: 'A reason is required to escalate to CEO' });
+
   var tickets = readJSON('maintenance_tickets.json', []);
   var ticket = tickets.find(function(t) { return t.id === req.params.id; });
   if (!ticket) return res.status(404).json({ success: false, error: 'Ticket not found' });
@@ -298,7 +323,7 @@ router.post('/tickets/:id/escalate-ceo', authMiddleware, function(req, res) {
   ticket.ceoEscalatedAt = new Date().toISOString();
   ticket.ceoEscalatedBy = req.user.am;
   if (!ticket.escalations) ticket.escalations = [];
-  ticket.escalations.push({ level: 'ceo', sentAt: ticket.ceoEscalatedAt, sentBy: req.user.am });
+  ticket.escalations.push({ level: 'ceo', sentAt: ticket.ceoEscalatedAt, sentBy: req.user.am, reason: reason });
   writeJSON('maintenance_tickets.json', tickets);
 
   var subject = '[P1 CEO ESCALATION] 🚨 ' + ticket.category + ' — ' + ticket.store + ' — ' + (ticket.escalationCount || 2) + ' Reminders Unanswered';
@@ -307,8 +332,8 @@ router.post('/tickets/:id/escalate-ceo', authMiddleware, function(req, res) {
 
   var html = ticketEmailBody(ticket,
     '🚨 CEO Escalation — P1 Critical Unresolved',
-    '<p style="font-size:14px;color:#C8102E;font-weight:700;margin:0 0 12px;">This P1 equipment issue has been escalated ' + (ticket.escalationCount || 2) + ' times with no resolution. Escalating to CEO for intervention.</p>' +
-    '<p style="font-size:13px;color:#3A3A3C;margin:0 0 12px;">Store: <strong>' + ticket.store + '</strong> &nbsp;|&nbsp; AM: <strong>' + (ticket.am || 'Unassigned') + '</strong></p>'
+    eCard('Reason for Escalation', '<p style="font-size:14px;color:#C8102E;font-weight:700;margin:0;">' + reason + '</p>') +
+    escalationTimeline(ticket)
   );
 
   sendEmail(CEO_EMAIL, subject, html, ccList);

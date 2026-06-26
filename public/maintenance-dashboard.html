@@ -434,13 +434,17 @@ function escalateP1(id) {
 }
 
 function escalateCEO(id) {
-  if (!confirm('Escalate this P1 ticket directly to CEO? This should only be done after multiple unresolved reminders.')) return;
+  var reason = prompt('Why are you escalating to CEO?\n(Required — be specific about what is blocking resolution):', '');
+  if (reason === null) return;
+  reason = reason.trim();
+  if (!reason) { alert('A reason is required to escalate to CEO.'); return; }
   var btn = event.target; btn.disabled = true; btn.textContent = 'Escalating...';
   fetch('/api/maintenance/tickets/' + id + '/escalate-ceo', {
     method: 'POST',
-    headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' }
+    headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ reason: reason })
   }).then(function(r) { return r.json(); }).then(function(d) {
-    if (d.success) { loadTickets(); } else { btn.disabled = false; alert(d.error || 'Failed'); }
+    if (d.success) { loadTickets(); } else { btn.disabled = false; btn.textContent = '🚨 Escalate to CEO Now'; alert(d.error || 'Failed'); }
   });
 }
 </script>
