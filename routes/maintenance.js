@@ -278,7 +278,8 @@ router.post('/tickets/:id/escalate', authMiddleware, function(req, res) {
   if (!toEmails.length) toEmails = P1_ESCALATION_EMAILS;
   ticket.escalations[ticket.escalations.length - 1].sentTo = toEmails;
   writeJSON('maintenance_tickets.json', tickets);
-  toEmails.forEach(function(e) { sendEmail(e, subject, html, ccList); });
+  // ponytail: escalation emails paused — re-enable when ready
+  // toEmails.forEach(function(e) { sendEmail(e, subject, html, ccList); });
   res.json({ success: true, escalationCount: ticket.escalationCount });
 });
 
