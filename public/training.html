@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Training Health — Tim's Ops Connect</title>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="timsy.css">
-<style>
+<link rel="stylesheet" href="styles.css"><style>
 body{padding-top:var(--nav-h);}
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
@@ -19,7 +17,7 @@ body { background:var(--surface); color:var(--text); min-height:100vh; padding-b
 .hdr-sub { font-size:13px; color:rgba(255,255,255,0.6); margin-top:3px; }
 
 /* TABS */
-.tab-bar { display:flex; background:#fff; border-bottom:1px solid var(--border); overflow-x:auto; scrollbar-width:none; position:sticky; top:0; z-index:100; }
+.tab-bar { display:flex; background:#fff; border-bottom:1px solid var(--border); overflow-x:auto; scrollbar-width:none; position:sticky; top:var(--nav-h); z-index:100; }
 .tab-bar::-webkit-scrollbar { display:none; }
 .tab-btn { flex-shrink:0; padding:14px 16px; font-size:12px; font-weight:600; color:var(--text2); border:none; background:transparent; cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; }
 .tab-btn.active { color:var(--red); border-bottom-color:var(--red); }
@@ -218,7 +216,7 @@ body { background:var(--surface); color:var(--text); min-height:100vh; padding-b
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="overview">&#x1F4CA; Overview</button>
   <button class="tab-btn" data-tab="regions">&#x1F5FA; Regions</button>
-  <button class="tab-btn" data-tab="academy" id="academyTabBtn">&#x1F393; TH AI Academy</button>
+  <button class="tab-btn" data-tab="academy" id="academyTabBtn">&#x1F3C6; Weekly Challenge</button>
   <button class="tab-btn" data-tab="entry">&#x270F; Update Data</button>
 </div>
 
@@ -261,34 +259,12 @@ body { background:var(--surface); color:var(--text); min-height:100vh; padding-b
   <div id="regionsContent"><div class="spinner"></div></div>
 </div>
 
-<!-- TH AI ACADEMY TAB -->
+<!-- WEEKLY CHALLENGE TAB -->
 <div class="tab-content" id="tab-academy">
-  <!-- Academy Banner -->
-  <div class="academy-banner fade-up">
-    <div class="academy-logo">&#x1F393;</div>
-    <div>
-      <div class="academy-title">TH AI Academy</div>
-      <div class="academy-sub">Tuesday Learning &mdash; Tim Hortons India</div>
-    </div>
-    <div class="academy-badge">LIVE</div>
-  </div>
-
-  <!-- Tuesday Prompt — auto-visible -->
-  <div class="section-card fade-up" style="border-left:4px solid #007AFF;">
-    <div class="section-title" style="color:#007AFF;">&#x1F4A1; This Week's Learning Prompt</div>
-    <div class="academy-prompt" id="tuesdayPrompt"></div>
-  </div>
-
-  <!-- Learning Videos — auto-visible grid -->
-  <div class="section-card fade-up">
-    <div class="section-title">&#x1F3AC; Learning Videos</div>
-    <div class="video-grid" id="videoGrid"></div>
-  </div>
-
-  <!-- Tuesday Leaderboard -->
-  <div class="section-card fade-up">
-    <div class="section-title">&#x1F3C6; Tuesday Learning Leaderboard <span style="font-size:11px;font-weight:400;color:var(--text2);">Ranked by training health score</span></div>
-    <div id="academyLeaderboard"></div>
+  <div id="challengeWrap" class="section-card fade-up"><div class="spinner"></div></div>
+  <div class="section-card fade-up" style="margin-top:14px;">
+    <div class="section-title">&#x1F3C6; Leaderboard <span style="font-size:11px;font-weight:400;color:var(--text2);">Pass 1st try=100pts &middot; Retry=60pts &middot; Attempted=20pts</span></div>
+    <div id="challengeLeaderboard"><div class="spinner"></div></div>
   </div>
 </div>
 
@@ -870,71 +846,98 @@ function resetBtn() {
   btn.innerHTML = '\uD83D\uDCBE Save Training Data';
 }
 
-var tuesdayPrompts = [
-  {
-    week: 'Week of June 23, 2026',
-    question: 'How do you turn a negative customer moment into a loyalty-building experience?',
-    context: 'In QSR, service recovery done right creates customers for life. Think about the last time a guest came to you with a complaint — what did you do? What could you have done differently? This week, share one real recovery story from your store and what you learned from it.',
-    tags: ['Service Recovery', 'Customer Loyalty', 'Leadership']
-  },
-  {
-    week: 'Next Tuesday',
-    question: 'What does "upselling with purpose" mean to your team?',
-    context: 'Modifiers and add-ons aren\'t just revenue — they\'re personalisation. Guests who feel understood become regulars. How does your team currently handle suggestive selling? Share a technique that works at your store.',
-    tags: ['Revenue Growth', 'Team Coaching', 'Guest Experience']
-  }
-];
-
-var learningVideos = [
-  { title: 'Service Recovery Masterclass', duration: '8 min', topic: 'Guest Experience', icon: '&#x1F3AC;', color: '#007AFF', url: '#' },
-  { title: 'Coaching Your Team Daily', duration: '12 min', topic: 'Leadership', icon: '&#x1F3AC;', color: '#34C759', url: '#' },
-  { title: 'FDU Display Standards 2026', duration: '6 min', topic: 'Operations', icon: '&#x1F3AC;', color: '#FF9500', url: '#' },
-  { title: 'Driving Modifier Attachment', duration: '9 min', topic: 'Revenue', icon: '&#x1F3AC;', color: '#AF52DE', url: '#' }
-];
-
 function renderAcademy() {
-  // Prompt
-  var p = tuesdayPrompts[0];
-  document.getElementById('tuesdayPrompt').innerHTML =
-    '<div class="prompt-week">&#x1F4C5; ' + p.week + '</div>' +
-    '<div class="prompt-question">' + p.question + '</div>' +
-    '<div class="prompt-context">' + p.context + '</div>' +
-    '<div class="prompt-tags">' + p.tags.map(function(t){ return '<span class="prompt-tag">'+t+'</span>'; }).join('') + '</div>';
+  var am = localStorage.getItem('th_am_name') || '';
+  var wrap = document.getElementById('challengeWrap');
+  var lb = document.getElementById('challengeLeaderboard');
 
-  // Videos
-  document.getElementById('videoGrid').innerHTML = learningVideos.map(function(v){
-    return '<div class="video-card" onclick="window.open(\''+v.url+'\',\'_blank\')">' +
-      '<div class="video-play-btn" style="background:linear-gradient(135deg,'+v.color+'22,'+v.color+'44);">' +
-        '<span style="font-size:36px;">&#x25B6;&#xFE0F;</span>' +
-      '</div>' +
-      '<div class="video-info">' +
-        '<div class="video-title">' + v.title + '</div>' +
-        '<div class="video-meta">' + v.topic + ' &nbsp;&middot;&nbsp; ' + v.duration + '</div>' +
-      '</div>' +
-    '</div>';
-  }).join('');
+  Promise.all([
+    fetch('/api/challenge' + (am ? '?am=' + encodeURIComponent(am) : '')).then(function(r){return r.json();}),
+    fetch('/api/challenge/leaderboard').then(function(r){return r.json();})
+  ]).then(function(results) {
+    var cd = results[0], ld = results[1];
+    var active = cd.active;
+    var mySubs = cd.mySubmissions || [];
 
-  // Leaderboard — rank AMs by training health score
-  var ranked = amList.map(function(am){
-    var h = calcAMHealth(am);
-    return { am: am, score: h.score, stores: h.stores };
-  }).filter(function(x){ return x.score > 0; });
-  ranked.sort(function(a,b){ return b.score - a.score; });
+    // Challenge card
+    if (!active) {
+      wrap.innerHTML = '<div style="text-align:center;padding:32px;color:var(--text2);"><div style="font-size:32px;margin-bottom:8px;">&#x1F3C6;</div><div style="font-weight:600;">No challenge set this week</div><div style="font-size:13px;margin-top:4px;">Check back Tuesday</div></div>';
+    } else {
+      var closes = new Date(active.closesAt);
+      var closed = new Date() > closes;
+      var passed = mySubs.some(function(s){return s.pass;});
+      var lastSub = mySubs.length ? mySubs[mySubs.length - 1] : null;
+      var canRetry = !closed && !passed;
 
-  var medals = ['&#x1F947;','&#x1F948;','&#x1F949;'];
-  document.getElementById('academyLeaderboard').innerHTML = ranked.map(function(r, i){
-    var medal = medals[i] || (i+1+'.');
-    var col = r.score>=80?'#34C759':r.score>=60?'#FF9500':'#FF3B30';
-    var bg = r.score>=80?'#E8F8ED':r.score>=60?'#FFF3E0':'#FEE8E8';
-    return '<div class="lb-academy-row">' +
-      '<div class="lb-rank">' + medal + '</div>' +
-      '<div>' +
-        '<div class="lb-am-name">' + r.am.icon + ' ' + r.am.name + '</div>' +
-        '<div class="lb-am-region">' + r.am.region + ' &nbsp;&middot;&nbsp; ' + r.stores + ' stores tracked</div>' +
-      '</div>' +
-      '<div class="lb-score-pill" style="background:'+bg+';color:'+col+';">' + (r.score>0?r.score+'%':'--') + '</div>' +
-    '</div>';
-  }).join('') || '<div style="text-align:center;padding:24px;color:var(--text2);">Load the overview tab first to populate scores.</div>';
+      var html = '<div style="margin-bottom:12px;">';
+      html += '<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">&#x1F4CC; This Week\'s Deviation</div>';
+      html += '<div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:10px;">' + active.deviation + '</div>';
+      html += '<div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">&#x2705; Correct State Required</div>';
+      html += '<div style="font-size:14px;color:var(--text);background:var(--surface);border-radius:10px;padding:10px 12px;margin-bottom:10px;">' + active.correctState + '</div>';
+      html += '<div style="font-size:12px;color:var(--text2);">Closes: ' + closes.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'short'}) + (closed?' <span style="color:#FF3B30;font-weight:700;">&middot; CLOSED</span>':'') + '</div>';
+      html += '</div>';
+
+      if (passed) {
+        html += '<div style="background:#EDFBF2;border:1px solid #34C759;border-radius:12px;padding:14px;margin-bottom:10px;text-align:center;">';
+        html += '<div style="font-size:22px;margin-bottom:4px;">&#x2705;</div>';
+        html += '<div style="font-weight:700;color:#1B7A3A;">Challenge Passed!</div>';
+        html += '<div style="font-size:13px;color:#1B7A3A;margin-top:4px;">' + (lastSub ? lastSub.feedback : '') + '</div></div>';
+      } else if (lastSub) {
+        html += '<div style="background:#FEE8E8;border:1px solid #FF3B30;border-radius:12px;padding:14px;margin-bottom:10px;">';
+        html += '<div style="font-weight:700;color:#C8102E;">&#x274C; Attempt ' + lastSub.attemptNumber + ' — Not passed</div>';
+        html += '<div style="font-size:13px;color:#C8102E;margin-top:4px;">' + lastSub.feedback + '</div></div>';
+      }
+
+      if (canRetry) {
+        html += '<div style="margin-top:10px;">';
+        html += '<div style="font-size:12px;color:var(--text2);margin-bottom:8px;">' + (lastSub ? 'Attempt ' + (mySubs.length+1) + ' — fix the deviation and upload a new photo' : 'Fix the deviation in your store, then upload a photo to get graded') + '</div>';
+        html += '<label style="display:block;background:var(--primary);color:#fff;text-align:center;padding:14px;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;" for="chalPhoto">&#x1F4F7; ' + (lastSub ? 'Retry — Upload Photo' : 'Upload Photo') + '</label>';
+        html += '<input type="file" id="chalPhoto" accept="image/*" capture="environment" style="display:none;" onchange="submitChallenge(this)">';
+        html += '<div id="chalStatus" style="margin-top:8px;text-align:center;font-size:13px;color:var(--text2);"></div>';
+        html += '</div>';
+      } else if (closed && !passed) {
+        html += '<div style="background:#FFF3CD;border-radius:10px;padding:12px;text-align:center;font-size:13px;color:#856404;">Challenge closed. Better luck next week!</div>';
+      }
+
+      wrap.innerHTML = html;
+    }
+
+    // Leaderboard
+    var medals = ['&#x1F947;','&#x1F948;','&#x1F949;'];
+    var rows = (ld.leaderboard || []);
+    lb.innerHTML = rows.length ? rows.map(function(r, i) {
+      var col = r.score===100?'#1B7A3A':r.score===60?'#856404':r.score===20?'#8E8E93':'#C8102E';
+      var bg  = r.score===100?'#EDFBF2':r.score===60?'#FFF3CD':r.score===20?'#F5F5F7':'#FEE8E8';
+      var label = r.score===100?'1st try':r.score===60?'Retry':r.score===20?'Attempted':'Not yet';
+      return '<div class="lb-academy-row">' +
+        '<div class="lb-rank">' + (medals[i] || (i+1+'.')) + '</div>' +
+        '<div><div class="lb-am-name">' + r.am + '</div>' +
+        '<div class="lb-am-region">' + (r.attempts ? r.attempts + ' attempt' + (r.attempts>1?'s':'') : 'No submission') + '</div></div>' +
+        '<div class="lb-score-pill" style="background:'+bg+';color:'+col+';">' + r.score + ' pts<br><span style="font-size:9px;">' + label + '</span></div>' +
+      '</div>';
+    }).join('') : '<div style="text-align:center;padding:24px;color:var(--text2);">No submissions yet</div>';
+
+  }).catch(function() {
+    wrap.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text2);">Could not load challenge</div>';
+  });
+}
+
+function submitChallenge(input) {
+  var am = localStorage.getItem('th_am_name') || '';
+  if (!am) { alert('Please select your name first'); return; }
+  var file = input.files[0];
+  if (!file) return;
+  var status = document.getElementById('chalStatus');
+  status.textContent = 'Grading your photo...';
+  var fd = new FormData();
+  fd.append('photo', file);
+  fd.append('am', am);
+  fetch('/api/challenge/submit', { method: 'POST', body: fd })
+    .then(function(r){return r.json();})
+    .then(function(d) {
+      if (d.success) renderAcademy();
+      else { status.textContent = 'Error: ' + (d.error || 'submission failed'); }
+    }).catch(function() { status.textContent = 'Network error — please try again'; });
 }
 
 loadData();
@@ -1011,112 +1014,4 @@ loadData();
 </nav>
 <script src="theme.js"></script>
 <script>applyTheme(getTheme());</script>
-
-<!-- TIMSY BOT -->
-
-
-<!-- TIMSY BOT -->
-<div id="timsy-launcher" onclick="toggleTimsy()">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-<div style="position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:#34C759;border-radius:50%;border:2px solid #000;"></div>
-</div>
-<div id="timsy-chat">
-<div style="background:linear-gradient(135deg,#c8102e,#a00d24);padding:16px 20px;display:flex;align-items:center;gap:12px;">
-<div style="width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">&#9749;</div>
-<div style="flex:1;"><div style="font-weight:800;font-size:1em;color:#fff;">Timsy</div><div style="font-size:0.7em;color:rgba(255,255,255,0.7);">Ops Assistant &#8226; Online</div></div>
-<div id="timsy-voice-btn" onclick="toggleVoice()" style="cursor:pointer;color:rgba(255,255,255,0.7);font-size:0.7em;padding:4px 8px;border:1px solid rgba(255,255,255,0.3);border-radius:12px;" title="Toggle voice">&#128266;</div>
-<div class="timsy-close-btn" onclick="toggleTimsy()">&#10005;</div>
-</div>
-<div id="timsy-messages">
-<div style="display:flex;gap:8px;align-items:flex-start;">
-<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">&#9749;</div>
-<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">Hey there! I am <b style="color:#c8102e;">Timsy</b>, your ops assistant. Ask me about stores, ratings, FDU compliance, donuts, tasks, or anything on OpsAIHub!</div>
-</div>
-</div>
-<div style="padding:12px 16px;border-top:1px solid #222;display:flex;gap:10px;align-items:center;">
-<input id="timsy-input" type="text" placeholder="Ask Timsy..." onkeydown="if(event.key==='Enter')sendTimsy()">
-<div onclick="sendTimsy()" style="width:38px;height:38px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
-</div>
-</div>
-
-<script>
-var timsyOpen = false;
-var voiceEnabled = false;
-function toggleTimsy() {
-  timsyOpen = !timsyOpen;
-  document.getElementById("timsy-chat").style.display = timsyOpen ? "flex" : "none";
-  if (timsyOpen) document.getElementById("timsy-input").focus();
-}
-function toggleVoice() {
-  voiceEnabled = !voiceEnabled;
-  var b = document.getElementById("timsy-voice-btn");
-  if (voiceEnabled) {
-    b.style.background = "#c8102e";
-    b.style.color = "#fff";
-    b.textContent = "ON";
-  } else {
-    b.style.background = "transparent";
-    b.style.color = "rgba(255,255,255,0.7)";
-    b.textContent = "\uD83D\uDD0A";
-    window.speechSynthesis.cancel();
-  }
-}
-function addTimsyMsg(text, isBot) {
-  var m = document.getElementById("timsy-messages");
-  var w = document.createElement("div");
-  w.style.display = "flex";
-  w.style.gap = "8px";
-  w.style.alignItems = "flex-start";
-  w.style.flexDirection = isBot ? "row" : "row-reverse";
-  var f = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>").replace(/\n/g, "<br>");
-  var avatar = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div>';
-  var botBubble = '<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">' + f + '</div>';
-  var userBubble = '<div style="background:#c8102e;border-radius:16px;border-top-right-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#fff;max-width:85%;">' + f + '</div>';
-  w.innerHTML = isBot ? avatar + botBubble : userBubble;
-  m.appendChild(w);
-  m.scrollTop = m.scrollHeight;
-}
-function addTyping() {
-  var m = document.getElementById("timsy-messages");
-  var w = document.createElement("div");
-  w.id = "timsy-typing";
-  w.style.display = "flex";
-  w.style.gap = "8px";
-  w.innerHTML = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div><div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;">Typing...</div>';
-  m.appendChild(w);
-  m.scrollTop = m.scrollHeight;
-}
-function removeTyping() {
-  var e = document.getElementById("timsy-typing");
-  if (e) e.remove();
-}
-async function sendTimsy() {
-  var i = document.getElementById("timsy-input");
-  var q = i.value.trim();
-  if (!q) return;
-  addTimsyMsg(q, false);
-  i.value = "";
-  addTyping();
-  try {
-    var r = await fetch("/timsy_api.php", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({q: q})
-    });
-    var d = await r.json();
-    removeTyping();
-    addTimsyMsg(d.reply, true);
-    if (voiceEnabled) {
-      var p = d.reply.replace(/<[^>]*>/g, "").replace(/\*\*/g, "").replace(/\n+/g, ". ").trim();
-      var u = new SpeechSynthesisUtterance(p);
-      u.rate = 1;
-      u.pitch = 1;
-      window.speechSynthesis.speak(u);
-    }
-  } catch(e) {
-    removeTyping();
-    addTimsyMsg("Sorry, I hit a snag. Try again!", true);
-  }
-}
-</script>
 </html>

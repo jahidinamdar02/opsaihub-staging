@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1.0">
 <title>HOD Command Centre</title>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="timsy.css">
-<style>
+<link rel="stylesheet" href="styles.css"><style>
 /* Hallmark · macrostructure: Command-Centre (HOD exception — dark header + tabbed views)
  * genre: modern-minimal · theme: custom (brand-locked) · nav: N9 · footer: Ft2
  * exception: bento grid is the platform shape (index.html); this page is an
@@ -82,6 +80,10 @@ body{background:var(--surface);padding-bottom:calc(var(--nav-h,60px)+56px);paddi
 .srib{background:var(--hod-surface-6);border:1px solid var(--hod-border-8);border-radius:12px;padding:10px 8px;text-align:center;}
 .srib-val{font-size:20px;font-weight:800;color:var(--white);line-height:1;font-variant-numeric:tabular-nums;}
 .srib-lbl{font-size:8px;color:var(--hod-on-dark-38);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px;}
+@media(max-width:768px){
+  .srib{padding:7px 4px;}
+  .srib-val{font-size:16px;}
+}
 
 /* ── SECTION LABELS ──────────────────────────────────────────── */
 .sec-lbl{font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin:16px 0 8px;display:flex;align-items:center;justify-content:space-between;}
@@ -207,6 +209,7 @@ body{background:var(--surface);padding-bottom:calc(var(--nav-h,60px)+56px);paddi
     <button class="tog-btn" onclick="sv('leaderboard')">Leaderboard</button>
     <button class="tog-btn" onclick="sv('flags')">Red Flags</button>
     <button class="tog-btn" onclick="sv('health')">Health</button>
+    <button class="tog-btn" onclick="sv('challenge');renderHodChallenge()">Challenge</button>
   </div>
 
   <!-- ══ HEATMAP VIEW ══ -->
@@ -239,6 +242,32 @@ body{background:var(--surface);padding-bottom:calc(var(--nav-h,60px)+56px);paddi
   <!-- ══ HEALTH VIEW ══ -->
   <div id="v-health" style="display:none">
     <div id="healthBody"><div class="empty">Loading health scores...</div></div>
+  </div>
+
+  <!-- ══ CHALLENGE VIEW ══ -->
+  <div id="v-challenge" style="display:none">
+    <div class="sec-lbl">Set Weekly Challenge</div>
+    <div style="background:var(--card);border-radius:14px;padding:16px;border:1px solid var(--border);margin-bottom:14px;">
+      <div style="margin-bottom:10px;">
+        <label style="font-size:12px;font-weight:700;color:var(--text2);display:block;margin-bottom:4px;">DEVIATION TO CORRECT</label>
+        <input id="cDeviation" type="text" placeholder="e.g. FDU tags missing on bottom row baskets" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;box-sizing:border-box;background:var(--surface);color:var(--text);">
+      </div>
+      <div style="margin-bottom:10px;">
+        <label style="font-size:12px;font-weight:700;color:var(--text2);display:block;margin-bottom:4px;">CORRECT STATE (grading rubric)</label>
+        <textarea id="cCorrectState" rows="3" placeholder="e.g. Every basket has a visible price + name tag, neat and upright" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;box-sizing:border-box;background:var(--surface);color:var(--text);resize:none;"></textarea>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="font-size:12px;font-weight:700;color:var(--text2);display:block;margin-bottom:4px;">CLOSES (Sunday midnight IST)</label>
+        <input id="cClosesAt" type="datetime-local" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;box-sizing:border-box;background:var(--surface);color:var(--text);">
+      </div>
+      <button onclick="createChallenge()" style="width:100%;padding:13px;background:#C8102E;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;">&#x1F3C6; Set This Week's Challenge</button>
+      <div id="chalCreateStatus" style="text-align:center;font-size:13px;margin-top:8px;color:var(--text2);"></div>
+    </div>
+    <div class="sec-lbl">Current Leaderboard</div>
+    <div id="hodChalLb" style="background:var(--card);border-radius:14px;padding:12px;border:1px solid var(--border);"><div class="spinner"></div></div>
+    <div style="margin-top:12px;">
+      <button onclick="shareChallengeLb()" style="width:100%;padding:13px;background:#25D366;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">&#x1F4E4; Share Leaderboard to WhatsApp</button>
+    </div>
   </div>
 
 </div>
@@ -363,12 +392,12 @@ function startClock(){
 /* ═══════════════════════════════
    VIEW SWITCH
 ═══════════════════════════════ */
-var VIEWS=['heatmap','leaderboard','flags','health'];
+var VIEWS=['heatmap','leaderboard','flags','health','challenge'];
 function sv(v){
   VIEWS.forEach(function(id){document.getElementById('v-'+id).style.display=id===v?'block':'none';});
   document.querySelectorAll('.tog-btn').forEach(function(b){
     var map={'heatmap':'Store Heatmap','leaderboard':'Leaderboard','flags':'Red Flags','health':'Health'};
-    b.classList.toggle('active',map[v]===b.textContent);
+    b.classList.toggle('active',map[v]===b.textContent||b.textContent==='Challenge'&&v==='challenge');
   });
   if(v==='health')renderHealth();
 }
@@ -621,6 +650,54 @@ function renderHealth(){
 ═══════════════════════════════ */
 function renderAll(){renderHeader();renderHeatmap();renderLeaderboard();renderFlags();}
 
+/* ═══════════════════════════════
+   CHALLENGE
+═══════════════════════════════ */
+function renderHodChallenge() {
+  fetch('/api/challenge/leaderboard').then(function(r){return r.json();}).then(function(d){
+    var rows = d.leaderboard || [];
+    var medals = ['🥇','🥈','🥉'];
+    document.getElementById('hodChalLb').innerHTML = rows.length ? rows.map(function(r,i){
+      var col = r.score===100?'var(--success)':r.score===60?'var(--warning)':r.score===20?'var(--text2)':'var(--critical)';
+      return '<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);">' +
+        '<div style="font-size:16px;width:22px;text-align:center;">'+(medals[i]||(i+1)+'.')+'</div>' +
+        '<div style="flex:1;font-size:13px;font-weight:600;color:var(--text);">'+r.am+'</div>' +
+        '<div style="font-size:13px;font-weight:700;color:'+col+';">'+r.score+' pts</div></div>';
+    }).join('') : '<div style="text-align:center;padding:20px;color:var(--text2);">No submissions yet</div>';
+  }).catch(function(){ document.getElementById('hodChalLb').innerHTML = '<div style="text-align:center;padding:16px;color:var(--text2);">Could not load</div>'; });
+}
+
+function createChallenge() {
+  var deviation = document.getElementById('cDeviation').value.trim();
+  var correctState = document.getElementById('cCorrectState').value.trim();
+  var closesAt = document.getElementById('cClosesAt').value;
+  var status = document.getElementById('chalCreateStatus');
+  if (!deviation || !correctState || !closesAt) { status.style.color='var(--critical)'; status.textContent='Fill in all fields'; return; }
+  status.style.color='var(--text2)'; status.textContent='Saving...';
+  fetch('/api/challenge/create', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ deviation: deviation, correctState: correctState, closesAt: new Date(closesAt).toISOString() })
+  }).then(function(r){return r.json();}).then(function(d){
+    if (d.success) {
+      status.style.color='var(--success)'; status.textContent='Challenge set! AMs will see it on the training page.';
+      document.getElementById('cDeviation').value=''; document.getElementById('cCorrectState').value=''; document.getElementById('cClosesAt').value='';
+      renderHodChallenge();
+    } else { status.style.color='var(--critical)'; status.textContent=d.error||'Error saving challenge'; }
+  }).catch(function(){ status.style.color='var(--critical)'; status.textContent='Network error'; });
+}
+
+function shareChallengeLb() {
+  fetch('/api/challenge/leaderboard').then(function(r){return r.json();}).then(function(d){
+    var rows = d.leaderboard || [];
+    var medals = ['🥇','🥈','🥉'];
+    var text = '🏆 *Weekly Challenge Leaderboard — Tim Hortons India*\n\n';
+    rows.forEach(function(r,i){ text += (medals[i]||(i+1)+'.') + ' ' + r.am + ' — ' + r.score + ' pts\n'; });
+    text += '\n_Submit on OpsAIHub Training page_';
+    window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+  });
+}
+
 function load(){
   fetch('/api/submissions').then(function(r){return r.json();}).then(function(d){
     ALL_SUBS=d.data||[];
@@ -720,112 +797,4 @@ setInterval(load,90000);
     </a>
   </div>
 </nav>
-
-<!-- TIMSY BOT -->
-
-
-<!-- TIMSY BOT -->
-<div id="timsy-launcher" onclick="toggleTimsy()">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-<div style="position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:#34C759;border-radius:50%;border:2px solid #000;"></div>
-</div>
-<div id="timsy-chat">
-<div style="background:linear-gradient(135deg,#c8102e,#a00d24);padding:16px 20px;display:flex;align-items:center;gap:12px;">
-<div style="width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">&#9749;</div>
-<div style="flex:1;"><div style="font-weight:800;font-size:1em;color:#fff;">Timsy</div><div style="font-size:0.7em;color:rgba(255,255,255,0.7);">Ops Assistant &#8226; Online</div></div>
-<div id="timsy-voice-btn" onclick="toggleVoice()" style="cursor:pointer;color:rgba(255,255,255,0.7);font-size:0.7em;padding:4px 8px;border:1px solid rgba(255,255,255,0.3);border-radius:12px;" title="Toggle voice">&#128266;</div>
-<div class="timsy-close-btn" onclick="toggleTimsy()">&#10005;</div>
-</div>
-<div id="timsy-messages">
-<div style="display:flex;gap:8px;align-items:flex-start;">
-<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">&#9749;</div>
-<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">Hey there! I am <b style="color:#c8102e;">Timsy</b>, your ops assistant. Ask me about stores, ratings, FDU compliance, donuts, tasks, or anything on OpsAIHub!</div>
-</div>
-</div>
-<div style="padding:12px 16px;border-top:1px solid #222;display:flex;gap:10px;align-items:center;">
-<input id="timsy-input" type="text" placeholder="Ask Timsy..." onkeydown="if(event.key==='Enter')sendTimsy()">
-<div onclick="sendTimsy()" style="width:38px;height:38px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
-</div>
-</div>
-
-<script>
-var timsyOpen = false;
-var voiceEnabled = false;
-function toggleTimsy() {
-  timsyOpen = !timsyOpen;
-  document.getElementById("timsy-chat").style.display = timsyOpen ? "flex" : "none";
-  if (timsyOpen) document.getElementById("timsy-input").focus();
-}
-function toggleVoice() {
-  voiceEnabled = !voiceEnabled;
-  var b = document.getElementById("timsy-voice-btn");
-  if (voiceEnabled) {
-    b.style.background = "#c8102e";
-    b.style.color = "#fff";
-    b.textContent = "ON";
-  } else {
-    b.style.background = "transparent";
-    b.style.color = "rgba(255,255,255,0.7)";
-    b.textContent = "\uD83D\uDD0A";
-    window.speechSynthesis.cancel();
-  }
-}
-function addTimsyMsg(text, isBot) {
-  var m = document.getElementById("timsy-messages");
-  var w = document.createElement("div");
-  w.style.display = "flex";
-  w.style.gap = "8px";
-  w.style.alignItems = "flex-start";
-  w.style.flexDirection = isBot ? "row" : "row-reverse";
-  var f = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>").replace(/\n/g, "<br>");
-  var avatar = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div>';
-  var botBubble = '<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">' + f + '</div>';
-  var userBubble = '<div style="background:#c8102e;border-radius:16px;border-top-right-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#fff;max-width:85%;">' + f + '</div>';
-  w.innerHTML = isBot ? avatar + botBubble : userBubble;
-  m.appendChild(w);
-  m.scrollTop = m.scrollHeight;
-}
-function addTyping() {
-  var m = document.getElementById("timsy-messages");
-  var w = document.createElement("div");
-  w.id = "timsy-typing";
-  w.style.display = "flex";
-  w.style.gap = "8px";
-  w.innerHTML = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div><div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;">Typing...</div>';
-  m.appendChild(w);
-  m.scrollTop = m.scrollHeight;
-}
-function removeTyping() {
-  var e = document.getElementById("timsy-typing");
-  if (e) e.remove();
-}
-async function sendTimsy() {
-  var i = document.getElementById("timsy-input");
-  var q = i.value.trim();
-  if (!q) return;
-  addTimsyMsg(q, false);
-  i.value = "";
-  addTyping();
-  try {
-    var r = await fetch("/timsy_api.php", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({q: q})
-    });
-    var d = await r.json();
-    removeTyping();
-    addTimsyMsg(d.reply, true);
-    if (voiceEnabled) {
-      var p = d.reply.replace(/<[^>]*>/g, "").replace(/\*\*/g, "").replace(/\n+/g, ". ").trim();
-      var u = new SpeechSynthesisUtterance(p);
-      u.rate = 1;
-      u.pitch = 1;
-      window.speechSynthesis.speak(u);
-    }
-  } catch(e) {
-    removeTyping();
-    addTimsyMsg("Sorry, I hit a snag. Try again!", true);
-  }
-}
-</script>
 </html>

@@ -961,6 +961,8 @@ app.post('/api/test-email', strictLimiter, function(req, res) {
 });
 
 app.use('/api/ai-academy', require('./routes/ai-academy'));
+app.use('/uploads/challenge', express.static(path.join(__dirname, 'uploads/challenge')));
+app.use('/api/challenge', require('./routes/challenge'));
 
 // Test endpoint — sends weekly infographic to Jahid's personal email only
 app.get('/api/weekly-infographic/test', async function(req, res) {
