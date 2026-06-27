@@ -964,6 +964,53 @@ app.use('/api/ai-academy', require('./routes/ai-academy'));
 app.use('/uploads/challenge', express.static(path.join(__dirname, 'uploads/challenge')));
 app.use('/api/challenge', require('./routes/challenge'));
 
+// Leadership deck stats
+app.get('/api/leadership-stats', function(req, res) {
+  try {
+    var fduSubs   = readJSON('fdu_submissions.json', []);
+    var fduDonut  = readJSON('fdu_donut_submissions.json', []);
+    var tasksList = readJSON('tasks.json', []);
+    var storeList = readJSON('stores.json', []);
+    var challenges= readJSON('challenges.json', { history: [], submissions: [] });
+    var daysUp    = Math.floor((Date.now() - new Date('2026-04-01').getTime()) / 86400000);
+    res.json({
+      success: true,
+      fduGradings:   fduSubs.length + fduDonut.length,
+      storesCovered: storeList.length || 44,
+      tasksManaged:  tasksList.length,
+      challengeSubs: challenges.submissions.length,
+      daysRunning:   daysUp,
+      amCount:       10,
+      regionsCount:  5
+    });
+  } catch(err) { res.status(500).json({ success: false }); }
+});
+
+// Leadership narrative — NVIDIA Llama, 1-hour cache
+var _deckNarrative = null, _deckNarrativeAt = 0;
+app.get('/api/leadership-narrative', async function(req, res) {
+  if (_deckNarrative && Date.now() - _deckNarrativeAt < 3600000) {
+    return res.json({ success: true, narrative: _deckNarrative });
+  }
+  try {
+    var fduSubs  = readJSON('fdu_submissions.json', []);
+    var fduDonut = readJSON('fdu_donut_submissions.json', []);
+    var daysUp   = Math.floor((Date.now() - new Date('2026-04-01').getTime()) / 86400000);
+    var prompt   = 'You are writing a 3-sentence executive summary for a leadership presentation. Context: OpsAIHub is India\'s first AI-powered QSR operations intelligence platform, built entirely by Jahid Inamdar — Head of Operations, Tim Hortons India — a non-technical leader with no software background — starting April 2026, now ' + daysUp + ' days live. The platform covers 44 stores across 5 regions, serves 10 area managers, has processed ' + (fduSubs.length + fduDonut.length) + ' AI-graded photos using NVIDIA Vision AI, and delivers features including daily compliance checklists, store audits, task management, donut quality grading, weekly photo challenges, CEO intelligence reports, push notifications, and a Gemini-powered chatbot. Write 3 powerful flowing sentences — confident, board-level, inspiring — about the innovation, scale, and what this means for operations. No bullet points. No markdown. Just 3 sentences.';
+    var resp = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + process.env.NVIDIA_API_KEY },
+      body: JSON.stringify({ model: 'meta/llama-3.2-90b-vision-instruct', messages: [{ role: 'user', content: prompt }], max_tokens: 280, temperature: 0.75 })
+    });
+    var data = await resp.json();
+    _deckNarrative = data.choices[0].message.content.trim();
+    _deckNarrativeAt = Date.now();
+    res.json({ success: true, narrative: _deckNarrative });
+  } catch(e) {
+    res.json({ success: true, narrative: 'OpsAIHub stands as a landmark achievement in QSR operations intelligence — an enterprise-grade platform conceived, built, and deployed by a single operations leader with no software background, now serving 44 stores and 10 area managers across 5 regions of India in under 90 days. Powered by NVIDIA Vision AI and Google Gemini, it delivers real-time compliance grading, intelligent task management, and AI-authored executive reporting at a fraction of the time and cost of any outsourced alternative. This is proof that deep operational expertise, paired with the right AI technologies, can produce outcomes that redefine what field operations management looks like.' });
+  }
+});
+
 // Test endpoint — sends weekly infographic to Jahid's personal email only
 app.get('/api/weekly-infographic/test', async function(req, res) {
   if (req.query.secret !== (process.env.HOD_SECRET || 'opsaihub2025')) return res.status(401).json({ success: false });
