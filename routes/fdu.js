@@ -4,7 +4,24 @@ const router = express.Router();
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+const { execFile } = require('child_process');
+const { promisify } = require('util');
+const execFileAsync = promisify(execFile);
 const { readJSON, writeJSON } = require('../services/store');
+
+async function toJpegBuffer(filePath, width, height, quality) {
+  var sharp = require('sharp');
+  try {
+    return await sharp(filePath).resize(width, height, { fit: 'inside' }).jpeg({ quality }).toBuffer();
+  } catch (e) {
+    // ponytail: heif-convert fallback for HEIC files uploaded with .jpg extension
+    var tmp = filePath + '.heif.jpg';
+    await execFileAsync('heif-convert', [filePath, tmp]);
+    var buf = await sharp(tmp).resize(width, height, { fit: 'inside' }).jpeg({ quality }).toBuffer();
+    fs.unlink(tmp, function() {});
+    return buf;
+  }
+}
 
 const fduUpload = multer({
   storage: multer.diskStorage({
@@ -22,15 +39,44 @@ const donutUpload = multer({
   limits: { fileSize: 20 * 1024 * 1024 }
 }).fields([{ name: 'photo1' }, { name: 'photo2' }]);
 
-var Anthropic = require('@anthropic-ai/sdk');
+const NVIDIA_API_KEY = process.env.NVIDIA_API_KEY;
+const NVIDIA_MODEL = 'meta/llama-3.2-90b-vision-instruct';
+
+async function nvidiaChat(messages) {
+  const resp = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + NVIDIA_API_KEY },
+    body: JSON.stringify({ model: NVIDIA_MODEL, messages: messages, max_tokens: 1024, temperature: 0.1 })
+  });
+  const text = await resp.text();
+  if (!resp.ok) throw new Error('NVIDIA API ' + resp.status + ': ' + text.substring(0, 200));
+  const data = JSON.parse(text);
+  return data.choices[0].message.content;
+}
 
 router.get('/submissions', function(req, res) {
-  try { res.json({ success: true, data: readJSON('fdu_submissions.json', []) }); }
+  try {
+    var data = readJSON('fdu_submissions.json', []);
+    var days = parseInt(req.query.days);
+    if (days > 0) {
+      var cutoff = new Date(Date.now() - days * 86400000).toISOString().slice(0, 10);
+      data = data.filter(function(d) { return (d.submittedAt || d.date || '').slice(0, 10) >= cutoff; });
+    }
+    res.json({ success: true, data: data });
+  }
   catch(err) { res.status(500).json({ success: false }); }
 });
 
 router.get('/donut-results', function(req, res) {
-  try { res.json({ success: true, data: readJSON('fdu_donut_submissions.json', []) }); }
+  try {
+    var data = readJSON('fdu_donut_submissions.json', []);
+    var days = parseInt(req.query.days);
+    if (days > 0) {
+      var cutoff = new Date(Date.now() - days * 86400000).toISOString().slice(0, 10);
+      data = data.filter(function(d) { return (d.submittedAt || d.date || '').slice(0, 10) >= cutoff; });
+    }
+    res.json({ success: true, data: data });
+  }
   catch(err) { res.status(500).json({ success: false }); }
 });
 
@@ -76,58 +122,132 @@ router.get('/links', function(req, res) {
   catch(err) { res.status(500).json({ success: false }); }
 });
 
+router.get('/standards', function(req, res) {
+  try {
+    var standards = readJSON('fdu_standards.json', { storeSizes: {}, layouts: {}, timbitVariants: [] });
+    var store = req.query.store;
+    if (store) {
+      var size = (standards.storeSizes || {})[store] || '5ft';
+      var layout = (standards.layouts || {})[size] || (standards.layouts || {})['5ft'] || {};
+      return res.json({ success: true, store: store, size: size, layout: layout, timbitVariants: standards.timbitVariants || [], all: standards });
+    }
+    res.json({ success: true, standards: standards });
+  } catch(err) { res.status(500).json({ success: false, error: err.message }); }
+});
+
+router.post('/standards', function(req, res) {
+  try {
+    var incoming = req.body;
+    if (!incoming || typeof incoming !== 'object') return res.status(400).json({ success: false, error: 'Invalid body' });
+    incoming.updatedAt = new Date().toISOString();
+    writeJSON('fdu_standards.json', incoming);
+    res.json({ success: true });
+  } catch(err) { res.status(500).json({ success: false, error: err.message }); }
+});
+
 router.post('/submit', fduUpload, async function(req, res) {
   try {
     var now = new Date();
-    var ist = new Date(now.getTime() + 5.5 * 60 * 60 * 1000);
-    var cutoff = new Date(ist); cutoff.setHours(11,30,0,0);
-    var onTime = ist <= cutoff;
     var entry = {
       id: Date.now().toString(),
       store: req.body.store || '',
       am: (req.body.am || '').replace('Area Manager: ', '').trim(),
       submittedAt: now.toISOString(),
-      onTime: onTime,
+      onTime: true,
       photos: req.files && req.files.photo ? ['/uploads/fdu/' + req.files.photo[0].filename] : [],
-      topRow: '', midRow: '', timbits: '', water: '', tags: '',
-      topRowFeedback: '', midRowFeedback: '', timbitsFeedback: '', waterFeedback: '', tagsFeedback: '',
-      overallPass: false, summary: ''
+      /* legacy fields — kept for history view backward compat */
+      topRow: '', midRow: '', timbits: '', tags: '',
+      topRowFeedback: '', midRowFeedback: '', timbitsFeedback: '', tagsFeedback: '',
+      overallPass: false, summary: '',
+      /* rich grading fields */
+      fduSize: '',
+      dreamBasketsFound: null, dreamBasketsRequired: null, dreamMinPerBasket: null, dreamPass: null, dreamFeedback: '',
+      classicBasketsFound: null, classicBasketsRequired: null, classicMinPerBasket: null, classicPass: null, classicFeedback: '',
+      timbitBasketsFound: null, timbitBasketsRequired: null, timbitMinPerBasket: null,
+      timbitVariantsPresent: [], timbitVariantsMissing: [], timbitPass: null, timbitFeedback: '',
+      tagsPass: null, tagsFeedback: ''
     };
     try {
-      var sharp = require('sharp');
-      var aiClient = new Anthropic.Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
       var photoPath = req.files && req.files.photo ? req.files.photo[0].path : null;
       var msgContent = [];
       if (photoPath && fs.existsSync(photoPath)) {
-        var imgBuf = await sharp(photoPath).resize(1200,1600,{fit:'inside'}).jpeg({quality:70}).toBuffer();
-        msgContent.push({ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: imgBuf.toString('base64') } });
+        var imgBuf = await toJpegBuffer(photoPath, 800, 800, 75);
+        msgContent.push({ type: 'image_url', image_url: { url: 'data:image/jpeg;base64,' + imgBuf.toString('base64') } });
       }
-      msgContent.push({ type: 'text', text: 'You are a strict Tim Hortons India FDU quality inspector. Inspect this FDU display photo against these exact SOPs: 1. TOP ROW (Dream Donuts): minimum 3 donuts in EACH basket. 2. MIDDLE ROW (Classic Donuts): minimum 2 donuts in EACH basket. 3. TIMBITS ROW: minimum 10 timbits in EACH basket. 4. BOTTOM SHELF: minimum 8 Tim Hortons water bottles upright centered labels forward. 5. TAGS: all price/name tags present neat and visible. Count carefully. Partial compliance = FAIL. Be specific about which basket fails. Respond ONLY in valid JSON no markdown no extra text: {"topRow":"Pass or Fail","midRow":"Pass or Fail","timbits":"Pass or Fail","water":"Pass or Fail","tags":"Pass or Fail","topRowFeedback":"one sentence","midRowFeedback":"one sentence","timbitsFeedback":"one sentence","waterFeedback":"one sentence","tagsFeedback":"one sentence","overallPass":true or false,"summary":"one sentence"}' });
-      var resp = await aiClient.messages.create({ model: 'claude-opus-4-8', max_tokens: 1024, messages: [{ role: 'user', content: msgContent }] });
-      var raw = resp.content[0].text.trim().replace(/^```json\s*/i,'').replace(/^```/,'').replace(/```$/,'').trim();
-      var parsed = JSON.parse(raw);
-      entry.topRow = parsed.topRow || 'Pass';
-      entry.midRow = parsed.midRow || 'Pass';
-      entry.timbits = parsed.timbits || 'Pass';
-      entry.water = parsed.water || 'Pass';
-      entry.tags = parsed.tags || 'Pass';
-      entry.topRowFeedback = parsed.topRowFeedback || '';
-      entry.midRowFeedback = parsed.midRowFeedback || '';
-      entry.timbitsFeedback = parsed.timbitsFeedback || '';
-      entry.waterFeedback = parsed.waterFeedback || '';
+      var standards = readJSON('fdu_standards.json', { storeSizes: {}, layouts: {} });
+      var storeSize = (standards.storeSizes || {})[entry.store] || '5ft';
+      var layout = (standards.layouts || {})[storeSize] || {};
+      var shelves = layout.shelves || [];
+      var topShelf   = shelves.find(function(s){ return s.id === 'top'; })    || { baskets: 5, minPerBasket: 3 };
+      var midShelf   = shelves.find(function(s){ return s.id === 'middle'; }) || { baskets: 5, minPerBasket: 3 };
+      var btmShelf   = shelves.find(function(s){ return s.id === 'bottom'; }) || { baskets: 4, minPerBasket: 10 };
+      var timbitNames = (standards.timbitVariants || []).map(function(t){ return t.name; }).join(', ') || 'Original Glazed, Chocolate, Blueberry, Birthday Cake';
+      var timbitList = (standards.timbitVariants || []).map(function(t){ return t.name; });
+      var inspectPrompt = 'You are a strict Tim Hortons India FDU quality inspector for ' + entry.store + ' (' + storeSize + ' FDU).' +
+        ' MANDATORY STANDARDS FOR THIS STORE:' +
+        ' TOP ROW (Dream Donuts): ' + topShelf.baskets + ' baskets, min ' + topShelf.minPerBasket + ' donuts per basket.' +
+        ' MIDDLE ROW (Classic Donuts): ' + midShelf.baskets + ' baskets, min ' + midShelf.minPerBasket + ' donuts per basket.' +
+        ' BOTTOM ROW (Tim Bits): ' + btmShelf.baskets + ' baskets, min ' + btmShelf.minPerBasket + ' per basket. All 4 variants must be present: ' + timbitNames + '.' +
+        ' TAGS: every basket must have a price + name tag, neat and visible.' +
+        ' COUNT EVERY BASKET. Partial compliance = FAIL.' +
+        ' Respond ONLY in valid JSON (no markdown): {' +
+        '"fduSize":"' + storeSize + '",' +
+        '"dreamBasketsFound":<integer>,"dreamBasketsRequired":' + topShelf.baskets + ',"dreamMinPerBasket":' + topShelf.minPerBasket + ',' +
+        '"dreamPass":<true if all baskets present with min qty each, else false>,"dreamFeedback":"<baskets found/required, any sparse baskets>",' +
+        '"classicBasketsFound":<integer>,"classicBasketsRequired":' + midShelf.baskets + ',"classicMinPerBasket":' + midShelf.minPerBasket + ',' +
+        '"classicPass":<true/false>,"classicFeedback":"<baskets found/required>",' +
+        '"timbitBasketsFound":<integer>,"timbitBasketsRequired":' + btmShelf.baskets + ',"timbitMinPerBasket":' + btmShelf.minPerBasket + ',' +
+        '"timbitVariantsPresent":<array — only names from ' + JSON.stringify(timbitList) + ' that are clearly visible>,' +
+        '"timbitVariantsMissing":<array — names from that list not visible>,' +
+        '"timbitPass":<true if all baskets + all 4 variants + min qty each, else false>,"timbitFeedback":"<baskets + which variants present/missing>",' +
+        '"tagsPass":<true/false>,"tagsFeedback":"<one sentence>",' +
+        '"overallPass":<true only if every section passes>,"summary":"<one sentence>"}';
+      msgContent.push({ type: 'text', text: inspectPrompt });
+      var raw = await nvidiaChat([{ role: 'user', content: msgContent }]);
+      var rawClean = raw.trim().replace(/^```json\s*/i,'').replace(/^```/,'').replace(/```$/,'').trim();
+      var parsed = JSON.parse(rawClean);
+      /* rich grading fields */
+      entry.fduSize = parsed.fduSize || storeSize;
+      entry.dreamBasketsFound = typeof parsed.dreamBasketsFound === 'number' ? parsed.dreamBasketsFound : null;
+      entry.dreamBasketsRequired = topShelf.baskets;
+      entry.dreamMinPerBasket = topShelf.minPerBasket;
+      entry.dreamPass = parsed.dreamPass === true ? true : parsed.dreamPass === false ? false : null;
+      entry.dreamFeedback = parsed.dreamFeedback || '';
+      entry.classicBasketsFound = typeof parsed.classicBasketsFound === 'number' ? parsed.classicBasketsFound : null;
+      entry.classicBasketsRequired = midShelf.baskets;
+      entry.classicMinPerBasket = midShelf.minPerBasket;
+      entry.classicPass = parsed.classicPass === true ? true : parsed.classicPass === false ? false : null;
+      entry.classicFeedback = parsed.classicFeedback || '';
+      entry.timbitBasketsFound = typeof parsed.timbitBasketsFound === 'number' ? parsed.timbitBasketsFound : null;
+      entry.timbitBasketsRequired = btmShelf.baskets;
+      entry.timbitMinPerBasket = btmShelf.minPerBasket;
+      entry.timbitVariantsPresent = Array.isArray(parsed.timbitVariantsPresent) ? parsed.timbitVariantsPresent : [];
+      entry.timbitVariantsMissing = Array.isArray(parsed.timbitVariantsMissing) ? parsed.timbitVariantsMissing : [];
+      entry.timbitPass = parsed.timbitPass === true ? true : parsed.timbitPass === false ? false : null;
+      entry.timbitFeedback = parsed.timbitFeedback || '';
+      entry.tagsPass = parsed.tagsPass === true;
       entry.tagsFeedback = parsed.tagsFeedback || '';
-      entry.overallPass = parsed.overallPass !== false;
+      /* legacy fields for backward compat */
+      entry.topRow = entry.dreamPass === true ? 'Pass' : 'Fail';
+      entry.topRowFeedback = entry.dreamFeedback;
+      entry.midRow = entry.classicPass === true ? 'Pass' : 'Fail';
+      entry.midRowFeedback = entry.classicFeedback;
+      entry.timbits = entry.timbitPass === true ? 'Pass' : 'Fail';
+      entry.timbitsFeedback = entry.timbitFeedback;
+      entry.tags = entry.tagsPass ? 'Pass' : 'Fail';
+      entry.overallPass = parsed.overallPass === true;
       entry.summary = parsed.summary || '';
     } catch(aiErr) {
       console.error('FDU AI grading error:', aiErr.message);
       entry.topRow = 'Submitted'; entry.midRow = 'Submitted';
-      entry.timbits = 'Submitted'; entry.water = 'Submitted'; entry.tags = 'Submitted';
-      entry.overallPass = true; entry.summary = 'Photo submitted. Manual review pending.';
+      entry.timbits = 'Submitted'; entry.tags = 'Submitted';
+      entry.overallPass = null; entry.pendingReview = true;
+      entry.summary = 'Photo submitted. Manual review pending.';
     }
     var data = readJSON('fdu_submissions.json', []);
     data.push(entry);
     writeJSON('fdu_submissions.json', data);
-    res.json({ success: true, onTime: onTime, entry: entry });
+    res.json({ success: true, onTime: true, entry: entry });
   } catch(err) { res.status(500).json({ success: false, error: err.message }); }
 });
 
@@ -146,43 +266,54 @@ router.post('/donut-submit', donutUpload, async function(req, res) {
       donut2: { id: d2.id || '', name: d2.name || '', standards: d2.standards || '' },
       photo1: req.files && req.files.photo1 ? '/uploads/fdu/' + req.files.photo1[0].filename : '',
       photo2: req.files && req.files.photo2 ? '/uploads/fdu/' + req.files.photo2[0].filename : '',
-      grade1: '', grade2: '', feedback1: '', feedback2: '', overallPass: true, summary: ''
+      grade1: '', grade2: '', feedback1: '', feedback2: '', overallPass: null, summary: '', pendingReview: true
     };
     try {
-      var sharp = require('sharp');
-      var aiClient = new Anthropic.Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-      var waterStd = 'Minimum 6 Tim Hortons water bottles upright on bottom FDU shelf, labels forward, no gaps, clean.';
-      var textPrompt = 'You are a strict Tim Hortons India QSR quality inspector. Grade each item ONLY against its exact SOP standards. Be strict — partial compliance is a FAIL.' +
-        ' DONUT 1 — ' + entry.donut1.name + ' (' + (entry.donut1.type || '') + '). SOP STANDARDS: ' + entry.donut1.standards +
-        ' DONUT 2 — ' + entry.donut2.name + ' (' + (entry.donut2.type || '') + '). SOP STANDARDS: ' + entry.donut2.standards +
-        ' WATER BOTTLES — Check Photo 1 (FDU display). SOP STANDARDS: ' + waterStd +
-        ' For each donut: check coating evenness, topping/drizzle count and pattern, quantity in basket (min 3), shape and finish.' +
-        ' For water bottles: count visible bottles (min 6), check upright position, label visibility, gaps.' +
-        ' Respond ONLY in valid JSON, no markdown: {"grade1":"Pass or Fail","grade2":"Pass or Fail","waterBottles":"Pass or Fail","feedback1":"specific one sentence citing exact SOP deviation if fail","feedback2":"specific one sentence citing exact SOP deviation if fail","feedbackWater":"one sentence on water bottle compliance","overallPass":true or false,"summary":"one sentence overall"}';
-      var donutMsgContent = [];
       var photo1Path = req.files && req.files.photo1 ? req.files.photo1[0].path : null;
       var photo2Path = req.files && req.files.photo2 ? req.files.photo2[0].path : null;
+
+      // Call 1: Grade Donut 1
       if (photo1Path && fs.existsSync(photo1Path)) {
-        var img1Buf = await sharp(photo1Path).resize(1200, 1600, { fit: 'inside' }).jpeg({ quality: 70 }).toBuffer();
-        donutMsgContent.push({ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: img1Buf.toString('base64') } });
+        var img1Buf = await toJpegBuffer(photo1Path, 400, 400, 50);
+        var prompt1 = 'You are a strict QSR quality inspector. Analyze this donut photo. Donut: ' + entry.donut1.name + '. Standards: ' + entry.donut1.standards + '. Check: coating evenness, topping count, quantity (min 3), shape. Respond with ONLY valid JSON, no other text: {"grade":"Pass or Fail","feedback":"one sentence on compliance"}';
+        var raw1 = await nvidiaChat([{ role: 'user', content: [
+          { type: 'image_url', image_url: { url: 'data:image/jpeg;base64,' + img1Buf.toString('base64') } },
+          { type: 'text', text: prompt1 }
+        ] }]);
+        raw1 = raw1.trim().replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '').trim();
+        var jsonMatch1 = raw1.match(/\{[^}]+\}/);
+        if (jsonMatch1) {
+          var p1 = JSON.parse(jsonMatch1[0]);
+          entry.grade1 = (p1.grade === 'Pass' || p1.grade === 'Fail') ? p1.grade : 'Pending Review';
+          entry.feedback1 = p1.feedback || '';
+        }
       }
+
+      // Call 2: Grade Donut 2
       if (photo2Path && fs.existsSync(photo2Path)) {
-        var img2Buf = await sharp(photo2Path).resize(1200, 1600, { fit: 'inside' }).jpeg({ quality: 70 }).toBuffer();
-        donutMsgContent.push({ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: img2Buf.toString('base64') } });
+        var img2Buf = await toJpegBuffer(photo2Path, 400, 400, 50);
+        var prompt2 = 'You are a strict QSR quality inspector. Analyze this donut photo. Donut: ' + entry.donut2.name + '. Standards: ' + entry.donut2.standards + '. Check: coating evenness, topping count, quantity (min 3), shape. Respond with ONLY valid JSON, no other text: {"grade":"Pass or Fail","feedback":"one sentence on compliance"}';
+        var raw2 = await nvidiaChat([{ role: 'user', content: [
+          { type: 'image_url', image_url: { url: 'data:image/jpeg;base64,' + img2Buf.toString('base64') } },
+          { type: 'text', text: prompt2 }
+        ] }]);
+        raw2 = raw2.trim().replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '').trim();
+        var jsonMatch2 = raw2.match(/\{[^}]+\}/);
+        if (jsonMatch2) {
+          var p2 = JSON.parse(jsonMatch2[0]);
+          entry.grade2 = (p2.grade === 'Pass' || p2.grade === 'Fail') ? p2.grade : 'Pending Review';
+          entry.feedback2 = p2.feedback || '';
+        }
       }
-      donutMsgContent.push({ type: 'text', text: textPrompt });
-      var resp = await aiClient.messages.create({ model: 'claude-opus-4-8', max_tokens: 1024, messages: [{ role: 'user', content: donutMsgContent }] });
-      var rawText = resp.content[0].text.trim();
-      rawText = rawText.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '').trim();
-      var parsed = JSON.parse(rawText);
-      entry.grade1 = parsed.grade1 || 'Pass';
-      entry.grade2 = parsed.grade2 || 'Pass';
-      entry.waterBottles = parsed.waterBottles || 'Submitted';
-      entry.feedback1 = parsed.feedback1 || '';
-      entry.feedback2 = parsed.feedback2 || '';
-      entry.feedbackWater = parsed.feedbackWater || '';
-      entry.overallPass = parsed.overallPass !== false;
-      entry.summary = parsed.summary || '';
+
+      if (entry.grade1 === 'Pending Review' || entry.grade2 === 'Pending Review') {
+        entry.overallPass = null;
+        entry.pendingReview = true;
+        entry.summary = 'AI grading incomplete. Manual review required.';
+      } else {
+        entry.overallPass = entry.grade1 === 'Pass' && entry.grade2 === 'Pass';
+        entry.summary = entry.grade1 === 'Pass' && entry.grade2 === 'Pass' ? 'Both donuts pass SOP standards.' : 'One or more donuts failed inspection.';
+      }
     } catch(aiErr) {
       console.error('AI grading error:', aiErr.message);
       entry.grade1 = 'Submitted';
