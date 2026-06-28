@@ -682,6 +682,85 @@ cron.schedule('0 9 * * 1', function() {
   }
 }, { timezone: 'Asia/Kolkata' });
 
+// 10:00 AM IST every Wednesday — Udeep open-ticket closure reminder
+cron.schedule('0 10 * * 3', function() {
+  try {
+    var tickets = readJSON('maintenance_tickets.json', []);
+    var open = tickets.filter(function(t) { return t.status === 'open'; });
+    var resolved = tickets.filter(function(t) { return t.status === 'resolved'; });
+    var totalOpen = open.length + resolved.length;
+    if (!totalOpen) return;
+
+    var p1 = open.filter(function(t) { return t.priority === 'p1'; });
+    var urgent = open.filter(function(t) { return t.priority === 'urgent'; });
+    var normal = open.filter(function(t) { return t.priority === 'normal'; });
+
+    function fmt(n) { return Number(n || 0).toLocaleString('en-IN'); }
+    function priBadge(p) {
+      if (p === 'p1') return '<span style="display:inline-block;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700;color:#fff;background:#C8102E;">⚡ P1</span>';
+      if (p === 'urgent') return '<span style="display:inline-block;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700;color:#C8102E;background:#FEE8E8;">🔴 Urgent</span>';
+      return '<span style="display:inline-block;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700;color:#1B7A3A;background:#D4EDDA;">🟢 Normal</span>';
+    }
+    function daysSince(iso) {
+      if (!iso) return '—';
+      return Math.floor((Date.now() - new Date(iso).getTime()) / 86400000) + 'd';
+    }
+    function ticketRow(t) {
+      return '<tr>'
+        + '<td style="padding:8px 10px;border-bottom:1px solid #F0F0F5;font-size:12px;"><strong>' + t.store + '</strong><br><span style="font-size:10px;color:#8E8E93;">' + (t.am || 'Unassigned') + '</span></td>'
+        + '<td style="padding:8px 10px;border-bottom:1px solid #F0F0F5;font-size:12px;">' + t.category + '</td>'
+        + '<td style="padding:8px 10px;border-bottom:1px solid #F0F0F5;">' + priBadge(t.priority) + '</td>'
+        + '<td style="padding:8px 10px;border-bottom:1px solid #F0F0F5;font-size:12px;color:#8E8E93;">' + daysSince(t.submittedAt) + '</td>'
+        + '<td style="padding:8px 10px;border-bottom:1px solid #F0F0F5;font-size:11px;color:#3A3A3C;">' + (t.description || '').substring(0, 80) + '</td>'
+        + '</tr>';
+    }
+
+    var th = 'padding:9px 10px;font-size:10px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:0.5px;border-bottom:2px solid #E5E5EA;text-align:left;';
+    var allRows = open.map(ticketRow).join('') + resolved.map(ticketRow).join('');
+
+    var html = eWrap(
+      '<div style="font-size:22px;font-weight:800;color:#1C1C1E;margin-bottom:4px;">🔧 Weekly Maintenance Closure Reminder</div>'
+      + '<div style="font-size:13px;color:#8E8E93;margin-bottom:20px;">Hi Udeep — these tickets are still open and need your attention.</div>'
+
+      + '<table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin-bottom:20px;"><tr>'
+      + '<td width="33%" style="padding:5px;"><table width="100%" cellpadding="0" cellspacing="0" role="presentation"><tr>'
+      + '<td style="background:#C8102E;border-radius:10px;padding:16px 8px;text-align:center;">'
+      + '<div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px;">Open Tickets</div>'
+      + '<div style="font-size:30px;font-weight:800;color:#fff;line-height:1;">' + open.length + '</div>'
+      + (p1.length ? '<div style="font-size:11px;color:#FFD60A;margin-top:5px;">⚡ ' + p1.length + ' P1 Critical</div>' : '')
+      + '</td></tr></table></td>'
+      + '<td width="33%" style="padding:5px;"><table width="100%" cellpadding="0" cellspacing="0" role="presentation"><tr>'
+      + '<td style="background:#FF9500;border-radius:10px;padding:16px 8px;text-align:center;">'
+      + '<div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px;">Awaiting Verification</div>'
+      + '<div style="font-size:30px;font-weight:800;color:#fff;line-height:1;">' + resolved.length + '</div>'
+      + '</td></tr></table></td>'
+      + '<td width="33%" style="padding:5px;"><table width="100%" cellpadding="0" cellspacing="0" role="presentation"><tr>'
+      + '<td style="background:#34C759;border-radius:10px;padding:16px 8px;text-align:center;">'
+      + '<div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px;">Urgent Open</div>'
+      + '<div style="font-size:30px;font-weight:800;color:#fff;line-height:1;">' + urgent.length + '</div>'
+      + '</td></tr></table></td>'
+      + '</tr></table>'
+
+      + '<table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-radius:10px;overflow:hidden;border:1px solid #E5E5EA;margin-bottom:20px;">'
+      + '<thead><tr style="background:#F5F5F7;">'
+      + '<th style="' + th + '">Store / AM</th><th style="' + th + '">Category</th><th style="' + th + '">Priority</th>'
+      + '<th style="' + th + '">Age</th><th style="' + th + '">Issue</th>'
+      + '</tr></thead><tbody>' + allRows + '</tbody></table>'
+
+      + '<p style="font-size:13px;color:#3A3A3C;line-height:1.6;">Please resolve these tickets and update the dashboard. P1 Critical tickets need <strong>immediate attention</strong>.</p>'
+      + eBtn('Open Maintenance Dashboard', 'https://opsaihub.in/maintenance-dashboard.html'),
+      "Tim's Ops Connect", 'Weekly Maintenance Reminder'
+    );
+
+    var now = new Date();
+    var subject = '🔧 [' + totalOpen + ' Open] Maintenance Closure Reminder — Week of ' + now.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    sendEmail(MAINTENANCE_EMAIL, subject, html);
+    console.log('[CRON] Maintenance closure reminder sent to Udeep —', totalOpen, 'open tickets');
+  } catch (err) {
+    console.error('[CRON] Maintenance reminder error:', err.message);
+  }
+}, { timezone: 'Asia/Kolkata' });
+
 // 3:00 PM IST — afternoon checklist reminder
 cron.schedule('0 15 * * *', function() {
   var subs = readJSON('push_subscriptions.json', []);
@@ -963,6 +1042,7 @@ app.post('/api/test-email', strictLimiter, function(req, res) {
 app.use('/api/ai-academy', require('./routes/ai-academy'));
 app.use('/uploads/challenge', express.static(path.join(__dirname, 'uploads/challenge')));
 app.use('/api/challenge', require('./routes/challenge'));
+app.use('/api/anomalies', require('./routes/anomalies'));
 
 // Leadership deck stats
 app.get('/api/leadership-stats', function(req, res) {

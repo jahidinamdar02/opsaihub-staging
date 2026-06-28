@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0">
 <title>Team Feed — Tim's Ops Connect</title>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="timsy.css">
-<style>
+<link rel="stylesheet" href="styles.css"><style>
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html { scroll-behavior:smooth; overscroll-behavior-y:contain; }
@@ -588,13 +586,6 @@ body{padding-top:56px!important;padding-bottom:calc(var(--nav-h,64px) + 16px)!im
   <span style="font-size:22px;color:var(--red);font-weight:700;line-height:1;">&#x2B;</span>
 </div>
 
-<!-- CHECK-IN BAR -->
-<div class="checkin-bar" id="checkinBar" onclick="openCheckin()">
-  <span style="font-size:20px;">&#x1F4CD;</span>
-  <span id="checkinLabel" style="font-size:14px;color:var(--text2);flex:1;">Check in to a store</span>
-  <span class="checkin-tap" style="font-size:12px;font-weight:700;color:var(--red);">TAP &#x2192;</span>
-</div>
-
 <!-- TRENDING BAR -->
 <div class="trending-bar" id="trendingBar" style="display:none;">
   <div class="trending-label">&#x1F525; Trending</div>
@@ -674,23 +665,6 @@ body{padding-top:56px!important;padding-bottom:calc(var(--nav-h,64px) + 16px)!im
 </div>
 
 <!-- CHECK-IN SHEET -->
-<div class="sheet" id="checkinSheet">
-  <div class="sheet-backdrop" onclick="closeCheckin()"></div>
-  <div class="sheet-body">
-    <div class="sheet-handle"></div>
-    <div class="sheet-title">&#x1F4CD; Store Check-In</div>
-    <div class="sheet-content">
-      <div style="font-size:13px;color:var(--text3);margin-bottom:4px;">Checking in as</div>
-      <div id="checkinAmName" style="font-size:17px;font-weight:700;color:var(--red);margin-bottom:16px;"></div>
-      <div style="font-size:13px;font-weight:600;color:var(--text2);margin-bottom:8px;">Which store are you at?</div>
-      <select class="field-select" id="checkinStore" style="margin-bottom:20px;">
-        <option value="">Loading your stores...</option>
-      </select>
-      <button onclick="submitCheckin()" class="qp-submit" id="checkinSubmitBtn">Check In &#x2713;</button>
-    </div>
-  </div>
-</div>
-
 <!-- QUICK POST SHEET -->
 <div class="sheet" id="quickPostSheet">
   <div class="sheet-backdrop" onclick="closeQuickPostSheet()"></div>
@@ -1765,6 +1739,7 @@ function renderPost(post, idx) {
     // Caption — Instagram style: bold username + text
     '<div class="post-caption" id="pcap-'+post.id+'"><span class="author-name">'+post.author+'</span> ' + parseCaption(post.caption) +
       (post.editedAt ? ' <span style="font-size:10px;color:var(--text3);">(edited)</span>' : '') +
+      (post.author === (localStorage.getItem('th_am_name')||'') ? ' <button class="post-edit-btn" onclick="openPostEdit(\''+post.id+'\')" title="Edit">&#x270E;</button>' : '') +
     '</div>' +
     '<div class="post-edit-area" id="pedit-'+post.id+'">' +
       '<textarea id="pedit-txt-'+post.id+'"></textarea>' +
@@ -1961,7 +1936,6 @@ function initQuickPost() {
   var currentAM = localStorage.getItem('th_am_name') || localStorage.getItem('th_feed_name') || '';
   if (!currentAM || currentAM === 'Guest') {
     document.getElementById('quickPostBar').style.display = 'none';
-    document.getElementById('checkinBar').style.display = 'none';
     return;
   }
   var src = getAvatar(currentAM);
@@ -1969,7 +1943,6 @@ function initQuickPost() {
   if (src) {
     avatar.innerHTML = '<img src="' + src + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
   }
-  initCheckin();
 }
 
 function openQuickPost() {
@@ -2055,85 +2028,6 @@ function submitQuickPost() {
 
 var qpSelectedPhoto = null;
 
-// ── CHECK-IN ──
-var checkinStoresLoaded = false;
-
-function initCheckin() {
-  var today = new Date().toISOString().slice(0, 10);
-  var lastDate = localStorage.getItem('th_checkin_date');
-  var lastStore = localStorage.getItem('th_checkin_store');
-  if (lastDate === today && lastStore) {
-    var bar = document.getElementById('checkinBar');
-    bar.classList.add('done');
-    document.getElementById('checkinLabel').textContent = '&#x2713; Checked in at ' + lastStore;
-    bar.onclick = null;
-  }
-}
-
-function openCheckin() {
-  var am = localStorage.getItem('th_am_name') || localStorage.getItem('th_feed_name') || '';
-  if (!am || am === 'Guest') { showToast('Please log in first'); return; }
-  document.getElementById('checkinAmName').textContent = am;
-  if (!checkinStoresLoaded) {
-    fetch('/api/stores/am/' + encodeURIComponent(am))
-      .then(function(r) { return r.json(); })
-      .then(function(d) {
-        var stores = (d.data || []).map(function(s) { return s.name; });
-        var sel = document.getElementById('checkinStore');
-        if (stores.length === 0) {
-          sel.innerHTML = '<option value="">No stores assigned</option>';
-        } else {
-          sel.innerHTML = '<option value="">Select store...</option>' +
-            stores.map(function(s) { return '<option value="' + s + '">' + s + '</option>'; }).join('');
-        }
-        checkinStoresLoaded = true;
-      })
-      .catch(function() {
-        document.getElementById('checkinStore').innerHTML = '<option value="">Could not load stores</option>';
-      });
-  }
-  var btn = document.getElementById('checkinSubmitBtn');
-  btn.disabled = false;
-  btn.textContent = 'Check In ✓';
-  document.getElementById('checkinSheet').classList.add('open');
-}
-
-function closeCheckin() {
-  document.getElementById('checkinSheet').classList.remove('open');
-}
-
-function submitCheckin() {
-  var am = localStorage.getItem('th_am_name') || localStorage.getItem('th_feed_name') || '';
-  var store = document.getElementById('checkinStore').value;
-  if (!store) { showToast('Please select a store'); return; }
-  var days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
-  var day = days[new Date().getDay()];
-  var date = new Date().toISOString().slice(0, 10);
-  var btn = document.getElementById('checkinSubmitBtn');
-  btn.disabled = true;
-  btn.textContent = 'Checking in...';
-  fetch('/api/submissions', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('th_token') },
-    body: JSON.stringify({ am: am, store: store, day: day, date: date })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function() {
-    closeCheckin();
-    var bar = document.getElementById('checkinBar');
-    bar.classList.add('done');
-    document.getElementById('checkinLabel').textContent = '✓ Checked in at ' + store;
-    bar.onclick = null;
-    localStorage.setItem('th_checkin_date', date);
-    localStorage.setItem('th_checkin_store', store);
-    showToast('Checked in at ' + store + ' ✓');
-  })
-  .catch(function() {
-    btn.disabled = false;
-    btn.textContent = 'Check In ✓';
-    showToast('Check-in failed, please try again');
-  });
-}
 
 // ── TOAST ──
 function showToast(msg) {
@@ -3033,33 +2927,4 @@ function renderPresence(online) {
   </div>
 </footer>
 <script src="skeleton.js"></script>
-
-<!-- TIMSY BOT -->
-
-
-<!-- TIMSY BOT -->
-<div id="timsy-launcher" onclick="toggleTimsy()">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-<div style="position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:#34C759;border-radius:50%;border:2px solid #000;"></div>
-</div>
-<div id="timsy-chat">
-<div style="background:linear-gradient(135deg,#c8102e,#a00d24);padding:16px 20px;display:flex;align-items:center;gap:12px;">
-<div style="width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">&#9749;</div>
-<div style="flex:1;"><div style="font-weight:800;font-size:1em;color:#fff;">Timsy</div><div style="font-size:0.7em;color:rgba(255,255,255,0.7);">Ops Assistant &#8226; Online</div></div>
-<div id="timsy-voice-btn" onclick="toggleVoice()" style="cursor:pointer;color:rgba(255,255,255,0.7);font-size:0.7em;padding:4px 8px;border:1px solid rgba(255,255,255,0.3);border-radius:12px;" title="Toggle voice">&#128266;</div>
-<div class="timsy-close-btn" onclick="toggleTimsy()">&#10005;</div>
-</div>
-<div id="timsy-messages">
-<div style="display:flex;gap:8px;align-items:flex-start;">
-<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">&#9749;</div>
-<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">Hey there! I am <b style="color:#c8102e;">Timsy</b>, your ops assistant. Ask me about stores, ratings, FDU compliance, donuts, tasks, or anything on OpsAIHub!</div>
-</div>
-</div>
-<div style="padding:12px 16px;border-top:1px solid #222;display:flex;gap:10px;align-items:center;">
-<input id="timsy-input" type="text" placeholder="Ask Timsy..." onkeydown="if(event.key==='Enter')sendTimsy()">
-<div onclick="sendTimsy()" style="width:38px;height:38px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
-</div>
-</div>
-
-<script src="timsy.js"></script>
 </html>

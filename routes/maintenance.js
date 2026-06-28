@@ -71,8 +71,12 @@ function nextTicketId() {
   var tickets = readJSON('maintenance_tickets.json', []);
   var today = new Date().toISOString().substring(0, 10).replace(/-/g, '');
   var prefix = 'MT-' + today + '-';
-  var todayCount = tickets.filter(function(t) { return t.id && t.id.startsWith(prefix); }).length;
-  return prefix + String(todayCount + 1).padStart(3, '0');
+  var existing = tickets.filter(function(t) { return t.id && t.id.startsWith(prefix); });
+  var maxNum = existing.reduce(function(m, t) {
+    var n = parseInt(t.id.replace(prefix, ''), 10);
+    return isNaN(n) ? m : Math.max(m, n);
+  }, 0);
+  return prefix + String(maxNum + 1).padStart(3, '0');
 }
 
 function ticketEmailBody(ticket, heading, extra) {
