@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1.0">
+<title>Bulk User Import — OpsAIHub</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{background:#F5F5F7;min-height:100vh;padding-bottom:60px;padding-top:var(--nav-h);}
+.hdr{background:var(--red);padding:calc(env(safe-area-inset-top,0px)+18px) 20px 18px;text-align:center;}
+.hdr-logo{font-size:12px;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;}
+.hdr-title{font-size:19px;font-weight:700;color:#fff;}
+.hdr-sub{font-size:11px;color:rgba(255,255,255,0.6);margin-top:2px;}
+.wrap{max-width:480px;margin:0 auto;padding:0 16px;}
+.card{background:#fff;border-radius:14px;padding:16px;margin-top:12px;box-shadow:0 1px 4px rgba(0,0,0,0.07);}
+.card-title{font-size:11px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
+.upload-box{border:2px dashed #D1D1D6;border-radius:12px;padding:24px 14px;text-align:center;cursor:pointer;background:#FAFAFA;transition:border-color 0.15s,background 0.15s;}
+.upload-box.has-file{border-color:var(--red);background:#fff;}
+.upload-box.dragover{border-color:var(--red);background:#FEE8E8;}
+.file-name{font-size:13px;font-weight:700;color:#1D1D1F;margin-top:8px;}
+.file-size{font-size:11px;color:#8E8E93;}
+.preview-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:11px;}
+.preview-table th{background:#F9F9F9;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:0.3px;text-align:left;padding:6px 8px;border-bottom:1px solid #E5E5EA;}
+.preview-table td{padding:6px 8px;border-bottom:1px solid #F2F2F7;color:#3A3A3C;}
+.preview-table tr:last-child td{border:none;}
+.role-badge{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;display:inline-block;}
+.role-am{background:#E8F4FD;color:#007AFF;}
+.role-hod{background:#F3E8FD;color:#AF52DE;}
+.role-ceo{background:#FFF3E0;color:#E65100;}
+.role-maintenance{background:#E8F8ED;color:#1B7A3A;}
+.submit-btn{width:100%;padding:16px;border:none;border-radius:14px;background:var(--red);color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity 0.15s;margin-top:12px;}
+.submit-btn:disabled{opacity:0.35;cursor:not-allowed;}
+.result-card{background:#fff;border-radius:14px;padding:16px;margin-top:12px;box-shadow:0 1px 4px rgba(0,0,0,0.07);display:none;}
+.result-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #F2F2F7;}
+.result-row:last-child{border:none;}
+.result-label{font-size:13px;color:#3A3A3C;}
+.result-num{font-size:18px;font-weight:800;}
+.result-num.green{color:#34C759;}
+.result-num.orange{color:#FF9500;}
+.result-num.red{color:#FF3B30;}
+.result-detail{background:#F9F9F9;border-radius:8px;padding:8px 10px;margin-top:6px;font-size:11px;color:#6E6E73;line-height:1.5;}
+.err-item{padding:6px 0;border-bottom:1px solid #F2F2F7;font-size:12px;color:#FF3B30;}
+.err-item:last-child{border:none;}
+.hint{font-size:11px;color:#8E8E93;line-height:1.5;margin-top:8px;}
+.hint strong{color:#3A3A3C;}
+.try-btn{margin-top:12px;padding:10px 22px;border:none;border-radius:10px;background:var(--red);color:#fff;font-size:13px;font-weight:700;cursor:pointer;width:100%;}
+.prog-wrap{margin-top:10px;display:none;}
+.prog-bar{width:100%;height:6px;background:#F2F2F7;border-radius:3px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--red);border-radius:3px;width:0%;transition:width 0.4s ease;}
+.prog-txt{font-size:11px;color:#8E8E93;margin-top:5px;text-align:center;}
+</style>
+</head>
+<body>
+<div class="page-content">
+<div class="hdr">
+  <div class="hdr-logo">&#9749; Tim Hortons India</div>
+  <div class="hdr-title">Bulk User Import</div>
+  <div class="hdr-sub">Upload CSV to create multiple user accounts at once</div>
+</div>
+<div class="wrap">
+
+  <div class="card" id="uploadCard">
+    <div class="card-title">Upload CSV File</div>
+    <div class="upload-box" id="dropZone" onclick="document.getElementById('csvInput').click()">
+      <input type="file" accept=".csv,text/csv" style="display:none;" id="csvInput">
+      <div style="font-size:36px;">&#128206;</div>
+      <div style="font-size:13px;font-weight:700;color:#1D1D1F;margin-top:6px;">Tap to select CSV file</div>
+      <div id="fileInfo" style="display:none;">
+        <div class="file-name" id="fileName"></div>
+        <div class="file-size" id="fileSize"></div>
+      </div>
+    </div>
+    <div class="hint">
+      <strong>CSV format:</strong> name, pin, role, email, storeId<br>
+      Required: name, pin (4 digits). Optional: role (am/hod/ceo/maintenance), email, storeId
+    </div>
+    <button style="width:100%;padding:10px;border:1.5px solid #D1D1D6;border-radius:10px;background:#fff;color:#1D1D1F;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;margin-top:10px;" onclick="downloadTemplate()">&#11015; Download Template CSV</button>
+  </div>
+
+  <div class="card" id="previewCard" style="display:none;">
+    <div class="card-title">Preview (<span id="previewCount">0</span> users)</div>
+    <div id="previewSummary" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;"></div>
+    <div style="overflow-x:auto;">
+      <table class="preview-table">
+        <thead><tr><th>#</th><th>Name</th><th>PIN</th><th>Role</th><th>Email</th><th>Store</th><th>Status</th></tr></thead>
+        <tbody id="previewBody"></tbody>
+      </table>
+    </div>
+    <div id="previewNote" style="font-size:11px;color:#8E8E93;margin-top:8px;display:none;"></div>
+    <button class="submit-btn" id="importBtn" onclick="doImport()">Import Users</button>
+    <div class="prog-wrap" id="progWrap">
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+      <div class="prog-txt" id="progTxt">Uploading...</div>
+    </div>
+  </div>
+
+  <div class="result-card" id="resultCard">
+    <div class="card-title">Import Result</div>
+    <div class="result-row">
+      <span class="result-label">Imported</span>
+      <span class="result-num green" id="rImported">0</span>
+    </div>
+    <div class="result-row">
+      <span class="result-label">Skipped (already exist)</span>
+      <span class="result-num orange" id="rSkipped">0</span>
+    </div>
+    <div class="result-row">
+      <span class="result-label">Errors</span>
+      <span class="result-num red" id="rErrors">0</span>
+    </div>
+    <div id="errorList"></div>
+    <button class="try-btn" onclick="resetForm()">Import More Users</button>
+  </div>
+
+</div>
+</div>
+
+<script>
+var TOKEN = localStorage.getItem('token') || '';
+var ROLE = localStorage.getItem('role') || '';
+var rows = [];
+
+if (!TOKEN || (ROLE !== 'hod' && ROLE !== 'ceo')) {
+  document.querySelector('.wrap').innerHTML = '<div class="card" style="text-align:center;margin-top:24px;"><div style="font-size:36px;margin-bottom:8px;">&#128274;</div><div style="font-size:15px;font-weight:700;color:#1D1D1F;">HOD/CEO Access Required</div><div style="font-size:13px;color:#8E8E93;margin-top:4px;">This page is restricted to Head of Department and CEO roles.</div></div>';
+}
+
+function downloadTemplate() {
+  var csv = 'name,pin,role,email,storeId\nRaman,1234,am,raman.kumar@timhortonsindia.com,inorbit-hyd\nHarish,5678,am,harish.solanki@timhortonsindia.com,koramangala\nNew HOD,9012,hod,newhod@timhortonsindia.com,\n';
+  var blob = new Blob([csv], { type: 'text/csv' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'user-import-template.csv';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+document.getElementById('csvInput').addEventListener('change', function(e) { handleFile(e.target.files[0]); });
+
+var dz = document.getElementById('dropZone');
+dz.addEventListener('dragover', function(e) { e.preventDefault(); dz.classList.add('dragover'); });
+dz.addEventListener('dragleave', function() { dz.classList.remove('dragover'); });
+dz.addEventListener('drop', function(e) { e.preventDefault(); dz.classList.remove('dragover'); if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]); });
+
+function handleFile(file) {
+  if (!file) return;
+  document.getElementById('fileName').textContent = file.name;
+  document.getElementById('fileSize').textContent = (file.size / 1024).toFixed(1) + ' KB';
+  document.getElementById('fileInfo').style.display = 'block';
+  dz.classList.add('has-file');
+
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var text = e.target.result;
+    var lines = text.split(/\r?\n/).filter(function(l) { return l.trim(); });
+    if (lines.length < 2) { alert('CSV must have a header row and at least one data row.'); return; }
+
+    var header = lines[0].toLowerCase().split(',').map(function(h) { return h.trim(); });
+    var nameIdx = header.indexOf('name');
+    var pinIdx = header.indexOf('pin');
+    var roleIdx = header.indexOf('role');
+    var emailIdx = header.indexOf('email');
+    var storeIdx = header.indexOf('storeid') !== -1 ? header.indexOf('storeid') : header.indexOf('store_id');
+
+    if (nameIdx === -1 || pinIdx === -1) {
+      alert('CSV must have "name" and "pin" columns.'); return;
+    }
+
+    rows = [];
+    for (var i = 1; i < lines.length; i++) {
+      var cols = lines[i].split(',').map(function(c) { return c.trim().replace(/^"|"$/g, ''); });
+      if (!cols[nameIdx] || !cols[pinIdx]) continue;
+      rows.push({
+        name: cols[nameIdx] || '',
+        pin: cols[pinIdx] || '',
+        role: (roleIdx !== -1 && cols[roleIdx]) ? cols[roleIdx] : 'am',
+        email: (emailIdx !== -1 && cols[emailIdx]) ? cols[emailIdx] : '',
+        storeId: (storeIdx !== -1 && cols[storeIdx]) ? cols[storeIdx] : ''
+      });
+    }
+
+    if (!rows.length) { alert('No valid rows found in CSV.'); return; }
+
+    var tbody = document.getElementById('previewBody');
+    tbody.innerHTML = '';
+    var warnings = 0;
+    var show = rows.slice(0, 15);
+    show.forEach(function(r, i) {
+      var roleClass = 'role-' + r.role;
+      var issues = [];
+      if (!/^\d{4}$/.test(r.pin)) issues.push('PIN not 4 digits');
+      if (!r.email) issues.push('No email');
+      if (!r.storeId) issues.push('No store');
+      var status = issues.length ? '<span style="color:#FF9500;font-size:10px;">' + issues.join(', ') + '</span>' : '<span style="color:#34C759;font-size:10px;">&#10003; OK</span>';
+      if (issues.length) warnings++;
+      tbody.innerHTML += '<tr><td style="color:#8E8E93;">' + (i + 1) + '</td><td>' + esc(r.name) + '</td><td>' + esc(r.pin) + '</td><td><span class="role-badge ' + roleClass + '">' + esc(r.role) + '</span></td><td>' + esc(r.email || '-') + '</td><td>' + esc(r.storeId || '-') + '</td><td>' + status + '</td></tr>';
+    });
+    if (rows.length > 15) {
+      tbody.innerHTML += '<tr><td colspan="7" style="text-align:center;color:#8E8E93;">... and ' + (rows.length - 15) + ' more rows</td></tr>';
+    }
+    var sumHtml = '<span style="font-size:11px;font-weight:600;color:#1D1D1F;background:#F2F2F7;border-radius:6px;padding:3px 8px;">' + rows.length + ' rows</span>';
+    if (warnings) sumHtml += '<span style="font-size:11px;font-weight:600;color:#FF9500;background:#FFF3E0;border-radius:6px;padding:3px 8px;">' + warnings + ' with warnings</span>';
+    else sumHtml += '<span style="font-size:11px;font-weight:600;color:#1B7A3A;background:#E8F8ED;border-radius:6px;padding:3px 8px;">All valid</span>';
+    document.getElementById('previewSummary').innerHTML = sumHtml;
+    document.getElementById('previewCount').textContent = rows.length;
+    var note = document.getElementById('previewNote');
+    if (warnings) { note.textContent = 'Warnings won\'t block import but missing email/store means those fields won\'t be updated.'; note.style.display = 'block'; }
+    else { note.style.display = 'none'; }
+    document.getElementById('previewCard').style.display = 'block';
+    document.getElementById('resultCard').style.display = 'none';
+  };
+  reader.readAsText(file);
+}
+
+function esc(s) {
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+async function doImport() {
+  if (!rows.length || !TOKEN) return;
+  var btn = document.getElementById('importBtn');
+  var progWrap = document.getElementById('progWrap');
+  var progFill = document.getElementById('progFill');
+  var progTxt = document.getElementById('progTxt');
+  btn.disabled = true; btn.textContent = 'Importing...';
+  progWrap.style.display = 'block';
+  progFill.style.width = '20%'; progTxt.textContent = 'Sending ' + rows.length + ' users...';
+
+  try {
+    progFill.style.width = '40%'; progTxt.textContent = 'Hashing PINs...';
+    var resp = await fetch('/api/users/bulk-import', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + TOKEN },
+      body: JSON.stringify({ users: rows })
+    });
+    progFill.style.width = '70%'; progTxt.textContent = 'Processing results...';
+    var data = await resp.json();
+    progFill.style.width = '100%'; progTxt.textContent = 'Done!';
+
+    document.getElementById('rImported').textContent = data.imported || 0;
+    document.getElementById('rSkipped').textContent = data.skipped || 0;
+    document.getElementById('rErrors').textContent = data.errors || 0;
+
+    var errList = document.getElementById('errorList');
+    errList.innerHTML = '';
+    if (data.details && data.details.errors && data.details.errors.length) {
+      data.details.errors.forEach(function(e) {
+        errList.innerHTML += '<div class="err-item">Row ' + (e.index + 1) + ': ' + esc(e.name) + ' — ' + esc(e.error) + '</div>';
+      });
+    }
+    if (data.details && data.details.skipped && data.details.skipped.length) {
+      data.details.skipped.forEach(function(s) {
+        errList.innerHTML += '<div class="err-item" style="color:#FF9500;">Row ' + (s.index + 1) + ': ' + esc(s.name) + ' — ' + esc(s.reason) + '</div>';
+      });
+    }
+
+    document.getElementById('previewCard').style.display = 'none';
+    document.getElementById('resultCard').style.display = 'block';
+  } catch(e) {
+    alert('Import failed: ' + e.message);
+    progWrap.style.display = 'none';
+    btn.disabled = false; btn.textContent = 'Import Users';
+  }
+}
+
+function resetForm() {
+  rows = [];
+  document.getElementById('csvInput').value = '';
+  document.getElementById('fileInfo').style.display = 'none';
+  dz.classList.remove('has-file');
+  document.getElementById('previewCard').style.display = 'none';
+  document.getElementById('resultCard').style.display = 'none';
+  document.getElementById('progWrap').style.display = 'none';
+  document.getElementById('progFill').style.width = '0%';
+  document.getElementById('importBtn').disabled = false;
+  document.getElementById('importBtn').textContent = 'Import Users';
+}
+</script>
+</body>
+</html>

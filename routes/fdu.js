@@ -4,23 +4,11 @@ const router = express.Router();
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
-const { execFile } = require('child_process');
-const { promisify } = require('util');
-const execFileAsync = promisify(execFile);
 const { readJSON, writeJSON } = require('../services/store');
 
 async function toJpegBuffer(filePath, width, height, quality) {
   var sharp = require('sharp');
-  try {
-    return await sharp(filePath).resize(width, height, { fit: 'inside' }).jpeg({ quality }).toBuffer();
-  } catch (e) {
-    // ponytail: heif-convert fallback for HEIC files uploaded with .jpg extension
-    var tmp = filePath + '.heif.jpg';
-    await execFileAsync('heif-convert', [filePath, tmp]);
-    var buf = await sharp(tmp).resize(width, height, { fit: 'inside' }).jpeg({ quality }).toBuffer();
-    fs.unlink(tmp, function() {});
-    return buf;
-  }
+  return sharp(filePath).resize(width, height, { fit: 'inside' }).jpeg({ quality }).toBuffer();
 }
 
 const fduUpload = multer({
@@ -37,21 +25,28 @@ const donutUpload = multer({
     filename: function(req, file, cb) { cb(null, Date.now() + '-' + Math.random().toString(36).substr(2,9) + '.jpg'); }
   }),
   limits: { fileSize: 20 * 1024 * 1024 }
-}).fields([{ name: 'photo1' }, { name: 'photo2' }]);
+}).fields([{ name: 'photo1' }, { name: 'photo2' }, { name: 'token' }, { name: 'store' }, { name: 'am' }]);
 
 const NVIDIA_API_KEY = process.env.NVIDIA_API_KEY;
-const NVIDIA_MODEL = 'meta/llama-3.2-90b-vision-instruct';
+const NVIDIA_MODEL = 'meta/llama-3.2-11b-vision-instruct';
 
 async function nvidiaChat(messages) {
-  const resp = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + NVIDIA_API_KEY },
-    body: JSON.stringify({ model: NVIDIA_MODEL, messages: messages, max_tokens: 1024, temperature: 0.1 })
-  });
-  const text = await resp.text();
-  if (!resp.ok) throw new Error('NVIDIA API ' + resp.status + ': ' + text.substring(0, 200));
-  const data = JSON.parse(text);
-  return data.choices[0].message.content;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 90000);
+  try {
+    const resp = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + NVIDIA_API_KEY },
+      body: JSON.stringify({ model: NVIDIA_MODEL, messages: messages, max_tokens: 1024, temperature: 0.1 }),
+      signal: controller.signal
+    });
+    const text = await resp.text();
+    if (!resp.ok) throw new Error('NVIDIA API ' + resp.status + ': ' + text.substring(0, 200));
+    const data = JSON.parse(text);
+    return data.choices[0].message.content;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 router.get('/submissions', function(req, res) {
@@ -171,7 +166,7 @@ router.post('/submit', fduUpload, async function(req, res) {
       var photoPath = req.files && req.files.photo ? req.files.photo[0].path : null;
       var msgContent = [];
       if (photoPath && fs.existsSync(photoPath)) {
-        var imgBuf = await toJpegBuffer(photoPath, 800, 800, 75);
+        var imgBuf = await toJpegBuffer(photoPath, 1024, 1024, 85);
         msgContent.push({ type: 'image_url', image_url: { url: 'data:image/jpeg;base64,' + imgBuf.toString('base64') } });
       }
       var standards = readJSON('fdu_standards.json', { storeSizes: {}, layouts: {} });
@@ -188,19 +183,20 @@ router.post('/submit', fduUpload, async function(req, res) {
         ' TOP ROW (Dream Donuts): ' + topShelf.baskets + ' baskets, min ' + topShelf.minPerBasket + ' donuts per basket.' +
         ' MIDDLE ROW (Classic Donuts): ' + midShelf.baskets + ' baskets, min ' + midShelf.minPerBasket + ' donuts per basket.' +
         ' BOTTOM ROW (Tim Bits): ' + btmShelf.baskets + ' baskets, min ' + btmShelf.minPerBasket + ' per basket. All 4 variants must be present: ' + timbitNames + '.' +
-        ' TAGS: every basket must have a price + name tag, neat and visible.' +
-        ' COUNT EVERY BASKET. Partial compliance = FAIL.' +
+        ' TAGS: each basket MUST have a small rectangular price+name label attached to the front of the basket. Labels are typically white or coloured cards with printed text. If you can see any labels/cards attached to basket fronts, tags = pass. Only fail tags if NO labels are visible on any basket.' +
+        ' CRITICAL: COUNT THE DONUTS INSIDE EACH BASKET individually. A basket with fewer than ' + topShelf.minPerBasket + ' donuts = FAIL for that row.' +
+        ' Every basket MUST have the minimum donuts. Partial compliance = FAIL. If ANY basket is underfilled, dreamPass/classicPass MUST be false.' +
         ' Respond ONLY in valid JSON (no markdown): {' +
         '"fduSize":"' + storeSize + '",' +
         '"dreamBasketsFound":<integer>,"dreamBasketsRequired":' + topShelf.baskets + ',"dreamMinPerBasket":' + topShelf.minPerBasket + ',' +
-        '"dreamPass":<true if all baskets present with min qty each, else false>,"dreamFeedback":"<baskets found/required, any sparse baskets>",' +
+        '"dreamPass":<true ONLY if all baskets present AND every basket has >= ' + topShelf.minPerBasket + ' donuts, else false>,"dreamFeedback":"<list each basket with its donut count, flag any underfilled>",' +
         '"classicBasketsFound":<integer>,"classicBasketsRequired":' + midShelf.baskets + ',"classicMinPerBasket":' + midShelf.minPerBasket + ',' +
-        '"classicPass":<true/false>,"classicFeedback":"<baskets found/required>",' +
+        '"classicPass":<true ONLY if all baskets present AND every basket has >= ' + midShelf.minPerBasket + ' donuts, else false>,"classicFeedback":"<list each basket with its donut count, flag any underfilled>",' +
         '"timbitBasketsFound":<integer>,"timbitBasketsRequired":' + btmShelf.baskets + ',"timbitMinPerBasket":' + btmShelf.minPerBasket + ',' +
         '"timbitVariantsPresent":<array — only names from ' + JSON.stringify(timbitList) + ' that are clearly visible>,' +
         '"timbitVariantsMissing":<array — names from that list not visible>,' +
         '"timbitPass":<true if all baskets + all 4 variants + min qty each, else false>,"timbitFeedback":"<baskets + which variants present/missing>",' +
-        '"tagsPass":<true/false>,"tagsFeedback":"<one sentence>",' +
+        '"tagsPass":<true if you can see price/name labels on basket fronts, false only if NO labels visible at all>,"tagsFeedback":"<describe what labels you see or don\'t see>",' +
         '"overallPass":<true only if every section passes>,"summary":"<one sentence>"}';
       msgContent.push({ type: 'text', text: inspectPrompt });
       var raw = await nvidiaChat([{ role: 'user', content: msgContent }]);
@@ -227,6 +223,11 @@ router.post('/submit', fduUpload, async function(req, res) {
       entry.timbitFeedback = parsed.timbitFeedback || '';
       entry.tagsPass = parsed.tagsPass === true;
       entry.tagsFeedback = parsed.tagsFeedback || '';
+      /* server-side safety: override AI if feedback indicates underfilled baskets */
+      var sparseRe = /sparse|underfill|fewer than|less than|below minimum|missing donut|only \d|has \d|barely|low count/i;
+      if (entry.dreamPass && sparseRe.test(entry.dreamFeedback)) { entry.dreamPass = false; }
+      if (entry.classicPass && sparseRe.test(entry.classicFeedback)) { entry.classicPass = false; }
+      if (entry.timbitPass && sparseRe.test(entry.timbitFeedback)) { entry.timbitPass = false; }
       /* legacy fields for backward compat */
       entry.topRow = entry.dreamPass === true ? 'Pass' : 'Fail';
       entry.topRowFeedback = entry.dreamFeedback;
@@ -235,8 +236,8 @@ router.post('/submit', fduUpload, async function(req, res) {
       entry.timbits = entry.timbitPass === true ? 'Pass' : 'Fail';
       entry.timbitsFeedback = entry.timbitFeedback;
       entry.tags = entry.tagsPass ? 'Pass' : 'Fail';
-      entry.overallPass = parsed.overallPass === true;
-      entry.summary = parsed.summary || '';
+      entry.overallPass = entry.dreamPass === true && entry.classicPass === true && entry.timbitPass === true && entry.tagsPass === true;
+      entry.summary = entry.overallPass ? 'All sections pass FDU standards.' : 'One or more sections failed FDU inspection.';
     } catch(aiErr) {
       console.error('FDU AI grading error:', aiErr.message);
       entry.topRow = 'Submitted'; entry.midRow = 'Submitted';
