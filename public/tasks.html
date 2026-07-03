@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <title>Tasks - Tim's Ops Connect</title>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="timsy.css">
-<style>
+<link rel="stylesheet" href="styles.css"><style>
 /* Hallmark · macrostructure: Feature Stack · genre: modern-minimal · theme: custom (brand-locked)
  * nav: N1b three-section (desktop) + bottom-nav (mobile) · footer: none
  * enrichment: none — functional app page
@@ -1178,7 +1176,7 @@ body { min-height: 100vh; padding-top: var(--nav-h); font-family: var(--font-bod
       <select class="ev-input" id="evAm">
         <option value="">Select Area Manager</option>
         <option>Raman</option><option>Harish</option><option>Rohit</option>
-        <option>Deepak</option><option>Kajal</option><option>Sandeep Mukharjee</option><option>Akash Rathod</option>
+        <option>Sandeep Yadav</option><option>Deepak</option><option>Kajal</option><option>Sandeep Mukharjee</option><option>Akash Rathod</option>
         <option>Jagadeesha</option><option>Shivam</option>
       </select>
     </div>
@@ -1304,17 +1302,39 @@ body { min-height: 100vh; padding-top: var(--nav-h); font-family: var(--font-bod
   <button class="day-pill" data-day="1">MON</button>
   <button class="day-pill" data-day="2">TUE 🤖</button>
   <button class="day-pill" data-day="3">WED</button>
-  <button class="day-pill" data-day="4" style="opacity:0.6;">THU</button>
+  <button class="day-pill" data-day="4">THU</button>
   <button class="day-pill" data-day="5">FRI</button>
   <button class="day-pill" data-day="6">SAT</button>
   <button class="day-pill" data-day="0">SUN</button>
 </div>
 
 <div class="content hidden" id="view-thu">
-  <div class="rest-card">
-    <div class="rest-icon">&#x1F634;</div>
-    <div class="rest-title">Recharge Day</div>
-    <div class="rest-sub">Thursday is your rest day. See you tomorrow &#x2615;</div>
+  <div id="thuAMPicker">
+    <div class="am-label">Who are you?</div>
+    <div id="thuAMCards" class="grid-2"></div>
+  </div>
+  <div id="thuAMBar" class="hidden am-selected-bar">
+    <div class="flex-center">
+      <div class="am-icon-box">&#x1F464;</div>
+      <div>
+        <div class="text-sm-13 text-muted font-medium">Area Manager</div>
+        <div class="text-base-15 font-bold text-dark" id="thuAMName">-</div>
+      </div>
+    </div>
+    <button class="change-btn" id="thuChangeBtn">Change</button>
+  </div>
+  <div id="thuStorePicker" class="hidden">
+    <div class="am-label" style="padding:0 4px;margin-bottom:8px">Select Store You Are Visiting</div>
+    <div class="store-list" id="thuStoreList"></div>
+  </div>
+  <div id="thuFormWrap" class="hidden"></div>
+  <div id="thuSuccessWrap" class="hidden">
+    <div class="success-card">
+      <div class="success-icon">&#x2615;</div>
+      <div class="success-title">Thursday Submitted!</div>
+      <div class="success-sub" id="thuSuccessMsg">Checklist saved.</div>
+      <button class="success-next-btn" id="thuNewVisitBtn">Visit Another Store</button>
+    </div>
   </div>
 </div>
 <div class="content hidden" id="view-coming">
@@ -1372,6 +1392,38 @@ body { min-height: 100vh; padding-top: var(--nav-h); font-family: var(--font-bod
   <!-- AI Leaderboard -->
   <div class="ai-section-label" style="margin-top:16px;">🏅 AI Learning Leaderboard</div>
   <div id="aiLeaderboard" style="margin-bottom:24px;"></div>
+
+  <!-- Tuesday Checklist -->
+  <div style="margin-top:20px;padding-top:16px;border-top:2px solid var(--border);">
+    <div class="ai-section-label">📋 Store Visit Checklist</div>
+    <div id="tueAMPicker">
+      <div class="am-label">Who are you?</div>
+      <div id="tueAMCards" class="grid-2"></div>
+    </div>
+    <div id="tueAMBar" class="hidden am-selected-bar">
+      <div class="flex-center">
+        <div class="am-icon-box">&#x1F464;</div>
+        <div>
+          <div class="text-sm-13 text-muted font-medium">Area Manager</div>
+          <div class="text-base-15 font-bold text-dark" id="tueAMName">-</div>
+        </div>
+      </div>
+      <button class="change-btn" id="tueChangeBtn">Change</button>
+    </div>
+    <div id="tueStorePicker" class="hidden">
+      <div class="am-label" style="padding:0 4px;margin-bottom:8px">Select Store You Are Visiting</div>
+      <div class="store-list" id="tueStoreList"></div>
+    </div>
+    <div id="tueFormWrap" class="hidden"></div>
+    <div id="tueSuccessWrap" class="hidden">
+      <div class="success-card">
+        <div class="success-icon">&#x26A1;</div>
+        <div class="success-title">Tuesday Submitted!</div>
+        <div class="success-sub" id="tueSuccessMsg">Checklist saved.</div>
+        <button class="success-next-btn" id="tueNewVisitBtn">Visit Another Store</button>
+      </div>
+    </div>
+  </div>
 
 </div>
 
@@ -1545,10 +1597,13 @@ body { min-height: 100vh; padding-top: var(--nav-h); font-family: var(--font-bod
     <a href="index.html" class="nav-link ">Home</a>
     <a href="tasks.html" class="nav-link active">Tasks</a>
     <a href="events.html" class="nav-link ">Events</a>
+    <a href="cash-audit-am.html" class="nav-link ">Cash Audit</a>
     <a href="performance.html" class="nav-link ">Scores</a>
-    <a href="team.html" class="nav-link ">Team</a>
+    <a href="feed.html" class="nav-link ">Recognition</a>
     <a href="fdu-dashboard.html" class="nav-link ">FDU</a>
-    <a href="maintenance-dashboard.html" class="nav-link ">Maintenance</a>
+    <a href="training.html" class="nav-link ">Training</a>
+    <a href="maintenance-dashboard.html" class="nav-link">Maintenance</a>
+    <a href="hr.html" class="nav-link">HR</a>
   </div>
   <div style="display:flex;align-items:center;gap:8px;">
     <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
@@ -1569,6 +1624,7 @@ body { min-height: 100vh; padding-top: var(--nav-h); font-family: var(--font-bod
 
 <script>
 var amList = [
+  {name:'Sandeep Yadav', region:'Delhi NCR & Punjab (RM)', icon:'&#x1F451;'},
   {name:'Raman', region:'Delhi NCR', icon:'&#x1F3D9;'},
   {name:'Harish', region:'Delhi NCR', icon:'&#x1F3D9;'},
   {name:'Rohit', region:'Delhi NCR', icon:'&#x1F3D9;'},
@@ -1596,6 +1652,18 @@ function renderAMCards(containerId, onSelect) {
     d.addEventListener('click', function() { onSelect(am.name); });
     c.appendChild(d);
   });
+}
+
+function handleSubmissionError(d) {
+  var msg = d && d.error ? d.error : '';
+  if (/token|unauthorized|401/i.test(msg)) {
+    localStorage.removeItem('th_token');
+    localStorage.removeItem('th_pin_ok');
+    alert('Session expired. Please re-enter your PIN to continue.');
+    location.reload();
+  } else {
+    alert('Submission failed: ' + (msg || 'Please try again.'));
+  }
 }
 
 function selectDay(d) {
@@ -1835,7 +1903,7 @@ function submitMonStore() {
       document.getElementById('monSuccessMsg').textContent=monState.currentStore.name+' submitted. Score: '+band+' '+score+'%. '+rem+' stores remaining.';
       updateMonProgress(); renderMonStoreList();
     } else {
-      alert('Submission failed: ' + (d.error || 'Please re-enter your PIN and try again.'));
+      handleSubmissionError(d);
     }
   })
   .catch(function(){alert('Network error. Please check connection and try again.');});
@@ -2110,7 +2178,7 @@ function submitWedStore() {
         (issues>0 ? issues + ' machine issue(s) flagged. ' : 'All machines OK. ') +
         (pestIssues>0 ? pestIssues + ' pest alert(s)!' : 'No pest activity.');
     } else {
-      alert('Submission failed: ' + (d.error || 'Please re-enter your PIN and try again.'));
+      handleSubmissionError(d);
     }
   })
   .catch(function(){alert('Submission failed. Please check connection and try again.');});
@@ -2380,7 +2448,7 @@ function submitFriStore() {
         friState.currentStore.name + ' Friday submitted. Weekend readiness: ' +
         (allReady ? '✅ All systems go!' : '⚠️ Some items need attention.');
     } else {
-      alert('Submission failed: ' + (d.error || 'Please re-enter your PIN and try again.'));
+      handleSubmissionError(d);
     }
   })
   .catch(function(){alert('Submission failed. Please check connection and try again.');});
@@ -2618,12 +2686,14 @@ function submitWeekendStore(prefix, state) {
       document.getElementById(prefix + 'SuccessMsg').textContent =
         state.currentStore.name + ' submitted. Score: ' + band + ' ' + score + '%';
     } else {
-      alert('Submission failed: ' + (d.error || 'Please re-enter your PIN and try again.'));
+      handleSubmissionError(d);
     }
   })
   .catch(function(){alert('Submission failed. Please check connection and try again.');});
 }
 
+setupWeekendDay('tue', 'Tuesday', '&#x26A1;');
+setupWeekendDay('thu', 'Thursday', '&#x2615;');
 setupWeekendDay('sat', 'Saturday', '&#x26A1;');
 setupWeekendDay('sun', 'Sunday', '&#x1F305;');
 selectDay(new Date().getDay());
@@ -2814,7 +2884,7 @@ function submitEvent(){
     if(el&&el.files&&el.files[0]) fd.append('images', el.files[0]);
   });
 
-  fetch('/api/events/submit', {method:'POST', body:fd})
+  fetch('/api/events/submit', {method:'POST', headers:{'Authorization':'Bearer '+localStorage.getItem('th_token')}, body:fd})
   .then(function(r){return r.json();})
   .then(function(d){
     if(d.success){
@@ -3645,7 +3715,7 @@ function toggleWatch(key) {
       }
       var storeAM = targetStores[idx].am || _tcAM;
       fetch('/api/tasks', {
-        method:'POST', headers:{'Content-Type':'application/json'},
+        method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('th_token')},
         body: JSON.stringify({ title: title, description: desc, store: targetStores[idx].name, am: storeAM, priority: _tcPrio, dueDate: due })
       }).then(function(r){return r.json();}).then(function(d){
         if (d.success) created++;
@@ -4129,131 +4199,32 @@ function toggleWatch(key) {
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
       <span class="mobile-nav-label">Events</span>
     </a>
+    <a href="cash-audit-am.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span class="mobile-nav-label">Cash</span></a>
     <a href="performance.html" class="mobile-nav-item ">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
       <span class="mobile-nav-label">Scores</span>
     </a>
-    <a href="team.html" class="mobile-nav-item ">
+    <a href="feed.html" class="mobile-nav-item ">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-      <span class="mobile-nav-label">Team</span>
+      <span class="mobile-nav-label">Recognition</span>
     </a>
     <a href="fdu-dashboard.html" class="mobile-nav-item">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
       <span class="mobile-nav-label">FDU</span>
     </a>
+    <a href="training.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+      <span class="mobile-nav-label">Training</span>
+    </a>
     <a href="maintenance-dashboard.html" class="mobile-nav-item">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
       <span class="mobile-nav-label">Maint.</span>
     </a>
+    <a href="hr.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="mobile-nav-label">HR</span>
+    </a>
   </div>
 </nav>
 <script src="skeleton.js"></script>
-
-<!-- TIMSY BOT -->
-
-
-<!-- TIMSY BOT -->
-<div id="timsy-launcher" onclick="toggleTimsy()">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-<div style="position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:#34C759;border-radius:50%;border:2px solid #000;"></div>
-</div>
-<div id="timsy-chat">
-<div style="background:linear-gradient(135deg,#c8102e,#a00d24);padding:16px 20px;display:flex;align-items:center;gap:12px;">
-<div style="width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">&#9749;</div>
-<div style="flex:1;"><div style="font-weight:800;font-size:1em;color:#fff;">Timsy</div><div style="font-size:0.7em;color:rgba(255,255,255,0.7);">Ops Assistant &#8226; Online</div></div>
-<div id="timsy-voice-btn" onclick="toggleVoice()" style="cursor:pointer;color:rgba(255,255,255,0.7);font-size:0.7em;padding:4px 8px;border:1px solid rgba(255,255,255,0.3);border-radius:12px;" title="Toggle voice">&#128266;</div>
-<div class="timsy-close-btn" onclick="toggleTimsy()">&#10005;</div>
-</div>
-<div id="timsy-messages">
-<div style="display:flex;gap:8px;align-items:flex-start;">
-<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">&#9749;</div>
-<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">Hey there! I am <b style="color:#c8102e;">Timsy</b>, your ops assistant. Ask me about stores, ratings, FDU compliance, donuts, tasks, or anything on OpsAIHub!</div>
-</div>
-</div>
-<div style="padding:12px 16px;border-top:1px solid #222;display:flex;gap:10px;align-items:center;">
-<input id="timsy-input" type="text" placeholder="Ask Timsy..." onkeydown="if(event.key==='Enter')sendTimsy()">
-<div onclick="sendTimsy()" style="width:38px;height:38px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
-</div>
-</div>
-
-<script>
-var timsyOpen = false;
-var voiceEnabled = false;
-function toggleTimsy() {
-  timsyOpen = !timsyOpen;
-  document.getElementById("timsy-chat").style.display = timsyOpen ? "flex" : "none";
-  if (timsyOpen) document.getElementById("timsy-input").focus();
-}
-function toggleVoice() {
-  voiceEnabled = !voiceEnabled;
-  var b = document.getElementById("timsy-voice-btn");
-  if (voiceEnabled) {
-    b.style.background = "#c8102e";
-    b.style.color = "#fff";
-    b.textContent = "ON";
-  } else {
-    b.style.background = "transparent";
-    b.style.color = "rgba(255,255,255,0.7)";
-    b.textContent = "\uD83D\uDD0A";
-    window.speechSynthesis.cancel();
-  }
-}
-function addTimsyMsg(text, isBot) {
-  var m = document.getElementById("timsy-messages");
-  var w = document.createElement("div");
-  w.style.display = "flex";
-  w.style.gap = "8px";
-  w.style.alignItems = "flex-start";
-  w.style.flexDirection = isBot ? "row" : "row-reverse";
-  var f = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>").replace(/\n/g, "<br>");
-  var avatar = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div>';
-  var botBubble = '<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">' + f + '</div>';
-  var userBubble = '<div style="background:#c8102e;border-radius:16px;border-top-right-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#fff;max-width:85%;">' + f + '</div>';
-  w.innerHTML = isBot ? avatar + botBubble : userBubble;
-  m.appendChild(w);
-  m.scrollTop = m.scrollHeight;
-}
-function addTyping() {
-  var m = document.getElementById("timsy-messages");
-  var w = document.createElement("div");
-  w.id = "timsy-typing";
-  w.style.display = "flex";
-  w.style.gap = "8px";
-  w.innerHTML = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div><div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;">Typing...</div>';
-  m.appendChild(w);
-  m.scrollTop = m.scrollHeight;
-}
-function removeTyping() {
-  var e = document.getElementById("timsy-typing");
-  if (e) e.remove();
-}
-async function sendTimsy() {
-  var i = document.getElementById("timsy-input");
-  var q = i.value.trim();
-  if (!q) return;
-  addTimsyMsg(q, false);
-  i.value = "";
-  addTyping();
-  try {
-    var r = await fetch("/timsy_api.php", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({q: q})
-    });
-    var d = await r.json();
-    removeTyping();
-    addTimsyMsg(d.reply, true);
-    if (voiceEnabled) {
-      var p = d.reply.replace(/<[^>]*>/g, "").replace(/\*\*/g, "").replace(/\n+/g, ". ").trim();
-      var u = new SpeechSynthesisUtterance(p);
-      u.rate = 1;
-      u.pitch = 1;
-      window.speechSynthesis.speak(u);
-    }
-  } catch(e) {
-    removeTyping();
-    addTimsyMsg("Sorry, I hit a snag. Try again!", true);
-  }
-}
-</script>
 </html>

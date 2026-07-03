@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Maintenance — Tim's Ops Connect</title>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="timsy.css">
-<style>
+<link rel="stylesheet" href="styles.css"><style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 .hdr{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 20px 14px;display:flex;flex-direction:column;align-items:flex-start;gap:3px;position:sticky;top:var(--nav-h);z-index:89;}
 .back{color:var(--text2);text-decoration:none;font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-bottom:3px;}
@@ -51,12 +49,6 @@
 @keyframes btnpulse{0%,100%{opacity:1;}50%{opacity:0.7;}}
 .badge-p1{background:#C8102E;color:#fff;animation:p1glow 1.4s ease-in-out infinite;border:none;}
 .sfbtn-pulse{animation:p1glow 1.6s ease-in-out infinite;background:#FEE8E8 !important;color:#C8102E !important;border-color:#C8102E !important;}
-.btn-escalate{width:100%;padding:11px;margin-top:8px;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
-.btn-esc-team{background:#C8102E;color:#fff;animation:p1glow 1.6s ease-in-out infinite;}
-.btn-esc-remind{background:#FF9500;color:#fff;}
-.btn-esc-ceo{background:linear-gradient(135deg,#6B0000,#C8102E);color:#fff;font-size:14px;letter-spacing:0.3px;}
-.btn-esc-ceo:disabled{background:#ccc;color:#888;animation:none;cursor:not-allowed;}
-.esc-status{font-size:11px;color:#8E8E93;margin-top:6px;text-align:center;}
 .badge-normal{background:var(--pass-bg);color:var(--pass);}
 .badge-cat{background:var(--surface);color:var(--text2);border:1px solid var(--border);}
 .ticket-desc{font-size:13px;color:var(--text);line-height:1.5;margin-bottom:10px;padding:10px;background:var(--surface);border-radius:8px;}
@@ -103,21 +95,14 @@
 .lightbox.open{display:flex;}
 .lightbox img{max-width:95vw;max-height:90vh;border-radius:12px;object-fit:contain;}
 .lightbox-close{position:absolute;top:20px;right:20px;color:#fff;font-size:28px;cursor:pointer;background:rgba(255,255,255,0.15);border:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
-/* PIN wall */
-#pin-wall{position:fixed;inset:0;z-index:var(--z-wall);background:#1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;}
-.pin-logo{font-size:48px;margin-bottom:8px;}
-.pin-title{font-size:24px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-0.5px;}
-.pin-sub{font-size:13px;color:#6E6E73;margin-bottom:40px;}
-.pin-dots{display:flex;gap:16px;margin-bottom:32px;}
-.pin-dot{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.15);transition:background-color 120ms ease-out;}
-.pin-dot.filled{background:#C8102E;}
-.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:240px;}
-.pin-btn{height:64px;border-radius:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;font-size:22px;font-weight:600;cursor:pointer;transition:background-color 120ms ease-out;}
-.pin-btn:active{background:rgba(200,16,46,0.3);}
-.pin-error{font-size:13px;color:#FF3B30;margin-top:16px;opacity:0;transition:opacity 120ms ease-out;}
-.pin-error.show{opacity:1;}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-.pin-dots.shake{animation:shake 0.3s ease;}
+/* warranty highlight on tickets */
+.warranty-active{border-left-color:#34C759 !important;background:linear-gradient(90deg,rgba(52,199,89,0.06),var(--card));}
+.warranty-expiring{border-left-color:#FF9500 !important;background:linear-gradient(90deg,rgba(255,149,0,0.06),var(--card));}
+.warranty-expired{border-left-color:#8E8E93 !important;}
+.ticket-warranty{font-size:12px;padding:8px 12px;border-radius:8px;margin-bottom:10px;line-height:1.5;}
+.warranty-active-bar{background:rgba(52,199,89,0.1);color:#1B7A3A;border:1px solid rgba(52,199,89,0.2);}
+.warranty-expiring-bar{background:rgba(255,149,0,0.1);color:#7A4500;border:1px solid rgba(255,149,0,0.2);}
+.warranty-expired-bar{background:rgba(142,142,147,0.1);color:#636366;border:1px solid rgba(142,142,147,0.2);}
 @media(max-width:480px){.hero-grid{grid-template-columns:1fr 1fr;}.hg-num{font-size:16px;}.content{padding:12px 14px 32px;}}
 </style>
 </head>
@@ -128,10 +113,13 @@
     <a href="index.html" class="nav-link">Home</a>
     <a href="tasks.html" class="nav-link">Tasks</a>
     <a href="events.html" class="nav-link">Events</a>
+    <a href="cash-audit-am.html" class="nav-link">Cash Audit</a>
     <a href="performance.html" class="nav-link">Scores</a>
-    <a href="team.html" class="nav-link">Team</a>
+    <a href="feed.html" class="nav-link">Recognition</a>
     <a href="fdu-dashboard.html" class="nav-link">FDU</a>
+    <a href="training.html" class="nav-link">Training</a>
     <a href="maintenance-dashboard.html" class="nav-link active">Maintenance</a>
+    <a href="hr.html" class="nav-link">HR</a>
   </div>
   <div style="display:flex;align-items:center;gap:8px;">
     <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
@@ -148,31 +136,6 @@
   </div>
 </nav>
 
-<div id="pin-wall">
-  <div class="pin-logo">&#x1F527;</div>
-  <div class="pin-title">Maintenance Portal</div>
-  <div class="pin-sub">Enter your PIN to continue</div>
-  <div class="pin-dots" id="pinDots">
-    <div class="pin-dot" id="d0"></div><div class="pin-dot" id="d1"></div>
-    <div class="pin-dot" id="d2"></div><div class="pin-dot" id="d3"></div>
-  </div>
-  <div class="pin-pad">
-    <button class="pin-btn" onclick="pinPress('1')">1</button>
-    <button class="pin-btn" onclick="pinPress('2')">2</button>
-    <button class="pin-btn" onclick="pinPress('3')">3</button>
-    <button class="pin-btn" onclick="pinPress('4')">4</button>
-    <button class="pin-btn" onclick="pinPress('5')">5</button>
-    <button class="pin-btn" onclick="pinPress('6')">6</button>
-    <button class="pin-btn" onclick="pinPress('7')">7</button>
-    <button class="pin-btn" onclick="pinPress('8')">8</button>
-    <button class="pin-btn" onclick="pinPress('9')">9</button>
-    <button class="pin-btn" onclick="pinPress('c')">Clear</button>
-    <button class="pin-btn" onclick="pinPress('0')">0</button>
-    <button class="pin-btn" onclick="pinPress('x')">&#x232B;</button>
-  </div>
-  <div class="pin-error" id="pinError">Incorrect PIN. Try again.</div>
-</div>
-
 <div class="page-content">
   <div class="hdr">
     <a href="index.html" class="back">&#x2190; Home</a>
@@ -181,7 +144,10 @@
         <div class="hdr-title">&#x1F527; Maintenance</div>
         <div class="hdr-sub">Store Complaint Tracker &mdash; All Regions</div>
       </div>
-      <a href="maintenance-submit.html" target="_blank" style="flex-shrink:0;display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--red);background:var(--red-tint);border:1px solid rgba(200,16,46,0.18);border-radius:8px;padding:5px 10px;text-decoration:none;white-space:nowrap;">&#x2B;  New Ticket</a>
+      <div style="display:flex;gap:6px;flex-shrink:0;">
+        <a href="warranty.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#0C5460;background:#D1ECF1;border:1px solid rgba(12,84,96,0.18);border-radius:8px;padding:5px 10px;text-decoration:none;white-space:nowrap;">&#x1F4CA; Warranty</a>
+        <a href="maintenance-submit.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--red);background:var(--red-tint);border:1px solid rgba(200,16,46,0.18);border-radius:8px;padding:5px 10px;text-decoration:none;white-space:nowrap;">&#x2B;  New Ticket</a>
+      </div>
     </div>
   </div>
   <div class="period-bar">
@@ -198,7 +164,13 @@
 </div>
 
 <script>
-var tickets = [], currentDays = 7, statusFilter = 'all', userRole = '', userAM = '', authToken = '';
+var tickets = [], currentDays = 7, statusFilter = 'all';
+
+// Keep period-bar sticky just below the hdr regardless of hdr height
+requestAnimationFrame(function() {
+  var h = document.querySelector('.hdr').offsetHeight;
+  document.querySelector('.period-bar').style.top = 'calc(var(--nav-h) + ' + h + 'px)';
+});
 
 document.querySelector('.period-bar').addEventListener('click', function(e) {
   var btn = e.target.closest('.period-btn'); if (!btn) return;
@@ -214,7 +186,7 @@ function closeLightbox() { document.getElementById('lightbox').classList.remove(
 function loadTickets() {
   document.getElementById('mainContent').innerHTML = '<div class="spinner"></div>';
   var url = '/api/maintenance/tickets' + (currentDays > 0 ? '?days=' + currentDays : '');
-  fetch(url, { headers: { 'Authorization': 'Bearer ' + authToken } })
+  fetch(url)
     .then(function(r) { return r.json(); })
     .then(function(d) { tickets = d.data || []; render(); })
     .catch(function() { document.getElementById('mainContent').innerHTML = '<div class="empty"><span>&#x26A0;</span><p>Failed to load tickets.</p></div>'; });
@@ -247,9 +219,7 @@ function render() {
     + sfBtn('open', '&#x1F7E1; Open (' + open + ')')
     + sfBtn('resolved', '&#x1F535; Resolved (' + resolved + ')')
     + sfBtn('closed', '&#x2705; Closed (' + closed + ')')
-    + (userRole === 'maintenance' || userRole === 'hod' || userRole === 'ceo'
-        ? sfBtn('p1', '&#x26A1; P1 Critical (' + p1Open + ')', p1Open > 0)
-        : '')
+    + sfBtn('p1', '&#x26A1; P1 Critical (' + p1Open + ')', p1Open > 0)
     + '</div>';
 
   if (filtered.length === 0) {
@@ -304,7 +274,7 @@ function renderTicket(t) {
   }
 
   var actionHtml = '';
-  if (t.status === 'open' && (userRole === 'maintenance' || userRole === 'hod' || userRole === 'ceo')) {
+  if (t.status === 'open') {
     actionHtml = '<div class="resolve-area">'
       + '<div class="cost-form">'
       + '<div class="cost-form-title">&#x1F4B0; Cost & Resolution Details</div>'
@@ -322,39 +292,30 @@ function renderTicket(t) {
       + '<button class="btn-resolve" onclick="resolveTicket(\'' + t.id + '\')">&#x2713; Mark Resolved</button>'
       + '</div>';
   }
-  if (t.status === 'resolved' && (userRole === 'am' || userRole === 'hod' || userRole === 'ceo')) {
+  if (t.status === 'resolved') {
     actionHtml = '<div class="resolve-area">'
       + '<button class="btn-verify" onclick="verifyTicket(\'' + t.id + '\')">&#x2713; Verify &amp; Close</button>'
       + '</div>';
   }
 
-  // P1 escalation panel — maintenance/hod only, open tickets
-  if (t.priority === 'p1' && t.status !== 'closed' && (userRole === 'maintenance' || userRole === 'hod')) {
-    var ec = t.escalationCount || 0;
-    var ceoDone = !!t.ceoEscalatedAt;
-    var escHtml = '<div class="resolve-area" style="border-top:2px solid #C8102E;">'
-      + '<div style="font-size:11px;font-weight:700;color:#C8102E;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:8px;">&#x26A1; P1 Escalation Panel</div>';
 
-    if (!ceoDone) {
-      if (ec === 0) {
-        escHtml += '<button class="btn-escalate btn-esc-team" onclick="escalateP1(\'' + t.id + '\')">&#x26A1; Escalate to Stakeholder</button>'
-          + '<div class="esc-status">No escalations sent yet</div>';
-      } else if (ec === 1) {
-        escHtml += '<button class="btn-escalate btn-esc-remind" onclick="escalateP1(\'' + t.id + '\')">&#x1F504; Send Reminder (1 sent)</button>'
-          + '<button class="btn-escalate btn-esc-ceo" onclick="escalateCEO(\'' + t.id + '\')" disabled style="margin-top:6px;opacity:0.45;cursor:not-allowed;">&#x1F6A8; Escalate to CEO — Need 1 more reminder</button>';
-      } else {
-        escHtml += '<button class="btn-escalate btn-esc-remind" onclick="escalateP1(\'' + t.id + '\')">&#x1F504; Send Reminder (' + ec + ' sent)</button>'
-          + '<button class="btn-escalate btn-esc-ceo" onclick="escalateCEO(\'' + t.id + '\')" style="margin-top:6px;">&#x1F6A8; Escalate to CEO Now</button>';
-      }
-    } else {
-      escHtml += '<div style="font-size:13px;color:#C8102E;font-weight:700;text-align:center;padding:8px 0;">&#x2705; CEO Escalated — ' + fmtDate(t.ceoEscalatedAt) + '</div>'
-        + '<div class="esc-status">' + ec + ' reminder' + (ec !== 1 ? 's' : '') + ' sent before CEO escalation</div>';
+  var warrantyInfo = (typeof checkWarranty === 'function') ? checkWarranty(t.store, t.category) : null;
+  var warrantyHtml = '';
+  var ticketExtraClass = '';
+  if (warrantyInfo && t.status !== 'closed') {
+    if (warrantyInfo.status === 'active') {
+      ticketExtraClass = ' warranty-active';
+      warrantyHtml = '<div class="ticket-warranty warranty-active-bar">&#x2705; <strong>Under Warranty</strong> — Expires ' + warrantyInfo.expiry + ' (' + warrantyInfo.daysLeft + ' days left). Contact vendor for repair/replacement.</div>';
+    } else if (warrantyInfo.status === 'expiring') {
+      ticketExtraClass = ' warranty-expiring';
+      warrantyHtml = '<div class="ticket-warranty warranty-expiring-bar">&#x26A0;&#xFE0F; <strong>Warranty Expiring Soon</strong> — Expires ' + warrantyInfo.expiry + ' (' + warrantyInfo.daysLeft + ' days left). Coordinate with vendor immediately.</div>';
+    } else if (warrantyInfo.status === 'expired') {
+      ticketExtraClass = ' warranty-expired';
+      warrantyHtml = '<div class="ticket-warranty warranty-expired-bar">&#x274C; <strong>Warranty Expired</strong> — Expired on ' + warrantyInfo.expiry + '. This is out-of-warranty; handle via standard maintenance.</div>';
     }
-    escHtml += '</div>';
-    actionHtml += escHtml;
   }
 
-  return '<div class="ticket ' + t.priority + ' fade-in">'
+  return '<div class="ticket ' + t.priority + ticketExtraClass + ' fade-in">'
     + '<div class="ticket-top">'
     + '<div class="ticket-id">' + t.id + '</div>'
     + '<div class="ticket-main">'
@@ -364,10 +325,12 @@ function renderTicket(t) {
     + '<span class="badge ' + statusClass + '">' + statusLabel + '</span>'
     + '<span class="badge badge-' + t.priority + '">' + (t.priority === 'p1' ? '&#x26A1; P1 Critical' : t.priority === 'urgent' ? '&#x1F534; Urgent' : '&#x1F7E2; Normal') + '</span>'
     + '<span class="badge badge-cat">' + t.category + '</span>'
+    + (warrantyInfo && warrantyInfo.status === 'active' ? '<span class="badge" style="background:#D1ECF1;color:#0C5460;">&#x1F4CA; Under Warranty</span>' : '')
+    + (warrantyInfo && warrantyInfo.status === 'expiring' ? '<span class="badge" style="background:#FFF3CD;color:#856404;">&#x26A0;&#xFE0F; Warranty Expiring</span>' : '')
     + '</div>'
     + '</div></div>'
     + '<div class="ticket-desc">' + t.description + '</div>'
-    + photosHtml + notesHtml + costHtml + verifiedHtml + actionHtml
+    + warrantyHtml + photosHtml + notesHtml + costHtml + verifiedHtml + actionHtml
     + '</div>';
 }
 
@@ -400,7 +363,7 @@ function resolveTicket(id) {
   var btn = event.target; btn.disabled = true; btn.textContent = 'Saving...';
   fetch('/api/maintenance/tickets/' + id + '/resolve', {
     method: 'POST',
-    headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('th_token') },
     body: JSON.stringify({ notes: notes, teamType: teamType, partsCost: partsCost, laborCost: laborCost, totalCost: partsCost + laborCost })
   }).then(function(r) { return r.json(); }).then(function(d) {
     if (d.success) { loadTickets(); } else { btn.disabled = false; btn.textContent = '✓ Mark Resolved'; alert(d.error || 'Failed'); }
@@ -411,100 +374,21 @@ function verifyTicket(id) {
   var btn = event.target; btn.disabled = true; btn.textContent = 'Closing...';
   fetch('/api/maintenance/tickets/' + id + '/verify', {
     method: 'POST',
-    headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' }
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('th_token') }
   }).then(function(r) { return r.json(); }).then(function(d) {
     if (d.success) { loadTickets(); } else { btn.disabled = false; btn.textContent = '✓ Verify & Close'; alert(d.error || 'Failed'); }
   });
 }
 
-function escalateP1(id) {
-  var defaults = 'jeenal.kapasi@timhortonsindia.com, vivek.agarwal@timhortonsindia.com';
-  var emails = prompt('Escalate to (comma-separated emails):', defaults);
-  if (emails === null) return;
-  emails = emails.trim();
-  if (!emails) return;
-  var btn = event.target; btn.disabled = true; btn.textContent = 'Sending...';
-  fetch('/api/maintenance/tickets/' + id + '/escalate', {
-    method: 'POST',
-    headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ escalateTo: emails })
-  }).then(function(r) { return r.json(); }).then(function(d) {
-    if (d.success) { loadTickets(); } else { btn.disabled = false; btn.textContent = 'Escalate'; alert(d.error || 'Failed'); }
-  });
-}
-
-function escalateCEO(id) {
-  var reason = prompt('Why are you escalating to CEO?\n(Required — be specific about what is blocking resolution):', '');
-  if (reason === null) return;
-  reason = reason.trim();
-  if (!reason) { alert('A reason is required to escalate to CEO.'); return; }
-  var btn = event.target; btn.disabled = true; btn.textContent = 'Escalating...';
-  fetch('/api/maintenance/tickets/' + id + '/escalate-ceo', {
-    method: 'POST',
-    headers: { 'Authorization': 'Bearer ' + authToken, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ reason: reason })
-  }).then(function(r) { return r.json(); }).then(function(d) {
-    if (d.success) { loadTickets(); } else { btn.disabled = false; btn.textContent = '🚨 Escalate to CEO Now'; alert(d.error || 'Failed'); }
-  });
-}
 </script>
 
 <script>
-(function() {
-  var wall = document.getElementById('pin-wall');
-  var stored = localStorage.getItem('th_maint_token');
-  if (stored) {
-    authToken = stored;
-    userRole = localStorage.getItem('th_maint_role') || '';
-    userAM = localStorage.getItem('th_maint_am') || '';
-    wall.style.display = 'none';
-    loadTickets();
-    return;
-  }
-  var entered = [];
-  function pinPress(v) {
-    if (v === 'c') { entered = []; renderDots(); return; }
-    if (v === 'x') { entered.pop(); renderDots(); return; }
-    if (entered.length >= 4) return;
-    entered.push(v); renderDots();
-    if (entered.length === 4) setTimeout(check, 100);
-  }
-  function renderDots() {
-    for (var i = 0; i < 4; i++) {
-      document.getElementById('d' + i).className = 'pin-dot' + (i < entered.length ? ' filled' : '');
-    }
-  }
-  function check() {
-    var pin = entered.join('');
-    fetch('/api/auth/verify-pin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pin: pin }) })
-      .then(function(r) { return r.json(); })
-      .then(function(d) {
-        if (!d.success || (d.role !== 'maintenance' && d.role !== 'am' && d.role !== 'hod' && d.role !== 'ceo')) {
-          wrong(); return;
-        }
-        authToken = d.token;
-        userRole = d.role;
-        userAM = d.am;
-        localStorage.setItem('th_maint_token', d.token);
-        localStorage.setItem('th_maint_role', d.role);
-        localStorage.setItem('th_maint_am', d.am);
-        wall.style.display = 'none';
-        loadTickets();
-      }).catch(function() { wrong(); });
-  }
-  function wrong() {
-    entered = []; renderDots();
-    var dots = document.getElementById('pinDots');
-    var err = document.getElementById('pinError');
-    dots.classList.add('shake'); err.classList.add('show');
-    setTimeout(function() { dots.classList.remove('shake'); }, 400);
-    setTimeout(function() { err.classList.remove('show'); }, 2000);
-  }
-  window.pinPress = pinPress;
-})();
+// Auto-load tickets on page load
+loadTickets();
 </script>
 
 <script src="/js/api.js"></script>
+<script src="warranty-data.js"></script>
 <footer class="site-footer" style="max-width:100%;margin:48px auto 0;padding:32px 24px;border-top:1px solid var(--border);">
   <div class="footer-content">
     <div class="footer-brand">OpsAIHub — Tim Hortons India</div>
@@ -519,13 +403,22 @@ function escalateCEO(id) {
     <a href="index.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="mobile-nav-label">Home</span></a>
     <a href="tasks.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span class="mobile-nav-label">Tasks</span></a>
     <a href="events.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span class="mobile-nav-label">Events</span></a>
+    <a href="cash-audit-am.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+      <span class="mobile-nav-label">Cash</span>
+    </a>
     <a href="performance.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="mobile-nav-label">Scores</span></a>
-    <a href="team.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="mobile-nav-label">Team</span></a>
+    <a href="feed.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="mobile-nav-label">Recognition</span></a>
     <a href="fdu-dashboard.html" class="mobile-nav-item">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
       <span class="mobile-nav-label">FDU</span>
     </a>
+    <a href="training.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="mobile-nav-label">Training</span></a>
     <a href="maintenance-dashboard.html" class="mobile-nav-item active"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span class="mobile-nav-label">Maint.</span></a>
+    <a href="hr.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="mobile-nav-label">HR</span>
+    </a>
   </div>
 </nav>
 <script src="theme.js"></script>

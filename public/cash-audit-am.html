@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1.0">
 <title>Monthly Cash Governance Audit — OpsAIHub</title>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="timsy.css">
-<style>
+<link rel="stylesheet" href="styles.css"><style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 
 body{background:var(--surface);color:var(--text);padding-top:var(--nav-h);min-height:100vh;}
@@ -23,7 +21,7 @@ body{background:var(--surface);color:var(--text);padding-top:var(--nav-h);min-he
 .bnav-item.active .bnav-lbl{color:var(--red);font-weight:600;}
 
 /* tabs */
-.tabs-bar{background:#fff;border-bottom:1px solid var(--border);display:flex;padding:0 24px;gap:0;position:sticky;top:0;z-index:100;}
+.tabs-bar{background:#fff;border-bottom:1px solid var(--border);display:flex;padding:0 24px;gap:0;position:sticky;top:var(--nav-h);z-index:100;}
 .tab-btn{padding:14px 18px;font-size:13px;font-weight:600;color:var(--sub);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;font-family:inherit;transition:color 0.15s;}
 .tab-btn.on{color:var(--red);border-bottom-color:var(--red);}
 .tab-pane{display:none;}
@@ -90,7 +88,7 @@ body{background:var(--surface);color:var(--text);padding-top:var(--nav-h);min-he
 .tbl-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border);}
 
 /* signoff */
-.signoff-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.signoff-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 @media(max-width:700px){.signoff-grid{grid-template-columns:1fr;}}
 .signoff-section{background:#F9F9F9;border-radius:10px;padding:14px;border:1.5px solid var(--border);}
 .signoff-title{font-size:11px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);}
@@ -146,10 +144,13 @@ body{background:var(--surface);color:var(--text);padding-top:var(--nav-h);min-he
     <a href="index.html" class="nav-link ">Home</a>
     <a href="tasks.html" class="nav-link ">Tasks</a>
     <a href="events.html" class="nav-link ">Events</a>
+    <a href="cash-audit-am.html" class="nav-link ">Cash Audit</a>
     <a href="performance.html" class="nav-link active">Scores</a>
-    <a href="team.html" class="nav-link ">Team</a>
+    <a href="feed.html" class="nav-link ">Recognition</a>
     <a href="fdu-dashboard.html" class="nav-link ">FDU</a>
-    <a href="maintenance-dashboard.html" class="nav-link ">Maintenance</a>
+    <a href="training.html" class="nav-link ">Training</a>
+    <a href="maintenance-dashboard.html" class="nav-link">Maintenance</a>
+    <a href="hr.html" class="nav-link">HR</a>
   </div>
   <div style="display:flex;align-items:center;gap:8px;">
     <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
@@ -216,10 +217,6 @@ body{background:var(--surface);color:var(--text);padding-top:var(--nav-h);min-he
         <div class="field">
           <label>Store Manager Name *</label>
           <input type="text" id="storeManager" placeholder="Enter store manager name">
-        </div>
-        <div class="field">
-          <label>Regional Head</label>
-          <input type="text" id="regionalHead" placeholder="Enter regional head name">
         </div>
         <div class="field">
           <label>Review Date</label>
@@ -292,8 +289,8 @@ body{background:var(--surface);color:var(--text);padding-top:var(--nav-h);min-he
 
     <!-- Sign-off -->
     <div class="card">
-      <div class="card-title">Three-Level Sign-Off</div>
-      <div class="signoff-grid">
+      <div class="card-title">Two-Level Sign-Off</div>
+      <div class="signoff-grid" style="grid-template-columns:1fr 1fr;">
         <div class="signoff-section">
           <div class="signoff-title">Store Manager</div>
           <div class="field" class="mb-10"><label>SM Name</label><input type="text" id="smName" placeholder="Full name"></div>
@@ -305,16 +302,6 @@ body{background:var(--surface);color:var(--text);padding-top:var(--nav-h);min-he
           <div class="field" class="mb-10"><label>AM Review Date</label><input type="date" id="amDate"></div>
           <div class="field" class="mb-10"><label>AM Score Assessment</label><input type="text" id="amAssessment" placeholder="e.g. Satisfactory"></div>
           <div class="field"><label>AM Escalation Notes</label><textarea id="amEscalation" placeholder="Any escalation notes..."></textarea></div>
-        </div>
-        <div class="signoff-section">
-          <div class="signoff-title">Regional Head</div>
-          <div class="field" class="mb-10"><label>RH Name</label><input type="text" id="rhName" placeholder="Full name"></div>
-          <div class="field" class="mb-10"><label>RH Review Date</label><input type="date" id="rhDate"></div>
-          <div class="field" class="mb-10"><label>Regional Risk Rating</label><input type="text" id="rhRiskRating" placeholder="e.g. Moderate Risk"></div>
-          <div class="field" class="mb-10"><label>Prev Month Score %</label><input type="number" id="rhPrevScore" min="0" max="100"></div>
-          <div class="field" class="mb-10"><label>MoM Change</label><input type="text" id="rhMom" placeholder="e.g. +5%"></div>
-          <div class="field" class="mb-10"><label>Disciplinary Notes</label><textarea id="rhDisciplinary" placeholder="..."></textarea></div>
-          <div class="field"><label>Next Review Date</label><input type="date" id="rhNextReview"></div>
         </div>
       </div>
     </div>
@@ -666,7 +653,6 @@ function submitAudit() {
     cityRegion: s.region||'', region: s.region||'',
     monthYear: monthYearStr, submissionDate: document.getElementById('submissionDate').value,
     storeManager: storeManager, areaManager: s.am||'',
-    regionalHead: document.getElementById('regionalHead').value.trim(),
     reviewDate: document.getElementById('reviewDate').value,
     prevScore: document.getElementById('prevScore').value,
     targetScore: document.getElementById('targetScore').value,
@@ -677,14 +663,7 @@ function submitAudit() {
       amName: document.getElementById('amSignName').value.trim(),
       amDate: document.getElementById('amDate').value,
       amAssessment: document.getElementById('amAssessment').value.trim(),
-      amEscalation: document.getElementById('amEscalation').value.trim(),
-      rhName: document.getElementById('rhName').value.trim(),
-      rhDate: document.getElementById('rhDate').value,
-      rhRiskRating: document.getElementById('rhRiskRating').value.trim(),
-      rhPrevScore: document.getElementById('rhPrevScore').value,
-      rhMom: document.getElementById('rhMom').value.trim(),
-      rhDisciplinary: document.getElementById('rhDisciplinary').value.trim(),
-      rhNextReview: document.getElementById('rhNextReview').value
+      amEscalation: document.getElementById('amEscalation').value.trim()
     }
   };
 
@@ -692,7 +671,7 @@ function submitAudit() {
   btn.disabled = true; btn.textContent = 'Submitting...';
 
   fetch('/api/cash-audit/monthly/submit', {
-    method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)
+    method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('th_token')}, body:JSON.stringify(payload)
   }).then(function(r){return r.json();}).then(function(data){
     btn.disabled=false; btn.textContent='Submit Monthly Cash Audit & Send Email';
     if (!data.success) { showToast('Error: '+(data.error||'Unknown')); return; }
@@ -842,132 +821,33 @@ function showToast(msg) {
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
       <span class="mobile-nav-label">Events</span>
     </a>
+    <a href="cash-audit-am.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span class="mobile-nav-label">Cash</span></a>
     <a href="performance.html" class="mobile-nav-item active">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
       <span class="mobile-nav-label">Scores</span>
     </a>
-    <a href="team.html" class="mobile-nav-item ">
+    <a href="feed.html" class="mobile-nav-item ">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-      <span class="mobile-nav-label">Team</span>
+      <span class="mobile-nav-label">Recognition</span>
     </a>
     <a href="fdu-dashboard.html" class="mobile-nav-item">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
       <span class="mobile-nav-label">FDU</span>
     </a>
+    <a href="training.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+      <span class="mobile-nav-label">Training</span>
+    </a>
     <a href="maintenance-dashboard.html" class="mobile-nav-item">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
       <span class="mobile-nav-label">Maint.</span>
+    </a>
+    <a href="hr.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="mobile-nav-label">HR</span>
     </a>
   </div>
 </nav>
 <script src="theme.js"></script>
 <script>applyTheme(getTheme());</script>
-
-<!-- TIMSY BOT -->
-
-
-<!-- TIMSY BOT -->
-<div id="timsy-launcher" onclick="toggleTimsy()">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-<div style="position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:#34C759;border-radius:50%;border:2px solid #000;"></div>
-</div>
-<div id="timsy-chat">
-<div style="background:linear-gradient(135deg,#c8102e,#a00d24);padding:16px 20px;display:flex;align-items:center;gap:12px;">
-<div style="width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">&#9749;</div>
-<div style="flex:1;"><div style="font-weight:800;font-size:1em;color:#fff;">Timsy</div><div style="font-size:0.7em;color:rgba(255,255,255,0.7);">Ops Assistant &#8226; Online</div></div>
-<div id="timsy-voice-btn" onclick="toggleVoice()" style="cursor:pointer;color:rgba(255,255,255,0.7);font-size:0.7em;padding:4px 8px;border:1px solid rgba(255,255,255,0.3);border-radius:12px;" title="Toggle voice">&#128266;</div>
-<div class="timsy-close-btn" onclick="toggleTimsy()">&#10005;</div>
-</div>
-<div id="timsy-messages">
-<div style="display:flex;gap:8px;align-items:flex-start;">
-<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">&#9749;</div>
-<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">Hey there! I am <b style="color:#c8102e;">Timsy</b>, your ops assistant. Ask me about stores, ratings, FDU compliance, donuts, tasks, or anything on OpsAIHub!</div>
-</div>
-</div>
-<div style="padding:12px 16px;border-top:1px solid #222;display:flex;gap:10px;align-items:center;">
-<input id="timsy-input" type="text" placeholder="Ask Timsy..." onkeydown="if(event.key==='Enter')sendTimsy()">
-<div onclick="sendTimsy()" style="width:38px;height:38px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
-</div>
-</div>
-
-<script>
-var timsyOpen = false;
-var voiceEnabled = false;
-function toggleTimsy() {
-  timsyOpen = !timsyOpen;
-  document.getElementById("timsy-chat").style.display = timsyOpen ? "flex" : "none";
-  if (timsyOpen) document.getElementById("timsy-input").focus();
-}
-function toggleVoice() {
-  voiceEnabled = !voiceEnabled;
-  var b = document.getElementById("timsy-voice-btn");
-  if (voiceEnabled) {
-    b.style.background = "#c8102e";
-    b.style.color = "#fff";
-    b.textContent = "ON";
-  } else {
-    b.style.background = "transparent";
-    b.style.color = "rgba(255,255,255,0.7)";
-    b.textContent = "\uD83D\uDD0A";
-    window.speechSynthesis.cancel();
-  }
-}
-function addTimsyMsg(text, isBot) {
-  var m = document.getElementById("timsy-messages");
-  var w = document.createElement("div");
-  w.style.display = "flex";
-  w.style.gap = "8px";
-  w.style.alignItems = "flex-start";
-  w.style.flexDirection = isBot ? "row" : "row-reverse";
-  var f = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>").replace(/\n/g, "<br>");
-  var avatar = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div>';
-  var botBubble = '<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">' + f + '</div>';
-  var userBubble = '<div style="background:#c8102e;border-radius:16px;border-top-right-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#fff;max-width:85%;">' + f + '</div>';
-  w.innerHTML = isBot ? avatar + botBubble : userBubble;
-  m.appendChild(w);
-  m.scrollTop = m.scrollHeight;
-}
-function addTyping() {
-  var m = document.getElementById("timsy-messages");
-  var w = document.createElement("div");
-  w.id = "timsy-typing";
-  w.style.display = "flex";
-  w.style.gap = "8px";
-  w.innerHTML = '<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">\u2615</div><div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;">Typing...</div>';
-  m.appendChild(w);
-  m.scrollTop = m.scrollHeight;
-}
-function removeTyping() {
-  var e = document.getElementById("timsy-typing");
-  if (e) e.remove();
-}
-async function sendTimsy() {
-  var i = document.getElementById("timsy-input");
-  var q = i.value.trim();
-  if (!q) return;
-  addTimsyMsg(q, false);
-  i.value = "";
-  addTyping();
-  try {
-    var r = await fetch("/timsy_api.php", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({q: q})
-    });
-    var d = await r.json();
-    removeTyping();
-    addTimsyMsg(d.reply, true);
-    if (voiceEnabled) {
-      var p = d.reply.replace(/<[^>]*>/g, "").replace(/\*\*/g, "").replace(/\n+/g, ". ").trim();
-      var u = new SpeechSynthesisUtterance(p);
-      u.rate = 1;
-      u.pitch = 1;
-      window.speechSynthesis.speak(u);
-    }
-  } catch(e) {
-    removeTyping();
-    addTimsyMsg("Sorry, I hit a snag. Try again!", true);
-  }
-}
-</script>
 </html>
