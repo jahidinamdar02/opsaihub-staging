@@ -47,13 +47,21 @@ const schemas = {
 
   post: Joi.object({
     author: Joi.string().min(1).max(50).required(),
-    caption: Joi.string().min(1).max(5000).required().messages({
-      'string.max': 'Caption must be under 5000 characters'
+    caption: Joi.string().trim().min(1).max(5000).required().messages({
+      'string.max': 'Caption must be under 5000 characters',
+      'any.required': 'Caption is required',
+      'string.min': 'Caption cannot be empty'
     }),
     category: Joi.string().valid('recognition','celebration','bestpractice','coffee','teamwin','leaderboard','learning','other').optional(),
     store: Joi.string().max(100).optional().allow(''),
     photo: Joi.string().max(500).optional().allow(''),
-    taggedPerson: Joi.string().max(50).optional().allow('')
+    taggedPerson: Joi.string().max(200).optional().allow(''),
+    orientation: Joi.string().valid('vertical','horizontal').optional(),
+    isCelebrationCard: Joi.boolean().optional(),
+    celebCardId: Joi.string().optional().allow(''),
+    celebCardTitle: Joi.string().optional().allow(''),
+    isProduct: Joi.boolean().optional(),
+    timestamp: Joi.string().optional().allow('')
   }),
 
   postEdit: Joi.object({

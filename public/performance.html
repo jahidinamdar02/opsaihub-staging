@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <title>Performance - Tim's Ops Connect</title>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="timsy.css">
-<style>
+<link rel="stylesheet" href="styles.css"><style>
 /* Hallmark · macrostructure: Stat-Led · genre: modern-minimal · theme: custom (brand-locked)
  * nav: N1b three-section (desktop) + bottom-nav (mobile) · footer: none
  * enrichment: none — data-dense app page
@@ -427,9 +425,17 @@ body { min-height: 100vh; padding-top: var(--nav-h); font-family: var(--font-bod
 @keyframes perf-spin { to { transform: rotate(360deg); } }
 
 @media (prefers-reduced-motion: no-preference) {
-  .fade-up { animation: perf-fade-up 0.5s var(--ease-out) both; }
+  .fade-up { animation: perf-fade-up 0.5s var(--ease-out) both; animation-delay: calc(var(--i, 0) * 80ms); }
 }
 @keyframes perf-fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.section-card, .revenue-hero, .streak-card, .personal-best, .qtd-context, .am-card, .store-card {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.section-card:hover, .revenue-hero:hover, .streak-card:hover, .personal-best:hover, .qtd-context:hover, .am-card:hover, .store-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.progress-fill, .comp-bar-fill { transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 
 /* ── QTD/YTD context card — flat red, no gradient ── */
 .qtd-context {
@@ -838,10 +844,13 @@ body { min-height: 100vh; padding-top: var(--nav-h); font-family: var(--font-bod
     <a href="index.html" class="nav-link ">Home</a>
     <a href="tasks.html" class="nav-link ">Tasks</a>
     <a href="events.html" class="nav-link ">Events</a>
+    <a href="cash-audit-am.html" class="nav-link ">Cash Audit</a>
     <a href="performance.html" class="nav-link active">Scores</a>
-    <a href="team.html" class="nav-link ">Team</a>
+    <a href="feed.html" class="nav-link ">Recognition</a>
     <a href="fdu-dashboard.html" class="nav-link ">FDU</a>
-    <a href="maintenance-dashboard.html" class="nav-link ">Maintenance</a>
+    <a href="training.html" class="nav-link ">Training</a>
+    <a href="maintenance-dashboard.html" class="nav-link">Maintenance</a>
+    <a href="hr.html" class="nav-link">HR</a>
   </div>
   <div style="display:flex;align-items:center;gap:8px;">
     <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
@@ -885,6 +894,7 @@ var onLeave = false;
 var leaveDays = [];
 
 var amList = [
+  {name:'Sandeep Yadav', region:'Delhi NCR & Punjab (RM)', icon:'&#x1F451;'},
   {name:'Raman', region:'Delhi NCR', icon:'&#x1F4BC;'},
   {name:'Harish', region:'Delhi NCR', icon:'&#x1F4BC;'},
   {name:'Rohit', region:'Delhi NCR', icon:'&#x1F4BC;'},
@@ -2495,12 +2505,14 @@ initHODPage();
   }
   function check(){
     var pin=entered.join('');
-    fetch('/api/verify-pin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pin:pin})})
+    fetch('/api/auth/verify-pin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pin:pin})})
     .then(function(r){return r.json();})
     .then(function(d){
       if(!d.success){wrong();return;}
       localStorage.setItem('th_pin_ok','1');
       localStorage.setItem('th_am_name',d.am);
+      localStorage.setItem('th_am_role',d.role||'am');
+      if(d.token)localStorage.setItem('th_token',d.token);
       if(d.role==='hod'||d.role==='ceo'){
         localStorage.setItem('th_hod_ok','1');
         localStorage.setItem('th_is_hod','1');
@@ -2596,49 +2608,45 @@ initHODPage();
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
       <span class="mobile-nav-label">Events</span>
     </a>
+    <a href="cash-audit-am.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span class="mobile-nav-label">Cash</span></a>
     <a href="performance.html" class="mobile-nav-item active">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
       <span class="mobile-nav-label">Scores</span>
     </a>
-    <a href="team.html" class="mobile-nav-item ">
+    <a href="feed.html" class="mobile-nav-item ">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-      <span class="mobile-nav-label">Team</span>
+      <span class="mobile-nav-label">Recognition</span>
     </a>
     <a href="fdu-dashboard.html" class="mobile-nav-item">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
       <span class="mobile-nav-label">FDU</span>
     </a>
+    <a href="training.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+      <span class="mobile-nav-label">Training</span>
+    </a>
     <a href="maintenance-dashboard.html" class="mobile-nav-item">
       <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
       <span class="mobile-nav-label">Maint.</span>
     </a>
+    <a href="hr.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="mobile-nav-label">HR</span>
+    </a>
   </div>
 </nav>
 <script src="skeleton.js"></script>
-
-<!-- TIMSY BOT -->
-<div id="timsy-launcher" onclick="toggleTimsy()">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-<div style="position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:#34C759;border-radius:50%;border:2px solid #000;"></div>
-</div>
-<div id="timsy-chat">
-<div style="background:linear-gradient(135deg,#c8102e,#a00d24);padding:16px 20px;display:flex;align-items:center;gap:12px;">
-<div style="width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">&#9749;</div>
-<div style="flex:1;"><div style="font-weight:800;font-size:1em;color:#fff;">Timsy</div><div style="font-size:0.7em;color:rgba(255,255,255,0.7);">Ops Assistant &#8226; Online</div></div>
-<div id="timsy-voice-btn" onclick="toggleVoice()" style="cursor:pointer;color:rgba(255,255,255,0.7);font-size:0.7em;padding:4px 8px;border:1px solid rgba(255,255,255,0.3);border-radius:12px;" title="Toggle voice">&#128266;</div>
-<div class="timsy-close-btn" onclick="toggleTimsy()">&#10005;</div>
-</div>
-<div id="timsy-messages">
-<div style="display:flex;gap:8px;align-items:flex-start;">
-<div style="width:28px;height:28px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">&#9749;</div>
-<div style="background:#1a1a1a;border:1px solid #333;border-radius:16px;border-top-left-radius:4px;padding:12px 16px;font-size:0.85em;line-height:1.5;color:#ddd;max-width:85%;">Hey there! I am <b style="color:#c8102e;">Timsy</b>, your ops assistant. Ask me about stores, ratings, FDU compliance, donuts, tasks, or anything on OpsAIHub!</div>
-</div>
-</div>
-<div style="padding:12px 16px;border-top:1px solid #222;display:flex;gap:10px;align-items:center;">
-<input id="timsy-input" type="text" placeholder="Ask Timsy..." onkeydown="if(event.key==='Enter')sendTimsy()">
-<div onclick="sendTimsy()" style="width:38px;height:38px;background:#c8102e;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
-</div>
-</div>
-
-<script src="timsy.js"></script>
+<script>
+new MutationObserver(function(muts) {
+  muts.forEach(function(m) {
+    m.addedNodes.forEach(function(n) {
+      if (n.nodeType === 1) {
+        var cards = n.matches && n.matches('.fade-up') ? [n] : [];
+        if (n.querySelectorAll) cards = cards.concat(Array.from(n.querySelectorAll('.fade-up')));
+        cards.forEach(function(c, i) { c.style.setProperty('--i', i); });
+      }
+    });
+  });
+}).observe(document.body, { childList: true, subtree: true });
+</script>
 </html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Post — OpsAIHub</title>
+<link rel="stylesheet" href="styles.css"><style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{background:var(--surface);color:var(--text);min-height:100vh;padding-top:var(--nav-h);}
+
+.post-page{max-width:680px;margin:0 auto;padding:16px 16px 80px;}
+
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;margin-bottom:16px;transition:color 0.15s;}
+.back-link:hover{color:var(--red);}
+
+.post-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.04);}
+
+.post-header{display:flex;align-items:center;gap:10px;padding:14px 16px 10px;}
+.post-avatar{width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+.post-avatar img{width:100%;height:100%;object-fit:cover;}
+.post-author{font-size:14px;font-weight:700;color:#1C1C1E;}
+.post-location{font-size:11px;color:var(--text3);margin-top:1px;}
+.post-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:7px;margin-left:auto;flex-shrink:0;}
+
+.post-image{width:100%;display:block;}
+
+.post-body{padding:12px 16px;}
+.post-caption{font-size:14px;line-height:1.5;color:#1C1C1E;white-space:pre-wrap;}
+.post-caption .tag{color:var(--blue);font-weight:600;}
+.post-time{font-size:11px;color:var(--text3);margin-top:8px;}
+
+.post-actions{display:flex;align-items:center;gap:16px;padding:8px 16px;border-top:1px solid var(--border);}
+.post-menu{margin-left:auto;display:flex;gap:4px;}
+.post-menu-btn{background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:all 0.15s;}
+.post-menu-btn:hover{background:var(--surface);color:var(--text);}
+.post-menu-btn.delete:hover{color:var(--critical);}
+.action-btn{background:none;border:none;color:#1C1C1E;font-size:22px;cursor:pointer;display:flex;align-items:center;padding:4px;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1);}
+.action-btn:active{transform:scale(0.85);}
+.action-btn.liked{color:var(--critical);}
+
+.reactions-bar{display:flex;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;}
+.reactions-bar::-webkit-scrollbar{display:none;}
+.reaction-pill{display:flex;align-items:center;gap:5px;background:var(--surface);border-radius:20px;padding:6px 12px;font-size:13px;cursor:pointer;border:1.5px solid transparent;transition:all 0.15s;flex-shrink:0;font-weight:500;}
+.reaction-pill.active{border-color:rgba(200,16,46,0.3);background:rgba(200,16,46,0.1);}
+
+.comments-section{border-top:1px solid var(--border);padding:12px 16px;}
+.comments-title{font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
+.comment{display:flex;gap:10px;margin-bottom:12px;}
+.comment:last-child{margin-bottom:0;}
+.comment-avatar{width:32px;height:32px;border-radius:50%;overflow:hidden;flex-shrink:0;}
+.comment-avatar img{width:100%;height:100%;object-fit:cover;}
+.comment-body{flex:1;}
+.comment-author{font-size:13px;font-weight:600;color:#1C1C1E;}
+.comment-text{font-size:13px;color:var(--text);line-height:1.4;margin-top:2px;}
+.comment-time{font-size:11px;color:var(--text3);margin-top:3px;}
+
+.add-comment{display:flex;align-items:center;gap:10px;padding:12px 16px;border-top:1px solid var(--border);background:var(--card);}
+.add-comment input{flex:1;padding:10px 14px;border:1.5px solid var(--border);border-radius:20px;font-size:13px;background:var(--surface);color:var(--text);outline:none;transition:border-color 0.15s;}
+.add-comment input:focus{border-color:var(--red);}
+.add-comment button{padding:8px 16px;background:var(--red);color:#fff;border:none;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;transition:opacity 0.15s;}
+.add-comment button:disabled{opacity:0.4;cursor:default;}
+
+.fab{position:fixed;bottom:calc(var(--nav-h) + 20px);right:20px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--red-dark));color:#fff;border:none;font-size:28px;cursor:pointer;box-shadow:0 4px 16px rgba(200,16,46,0.3);z-index:200;display:flex;align-items:center;justify-content:center;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1);}
+.fab:active{transform:scale(0.9);}
+
+.compose-sheet{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:300;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);}
+.compose-sheet.open{display:flex;}
+.compose-body{background:var(--card);border-radius:16px 16px 0 0;width:100%;max-width:500px;max-height:80vh;overflow-y:auto;padding:20px;}
+.compose-handle{width:36px;height:4px;border-radius:2px;background:var(--border);margin:0 auto 16px;}
+.compose-title{font-size:16px;font-weight:700;margin-bottom:14px;}
+.compose-textarea{width:100%;min-height:100px;border:1.5px solid var(--border);border-radius:12px;padding:12px;font-size:14px;font-family:inherit;color:var(--text);background:var(--surface);resize:vertical;outline:none;margin-bottom:12px;}
+.compose-textarea:focus{border-color:var(--red);}
+.compose-photo{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.compose-photo-btn{padding:8px 14px;border:1.5px dashed var(--border);border-radius:10px;font-size:13px;color:var(--text2);cursor:pointer;background:none;transition:border-color 0.15s;}
+.compose-photo-btn:hover{border-color:var(--red);color:var(--red);}
+.compose-photo-name{font-size:12px;color:var(--text3);}
+.compose-preview{width:100%;max-height:200px;object-fit:cover;border-radius:10px;margin-bottom:12px;display:none;}
+.compose-category{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.compose-cat{padding:5px 12px;border-radius:16px;font-size:11px;font-weight:600;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all 0.15s;}
+.compose-cat.active{background:var(--red);border-color:var(--red);color:#fff;}
+.compose-submit{width:100%;padding:12px;background:var(--red);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity 0.15s;}
+.compose-submit:disabled{opacity:0.4;cursor:default;}
+
+.no-post{text-align:center;padding:80px 20px;color:var(--text3);}
+.no-post-icon{font-size:48px;margin-bottom:12px;}
+.spinner{width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin 0.8s linear infinite;margin:40px auto;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.cat-recognition{background:linear-gradient(135deg,#FFF3CD,#FFE69C);color:#B8860B;}
+.cat-celebration{background:linear-gradient(135deg,#FFE0E0,#FFB8B8);color:#E03131;}
+.cat-bestpractice{background:linear-gradient(135deg,#D3F9D8,#B2F2BB);color:#2B8A3E;}
+.cat-coffee{background:linear-gradient(135deg,#FFE3E3,#FFC9C9);color:#C92A2A;}
+.cat-teamwin{background:linear-gradient(135deg,#D0EBFF,#A5D8FF);color:#1971C2;}
+.cat-other{background:linear-gradient(135deg,#F1F3F5,#E9ECEF);color:#495057;}
+</style>
+</head>
+<body>
+<div class="page-content">
+<nav class="nav">
+  <a href="index.html" class="nav-wordmark">Ops<span style="color:var(--red)">AI</span>Hub</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="tasks.html" class="nav-link">Tasks</a>
+    <a href="events.html" class="nav-link">Events</a>
+    <a href="performance.html" class="nav-link">Scores</a>
+    <a href="feed.html" class="nav-link active">Recognition</a>
+    <a href="fdu-dashboard.html" class="nav-link">FDU</a>
+    <a href="training.html" class="nav-link">Training</a>
+  </div>
+  <div class="nav-user" onclick="location.href='feed.html'">
+    <div class="nav-avatar" id="topbarAvatar"></div>
+    <span class="nav-user-name" id="topbarName"></span>
+  </div>
+</nav>
+
+<div class="post-page" id="main">
+  <div class="spinner"></div>
+</div>
+</div>
+
+<button class="fab" onclick="openCompose()">&#x2B;</button>
+<div class="compose-sheet" id="composeSheet" onclick="if(event.target===this)closeCompose()">
+  <div class="compose-body">
+    <div class="compose-handle"></div>
+    <div class="compose-title">New Post</div>
+    <textarea class="compose-textarea" id="composeText" placeholder="What's happening at your store?"></textarea>
+    <img class="compose-preview" id="composePreview">
+    <div class="compose-photo">
+      <button class="compose-photo-btn" onclick="document.getElementById('composePhotoInput').click()">📷 Add photo</button>
+      <span class="compose-photo-name" id="composePhotoName"></span>
+      <input type="file" id="composePhotoInput" accept="image/*" style="display:none;" onchange="previewComposePhoto(this)">
+    </div>
+    <div class="compose-category" id="composeCats"></div>
+    <button class="compose-submit" id="composeSubmit" onclick="submitCompose()" disabled>Post</button>
+  </div>
+</div>
+
+<nav class="mobile-nav">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="mobile-nav-label">Home</span></a>
+    <a href="tasks.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span class="mobile-nav-label">Tasks</span></a>
+    <a href="events.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span class="mobile-nav-label">Events</span></a>
+    <a href="performance.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="mobile-nav-label">Scores</span></a>
+    <a href="feed.html" class="mobile-nav-item active"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="mobile-nav-label">Recognition</span></a>
+    <a href="fdu-dashboard.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><span class="mobile-nav-label">FDU</span></a>
+  </div>
+</nav>
+
+<script>
+var amAvatarMap={'Jahid':'/images/am/jahid.svg','Raman':'/images/am/raman.svg','Harish':'/images/am/harish.svg','Rohit':'/images/am/rohit.svg','Deepak':'/images/am/deepak.svg','Sandeep Mukharjee':'/images/am/akash-chavan.svg','Sandeep Yadav':'/images/am/akash-chavan.svg','Akash Rathod':'/images/am/akash-rathod.svg','Jagadeesha':'/images/am/jagadeesha.svg','Shivam':'/images/am/shivam.svg','Kajal':'/images/am/kajal.svg','Vrunda':'/images/am/vrunda.svg'};
+function getAvatar(name){return amAvatarMap[name]||null;}
+function defaultAvatar(name){var ch=(name||'?')[0].toUpperCase();return 'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#C8102E"/><text x="50" y="58" text-anchor="middle" fill="white" font-family="Arial" font-size="42" font-weight="bold">'+ch+'</text></svg>');}
+function avatarSrc(name){return getAvatar(name)||defaultAvatar(name);}
+
+var postId=new URLSearchParams(window.location.search).get('id');
+var post=null;
+var myName=localStorage.getItem('th_am_name')||'';
+
+if(!postId){
+  document.getElementById('main').innerHTML='<div class="no-post"><div class="no-post-icon">&#x1F517;</div><div>No post ID provided</div><a href="feed.html" style="color:var(--red);margin-top:12px;display:inline-block;">Back to Feed</a></div>';
+}else{
+  loadPost();
+}
+
+function loadPost(){
+  fetch('/api/posts?t='+Date.now()).then(function(r){return r.json();}).then(function(d){
+    var posts=d.data||[];
+    post=posts.find(function(p){return p.id===postId;});
+    if(!post){
+      document.getElementById('main').innerHTML='<div class="no-post"><div class="no-post-icon">&#x1F4ED;</div><div>Post not found</div><a href="feed.html" style="color:var(--red);margin-top:12px;display:inline-block;">Back to Feed</a></div>';
+      return;
+    }
+    document.title=post.author+' — Post | OpsAIHub';
+    render();
+  }).catch(function(){
+    document.getElementById('main').innerHTML='<div class="no-post"><div class="no-post-icon">&#x26A0;&#xFE0F;</div><div>Failed to load post</div></div>';
+  });
+}
+
+function render(){
+  var main=document.getElementById('main');
+  var html='<a href="feed.html" class="back-link">&larr; Back to Feed</a>';
+  html+='<div class="post-card">';
+
+  var avatar=avatarSrc(post.author);
+  var cat=post.category||'';
+  var badgeHtml=cat?'<span class="post-badge cat-'+cat+'">'+cat.charAt(0).toUpperCase()+cat.slice(1)+'</span>':'';
+  var loc=post.store||post.taggedPerson||'';
+  html+='<div class="post-header">';
+  html+='<div class="post-avatar"><img src="'+avatar+'" alt="'+post.author+'"></div>';
+  html+='<div><div class="post-author">'+post.author+'</div>'+(loc?'<div class="post-location">'+loc+'</div>':'')+'</div>';
+  html+=badgeHtml;
+  if(post.author===myName){
+    html+='<div class="post-menu">';
+    html+='<button class="post-menu-btn" onclick="editPost()" title="Edit">&#x270E;</button>';
+    html+='<button class="post-menu-btn delete" onclick="deletePost()" title="Delete">&#x1F5D1;</button>';
+    html+='</div>';
+  }
+  html+='</div>';
+
+  if(post.photo){
+    html+='<img class="post-image" src="'+post.photo+'" alt="Post photo" loading="lazy">';
+  }
+
+  html+='<div class="post-body">';
+  if(post.caption)html+='<div class="post-caption">'+formatCaption(post.caption)+'</div>';
+  var ts=post.timestamp||post.createdAt||'';
+  if(ts){
+    var d=new Date(ts);
+    html+='<div class="post-time">'+d.toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'})+'</div>';
+  }
+  html+='</div>';
+
+  html+='<div class="post-actions">';
+  html+='<button class="action-btn" onclick="react(\'\u2764\')" id="likeBtn">&#x2764;</button>';
+  html+='<button class="action-btn" onclick="react(\'\uD83D\uDC4D\')">&#x1F44D;</button>';
+  html+='<button class="action-btn" onclick="react(\'\uD83D\uDC4F\')">&#x1F44F;</button>';
+  html+='</div>';
+
+  var reactions=post.reactions||{};
+  var rKeys=Object.keys(reactions).filter(function(k){return reactions[k]>0;});
+  if(rKeys.length>0){
+    html+='<div class="reactions-bar">';
+    rKeys.forEach(function(k){html+='<span class="reaction-pill">'+k+' '+reactions[k]+'</span>';});
+    html+='</div>';
+  }
+
+  var comments=post.comments||[];
+  html+='<div class="comments-section">';
+  html+='<div class="comments-title">Comments ('+comments.length+')</div>';
+  if(comments.length===0){
+    html+='<div style="font-size:13px;color:var(--text3);padding:8px 0;">No comments yet</div>';
+  }
+  comments.forEach(function(c){
+    var cAvatar=avatarSrc(c.author);
+    html+='<div class="comment">';
+    html+='<div class="comment-avatar"><img src="'+cAvatar+'" alt="'+c.author+'"></div>';
+    html+='<div class="comment-body">';
+    html+='<div class="comment-author">'+c.author+'</div>';
+    html+='<div class="comment-text">'+escapeHtml(c.text)+'</div>';
+    if(c.time)html+='<div class="comment-time">'+c.time+'</div>';
+    html+='</div></div>';
+  });
+  html+='</div>';
+
+  html+='<div class="add-comment">';
+      html+='<input type="text" id="commentInput" placeholder="Add a comment..." onkeydown="if(event.key===\'Enter\')postComment()" oninput="document.getElementById(\'commentBtn\').disabled=!this.value.trim()">';
+  html+='<button onclick="postComment()" id="commentBtn" disabled>Post</button>';
+  html+='</div>';
+
+  html+='</div>';
+  main.innerHTML=html;
+}
+
+function formatCaption(text){
+  return escapeHtml(text).replace(/@(\w+)/g,'<span class="tag">@$1</span>').replace(/#(\w+)/g,'<span class="tag">#$1</span>');
+}
+function escapeHtml(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
+
+function react(emoji){
+  if(!post)return;
+  fetch('/api/posts/react',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:post.id,emoji:emoji})})
+  .then(function(r){return r.json();}).then(function(d){
+    if(d.success){
+      post.reactions=post.reactions||{};
+      post.reactions[emoji]=(post.reactions[emoji]||0)+1;
+      render();
+    }
+  });
+}
+
+function editPost(){
+  if(!post)return;
+  var newCaption=prompt('Edit caption:',post.caption||'');
+  if(newCaption===null)return;
+  fetch('/api/posts/'+post.id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({caption:newCaption})})
+  .then(function(r){return r.json();}).then(function(d){
+    if(d.success){post.caption=newCaption;render();}
+    else{alert('Edit failed: '+(d.error||'Unknown'));}
+  });
+}
+function deletePost(){
+  if(!post||!confirm('Delete this post?'))return;
+  fetch('/api/posts/'+post.id,{method:'DELETE'})
+  .then(function(r){return r.json();}).then(function(d){
+    if(d.success){window.location.href='feed.html';}
+    else{alert('Delete failed: '+(d.error||'Unknown'));}
+  });
+}
+
+function postComment(){
+  var input=document.getElementById('commentInput');
+  var text=(input.value||'').trim();
+  if(!text||!post)return;
+  var author=myName||'You';
+  fetch('/api/posts/comment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({postId:post.id,comment:{author:author,text:text}})})
+  .then(function(r){return r.json();}).then(function(d){
+    if(d.success){
+      post.comments=post.comments||[];
+      post.comments.push({author:author,text:text});
+      input.value='';
+      render();
+    }
+  });
+}
+
+var composeFile=null;
+var composeCat='recognition';
+var categories=['recognition','celebration','bestpractice','coffee','teamwin','other'];
+
+function openCompose(){
+  document.getElementById('composeSheet').classList.add('open');
+  renderComposeCats();
+}
+function closeCompose(){
+  document.getElementById('composeSheet').classList.remove('open');
+  document.getElementById('composeText').value='';
+  document.getElementById('composePreview').style.display='none';
+  document.getElementById('composePhotoName').textContent='';
+  composeFile=null;
+  composeCat='recognition';
+  document.getElementById('composeSubmit').disabled=true;
+}
+function renderComposeCats(){
+  var el=document.getElementById('composeCats');
+  el.innerHTML=categories.map(function(c){
+    return '<button class="compose-cat'+(composeCat===c?' active':'')+'" onclick="composeCat=\''+c+'\';renderComposeCats();">'+c.charAt(0).toUpperCase()+c.slice(1)+'</button>';
+  }).join('');
+}
+function previewComposePhoto(input){
+  if(!input.files||!input.files[0])return;
+  composeFile=input.files[0];
+  document.getElementById('composePhotoName').textContent=composeFile.name;
+  var reader=new FileReader();
+  reader.onload=function(e){var img=document.getElementById('composePreview');img.src=e.target.result;img.style.display='block';};
+  reader.readAsDataURL(composeFile);
+  checkComposeReady();
+}
+document.getElementById('composeText').addEventListener('input',checkComposeReady);
+function checkComposeReady(){
+  var hasText=(document.getElementById('composeText').value||'').trim().length>0;
+  document.getElementById('composeSubmit').disabled=!hasText;
+}
+function submitCompose(){
+  var text=(document.getElementById('composeText').value||'').trim();
+  if(!text)return;
+  var author=myName||'You';
+  if(composeFile){
+    var fd=new FormData();
+    fd.append('photo',composeFile);
+    fetch('/api/posts/upload',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){
+      if(!d.success){alert('Photo upload failed');return;}
+      return fetch('/api/posts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({author:author,caption:text,category:composeCat,photo:d.url})});
+    }).then(function(r){return r?r.json():null;}).then(function(d){
+      if(d&&d.success){closeCompose();loadPost();}
+    });
+  }else{
+    fetch('/api/posts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({author:author,caption:text,category:composeCat})})
+    .then(function(r){return r.json();}).then(function(d){
+      if(d.success){closeCompose();loadPost();}else{alert('Post failed: '+(d.error||'Unknown'));}});
+  }
+}
+
+var am=localStorage.getItem('th_am_name');
+if(am){
+  var av=avatarSrc(am);
+  document.getElementById('topbarAvatar').innerHTML='<img src="'+av+'" style="width:100%;height:100%;object-fit:cover;" alt="'+am+'">';
+  document.getElementById('topbarName').textContent=am;
+}
+</script>
+<script src="theme.js"></script>
+<script>applyTheme(getTheme());</script>
+</body>
+</html>

@@ -30,9 +30,9 @@ body { padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom)); -webkit-
 .story-add { background:linear-gradient(135deg,#007AFF,#5856D6); display:flex; align-items:center; justify-content:center; font-size:24px; border-radius:50%; box-shadow:0 2px 8px rgba(0,122,255,0.3); }
 
 /* POST CARDS */
-.post-card { background:var(--card); border-radius:14px; margin:0 12px 10px; border:none; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 4px 12px rgba(0,0,0,0.03); will-change:transform; transform:translateZ(0); content-visibility:auto; contain-intrinsic-size:0 500px; overflow:hidden; transition:box-shadow 0.2s ease; }
+.post-card { background:var(--card); border-radius:14px; margin:0 12px 10px; border:none; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 4px 12px rgba(0,0,0,0.03); will-change:transform; transform:translateZ(0); content-visibility:auto; contain-intrinsic-size:0 500px; overflow:visible; transition:box-shadow 0.2s ease; position:relative; }
 .post-card:active { box-shadow:0 1px 2px rgba(0,0,0,0.06),0 2px 6px rgba(0,0,0,0.04); }
-.post-header { display:flex; align-items:center; gap:10px; padding:14px 14px 10px; }
+.post-header { display:flex; align-items:center; gap:10px; padding:14px 14px 10px; position:relative; }
 .post-avatar { width:38px; height:38px; border-radius:50%; overflow:hidden; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
 .post-avatar img { width:100%; height:100%; object-fit:cover; }
 .post-author-wrap { flex:1; }
@@ -86,7 +86,7 @@ body { padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom)); -webkit-
 .lb-zero { text-align:center; padding:32px 16px; color:var(--disabled-text); font-size:13px; }
 
 /* POST IMAGE */
-.post-image-wrap { position:relative; width:100%; overflow:hidden; background:#111; }
+.post-image-wrap { position:relative; width:100%; overflow:hidden; background:#111; border-radius:14px 14px 0 0; }
 .post-image-wrap img { width:100%; object-fit:cover; display:block; }
 .post-image-wrap.orient-vertical img { aspect-ratio:4/5; max-height:600px; }
 .post-image-wrap.orient-horizontal img { aspect-ratio:16/9; max-height:420px; }
@@ -211,9 +211,12 @@ body { padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom)); -webkit-
 .comment-edit-save { padding:6px 14px; background:linear-gradient(135deg,#FF6B6B,#FF8E53); color:#fff; border:none; border-radius:10px; font-size:12px; font-weight:600; cursor:pointer; box-shadow:0 2px 6px rgba(255,107,107,0.25); }
 .comment-edit-del { padding:6px 14px; background:none; color:var(--critical); border:1px solid rgba(255,59,48,0.2); border-radius:10px; font-size:12px; cursor:pointer; font-weight:500; }
 .comment-edit-cancel { padding:6px 14px; background:none; color:var(--text3); border:1px solid var(--border); border-radius:10px; font-size:12px; cursor:pointer; font-weight:500; }
-.post-edit-btn { font-size:11px; color:var(--disabled-text); background:none; border:none; cursor:pointer; font-weight:500; margin-left:8px; opacity:0; transition:opacity 0.15s; }
-.post-caption:hover .post-edit-btn { opacity:0.7; }
+.post-edit-btn { font-size:11px; color:var(--disabled-text); background:none; border:none; cursor:pointer; font-weight:500; margin-left:8px; opacity:0.5; transition:opacity 0.15s; }
+.post-caption:hover .post-edit-btn { opacity:1; }
 .post-edit-btn:hover { opacity:1 !important; color:var(--text3); }
+.post-menu-dropdown { position:absolute; right:14px; top:50px; background:var(--card); border:1px solid var(--border); border-radius:10px; box-shadow:0 4px 16px rgba(0,0,0,0.12); z-index:50; min-width:120px; }
+.post-menu-dropdown button { display:block; width:100%; padding:10px 14px; text-align:left; font-size:13px; border:none; background:none; cursor:pointer; color:var(--text); }
+.post-menu-dropdown button:hover { background:var(--surface); }
 .comment-edit-btn { font-size:10px; color:var(--disabled-text); background:none; border:none; cursor:pointer; font-weight:500; margin-left:6px; opacity:0; transition:opacity 0.15s; }
 .comment-item:hover .comment-edit-btn { opacity:0.6; }
 .comment-edit-btn:hover { opacity:1 !important; color:var(--text3); }
@@ -266,8 +269,10 @@ body { padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom)); -webkit-
 .notif-toast { position:fixed; top:calc(env(safe-area-inset-top) + 64px); left:50%; transform:translateX(-50%); background:#1D1D1F; color:#fff; font-size:13px; font-weight:600; padding:10px 20px; border-radius:20px; z-index:500; white-space:nowrap; opacity:0; transition:opacity 0.3s; pointer-events:none; }
 .notif-toast.show { opacity:1; }
 @keyframes spin { to{transform:rotate(360deg)} }
-@keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
-.fade-in { animation:fadeIn 0.3s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.fade-in { animation:fadeIn 0.4s var(--ease-out, ease) both; animation-delay:calc(var(--i, 0) * 60ms); }
+.post-card:hover { transform:translateY(-2px); box-shadow:0 2px 8px rgba(0,0,0,0.06),0 8px 24px rgba(0,0,0,0.04); transition:transform 200ms ease,box-shadow 200ms ease; }
+@media (prefers-reduced-motion:reduce) { .fade-in { animation:none; opacity:1; } .post-card:hover { transform:none; } }
 @keyframes heartBeat { 0%{transform:translate(-50%,-50%) scale(0);opacity:1} 50%{transform:translate(-50%,-50%) scale(1.2);opacity:1} 100%{transform:translate(-50%,-50%) scale(1);opacity:0} }
 
 /* ── NEW ANIMATIONS ── */
@@ -508,7 +513,8 @@ body{padding-top:56px!important;padding-bottom:calc(var(--nav-h,64px) + 16px)!im
   .bottom-nav{display:none!important;}
   .content{padding:20px 32px!important;max-width:680px!important;margin:0 auto!important;}
   .stories-wrap{max-width:680px!important;margin:0 auto!important;border-radius:14px!important;}
-  .post-card{margin:0 auto 10px!important;max-width:680px!important;}
+  .post-card{margin:0 auto 10px!important;max-width:680px!important;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.05)!important;border:1px solid rgba(0,0,0,0.04)!important;background:#fff!important;overflow:hidden!important;content-visibility:visible!important;contain:none!important;}
+  body{background:#EDEDF0!important;}
   .streak-bar{max-width:680px!important;margin:8px auto!important;}
   .ctx-prompt{max-width:680px!important;margin:8px auto!important;}
   .trending-bar{max-width:680px!important;margin:0 auto!important;}
@@ -525,9 +531,11 @@ body{padding-top:56px!important;padding-bottom:calc(var(--nav-h,64px) + 16px)!im
     <a href="index.html" style="font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;">Home</a>
     <a href="tasks.html" style="font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;">Tasks</a>
     <a href="events.html" style="font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;">Events</a>
+    <a href="cash-audit-am.html" style="font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;">Cash Audit</a>
     <a href="performance.html" style="font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;">Scores</a>
-    <a href="team.html" style="font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;">Team</a>
+    <a href="feed.html" style="font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;">Recognition</a>
     <a href="fdu-dashboard.html" style="font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;">FDU</a>
+    <a href="training.html" style="font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;">Training</a>
   </div>
   <div style="display:flex;align-items:center;gap:14px;">
     <button id="themeToggle" onclick="toggleTheme()" class="nav-btn" aria-label="Toggle dark mode">
@@ -635,33 +643,11 @@ body{padding-top:56px!important;padding-bottom:calc(var(--nav-h,64px) + 16px)!im
 </div>
 
 <!-- FAB BACKDROP -->
-<div class="fab-backdrop" id="fabBackdrop" onclick="closeFabMenu()"></div>
+<div class="fab-backdrop" id="fabBackdrop" onclick="closeFabMenu()" style="display:none;"></div>
 
 <!-- FAB SPEED DIAL -->
 <div class="fab-container" id="fabContainer">
-  <div class="fab-menu" id="fabMenu">
-    <div class="fab-item" onclick="openNewPostType('reel')">
-      <span class="fab-item-label">Reel</span>
-      <button class="fab-item-btn">🎬</button>
-    </div>
-    <div class="fab-item" onclick="openNewPostType('celebration')">
-      <span class="fab-item-label">Cards</span>
-      <button class="fab-item-btn">🎊</button>
-    </div>
-    <div class="fab-item" onclick="openNewPostType('shorts')">
-      <span class="fab-item-label">Shorts</span>
-      <button class="fab-item-btn">⚡</button>
-    </div>
-    <div class="fab-item" onclick="openNewPostType('product')">
-      <span class="fab-item-label">Products</span>
-      <button class="fab-item-btn">🍩</button>
-    </div>
-    <div class="fab-item" onclick="openNewPostType('photo')">
-      <span class="fab-item-label">Picture</span>
-      <button class="fab-item-btn">📸</button>
-    </div>
-  </div>
-  <button class="new-post-btn" id="newPostFab" onclick="toggleFabMenu()">&#x2B;</button>
+  <button class="new-post-btn" id="newPostFab" onclick="openNewPostType('photo')">&#x2B;</button>
 </div>
 
 <!-- CHECK-IN SHEET -->
@@ -763,7 +749,7 @@ body{padding-top:56px!important;padding-bottom:calc(var(--nav-h,64px) + 16px)!im
       <option value="">Select your name</option>
       <option>Jahid</option>
       <option>Raman</option><option>Harish</option><option>Rohit</option>
-      <option>Deepak</option><option>Kajal</option><option>Sandeep Mukharjee</option><option>Akash Rathod</option>
+      <option>Sandeep Yadav</option><option>Deepak</option><option>Kajal</option><option>Sandeep Mukharjee</option><option>Akash Rathod</option>
       <option>Jagadeesha</option><option>Shivam</option>
     </select>
 
@@ -804,7 +790,7 @@ body{padding-top:56px!important;padding-bottom:calc(var(--nav-h,64px) + 16px)!im
   <a href="tasks.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span class="nav-label">Tasks</span></a>
   <a href="events.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span class="nav-label">Events</span></a>
   <a href="performance.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">Scores</span></a>
-  <a href="team.html" class="nav-item active"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="nav-label">Team</span>
+  <a href="feed.html" class="nav-item active"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="nav-label">Recognition</span>
     <div class="nav-dot"></div>
   </a>
   <a href="fdu-dashboard.html" class="nav-item"><span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><span class="nav-label">FDU</span></a>
@@ -826,6 +812,7 @@ var amAvatarMap = {
   'Rohit':'/images/am/rohit.svg',
   'Deepak':'/images/am/deepak.svg',
   'Sandeep Mukharjee':'/images/am/akash-chavan.svg',
+  'Sandeep Yadav':'/images/am/akash-chavan.svg',
   'Akash Rathod':'/images/am/akash-rathod.svg',
   'Jagadeesha':'/images/am/jagadeesha.svg',
   'Shivam':'/images/am/shivam.svg',
@@ -835,7 +822,7 @@ var amAvatarMap = {
 };
 var amIcons = {
   'Jahid':'&#x1F451;','Raman':'&#x1F3D9;','Harish':'&#x1F3D9;','Rohit':'&#x1F3D9;',
-  'Deepak':'&#x1F33E;','Kajal':'&#x1F33E;','Sandeep Mukharjee':'&#x1F30A;','Akash Rathod':'&#x1F30A;',
+  'Deepak':'&#x1F33E;','Kajal':'&#x1F33E;','Sandeep Mukharjee':'&#x1F30A;','Sandeep Yadav':'&#x1F451;','Akash Rathod':'&#x1F30A;',
   'Vrunda':'&#x1F966;','Jagadeesha':'&#x1F333;','Shivam':'&#x1F48E;'
 };
 
@@ -856,7 +843,7 @@ function avatarHtml(name, size) {
 }
 
 function loadProfiles() {
-  return fetch('/api/am-profiles').then(function(r){return r.json();}).then(function(d) {
+  return fetch('/api/profile/am-profiles').then(function(r){return r.json();}).then(function(d) {
     if (d.success) { amProfiles = d.data || {}; }
     var feedName = localStorage.getItem('th_feed_name');
     var feedPhoto = localStorage.getItem('th_feed_photo');
@@ -1098,25 +1085,21 @@ function submitPost() {
 function savePost(post) {
   fetch('/api/posts', {
     method:'POST',
-    headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('th_token')},
+    headers:{'Content-Type':'application/json'},
     body: JSON.stringify(post)
   })
   .then(function(r){return r.json();})
-  .then(function(){
-    allPosts.unshift(post);
+  .then(function(d){
+    if (!d.success) { alert('Post failed: '+(d.error||'Unknown')); return; }
+    allPosts.unshift(d.data || post);
     renderFeed();
     closeModal();
     resetForm();
     window.scrollTo({top:0, behavior:'smooth'});
-    // Trigger streak update and celebration
     if (window._onPostCreated) window._onPostCreated();
   })
   .catch(function(){
-    allPosts.unshift(post);
-    renderFeed();
-    closeModal();
-    resetForm();
-    if (window._onPostCreated) window._onPostCreated();
+    alert('Network error — post not saved');
   });
 }
 
@@ -1318,72 +1301,21 @@ function selectCelebCard(el, id) {
 // ── LOAD FEED ────────────────────────────────────────────
 function loadFeed() {
   Promise.all([
-    fetch('/api/posts').then(function(r){return r.json();}),
+    fetch('/api/posts?t=' + Date.now()).then(function(r){return r.json();}),
     loadProfiles()
   ]).then(function(results) {
     var d = results[0];
     allPosts = d.data || [];
-    if (allPosts.length === 0) {
-      var demoData = getDemoPosts();
-      allPosts = demoData;
-    }
     renderFeed();
     renderStories();
-  }).catch(function(){ allPosts = getDemoPosts(); renderFeed(); renderStories(); });
-}
-
-function getDemoPosts() {
-  var now = Date.now();
-  var h = function(hours){ return new Date(now - hours*3600000).toISOString(); };
-  return [
-    {id:'demo_1',author:'Sandeep Mukharjee',category:'recognition',store:'Balewadi',taggedPerson:'',
-     caption:'Balewadi team delivered outstanding performance this week — 96% FDU compliance and zero customer complaints. So proud of this crew! &#x1F3C6;&#x1F525; #TimHortonsIndia #Excellence',
-     photo:'',reactions:{'&#x2764;':14,'&#x1F44D;':8,'&#x1F44F;':6},
-     comments:[{author:'Jahid',text:'Sandeep, this is exactly the standard we want across all stores. Amazing work! &#x1F3C6;',time:'2h ago'},{author:'Kajal',text:'Inspiring! We need to match this at CP67 &#x1F525;',time:'1h ago'}],
-     timestamp:h(2),timeAgo:'2h ago'},
-    {id:'demo_2',author:'Harish',category:'coffee',store:'Cyber Hub',taggedPerson:'',
-     caption:'Cyber Hub morning rush handled like pros — 120 orders in the first hour, zero delays. The team\'s energy is unmatched &#x2615;&#x2728; #CoffeeMoment #TimHortons',
-     photo:'',reactions:{'&#x2764;':9,'&#x1F44D;':5,'&#x1F44F;':7},
-     comments:[{author:'Rohit',text:'Cyber Hub always sets the bar! &#x2615;',time:'3h ago'}],
-     timestamp:h(5),timeAgo:'5h ago'},
-    {id:'demo_3',author:'Jagadeesha',category:'bestpractice',store:'BIAL',taggedPerson:'',
-     caption:'BIAL discovery: We put the day\'s transaction target on a small whiteboard near the POS. Team checks it every hour and self-motivates. Modifiers went up 22% in one week &#x1F4C8; Try it at your store! #BestPractice',
-     photo:'',reactions:{'&#x2764;':16,'&#x1F44D;':11,'&#x1F44F;':9},
-     comments:[{author:'Deepak',text:'Implementing this at Elante Mall tomorrow!',time:'5h ago'},{author:'Sandeep Mukharjee',text:'Already done at Balewadi — it works! &#x1F525;',time:'4h ago'}],
-     timestamp:h(8),timeAgo:'8h ago'},
-    {id:'demo_4',author:'Deepak',category:'teamwin',store:'Elante Mall',taggedPerson:'',
-     caption:'Elante Mall just hit its highest ever Saturday sales! &#x1F4AA;&#x1F389; Full house all day, zero complaints, all machines running. This is what a great team looks like. #TeamWin',
-     photo:'',reactions:{'&#x2764;':20,'&#x1F44D;':14,'&#x1F44F;':12},
-     comments:[{author:'Jahid',text:'This is OUTSTANDING Deepak. Record noted. &#x1F3C6;',time:'1d ago'}],
-     timestamp:h(24),timeAgo:'Yesterday'},
-    {id:'demo_5',author:'Kajal',category:'celebration',store:'CP67 Mohali',taggedPerson:'',
-     caption:'CP67 Mohali completed 1 year of operation today! &#x1F382;&#x1F3C6; From 0 to 100% compliance in 12 months — the team has been incredible. Here\'s to many more! #Celebration #TimHortonsIndia',
-     photo:'',reactions:{'&#x2764;':25,'&#x1F44D;':8,'&#x1F44F;':18},
-     comments:[{author:'Raman',text:'Congratulations Kajal! &#x1F382;',time:'2d ago'},{author:'Shivam',text:'Amazing milestone! &#x1F389;',time:'2d ago'}],
-     timestamp:h(48),timeAgo:'2 days ago'},
-    {id:'demo_6',author:'Shivam',category:'recognition',store:'Inorbit Mall Hyd',taggedPerson:'',
-     caption:'Inorbit Mall Hyd achieved 100% FDU compliance for the 3rd consecutive week! &#x1F3C6; The team\'s dedication to display standards is second to none. Keep it up! #Recognition',
-     photo:'',reactions:{'&#x2764;':11,'&#x1F44D;':7,'&#x1F44F;':5},
-     comments:[{author:'Jahid',text:'Consistency is key — well done Shivam! &#x1F3C6;',time:'3d ago'}],
-     timestamp:h(72),timeAgo:'3 days ago'},
-    {id:'demo_7',author:'Raman',category:'teamwin',store:'T3DD',taggedPerson:'',
-     caption:'T3DD airport store processed 500+ transactions yesterday — new single-day record! &#x1F4AA; Team worked seamlessly through the rush. #TeamWin #AirportOperations',
-     photo:'',reactions:{'&#x2764;':13,'&#x1F44D;':9,'&#x1F44F;':8},
-     comments:[{author:'Harish',text:'Airport stores are built different! &#x2708;',time:'3d ago'}],
-     timestamp:h(96),timeAgo:'4 days ago'},
-    {id:'demo_8',author:'Akash Rathod',category:'bestpractice',store:'NMIAL',taggedPerson:'',
-     caption:'NMIAL tip: We created a quick-reference SOP card at each station. New staff ramp-up time dropped from 3 days to 1 day &#x1F4C8; Simple but effective! #BestPractice',
-     photo:'',reactions:{'&#x2764;':8,'&#x1F44D;':6,'&#x1F44F;':4},
-     comments:[{author:'Sandeep Mukharjee',text:'Love this — sharing with my team &#x1F4DA;',time:'5d ago'}],
-     timestamp:h(120),timeAgo:'5 days ago'}
-  ];
+  }).catch(function(){ allPosts = []; renderFeed(); renderStories(); });
 }
 
 // ── RENDER STORIES ───────────────────────────────────────
 function renderStories() {
   var wrap = document.getElementById('storiesWrap');
   var currentAM = localStorage.getItem('th_am_name') || localStorage.getItem('th_feed_name') || '';
-  var allAMs = ['Jahid','Raman','Harish','Rohit','Deepak','Kajal','Sandeep Mukharjee','Akash Rathod','Jagadeesha','Shivam','Vrunda'];
+  var allAMs = ['Sandeep Yadav','Jahid','Raman','Harish','Rohit','Deepak','Kajal','Sandeep Mukharjee','Akash Rathod','Jagadeesha','Shivam','Vrunda'];
   var hasPost = new Set();
   allPosts.forEach(function(p){ hasPost.add(p.author); });
 
@@ -1430,6 +1362,7 @@ function filterByAM(author) {
   wrap.innerHTML = html + '<div class="isend"><div class="isend-emoji">&#x1F464;</div><div class="isend-text">All posts from ' + author.split(' ')[0] + '</div></div>';
   bindPostEvents();
   enhanceReactions();
+  staggerCards();
   setTimeout(function(){ wrap.scrollIntoView({behavior:'smooth'}); }, 50);
 }
 
@@ -1517,7 +1450,10 @@ function renderFeed() {
   }
 
   // Rank feed by engagement + recency
-  feedRanked = rankFeed(allPosts);
+  feedRanked = rankFeed(allPosts).filter(function(p) {
+    // Skip empty posts (no photo AND no caption)
+    return (p.photo && p.photo.length > 5) || (p.caption && p.caption.trim().length > 0) || p.isLeaderboard || p.isAutoPost || p.isCelebrationCard || p.isProduct;
+  });
   feedPage = 0;
   feedAllLoaded = false;
 
@@ -1535,9 +1471,16 @@ function renderFeed() {
   feedPage = 1;
   bindPostEvents();
   enhanceReactions();
+  staggerCards();
 
   // Setup IntersectionObserver
   setupInfiniteScroll();
+}
+
+function staggerCards() {
+  document.querySelectorAll('.post-card.fade-in').forEach(function(card, i) {
+    card.style.setProperty('--i', i);
+  });
 }
 
 function loadMorePosts() {
@@ -1586,6 +1529,7 @@ function loadMorePosts() {
     // Rebind events for new posts
     bindPostEvents();
     enhanceReactions();
+    staggerCards();
     feedLoading = false;
   }, 300);
 }
@@ -1716,8 +1660,12 @@ function renderPost(post, idx) {
         '</div>' +
         '<div class="post-location">' + (post.store || 'Tim Hortons India') + '</div>' +
       '</div>' +
-      (post.author === (localStorage.getItem('th_am_name')||'') ? '<button class="action-btn delete-post-btn" onclick="deletePost(\''+post.id+'\')" title="Delete">&#x22EF;</button>' : '') +
+      (post.author === (localStorage.getItem('th_am_name')||'') ? '<button class="action-btn delete-post-btn" onclick="togglePostMenu(\''+post.id+'\')" title="More">&#x22EF;</button>' : '') +
     '</div>' +
+    (post.author === (localStorage.getItem('th_am_name')||'') ? '<div class="post-menu-dropdown" id="pmenu-'+post.id+'" style="display:none;position:absolute;right:14px;top:50px;background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,0.12);z-index:50;min-width:120px;">' +
+      '<button onclick="openPostEdit(\''+post.id+'\');closePostMenus();" style="display:block;width:100%;padding:10px 14px;text-align:left;font-size:13px;border:none;background:none;cursor:pointer;color:var(--text);">✏️ Edit</button>' +
+      '<button onclick="deletePost(\''+post.id+'\');closePostMenus();" style="display:block;width:100%;padding:10px 14px;text-align:left;font-size:13px;border:none;background:none;cursor:pointer;color:#C8102E;border-top:1px solid var(--border);">🗑️ Delete</button>' +
+    '</div>' : '') +
     // Photo — only render if the post actually has a photo
     (post.isLeaderboard ?
       renderLeaderboardCard(post) :
@@ -1757,7 +1705,7 @@ function renderPost(post, idx) {
       '<textarea class="add-comment-input" placeholder="Add a comment..." data-post-idx="'+idx+'" rows="1"></textarea>' +
       '<button class="comment-post-btn" data-post-idx="'+idx+'">Post</button>' +
     '</div>' +
-    '<div class="post-time">'+timeDisplay+'</div>' +
+    '<div class="post-time"><a href="post.html?id='+post.id+'" style="color:inherit;text-decoration:none;">'+timeDisplay+'</a></div>' +
   '</div>';
 }
 
@@ -2301,7 +2249,7 @@ function initPullToRefresh() {
       indicator.classList.add('refreshing');
       text.textContent = 'Refreshing...';
 
-      fetch('/api/posts')
+      fetch('/api/posts?t=' + Date.now())
         .then(function(r) { return r.json(); })
         .then(function(d) {
           allPosts = d.data || [];
@@ -2545,6 +2493,18 @@ if (isFeedOnly) {
 }
 
 // ── Edit Post / Comment ───────────────────────────────────────────────
+function togglePostMenu(postId) {
+  closePostMenus();
+  var menu = document.getElementById('pmenu-'+postId);
+  if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+function closePostMenus() {
+  document.querySelectorAll('.post-menu-dropdown').forEach(function(m) { m.style.display = 'none'; });
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.delete-post-btn') && !e.target.closest('.post-menu-dropdown')) closePostMenus();
+});
+
 function openPostEdit(postId) {
   var area = document.getElementById('pedit-'+postId);
   var txt = document.getElementById('pedit-txt-'+postId);

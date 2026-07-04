@@ -2,6 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
 const { readJSON, writeJSON } = require('../services/store');
 const { authMiddleware } = require('../middleware/auth');
 const { sendEmail } = require('../services/email');
@@ -10,25 +12,39 @@ const { validate, schemas } = require('../services/validation');
 
 const feedUpload = multer({
   storage: multer.diskStorage({
-    destination: 'uploads/feed/',
+    destination: function(req, file, cb) {
+      var dir = path.join(__dirname, '..', 'uploads', 'feed');
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      cb(null, dir);
+    },
     filename: function(req, file, cb) { cb(null, Date.now() + '-' + Math.random().toString(36).substr(2,9) + '.jpg'); }
   }),
   limits: { fileSize: 10 * 1024 * 1024 }
 });
 
 router.get('/', function(req, res) {
-  try { res.json({ success: true, data: readJSON('posts.json', []) }); }
+  try {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.set('Pragma', 'no-cache');
+    res.set('Expires', '0');
+    var posts = readJSON('posts.json', []);
+    var cutoff = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString();
+    var filtered = posts.filter(function(p) {
+      var ts = p.timestamp || p.createdAt || '';
+      return ts > cutoff;
+    });
+    res.json({ success: true, data: filtered });
+  }
   catch(err) { res.status(500).json({ success: false, error: err.message }); }
 });
 
-router.post('/', authMiddleware, validate(schemas.post), function(req, res) {
+router.post('/', validate(schemas.post), function(req, res) {
   try {
     const posts = readJSON('posts.json', []);
     const newPost = Object.assign({ id: Date.now().toString() }, req.body, { createdAt: new Date().toISOString(), pinned: false, reactions: {}, replies: [] });
     posts.unshift(newPost);
     if (!writeJSON('posts.json', posts)) return res.status(500).json({ success: false, error: 'Save failed' });
     res.json({ success: true, data: newPost });
-    setImmediate(function() { jahidAutoComment(newPost); });
   } catch(err) { res.status(500).json({ success: false, error: err.message }); }
 });
 
@@ -58,9 +74,18 @@ router.post('/comment', validate(schemas.comment), function(req, res) {
   } catch(err) { res.json({ success: false }); }
 });
 
-router.post('/upload', feedUpload.single('photo'), function(req, res) {
+router.post('/upload', feedUpload.single('photo'), async function(req, res) {
   try {
     if (!req.file) return res.json({ success: false });
+    var filePath = req.file.path;
+    try {
+      var sharp = require('sharp');
+      var resized = await sharp(filePath)
+        .resize({ width: 900, height: 1200, fit: 'inside', withoutEnlargement: true })
+        .jpeg({ quality: 75, progressive: true })
+        .toBuffer();
+      fs.writeFileSync(filePath, resized);
+    } catch(e) {}
     res.json({ success: true, url: '/uploads/feed/' + req.file.filename });
   } catch(err) { res.json({ success: false }); }
 });
@@ -180,5 +205,40 @@ function jahidAutoComment(post) {
     writeJSON('posts.json', posts);
   } catch (e) { console.error('jahidAutoComment error:', e.message); }
 }
+
+router.post('/delete', function(req, res) {
+  try {
+    var posts = readJSON('posts.json', []);
+    var idx = posts.findIndex(function(p) { return p.id === req.body.postId; });
+    if (idx === -1) return res.status(404).json({ success: false, error: 'Post not found' });
+    posts.splice(idx, 1);
+    writeJSON('posts.json', posts);
+    res.json({ success: true });
+  } catch(err) { res.status(500).json({ success: false, error: err.message }); }
+});
+
+router.put('/:id', function(req, res) {
+  try {
+    var posts = readJSON('posts.json', []);
+    var post = posts.find(function(p) { return p.id === req.params.id; });
+    if (!post) return res.status(404).json({ success: false, error: 'Post not found' });
+    if (req.body.caption !== undefined) post.caption = req.body.caption;
+    if (req.body.category !== undefined) post.category = req.body.category;
+    post.editedAt = new Date().toISOString();
+    writeJSON('posts.json', posts);
+    res.json({ success: true, data: post });
+  } catch(err) { res.status(500).json({ success: false, error: err.message }); }
+});
+
+router.delete('/:id', function(req, res) {
+  try {
+    var posts = readJSON('posts.json', []);
+    var idx = posts.findIndex(function(p) { return p.id === req.params.id; });
+    if (idx === -1) return res.status(404).json({ success: false, error: 'Post not found' });
+    posts.splice(idx, 1);
+    writeJSON('posts.json', posts);
+    res.json({ success: true });
+  } catch(err) { res.status(500).json({ success: false, error: err.message }); }
+});
 
 module.exports = router;

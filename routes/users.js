@@ -105,4 +105,10 @@ router.post('/bulk-import', authMiddleware, hodOnly, async function(req, res) {
   }
 });
 
+router.get('/list', function(req, res) {
+  var entries = loadPinHashes();
+  var users = entries.map(function(e) { return { am: e.am, role: e.role }; });
+  res.json({ success: true, data: users });
+});
+
 module.exports = router;

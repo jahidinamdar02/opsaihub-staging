@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>FDU Compliance — Tim's Ops Connect</title>
+<link rel="stylesheet" href="styles.css"><style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+
+.hdr{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 20px 14px;display:flex;flex-direction:column;align-items:flex-start;gap:3px;position:sticky;top:var(--nav-h);z-index:89;}
+.back{color:var(--text2);text-decoration:none;font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;transition:color 0.15s;margin-bottom:3px;}
+.back:hover{color:var(--red);}
+.hdr-title{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-0.4px;}
+.hdr-sub{font-size:12px;color:var(--text2);}
+
+.period-bar{display:flex;background:var(--surface);border-bottom:1px solid var(--border);padding:0 20px;position:sticky;top:calc(var(--nav-h) + 66px);z-index:88;overflow-x:auto;scrollbar-width:none;}
+.period-bar::-webkit-scrollbar{display:none;}
+.period-btn{flex-shrink:0;padding:11px 22px;font-size:13px;font-weight:600;color:var(--text2);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:color 0.15s,border-color 0.15s;}
+.period-btn.active{color:var(--red);border-bottom-color:var(--red);}
+.period-btn:hover:not(.active){color:var(--text);}
+
+.am-filter{display:flex;gap:6px;padding:8px 20px;background:var(--card);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:calc(var(--nav-h) + 108px);z-index:86;}
+.am-filter::-webkit-scrollbar{display:none;}
+.am-pill{flex-shrink:0;padding:5px 12px;border-radius:16px;font-size:11px;font-weight:600;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all 0.15s;white-space:nowrap;}
+.am-pill.active{background:var(--red);border-color:var(--red);color:#fff;}
+.am-pill:hover:not(.active){border-color:var(--red);color:var(--red);}
+
+.search-bar{padding:6px 20px 8px;background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:calc(var(--nav-h) + 148px);z-index:85;}
+.search-input{width:100%;padding:8px 12px 8px 32px;border:1.5px solid var(--border);border-radius:10px;font-size:13px;background:var(--surface);color:var(--text);outline:none;transition:border-color 0.15s;}
+.search-input:focus{border-color:var(--red);}
+.search-wrap{position:relative;}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px;pointer-events:none;}
+.search-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;background:var(--border);border:none;color:var(--text2);font-size:12px;cursor:pointer;display:none;align-items:center;justify-content:center;line-height:1;padding:0;}
+.search-clear.show{display:flex;}
+
+.tab-bar{display:flex;background:var(--card);border-bottom:1px solid var(--border);padding:0 20px;position:sticky;top:calc(var(--nav-h) + 188px);z-index:87;}
+.tab-btn{flex:1;padding:10px 0;font-size:12px;font-weight:600;color:var(--text2);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;text-align:center;transition:color 0.15s,border-color 0.15s;}
+.tab-btn.active{color:var(--red);border-bottom-color:var(--red);}
+
+.content{padding:16px 20px 24px;}
+
+.hero{background:linear-gradient(135deg,#1A0508,#C8102E);border-radius:18px;padding:20px;margin-bottom:14px;}
+.hero-label{font-size:11px;color:rgba(255,255,255,0.6);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;}
+.hero-num{font-size:48px;font-weight:700;color:#fff;letter-spacing:-1.5px;line-height:1;font-variant-numeric:tabular-nums;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.6);margin-top:6px;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;}
+.hg{background:rgba(255,255,255,0.14);border-radius:10px;padding:10px;text-align:center;}
+.hg-num{font-size:18px;font-weight:700;color:#fff;line-height:1;font-variant-numeric:tabular-nums;}
+.hg-label{font-size:10px;color:rgba(255,255,255,0.6);margin-top:2px;text-transform:uppercase;letter-spacing:0.3px;}
+
+.section-card{background:var(--card);border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 1px 6px rgba(0,0,0,0.05);}
+.section-title{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+
+/* Scorecard table */
+.score-table{width:100%;border-collapse:collapse;}
+.score-table th{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);}
+.score-table td{padding:10px 8px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle;}
+.score-table tr:last-child td{border-bottom:none;}
+.store-rank{font-size:11px;font-weight:700;color:var(--text3);width:28px;}
+.store-cell{font-weight:600;}
+mark.hl{background:rgba(200,16,46,0.15);color:inherit;border-radius:2px;padding:0 1px;}
+.am-cell{color:var(--text2);font-size:12px;}
+.pct-cell{font-weight:700;font-variant-numeric:tabular-nums;text-align:right;}
+.pct-green{color:var(--pass);}
+.pct-amber{color:var(--warning);}
+.pct-red{color:var(--critical);}
+.streak-cell{font-size:11px;font-weight:600;text-align:right;}
+.streak-warn{color:var(--critical);}
+.streak-ok{color:var(--text3);}
+
+/* AM cards */
+.am-card{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);}
+.am-card:last-child{border-bottom:none;}
+.am-icon{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--red),var(--red-dark));display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;color:#fff;font-weight:700;}
+.am-info{flex:1;min-width:0;}
+.am-name{font-size:14px;font-weight:600;}
+.am-meta{font-size:11px;color:var(--text2);margin-top:2px;}
+.am-right{text-align:right;flex-shrink:0;}
+.am-pct{font-size:20px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;}
+.am-sub{font-size:10px;color:var(--text2);margin-top:2px;}
+.progress-bg{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:6px;}
+.progress-fill{height:100%;border-radius:2px;transition:width 1s ease;}
+
+/* Attention stores */
+.attn-store{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+.attn-store:last-child{border-bottom:none;}
+.attn-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.attn-info{flex:1;min-width:0;}
+.attn-name{font-size:13px;font-weight:600;}
+.attn-meta{font-size:11px;color:var(--text2);margin-top:1px;}
+.attn-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:7px;flex-shrink:0;}
+
+/* Violation rows */
+.violation-row{padding:12px 0;border-bottom:1px solid var(--border);}
+.violation-row:last-child{border-bottom:none;}
+.vr-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.vr-store{font-size:14px;font-weight:600;}
+.vr-date{font-size:11px;color:var(--text2);}
+.vr-am{font-size:12px;color:var(--text2);margin-bottom:6px;}
+.vr-issues{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;}
+.vr-issue{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;background:#FEE8E8;color:#C8102E;}
+.vr-photo{width:100%;max-width:300px;border-radius:10px;overflow:hidden;background:#1A1A1A;margin-top:6px;}
+.vr-photo img{width:100%;height:auto;display:block;}
+.vr-feedback{font-size:12px;color:var(--text2);margin-top:6px;line-height:1.5;}
+
+.loading{text-align:center;padding:60px 20px;color:var(--text3);}
+.spinner{width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.empty{text-align:center;padding:40px 20px;color:var(--text3);font-size:13px;}
+
+@media(min-width:768px){
+  .content{max-width:720px;margin:0 auto;}
+  .score-table{font-size:14px;}
+}
+</style>
+</head>
+<body>
+<div class="page-content">
+<nav class="nav" id="topNav">
+  <a href="index.html" class="nav-wordmark">Ops<span style="color:var(--red)">AI</span>Hub</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="tasks.html" class="nav-link">Tasks</a>
+    <a href="events.html" class="nav-link">Events</a>
+    <a href="performance.html" class="nav-link">Scores</a>
+    <a href="feed.html" class="nav-link">Recognition</a>
+    <a href="fdu-dashboard.html" class="nav-link active">FDU</a>
+    <a href="training.html" class="nav-link">Training</a>
+  </div>
+  <div class="nav-user" onclick="toggleAccountMenu()">
+    <div class="nav-avatar" id="topbarAvatar"></div>
+    <span class="nav-user-name" id="topbarName"></span>
+  </div>
+</nav>
+
+<div class="hdr">
+  <a href="fdu-dashboard.html" class="back">&larr; FDU Dashboard</a>
+  <div class="hdr-title">FDU Compliance</div>
+  <div class="hdr-sub" id="hdrSub">Loading...</div>
+</div>
+
+<div class="period-bar" id="periodBar">
+  <button class="period-btn active" data-days="7" onclick="setPeriod(7)">7 Days</button>
+  <button class="period-btn" data-days="14" onclick="setPeriod(14)">14 Days</button>
+  <button class="period-btn" data-days="30" onclick="setPeriod(30)">30 Days</button>
+  <button class="period-btn" data-days="90" onclick="setPeriod(90)">90 Days</button>
+</div>
+
+<div class="am-filter" id="amFilter"></div>
+<div class="search-bar">
+  <div class="search-wrap">
+    <span class="search-icon">&#x1F50D;</span>
+    <input class="search-input" id="searchInput" type="text" placeholder="Search stores..." oninput="setSearch(this.value)">
+    <button class="search-clear" id="searchClear" onclick="clearSearch()">&times;</button>
+  </div>
+</div>
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" data-tab="stores" onclick="setTab('stores')">Store Scorecards</button>
+  <button class="tab-btn" data-tab="am" onclick="setTab('am')">AM Accountability</button>
+  <button class="tab-btn" data-tab="violations" onclick="setTab('violations')">Violations</button>
+</div>
+
+<div class="content" id="main">
+  <div class="loading"><div class="spinner"></div>Loading compliance data...</div>
+</div>
+</div>
+
+<nav class="mobile-nav">
+  <div class="mobile-nav-items">
+    <a href="index.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="mobile-nav-label">Home</span></a>
+    <a href="tasks.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span class="mobile-nav-label">Tasks</span></a>
+    <a href="events.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span class="mobile-nav-label">Events</span></a>
+    <a href="performance.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="mobile-nav-label">Scores</span></a>
+    <a href="feed.html" class="mobile-nav-item"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="mobile-nav-label">Recognition</span></a>
+    <a href="fdu-dashboard.html" class="mobile-nav-item active"><span class="mobile-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><span class="mobile-nav-label">FDU</span></a>
+  </div>
+</nav>
+
+<script>
+var DAYS=7,TAB='stores',AM_FILTER='',SEARCH='';
+var fduData=[],donutData=[],links=[];
+var storeMap={};
+links.forEach(function(l){storeMap[l.store]=l.am;});
+function getAM(s){return storeMap[s]||'';}
+
+function filteredFdu(){return fduData.filter(function(d){if(AM_FILTER&&(d.am||getAM(d.store))!==AM_FILTER)return false;if(SEARCH){var s=(d.store||'').toLowerCase();if(s.indexOf(SEARCH.toLowerCase())===-1)return false;}return true;});}
+function filteredDonut(){return donutData.filter(function(d){if(AM_FILTER&&(d.am||getAM(d.store))!==AM_FILTER)return false;if(SEARCH){var s=(d.store||'').toLowerCase();if(s.indexOf(SEARCH.toLowerCase())===-1)return false;}return true;});}
+function setSearch(v){SEARCH=v.trim();document.getElementById('searchClear').classList.toggle('show',SEARCH.length>0);render();}
+function clearSearch(){SEARCH='';document.getElementById('searchInput').value='';document.getElementById('searchClear').classList.remove('show');render();}
+function hl(text){if(!SEARCH)return text;var i=text.toLowerCase().indexOf(SEARCH.toLowerCase());if(i===-1)return text;return text.substring(0,i)+'<mark class="hl">'+text.substring(i,i+SEARCH.length)+'</mark>'+text.substring(i+SEARCH.length);}
+document.addEventListener('keydown',function(e){
+  var el=document.getElementById('searchInput');
+  if(e.key==='/'&&document.activeElement!==el){e.preventDefault();el.focus();}
+  if(e.key==='Escape'&&document.activeElement===el){clearSearch();el.blur();}
+});
+
+function renderAMFilter(){
+  var amSet={};
+  fduData.forEach(function(d){var a=d.am||getAM(d.store);if(a)amSet[a]=1;});
+  donutData.forEach(function(d){var a=d.am||getAM(d.store);if(a)amSet[a]=1;});
+  var ams=Object.keys(amSet).sort();
+  var el=document.getElementById('amFilter');
+  var html='<button class="am-pill'+(AM_FILTER===''?' active':'')+'" onclick="setAMFilter(\'\')">All AMs</button>';
+  ams.forEach(function(am){
+    html+='<button class="am-pill'+(AM_FILTER===am?' active':'')+'" onclick="setAMFilter(\''+am.replace(/'/g,"\\'")+'\')">'+am+'</button>';
+  });
+  el.innerHTML=html;
+}
+function setAMFilter(am){
+  AM_FILTER=am;
+  renderAMFilter();
+  render();
+}
+
+function setPeriod(d){
+  DAYS=d;
+  document.querySelectorAll('.period-btn').forEach(function(b){b.classList.toggle('active',parseInt(b.dataset.days)===d);});
+  load();
+}
+function setTab(t){
+  TAB=t;
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.toggle('active',b.dataset.tab===t);});
+  render();
+}
+
+function load(){
+  var main=document.getElementById('main');
+  main.innerHTML='<div class="loading"><div class="spinner"></div>Loading...</div>';
+  Promise.all([
+    fetch('/api/fdu/submissions?days='+DAYS).then(function(r){return r.json();}),
+    fetch('/api/fdu/donut-results?days='+DAYS).then(function(r){return r.json();}),
+    fetch('/api/fdu/links').then(function(r){return r.json();})
+  ]).then(function(res){
+    fduData=res[0].data||[];
+    donutData=res[1].data||[];
+    links=res[2].data||res[2]||[];
+    storeMap={};
+    links.forEach(function(l){storeMap[l.store]=l.am;});
+    renderAMFilter();
+    var fd=filteredFdu(),dd=filteredDonut();
+    var sub=DAYS+'-day compliance · '+fd.length+' FDU + '+dd.length+' donut submissions';
+    if(AM_FILTER)sub+=' · Filtered: '+AM_FILTER;
+    sub+=' · '+links.length+' stores';
+    document.getElementById('hdrSub').textContent=sub;
+    render();
+  }).catch(function(){
+    main.innerHTML='<div class="empty">Failed to load data</div>';
+  });
+}
+
+function render(){
+  if(TAB==='stores') renderStores();
+  else if(TAB==='am') renderAM();
+  else renderViolations();
+}
+
+/* ── STORE SCORECARDS ── */
+function renderStores(){
+  var main=document.getElementById('main');
+  var storeStats={};
+  links.forEach(function(l){
+    if(AM_FILTER && l.am!==AM_FILTER) return;
+    if(SEARCH && l.store.toLowerCase().indexOf(SEARCH.toLowerCase())===-1) return;
+    storeStats[l.store]={am:l.am,store:l.store,total:0,pass:0,fail:0,pending:0,miss:0,lastDate:null,consecutiveMiss:0};
+  });
+  filteredFdu().forEach(function(d){
+    var s=storeStats[d.store]; if(!s)return;
+    s.total++;
+    if(d.overallPass===true)s.pass++;
+    else if(d.overallPass===false)s.fail++;
+    else s.pending++;
+    var dt=d.submittedAt?new Date(d.submittedAt):null;
+    if(dt&&(!s.lastDate||dt>s.lastDate))s.lastDate=dt;
+  });
+  /* count consecutive misses per store from today backwards */
+  var today=new Date(); today.setHours(0,0,0,0);
+  Object.keys(storeStats).forEach(function(store){
+    var s=storeStats[store];
+    var submittedDays={};
+    filteredFdu().forEach(function(d){
+      if(d.store!==store||!d.submittedAt)return;
+      var dt=new Date(d.submittedAt); dt.setHours(0,0,0,0);
+      submittedDays[dt.getTime()]=true;
+    });
+    var miss=0; var d=new Date(today);
+    while(true){
+      var dow=d.getDay();
+      if(dow!==0&&dow!==6){
+        if(!submittedDays[d.getTime()])miss++;
+        else break;
+      }
+      d.setDate(d.getDate()-1);
+      if(miss>30)break;
+    }
+    s.consecutiveMiss=miss;
+  });
+  var ranked=Object.values(storeStats).sort(function(a,b){
+    if(a.consecutiveMiss!==b.consecutiveMiss)return b.consecutiveMiss-a.consecutiveMiss;
+    var ap=a.total?a.pass/a.total:0; var bp=b.total?b.pass/b.total:0;
+    return ap-bp;
+  });
+  var totalStores=ranked.length;
+  var compliant=ranked.filter(function(s){return s.total>0&&(s.pass/s.total)>=0.8;}).length;
+  var atRisk=ranked.filter(function(s){return s.consecutiveMiss>=2;}).length;
+  var avgRate=ranked.reduce(function(sum,s){return sum+(s.total?(s.pass/s.total)*100:0);},0)/(totalStores||1);
+  var html='';
+  html+='<div class="hero">';
+  html+='<div class="hero-label">Overall Compliance Rate</div>';
+  html+='<div class="hero-num">'+avgRate.toFixed(0)+'%</div>';
+  html+='<div class="hero-sub">'+totalStores+' stores · '+DAYS+'-day window</div>';
+  html+='<div class="hero-grid">';
+  html+='<div class="hg"><div class="hg-num">'+compliant+'</div><div class="hg-label">Compliant</div></div>';
+  html+='<div class="hg"><div class="hg-num">'+atRisk+'</div><div class="hg-label">At Risk</div></div>';
+  html+='<div class="hg"><div class="hg-num">'+(totalStores-compliant-atRisk)+'</div><div class="hg-label">Needs Review</div></div>';
+  html+='</div></div>';
+  html+='<div class="section-card"><div class="section-title">Store Scorecards <span style="font-size:10px;color:var(--text3);font-weight:400;text-transform:none;letter-spacing:0">'+totalStores+' stores</span></div>';
+  html+='<div style="overflow-x:auto;"><table class="score-table"><thead><tr><th>#</th><th>Store</th><th>AM</th><th style="text-align:right">Rate</th><th style="text-align:right">P/F</th><th style="text-align:right">Miss</th></tr></thead><tbody>';
+  ranked.forEach(function(s,i){
+    var rate=s.total?(s.pass/s.total*100):0;
+    var rateClass=rate>=80?'pct-green':rate>=50?'pct-amber':'pct-red';
+    if(s.total===0)rateClass='pct-red';
+    var missClass=s.consecutiveMiss>=3?'streak-warn':s.consecutiveMiss>=1?'pct-amber':'streak-ok';
+    var missText=s.consecutiveMiss>0?s.consecutiveMiss+'d':'—';
+    html+='<tr>';
+    html+='<td class="store-rank">'+(i+1)+'</td>';
+    html+='<td class="store-cell">'+hl(s.store)+'</td>';
+    html+='<td class="am-cell">'+s.am+'</td>';
+    html+='<td class="pct-cell '+rateClass+'">'+(s.total?rate.toFixed(0)+'%':'—')+'</td>';
+    html+='<td class="pct-cell" style="color:var(--text2);font-size:12px">'+s.pass+'/'+s.fail+'</td>';
+    html+='<td class="streak-cell '+missClass+'">'+missText+'</td>';
+    html+='</tr>';
+  });
+  html+='</tbody></table></div></div>';
+  main.innerHTML=html;
+}
+
+/* ── AM ACCOUNTABILITY ── */
+function renderAM(){
+  var main=document.getElementById('main');
+  var amStats={};
+  links.forEach(function(l){
+    if(!amStats[l.am])amStats[l.am]={am:l.am,stores:[],total:0,pass:0,fail:0,pending:0,missStores:[]};
+    amStats[l.am].stores.push(l.store);
+  });
+  filteredFdu().forEach(function(d){
+    var a=amStats[d.am||getAM(d.store)]; if(!a)return;
+    a.total++;
+    if(d.overallPass===true)a.pass++;
+    else if(d.overallPass===false)a.fail++;
+    else a.pending++;
+  });
+  /* find stores with misses per AM */
+  var today=new Date(); today.setHours(0,0,0,0);
+  Object.keys(amStats).forEach(function(amName){
+    var a=amStats[amName];
+    a.stores.forEach(function(store){
+      var submittedDays={};
+      filteredFdu().forEach(function(d){
+        if(d.store!==store||!d.submittedAt)return;
+        var dt=new Date(d.submittedAt); dt.setHours(0,0,0,0);
+        submittedDays[dt.getTime()]=true;
+      });
+      var miss=0; var d=new Date(today);
+      while(true){
+        var dow=d.getDay();
+        if(dow!==0&&dow!==6){
+          if(!submittedDays[d.getTime()])miss++;
+          else break;
+        }
+        d.setDate(d.getDate()-1);
+        if(miss>30)break;
+      }
+      if(miss>=2)a.missStores.push({store:store,miss:miss});
+    });
+  });
+  var amList=Object.values(amStats).sort(function(a,b){
+    var ap=a.total?a.pass/a.total:0; var bp=b.total?b.pass/b.total:0;
+    return ap-bp;
+  });
+  var totalAMs=amList.length;
+  var avgRate=amList.reduce(function(sum,a){return sum+(a.total?(a.pass/a.total)*100:0);},0)/(totalAMs||1);
+  var html='';
+  html+='<div class="hero">';
+  html+='<div class="hero-label">AM Team Compliance</div>';
+  html+='<div class="hero-num">'+avgRate.toFixed(0)+'%</div>';
+  html+='<div class="hero-sub">'+totalAMs+' area managers · '+DAYS+'-day window</div>';
+  html+='</div>';
+  /* AM cards */
+  html+='<div class="section-card"><div class="section-title">Area Manager Performance</div>';
+  amList.forEach(function(a){
+    var rate=a.total?(a.pass/a.total*100):0;
+    var rateColor=rate>=80?'var(--pass)':rate>=50?'var(--warning)':'var(--critical)';
+    if(a.total===0)rateColor='var(--text3)';
+    var attn='';
+    if(a.missStores.length>0){
+      attn='<div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:4px;">';
+      a.missStores.forEach(function(ms){
+        attn+='<span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:5px;background:#FEE8E8;color:#C8102E;">'+hl(ms.store)+' ('+ms.miss+'d miss)</span>';
+      });
+      attn+='</div>';
+    }
+    html+='<div class="am-card">';
+    html+='<div class="am-icon">'+a.am.charAt(0)+'</div>';
+    html+='<div class="am-info"><div class="am-name">'+a.am+'</div><div class="am-meta">'+a.stores.length+' stores · '+a.total+' submissions · '+a.fail+' fails'+(a.pending?' · '+a.pending+' pending':'')+'</div>'+attn+'</div>';
+    html+='<div class="am-right"><div class="am-pct" style="color:'+rateColor+'">'+(a.total?rate.toFixed(0)+'%':'—')+'</div><div class="am-sub">'+a.pass+'/'+(a.pass+a.fail)+' pass</div></div>';
+    html+='</div>';
+    html+='<div class="progress-bg"><div class="progress-fill" style="width:'+rate+'%;background:'+rateColor+'"></div></div>';
+  });
+  html+='</div>';
+  main.innerHTML=html;
+}
+
+/* ── VIOLATIONS LOG ── */
+function renderViolations(){
+  var main=document.getElementById('main');
+  var violations=[];
+  filteredFdu().forEach(function(d){
+    if(d.overallPass!==false)return;
+    var issues=[];
+    if(d.dreamPass===false)issues.push('Dream: '+(d.dreamBasketsFound!=null?d.dreamBasketsFound+'/'+d.dreamBasketsRequired:'?')+' baskets');
+    if(d.classicPass===false)issues.push('Classic: '+(d.classicBasketsFound!=null?d.classicBasketsFound+'/'+d.classicBasketsRequired:'?')+' baskets');
+    if(d.timbitPass===false){var mv=d.timbitVariantsMissing||[];issues.push('Timbits: '+(mv.length?mv.join(', ')+' missing':'fail'));}
+    if(d.tagsPass===false)issues.push('Tags missing');
+    if(issues.length===0)issues.push('Overall fail');
+    violations.push({d:d,issues:issues});
+  });
+  /* Also add donut failures */
+  filteredDonut().forEach(function(d){
+    if(d.overallPass!==false)return;
+    var issues=[];
+    if(d.grade1!=='Pass')issues.push('Donut 1 ('+((d.donut1||{}).name||'?')+'): '+(d.grade1||'fail'));
+    if(d.grade2!=='Pass')issues.push('Donut 2 ('+((d.donut2||{}).name||'?')+'): '+(d.grade2||'fail'));
+    if(issues.length===0)issues.push('Donut quality fail');
+    violations.push({d:d,issues:issues,isDonut:true});
+  });
+  violations.sort(function(a,b){return new Date(b.d.submittedAt)-new Date(a.d.submittedAt);});
+  var html='';
+  html+='<div class="hero">';
+  html+='<div class="hero-label">Violations Requiring Action</div>';
+  html+='<div class="hero-num">'+violations.length+'</div>';
+  html+='<div class="hero-sub">'+DAYS+'-day window · FDU display + donut quality failures</div>';
+  html+='</div>';
+  if(violations.length===0){
+    html+='<div class="section-card"><div class="empty">No violations in this period</div></div>';
+  }else{
+    html+='<div class="section-card"><div class="section-title">All Violations</div>';
+    violations.forEach(function(v){
+      var d=v.d;
+      var dateStr=d.submittedAt?new Date(d.submittedAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      var store=hl(d.store||'Unknown');
+      var am=d.am||getAM(d.store)||'';
+      var photo=(d.photos&&d.photos[0])||d.photo1||d.photo2||'';
+      var feedback=d.summary||d.feedback1||d.feedback2||'';
+      html+='<div class="violation-row">';
+      html+='<div class="vr-header"><div class="vr-store">'+(v.isDonut?'&#x1F369; ':'&#x1F4F8; ')+store+'</div><div class="vr-date">'+dateStr+'</div></div>';
+      if(am)html+='<div class="vr-am">'+am+'</div>';
+      html+='<div class="vr-issues">';
+      v.issues.forEach(function(iss){html+='<span class="vr-issue">'+iss+'</span>';});
+      html+='</div>';
+      if(photo)html+='<div class="vr-photo"><img src="'+photo+'" alt="Violation photo" loading="lazy"></div>';
+      if(feedback)html+='<div class="vr-feedback">'+feedback+'</div>';
+      html+='</div>';
+    });
+    html+='</div>';
+  }
+  main.innerHTML=html;
+}
+
+load();
+</script>
+<script src="theme.js"></script>
+<script>applyTheme(getTheme());</script>
+</body>
+</html>
